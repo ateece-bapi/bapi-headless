@@ -2249,7 +2249,7 @@
       "totalDocs": "{count} documents available"
     },
     "stats": {
-      "showing": "Showing {count} of {total} documents"
+      "showing": "Showing {start}-{end} of {total} documents"
     },
     "search": {
       "placeholder": "Search datasheets by model number or product name...",
@@ -2290,7 +2290,13 @@
     },
     "grid": {
       "pagesLabel": "pages",
-      "downloadButton": "Download"
+      "downloadButton": "Download",
+      "selectAll": "Select all on this page",
+      "selectedCount": "{count} selected"
+    },
+    "bulkActions": {
+      "downloadZip": "Download {count} as ZIP",
+      "creatingZip": "Creating ZIP..."
     },
     "pagination": {
       "previous": "Previous",

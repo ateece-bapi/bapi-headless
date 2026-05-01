@@ -4,6 +4,13 @@ import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon, XCircleIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
+import Fuse from 'fuse.js';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
+// Lazy load PDF preview modal (client-side only)
+const PDFPreviewModal = dynamic(() => import('./PDFPreviewModal'), { ssr: false });
 
 interface Document {
   id: string;
@@ -94,15 +101,21 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
   
-  // Initialize state from URL params
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+  // Initialize state from URL params (with null safety)
+  const [searchTerm, setSearchTerm] = useState(searchParams?.get('search') || '');
   const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
-  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
-  const [selectedType, setSelectedType] = useState(searchParams.get('type') || '');
-  const [sortBy, setSortBy] = useState<SortOption>((searchParams.get('sort') as SortOption) || 'date-desc');
-  const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page') || '1'));
+  const [selectedCategory, setSelectedCategory] = useState(searchParams?.get('category') || '');
+  const [selectedType, setSelectedType] = useState(searchParams?.get('type') || '');
+  const [sortBy, setSortBy] = useState<SortOption>((searchParams?.get('sort') as SortOption) || 'date-desc');
+  const [currentPage, setCurrentPage] = useState(parseInt(searchParams?.get('page') || '1'));
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [showRecentSearches, setShowRecentSearches] = useState(false);
+  
+  // Premium feature state
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedDocIds, setSelectedDocIds] = useState<Set<string>>(new Set());
+  const [isDownloadingZip, setIsDownloadingZip] = useState(false);
+  const [previewDoc, setPreviewDoc] = useState<Document | null>(null);
   
   // Load recent searches on mount
   useEffect(() => {
@@ -163,25 +176,34 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     };
   }, [documents]);
 
+  // Fuse.js instance for fuzzy search
+  const fuse = useMemo(() => new Fuse(documents, {
+    keys: ['title', 'filename', 'productName', 'productSku'],
+    threshold: 0.3, // 0 = exact match, 1 = match anything
+    ignoreLocation: true,
+  }), [documents]);
+
   // Filtered and sorted documents
   const filteredDocuments = useMemo(() => {
-    let filtered = documents.filter(doc => {
-      // Search filter (debounced)
-      const matchesSearch = !debouncedSearch || 
-        doc.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        doc.productName?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        doc.productSku?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        doc.filename.toLowerCase().includes(debouncedSearch.toLowerCase());
-      
-      // Category filter
-      const matchesCategory = !selectedCategory || 
-        doc.categories.some(cat => cat.toLowerCase().includes(selectedCategory.toLowerCase()));
-      
-      // Type filter
-      const matchesType = !selectedType || doc.documentType === selectedType;
-      
-      return matchesSearch && matchesCategory && matchesType;
-    });
+    let filtered = documents;
+    
+    // Fuzzy search filter (debounced)
+    if (debouncedSearch) {
+      const fuseResults = fuse.search(debouncedSearch);
+      filtered = fuseResults.map(result => result.item);
+    }
+    
+    // Category filter
+    if (selectedCategory) {
+      filtered = filtered.filter(doc => 
+        doc.categories.some(cat => cat.toLowerCase().includes(selectedCategory.toLowerCase()))
+      );
+    }
+    
+    // Type filter
+    if (selectedType) {
+      filtered = filtered.filter(doc => doc.documentType === selectedType);
+    }
     
     // Sort documents
     return filtered.sort((a, b) => {
@@ -211,6 +233,69 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   }, [filteredDocuments, currentPage]);
 
   const totalPages = Math.ceil(filteredDocuments.length / ITEMS_PER_PAGE);
+
+  // Handler functions for premium features (must be after data computations)
+  const toggleDocSelection = useCallback((docId: string) => {
+    setSelectedDocIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(docId)) {
+        newSet.delete(docId);
+      } else {
+        newSet.add(docId);
+      }
+      return newSet;
+    });
+  }, []);
+
+  const toggleSelectAll = useCallback(() => {
+    if (selectedDocIds.size > 0) {
+      setSelectedDocIds(new Set());
+    } else {
+      // Select all documents on current page
+      setSelectedDocIds(new Set(paginatedDocuments.map(doc => doc.id)));
+    }
+  }, [selectedDocIds.size, paginatedDocuments]);
+
+  const handleBulkDownload = useCallback(async () => {
+    if (selectedDocIds.size === 0) return;
+    
+    setIsDownloadingZip(true);
+    try {
+      const zip = new JSZip();
+      const selectedDocs = documents.filter(doc => selectedDocIds.has(doc.id));
+      
+      // Fetch all PDFs and add to ZIP
+      await Promise.all(
+        selectedDocs.map(async (doc) => {
+          try {
+            const response = await fetch(doc.url);
+            const blob = await response.blob();
+            zip.file(doc.filename, blob);
+          } catch (error) {
+            console.error(`Failed to download ${doc.filename}:`, error);
+          }
+        })
+      );
+      
+      // Generate and download ZIP
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      saveAs(zipBlob, `bapi-documents-${new Date().toISOString().split('T')[0]}.zip`);
+      
+      // Track download event
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'bulk_download', {
+          event_category: 'Documents',
+          event_label: 'Bulk ZIP Download',
+          value: selectedDocIds.size,
+        });
+      }
+    } catch (error) {
+      console.error('Bulk download failed:', error);
+      alert('Failed to create ZIP file. Please try again or download files individually.');
+    } finally {
+      setIsDownloadingZip(false);
+    }
+  }, [selectedDocIds, documents]);
 
   // Reset to page 1 when filters change
   const handleFilterChange = () => {
@@ -255,7 +340,8 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm text-neutral-700">
               {t('stats.showing', { 
-                count: filteredDocuments.length, 
+                start: 1,
+                end: filteredDocuments.length,
                 total: totalCount 
               })}
             </p>
@@ -371,6 +457,60 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
         </div>
       </section>
 
+      {/* Stats Bar with View Toggle & Bulk Actions */}
+      <section className="border-b border-neutral-200 bg-neutral-50 py-4">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-neutral-600">
+              {t('stats.showing', {
+                start: (currentPage - 1) * ITEMS_PER_PAGE + 1,
+                end: Math.min(currentPage * ITEMS_PER_PAGE, filteredDocuments.length),
+                total: filteredDocuments.length
+              })}
+            </p>
+            
+            <div className="flex items-center gap-3">
+              {/* Bulk Download Button */}
+              {selectedDocIds.size > 0 && (
+                <button
+                  onClick={handleBulkDownload}
+                  disabled={isDownloadingZip}
+                  className="flex items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-accent-600 disabled:opacity-50"
+                >
+                  <DownloadIcon className="h-4 w-4" />
+                  {isDownloadingZip 
+                    ? t('bulkActions.creatingZip')
+                    : t('bulkActions.downloadZip', { count: selectedDocIds.size })
+                  }
+                </button>
+              )}
+              
+              {/* View Mode Toggle */}
+              <div className="flex rounded-lg border border-neutral-300 bg-white">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 transition-colors ${viewMode === 'grid' ? 'bg-primary-500 text-white' : 'text-neutral-600 hover:bg-neutral-100'}`}
+                  aria-label="Grid view"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 transition-colors ${viewMode === 'list' ? 'bg-primary-500 text-white' : 'text-neutral-600 hover:bg-neutral-100'}`}
+                  aria-label="List view"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Documents Grid */}
       <section className="py-12">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -394,25 +534,55 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {/* Select All Header */}
+              <div className="mb-4 flex items-center gap-2 border-b border-neutral-200 pb-4">
+                <input
+                  type="checkbox"
+                  checked={selectedDocIds.size > 0 && selectedDocIds.size === paginatedDocuments.length}
+                  onChange={toggleSelectAll}
+                  className="h-4 w-4 rounded border-neutral-300 text-primary-500 focus:ring-primary-500"
+                  aria-label={t('grid.selectAll')}
+                />
+                <span className="text-sm text-neutral-600">
+                  {selectedDocIds.size > 0
+                    ? t('grid.selectedCount', { count: selectedDocIds.size })
+                    : t('grid.selectAll')}
+                </span>
+              </div>
+              
+              {/* Grid View */}
+              <div className={viewMode === 'grid' ? "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "space-y-3"}>
                 {paginatedDocuments.map((doc) => (
-                  <a
+                  <div
                     key={doc.id}
-                    href={doc.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleDownload(doc)}
-                    className="group flex flex-col rounded-xl border-2 border-neutral-200 bg-white p-5 transition-all hover:border-primary-500 hover:shadow-lg"
+                    className="group relative flex flex-col rounded-xl border-2 border-neutral-200 bg-white p-5 transition-all hover:border-primary-500 hover:shadow-lg"
                   >
-                    {/* Icon & Type Badge */}
-                    <div className="mb-3 flex items-start justify-between">
-                      <div className="flex h-14 w-12 flex-shrink-0 items-center justify-center rounded bg-neutral-100 group-hover:bg-primary-50">
-                        <FileTextIcon className="h-7 w-7 text-primary-500" />
-                      </div>
-                      <span className="rounded-full bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-700">
-                        {doc.documentType}
-                      </span>
+                    {/* Selection Checkbox */}
+                    <div className="absolute left-3 top-3 z-10">
+                      <input
+                        type="checkbox"
+                        checked={selectedDocIds.has(doc.id)}
+                        onChange={() => toggleDocSelection(doc.id)}
+                        onClick={(e) => e.stopPropagation()}
+                        className="h-5 w-5 rounded border-neutral-300 text-primary-500 focus:ring-primary-500"
+                        aria-label={`Select ${doc.title}`}
+                      />
                     </div>
+                    
+                    {/* Document Content - Make whole card clickable */}
+                    <div
+                      onClick={() => setPreviewDoc(doc)}
+                      className="cursor-pointer"
+                    >
+                      {/* Icon & Type Badge */}
+                      <div className="mb-3 flex items-start justify-between pl-8">
+                        <div className="flex h-14 w-12 flex-shrink-0 items-center justify-center rounded bg-neutral-100 group-hover:bg-primary-50">
+                          <FileTextIcon className="h-7 w-7 text-primary-500" />
+                        </div>
+                        <span className="rounded-full bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-700">
+                          {doc.documentType}
+                        </span>
+                      </div>
 
                     {/* Title & Metadata */}
                     <div className="mb-3 flex-1">
@@ -453,13 +623,22 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                         <span>{new Date(doc.date).toLocaleDateString()}</span>
                       )}
                     </div>
+                    </div>
 
                     {/* Download Button */}
-                    <div className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-bold text-neutral-900 transition-colors group-hover:bg-accent-600">
+                    <a
+                      href={doc.url}
+                      download
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDownload(doc);
+                      }}
+                      className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-bold text-neutral-900 transition-colors group-hover:bg-accent-600"
+                    >
                       <DownloadIcon className="h-4 w-4" />
                       <span className="text-sm">{t('grid.downloadButton')}</span>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                 ))}
               </div>
 
@@ -515,6 +694,15 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
           )}
         </div>
       </section>
+      
+      {/* PDF Preview Modal */}
+      {previewDoc && (
+        <PDFPreviewModal
+          url={previewDoc.url}
+          title={previewDoc.title}
+          onClose={() => setPreviewDoc(null)}
+        />
+      )}
     </>
   );
 }

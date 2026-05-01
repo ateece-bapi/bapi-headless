@@ -85,9 +85,9 @@ These products are **CALL-TO-ORDER** products on both legacy and headless sites:
 ---
 
 ### 3. Products Dropdown Cut Off
-**Status:** 🔵 Needs Discussion  
-**Priority:** P0  
-**Type:** UX - May be user cache issue
+**Status:** � Resolved - Cache Issue  
+**Priority:** ~~P0~~ N/A  
+**Type:** ~~UX~~ User Cache
 
 **Issue:**
 - Products mega menu appears cut off at bottom
@@ -98,13 +98,13 @@ These products are **CALL-TO-ORDER** products on both legacy and headless sites:
 - Likely requires hard refresh (Ctrl+Shift+R) to clear cached CSS
 - May be browser-specific issue
 
-**Recommendation:**
-- Have Terry do hard refresh before investigating further
-- Test across different browsers and screen heights
-- May not be actual bug, just cache issue
+**Resolution:**
+- ✅ Confirmed as browser cache issue
+- User will discuss cache clearing procedure with Terry
+- No code changes needed
 
-**Assigned To:** TBD - Verify after hard refresh  
-**Estimated Effort:** 0-2 hours (depending on if real issue)
+**Assigned To:** Complete - User handling  
+**Estimated Effort:** 0 hours (cache issue)
 
 ---
 
@@ -554,7 +554,7 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 ---
 
 ### 13. Videos Not Migrating to Video Tab
-**Status:** ⚪ Not Started  
+**Status:** 🟡 In Progress  
 **Priority:** P1  
 **Type:** Data Migration - Media
 
@@ -563,13 +563,13 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 - Videos were embedded in "Description" field on current site
 - Need to extract and properly categorize
 
-**Investigation Needed:**
+**Investigation:**
 - [ ] Audit how many products have videos
 - [ ] Determine extraction method
 - [ ] Check if manual re-upload needed
 - [ ] Verify GraphQL product_videos field usage
 
-**Assigned To:** TBD  
+**Assigned To:** User (In Progress - May 1, 2026)  
 **Estimated Effort:** 4-6 hours (depends on volume)
 
 ---
@@ -625,8 +625,8 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 ## 📋 Medium Priority (P2 - Post-Launch OK)
 
 ### 15. Radio Buttons vs Dropdowns Inconsistency
-**Status:** 🔵 Needs Discussion  
-**Priority:** P2  
+**Status:** � Closed  
+**Priority:** ~~P2~~ N/A  
 **Type:** UX - Design Pattern
 
 **Current Pattern:**
@@ -638,14 +638,13 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 - https://bapi-headless.vercel.app/en/product/zpm-standard-accuracy-%c2%b11-pressure-sensor-in-a-bapi-box-ip66-or-nema4-rated-field-selected-range-and-output
 - Has dropdown + radio + slider
 
-**Discussion Points:**
-- [ ] Is current pattern intentional?
-- [ ] Does it improve UX or create confusion?
-- [ ] Should we standardize on one control type?
-- [ ] Get UX/design input
+**Resolution:**
+- ✅ Closed - Current pattern accepted as intentional design
+- Mixed control types based on option count improves UX
+- No changes needed
 
-**Assigned To:** TBD  
-**Estimated Effort:** 2-4 hours (depending on decision)
+**Assigned To:** Closed (May 1, 2026)  
+**Estimated Effort:** 0 hours
 
 ---
 
@@ -852,28 +851,51 @@ it('handles special characters - periods', () => {
 ---
 
 ### 20. Datasheets - Remove from Resources
-**Status:** 🔵 Needs Discussion  
-**Priority:** P2  
-**Type:** UX - Navigation
+**Status:** � In Progress - Postponed to Phase 2  
+**Priority:** P2 (Phase 1: Remove, Phase 2: Build Properly)  
+**Type:** UX - Enterprise Document Management
 
 **Terry's Recommendation:**
 - Remove datasheets from Resources section
 - Redirect users to product pages for datasheets
 - Reason: "Hundreds of datasheets, impossible to find"
 
-**Discussion Points:**
-- [ ] Do users expect datasheets in Resources?
-- [ ] Analytics: How are datasheets currently accessed?
-- [ ] Would search help? Or is removal better?
-- [ ] Impact on SEO?
+**Investigation Results (May 1, 2026):**
+- ✅ **918 total PDF documents** in WordPress media library
+- ✅ **Enterprise-scale problem** requiring proper search infrastructure
+- ✅ Document types: Datasheets (37%), Instructions (21%), CAD Drawings (11%), Catalogs (2%), Guides (8%), Manuals (5%), Other (22%)
+- ✅ **87% attached to products** (799 docs), 13% orphaned (119 docs)
+- ✅ Well-structured filenames (not generic), paired documents (pricing vs submittal)
+- ✅ Competitors (Belimo, Schneider Electric, Honeywell) use Algolia/Elasticsearch for 800-2000 documents
 
-**Tasks (if approved):**
-- [ ] Remove datasheets section
-- [ ] Add prominent link to product catalog
-- [ ] Update Resources navigation
+**Decision:**
+- **Phase 1 (Pre-Launch - May 8):** Remove current unusable page, add "Coming Soon" message
+- **Phase 2 (Post-Launch - June-July 2026):** Build enterprise document library with Algolia search
 
-**Assigned To:** TBD  
-**Estimated Effort:** 2-3 hours
+**Phase 1 Tasks (Pre-Launch):**
+- [ ] Replace datasheets page with "Enhanced Document Library Coming Soon"
+- [ ] Add message: "We're building advanced search for our 900+ technical documents"
+- [ ] Link to product catalog for product-specific datasheets
+- [ ] Provide download links for current catalogs (2025 US/EU/UK)
+
+**Phase 2 Tasks (Post-Launch):**
+- [ ] Week 1-2: Audit + cleanup (918 → ~600-700 documents)
+- [ ] Week 3-4: Set up Algolia search infrastructure
+- [ ] Week 5-6: Build filtered search UI (facets: product category, doc type, date)
+- [ ] Week 7: Testing + QA
+- [ ] Week 8: Launch with marketing push
+
+**Technical Approach:**
+- **Search Engine:** Algolia InstantSearch (recommended) or Elasticsearch
+- **Features:** Full-text search, faceted filters, PDF preview, instant results (<100ms)
+- **Cost:** $50-100/month (Algolia) or self-hosted (Elasticsearch)
+- **Effort:** 130 hours (~3-4 weeks)
+
+**Documentation:**
+- Full analysis: `docs/DOCUMENT-LIBRARY-ANALYSIS-MAY2026.md`
+
+**Assigned To:** Phase 1 - Ready for implementation (2 hours), Phase 2 - TBD (June 2026)  
+**Estimated Effort:** Phase 1: 2 hours, Phase 2: 130 hours
 
 ---
 
@@ -1052,43 +1074,54 @@ export default function SensorPage() {
 
 ---
 
-### 23. Unknown Product - Verify Existence
-**Status:** 🔵 Needs Discussion  
+### 23. Unknown Product - Should Not Be Displayed
+**Status:** 🟢 Complete  
 **Priority:** P2  
-**Type:** Data - Product Validation
+**Type:** Data - Product Cleanup
 
 **Issue:**
 - Product: delta-style-room-humidity-sensor-17m50
 - URL: https://bapi-headless.vercel.app/en/product/delta-style-room-humidity-sensor-17m50
 - Terry: "I don't know what this product is or why it's on the website"
 
-**Investigation:**
-- [ ] Check current website for this product
-- [ ] Verify SKU/part number
-- [ ] Ask product team
-- [ ] Delete if invalid, update if valid
+**Decision:**
+- ✅ Product should NOT be displayed on website (May 1, 2026)
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1 hour + discussion
+**Solution Implemented:**
+- ✅ Product status changed via WordPress admin
+- ✅ Product title: "Delta Style Room Humidity Sensor (17M50)"
+- ✅ Product SKU: 84.84
+- ✅ Previous status: Published (Oct 03, 2023)
+- ✅ New status: Draft/Hidden
+- ✅ Verified: Product no longer shows on website
+- ✅ Categories: Was in Humidity sensors, Delta style sensors
+
+**Result:**
+- Product successfully hidden from catalog
+- Direct URL no longer accessible
+- Product data retained in WordPress for reference
+
+**Assigned To:** Complete (May 1, 2026)  
+**Actual Effort:** 5 minutes
 
 ---
 
 ## 📊 Summary Statistics
 
 **Total Issues:** 25 (added Sensor Translation - Issue #25)  
-**P0 Critical:** 3 (added Sensor Translation i18n requirement)  
-**P1 High:** 15  
-**P2 Medium:** 5  
-**Resolved - Not Bugs:** 2
+**P0 Critical:** 0 (all resolved)  
+**P1 High:** 14 (1 in progress)  
+**P2 Medium:** 4  
+**Resolved - Not Bugs:** 3
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 0
-- 🟢 Complete: 16 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**, **Empty dropdown attribute slug fix**, **Circular document reference**, **Wireless product categorization**, **Sensor Detail Pages Translation**)  
-- 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
-- ⚪ Not Started: 4
+- 🟡 In Progress: 2 (#13 Videos, #20 Datasheets Phase 1)
+- 🟢 Complete: 19 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories + Translations**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**, **Empty dropdown attribute slug fix**, **Circular document reference**, **Wireless product categorization**, **Sensor Detail Pages Translation**, **Mega Menu Cache Issue**, **Radio/Dropdown Pattern**, **Unknown Product Hidden**)  
+- 🔵 Needs Discussion: 2 (Category Behavior, WAM Examples)
+- ⚪ Not Started: 2 (Temperature Sensor Order)
 
-**Estimated Total Effort Remaining:** 24-47 hours
+**Estimated Total Effort Remaining:** 8-15 hours (Phase 1 only, excludes Phase 2 post-launch work)
 
 ---
 

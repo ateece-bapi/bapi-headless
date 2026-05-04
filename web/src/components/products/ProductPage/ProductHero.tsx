@@ -188,6 +188,21 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
               </div>
             )}
 
+            {/* Configure Product Card */}
+            <div className="mb-6 rounded-lg border border-neutral-200 bg-white p-8 text-center shadow-sm">
+              <div className="mb-4 flex justify-center">
+                <div className="rounded-full bg-primary-50 p-4">
+                  <svg className="h-12 w-12 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-neutral-900">Configure Product</h3>
+              <p className="text-sm text-neutral-600">
+                Select your specifications below to see pricing and part number
+              </p>
+            </div>
+
             {/* Action buttons below description */}
             <div className="mb-6 flex flex-col gap-3 sm:flex-row">
               <button

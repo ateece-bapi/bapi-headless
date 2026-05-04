@@ -627,7 +627,11 @@
       "returns": "Trả Lại trong 30 Ngày",
       "returnsDesc": "Không Rắc Rối",
       "support": "Hỗ Trợ Chuyên Nghiệp",
-      "supportDesc": "Hỗ Trợ Kỹ Thuật"
+      "supportDesc": "Hỗ Trợ Kỹ Thuật",
+      "testing": "100% Kiểm Tra",
+      "testingDesc": "Chất Lượng Đảm Bảo",
+      "certified": "Chứng Nhận CE/RoHS",
+      "certifiedDesc": "Tuân Thủ"
     },
     "variationSelectors": {
       "chooseOption": "Chọn một tùy chọn"
@@ -1752,7 +1756,8 @@
     },
     "hero": {
       "title": "Tờ Dữ Liệu Sản Phẩm",
-      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI"
+      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI",
+      "totalDocs": "{count} tài liệu có sẵn"
     },
     "search": {
       "placeholder": "Tìm kiếm tờ dữ liệu theo số model hoặc tên sản phẩm...",

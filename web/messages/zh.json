@@ -551,6 +551,11 @@
       "selectSpecifications": "请选择您的规格,以查看价格和型号",
       "scrollToCta": "开始配置",
       "scrollToCtaAriaLabel": "滚动到产品配置器部分",
+      "downloadDocuments": "下载文档",
+      "productInformation": "产品信息",
+      "readyToAddToCart": "准备好加入购物车",
+      "outOfStockMessage": "该产品目前无货",
+      "contactForPricing": "请联系我们获取价格信息",
       "configurationComplete": "配置完成",
       "partNumber": "型号",
       "quantity": "数量",
@@ -1795,7 +1800,8 @@
     },
     "hero": {
       "title": "产品数据表",
-      "subtitle": "所有BAPI产品的详细技术规格"
+      "subtitle": "所有BAPI产品的详细技术规格",
+      "totalDocs": "{count}份文档可用"
     },
     "search": {
       "placeholder": "按型号或产品名称搜索数据表...",

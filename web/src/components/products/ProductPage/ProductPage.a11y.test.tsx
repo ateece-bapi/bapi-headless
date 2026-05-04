@@ -52,7 +52,8 @@ vi.mock('next/dynamic', () => ({
 
 // Mock next-intl
 vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => {
+  useTranslations: (namespace?: string) => (key: string) => {
+    const fullKey = namespace ? `${namespace}.${key}` : key;
     const translations: Record<string, string> = {
       'productPage.tabs.description': 'Description',
       'productPage.tabs.documents': 'Documents',
@@ -68,8 +69,17 @@ vi.mock('next-intl', () => ({
       'productPage.summary.partNumber': 'Part Number',
       'productPage.summary.multiplier': 'Price Multiplier',
       'productPage.summary.quantity': 'Quantity',
+      'productPage.summary.configureProduct': 'Configure Product',
+      'productPage.summary.selectSpecifications': 'Select your specifications below to see pricing and part number',
+      'productPage.summary.scrollToCta': 'Start Configuring',
+      'productPage.summary.scrollToCtaAriaLabel': 'Scroll to product configurator section',
+      'productPage.summary.downloadDocuments': 'Download Documents',
+      'productPage.summary.productInformation': 'Product Information',
+      'productPage.summary.readyToAddToCart': 'Ready to add to your cart',
+      'productPage.summary.outOfStockMessage': 'This product is currently out of stock',
+      'productPage.summary.contactForPricing': 'Please contact us for pricing information',
     };
-    return translations[key] || key;
+    return translations[fullKey] || fullKey;
   },
 }));
 

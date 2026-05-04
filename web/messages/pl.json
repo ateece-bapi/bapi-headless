@@ -1117,7 +1117,11 @@
       "returns": "Zwroty przez 30 dni",
       "returnsDesc": "Bez zbędnych formalności",
       "support": "Profesjonalne wsparcie",
-      "supportDesc": "Pomoc techniczna"
+      "supportDesc": "Pomoc techniczna",
+      "testing": "100% Testowane",
+      "testingDesc": "Jakość Gwarantowana",
+      "certified": "Certyfikat CE/RoHS",
+      "certifiedDesc": "Zgodne"
     },
     "variationSelectors": {
       "chooseOption": "Wybierz opcję"
@@ -2242,7 +2246,8 @@
     },
     "hero": {
       "title": "Karty Danych Produktów",
-      "subtitle": "Szczegółowe specyfikacje techniczne wszystkich produktów BAPI"
+      "subtitle": "Szczegółowe specyfikacje techniczne wszystkich produktów BAPI",
+      "totalDocs": "{count} dostępnych dokumentów"
     },
     "search": {
       "placeholder": "Szukaj kart danych według numeru modelu lub nazwy produktu...",

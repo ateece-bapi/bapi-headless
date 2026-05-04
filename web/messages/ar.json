@@ -666,7 +666,11 @@
       "returns": "إرجاع خلال 30 يومًا",
       "returnsDesc": "خالي من المتاعب",
       "support": "دعم من الخبراء",
-      "supportDesc": "المساعدة الفنية"
+      "supportDesc": "المساعدة الفنية",
+      "testing": "100% مختبرة",
+      "testingDesc": "جودة مضمونة",
+      "certified": "معتمد CE/RoHS",
+      "certifiedDesc": "متوافق"
     },
     "variationSelectors": {
       "chooseOption": "اختر خيارًا"
@@ -1791,7 +1795,8 @@
     },
     "hero": {
       "title": "أوراق بيانات المنتجات",
-      "subtitle": "مواصفات تقنية تفصيلية لجميع منتجات BAPI"
+      "subtitle": "مواصفات تقنية تفصيلية لجميع منتجات BAPI",
+      "totalDocs": "{count} مستندات متاحة"
     },
     "search": {
       "placeholder": "ابحث عن أوراق البيانات حسب رقم الطراز أو اسم المنتج...",

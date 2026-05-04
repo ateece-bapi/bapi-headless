@@ -666,7 +666,11 @@
       "returns": "30日返品",
       "returnsDesc": "簡単返品",
       "support": "専門サポート",
-      "supportDesc": "技術サポート"
+      "supportDesc": "技術サポート",
+      "testing": "100%テスト済み",
+      "testingDesc": "品質保証",
+      "certified": "CE/RoHS認証",
+      "certifiedDesc": "適合"
     },
     "variationSelectors": {
       "chooseOption": "オプションを選択してください"
@@ -1791,7 +1795,8 @@
     },
     "hero": {
       "title": "製品データシート",
-      "subtitle": "すべてのBAPI製品の詳細な技術仕様"
+      "subtitle": "すべてのBAPI製品の詳細な技術仕様",
+      "totalDocs": "{count}件のドキュメントが利用可能"
     },
     "search": {
       "placeholder": "型番または製品名でデータシートを検索...",

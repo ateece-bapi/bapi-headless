@@ -1117,7 +1117,11 @@
       "returns": "30 दिनों में वापसी",
       "returnsDesc": "बेझंझट",
       "support": "विशेषज्ञ सहायता",
-      "supportDesc": "तकनीकी सहायता"
+      "supportDesc": "तकनीकी सहायता",
+      "testing": "100% परीक्षित",
+      "testingDesc": "गुणवत्ता सुनिश्चित",
+      "certified": "CE/RoHS प्रमाणित",
+      "certifiedDesc": "अनुरूप"
     },
     "variationSelectors": {
       "chooseOption": "एक विकल्प चुनें"
@@ -2242,7 +2246,8 @@
     },
     "hero": {
       "title": "उत्पाद डेटाशीट",
-      "subtitle": "सभी BAPI उत्पादों के लिए विस्तृत तकनीकी विनिर्देश"
+      "subtitle": "सभी BAPI उत्पादों के लिए विस्तृत तकनीकी विनिर्देश",
+      "totalDocs": "{count} दस्तावेज़ उपलब्ध"
     },
     "search": {
       "placeholder": "मॉडल नंबर या उत्पाद नाम द्वारा डेटाशीट खोजें...",

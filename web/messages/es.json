@@ -666,7 +666,11 @@
       "returns": "Devoluciones de 30 días",
       "returnsDesc": "Sin Problemas",
       "support": "Soporte Experto",
-      "supportDesc": "Asistencia Técnica"
+      "supportDesc": "Asistencia Técnica",
+      "testing": "100% Probado",
+      "testingDesc": "Calidad Asegurada",
+      "certified": "Certificado CE/RoHS",
+      "certifiedDesc": "Conforme"
     },
     "variationSelectors": {
       "chooseOption": "Elija una opción"
@@ -1791,7 +1795,8 @@
     },
     "hero": {
       "title": "Hojas de Datos de Productos",
-      "subtitle": "Especificaciones técnicas detalladas para todos los productos BAPI"
+      "subtitle": "Especificaciones técnicas detalladas para todos los productos BAPI",
+      "totalDocs": "{count} documentos disponibles"
     },
     "search": {
       "placeholder": "Buscar hojas de datos por número de modelo o nombre de producto...",

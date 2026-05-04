@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import Fuse from 'fuse.js';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { toast } from 'sonner';
+import { useToast } from '@/components/ui/Toast';
 import logger from '@/lib/logger';
 
 // Lazy load PDF preview modal (client-side only)
@@ -85,6 +85,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   const searchParams = useSearchParams();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { showToast } = useToast();
   
   // Initialize state from URL params (with null safety)
   const [searchTerm, setSearchTerm] = useState(searchParams?.get('search') || '');
@@ -245,19 +246,28 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     if (selectedDocIds.size === 0) return;
     
     setIsDownloadingZip(true);
+    const failedFiles: string[] = [];
+    
     try {
       const zip = new JSZip();
       const selectedDocs = documents.filter(doc => selectedDocIds.has(doc.id));
       
-      // Fetch all PDFs and add to ZIP
+      // Fetch all PDFs and add to ZIP (track failures)
       await Promise.all(
         selectedDocs.map(async (doc) => {
           try {
             const response = await fetch(doc.url);
+            
+            // Check HTTP status before adding to ZIP
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const blob = await response.blob();
             zip.file(doc.filename, blob);
           } catch (error) {
             logger.error(`Failed to download ${doc.filename}`, error);
+            failedFiles.push(doc.filename);
           }
         })
       );
@@ -266,21 +276,36 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       saveAs(zipBlob, `bapi-documents-${new Date().toISOString().split('T')[0]}.zip`);
       
+      // Show warning if some files failed
+      if (failedFiles.length > 0) {
+        showToast(
+          'warning',
+          'Incomplete Download',
+          `${failedFiles.length} of ${selectedDocIds.size} files failed to download. ZIP may be incomplete.`,
+          8000
+        );
+      }
+      
       // Track download event
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'bulk_download', {
           event_category: 'Documents',
           event_label: 'Bulk ZIP Download',
           value: selectedDocIds.size,
+          failed_count: failedFiles.length,
         });
       }
     } catch (error) {
       logger.error('Bulk download failed', error);
-      toast.error('Failed to create ZIP file. Please try again or download files individually.');
+      showToast(
+        'error',
+        'Download Failed',
+        'Failed to create ZIP file. Please try again or download files individually.'
+      );
     } finally {
       setIsDownloadingZip(false);
     }
-  }, [selectedDocIds, documents]);
+  }, [selectedDocIds, documents, showToast]);
 
   // Reset to page 1 when filters change
   const handleFilterChange = () => {

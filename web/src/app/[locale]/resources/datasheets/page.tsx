@@ -210,8 +210,13 @@ export default async function DatasheetsPage({ params }: Props) {
       };
     });
   } catch (error) {
-    logger.error('Error fetching documents', error);
-    documents = [];
+    // Log error and rethrow to trigger error boundary
+    // This ensures users see an error page instead of empty "0 documents"
+    logger.error('Failed to load document library', error, {
+      endpoint: `${baseUrl}/wp-json/bapi/v1/all-pdfs`,
+      userGroups: userCustomerGroups,
+    });
+    throw error; // Trigger Next.js error boundary
   }
   
   return (

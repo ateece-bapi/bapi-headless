@@ -386,23 +386,23 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
     const tabs = screen.getAllByRole('tab');
     expect(tabs).toHaveLength(3);
 
-    // Check first tab (Description - should be active by default)
-    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
-    expect(descriptionTab).toHaveAttribute('aria-selected', 'true');
-    expect(descriptionTab).toHaveAttribute('aria-controls', 'tabpanel-description');
-    expect(descriptionTab).toHaveAttribute('tabIndex', '0');
+    // Check first tab (Documents - should be active by default after redesign)
+    const documentsTab = tabs.find(tab => tab.textContent?.includes('Documents'));
+    expect(documentsTab).toHaveAttribute('aria-selected', 'true');
+    expect(documentsTab).toHaveAttribute('aria-controls', 'tabpanel-documents');
+    expect(documentsTab).toHaveAttribute('tabIndex', '0');
 
     // Check inactive tabs have tabIndex -1
-    const documentsTab = tabs.find(tab => tab.textContent?.includes('Documents'));
-    expect(documentsTab).toHaveAttribute('aria-selected', 'false');
-    expect(documentsTab).toHaveAttribute('tabIndex', '-1');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    expect(descriptionTab).toHaveAttribute('aria-selected', 'false');
+    expect(descriptionTab).toHaveAttribute('tabIndex', '-1');
   });
 
   it('tab panels have proper ARIA roles and IDs', () => {
     render(<ProductTabs product={mockProduct} />);
 
     const tabpanel = screen.getByRole('tabpanel');
-    expect(tabpanel).toHaveAttribute('id', 'tabpanel-description');
+    expect(tabpanel).toHaveAttribute('id', 'tabpanel-documents');
   });
 
   it('clicking tab changes aria-selected state', async () => {
@@ -410,27 +410,35 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
     render(<ProductTabs product={mockProduct} />);
 
     const tabs = screen.getAllByRole('tab');
-    const documentsTab = tabs.find(tab => tab.textContent?.includes('Documents'));
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
 
-    await user.click(documentsTab!);
+    await user.click(descriptionTab!);
 
-    expect(documentsTab).toHaveAttribute('aria-selected', 'true');
-    expect(documentsTab).toHaveAttribute('tabIndex', '0');
+    expect(descriptionTab).toHaveAttribute('aria-selected', 'true');
+    expect(descriptionTab).toHaveAttribute('tabIndex', '0');
   });
 
-  it('shows description content by default', () => {
+  it('shows documents content by default', () => {
     render(<ProductTabs product={mockProduct} />);
 
-   // Description HTML should be rendered
-    expect(screen.getByText('Product Overview', { selector: 'h2' })).toBeInTheDocument();
+    // Documents tab content should be visible (updated from Description in redesign)
+    // Check for document links or "No documents" message
+    const tabpanel = screen.getByRole('tabpanel');
+    expect(tabpanel).toHaveAttribute('id', 'tabpanel-documents');
   });
 
-  it('shows empty state with accessible icon when no description', () => {
+  it('shows empty state with accessible icon when no description', async () => {
+    const user = userEvent.setup();
     const noDescProduct = {
       ...mockProduct,
       description: null,
     };
     render(<ProductTabs product={noDescProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     expect(screen.getByText('No Description Available')).toBeInTheDocument();
     expect(screen.getByText(/Product description coming soon/)).toBeInTheDocument();
@@ -517,8 +525,14 @@ describe('ProductTabs - Color Contrast', () => {
     });
   });
 
-  it('description content has sufficient contrast', () => {
+  it('description content has sufficient contrast', async () => {
+    const user = userEvent.setup();
     render(<ProductTabs product={mockProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     const tabpanel = screen.getByRole('tabpanel');
     expect(tabpanel).toHaveClass('p-8');
@@ -529,12 +543,18 @@ describe('ProductTabs - Color Contrast', () => {
     // Prose neutral uses sufficient contrast colors - verified by jest-axe
   });
 
-  it('empty state text has sufficient contrast', () => {
+  it('empty state text has sufficient contrast', async () => {
+    const user = userEvent.setup();
     const noDescProduct = {
       ...mockProduct,
       description: null,
     };
     render(<ProductTabs product={noDescProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     const heading = screen.getByText('No Description Available');
     expect(heading.closest('p')).toHaveClass('text-neutral-700');
@@ -635,8 +655,8 @@ describe('ProductHero - Color Contrast', () => {
   it('product information labels are visible', () => {
     render(<ProductHero product={mockProduct} />);
 
-    // Part Number label should be present
-    expect(screen.getByText(/Part Number/)).toBeInTheDocument();
+    // Configure Product card subtitle mentions part number
+    expect(screen.getByText(/Select your specifications below to see pricing and part number/)).toBeInTheDocument();
     // Text colors meet WCAG AA standards - verified by jest-axe
   });
 

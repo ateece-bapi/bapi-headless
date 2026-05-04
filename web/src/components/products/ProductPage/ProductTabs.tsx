@@ -70,8 +70,8 @@ interface ProductTabsProps {
 }
 
 const TAB_LIST = [
-  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpenIcon },
   { key: 'documents', labelKey: 'productPage.tabs.documents', icon: FileTextIcon },
+  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpenIcon },
   { key: 'videos', labelKey: 'productPage.tabs.videos', icon: VideoIcon },
 ] as const;
 
@@ -79,7 +79,7 @@ type TabType = (typeof TAB_LIST)[number]['key'];
 
 export default function ProductTabs({ product }: ProductTabsProps) {
   const t = useTranslations();
-  const [activeTab, setActiveTab] = useState<TabType>('description');
+  const [activeTab, setActiveTab] = useState<TabType>('documents');
 
   // Load videos from JSON by SKU or database ID
   const jsonVideos = useMemo(() => {
@@ -121,7 +121,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
     });
   }, [product, jsonVideos, allVideos]);
   return (
-    <section className="mb-12 overflow-hidden rounded-xl border border-neutral-200 bg-white">
+    <section id="documents" className="mb-12 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Professional Tab Navigation */}
       <div className="border-b border-neutral-200 bg-neutral-50">
         <nav className="flex" role="tablist">

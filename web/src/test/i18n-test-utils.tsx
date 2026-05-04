@@ -280,6 +280,10 @@ const mockMessages = {
       returnsDesc: 'Hassle Free',
       support: 'Expert Support',
       supportDesc: 'Technical Help',
+      testing: '100% Testing',
+      testingDesc: 'Quality Assured',
+      certified: 'CE/RoHS Certified',
+      certifiedDesc: 'Compliant',
     },
     variationSelectors: {
       chooseOption: 'Choose an option',

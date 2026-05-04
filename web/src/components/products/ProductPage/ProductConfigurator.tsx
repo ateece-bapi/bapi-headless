@@ -53,8 +53,12 @@ export default function ProductConfigurator({
   // Hide selectors if no variations
   const showSelectors = variations.length > 0 && attributes.length > 0;
   return (
-    <section className="mb-8">
-      <h2 className="mb-2 text-lg font-semibold">Configure Product</h2>
+    <section className="mb-8" data-product-configurator>
+      <div className="mb-4 rounded-t-lg bg-primary-500 px-6 py-4">
+        <h2 className="text-xl font-bold text-white">Configure Your Product</h2>
+        <p className="text-sm text-white/90">Select your specifications to get your custom product</p>
+      </div>
+      <div className="rounded-b-lg border border-neutral-200 bg-white p-6 shadow-sm">
       {showSelectors ? (
         <form className="mb-4 flex flex-col gap-4">
           {attributes.map((attr) => (
@@ -82,15 +86,16 @@ export default function ProductConfigurator({
           No configuration options available.
         </div>
       )}
-      {selectedVariation && (
-        <div className="mt-4">
-          <div className="text-xs text-neutral-700">Variation Part Number</div>
-          <div className="text-lg font-medium text-neutral-900">
-            {selectedVariation.partNumber || selectedVariation.sku || 'N/A'}
+        {selectedVariation && (
+          <div className="mt-4">
+            <div className="text-xs text-neutral-700">Variation Part Number</div>
+            <div className="text-lg font-medium text-neutral-900">
+              {selectedVariation.partNumber || selectedVariation.sku || 'N/A'}
+            </div>
           </div>
-        </div>
-      )}
-      {/* Price and action now in summary card */}
+        )}
+        {/* Price and action now in summary card */}
+      </div>
     </section>
   );
 }

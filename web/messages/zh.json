@@ -666,7 +666,11 @@
       "returns": "30天退货",
       "returnsDesc": "无忧退换",
       "support": "专业支持",
-      "supportDesc": "技术帮助"
+      "supportDesc": "技术帮助",
+      "testing": "100%测试",
+      "testingDesc": "质量保证",
+      "certified": "CE/RoHS认证",
+      "certifiedDesc": "符合标准"
     },
     "variationSelectors": {
       "chooseOption": "选择一个选项"

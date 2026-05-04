@@ -19,11 +19,12 @@ export default function PDFPreviewModal({ url, title, onClose }: PDFPreviewModal
     return () => window.removeEventListener('keydown', handleEscape);
   }, [onClose]);
 
-  // Prevent body scroll when modal open
+  // Prevent body scroll when modal open (capture previous value for restoration)
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = previousOverflow;
     };
   }, []);
 

@@ -6,6 +6,7 @@ import DocumentLibraryClient from '@/components/resources/DocumentLibraryClient'
 import { cookies } from 'next/headers';
 import { extractCustomerGroupFromTitle } from '@/lib/utils/filterProductsByCustomerGroup';
 import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
+import logger from '@/lib/logger';
 
 // WordPress REST API types
 interface WPMediaItem {
@@ -75,7 +76,7 @@ async function getUserCustomerGroups(): Promise<string[]> {
     // Default to 'end-user' if no valid groups
     return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
   } catch (error) {
-    console.error('Failed to get user customer groups', error);
+    logger.error('Failed to get user customer groups', error);
     return ['end-user']; // Fallback to guest
   }
 }
@@ -105,7 +106,8 @@ function classifyDocumentType(title: string | null): string {
   const text = title.toLowerCase();
   
   if (text.includes('instruction') || text.includes('_ins_')) return 'Instructions';
-  if (text.includes('with pricing') || text.match(/[^no]price/)) return 'Datasheet (Pricing)';
+  // Check for pricing: must contain 'price' but not 'noprice'
+  if (text.includes('with pricing') || (text.includes('price') && !text.includes('noprice'))) return 'Datasheet (Pricing)';
   if (text.includes('noprice') || text.includes('for submittal')) return 'Datasheet (Submittal)';
   if (text.includes('datasheet')) return 'Datasheet';
   if (text.includes('catalog')) return 'Catalog';
@@ -176,21 +178,21 @@ export default async function DatasheetsPage({ params }: Props) {
     );
     
     if (!response.ok) {
-      console.error(`Failed to fetch documents: ${response.status}`);
+      logger.error('Failed to fetch documents', { status: response.status });
       throw new Error(`Custom endpoint returned ${response.status}`);
     }
     
     const data = await response.json();
     const allDocuments: WPMediaItem[] = data.documents;
     
-    console.log(`✅ Fetched ALL ${allDocuments.length} documents from custom WordPress endpoint (bypassed REST API limits)`);
+    logger.info(`Fetched ${allDocuments.length} documents from WordPress endpoint`);
   
     // Filter documents based on customer group access (same logic as products)
     const filteredDocuments = allDocuments.filter(doc => 
       canUserViewDocument(doc.title?.rendered || '', userCustomerGroups)
     );
     
-    console.log(`🔒 Filtered to ${filteredDocuments.length} documents for user with groups: ${userCustomerGroups.join(', ')}`);
+    logger.debug(`Filtered to ${filteredDocuments.length} documents for user groups: ${userCustomerGroups.join(', ')}`);
   
     // Transform documents for client component
     documents = filteredDocuments.map(doc => {
@@ -208,7 +210,7 @@ export default async function DatasheetsPage({ params }: Props) {
       };
     });
   } catch (error) {
-    console.error('Error fetching documents:', error);
+    logger.error('Error fetching documents', error);
     documents = [];
   }
   

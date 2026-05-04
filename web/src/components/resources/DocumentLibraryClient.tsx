@@ -2,12 +2,14 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon, XCircleIcon } from '@/lib/icons';
+import { FileTextIcon, DownloadIcon, SearchIcon, XCircleIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Fuse from 'fuse.js';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { useToast } from '@/components/ui/Toast';
+import logger from '@/lib/logger';
 
 // Lazy load PDF preview modal (client-side only)
 const PDFPreviewModal = dynamic(() => import('./PDFPreviewModal'), { ssr: false });
@@ -32,25 +34,6 @@ interface DocumentLibraryClientProps {
 
 const ITEMS_PER_PAGE = 24;
 
-// Document type classifier
-function classifyDocumentType(title: string, filename: string): string {
-  const text = `${title} ${filename}`.toLowerCase();
-  
-  if (text.includes('instruction') || text.includes('_ins_')) return 'Instructions';
-  if (text.includes('with pricing') || text.match(/[^no]price/)) return 'Datasheet (Pricing)';
-  if (text.includes('noprice') || text.includes('for submittal')) return 'Datasheet (Submittal)';
-  if (text.includes('datasheet')) return 'Datasheet';
-  if (text.includes('catalog')) return 'Catalog';
-  if (text.includes('guide') || text.includes('selection')) return 'Selection Guide';
-  if (text.includes('drawing') || text.includes('dimension')) return 'Technical Drawing';
-  if (text.includes('manual') || text.includes('operation')) return 'Operation Manual';
-  if (text.includes('specification') || text.includes('spec')) return 'Specification';
-  if (text.includes('application note')) return 'Application Note';
-  if (text.includes('warranty') || text.includes('compliance') || text.includes('certificate')) return 'Compliance';
-  
-  return 'Other';
-}
-
 // Format file size
 function formatFileSize(bytes: number | null | undefined): string {
   if (!bytes) return 'Unknown';
@@ -63,7 +46,9 @@ function formatFileSize(bytes: number | null | undefined): string {
 function highlightText(text: string, searchTerm: string): React.ReactNode {
   if (!searchTerm) return text;
   
-  const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+  // Escape special regex characters to prevent injection
+  const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const parts = text.split(new RegExp(`(${escapedTerm})`, 'gi'));
   return parts.map((part, i) => 
     part.toLowerCase() === searchTerm.toLowerCase() ? 
       <mark key={i} className="bg-accent-300 font-semibold">{part}</mark> : 
@@ -100,6 +85,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   const searchParams = useSearchParams();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { showToast } = useToast();
   
   // Initialize state from URL params (with null safety)
   const [searchTerm, setSearchTerm] = useState(searchParams?.get('search') || '');
@@ -205,8 +191,8 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
       filtered = filtered.filter(doc => doc.documentType === selectedType);
     }
     
-    // Sort documents
-    return filtered.sort((a, b) => {
+    // Sort documents (create shallow copy to avoid mutating props)
+    return [...filtered].sort((a, b) => {
       switch (sortBy) {
         case 'date-desc':
           return (b.date || '').localeCompare(a.date || '');
@@ -260,19 +246,28 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     if (selectedDocIds.size === 0) return;
     
     setIsDownloadingZip(true);
+    const failedFiles: string[] = [];
+    
     try {
       const zip = new JSZip();
       const selectedDocs = documents.filter(doc => selectedDocIds.has(doc.id));
       
-      // Fetch all PDFs and add to ZIP
+      // Fetch all PDFs and add to ZIP (track failures)
       await Promise.all(
         selectedDocs.map(async (doc) => {
           try {
             const response = await fetch(doc.url);
+            
+            // Check HTTP status before adding to ZIP
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const blob = await response.blob();
             zip.file(doc.filename, blob);
           } catch (error) {
-            console.error(`Failed to download ${doc.filename}:`, error);
+            logger.error(`Failed to download ${doc.filename}`, error);
+            failedFiles.push(doc.filename);
           }
         })
       );
@@ -281,21 +276,36 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       saveAs(zipBlob, `bapi-documents-${new Date().toISOString().split('T')[0]}.zip`);
       
+      // Show warning if some files failed
+      if (failedFiles.length > 0) {
+        showToast(
+          'warning',
+          'Incomplete Download',
+          `${failedFiles.length} of ${selectedDocIds.size} files failed to download. ZIP may be incomplete.`,
+          8000
+        );
+      }
+      
       // Track download event
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'bulk_download', {
           event_category: 'Documents',
           event_label: 'Bulk ZIP Download',
           value: selectedDocIds.size,
+          failed_count: failedFiles.length,
         });
       }
     } catch (error) {
-      console.error('Bulk download failed:', error);
-      alert('Failed to create ZIP file. Please try again or download files individually.');
+      logger.error('Bulk download failed', error);
+      showToast(
+        'error',
+        'Download Failed',
+        'Failed to create ZIP file. Please try again or download files individually.'
+      );
     } finally {
       setIsDownloadingZip(false);
     }
-  }, [selectedDocIds, documents]);
+  }, [selectedDocIds, documents, showToast]);
 
   // Reset to page 1 when filters change
   const handleFilterChange = () => {
@@ -384,7 +394,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                 {showRecentSearches && recentSearches.length > 0 && !searchTerm && (
                   <div className="absolute top-full mt-1 w-full rounded-lg border border-neutral-300 bg-white shadow-lg z-20">
                     <div className="p-2">
-                      <div className="px-2 py-1 text-xs font-semibold text-neutral-500\">{t('recentSearches.heading')}</div>
+                      <div className="px-2 py-1 text-xs font-semibold text-neutral-500">{t('recentSearches.heading')}</div>
                       {recentSearches.map((term, idx) => (
                         <button
                           key={idx}

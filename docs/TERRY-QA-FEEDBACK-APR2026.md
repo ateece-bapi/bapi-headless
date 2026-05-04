@@ -85,7 +85,7 @@ These products are **CALL-TO-ORDER** products on both legacy and headless sites:
 ---
 
 ### 3. Products Dropdown Cut Off
-**Status:** � Resolved - Cache Issue  
+**Status:** ✅ Resolved - Cache Issue  
 **Priority:** ~~P0~~ N/A  
 **Type:** ~~UX~~ User Cache
 
@@ -625,7 +625,7 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 ## 📋 Medium Priority (P2 - Post-Launch OK)
 
 ### 15. Radio Buttons vs Dropdowns Inconsistency
-**Status:** � Closed  
+**Status:** ✅ Closed  
 **Priority:** ~~P2~~ N/A  
 **Type:** UX - Design Pattern
 
@@ -851,7 +851,7 @@ it('handles special characters - periods', () => {
 ---
 
 ### 20. Datasheets - Remove from Resources
-**Status:** � In Progress - Postponed to Phase 2  
+**Status:** 🟡 In Progress - Postponed to Phase 2  
 **Priority:** P2 (Phase 1: Remove, Phase 2: Build Properly)  
 **Type:** UX - Enterprise Document Management
 

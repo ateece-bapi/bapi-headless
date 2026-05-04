@@ -144,7 +144,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 role="tab"
                 data-tab-id={tab.key}
                 aria-selected={isActive}
-                aria-controls={`tabpanel-${tab.key}`}
+                aria-controls={isActive ? 'product-tabpanel' : undefined}
                 tabIndex={isActive ? 0 : -1}
                 className={`relative flex items-center gap-2 border-b-2 px-6 py-4 font-semibold transition-all ${
                   isActive
@@ -163,7 +163,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
       </div>
 
       {/* Tab Content Panels */}
-      <div className="p-8" role="tabpanel" id={`tabpanel-${activeTab}`}>
+      <div className="p-8" role="tabpanel" id="product-tabpanel" aria-labelledby={`tab-${activeTab}`}>
         {/* Description Tab */}
         {activeTab === 'description' && (
           <div className="px-4 py-8">

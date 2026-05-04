@@ -24,7 +24,8 @@
     "sort": "Trier",
     "clearAll": "Effacer tout",
     "apply": "Appliquer",
-    "reset": "Réinitialiser"
+    "reset": "Réinitialiser",
+    "contactUs": "Nous contacter"
   },
   "nav": {
     "products": "Produits",
@@ -551,6 +552,11 @@
       "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les tarifs et le numéro de pièce",
       "scrollToCta": "Commencer la configuration",
       "scrollToCtaAriaLabel": "Faites défiler jusqu'à la section du configurateur de produits",
+      "downloadDocuments": "Télécharger les documents",
+      "productInformation": "Informations sur le produit",
+      "readyToAddToCart": "Prêt à ajouter au panier",
+      "outOfStockMessage": "Ce produit est actuellement en rupture de stock",
+      "contactForPricing": "Veuillez nous contacter pour les informations de prix",
       "configurationComplete": "Configuration terminée",
       "partNumber": "Numéro de pièce",
       "quantity": "Quantité",

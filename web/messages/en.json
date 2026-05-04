@@ -24,7 +24,8 @@
     "sort": "Sort",
     "clearAll": "Clear All",
     "apply": "Apply",
-    "reset": "Reset"
+    "reset": "Reset",
+    "contactUs": "Contact Us"
   },
   "ui": {
     "languageChanged": {

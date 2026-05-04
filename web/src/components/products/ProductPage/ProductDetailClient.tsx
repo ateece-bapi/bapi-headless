@@ -14,6 +14,7 @@ import { useRecentlyViewed, useCart as defaultUseCart, useCartDrawer as defaultU
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import type { CartItem } from '@/store';
+import { Link } from '@/lib/navigation';
 
 // Lazy load ProductTabs to avoid i18n SSR issues
 const ProductTabs = dynamic(
@@ -37,8 +38,8 @@ export default function ProductDetailClient({
   useCart = defaultUseCart,
   useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
-  const t = useTranslations('productPage');
   const tSummary = useTranslations('productPage.summary');
+  const tCommon = useTranslations('common');
   const region = useRegion();
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
@@ -114,7 +115,7 @@ export default function ProductDetailClient({
 
           {/* Add to Cart for simple products (no variations) */}
           {isSimpleProduct && (
-            <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-8" data-product-configurator>
+            <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-8" data-product-configurator tabIndex={-1}>
               <div className="mb-4 rounded-t-lg bg-primary-500 -mx-8 -mt-8 px-6 py-4">
                 <h2 className="text-2xl font-bold text-white">{tSummary('productInformation')}</h2>
                 <p className="text-sm text-white/90">{tSummary('readyToAddToCart')}</p>
@@ -156,15 +157,15 @@ export default function ProductDetailClient({
                 ) : (
                   <div className="text-center">
                     <p className="text-lg font-semibold text-neutral-700">{tSummary('contactForPricing')}</p>
-                    <a 
+                    <Link 
                       href="/contact" 
                       className="inline-flex items-center gap-2 mt-3 text-primary-600 hover:text-primary-700 font-medium transition-colors"
                     >
-                      Contact Us
+                      {tCommon('contactUs')}
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>

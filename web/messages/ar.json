@@ -24,7 +24,8 @@
     "sort": "ترتيب",
     "clearAll": "مسح الكل",
     "apply": "تطبيق",
-    "reset": "إعادة تعيين"
+    "reset": "إعادة تعيين",
+    "contactUs": "اتصل بنا"
   },
   "nav": {
     "products": "المنتجات",
@@ -551,6 +552,11 @@
       "selectSpecifications": "حدد المواصفات الخاصة بك أدناه لمعرفة الأسعار ورقم الجزء",
       "scrollToCta": "ابدأ التكوين",
       "scrollToCtaAriaLabel": "انتقل إلى قسم مكوّن المنتج",
+      "downloadDocuments": "تحميل المستندات",
+      "productInformation": "معلومات المنتج",
+      "readyToAddToCart": "جاهز للإضافة إلى السلة",
+      "outOfStockMessage": "هذا المنتج غير متوفر حالياً",
+      "contactForPricing": "يرجى الاتصال بنا للحصول على معلومات الأسعار",
       "configurationComplete": "اكتمل التكوين",
       "partNumber": "رقم الجزء",
       "quantity": "الكمية",

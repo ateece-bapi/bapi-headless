@@ -25,7 +25,7 @@ interface ProductHeroProps {
     sku?: string | null;
     shortDescription?: string | null;
     description?: string | null;
-    variations?: any[];
+    variations?: Array<{ id: string; name: string; [key: string]: unknown }>;
   };
   variation?: {
     image?: GalleryImage | null;

@@ -399,20 +399,21 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
     // Check first tab (Documents - should be active by default after redesign)
     const documentsTab = tabs.find(tab => tab.textContent?.includes('Documents'));
     expect(documentsTab).toHaveAttribute('aria-selected', 'true');
-    expect(documentsTab).toHaveAttribute('aria-controls', 'tabpanel-documents');
+    expect(documentsTab).toHaveAttribute('aria-controls', 'product-tabpanel');
     expect(documentsTab).toHaveAttribute('tabIndex', '0');
 
-    // Check inactive tabs have tabIndex -1
+    // Check inactive tabs have tabIndex -1 and no aria-controls
     const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
     expect(descriptionTab).toHaveAttribute('aria-selected', 'false');
     expect(descriptionTab).toHaveAttribute('tabIndex', '-1');
+    expect(descriptionTab).not.toHaveAttribute('aria-controls');
   });
 
   it('tab panels have proper ARIA roles and IDs', () => {
     render(<ProductTabs product={mockProduct} />);
 
     const tabpanel = screen.getByRole('tabpanel');
-    expect(tabpanel).toHaveAttribute('id', 'tabpanel-documents');
+    expect(tabpanel).toHaveAttribute('id', 'product-tabpanel');
   });
 
   it('clicking tab changes aria-selected state', async () => {
@@ -434,7 +435,7 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
     // Documents tab content should be visible (updated from Description in redesign)
     // Check for document links or "No documents" message
     const tabpanel = screen.getByRole('tabpanel');
-    expect(tabpanel).toHaveAttribute('id', 'tabpanel-documents');
+    expect(tabpanel).toHaveAttribute('id', 'product-tabpanel');
   });
 
   it('shows empty state with accessible icon when no description', async () => {

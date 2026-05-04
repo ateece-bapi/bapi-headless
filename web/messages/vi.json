@@ -24,7 +24,8 @@
     "sort": "Sắp xếp",
     "clearAll": "Xóa tất cả",
     "apply": "Áp dụng",
-    "reset": "Đặt lại"
+    "reset": "Đặt lại",
+    "contactUs": "Liên hệ chúng tôi"
   },
   "nav": {
     "products": "Sản phẩm",
@@ -512,6 +513,11 @@
       "selectSpecifications": "Chọn các thông số kỹ thuật của bạn bên dưới để xem giá và số linh kiện",
       "scrollToCta": "Bắt đầu Định cấu hình",
       "scrollToCtaAriaLabel": "Cuộn đến phần Bộ định cấu hình sản phẩm",
+      "downloadDocuments": "Tải xuống Tài liệu",
+      "productInformation": "Thông tin Sản phẩm",
+      "readyToAddToCart": "Sẵn sàng thêm vào giỏ hàng",
+      "outOfStockMessage": "Sản phẩm này hiện tại hết hàng",
+      "contactForPricing": "Vui lòng liên hệ chúng tôi để biết thông tin về giá",
       "configurationComplete": "Định cấu hình Hoàn tất",
       "partNumber": "Số linh kiện",
       "quantity": "Số lượng",

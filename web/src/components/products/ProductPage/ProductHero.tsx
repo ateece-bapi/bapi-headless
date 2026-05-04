@@ -94,6 +94,23 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
     }
   };
 
+  const scrollToDocuments = () => {
+    const documentsTab = document.querySelector('#documents');
+    if (documentsTab) {
+      const elementPosition = documentsTab.getBoundingClientRect().top + window.scrollY;
+      const offset = 120; // Adjust offset to not scroll too far
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      
+      // Click the Documents tab to activate it
+      setTimeout(() => {
+        const documentsButton = document.querySelector('[data-tab-id="documents"]');
+        if (documentsButton instanceof HTMLElement) {
+          documentsButton.click();
+        }
+      }, 300);
+    }
+  };
+
   return (
     <>
       {/* Full-width blue hero banner */}
@@ -188,7 +205,7 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
               </div>
             )}
 
-            {/* Configure Product Card */}
+            {/* Configure Product Card with buttons inside */}
             <div className="mb-6 rounded-lg border border-neutral-200 bg-white p-8 text-center shadow-sm">
               <div className="mb-4 flex justify-center">
                 <div className="rounded-full bg-primary-50 p-4">
@@ -198,29 +215,29 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
                 </div>
               </div>
               <h3 className="mb-2 text-xl font-bold text-neutral-900">Configure Product</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="mb-6 text-sm text-neutral-600">
                 Select your specifications below to see pricing and part number
               </p>
-            </div>
-
-            {/* Action buttons below description */}
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                onClick={scrollToConfigurator}
-                className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 shadow-md transition-all hover:bg-accent-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-              >
-                Start Configuring
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <a
-                href="#documents"
-                className="flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
-              >
-                <DownloadIcon className="h-5 w-5" />
-                Download Documents
-              </a>
+              
+              {/* Action buttons inside card */}
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+                <button
+                  onClick={scrollToConfigurator}
+                  className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 shadow-md transition-all hover:bg-accent-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                >
+                  Start Configuring
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={scrollToDocuments}
+                  className="flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                >
+                  <DownloadIcon className="h-5 w-5" />
+                  Download Documents
+                </button>
+              </div>
             </div>
           </div>        </div>
       </section>

@@ -427,12 +427,18 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
     expect(tabpanel).toHaveAttribute('id', 'tabpanel-documents');
   });
 
-  it('shows empty state with accessible icon when no description', () => {
+  it('shows empty state with accessible icon when no description', async () => {
+    const user = userEvent.setup();
     const noDescProduct = {
       ...mockProduct,
       description: null,
     };
     render(<ProductTabs product={noDescProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     expect(screen.getByText('No Description Available')).toBeInTheDocument();
     expect(screen.getByText(/Product description coming soon/)).toBeInTheDocument();
@@ -519,8 +525,14 @@ describe('ProductTabs - Color Contrast', () => {
     });
   });
 
-  it('description content has sufficient contrast', () => {
+  it('description content has sufficient contrast', async () => {
+    const user = userEvent.setup();
     render(<ProductTabs product={mockProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     const tabpanel = screen.getByRole('tabpanel');
     expect(tabpanel).toHaveClass('p-8');
@@ -531,12 +543,18 @@ describe('ProductTabs - Color Contrast', () => {
     // Prose neutral uses sufficient contrast colors - verified by jest-axe
   });
 
-  it('empty state text has sufficient contrast', () => {
+  it('empty state text has sufficient contrast', async () => {
+    const user = userEvent.setup();
     const noDescProduct = {
       ...mockProduct,
       description: null,
     };
     render(<ProductTabs product={noDescProduct} />);
+
+    // Click on Description tab (Documents is default after redesign)
+    const tabs = screen.getAllByRole('tab');
+    const descriptionTab = tabs.find(tab => tab.textContent?.includes('Description'));
+    await user.click(descriptionTab!);
 
     const heading = screen.getByText('No Description Available');
     expect(heading.closest('p')).toHaveClass('text-neutral-700');
@@ -637,8 +655,8 @@ describe('ProductHero - Color Contrast', () => {
   it('product information labels are visible', () => {
     render(<ProductHero product={mockProduct} />);
 
-    // Part Number label should be present
-    expect(screen.getByText(/Part Number/)).toBeInTheDocument();
+    // Configure Product card subtitle mentions part number
+    expect(screen.getByText(/Select your specifications below to see pricing and part number/)).toBeInTheDocument();
     // Text colors meet WCAG AA standards - verified by jest-axe
   });
 

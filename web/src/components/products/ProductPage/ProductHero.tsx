@@ -214,7 +214,7 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
                   </svg>
                 </div>
               </div>
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">Configure Product</h3>
+              <h2 className="mb-2 text-xl font-bold text-neutral-900">Configure Product</h2>
               <p className="mb-6 text-sm text-neutral-600">
                 Select your specifications below to see pricing and part number
               </p>

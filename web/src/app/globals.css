@@ -166,13 +166,13 @@
   --color-accent-900: #997827;
   --color-accent-950: #4d3c14;
 
-  /* Neutral Colors - BAPI Gray #979990 (2026 Guide) (60% usage with white) */
+  /* Neutral Colors - BAPI Gray #97999b (2026 Guide) (60% usage with white) */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
   --color-neutral-200: #e8e8e7;
   --color-neutral-300: #d4d5d3;
   --color-neutral-400: #b5b6b4;
-  --color-neutral-500: #979990;
+  --color-neutral-500: #97999b;
   --color-neutral-600: #797a74;
   --color-neutral-700: #5e5f5a;
   --color-neutral-800: #434440;
@@ -236,8 +236,9 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* BAPI Official Brand Gradients (2026 Brand Guide) */
-  --gradient-accent: linear-gradient(135deg, #f89623 0%, #ffc843 100%);
-  --gradient-accent-hover: linear-gradient(135deg, #e6872c 0%, #e6b43c 100%);
+  /* Note: Lighter color at 85%, darker at 15% per brand guide */
+  --gradient-accent: linear-gradient(135deg, #f89623 15%, #ffc843 85%);
+  --gradient-accent-hover: linear-gradient(135deg, #e6872c 15%, #e6b43c 85%);
   --gradient-primary: linear-gradient(135deg, #044976 0%, #166fb9 100%);
   --gradient-primary-hover: linear-gradient(135deg, #033a5f 0%, #125994 100%);
 

@@ -94,7 +94,7 @@ showToast('error', title, message);
 ```
 
 ### Styling & Design System
-- **Brand Colors**: BAPI Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
+- **Brand Colors**: BAPI Blue (#166fb9), Yellow (#ffc843), Gray (#97999b)
   - Use semantic tokens: `bg-primary-500`, `bg-accent-500`, `bg-neutral-200`
   - Distribution: 60% White/Gray, 30% Blue, 10% Yellow
 - **Tailwind**: Utility-first, NO `@apply`, semantic tokens only (see [web/TAILWIND_GUIDELINES.md](../web/TAILWIND_GUIDELINES.md))

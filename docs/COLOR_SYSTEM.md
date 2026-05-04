@@ -9,7 +9,7 @@ This document describes the BAPI brand color system implemented in Tailwind CSS.
 ```
 BAPI Blue (Web/Digital): #166fb9  (Primary - 30% usage)
 BAPI Yellow:            #ffc843  (Accent - 10% usage)  
-BAPI Gray:              #979990  (Neutral - with white, 60% usage)
+BAPI Gray:              #97999b  (Neutral - with white, 60% usage)
 BAPI White:             #FFFFFF  (Background - with gray, 60% usage)
 ```
 
@@ -24,15 +24,17 @@ We use the **Web/Digital** specification (#166fb9) throughout the digital platfo
 
 **Yellow/Orange Gradient (Accent)**
 ```
-Gradient: #f89623 → #ffc843 (135deg)
-Hover:    #e6872c → #e6b43c (darker)
+Gradient: #f89623 (15%) → #ffc843 (85%) at 135deg
+Hover:    #e6872c (15%) → #e6b43c (85%) at 135deg
 ```
+*Note: Per brand guide, lighter color should be 85% of gradient*
 
 **Blue Gradient (Primary)**
 ```
-Gradient: #044976 → #166fb9 (135deg)
-Hover:    #033a5f → #125994 (darker)
+Gradient: #044976 (0%) → #166fb9 (100%) at 135deg
+Hover:    #033a5f (0%) → #125994 (100%) at 135deg
 ```
+*Note: Blue gradient uses full 0-100% range for smoother visual transition*
 
 **Usage in Code:**
 ```css

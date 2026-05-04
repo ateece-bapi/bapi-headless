@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { ZoomInIcon } from '@/lib/icons';
+import { ZoomInIcon, DownloadIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
-import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice } from '@/lib/utils/currency';
+import TrustBadges from './TrustBadges';
 
 // Lazy load ImageModal for better initial page load performance
 const ImageModal = dynamic(() => import('@/components/ui/ImageModal'), {
@@ -25,40 +24,26 @@ interface ProductHeroProps {
     partNumber?: string | null;
     sku?: string | null;
     shortDescription?: string | null;
-    specs?: string | null;
-    price?: string | null;
-    multiplier?: string | null;
-    stockStatus?: string | null;
-    stockQuantity?: number | null;
-    regularPrice?: string | null;
+    description?: string | null;
   };
   variation?: {
     image?: GalleryImage | null;
     name?: string;
   } | null;
+  onConfigureClick?: () => void;
 }
 
 /**
- * Product hero section with image gallery and pricing details.
- * Displays main product image with zoom capability, thumbnails for gallery navigation,
- * and key product information including pricing, stock status, and quantity selector.
+ * Product hero section with full-width blue banner, description bullets, and action buttons.
+ * Matches UI/UX design with image gallery, product description, and prominent CTAs.
  *
  * **Phase 1 Priority**: Product Navigation (breadcrumbs, categories, mega-menu integration)
  *
  * @param {ProductHeroProps} props - Product and variation data
  * @returns {JSX.Element} Product hero section with image modal
- *
- * @example
- * ```tsx
- * <ProductHero
- *   product={productData}
- *   variation={selectedVariation}
- * />
- * ```
  */
-export default function ProductHero({ product, variation }: ProductHeroProps) {
+export default function ProductHero({ product, variation, onConfigureClick }: ProductHeroProps) {
   const t = useTranslations();
-  const region = useRegion(); // Move to top level to avoid React Hooks violation
 
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
@@ -71,137 +56,159 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
     setMainImage(variation?.image || product.image || null);
   }, [variation, product.image]);
 
+  // Parse description for bullet points
+  const description = product.description || product.shortDescription || '';
+  const getBulletPoints = (html: string): string[] => {
+    if (!html) return [];
+    
+    // First try to extract from <li> tags
+    const liMatches = html.match(/<li[^>]*>(.*?)<\/li>/gi);
+    if (liMatches && liMatches.length > 0) {
+      return liMatches.map(li => li.replace(/<[^>]+>/g, '').trim()).slice(0, 4);
+    }
+    
+    // Fallback: split by periods or line breaks and create bullets from sentences
+    const textContent = html.replace(/<[^>]+>/g, '').trim();
+    const sentences = textContent
+      .split(/\.\s+/)
+      .filter(s => s.trim().length > 20 && s.trim().length < 150)
+      .slice(0, 4);
+    
+    return sentences.length > 0 ? sentences.map(s => s.trim() + '.') : [];
+  };
+  
+  const bulletPoints = getBulletPoints(description);
+  const descriptionText = description.replace(/<[^>]+>/g, '').trim();
+  const mainDescription = descriptionText.split('\n')[0].split('.').slice(0, 2).join('.') + (descriptionText.includes('.') ? '.' : '');
+
+  const scrollToConfigurator = () => {
+    if (onConfigureClick) {
+      onConfigureClick();
+    } else {
+      const configurator = document.querySelector('[data-product-configurator]');
+      if (configurator) {
+        const elementPosition = configurator.getBoundingClientRect().top + window.scrollY;
+        const offset = 100;
+        window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <section className="mb-8 flex flex-col items-start gap-8 md:flex-row">
-      <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
-        {mainImage ? (
-          <div className="group relative">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="relative block h-72 w-72 cursor-zoom-in overflow-hidden rounded-xl bg-neutral-50 shadow"
-              aria-label="Click to enlarge product image"
-            >
-              <Image
-                src={mainImage.sourceUrl}
-                alt={mainImage.altText || variation?.name || product.name}
-                fill
-                sizes="(max-width: 768px) 100vw, 288px"
-                className="duration-base object-contain transition-transform hover:scale-105"
-                priority
-              />
-              {/* Zoom icon overlay */}
-              <div className="duration-base absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 transition-colors group-hover:bg-black/20">
-                <div className="duration-base rounded-full bg-white/90 p-3 opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-                  <ZoomInIcon className="h-6 w-6 text-primary-500" />
+    <>
+      {/* Full-width blue hero banner */}
+      <section className="bg-primary-500 py-6 text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="text-2xl font-bold leading-tight md:text-3xl lg:text-4xl">
+            {product.name}
+          </h1>
+        </div>
+      </section>
+
+      {/* Product details section */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          {/* Left column: Image gallery (5 columns) */}
+          <div className="order-1 lg:order-1 lg:col-span-5">
+            <div className="flex flex-col items-center">
+              {/* Main product image */}
+              {mainImage ? (
+                <div className="group relative mb-4">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="relative block h-64 w-64 cursor-zoom-in overflow-hidden rounded-lg bg-neutral-50 shadow-md transition-shadow hover:shadow-lg md:h-80 md:w-80"
+                    aria-label="Click to enlarge product image"
+                  >
+                    <Image
+                      src={mainImage.sourceUrl}
+                      alt={mainImage.altText || variation?.name || product.name}
+                      fill
+                      sizes="(max-width: 768px) 256px, 320px"
+                      className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 transition-colors duration-300 group-hover:bg-black/10">
+                      <div className="rounded-full bg-white/90 p-2.5 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+                        <ZoomInIcon className="h-5 w-5 text-primary-500" />
+                      </div>
+                    </div>
+                  </button>
                 </div>
+              ) : (
+                <div className="mb-4 flex h-64 w-64 items-center justify-center rounded-lg bg-neutral-100 text-lg font-semibold text-neutral-400 shadow-md md:h-80 md:w-80">
+                  No image
+                </div>
+              )}
+
+              {/* Gallery thumbnails */}
+              {gallery.length > 1 && (
+                <div className="flex justify-center gap-2">
+                  {gallery.slice(0, 4).map((img, idx) => (
+                    <button
+                      key={img.sourceUrl + idx}
+                      onClick={() => setMainImage(img)}
+                      className={`relative h-16 w-16 overflow-hidden rounded border-2 bg-white p-1 transition-all ${
+                        mainImage?.sourceUrl === img.sourceUrl
+                          ? 'border-primary-500 shadow-md'
+                          : 'border-neutral-200 hover:border-primary-300'
+                      }`}
+                      aria-label={`View thumbnail ${idx + 1}`}
+                    >
+                      <Image
+                        src={img.sourceUrl}
+                        alt="Product thumbnail"
+                        fill
+                        sizes="64px"
+                        className="object-contain"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Right column: Description (7 columns) */}
+          <div className="order-2 lg:order-2 lg:col-span-7">
+            {descriptionText && (
+              <div className="mb-6">
+                <p className="mb-4 text-base leading-relaxed text-neutral-700">
+                  {mainDescription}
+                </p>
+                
+                {bulletPoints.length > 0 && (
+                  <ul className="space-y-3">
+                    {bulletPoints.map((point, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-neutral-700">
+                        <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary-500"></span>
+                        <span className="text-sm leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            </button>
-          </div>
-        ) : (
-          <div className="mb-4 flex h-72 w-72 items-center justify-center rounded-xl bg-neutral-100 text-lg font-semibold text-neutral-400 shadow">
-            No image
-          </div>
-        )}
-        {/* Gallery thumbnails */}
-        {gallery.length > 1 && (
-          <div className="mt-2 flex gap-2 md:mt-0 md:flex-col">
-            {gallery.map((img, idx) => (
+            )}
+
+            {/* Action buttons below description */}
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row">
               <button
-                key={img.sourceUrl + idx}
-                onClick={() => setMainImage(img)}
-                className={`relative h-12 w-12 overflow-hidden rounded border bg-white p-1 ${mainImage?.sourceUrl === img.sourceUrl ? 'border-primary-500' : 'border-neutral-200'}`}
-                aria-label={`View thumbnail ${idx + 1}`}
+                onClick={scrollToConfigurator}
+                className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 shadow-md transition-all hover:bg-accent-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-accent-500/50"
               >
-                <Image
-                  src={img.sourceUrl}
-                  alt="Product thumbnail"
-                  fill
-                  sizes="48px"
-                  className="object-contain"
-                />
+                Start Configuring
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="flex-1">
-        {/* Increased heading size for better hierarchy */}
-        <h1 className="mb-3 text-4xl font-bold leading-tight text-neutral-900 lg:text-5xl">
-          {product.name}
-        </h1>
-
-        {/* Part number with better visibility */}
-        <div className="mb-4 flex items-center gap-2 text-base text-neutral-700">
-          <span className="text-neutral-700">{t('productPage.summary.partNumber')}</span>
-          <span className="font-semibold text-neutral-900">
-            {product.partNumber || product.sku || 'N/A'}
-          </span>
-        </div>
-
-        {product.shortDescription && (
-          <div className="mb-6 text-lg leading-relaxed text-neutral-700">
-            {product.shortDescription}
-          </div>
-        )}
-        {product.specs && <div className="mb-6 text-neutral-700">{product.specs}</div>}
-
-        {/* Pricing section with better visual prominence */}
-        <div className="mb-6 rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-          <div className="flex flex-col gap-3">
-            {product.regularPrice && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-700">List Price:</span>
-                <span className="text-lg font-semibold text-neutral-700">
-                  {convertWooCommercePrice(product.regularPrice, region.currency)}
-                </span>
-              </div>
-            )}
-            {product.multiplier && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-700">{t('productPage.summary.multiplier')}</span>
-                <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
-              </div>
-            )}
-            {typeof product.stockQuantity === 'number' && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-700">In Stock:</span>
-                <span className="text-lg font-semibold text-green-700">
-                  {product.stockQuantity} units
-                </span>
-              </div>
-            )}
-            {product.stockStatus && (
-              <div
-                className={`inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${product.stockStatus === 'IN_STOCK' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+              <a
+                href="#documents"
+                className="flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
               >
-                <span
-                  className={`h-2 w-2 rounded-full ${product.stockStatus === 'IN_STOCK' ? 'bg-green-600' : 'bg-red-600'}`}
-                ></span>
-                {product.stockStatus.replace('_', ' ')}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="mb-4 flex items-center gap-4">
-          {typeof product.stockQuantity === 'number' && product.stockQuantity > 0 && (
-            <>
-              <label htmlFor="quantity" className="block font-medium text-neutral-700">
-                {t('productPage.summary.quantity')}
-              </label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min={1}
-                max={product.stockQuantity}
-                defaultValue={1}
-                className="w-24 rounded-lg border border-neutral-300 px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-            </>
-          )}
-        </div>
-      </div>
+                <DownloadIcon className="h-5 w-5" />
+                Download Documents
+              </a>
+            </div>
+          </div>        </div>
+      </section>
 
       {/* Image Modal */}
       {mainImage && isModalOpen && (
@@ -211,6 +218,6 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
           alt={mainImage.altText || variation?.name || product.name}
         />
       )}
-    </section>
+    </>
   );
 }

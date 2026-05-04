@@ -3,34 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import { PackageIcon } from '@/lib/icons';
-import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
 import AppLinks from '@/components/products/ProductPage/AppLinks';
-import TrustBadges from '@/components/products/ProductPage/TrustBadges';
 import HelpCTA from '@/components/products/ProductPage/HelpCTA';
+import ProductHero from '@/components/products/ProductPage/ProductHero';
+import TrustBadges from '@/components/products/ProductPage/TrustBadges';
 import { CartDrawer } from '@/components/cart';
 import { ProductVariationSelector, RecentlyViewed } from '@/components/products';
 import { useRecentlyViewed } from '@/store';
-import { ProductGallerySkeleton } from '@/components/products/ProductGallerySkeleton';
-
-// Lazy load ProductGallery for better initial page load performance
-const ProductGallery = dynamic(
-  () => import('@/components/products').then((mod) => ({ default: mod.ProductGallery })),
-  {
-    loading: () => <ProductGallerySkeleton />,
-    ssr: false, // Gallery requires client-side interaction (zoom, lightbox)
-  }
-);
-
-// Lazy load ProductHero to avoid i18n SSR issues
-const ProductHero = dynamic(
-  () => import('@/components/products/ProductPage/ProductHero'),
-  {
-    loading: () => <div className="mb-8 h-96 animate-pulse rounded-xl bg-neutral-50" />,
-    ssr: false, // Uses i18n which needs client context
-  }
-);
 
 // Lazy load ProductTabs to avoid i18n SSR issues
 const ProductTabs = dynamic(
@@ -59,35 +39,6 @@ export default function ProductDetailClient({
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
   const [quantity, setQuantity] = useState(1); // Add quantity state
   const { addProduct } = useRecentlyViewed();
-
-  // Memoize image array construction to avoid recomputation on every render
-  const galleryImages = React.useMemo(() => {
-    const allImages = [];
-    // Include main product image first if it exists and isn't in gallery
-    if (product.image && product.image.sourceUrl) {
-      const isInGallery = product.gallery?.some(
-        (img: any) => img && img.sourceUrl === product.image.sourceUrl
-      );
-      if (!isInGallery) {
-        allImages.push({
-          sourceUrl: product.image.sourceUrl,
-          altText: product.image.altText || product.name,
-        });
-      }
-    }
-    // Add all gallery images
-    if (product.gallery && product.gallery.length > 0) {
-      allImages.push(
-        ...product.gallery
-          .filter((img: any) => img && img.sourceUrl) // Filter out invalid images
-          .map((img: any) => ({
-            sourceUrl: img.sourceUrl,
-            altText: img.altText || product.name,
-          }))
-      );
-    }
-    return allImages;
-  }, [product.image, product.gallery, product.name]);
 
   // Handle variation change with loading state
   const handleVariationChange = (variation: any) => {
@@ -118,77 +69,55 @@ export default function ProductDetailClient({
     }
   }, [product, addProduct]);
 
+  const scrollToConfigurator = () => {
+    const configurator = document.querySelector('[data-product-configurator]');
+    if (configurator) {
+      const elementPosition = configurator.getBoundingClientRect().top + window.scrollY;
+      const offset = 100;
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <div className="min-h-screen bg-white">
-        <div className="py-12">
-          <div className="container mx-auto px-4">
-            {/* Main Product Layout */}
-            <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-              {/* Left Column: Product Image */}
-              <div>
-                <ProductGallery
-                  images={galleryImages}
-                  productName={product.name}
-                  variation={selectedVariation}
-                />
-              </div>
+        {/* Updated Product Hero with blue banner, description, and action buttons */}
+        <ProductHero 
+          product={product} 
+          variation={selectedVariation}
+          onConfigureClick={scrollToConfigurator}
+        />
 
-              {/* Right Column: Product Summary (Sticky) */}
-              <div>
-                <ProductSummaryCard
-                  product={product}
-                  variation={selectedVariation}
-                  useCart={useCart}
-                  useCartDrawer={useCartDrawer}
-                  isLoadingVariation={isLoadingVariation}
-                  quantity={quantity}
-                  onQuantityChange={setQuantity}
-                />
-              </div>
-            </div>
+        {/* Trust badges full width */}
+        <div className="container mx-auto px-4 pb-8">
+          <TrustBadges />
+        </div>
 
-            {/* Trust and credibility badges */}
-            <TrustBadges className="mb-8" />
+        <div className="container mx-auto px-4 py-8">
+          {/* Configure section - Full width to match Matt's mockup */}
+          <ProductVariationSelector
+            product={product}
+            onVariationChange={handleVariationChange}
+            quantity={quantity}
+            onQuantityChange={setQuantity}
+            useCart={useCart}
+            useCartDrawer={useCartDrawer}
+          />
 
-            {/* Product Name Header - Sticky on mobile for context */}
-            {product.attributes && product.attributes.length > 0 && (
-              <div className="sticky top-0 z-10 -mx-4 mb-4 border-b-2 border-primary-500 bg-white px-4 py-4 shadow-md md:static md:mx-0 md:rounded-t-xl md:px-6 md:shadow-none">
-                <h2 className="flex items-center gap-3 text-xl font-bold text-neutral-900 md:text-2xl">
-                  <PackageIcon className="h-6 w-6 text-primary-600" />
-                  <span>{product.name}</span>
-                </h2>
-                <p className="ml-9 mt-1 text-sm text-neutral-700">
-                  {t('configureSpecsSubtitle')}
-                </p>
-              </div>
-            )}
+          <ProductTabs product={product} />
 
-            {/* Enhanced Variation Selector */}
-            <ProductVariationSelector
-              product={product}
-              onVariationChange={handleVariationChange}
-              quantity={quantity}
-              onQuantityChange={setQuantity}
-              useCart={useCart}
-              useCartDrawer={useCartDrawer}
-            />
-
-            <ProductTabs product={product} />
-
-            {/* Recently Viewed Products - shows below tabs */}
-            <div className="my-8">
-              <RecentlyViewed excludeProductId={product.id} maxDisplay={6} />
-            </div>
-
-            {/* Help CTA for customer support */}
-            <HelpCTA className="mb-8" />
-
-            <RelatedProducts related={product.relatedProducts} />
-            <AppLinks
-              product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }}
-            />
+          {/* Recently Viewed Products - shows below tabs */}
+          <div className="my-8">
+            <RecentlyViewed excludeProductId={product.id} maxDisplay={6} />
           </div>
+
+          {/* Help CTA for customer support */}
+          <HelpCTA className="mb-8" />
+
+          <RelatedProducts related={product.relatedProducts} />
+          <AppLinks
+            product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }}
+          />
         </div>
         <footer className="border-t border-neutral-200 bg-white py-8">
           <div className="container mx-auto px-4 text-center text-neutral-700">

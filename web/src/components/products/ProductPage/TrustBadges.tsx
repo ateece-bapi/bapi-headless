@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
+import { PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon, VerifiedIcon, ShieldIcon } from '@/lib/icons';
 
 interface TrustBadgesProps {
   className?: string;
@@ -13,10 +13,11 @@ interface TrustBadgesProps {
  *
  * Displays key trust signals to improve conversion:
  * - Made in USA
- * - Return policy
- * - Warranty information
- * - Fast shipping
- * - Expert support
+ * - 5-Year Warranty
+ * - 30-Day Returns
+ * - Expert Support
+ * - 100% Testing
+ * - CE/RoHS Certified
  */
 export default function TrustBadges({ className = '' }: TrustBadgesProps) {
   const t = useTranslations('productPage.trustBadges');
@@ -46,6 +47,18 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
       description: t('supportDesc'),
       color: 'text-primary-600',
     },
+    {
+      icon: VerifiedIcon,
+      label: t('testing'),
+      description: t('testingDesc'),
+      color: 'text-primary-600',
+    },
+    {
+      icon: ShieldIcon,
+      label: t('certified'),
+      description: t('certifiedDesc'),
+      color: 'text-green-600',
+    },
   ];
 
   return (
@@ -53,7 +66,7 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
       <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-700">
         {t('heading')}
       </h3>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {badges.map((badge) => {
           const Icon = badge.icon;
           return (

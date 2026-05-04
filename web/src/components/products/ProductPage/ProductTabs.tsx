@@ -169,7 +169,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
           <div className="px-4 py-8">
             {product.description ? (
               <div
-                className="prose prose-lg prose-neutral mx-auto max-w-none
+                className="prose prose-neutral mx-auto max-w-none
                   [&_ul]:my-6 [&_ul]:list-disc [&_ul]:space-y-2.5 [&_ul]:pl-10
                   [&_ul_li]:text-base [&_ul_li]:leading-relaxed [&_ul_li]:text-neutral-800 [&_ul_li::marker]:text-primary-500
                   [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:space-y-2.5 [&_ol]:pl-10

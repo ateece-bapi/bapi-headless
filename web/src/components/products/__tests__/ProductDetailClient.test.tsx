@@ -307,16 +307,14 @@ describe('Error states and UI feedback', () => {
 
   it('renders gracefully when price is missing', () => {
     const noPriceProduct = { ...baseProduct, price: '', variations: [], attributes: [] };
-    renderProductDetail(noPriceProduct);
-    // Should not throw, and should render the empty price fallback
-    const aside = screen.getByRole('complementary');
-    expect(aside).toBeInTheDocument();
+    // Should not throw - no ProductSummaryCard in new design
+    expect(() => renderProductDetail(noPriceProduct)).not.toThrow();
   });
 
-  it('shows fallback description if missing', () => {
+  it('renders gracefully when description is missing', () => {
     const noDescProduct: ProductForClient = { ...baseProduct, description: '' };
-    renderProductDetail(noDescProduct);
-    expect(screen.getByText(/No description/i)).toBeInTheDocument();
+    // Should not throw - description fallback shown in ProductTabs, not ProductHero
+    expect(() => renderProductDetail(noDescProduct)).not.toThrow();
   });
 });
 

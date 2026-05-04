@@ -8,9 +8,12 @@ import AppLinks from '@/components/products/ProductPage/AppLinks';
 import HelpCTA from '@/components/products/ProductPage/HelpCTA';
 import ProductHero from '@/components/products/ProductPage/ProductHero';
 import TrustBadges from '@/components/products/ProductPage/TrustBadges';
-import { CartDrawer } from '@/components/cart';
+import { CartDrawer, AddToCartButton } from '@/components/cart';
 import { ProductVariationSelector, RecentlyViewed } from '@/components/products';
-import { useRecentlyViewed } from '@/store';
+import { useRecentlyViewed, useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import type { CartItem } from '@/store';
 
 // Lazy load ProductTabs to avoid i18n SSR issues
 const ProductTabs = dynamic(
@@ -31,14 +34,18 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({
   product,
   productId,
-  useCart,
-  useCartDrawer,
+  useCart = defaultUseCart,
+  useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
   const t = useTranslations('productPage.detail');
+  const region = useRegion();
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
   const [quantity, setQuantity] = useState(1); // Add quantity state
   const { addProduct } = useRecentlyViewed();
+
+  // Determine if this is a simple product (no variations)
+  const isSimpleProduct = !product?.variations || product.variations.length === 0;
 
   // Handle variation change with loading state
   const handleVariationChange = (variation: any) => {
@@ -103,6 +110,54 @@ export default function ProductDetailClient({
             useCart={useCart}
             useCartDrawer={useCartDrawer}
           />
+
+          {/* Add to Cart for simple products (no variations) */}
+          {isSimpleProduct && (
+            <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-8" data-product-configurator>
+              <div className="mb-4 rounded-t-lg bg-primary-500 -mx-8 -mt-8 px-6 py-4">
+                <h2 className="text-2xl font-bold text-white">Product Information</h2>
+                <p className="text-sm text-white/90">Ready to add to your cart</p>
+              </div>
+              
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-4">
+                  <label htmlFor="quantity" className="font-medium text-neutral-700">
+                    Quantity:
+                  </label>
+                  <input
+                    id="quantity"
+                    type="number"
+                    min="1"
+                    max="999"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                    className="w-20 rounded-lg border border-neutral-300 px-3 py-2 text-center focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                  />
+                </div>
+                
+                <AddToCartButton
+                  product={{
+                    id: product.id,
+                    databaseId: product.databaseId,
+                    name: product.name,
+                    slug: product.slug,
+                    price: product.price || '',
+                    numericPrice: convertWooCommercePriceNumeric(product.price || '', region.currency),
+                    image: product.image,
+                  }}
+                  quantity={quantity}
+                  useCart={useCart}
+                  useCartDrawer={useCartDrawer}
+                  disabled={product?.stockStatus !== 'IN_STOCK'}
+                  className="flex items-center gap-2 rounded-lg bg-primary-500 px-8 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                />
+              </div>
+              
+              {product.stockStatus !== 'IN_STOCK' && (
+                <p className="mt-4 text-sm text-red-600">This product is currently out of stock</p>
+              )}
+            </div>
+          )}
 
           <ProductTabs product={product} />
 

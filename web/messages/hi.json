@@ -1002,6 +1002,11 @@
       "selectSpecifications": "कीमत और पार्ट नंबर देखने के लिए नीचे अपनी विनिर्देशों का चयन करें",
       "scrollToCta": "कॉन्फ़िगर करना शुरू करें",
       "scrollToCtaAriaLabel": "उत्पाद कॉन्फ़िगरेटर अनुभाग पर स्क्रॉल करें",
+      "downloadDocuments": "दस्तावेज़ डाउनलोड करें",
+      "productInformation": "उत्पाद जानकारी",
+      "readyToAddToCart": "कार्ट में जोड़ने के लिए तैयार",
+      "outOfStockMessage": "यह उत्पाद वर्तमान में स्टॉक में नहीं है",
+      "contactForPricing": "कृपया मूल्य जानकारी के लिए हमसे संपर्क करें",
       "configurationComplete": "कॉन्फ़िगरेशन पूरा हो गया",
       "partNumber": "पार्ट नंबर",
       "quantity": "मात्रा",
@@ -1117,7 +1122,11 @@
       "returns": "30 दिनों में वापसी",
       "returnsDesc": "बेझंझट",
       "support": "विशेषज्ञ सहायता",
-      "supportDesc": "तकनीकी सहायता"
+      "supportDesc": "तकनीकी सहायता",
+      "testing": "100% परीक्षित",
+      "testingDesc": "गुणवत्ता सुनिश्चित",
+      "certified": "CE/RoHS प्रमाणित",
+      "certifiedDesc": "अनुरूप"
     },
     "variationSelectors": {
       "chooseOption": "एक विकल्प चुनें"
@@ -2242,7 +2251,8 @@
     },
     "hero": {
       "title": "उत्पाद डेटाशीट",
-      "subtitle": "सभी BAPI उत्पादों के लिए विस्तृत तकनीकी विनिर्देश"
+      "subtitle": "सभी BAPI उत्पादों के लिए विस्तृत तकनीकी विनिर्देश",
+      "totalDocs": "{count} दस्तावेज़ उपलब्ध"
     },
     "search": {
       "placeholder": "मॉडल नंबर या उत्पाद नाम द्वारा डेटाशीट खोजें...",

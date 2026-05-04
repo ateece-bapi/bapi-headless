@@ -25,6 +25,7 @@ interface ProductHeroProps {
     sku?: string | null;
     shortDescription?: string | null;
     description?: string | null;
+    variations?: Array<{ id: string; name: string; [key: string]: unknown }>;
   };
   variation?: {
     image?: GalleryImage | null;
@@ -43,13 +44,16 @@ interface ProductHeroProps {
  * @returns {JSX.Element} Product hero section with image modal
  */
 export default function ProductHero({ product, variation, onConfigureClick }: ProductHeroProps) {
-  const t = useTranslations();
+  const t = useTranslations('productPage.summary');
 
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
   const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const gallery = product.gallery || [];
+  
+  // Determine if product has variations (for conditional Configure card)
+  const hasVariations = product.variations && product.variations.length > 0;
 
   // If variation changes, update mainImage to variation image
   React.useEffect(() => {
@@ -87,9 +91,22 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
     } else {
       const configurator = document.querySelector('[data-product-configurator]');
       if (configurator) {
+        // Check user's motion preferences
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const elementPosition = configurator.getBoundingClientRect().top + window.scrollY;
         const offset = 100;
-        window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+        
+        window.scrollTo({ 
+          top: elementPosition - offset, 
+          behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+        });
+        
+        // Focus management for accessibility
+        setTimeout(() => {
+          if (configurator instanceof HTMLElement) {
+            configurator.focus({ preventScroll: true });
+          }
+        }, prefersReducedMotion ? 0 : 300);
       }
     }
   };
@@ -97,17 +114,24 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   const scrollToDocuments = () => {
     const documentsTab = document.querySelector('#documents');
     if (documentsTab) {
+      // Check user's motion preferences
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const elementPosition = documentsTab.getBoundingClientRect().top + window.scrollY;
-      const offset = 120; // Adjust offset to not scroll too far
-      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      const offset = 120;
+      
+      window.scrollTo({ 
+        top: elementPosition - offset, 
+        behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+      });
       
       // Click the Documents tab to activate it
       setTimeout(() => {
         const documentsButton = document.querySelector('[data-tab-id="documents"]');
         if (documentsButton instanceof HTMLElement) {
           documentsButton.click();
+          documentsButton.focus({ preventScroll: true });
         }
-      }, 300);
+      }, prefersReducedMotion ? 0 : 300);
     }
   };
 
@@ -157,10 +181,10 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
                 </div>
               )}
 
-              {/* Gallery thumbnails */}
+              {/* Gallery thumbnails - show all images */}
               {gallery.length > 1 && (
-                <div className="flex justify-center gap-2">
-                  {gallery.slice(0, 4).map((img, idx) => (
+                <div className="flex flex-wrap justify-center gap-2">
+                  {gallery.map((img, idx) => (
                     <button
                       key={img.sourceUrl + idx}
                       onClick={() => setMainImage(img)}
@@ -205,40 +229,43 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
               </div>
             )}
 
-            {/* Configure Product Card with buttons inside */}
-            <div className="mb-6 rounded-lg border border-neutral-200 bg-white p-8 text-center shadow-sm">
-              <div className="mb-4 flex justify-center">
-                <div className="rounded-full bg-primary-50 p-4">
-                  <svg className="h-12 w-12 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
+            {/* Configure Product Card - only show for variable products */}
+            {hasVariations && (
+              <div className="mb-6 rounded-lg border border-neutral-200 bg-white p-8 text-center shadow-sm">
+                <div className="mb-4 flex justify-center">
+                  <div className="rounded-full bg-primary-50 p-4">
+                    <svg className="h-12 w-12 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  </div>
+                </div>
+                <h2 className="mb-2 text-xl font-bold text-neutral-900">{t('configureProduct')}</h2>
+                <p className="mb-6 text-sm text-neutral-600">
+                  {t('selectSpecifications')}
+                </p>
+                
+                {/* Action buttons inside card */}
+                <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+                  <button
+                    onClick={scrollToConfigurator}
+                    className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 shadow-md transition-all hover:bg-accent-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                    aria-label={t('scrollToCtaAriaLabel')}
+                  >
+                    {t('scrollToCta')}
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={scrollToDocuments}
+                    className="flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  >
+                    <DownloadIcon className="h-5 w-5" />
+                    {t('downloadDocuments')}
+                  </button>
                 </div>
               </div>
-              <h2 className="mb-2 text-xl font-bold text-neutral-900">Configure Product</h2>
-              <p className="mb-6 text-sm text-neutral-600">
-                Select your specifications below to see pricing and part number
-              </p>
-              
-              {/* Action buttons inside card */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <button
-                  onClick={scrollToConfigurator}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 shadow-md transition-all hover:bg-accent-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                >
-                  Start Configuring
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <button
-                  onClick={scrollToDocuments}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
-                >
-                  <DownloadIcon className="h-5 w-5" />
-                  Download Documents
-                </button>
-              </div>
-            </div>
+            )}
           </div>        </div>
       </section>
 

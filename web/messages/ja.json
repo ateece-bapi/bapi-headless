@@ -24,7 +24,8 @@
     "sort": "並べ替え",
     "clearAll": "すべてクリア",
     "apply": "適用",
-    "reset": "リセット"
+    "reset": "リセット",
+    "contactUs": "お問い合わせ"
   },
   "nav": {
     "products": "製品",
@@ -551,6 +552,11 @@
       "selectSpecifications": "以下の仕様を選択して、価格と部品番号を確認してください",
       "scrollToCta": "設定を始める",
       "scrollToCtaAriaLabel": "製品設定セクションにスクロールする",
+      "downloadDocuments": "資料をダウンロード",
+      "productInformation": "製品情報",
+      "readyToAddToCart": "カートに追加する準備ができました",
+      "outOfStockMessage": "この製品は現在在庫がありません",
+      "contactForPricing": "価格情報についてはお問い合わせください",
       "configurationComplete": "設定完了",
       "partNumber": "部品番号",
       "quantity": "数量",
@@ -666,7 +672,11 @@
       "returns": "30日返品",
       "returnsDesc": "簡単返品",
       "support": "専門サポート",
-      "supportDesc": "技術サポート"
+      "supportDesc": "技術サポート",
+      "testing": "100%テスト済み",
+      "testingDesc": "品質保証",
+      "certified": "CE/RoHS認証",
+      "certifiedDesc": "適合"
     },
     "variationSelectors": {
       "chooseOption": "オプションを選択してください"
@@ -1791,7 +1801,8 @@
     },
     "hero": {
       "title": "製品データシート",
-      "subtitle": "すべてのBAPI製品の詳細な技術仕様"
+      "subtitle": "すべてのBAPI製品の詳細な技術仕様",
+      "totalDocs": "{count}件のドキュメントが利用可能"
     },
     "search": {
       "placeholder": "型番または製品名でデータシートを検索...",

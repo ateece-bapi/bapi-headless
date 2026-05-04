@@ -24,7 +24,8 @@
     "sort": "Sortieren",
     "clearAll": "Alle löschen",
     "apply": "Anwenden",
-    "reset": "Zurücksetzen"
+    "reset": "Zurücksetzen",
+    "contactUs": "Kontaktieren Sie uns"
   },
   "nav": {
     "products": "Produkte",
@@ -472,6 +473,11 @@
       "selectSpecifications": "Wählen Sie unten Ihre Spezifikationen aus, um Preise und Artikelnummern zu sehen",
       "scrollToCta": "Konfiguration starten",
       "scrollToCtaAriaLabel": "Zum Produktkonfigurator-Abschnitt scrollen",
+      "downloadDocuments": "Dokumente herunterladen",
+      "productInformation": "Produktinformationen",
+      "readyToAddToCart": "Bereit zum Hinzufügen zum Warenkorb",
+      "outOfStockMessage": "Dieses Produkt ist derzeit nicht auf Lager",
+      "contactForPricing": "Bitte kontaktieren Sie uns für Preisinformationen",
       "configurationComplete": "Konfiguration abgeschlossen",
       "partNumber": "Artikelnummer",
       "quantity": "Menge",
@@ -587,7 +593,11 @@
       "returns": "30-tägiges Rückgaberecht",
       "returnsDesc": "Problemlos",
       "support": "Expertenunterstützung",
-      "supportDesc": "Technische Hilfe"
+      "supportDesc": "Technische Hilfe",
+      "testing": "100% Getestet",
+      "testingDesc": "Qualität gesichert",
+      "certified": "CE/RoHS zertifiziert",
+      "certifiedDesc": "Konform"
     },
     "variationSelectors": {
       "chooseOption": "Wähle eine Option"
@@ -1712,7 +1722,8 @@
     },
     "hero": {
       "title": "Produktdatenblätter",
-      "subtitle": "Detaillierte technische Spezifikationen für alle BAPI-Produkte"
+      "subtitle": "Detaillierte technische Spezifikationen für alle BAPI-Produkte",
+      "totalDocs": "{count} Dokumente verfügbar"
     },
     "search": {
       "placeholder": "Datenblätter nach Modellnummer oder Produktname durchsuchen...",

@@ -24,7 +24,8 @@
     "sort": "Sắp xếp",
     "clearAll": "Xóa tất cả",
     "apply": "Áp dụng",
-    "reset": "Đặt lại"
+    "reset": "Đặt lại",
+    "contactUs": "Liên hệ chúng tôi"
   },
   "nav": {
     "products": "Sản phẩm",
@@ -512,6 +513,11 @@
       "selectSpecifications": "Chọn các thông số kỹ thuật của bạn bên dưới để xem giá và số linh kiện",
       "scrollToCta": "Bắt đầu Định cấu hình",
       "scrollToCtaAriaLabel": "Cuộn đến phần Bộ định cấu hình sản phẩm",
+      "downloadDocuments": "Tải xuống Tài liệu",
+      "productInformation": "Thông tin Sản phẩm",
+      "readyToAddToCart": "Sẵn sàng thêm vào giỏ hàng",
+      "outOfStockMessage": "Sản phẩm này hiện tại hết hàng",
+      "contactForPricing": "Vui lòng liên hệ chúng tôi để biết thông tin về giá",
       "configurationComplete": "Định cấu hình Hoàn tất",
       "partNumber": "Số linh kiện",
       "quantity": "Số lượng",
@@ -627,7 +633,11 @@
       "returns": "Trả Lại trong 30 Ngày",
       "returnsDesc": "Không Rắc Rối",
       "support": "Hỗ Trợ Chuyên Nghiệp",
-      "supportDesc": "Hỗ Trợ Kỹ Thuật"
+      "supportDesc": "Hỗ Trợ Kỹ Thuật",
+      "testing": "100% Kiểm Tra",
+      "testingDesc": "Chất Lượng Đảm Bảo",
+      "certified": "Chứng Nhận CE/RoHS",
+      "certifiedDesc": "Tuân Thủ"
     },
     "variationSelectors": {
       "chooseOption": "Chọn một tùy chọn"
@@ -1752,7 +1762,8 @@
     },
     "hero": {
       "title": "Tờ Dữ Liệu Sản Phẩm",
-      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI"
+      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI",
+      "totalDocs": "{count} tài liệu có sẵn"
     },
     "search": {
       "placeholder": "Tìm kiếm tờ dữ liệu theo số model hoặc tên sản phẩm...",

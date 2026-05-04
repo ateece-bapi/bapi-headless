@@ -79,8 +79,7 @@ type TabType = (typeof TAB_LIST)[number]['key'];
 
 export default function ProductTabs({ product }: ProductTabsProps) {
   const t = useTranslations();
-  const [activeTab, setActiveTab] = useState<TabType>('documents');
-
+  
   // Load videos from JSON by SKU or database ID
   const jsonVideos = useMemo(() => {
     const productId = product.databaseId?.toString();
@@ -102,6 +101,16 @@ export default function ProductTabs({ product }: ProductTabsProps) {
     
     return videos;
   }, [jsonVideos, product.videos]);
+  
+  // Smart default tab: prefer documents if available, else fallback to description
+  const defaultTab = useMemo((): TabType => {
+    if (product.documents && product.documents.length > 0) {
+      return 'documents';
+    }
+    return 'description';
+  }, [product.documents]);
+  
+  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
 
   // Debug: Log what data we're receiving
   React.useEffect(() => {
@@ -133,8 +142,9 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               <button
                 key={tab.key}
                 role="tab"
+                data-tab-id={tab.key}
                 aria-selected={isActive}
-                aria-controls={`tabpanel-${tab.key}`}
+                aria-controls={isActive ? 'product-tabpanel' : undefined}
                 tabIndex={isActive ? 0 : -1}
                 className={`relative flex items-center gap-2 border-b-2 px-6 py-4 font-semibold transition-all ${
                   isActive
@@ -153,7 +163,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
       </div>
 
       {/* Tab Content Panels */}
-      <div className="p-8" role="tabpanel" id={`tabpanel-${activeTab}`}>
+      <div className="p-8" role="tabpanel" id="product-tabpanel" aria-labelledby={`tab-${activeTab}`}>
         {/* Description Tab */}
         {activeTab === 'description' && (
           <div className="px-4 py-8">

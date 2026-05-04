@@ -14,6 +14,7 @@ import { useRecentlyViewed, useCart as defaultUseCart, useCartDrawer as defaultU
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import type { CartItem } from '@/store';
+import { Link } from '@/lib/navigation';
 
 // Lazy load ProductTabs to avoid i18n SSR issues
 const ProductTabs = dynamic(
@@ -37,7 +38,8 @@ export default function ProductDetailClient({
   useCart = defaultUseCart,
   useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
-  const t = useTranslations('productPage.detail');
+  const tSummary = useTranslations('productPage.summary');
+  const tCommon = useTranslations('common');
   const region = useRegion();
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
@@ -113,16 +115,16 @@ export default function ProductDetailClient({
 
           {/* Add to Cart for simple products (no variations) */}
           {isSimpleProduct && (
-            <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-8" data-product-configurator>
+            <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-8" data-product-configurator tabIndex={-1}>
               <div className="mb-4 rounded-t-lg bg-primary-500 -mx-8 -mt-8 px-6 py-4">
-                <h2 className="text-2xl font-bold text-white">Product Information</h2>
-                <p className="text-sm text-white/90">Ready to add to your cart</p>
+                <h2 className="text-2xl font-bold text-white">{tSummary('productInformation')}</h2>
+                <p className="text-sm text-white/90">{tSummary('readyToAddToCart')}</p>
               </div>
               
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-4">
                   <label htmlFor="quantity" className="font-medium text-neutral-700">
-                    Quantity:
+                    {tSummary('quantity')}:
                   </label>
                   <input
                     id="quantity"
@@ -135,26 +137,41 @@ export default function ProductDetailClient({
                   />
                 </div>
                 
-                <AddToCartButton
-                  product={{
-                    id: product.id,
-                    databaseId: product.databaseId,
-                    name: product.name,
-                    slug: product.slug,
-                    price: product.price || '',
-                    numericPrice: convertWooCommercePriceNumeric(product.price || '', region.currency),
-                    image: product.image,
-                  }}
-                  quantity={quantity}
-                  useCart={useCart}
-                  useCartDrawer={useCartDrawer}
-                  disabled={product?.stockStatus !== 'IN_STOCK'}
-                  className="flex items-center gap-2 rounded-lg bg-primary-500 px-8 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
-                />
+                {product.price ? (
+                  <AddToCartButton
+                    product={{
+                      id: product.id,
+                      databaseId: product.databaseId,
+                      name: product.name,
+                      slug: product.slug,
+                      price: product.price || '',
+                      numericPrice: convertWooCommercePriceNumeric(product.price || '', region.currency),
+                      image: product.image,
+                    }}
+                    quantity={quantity}
+                    useCart={useCart}
+                    useCartDrawer={useCartDrawer}
+                    disabled={product?.stockStatus !== 'IN_STOCK'}
+                    className="flex items-center gap-2 rounded-lg bg-primary-500 px-8 py-3 font-semibold text-white shadow-md transition-all hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <p className="text-lg font-semibold text-neutral-700">{tSummary('contactForPricing')}</p>
+                    <Link 
+                      href="/contact" 
+                      className="inline-flex items-center gap-2 mt-3 text-primary-600 hover:text-primary-700 font-medium transition-colors"
+                    >
+                      {tCommon('contactUs')}
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                )}
               </div>
               
               {product.stockStatus !== 'IN_STOCK' && (
-                <p className="mt-4 text-sm text-red-600">This product is currently out of stock</p>
+                <p className="mt-4 text-sm text-red-600">{tSummary('outOfStockMessage')}</p>
               )}
             </div>
           )}

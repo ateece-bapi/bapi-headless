@@ -211,17 +211,17 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
           {/* Right column: Description (7 columns) */}
           <div className="order-2 lg:order-2 lg:col-span-7">
             {descriptionText && (
-              <div className="mb-6">
+              <div className="mb-10">
                 <p className="mb-4 text-base leading-relaxed text-neutral-700">
                   {mainDescription}
                 </p>
                 
                 {bulletPoints.length > 0 && (
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 pl-10">
                     {bulletPoints.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-neutral-700">
+                      <li key={idx} className="flex items-start gap-3.5 text-neutral-700">
                         <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary-500"></span>
-                        <span className="text-sm leading-relaxed">{point}</span>
+                        <span className="text-base leading-relaxed">{point}</span>
                       </li>
                     ))}
                   </ul>

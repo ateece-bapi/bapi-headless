@@ -433,7 +433,8 @@ describe('ProductGallery Component', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
       const thumbnailImage = thumbnails[0].querySelector('img');
-      expect(thumbnailImage).toHaveAttribute('data-sizes', '(min-width: 1024px) 10vw, 20vw');
+      // Thumbnails use fixed 64px size for circular design (Matt's mockup)
+      expect(thumbnailImage).toHaveAttribute('data-sizes', '64px');
     });
 
     it('prioritizes main image loading', () => {

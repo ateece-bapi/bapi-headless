@@ -195,7 +195,7 @@ export function generateOrganizationSchema() {
     '@type': 'Organization',
     name: SITE_CONFIG.organizationName,
     url: SITE_CONFIG.siteUrl,
-    logo: `${SITE_CONFIG.siteUrl}/logo.png`,
+    logo: `${SITE_CONFIG.siteUrl}/images/logos/bapi_logo_Sensor Solutions_1993.png`,
     description: SITE_CONFIG.defaultDescription,
     sameAs: [
       // Add social media URLs here

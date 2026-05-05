@@ -15,7 +15,8 @@ const Logo: React.FC = () => (
       width={HEADER_CONFIG.logo.width}
       height={HEADER_CONFIG.logo.height}
       priority
-      className="h-12 w-auto sm:h-14 md:h-16 xl:h-20"
+      className="h-16 w-auto sm:h-20 md:h-24 lg:h-28 xl:h-32"
+      style={{ filter: 'drop-shadow(0 0 0 transparent)' }}
     />
   </Link>
 );

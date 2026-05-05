@@ -382,7 +382,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('resources.featured.description'),
         cta: t('resources.featured.cta'),
         href: '/resources',
-        logo: '/images/logos/BAPI_Blue_Logo_2015.webp',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
       },
     },
   },
@@ -443,7 +443,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('support.featured.description'),
         cta: t('support.featured.cta'),
         href: '/contact',
-        logo: '/bapi_logo_details_Web_Digital.png',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
       },
     },
   },
@@ -513,7 +513,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('company.featured.description'),
         cta: t('company.featured.cta'),
         href: '/contact',
-        logo: '/bapi_logo_plain_Web_Digital.png',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
       },
     },
   },
@@ -521,10 +521,10 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
 
 export const HEADER_CONFIG = {
   logo: {
-    src: '/BAPI_Logo_with_white_border.jpg',
-    alt: 'BAPI - Sensors for HVAC/R',
-    width: 350,
-    height: 117,
+    src: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
+    alt: 'BAPI - Sensor Solutions Since 1993',
+    width: 400,
+    height: 280,
   },
   scrollThreshold: 10,
   colors: {

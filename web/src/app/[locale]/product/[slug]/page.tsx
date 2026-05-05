@@ -491,6 +491,22 @@ export default async function ProductPage({
                   }));
                 })()
               : [],
+          videos: (product.productVideos || [])
+            .filter(
+              (category): category is NonNullable<typeof category> =>
+                category !== null && category !== undefined
+            )
+            .flatMap((category) =>
+              (category.videos || [])
+                .filter(
+                  (video): video is NonNullable<typeof video> =>
+                    video !== null && video !== undefined
+                )
+                .map((video) => ({
+                  title: category.heading || 'Video',
+                  url: video.url || '',
+                }))
+            ),
           relatedProducts: [], // Will be loaded by RelatedProductsAsync
           iosAppUrl: null,
           androidAppUrl: null,

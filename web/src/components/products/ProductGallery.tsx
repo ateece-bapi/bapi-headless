@@ -317,9 +317,10 @@ export default function ProductGallery({ images, productName, variation, variati
         </div>
 
         {/* Thumbnails - Horizontal row matching Matt's mockup */}
-        {hasMultipleImages && (
+        {/* Show thumbnails if multiple images OR if product has videos (to show video icon) */}
+        {(hasMultipleImages || hasVideos) && (
           <div className="flex justify-center gap-3 mt-4">
-            {galleryImages.map((image, index) => (
+            {hasMultipleImages && galleryImages.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedIndex(index)}

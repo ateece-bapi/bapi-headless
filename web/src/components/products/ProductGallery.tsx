@@ -21,6 +21,7 @@ interface ProductGalleryProps {
   images: GalleryImage[];
   productName: string;
   variation?: {
+    id?: string;
     image?: GalleryImage | null;
     name?: string;
   } | null;

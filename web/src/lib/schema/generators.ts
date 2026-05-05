@@ -24,7 +24,7 @@ export function generateOrganizationSchema(siteUrl: string): SchemaOrganization 
     name: 'Building Automation Products Inc.',
     alternateName: 'BAPI',
     url: siteUrl,
-    logo: `${siteUrl}/images/logos/bapi_logo_Sensor Solutions_1993.png`,
+    logo: `${siteUrl}/images/logos/bapi_logo_Sensor%20Solutions_1993.png`,
     description:
       'Leading manufacturer of building automation sensors and controls since 1984. Trusted by building automation professionals worldwide.',
     address: {

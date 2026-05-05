@@ -88,7 +88,7 @@ const response = await fetch(
 - [ ] Verify current count on live page matches expected 918 (or filtered subset)
 - [ ] Search for "ZPM" in WordPress media library directly to confirm documents exist
 - [ ] Check oldest document dates in WordPress
-- [ ] Review `/wp-json/bapi/v1/all-pdfs` endpoint code in WordPress (likely in `bapi-graphql-fixes.php`)
+- [ ] Review `/wp-json/bapi/v1/all-pdfs` endpoint code in WordPress (located in `cms/wp-content/mu-plugins/bapi-all-pdfs-endpoint.php`)
 - [ ] Test date sorting: `?sort=date-asc` should show oldest first
 
 **WordPress Query to Run:**  
@@ -154,7 +154,7 @@ LIMIT 20;
 
 1. `/web/src/components/resources/DocumentLibraryClient.tsx` - Remove datasheet types from filters
 2. `/web/src/app/[locale]/resources/datasheets/page.tsx` - Add model number lookup logic
-3. `/cms/bapi-graphql-fixes.php` - Check `/wp-json/bapi/v1/all-pdfs` endpoint
+3. `/cms/wp-content/mu-plugins/bapi-all-pdfs-endpoint.php` - Check `/wp-json/bapi/v1/all-pdfs` endpoint
 4. Create: `/web/src/data/documentModelNumberLookup.json` - Model number → document ID mapping
 
 ---

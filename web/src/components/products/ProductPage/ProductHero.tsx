@@ -1,19 +1,20 @@
 'use client';
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import { ZoomInIcon, DownloadIcon } from '@/lib/icons';
+import React from 'react';
+import { DownloadIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import TrustBadges from './TrustBadges';
-
-// Lazy load ImageModal for better initial page load performance
-const ImageModal = dynamic(() => import('@/components/ui/ImageModal'), {
-  ssr: false, // Modal only renders client-side
-});
+import ProductGallery from '../ProductGallery';
 
 interface GalleryImage {
   sourceUrl: string;
   altText?: string | null;
+}
+
+interface ProductVariation {
+  id: string;
+  image?: GalleryImage | null;
+  name?: string;
+  [key: string]: unknown;
 }
 
 interface ProductHeroProps {
@@ -25,9 +26,11 @@ interface ProductHeroProps {
     sku?: string | null;
     shortDescription?: string | null;
     description?: string | null;
-    variations?: Array<{ id: string; name: string; [key: string]: unknown }>;
+    variations?: ProductVariation[];
+    videos?: Array<{ url?: string; title?: string }>;
   };
   variation?: {
+    id?: string;
     image?: GalleryImage | null;
     name?: string;
   } | null;
@@ -39,26 +42,16 @@ interface ProductHeroProps {
  * Matches UI/UX design with image gallery, product description, and prominent CTAs.
  *
  * **Phase 1 Priority**: Product Navigation (breadcrumbs, categories, mega-menu integration)
+ * **Multi-Variation Images**: Shows all variation-specific images in gallery, auto-selecting based on configuration
  *
  * @param {ProductHeroProps} props - Product and variation data
- * @returns {JSX.Element} Product hero section with image modal
+ * @returns {JSX.Element} Product hero section with advanced image gallery
  */
 export default function ProductHero({ product, variation, onConfigureClick }: ProductHeroProps) {
   const t = useTranslations('productPage.summary');
-
-  // Prefer variation image if present, else product image
-  const initialImage = variation?.image || product.image || null;
-  const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const gallery = product.gallery || [];
   
   // Determine if product has variations (for conditional Configure card)
   const hasVariations = product.variations && product.variations.length > 0;
-
-  // If variation changes, update mainImage to variation image
-  React.useEffect(() => {
-    setMainImage(variation?.image || product.image || null);
-  }, [variation, product.image]);
 
   // Parse description for bullet points
   const description = product.description || product.shortDescription || '';
@@ -84,6 +77,25 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   const bulletPoints = getBulletPoints(description);
   const descriptionText = description.replace(/<[^>]+>/g, '').trim();
   const mainDescription = descriptionText.split('\n')[0].split('.').slice(0, 2).join('.') + (descriptionText.includes('.') ? '.' : '');
+
+  // Build images array: featured image first, then gallery images
+  const galleryImages = React.useMemo(() => {
+    const images = [];
+    // Add featured image first
+    if (product.image) {
+      images.push(product.image);
+    }
+    // Add gallery images (filter out duplicates)
+    if (product.gallery) {
+      const featuredUrl = product.image?.sourceUrl;
+      product.gallery.forEach(img => {
+        if (img.sourceUrl !== featuredUrl) {
+          images.push(img);
+        }
+      });
+    }
+    return images;
+  }, [product.image, product.gallery]);
 
   const scrollToConfigurator = () => {
     if (onConfigureClick) {
@@ -112,11 +124,11 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   };
 
   const scrollToDocuments = () => {
-    const documentsTab = document.querySelector('#documents');
-    if (documentsTab) {
+    const tabsSection = document.querySelector('#product-tabs');
+    if (tabsSection) {
       // Check user's motion preferences
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const elementPosition = documentsTab.getBoundingClientRect().top + window.scrollY;
+      const elementPosition = tabsSection.getBoundingClientRect().top + window.scrollY;
       const offset = 120;
       
       window.scrollTo({ 
@@ -151,62 +163,13 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Left column: Image gallery (5 columns) */}
           <div className="order-1 lg:order-1 lg:col-span-5">
-            <div className="flex flex-col items-center">
-              {/* Main product image */}
-              {mainImage ? (
-                <div className="group relative mb-4">
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="relative block h-64 w-64 cursor-zoom-in overflow-hidden rounded-lg bg-neutral-50 shadow-md transition-shadow hover:shadow-lg md:h-80 md:w-80"
-                    aria-label="Click to enlarge product image"
-                  >
-                    <Image
-                      src={mainImage.sourceUrl}
-                      alt={mainImage.altText || variation?.name || product.name}
-                      fill
-                      sizes="(max-width: 768px) 256px, 320px"
-                      className="object-contain transition-transform duration-300 group-hover:scale-105"
-                      priority
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 transition-colors duration-300 group-hover:bg-black/10">
-                      <div className="rounded-full bg-white/90 p-2.5 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-                        <ZoomInIcon className="h-5 w-5 text-primary-500" />
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              ) : (
-                <div className="mb-4 flex h-64 w-64 items-center justify-center rounded-lg bg-neutral-100 text-lg font-semibold text-neutral-400 shadow-md md:h-80 md:w-80">
-                  No image
-                </div>
-              )}
-
-              {/* Gallery thumbnails - show all images */}
-              {gallery.length > 1 && (
-                <div className="flex flex-wrap justify-center gap-2">
-                  {gallery.map((img, idx) => (
-                    <button
-                      key={img.sourceUrl + idx}
-                      onClick={() => setMainImage(img)}
-                      className={`relative h-16 w-16 overflow-hidden rounded border-2 bg-white p-1 transition-all ${
-                        mainImage?.sourceUrl === img.sourceUrl
-                          ? 'border-primary-500 shadow-md'
-                          : 'border-neutral-200 hover:border-primary-300'
-                      }`}
-                      aria-label={`View thumbnail ${idx + 1}`}
-                    >
-                      <Image
-                        src={img.sourceUrl}
-                        alt="Product thumbnail"
-                        fill
-                        sizes="64px"
-                        className="object-contain"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ProductGallery
+              images={galleryImages}
+              productName={product.name}
+              variation={variation}
+              variations={product.variations}
+              hasVideos={!!(product.videos && product.videos.length > 0)}
+            />
           </div>
           {/* Right column: Description (7 columns) */}
           <div className="order-2 lg:order-2 lg:col-span-7">
@@ -268,15 +231,6 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
             )}
           </div>        </div>
       </section>
-
-      {/* Image Modal */}
-      {mainImage && isModalOpen && (
-        <ImageModal
-          onClose={() => setIsModalOpen(false)}
-          src={mainImage.sourceUrl}
-          alt={mainImage.altText || variation?.name || product.name}
-        />
-      )}
     </>
   );
 }

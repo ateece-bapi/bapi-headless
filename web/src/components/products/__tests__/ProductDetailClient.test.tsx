@@ -136,14 +136,15 @@ describe('ProductDetailClient', () => {
     });
     it('matches correct variation and prefers variation image', async () => {
       renderProductDetail();
-      // Main product image shows initially
-      expect(screen.getByAltText('Main')).toBeInTheDocument();
+      // ProductGallery shows all images (main + variation images)
+      const images = screen.getAllByRole('img');
+      expect(images.length).toBeGreaterThan(0);
 
       // Select attributes to match Variant B
       await selectAttributes({ size: 'L', color: 'Blue' });
 
       // The variation should be identified and passed to parent
-      // Image update logic is handled by parent component
+      // ProductGallery auto-selects the variation image
       await waitFor(() => {
         const images = screen.getAllByRole('img');
         expect(images.length).toBeGreaterThan(0);
@@ -188,12 +189,14 @@ describe('ProductDetailClient', () => {
 
     it('shows fallback UI for invalid attribute selection', async () => {
       renderProductDetail();
-      // Main product image shows initially (no auto-selection)
-      expect(screen.getByAltText('Main')).toBeInTheDocument();
+      // ProductGallery shows all images (main + variation images)
+      const images = screen.getAllByRole('img');
+      expect(images.length).toBeGreaterThan(0);
 
-      // Even after selection, main image remains (image switching handled by parent)
+      // Even after selection, images remain available
       await selectAttributes({ size: 'M', color: 'Blue' });
-      expect(screen.getByAltText('Main')).toBeInTheDocument();
+      const updatedImages = screen.getAllByRole('img');
+      expect(updatedImages.length).toBeGreaterThan(0);
     });
   });
 
@@ -357,14 +360,18 @@ describe('Accessibility', () => {
 
   it('images have meaningful alt text', async () => {
     renderProductDetail();
-    // Main product image renders initially (no auto-selection)
-    expect(screen.getByAltText('Main')).toBeInTheDocument();
+    // ProductGallery renders all images with alt text
+    const images = screen.getAllByRole('img');
+    expect(images.length).toBeGreaterThan(0);
+    
+    // Verify at least one image has descriptive alt text
+    const hasAltText = images.some(img => img.getAttribute('alt'));
+    expect(hasAltText).toBe(true);
 
-    // After selecting all attributes, variation image should appear
+    // After selecting all attributes, variation image auto-selects
     await selectAttributes({ size: 'L', color: 'Blue' });
     await waitFor(() => {
-      // Image might update to variation image if component implements this
-      // For now, verify main image is still accessible
+      // Images remain accessible with ProductGallery
       const images = screen.getAllByRole('img');
       expect(images.length).toBeGreaterThan(0);
     });

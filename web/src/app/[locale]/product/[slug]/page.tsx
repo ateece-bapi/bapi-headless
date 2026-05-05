@@ -48,6 +48,7 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
+import { getProductVideos } from '@/lib/productVideos';
 import type { Metadata } from 'next';
 
 /**
@@ -378,22 +379,6 @@ export default async function ProductPage({
                   category: category.heading || 'Documents',
                 }))
             ),
-          videos: (product.productVideos || [])
-            .filter(
-              (category): category is NonNullable<typeof category> =>
-                category !== null && category !== undefined
-            )
-            .flatMap((category) =>
-              (category.videos || [])
-                .filter(
-                  (video): video is NonNullable<typeof video> =>
-                    video !== null && video !== undefined
-                )
-                .map((video) => ({
-                  title: category.heading || 'Video',
-                  url: video.url || '',
-                }))
-            ),
           productCategories: (product.productCategories?.nodes || []).map((cat: any) => ({
             id: cat.id,
             name: cat.name || '',
@@ -491,6 +476,41 @@ export default async function ProductPage({
                   }));
                 })()
               : [],
+          videos: (() => {
+            // Load videos from JSON file and merge with GraphQL videos (fallback)
+            const jsonVideos = getProductVideos((product as any).sku, product.databaseId?.toString());
+            const videos = jsonVideos.map(v => ({
+              title: v.title,
+              url: v.url,
+            }));
+            
+            // Add any legacy GraphQL videos that aren't already included
+            const graphqlVideos = (product.productVideos || [])
+              .filter(
+                (category): category is NonNullable<typeof category> =>
+                  category !== null && category !== undefined
+              )
+              .flatMap((category) =>
+                (category.videos || [])
+                  .filter(
+                    (video): video is NonNullable<typeof video> =>
+                      video !== null && video !== undefined
+                  )
+                  .map((video) => ({
+                    title: category.heading || 'Video',
+                    url: video.url || '',
+                  }))
+              );
+            
+            // Merge, avoiding duplicates by URL
+            graphqlVideos.forEach(gqlVideo => {
+              if (!videos.some(v => v.url === gqlVideo.url)) {
+                videos.push(gqlVideo);
+              }
+            });
+            
+            return videos;
+          })(),
           relatedProducts: [], // Will be loaded by RelatedProductsAsync
           iosAppUrl: null,
           androidAppUrl: null,

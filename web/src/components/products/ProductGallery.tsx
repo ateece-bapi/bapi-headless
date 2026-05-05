@@ -10,13 +10,23 @@ export interface GalleryImage {
   altText?: string | null;
 }
 
+interface ProductVariation {
+  id: string;
+  image?: GalleryImage | null;
+  name?: string;
+  [key: string]: unknown;
+}
+
 interface ProductGalleryProps {
   images: GalleryImage[];
   productName: string;
   variation?: {
+    id?: string;
     image?: GalleryImage | null;
     name?: string;
   } | null;
+  variations?: ProductVariation[];
+  hasVideos?: boolean;
 }
 
 /**
@@ -29,32 +39,31 @@ interface ProductGalleryProps {
  * - Touch gestures for mobile
  * - Image zoom on hover
  * - Responsive layout
- * - Variation-specific images (shown first when variation selected)
+ * - Multi-variation image support (shows all variation images in gallery)
+ * - Auto-selects variation image when variation changes
  *
- * @param images - Array of gallery images
+ * @param images - Array of base gallery images
  * @param productName - Product name for alt text fallback
- * @param variation - Selected variation (shows variation image first)
+ * @param variation - Selected variation (auto-selects its image in gallery)
+ * @param variations - All product variations (their images are added to gallery)
+ * @param hasVideos - Whether product has videos (shows video icon link to Videos tab)
  */
-export default function ProductGallery({ images, productName, variation }: ProductGalleryProps) {
-  // If variation has an image with valid sourceUrl, prepend it to the gallery
+export default function ProductGallery({ images, productName, variation, variations = [], hasVideos = false }: ProductGalleryProps) {
+  // Build comprehensive gallery: base images + all unique variation images
   const galleryImages = React.useMemo(() => {
-    const variationImage = variation?.image && variation.image.sourceUrl ? variation.image : null;
+    const allImages = [...images];
+    const seenUrls = new Set(images.map(img => img.sourceUrl));
 
-    if (variationImage) {
-      // Check if variation image is already in gallery to avoid duplicates
-      const isDuplicate = images.some((img) => img.sourceUrl === variationImage.sourceUrl);
-      if (isDuplicate) {
-        // Move variation image to front
-        return [
-          variationImage,
-          ...images.filter((img) => img.sourceUrl !== variationImage.sourceUrl),
-        ];
+    // Add all variation images (if not already in gallery)
+    variations.forEach((v) => {
+      if (v.image?.sourceUrl && !seenUrls.has(v.image.sourceUrl)) {
+        allImages.push(v.image);
+        seenUrls.add(v.image.sourceUrl);
       }
-      // Add variation image at front
-      return [variationImage, ...images];
-    }
-    return images;
-  }, [images, variation]);
+    });
+
+    return allImages;
+  }, [images, variations]);
   
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -62,16 +71,29 @@ export default function ProductGallery({ images, productName, variation }: Produ
   const [scale, setScale] = useState(1);
 
   // Track previous variation to detect changes (useRef avoids re-renders)
-  const variationKey = variation?.name || variation?.image?.sourceUrl || 'default';
+  const variationKey = variation?.id || variation?.name || variation?.image?.sourceUrl || 'default';
   const prevVariationKeyRef = React.useRef(variationKey);
 
-  // Reset to first image when variation changes (useEffect for side effects)
+  // Auto-select variation image when variation changes
   React.useEffect(() => {
     if (variationKey !== prevVariationKeyRef.current) {
       prevVariationKeyRef.current = variationKey;
+      
+      // Find the index of the selected variation's image in the gallery
+      if (variation?.image?.sourceUrl) {
+        const variationImageIndex = galleryImages.findIndex(
+          (img) => img.sourceUrl === variation.image!.sourceUrl
+        );
+        if (variationImageIndex !== -1) {
+          setSelectedIndex(variationImageIndex);
+          return;
+        }
+      }
+      
+      // Fallback to first image if variation image not found
       setSelectedIndex(0);
     }
-  }, [variationKey]);
+  }, [variationKey, galleryImages, variation]);
 
   const hasMultipleImages = galleryImages.length > 1;
   const currentImage = galleryImages[selectedIndex] || galleryImages[0];
@@ -240,6 +262,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
           data-testid="main-image-container"
           className="group relative flex h-[400px] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white md:h-[450px]"
           onClick={() => openLightbox(selectedIndex)}
+          aria-label={`View ${productName} in full screen`}
         >
           {/* 
             Using Next.js Image for optimized LCP and Speed Index:
@@ -294,14 +317,15 @@ export default function ProductGallery({ images, productName, variation }: Produ
           )}
         </div>
 
-        {/* Thumbnails */}
-        {hasMultipleImages && (
-          <div className="grid grid-cols-4 gap-2 sm:grid-cols-5 lg:grid-cols-6">
-            {galleryImages.map((image, index) => (
+        {/* Thumbnails - Horizontal row matching Matt's mockup */}
+        {/* Show thumbnails if multiple images OR if product has videos (to show video icon) */}
+        {(hasMultipleImages || hasVideos) && (
+          <div className="flex justify-center gap-3 mt-4">
+            {hasMultipleImages && galleryImages.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedIndex(index)}
-                className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all ${
+                className={`relative h-16 w-16 overflow-hidden rounded-full border-2 transition-all ${
                   selectedIndex === index
                     ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2'
                     : 'border-neutral-200 hover:border-primary-300'
@@ -312,11 +336,51 @@ export default function ProductGallery({ images, productName, variation }: Produ
                   src={image.sourceUrl}
                   alt={image.altText || `${productName} - Image ${index + 1}`}
                   fill
-                  sizes="(min-width: 1024px) 10vw, 20vw"
+                  sizes="64px"
                   className="object-cover"
                 />
               </button>
             ))}
+            
+            {/* Video tab link icon */}
+            {hasVideos && (
+              <button
+                onClick={() => {
+                  // First, activate the videos tab
+                  const videosButton = document.querySelector('[data-tab-id="videos"]');
+                  if (videosButton instanceof HTMLElement) {
+                    videosButton.click();
+                  }
+                  
+                  // Then scroll to the tabs section
+                  const tabsSection = document.querySelector('#product-tabs');
+                  if (tabsSection) {
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    const elementPosition = tabsSection.getBoundingClientRect().top + window.scrollY;
+                    const offset = 120;
+                    
+                    window.scrollTo({ 
+                      top: elementPosition - offset, 
+                      behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+                    });
+                    
+                    // Focus the videos tab button after scrolling
+                    setTimeout(() => {
+                      if (videosButton instanceof HTMLElement) {
+                        videosButton.focus({ preventScroll: true });
+                      }
+                    }, prefersReducedMotion ? 0 : 300);
+                  }
+                }}
+                className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-neutral-200 bg-neutral-900/90 transition-all hover:border-primary-300 hover:bg-neutral-900"
+                aria-label="View product videos"
+                title="Watch product videos"
+              >
+                <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            )}
           </div>
         )}
       </div>

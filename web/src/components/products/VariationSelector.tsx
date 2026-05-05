@@ -386,7 +386,20 @@ export default function VariationSelector({
           {matchedVariation && (
             <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-6 pt-6">
               <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-4 shadow-xl">
-                <div className="mb-4 flex items-start justify-between gap-4">
+                <div className="mb-4 flex items-start gap-4">
+                  {/* Variation Image */}
+                  {(matchedVariation.image || product?.image) && (
+                    <div className="shrink-0">
+                      <div className="h-24 w-24 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-sm">
+                        <img
+                          src={(matchedVariation.image || product?.image)?.sourceUrl}
+                          alt={(matchedVariation.image || product?.image)?.altText || matchedVariation.name || 'Product variation'}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    </div>
+                  )}
+
                   {/* Price and Part Number */}
                   <div className="flex-1">
                     <div className="mb-2 flex items-center gap-2">

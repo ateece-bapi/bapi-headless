@@ -130,7 +130,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
     });
   }, [product, jsonVideos, allVideos]);
   return (
-    <section id="documents" className="mb-12 overflow-hidden rounded-xl border border-neutral-200 bg-white">
+    <section id="product-tabs" className="mb-12 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Professional Tab Navigation */}
       <div className="border-b border-neutral-200 bg-neutral-50">
         <nav className="flex" role="tablist">

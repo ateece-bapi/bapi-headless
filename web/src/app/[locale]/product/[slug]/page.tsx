@@ -48,6 +48,7 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
+import { getProductVideos } from '@/lib/productVideos';
 import type { Metadata } from 'next';
 
 /**
@@ -491,22 +492,14 @@ export default async function ProductPage({
                   }));
                 })()
               : [],
-          videos: (product.productVideos || [])
-            .filter(
-              (category): category is NonNullable<typeof category> =>
-                category !== null && category !== undefined
-            )
-            .flatMap((category) =>
-              (category.videos || [])
-                .filter(
-                  (video): video is NonNullable<typeof video> =>
-                    video !== null && video !== undefined
-                )
-                .map((video) => ({
-                  title: category.heading || 'Video',
-                  url: video.url || '',
-                }))
-            ),
+          videos: (() => {
+            // Load videos from JSON file (not from GraphQL)
+            const jsonVideos = getProductVideos(product.sku, product.databaseId?.toString());
+            return jsonVideos.map(v => ({
+              title: v.title,
+              url: v.url,
+            }));
+          })(),
           relatedProducts: [], // Will be loaded by RelatedProductsAsync
           iosAppUrl: null,
           androidAppUrl: null,

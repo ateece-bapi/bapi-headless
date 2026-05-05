@@ -345,10 +345,17 @@ export default function ProductGallery({ images, productName, variation, variati
             {hasVideos && (
               <button
                 onClick={() => {
-                  const videosTab = document.querySelector('#videos');
-                  if (videosTab) {
+                  // First, activate the videos tab
+                  const videosButton = document.querySelector('[data-tab-id="videos"]');
+                  if (videosButton instanceof HTMLElement) {
+                    videosButton.click();
+                  }
+                  
+                  // Then scroll to the tabs section
+                  const tabsSection = document.querySelector('#product-tabs');
+                  if (tabsSection) {
                     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                    const elementPosition = videosTab.getBoundingClientRect().top + window.scrollY;
+                    const elementPosition = tabsSection.getBoundingClientRect().top + window.scrollY;
                     const offset = 120;
                     
                     window.scrollTo({ 
@@ -356,10 +363,9 @@ export default function ProductGallery({ images, productName, variation, variati
                       behavior: prefersReducedMotion ? 'auto' : 'smooth' 
                     });
                     
+                    // Focus the videos tab button after scrolling
                     setTimeout(() => {
-                      const videosButton = document.querySelector('[data-tab-id="videos"]');
                       if (videosButton instanceof HTMLElement) {
-                        videosButton.click();
                         videosButton.focus({ preventScroll: true });
                       }
                     }, prefersReducedMotion ? 0 : 300);

@@ -379,22 +379,6 @@ export default async function ProductPage({
                   category: category.heading || 'Documents',
                 }))
             ),
-          videos: (product.productVideos || [])
-            .filter(
-              (category): category is NonNullable<typeof category> =>
-                category !== null && category !== undefined
-            )
-            .flatMap((category) =>
-              (category.videos || [])
-                .filter(
-                  (video): video is NonNullable<typeof video> =>
-                    video !== null && video !== undefined
-                )
-                .map((video) => ({
-                  title: category.heading || 'Video',
-                  url: video.url || '',
-                }))
-            ),
           productCategories: (product.productCategories?.nodes || []).map((cat: any) => ({
             id: cat.id,
             name: cat.name || '',
@@ -494,7 +478,7 @@ export default async function ProductPage({
               : [],
           videos: (() => {
             // Load videos from JSON file (not from GraphQL)
-            const jsonVideos = getProductVideos(product.sku, product.databaseId?.toString());
+            const jsonVideos = getProductVideos((product as any).sku, product.databaseId?.toString());
             return jsonVideos.map(v => ({
               title: v.title,
               url: v.url,

@@ -26,6 +26,7 @@ interface ProductGalleryProps {
     name?: string;
   } | null;
   variations?: ProductVariation[];
+  hasVideos?: boolean;
 }
 
 /**
@@ -45,8 +46,9 @@ interface ProductGalleryProps {
  * @param productName - Product name for alt text fallback
  * @param variation - Selected variation (auto-selects its image in gallery)
  * @param variations - All product variations (their images are added to gallery)
+ * @param hasVideos - Whether product has videos (shows video icon link to Videos tab)
  */
-export default function ProductGallery({ images, productName, variation, variations = [] }: ProductGalleryProps) {
+export default function ProductGallery({ images, productName, variation, variations = [], hasVideos = false }: ProductGalleryProps) {
   // Build comprehensive gallery: base images + all unique variation images
   const galleryImages = React.useMemo(() => {
     const allImages = [...images];
@@ -337,6 +339,40 @@ export default function ProductGallery({ images, productName, variation, variati
                 />
               </button>
             ))}
+            
+            {/* Video tab link icon */}
+            {hasVideos && (
+              <button
+                onClick={() => {
+                  const videosTab = document.querySelector('#videos');
+                  if (videosTab) {
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    const elementPosition = videosTab.getBoundingClientRect().top + window.scrollY;
+                    const offset = 120;
+                    
+                    window.scrollTo({ 
+                      top: elementPosition - offset, 
+                      behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+                    });
+                    
+                    setTimeout(() => {
+                      const videosButton = document.querySelector('[data-tab-id="videos"]');
+                      if (videosButton instanceof HTMLElement) {
+                        videosButton.click();
+                        videosButton.focus({ preventScroll: true });
+                      }
+                    }, prefersReducedMotion ? 0 : 300);
+                  }
+                }}
+                className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-neutral-200 bg-neutral-900/90 transition-all hover:border-primary-300 hover:bg-neutral-900"
+                aria-label="View product videos"
+                title="Watch product videos"
+              >
+                <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            )}
           </div>
         )}
       </div>

@@ -27,6 +27,7 @@ interface ProductHeroProps {
     shortDescription?: string | null;
     description?: string | null;
     variations?: ProductVariation[];
+    videos?: Array<{ url?: string; title?: string }>;
   };
   variation?: {
     id?: string;
@@ -148,6 +149,7 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
               productName={product.name}
               variation={variation}
               variations={product.variations}
+              hasVideos={!!(product.videos && product.videos.length > 0)}
             />
           </div>
           {/* Right column: Description (7 columns) */}

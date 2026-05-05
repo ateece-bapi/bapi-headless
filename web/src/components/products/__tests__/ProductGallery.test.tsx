@@ -484,4 +484,156 @@ describe('ProductGallery Component', () => {
       });
     });
   });
+
+  describe('Variation Image Auto-Selection', () => {
+    const mockVariations = [
+      {
+        id: 'var1',
+        name: 'Variation 1',
+        image: { sourceUrl: '/var1.jpg', altText: 'Variation 1 image' },
+      },
+      {
+        id: 'var2',
+        name: 'Variation 2',
+        image: { sourceUrl: '/var2.jpg', altText: 'Variation 2 image' },
+      },
+    ];
+
+    it('auto-selects variation image when variation changes', async () => {
+      const { rerender } = render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          variations={mockVariations}
+        />
+      );
+
+      // Should show first image initially
+      expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
+
+      // Change to first variation
+      rerender(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          variations={mockVariations}
+          variation={{ id: 'var1', image: { sourceUrl: '/var1.jpg', altText: 'Variation 1 image' } }}
+        />
+      );
+
+      // Should auto-select variation image
+      await waitFor(() => {
+        expect(screen.getAllByAltText('Variation 1 image')[0]).toBeInTheDocument();
+      });
+    });
+
+    it('falls back to first image if variation image not in gallery', async () => {
+      const { rerender } = render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          variations={mockVariations}
+        />
+      );
+
+      // Change to variation with image not in gallery
+      rerender(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          variations={mockVariations}
+          variation={{ id: 'var3', image: { sourceUrl: '/nonexistent.jpg', altText: 'Unknown' } }}
+        />
+      );
+
+      // Should fall back to first image
+      await waitFor(() => {
+        expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
+      });
+    });
+
+    it('includes variation images in gallery', () => {
+      render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          variations={mockVariations}
+        />
+      );
+
+      // Should have 3 base images + 2 variation images = 5 thumbnails
+      const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
+      expect(thumbnails).toHaveLength(5);
+    });
+  });
+
+  describe('Video Quick-Link Button', () => {
+    it('renders video quick-link button when hasVideos is true', () => {
+      render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          hasVideos={true}
+        />
+      );
+
+      const videoButton = screen.getByLabelText('View product videos');
+      expect(videoButton).toBeInTheDocument();
+    });
+
+    it('does not render video button when hasVideos is false', () => {
+      render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          hasVideos={false}
+        />
+      );
+
+      const videoButton = screen.queryByLabelText('View product videos');
+      expect(videoButton).not.toBeInTheDocument();
+    });
+
+    it('renders video button even with single image when hasVideos is true', () => {
+      const singleImage = [mockImages[0]];
+      render(
+        <ProductGallery
+          images={singleImage}
+          productName={productName}
+          hasVideos={true}
+        />
+      );
+
+      const videoButton = screen.getByLabelText('View product videos');
+      expect(videoButton).toBeInTheDocument();
+    });
+
+    it('video button has proper ARIA attributes', () => {
+      render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          hasVideos={true}
+        />
+      );
+
+      const videoButton = screen.getByLabelText('View product videos');
+      expect(videoButton).toHaveAttribute('aria-label', 'View product videos');
+      expect(videoButton).toHaveAttribute('title', 'Watch product videos');
+      expect(videoButton.tagName).toBe('BUTTON');
+    });
+
+    it('video button has onClick handler', () => {
+      render(
+        <ProductGallery
+          images={mockImages}
+          productName={productName}
+          hasVideos={true}
+        />
+      );
+
+      const videoButton = screen.getByLabelText('View product videos');
+      expect(videoButton).toHaveProperty('onclick');
+    });
+  });
 });

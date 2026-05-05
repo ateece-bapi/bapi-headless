@@ -262,6 +262,7 @@ export default function ProductGallery({ images, productName, variation, variati
           data-testid="main-image-container"
           className="group relative flex h-[400px] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white md:h-[450px]"
           onClick={() => openLightbox(selectedIndex)}
+          aria-label={`View ${productName} in full screen`}
         >
           {/* 
             Using Next.js Image for optimized LCP and Speed Index:

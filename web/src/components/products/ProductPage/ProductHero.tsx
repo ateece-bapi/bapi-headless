@@ -78,6 +78,25 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   const descriptionText = description.replace(/<[^>]+>/g, '').trim();
   const mainDescription = descriptionText.split('\n')[0].split('.').slice(0, 2).join('.') + (descriptionText.includes('.') ? '.' : '');
 
+  // Build images array: featured image first, then gallery images
+  const galleryImages = React.useMemo(() => {
+    const images = [];
+    // Add featured image first
+    if (product.image) {
+      images.push(product.image);
+    }
+    // Add gallery images (filter out duplicates)
+    if (product.gallery) {
+      const featuredUrl = product.image?.sourceUrl;
+      product.gallery.forEach(img => {
+        if (img.sourceUrl !== featuredUrl) {
+          images.push(img);
+        }
+      });
+    }
+    return images;
+  }, [product.image, product.gallery]);
+
   const scrollToConfigurator = () => {
     if (onConfigureClick) {
       onConfigureClick();
@@ -105,11 +124,11 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   };
 
   const scrollToDocuments = () => {
-    const documentsTab = document.querySelector('#documents');
-    if (documentsTab) {
+    const tabsSection = document.querySelector('#product-tabs');
+    if (tabsSection) {
       // Check user's motion preferences
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const elementPosition = documentsTab.getBoundingClientRect().top + window.scrollY;
+      const elementPosition = tabsSection.getBoundingClientRect().top + window.scrollY;
       const offset = 120;
       
       window.scrollTo({ 
@@ -145,7 +164,7 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
           {/* Left column: Image gallery (5 columns) */}
           <div className="order-1 lg:order-1 lg:col-span-5">
             <ProductGallery
-              images={product.gallery || []}
+              images={galleryImages}
               productName={product.name}
               variation={variation}
               variations={product.variations}

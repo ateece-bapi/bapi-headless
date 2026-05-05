@@ -91,7 +91,7 @@ export function generateVideoSchema(
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo.png`,
+        url: `${siteUrl}/images/logos/bapi_logo_Sensor%20Solutions_1993.png`,
         width: '600',
         height: '60',
       },

@@ -2257,20 +2257,20 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Product Datasheets | BAPI",
-      "description": "Download detailed technical datasheets for all BAPI building automation products.",
-      "keywords": "product datasheets, technical specifications, sensor datasheets, BAPI specifications, temperature sensor specs, humidity sensor specs, pressure sensor specs, air quality sensor datasheets, wireless sensor specs, controller datasheets, PDF downloads"
+      "title": "Product Instructions & Manuals | BAPI",
+      "description": "Download installation instructions, operation manuals, and technical drawings for BAPI building automation products.",
+      "keywords": "product instructions, installation manuals, operation manuals, technical drawings, sensor instructions, BAPI manuals, temperature sensor installation, humidity sensor manual, pressure sensor installation, air quality sensor instructions, wireless sensor manual, controller installation, PDF downloads"
     },
     "hero": {
-      "title": "Product Datasheets",
-      "subtitle": "Detailed technical specifications for all BAPI products",
+      "title": "Product Instructions & Manuals",
+      "subtitle": "Installation instructions, operation manuals, and technical drawings for BAPI products",
       "totalDocs": "{count} documents available"
     },
     "stats": {
       "showing": "Showing {start}-{end} of {total} documents"
     },
     "search": {
-      "placeholder": "Search datasheets by model number or product name...",
+      "placeholder": "Search instructions by document number or product name...",
       "ariaLabel": "Search documents",
       "categoryLabel": "All Categories",
       "categories": {

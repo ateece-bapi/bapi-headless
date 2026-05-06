@@ -194,21 +194,26 @@ export default async function DatasheetsPage({ params }: Props) {
     
     logger.debug(`Filtered to ${filteredDocuments.length} documents for user groups: ${userCustomerGroups.join(', ')}`);
   
-    // Transform documents for client component
-    documents = filteredDocuments.map(doc => {
-      return {
-        id: String(doc.id),
-        title: doc.title?.rendered || 'Untitled Document',
-        filename: doc.source_url?.split('/').pop() || '',
-        url: doc.source_url || '',
-        fileSize: doc.media_details?.filesize,
-        date: doc.date,
-        productName: undefined,
-        productSku: undefined,
-        categories: [],
-        documentType: classifyDocumentType(doc.title?.rendered),
-      };
-    });
+    // Allowed document types (per Shawn's feedback May 6, 2026)
+    const allowedTypes = ['Instructions', 'Operation Manual', 'Technical Drawing'];
+    
+    // Transform and filter documents for client component
+    documents = filteredDocuments
+      .map(doc => {
+        return {
+          id: String(doc.id),
+          title: doc.title?.rendered || 'Untitled Document',
+          filename: doc.source_url?.split('/').pop() || '',
+          url: doc.source_url || '',
+          fileSize: doc.media_details?.filesize,
+          date: doc.date,
+          productName: undefined,
+          productSku: undefined,
+          categories: [],
+          documentType: classifyDocumentType(doc.title?.rendered),
+        };
+      })
+      .filter(doc => allowedTypes.includes(doc.documentType));
   } catch (error) {
     // Log error and rethrow to trigger error boundary
     // This ensures users see an error page instead of empty "0 documents"

@@ -19,7 +19,7 @@ import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
-import { formatPrice } from '@/lib/utils/currency';
+import { formatPrice, convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 

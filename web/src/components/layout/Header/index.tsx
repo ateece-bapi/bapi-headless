@@ -44,9 +44,9 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         className
       )}
     >
-      <div className="relative mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8 lg:py-3">
+      <div className="relative mx-auto max-w-7xl px-4 py-1.5 sm:px-6 lg:px-8 lg:py-2">
         {/* Top Row: Region, Language, Sign In, Cart - Hidden on mobile, visible on desktop */}
-        <div className="bg-linear-to-r mb-2 hidden items-end justify-end gap-3 rounded-full from-neutral-50/50 via-white to-neutral-50/50 px-2 py-1 lg:mb-3 lg:flex">
+        <div className="bg-linear-to-r mb-1.5 hidden items-end justify-end gap-3 rounded-full from-neutral-50/50 via-white to-neutral-50/50 px-2 py-1 lg:mb-2 lg:flex">
           <RegionSelector />
           <div className="mb-2 h-6 w-px bg-neutral-300" />
           <LanguageSelector />

@@ -86,28 +86,28 @@ function isValidUrl(url: string): boolean {
 }
 
 /**
- * Transform pseudo-bullets (• text<br />) into proper HTML lists
+ * Transform pseudo-bullets (• ● ○ ◦ text<br />) into proper HTML lists
  * WordPress often stores bulleted content as plain text with bullet characters
  */
 function transformBulletsToLists(html: string): string {
-  // Match paragraphs containing bullet points (• text<br /> pattern),
+  // Match paragraphs containing bullet points (• ● ○ ◦ text<br /> pattern),
   // including WordPress/Gutenberg paragraphs with attributes.
-  return html.replace(
-    /<p\b[^>]*>((?:•[^<]*(?:<br\s*\/?>)?[\s\n]*)+)<\/p>/gi,
-    (match, bulletContent) => {
-      // Split on bullet character and filter empty items
-      const items = bulletContent
-        .split(/•/)
-        .map((item: string) => item.replace(/<br\s*\/?>/gi, '').trim())
-        .filter((item: string) => item.length > 0);
+  // Bullet characters: • (U+2022), ● (U+25CF), ○ (U+25CB), ◦ (U+25E6), ■ (U+25A0)
+  const bulletRegex = /<p\b[^>]*>((?:[•●○◦■][^<]*(?:<br\s*\/?>)?[\s\n]*)+)<\/p>/gi;
+  
+  return html.replace(bulletRegex, (match, bulletContent) => {
+    // Split on any bullet character and filter empty items
+    const items = bulletContent
+      .split(/[•●○◦■]/)
+      .map((item: string) => item.replace(/<br\s*\/?>/gi, '').trim())
+      .filter((item: string) => item.length > 0);
 
-      if (items.length === 0) return match;
+    if (items.length === 0) return match;
 
-      // Convert to proper HTML list
-      const listItems = items.map((item: string) => `  <li>${item}</li>`).join('\n');
-      return `<ul>\n${listItems}\n</ul>`;
-    }
-  );
+    // Convert to proper HTML list
+    const listItems = items.map((item: string) => `  <li>${item}</li>`).join('\n');
+    return `<ul>\n${listItems}\n</ul>`;
+  });
 }
 
 export function sanitizeWordPressContent(html: string): string {

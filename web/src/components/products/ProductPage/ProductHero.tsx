@@ -2,8 +2,8 @@
 import React from 'react';
 import { DownloadIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
-import TrustBadges from './TrustBadges';
 import ProductGallery from '../ProductGallery';
+import { sanitizeDescription } from '@/lib/sanitizeDescription';
 
 interface GalleryImage {
   sourceUrl: string;
@@ -53,30 +53,8 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
   // Determine if product has variations (for conditional Configure card)
   const hasVariations = product.variations && product.variations.length > 0;
 
-  // Parse description for bullet points
+  // Use the full description (same as Description tab)
   const description = product.description || product.shortDescription || '';
-  const getBulletPoints = (html: string): string[] => {
-    if (!html) return [];
-    
-    // First try to extract from <li> tags
-    const liMatches = html.match(/<li[^>]*>(.*?)<\/li>/gi);
-    if (liMatches && liMatches.length > 0) {
-      return liMatches.map(li => li.replace(/<[^>]+>/g, '').trim()).slice(0, 4);
-    }
-    
-    // Fallback: split by periods or line breaks and create bullets from sentences
-    const textContent = html.replace(/<[^>]+>/g, '').trim();
-    const sentences = textContent
-      .split(/\.\s+/)
-      .filter(s => s.trim().length > 20 && s.trim().length < 150)
-      .slice(0, 4);
-    
-    return sentences.length > 0 ? sentences.map(s => s.trim() + '.') : [];
-  };
-  
-  const bulletPoints = getBulletPoints(description);
-  const descriptionText = description.replace(/<[^>]+>/g, '').trim();
-  const mainDescription = descriptionText.split('\n')[0].split('.').slice(0, 2).join('.') + (descriptionText.includes('.') ? '.' : '');
 
   // Build images array: featured image first, then gallery images
   const galleryImages = React.useMemo(() => {
@@ -173,22 +151,29 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
           </div>
           {/* Right column: Description (7 columns) */}
           <div className="order-2 lg:order-2 lg:col-span-7">
-            {descriptionText && (
+            {description && (
               <div className="mb-10">
-                <p className="mb-4 text-base leading-relaxed text-neutral-700">
-                  {mainDescription}
-                </p>
-                
-                {bulletPoints.length > 0 && (
-                  <ul className="space-y-3 pl-10">
-                    {bulletPoints.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-3.5 text-neutral-700">
-                        <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary-500"></span>
-                        <span className="text-base leading-relaxed">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                {/* Enhanced description container with visual polish */}
+                <div className="rounded-lg border-l-4 border-primary-500 bg-gradient-to-br from-neutral-50 to-white p-8 shadow-sm ring-1 ring-neutral-200/50">
+                  <div
+                    className="prose prose-neutral mx-auto max-w-none
+                      [&_ul]:!my-7 [&_ul]:!list-disc [&_ul]:!space-y-3.5 [&_ul]:!pl-8
+                      [&_ul_li]:!text-[1.0625rem] [&_ul_li]:!leading-[1.75] [&_ul_li]:!text-neutral-800 [&_ul_li::marker]:!text-[1.25em] [&_ul_li::marker]:!text-primary-500
+                      [&_ol]:!my-7 [&_ol]:!list-decimal [&_ol]:!space-y-3.5 [&_ol]:!pl-8
+                      [&_ol_li]:!text-[1.0625rem] [&_ol_li]:!leading-[1.75] [&_ol_li]:!text-neutral-800 [&_ol_li::marker]:!font-semibold [&_ol_li::marker]:!text-primary-600
+                      [&_h1]:!mb-10 [&_h1]:!mt-0 [&_h1]:!text-4xl [&_h1]:!font-bold [&_h1]:!leading-tight [&_h1]:!tracking-tight [&_h1]:!text-neutral-900
+                      [&_h2]:!mb-8 [&_h2]:!mt-12 [&_h2]:!border-b [&_h2]:!border-neutral-200 [&_h2]:!pb-3 [&_h2]:!text-2xl [&_h2]:!font-bold [&_h2]:!tracking-tight [&_h2]:!text-neutral-900
+                      [&_h3]:!mb-6 [&_h3]:!mt-10 [&_h3]:!text-xl [&_h3]:!font-bold [&_h3]:!tracking-tight [&_h3]:!text-neutral-900
+                      [&_p]:!mb-6 [&_p]:!text-[1.0625rem] [&_p]:!leading-[1.8] [&_p]:!text-neutral-800
+                      [&_p:first-of-type]:!mb-7 [&_p:first-of-type]:!text-[1.25rem] [&_p:first-of-type]:!font-semibold [&_p:first-of-type]:!leading-[1.7] [&_p:first-of-type]:!text-neutral-900
+                      [&_p:last-of-type]:!mb-0
+                      [&_a]:!font-medium [&_a]:!text-primary-600 [&_a]:!no-underline [&_a]:!transition-all [&_a:hover]:!text-primary-700 [&_a:hover]:!underline [&_a:hover]:!underline-offset-4
+                      [&_strong]:!font-bold [&_strong]:!text-neutral-900
+                      [&_hr]:!my-10 [&_hr]:!border-neutral-300
+                      [&_img]:!my-6 [&_img]:!rounded-lg [&_img]:!shadow-md"
+                    dangerouslySetInnerHTML={{ __html: sanitizeDescription(description) }}
+                  />
+                </div>
               </div>
             )}
 

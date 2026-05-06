@@ -18,6 +18,7 @@ interface Document {
   id: string;
   title: string;
   filename: string;
+  slug?: string; // Searchable version of filename
   url: string;
   fileSize?: number | null;
   date?: string;
@@ -163,10 +164,18 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   }, [documents]);
 
   // Fuse.js instance for fuzzy search
+  // Enhanced to search document numbers (in slug/filename) and product names (in title)
   const fuse = useMemo(() => new Fuse(documents, {
-    keys: ['title', 'filename', 'productName', 'productSku'],
-    threshold: 0.3, // 0 = exact match, 1 = match anything
+    keys: [
+      { name: 'title', weight: 2 }, // Product names and descriptions (higher weight)
+      { name: 'slug', weight: 1.5 }, // Document numbers without special chars (e.g., "40698")
+      { name: 'filename', weight: 1 }, // Original filename
+      { name: 'productName', weight: 1.5 },
+      { name: 'productSku', weight: 1.5 },
+    ],
+    threshold: 0.4, // More permissive for typos and partial matches
     ignoreLocation: true,
+    minMatchCharLength: 2, // Allow short searches like "CO"
   }), [documents]);
 
   // Filtered and sorted documents

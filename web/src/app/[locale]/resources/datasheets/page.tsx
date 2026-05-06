@@ -200,10 +200,18 @@ export default async function DatasheetsPage({ params }: Props) {
     // Transform and filter documents for client component
     documents = filteredDocuments
       .map(doc => {
+        const filename = doc.source_url?.split('/').pop() || '';
+        // Extract searchable slug from filename (remove extension, replace special chars with spaces)
+        const slug = filename
+          .replace(/\.[^.]+$/, '') // Remove file extension
+          .replace(/[_-]/g, ' ') // Replace underscores and dashes with spaces for better search
+          .toLowerCase();
+        
         return {
           id: String(doc.id),
           title: doc.title?.rendered || 'Untitled Document',
-          filename: doc.source_url?.split('/').pop() || '',
+          filename,
+          slug, // Searchable version of filename (e.g., "40698 ins co2 3led bb")
           url: doc.source_url || '',
           fileSize: doc.media_details?.filesize,
           date: doc.date,

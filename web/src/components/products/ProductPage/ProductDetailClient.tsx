@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
@@ -45,19 +45,35 @@ export default function ProductDetailClient({
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
   const [quantity, setQuantity] = useState(1); // Add quantity state
   const { addProduct } = useRecentlyViewed();
+  const variationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Determine if this is a simple product (no variations)
   const isSimpleProduct = !product?.variations || product.variations.length === 0;
 
   // Handle variation change with loading state
   const handleVariationChange = (variation: any) => {
+    // Clear any pending timeout
+    if (variationTimeoutRef.current) {
+      clearTimeout(variationTimeoutRef.current);
+    }
+    
     setIsLoadingVariation(true);
     // Simulate slight delay for loading state visibility
-    setTimeout(() => {
+    variationTimeoutRef.current = setTimeout(() => {
       setSelectedVariation(variation);
       setIsLoadingVariation(false);
+      variationTimeoutRef.current = null;
     }, 150); // Brief delay to show loading state
   };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (variationTimeoutRef.current) {
+        clearTimeout(variationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Track this product as recently viewed
   useEffect(() => {

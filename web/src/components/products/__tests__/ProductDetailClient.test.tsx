@@ -108,6 +108,11 @@ async function selectAttributes({ size, color }: { size?: string; color?: string
       fireEvent.click(colorButton);
     });
   }
+  
+  // Wait for the 150ms variation loading timeout to complete
+  await act(async () => {
+    await new Promise(resolve => setTimeout(resolve, 200));
+  });
 }
 
 describe('ProductDetailClient', () => {

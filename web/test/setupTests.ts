@@ -75,12 +75,36 @@ afterAll(() => server.close());
 // Mock next/image to render a plain <img/> in jsdom tests.
 vi.mock('next/image', () => ({
 	default: (props: unknown) => {
-		const p = props as { src?: string | { src: string }; alt?: string; className?: string; style?: Record<string, unknown> };
-		const { src, alt, className, style } = p;
+		const p = props as { 
+			src?: string | { src: string }; 
+			alt?: string; 
+			className?: string; 
+			style?: Record<string, unknown>;
+			fill?: boolean;
+			width?: number;
+			height?: number;
+			sizes?: string;
+			priority?: boolean;
+			[key: string]: unknown;
+		};
+		const { src, alt, className, style, fill, width, height } = p;
 		let resolvedSrc = '';
 		if (typeof src === 'string') resolvedSrc = src;
 		else if (src && typeof src === 'object') resolvedSrc = (src as { src: string }).src;
-		return React.createElement('img', { src: resolvedSrc, alt, className, style });
+		
+		// If fill is true, use absolute positioning to simulate Next Image fill behavior
+		const imgStyle = fill 
+			? { ...style, position: 'absolute', inset: 0, width: '100%', height: '100%' }
+			: style;
+		
+		return React.createElement('img', { 
+			src: resolvedSrc, 
+			alt, 
+			className, 
+			style: imgStyle,
+			width,
+			height
+		});
 	},
 }));
 

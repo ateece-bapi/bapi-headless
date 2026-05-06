@@ -371,8 +371,8 @@
         "applicationNotesDesc": "إرشادات التصميم وأفضل الممارسات",
         "serviceBulletins": "نشرات الخدمة",
         "serviceBulletinsDesc": "تحديثات المنتج والإعلانات",
-        "datasheets": "أوراق البيانات",
-        "datasheetsDesc": "المواصفات الكاملة للمنتج",
+        "datasheets": "التعليمات والأدلة",
+        "datasheetsDesc": "أدلة التثبيت وأدلة التشغيل",
         "sensorsOverview": "نظرة عامة على المستشعرات",
         "sensorsOverviewDesc": "مقارنة مواصفات المستشعرات"
       },

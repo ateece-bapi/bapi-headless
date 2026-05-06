@@ -53,8 +53,8 @@
         "applicationNotesDesc": "คำแนะนำในการออกแบบและแนวปฏิบัติที่ดีที่สุด",
         "serviceBulletins": "จดหมายข่าวบริการ",
         "serviceBulletinsDesc": "การอัปเดตและประกาศผลิตภัณฑ์",
-        "datasheets": "แผ่นข้อมูล",
-        "datasheetsDesc": "รายละเอียดผลิตภัณฑ์โดยสมบูรณ์",
+        "datasheets": "คู่มือและคู่มือการใช้งาน",
+        "datasheetsDesc": "คู่มือการติดตั้งและคู่มือการใช้งาน",
         "sensorsOverview": "ภาพรวมเซ็นเซอร์",
         "sensorsOverviewDesc": "เปรียบเทียบข้อมูลจำเพาะของเซ็นเซอร์"
       },

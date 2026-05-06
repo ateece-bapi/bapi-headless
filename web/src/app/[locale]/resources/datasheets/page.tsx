@@ -159,12 +159,12 @@ export default async function DatasheetsPage({ params }: Props) {
     id: string;
     title: string;
     filename: string;
+    slug: string;
     url: string;
     fileSize?: number;
     date: string;
     productName: undefined;
     productSku: undefined;
-    categories: never[];
     documentType: string;
   }> = [];
   
@@ -194,21 +194,33 @@ export default async function DatasheetsPage({ params }: Props) {
     
     logger.debug(`Filtered to ${filteredDocuments.length} documents for user groups: ${userCustomerGroups.join(', ')}`);
   
-    // Transform documents for client component
-    documents = filteredDocuments.map(doc => {
-      return {
-        id: String(doc.id),
-        title: doc.title?.rendered || 'Untitled Document',
-        filename: doc.source_url?.split('/').pop() || '',
-        url: doc.source_url || '',
-        fileSize: doc.media_details?.filesize,
-        date: doc.date,
-        productName: undefined,
-        productSku: undefined,
-        categories: [],
-        documentType: classifyDocumentType(doc.title?.rendered),
-      };
-    });
+    // Allowed document types (per Shawn's feedback May 6, 2026)
+    const allowedTypes = ['Instructions', 'Operation Manual', 'Technical Drawing'];
+    
+    // Transform and filter documents for client component
+    documents = filteredDocuments
+      .map(doc => {
+        const filename = doc.source_url?.split('/').pop() || '';
+        // Extract searchable slug from filename (remove extension, replace special chars with spaces)
+        const slug = filename
+          .replace(/\.[^.]+$/, '') // Remove file extension
+          .replace(/[_-]/g, ' ') // Replace underscores/dashes with spaces for better search
+          .toLowerCase();
+        
+        return {
+          id: String(doc.id),
+          title: doc.title?.rendered || 'Untitled Document',
+          filename,
+          slug, // Searchable version of filename (e.g., "40698 ins co2 3led bb")
+          url: doc.source_url || '',
+          fileSize: doc.media_details?.filesize,
+          date: doc.date,
+          productName: undefined,
+          productSku: undefined,
+          documentType: classifyDocumentType(doc.title?.rendered),
+        };
+      })
+      .filter(doc => allowedTypes.includes(doc.documentType));
   } catch (error) {
     // Log error and rethrow to trigger error boundary
     // This ensures users see an error page instead of empty "0 documents"

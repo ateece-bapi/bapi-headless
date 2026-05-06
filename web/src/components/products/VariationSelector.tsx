@@ -444,7 +444,7 @@ export default function VariationSelector({
                       <p className="text-sm font-semibold text-neutral-700">{t('totalPrice')}</p>
                       <p className="text-2xl font-bold text-primary-600">
                         {formatPrice(
-                          parseFloat(matchedVariation.price) * quantity,
+                          convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity,
                           region.currency
                         )}
                       </p>

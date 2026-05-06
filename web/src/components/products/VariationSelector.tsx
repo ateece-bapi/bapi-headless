@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
@@ -18,9 +19,7 @@ import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice, convertWooCommercePriceNumeric, formatPrice } from '@/lib/utils/currency';
-import { formatWeight } from '@/lib/utils/locale';
-import type { LanguageCode } from '@/types/region';
+import { formatPrice } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
@@ -85,6 +84,7 @@ export default function VariationSelector({
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [favoritedVariationId, setFavoritedVariationId] = useState<string | null>(null);
   const region = useRegion();
 
   // Filter to only attributes used for variations (memoized to prevent breaking availableOptionsMap memo)
@@ -275,6 +275,15 @@ export default function VariationSelector({
     }
   }, [availableOptionsMap, selectedAttributes]);
 
+  // Reset favorite state when matched variation changes
+  useEffect(() => {
+    if (matchedVariation) {
+      setIsFavorited(favoritedVariationId === matchedVariation.id);
+    } else {
+      setIsFavorited(false);
+    }
+  }, [matchedVariation, favoritedVariationId]);
+
   if (variationAttributes.length === 0) {
     return null;
   }
@@ -383,7 +392,7 @@ export default function VariationSelector({
             })}
           </div>
 
-          {/* Configuration Summary - Exactly Like Matt's Mockup */}
+          {/* Configuration Summary - Compact 2-column layout with image and action controls */}
           {matchedVariation && (
             <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-6 pt-6">
               <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-4 shadow-xl">
@@ -394,24 +403,26 @@ export default function VariationSelector({
                       <PackageIcon className="h-3.5 w-3.5 text-white" />
                     </div>
                     <p className="text-xs font-bold uppercase tracking-wider text-accent-800">
-                      Selected Configuration
+                      {t('selectedConfig')}
                     </p>
                   </div>
                   <p className="text-xs text-neutral-500">
-                    {selectedCount} of {totalCount} Selected
+                    {t('attributesSelected', { selected: selectedCount, total: totalCount })}
                   </p>
                 </div>
 
                 {/* Layout: Image Left, Details Right */}
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {/* Left: Product Image */}
-                  {(matchedVariation.image || product?.image) && (
+                  {((matchedVariation.image?.sourceUrl || product?.image?.sourceUrl)) && (
                     <div className="flex items-center justify-center">
-                      <div className="h-56 w-56 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-3 shadow-sm">
-                        <img
-                          src={(matchedVariation.image || product?.image)?.sourceUrl || ''}
-                          alt={(matchedVariation.image || product?.image)?.altText || matchedVariation.name || 'Product variation'}
-                          className="h-full w-full object-contain"
+                      <div className="relative h-56 w-56 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-3 shadow-sm">
+                        <Image
+                          src={(matchedVariation.image?.sourceUrl || product?.image?.sourceUrl)!}
+                          alt={(matchedVariation.image?.altText || product?.image?.altText || matchedVariation.name || t('productVariation'))}
+                          fill
+                          className="object-contain"
+                          sizes="224px"
                         />
                       </div>
                     </div>
@@ -421,7 +432,7 @@ export default function VariationSelector({
                   <div className="flex min-w-0 flex-col justify-center">
                     {/* Part Number */}
                     <div className="mb-2">
-                      <p className="mb-1 text-xs font-medium text-neutral-600">Part Number</p>
+                      <p className="mb-1 text-xs font-medium text-neutral-600">{t('partNumber')}</p>
                       <p className="flex items-center gap-2 text-sm text-neutral-700">
                         <PackageIcon className="h-4 w-4 text-neutral-500" />
                         {matchedVariation.partNumber || matchedVariation.sku}
@@ -430,10 +441,10 @@ export default function VariationSelector({
 
                     {/* Price */}
                     <div className="mb-2 flex items-baseline justify-between">
-                      <p className="text-sm font-semibold text-neutral-700">Total Price</p>
+                      <p className="text-sm font-semibold text-neutral-700">{t('totalPrice')}</p>
                       <p className="text-2xl font-bold text-primary-600">
                         {formatPrice(
-                          convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity,
+                          parseFloat(matchedVariation.price) * quantity,
                           region.currency
                         )}
                       </p>
@@ -443,16 +454,22 @@ export default function VariationSelector({
                     <div className="mb-2 flex items-center gap-2">
                       {/* Favorite Button */}
                       <button
-                        onClick={() => setIsFavorited(!isFavorited)}
+                        type="button"
+                        onClick={() => {
+                          const newState = !isFavorited;
+                          setIsFavorited(newState);
+                          setFavoritedVariationId(newState ? matchedVariation.id : null);
+                        }}
                         className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold shadow-sm transition focus:outline-none focus:ring-2 ${
                           isFavorited
                             ? 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500/50'
                             : 'border-2 border-neutral-300 bg-white text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
                         }`}
-                        title={isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+                        aria-pressed={isFavorited}
+                        aria-label={isFavorited ? t('removeFromFavorites') : t('addToFavorites')}
                       >
                         <HeartIcon className={`h-3.5 w-3.5 ${isFavorited ? 'fill-current' : ''}`} />
-                        Favorite
+                        {t('favorite')}
                       </button>
 
                       {/* Quantity Selector */}
@@ -476,6 +493,7 @@ export default function VariationSelector({
                               onQuantityChange(isNaN(val) ? 1 : Math.max(1, Math.min(999, val)));
                             }}
                             className="h-8 w-12 rounded-lg border-2 border-neutral-300 text-center text-sm font-semibold text-neutral-900 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                            aria-label={t('qtyLabel')}
                           />
                           <button
                             type="button"
@@ -530,13 +548,16 @@ export default function VariationSelector({
                       </div>
                     )}
 
-                    {/* Add to Estimate Button - Full Width */}
+                    {/* Add to Estimate Button - Full Width (Phase 2 feature) */}
                     <button
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500/50"
-                      title="Add to Job Estimate"
+                      type="button"
+                      disabled
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-500 shadow-sm opacity-60 cursor-not-allowed"
+                      aria-label={t('addToEstimate')}
+                      title={t('comingSoon')}
                     >
                       <BriefcaseIcon className="h-4 w-4" />
-                      Add to Estimate
+                      {t('addToEstimate')}
                     </button>
                   </div>
                 </div>

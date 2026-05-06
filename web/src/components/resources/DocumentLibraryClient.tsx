@@ -578,25 +578,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                       {doc.productName && (
                         <p className="mb-2 line-clamp-1 text-xs text-neutral-600">{doc.productName}</p>
                       )}
-                      
-                      {/* Categories */}
-                      {doc.categories.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {doc.categories.slice(0, 2).map((cat, idx) => (
-                            <span
-                              key={idx}
-                              className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs text-neutral-600"
-                            >
-                              {cat}
-                            </span>
-                          ))}
-                          {doc.categories.length > 2 && (
-                            <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs text-neutral-600">
-                              +{doc.categories.length - 2}
-                            </span>
-                          )}
-                        </div>
-                      )}
                     </div>
 
                     {/* File Info */}

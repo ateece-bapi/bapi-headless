@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
+import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
@@ -18,7 +18,7 @@ import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric, formatPrice } from '@/lib/utils/currency';
 import { formatWeight } from '@/lib/utils/locale';
 import type { LanguageCode } from '@/types/region';
 import AddToCartButton from '@/components/cart/AddToCartButton';
@@ -84,6 +84,7 @@ export default function VariationSelector({
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
   const region = useRegion();
 
   // Filter to only attributes used for variations (memoized to prevent breaking availableOptionsMap memo)
@@ -382,17 +383,33 @@ export default function VariationSelector({
             })}
           </div>
 
-          {/* Configuration Summary - Shows when variation is matched */}
+          {/* Configuration Summary - Exactly Like Matt's Mockup */}
           {matchedVariation && (
             <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-6 pt-6">
               <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-4 shadow-xl">
-                <div className="mb-4 flex items-start gap-4">
-                  {/* Variation Image */}
+                {/* Header */}
+                <div className="mb-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-500">
+                      <PackageIcon className="h-3.5 w-3.5 text-white" />
+                    </div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-accent-800">
+                      Selected Configuration
+                    </p>
+                  </div>
+                  <p className="text-xs text-neutral-500">
+                    {selectedCount} of {totalCount} Selected
+                  </p>
+                </div>
+
+                {/* Layout: Image Left, Details Right */}
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {/* Left: Product Image */}
                   {(matchedVariation.image || product?.image) && (
-                    <div className="shrink-0">
-                      <div className="h-24 w-24 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-sm">
+                    <div className="flex items-center justify-center">
+                      <div className="h-56 w-56 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-3 shadow-sm">
                         <img
-                          src={(matchedVariation.image || product?.image)?.sourceUrl}
+                          src={(matchedVariation.image || product?.image)?.sourceUrl || ''}
                           alt={(matchedVariation.image || product?.image)?.altText || matchedVariation.name || 'Product variation'}
                           className="h-full w-full object-contain"
                         />
@@ -400,154 +417,81 @@ export default function VariationSelector({
                     </div>
                   )}
 
-                  {/* Price and Part Number */}
-                  <div className="flex-1">
-                    <div className="mb-2 flex items-center gap-2">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-500">
-                        <PackageIcon className="h-3.5 w-3.5 text-white" />
-                      </div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-accent-800">
-                        {t('selectedConfig')}
+                  {/* Right: Details Stacked */}
+                  <div className="flex min-w-0 flex-col justify-center">
+                    {/* Part Number */}
+                    <div className="mb-2">
+                      <p className="mb-1 text-xs font-medium text-neutral-600">Part Number</p>
+                      <p className="flex items-center gap-2 text-sm text-neutral-700">
+                        <PackageIcon className="h-4 w-4 text-neutral-500" />
+                        {matchedVariation.partNumber || matchedVariation.sku}
                       </p>
                     </div>
-                    <div className="space-y-2">
-                      {matchedVariation.description && (
-                        <div>
-                          <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                            {t('variantDescription')}
-                          </p>
-                          <p className="text-sm font-medium text-neutral-800">
-                            {matchedVariation.description.replace(/<[^>]*>/g, '')}
-                          </p>
-                        </div>
-                      )}
-                      <div>
-                        <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                          {t('partNumber')}
-                        </p>
-                        <p className="inline-block rounded-lg border-2 border-accent-400 bg-white px-3 py-2 font-mono text-lg font-bold text-neutral-900 shadow-sm">
-                          {matchedVariation.partNumber || matchedVariation.sku}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                          {t('yourPrice')}
-                        </p>
-                        <p className="text-3xl font-bold text-primary-700">
-                          {convertWooCommercePrice(matchedVariation.price, region.currency)}
-                        </p>
-                        {matchedVariation.salePrice && matchedVariation.regularPrice && matchedVariation.salePrice !== matchedVariation.regularPrice && (
-                          <span className="ml-2 text-sm text-neutral-600 line-through">
-                            {convertWooCommercePrice(matchedVariation.regularPrice, region.currency)}
-                          </span>
+
+                    {/* Price */}
+                    <div className="mb-2 flex items-baseline justify-between">
+                      <p className="text-sm font-semibold text-neutral-700">Total Price</p>
+                      <p className="text-2xl font-bold text-primary-600">
+                        {formatPrice(
+                          convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity,
+                          region.currency
                         )}
-                        {!matchedVariation.salePrice && basePrice && basePrice !== matchedVariation.price && (
-                          <span className="ml-2 text-sm text-neutral-600 line-through">
-                            {convertWooCommercePrice(basePrice, region.currency)}
-                          </span>
-                        )}
-                      </div>
-                      {matchedVariation.weight && (
-                        <div>
-                          <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                            {t('weight')}
-                          </p>
-                          <p className="text-sm font-medium text-neutral-700">
-                            {formatWeight(
-                              parseFloat(matchedVariation.weight),
-                              'pounds',
-                              locale as LanguageCode,
-                              region.code
-                            )}
-                          </p>
+                      </p>
+                    </div>
+
+                    {/* Favorite + Quantity Row */}
+                    <div className="mb-2 flex items-center gap-2">
+                      {/* Favorite Button */}
+                      <button
+                        onClick={() => setIsFavorited(!isFavorited)}
+                        className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold shadow-sm transition focus:outline-none focus:ring-2 ${
+                          isFavorited
+                            ? 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500/50'
+                            : 'border-2 border-neutral-300 bg-white text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
+                        }`}
+                        title={isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+                      >
+                        <HeartIcon className={`h-3.5 w-3.5 ${isFavorited ? 'fill-current' : ''}`} />
+                        Favorite
+                      </button>
+
+                      {/* Quantity Selector */}
+                      {onQuantityChange && (
+                        <div className="flex shrink-0 items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
+                            className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-base font-bold text-neutral-700 shadow-sm transition hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            aria-label="Decrease quantity"
+                          >
+                            −
+                          </button>
+                          <input
+                            type="number"
+                            min={1}
+                            max={999}
+                            value={quantity}
+                            onChange={(e) => {
+                              const val = Number(e.target.value);
+                              onQuantityChange(isNaN(val) ? 1 : Math.max(1, Math.min(999, val)));
+                            }}
+                            className="h-8 w-12 rounded-lg border-2 border-neutral-300 text-center text-sm font-semibold text-neutral-900 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
+                            className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-base font-bold text-neutral-700 shadow-sm transition hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
                         </div>
                       )}
                     </div>
-                  </div>
 
-                  {/* Stock Status */}
-                  <div className="shrink-0 text-right">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-accent-700">
-                      {t('availability')}
-                    </p>
-                    {matchedVariation.stockStatus === 'IN_STOCK' ? (
-                      <div className="rounded-lg border-2 border-green-500 bg-green-100 px-3 py-2">
-                        <div className="mb-0.5 flex items-center justify-end gap-1.5">
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
-                          <span className="text-sm font-bold text-green-800">{t('inStock')}</span>
-                        </div>
-                        <p className="flex items-center justify-end gap-1 text-xs text-green-700">
-                          <ClockIcon className="h-3 w-3" />
-                          {t('shipsIn')}
-                        </p>
-                      </div>
-                    ) : matchedVariation.stockStatus === 'ON_BACKORDER' ? (
-                      <div className="rounded-lg border-2 border-amber-500 bg-amber-100 px-3 py-2">
-                        <div className="mb-0.5 flex items-center justify-end gap-1.5">
-                          <div className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" />
-                          <span className="text-sm font-bold text-amber-800">{t('backorder')}</span>
-                        </div>
-                        <p className="text-xs text-amber-700">{t('contactForLeadTime')}</p>
-                      </div>
-                    ) : (
-                      <div className="rounded-lg border-2 border-red-500 bg-red-100 px-3 py-2">
-                        <div className="flex items-center justify-end gap-1.5">
-                          <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                          <span className="text-sm font-bold text-red-800">{t('outOfStock')}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Quantity & Add to Cart Section - Inline */}
-                {product && (
-                  <div className="border-t-2 border-accent-200 pt-4">
-                    <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-                      {/* Quantity Selector */}
-                      {onQuantityChange && (
-                        <div className="flex items-center gap-2 sm:shrink-0">
-                          <label
-                            htmlFor="config-quantity"
-                            className="text-xs font-semibold uppercase tracking-wide text-neutral-700"
-                          >
-                            {t('qtyLabel')}
-                          </label>
-                          <div className="flex items-center overflow-hidden rounded-lg border-2 border-accent-300 bg-white shadow-sm">
-                            <button
-                              type="button"
-                              onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
-                              className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                              aria-label={t('decreaseQtyAriaLabel')}
-                            >
-                              −
-                            </button>
-                            <input
-                              type="number"
-                              id="config-quantity"
-                              min={1}
-                              max={999}
-                              value={quantity}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                onQuantityChange(isNaN(val) ? 1 : Math.max(1, Math.min(999, val)));
-                              }}
-                              className="min-h-11 w-16 border-0 bg-white py-2 text-center text-base font-bold text-neutral-900 focus:ring-2 focus:ring-primary-500/30"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
-                              className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                              aria-label={t('increaseQtyAriaLabel')}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Add to Cart Button */}
-                      <div className="flex-1">
+                    {/* Add to Cart Button - Full Width */}
+                    {product && (
+                      <div className="mb-2">
                         <AddToCartButton
                           product={{
                             id: matchedVariation.id,
@@ -577,16 +521,25 @@ export default function VariationSelector({
                             ),
                           }}
                           quantity={quantity}
-                          className="w-full px-5 py-3 text-base font-bold shadow-lg transition-all hover:shadow-xl"
+                          className="w-full px-4 py-2 text-sm font-bold shadow-sm transition-all hover:shadow-md"
                           disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
                           useCart={useCart}
                           useCartDrawer={useCartDrawer}
-                          ariaLabel={`Add ${matchedVariation.name} to cart (from configurator)`}
+                          ariaLabel={`Add ${matchedVariation.name} to cart`}
                         />
                       </div>
-                    </div>
+                    )}
+
+                    {/* Add to Estimate Button - Full Width */}
+                    <button
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+                      title="Add to Job Estimate"
+                    >
+                      <BriefcaseIcon className="h-4 w-4" />
+                      Add to Estimate
+                    </button>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           )}

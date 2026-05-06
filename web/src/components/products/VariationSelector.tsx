@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
 import logger from '@/lib/logger';

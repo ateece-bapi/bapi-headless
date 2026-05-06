@@ -24,7 +24,6 @@ interface Document {
   date?: string;
   productName?: string;
   productSku?: string;
-  categories: string[];
   documentType: string;
 }
 
@@ -91,7 +90,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   // Initialize state from URL params (with null safety)
   const [searchTerm, setSearchTerm] = useState(searchParams?.get('search') || '');
   const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
-  const [selectedCategory, setSelectedCategory] = useState(searchParams?.get('category') || '');
   const [selectedType, setSelectedType] = useState(searchParams?.get('type') || '');
   const [sortBy, setSortBy] = useState<SortOption>((searchParams?.get('sort') as SortOption) || 'date-desc');
   const [currentPage, setCurrentPage] = useState(parseInt(searchParams?.get('page') || '1'));
@@ -125,7 +123,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   useEffect(() => {
     const params = new URLSearchParams();
     if (debouncedSearch) params.set('search', debouncedSearch);
-    if (selectedCategory) params.set('category', selectedCategory);
     if (selectedType) params.set('type', selectedType);
     if (sortBy !== 'date-desc') params.set('sort', sortBy);
     if (currentPage > 1) params.set('page', currentPage.toString());
@@ -133,7 +130,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     const queryString = params.toString();
     const newUrl = queryString ? `?${queryString}` : window.location.pathname;
     router.replace(newUrl, { scroll: false });
-  }, [debouncedSearch, selectedCategory, selectedType, sortBy, currentPage, router]);
+  }, [debouncedSearch, selectedType, sortBy, currentPage, router]);
   
   // Keyboard shortcut: Cmd/Ctrl + K to focus search
   useEffect(() => {
@@ -147,20 +144,13 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Extract unique categories and types
-  const { allCategories, allTypes } = useMemo(() => {
-    const categorySet = new Set<string>();
+  // Extract unique document types
+  const allTypes = useMemo(() => {
     const typeSet = new Set<string>();
-    
     documents.forEach(doc => {
-      doc.categories.forEach(cat => categorySet.add(cat));
       typeSet.add(doc.documentType);
     });
-    
-    return {
-      allCategories: Array.from(categorySet).sort(),
-      allTypes: Array.from(typeSet).sort(),
-    };
+    return Array.from(typeSet).sort();
   }, [documents]);
 
   // Fuse.js instance for fuzzy search
@@ -188,13 +178,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
       filtered = fuseResults.map(result => result.item);
     }
     
-    // Category filter
-    if (selectedCategory) {
-      filtered = filtered.filter(doc => 
-        doc.categories.some(cat => cat.toLowerCase().includes(selectedCategory.toLowerCase()))
-      );
-    }
-    
     // Type filter
     if (selectedType) {
       filtered = filtered.filter(doc => doc.documentType === selectedType);
@@ -219,7 +202,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
           return 0;
       }
     });
-  }, [documents, debouncedSearch, selectedCategory, selectedType, sortBy]);
+  }, [documents, debouncedSearch, selectedType, sortBy]);
 
   // Paginated documents
   const paginatedDocuments = useMemo(() => {
@@ -324,7 +307,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   const clearFilters = useCallback(() => {
     setSearchTerm('');
     setDebouncedSearch('');
-    setSelectedCategory('');
     setSelectedType('');
     setSortBy('date-desc');
     setCurrentPage(1);
@@ -348,7 +330,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     }
   }, []);
 
-  const hasActiveFilters = searchTerm || selectedCategory || selectedType || sortBy !== 'date-desc';
+  const hasActiveFilters = searchTerm || selectedType || sortBy !== 'date-desc';
 
   return (
     <>
@@ -418,24 +400,6 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Category Filter */}
-            <div className="w-full lg:w-64">
-              <select 
-                value={selectedCategory}
-                onChange={(e) => {
-                  setSelectedCategory(e.target.value);
-                  handleFilterChange();
-                }}
-                className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
-                aria-label={t('filters.categoryLabel')}
-              >
-                <option value="">{t('filters.allCategories')}</option>
-                {allCategories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
             </div>
 
             {/* Document Type Filter */}

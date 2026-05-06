@@ -159,12 +159,12 @@ export default async function DatasheetsPage({ params }: Props) {
     id: string;
     title: string;
     filename: string;
+    slug: string;
     url: string;
     fileSize?: number;
     date: string;
     productName: undefined;
     productSku: undefined;
-    categories: never[];
     documentType: string;
   }> = [];
   
@@ -217,7 +217,6 @@ export default async function DatasheetsPage({ params }: Props) {
           date: doc.date,
           productName: undefined,
           productSku: undefined,
-          categories: [],
           documentType: classifyDocumentType(doc.title?.rendered),
         };
       })

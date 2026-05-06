@@ -371,8 +371,8 @@
         "applicationNotesDesc": "设计指南和最佳实践",
         "serviceBulletins": "服务通告",
         "serviceBulletinsDesc": "产品更新和公告",
-        "datasheets": "数据表",
-        "datasheetsDesc": "完整的产品规格",
+        "datasheets": "说明书和手册",
+        "datasheetsDesc": "安装指南和操作手册",
         "sensorsOverview": "传感器概览",
         "sensorsOverviewDesc": "比较传感器规格"
       },

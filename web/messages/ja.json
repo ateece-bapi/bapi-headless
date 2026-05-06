@@ -371,8 +371,8 @@
         "applicationNotesDesc": "設計ガイダンスとベストプラクティス",
         "serviceBulletins": "サービスブリテン",
         "serviceBulletinsDesc": "製品アップデートとお知らせ",
-        "datasheets": "データシート",
-        "datasheetsDesc": "完全な製品仕様",
+        "datasheets": "説明書とマニュアル",
+        "datasheetsDesc": "インストールガイドと操作マニュアル",
         "sensorsOverview": "センサー概要",
         "sensorsOverviewDesc": "センサー仕様の比較"
       },

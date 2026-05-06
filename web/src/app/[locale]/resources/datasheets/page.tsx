@@ -204,7 +204,7 @@ export default async function DatasheetsPage({ params }: Props) {
         // Extract searchable slug from filename (remove extension, replace special chars with spaces)
         const slug = filename
           .replace(/\.[^.]+$/, '') // Remove file extension
-          .replace(/[_-]/g, ' ') // Replace underscores and dashes with spaces for better search
+          .replace(/[_-]/g, ' ') // Replace underscores/dashes with spaces for better search
           .toLowerCase();
         
         return {

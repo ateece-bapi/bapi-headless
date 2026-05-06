@@ -371,8 +371,8 @@
         "applicationNotesDesc": "Conseils de conception et meilleures pratiques",
         "serviceBulletins": "Bulletins de service",
         "serviceBulletinsDesc": "Mises à jour et annonces de produits",
-        "datasheets": "Fiches techniques",
-        "datasheetsDesc": "Spécifications complètes du produit",
+        "datasheets": "Instructions et Manuels",
+        "datasheetsDesc": "Guides d'installation et manuels d'utilisation",
         "sensorsOverview": "Présentation des capteurs",
         "sensorsOverviewDesc": "Comparer les spécifications des capteurs"
       },

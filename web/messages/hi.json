@@ -145,8 +145,8 @@
         "applicationNotesDesc": "डिज़ाइन मार्गदर्शन और सर्वोत्तम प्रथाएं",
         "serviceBulletins": "सर्विस बुलेटिन",
         "serviceBulletinsDesc": "उत्पाद अपडेट और घोषणाएं",
-        "datasheets": "डेटाशीट",
-        "datasheetsDesc": "पूर्ण उत्पाद विनिर्देश",
+        "datasheets": "निर्देश और मैनुअल",
+        "datasheetsDesc": "इंस्टॉलेशन गाइड और ऑपरेशन मैनुअल",
         "sensorsOverview": "सेंसर्स का अवलोकन",
         "sensorsOverviewDesc": "सेंसर विनिर्देशों की तुलना करें"
       },

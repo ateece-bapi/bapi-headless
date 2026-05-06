@@ -150,8 +150,8 @@
         "applicationNotesDesc": "Design guidance & best practices",
         "serviceBulletins": "Service Bulletins",
         "serviceBulletinsDesc": "Product updates & announcements",
-        "datasheets": "Datasheets",
-        "datasheetsDesc": "Complete product specifications",
+        "datasheets": "Instructions & Manuals",
+        "datasheetsDesc": "Installation guides & operation manuals",
         "sensorsOverview": "Sensors Overview",
         "sensorsOverviewDesc": "Compare sensor specifications"
       },
@@ -166,7 +166,7 @@
       },
       "featured": {
         "title": "Need Technical Documentation?",
-        "description": "Access our complete library of application notes, datasheets, and technical resources to help you design and specify the perfect solution.",
+        "description": "Access our complete library of application notes, installation guides, and technical resources to help you design and specify the perfect solution.",
         "cta": "Browse Resources"
       }
     },
@@ -883,7 +883,7 @@
       "resources": {
         "title": "Resources",
         "links": {
-          "datasheets": "Technical Datasheets",
+          "datasheets": "Instructions & Manuals",
           "installation": "Installation Guides",
           "applicationNotes": "Application Notes",
           "videos": "Video Library",
@@ -2053,7 +2053,7 @@
         "links": {
           "applicationNotes": "Application Notes",
           "installationGuides": "Installation Guides",
-          "productDatasheets": "Product Datasheets",
+          "productDatasheets": "Instructions & Manuals",
           "sensorSpecs": "Sensor Specifications"
         }
       },
@@ -2200,8 +2200,8 @@
   },
   "resourcesPage": {
     "metadata": {
-      "description": "Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.",
-      "keywords": "BAPI documentation, installation guides, sensor datasheets, technical specifications, application notes, BACnet PICS, CAD drawings, wiring diagrams, building automation resources, HVAC documentation, controller manuals, sensor specs"
+      "description": "Free technical documentation for BAPI building automation products. Download installation guides, operation manuals, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.",
+      "keywords": "BAPI documentation, installation guides, operation manuals, technical specifications, application notes, BACnet PICS, CAD drawings, wiring diagrams, building automation resources, HVAC documentation, controller manuals, sensor instructions"
     },
     "hero": {
       "title": "Technical Resources",
@@ -2210,7 +2210,7 @@
     "stats": {
       "documents": "1,100+ Documents",
       "guides": "Installation Guides",
-      "datasheets": "Product Datasheets",
+      "datasheets": "Instructions & Manuals",
       "catalogs": "Technical Catalogs"
     },
     "appNotesCta": {

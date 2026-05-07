@@ -123,7 +123,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   let hasNextPage = true;
 
   while (hasNextPage && products.length < 1000) {
-    const productsData = await client.request<GetProductsWithFiltersQuery>(
+    const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
       GetProductsWithFiltersDocument,
       {
         categorySlug: subcategory,

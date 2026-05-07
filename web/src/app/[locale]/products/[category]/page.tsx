@@ -146,7 +146,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           GetProductsWithFiltersDocument,
           {
             categorySlug: category,
-            first: 100,  // Includes all filter taxonomy fields
+            first: 12,  // Reduced to prevent WordPress memory exhaustion (256MB limit)
             after: after || undefined,
           }
         );

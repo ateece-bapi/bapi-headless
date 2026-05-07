@@ -212,22 +212,43 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
  */
 function extractFilterOptions(products: Product[]) {
   // Map attribute names to filter keys and titles
+  // NOTE: WooCommerce uses BOTH underscores and hyphens in attribute names
   const attributeMap: Record<string, { key: string; title: string }> = {
+    // Temperature filters
     'pa_application': { key: 'application', title: 'Temperature Application' },
+    'pa-application': { key: 'application', title: 'Temperature Application' },
     'pa_room_enclosure_style': { key: 'roomEnclosure', title: 'Temperature Room Enclosure Style' },
+    'pa_room-enclosure-style': { key: 'roomEnclosure', title: 'Temperature Room Enclosure Style' },
     'pa_temperature_sensor_output': { key: 'sensorOutput', title: 'Temperature Sensor/Output' },
+    'pa_temperature-sensor-output': { key: 'sensorOutput', title: 'Temperature Sensor/Output' },
     'pa_display': { key: 'display', title: 'Display' },
+    'pa-display': { key: 'display', title: 'Display' },
     'pa_temp_setpoint_and_override': { key: 'setpointOverride', title: 'Temperature Setpoint and Override' },
+    'pa_temp-setpoint-and-override': { key: 'setpointOverride', title: 'Temperature Setpoint and Override' },
     'pa_optional_temp_humidity': { key: 'optionalTempHumidity', title: 'Optional Temp & Humidity' },
+    'pa_optional-temp-humidity': { key: 'optionalTempHumidity', title: 'Optional Temp & Humidity' },
     'pa_optional_temp_sensor_output': { key: 'optionalSensorOutput', title: 'Optional Temp Sensor & Output' },
+    'pa_optional-temp-sensor-output': { key: 'optionalSensorOutput', title: 'Optional Temp Sensor & Output' },
+    // Humidity filters
     'pa_humidity_application': { key: 'humidityApplication', title: 'Humidity Application' },
+    'pa_humidity-application': { key: 'humidityApplication', title: 'Humidity Application' },
     'pa_humidity_room_enclosure': { key: 'humidityRoomEnclosure', title: 'Humidity Room Enclosure' },
+    'pa_humidity-room-enclosure': { key: 'humidityRoomEnclosure', title: 'Humidity Room Enclosure' },
     'pa_humidity_sensor_output': { key: 'humiditySensorOutput', title: 'Humidity Sensor Output' },
+    'pa_humidity-sensor-output': { key: 'humiditySensorOutput', title: 'Humidity Sensor Output' },
+    // Pressure filters
     'pa_pressure_application': { key: 'pressureApplication', title: 'Pressure Application' },
+    'pa_pressure-application': { key: 'pressureApplication', title: 'Pressure Application' },
     'pa_pressure_sensor_style': { key: 'pressureSensorStyle', title: 'Pressure Sensor Style' },
+    'pa_pressure-sensor-style': { key: 'pressureSensorStyle', title: 'Pressure Sensor Style' },
+    // Air Quality filters
     'pa_air_quality_application': { key: 'airQualityApplication', title: 'Air Quality Application' },
+    'pa_air-quality-application': { key: 'airQualityApplication', title: 'Air Quality Application' },
     'pa_air_quality_sensor_type': { key: 'airQualitySensorType', title: 'Air Quality Sensor Type' },
+    'pa_air-quality-sensor-type': { key: 'airQualitySensorType', title: 'Air Quality Sensor Type' },
+    // Wireless filters
     'pa_wireless_application': { key: 'wirelessApplication', title: 'Wireless Application' },
+    'pa_wireless-application': { key: 'wirelessApplication', title: 'Wireless Application' },
   };
 
   const filterMaps = new Map<string, Map<string, { name: string; count: number; title: string }>>();

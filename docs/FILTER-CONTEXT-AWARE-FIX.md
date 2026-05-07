@@ -349,7 +349,7 @@ define( 'WP_MAX_MEMORY_LIMIT', '512M' ); // Added this line
 
 ### Solution: Reduced Batch Size
 
-Changed from `first: 100` to `first: 12` in both page files:
+Changed from `first: 100` to `first: 24` in both page files:
 
 **Before (BROKEN):**
 ```typescript
@@ -368,7 +368,7 @@ const productsData = await client.request<GetProductsWithFiltersQuery>(
   GetProductsWithFiltersDocument,
   {
     categorySlug: subcategory,
-    first: 12,  // ✅ Safe for 256MB limit
+    first: 24,  // ✅ WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
   }
 );
 ```
@@ -384,8 +384,8 @@ const productsData = await client.request<GetProductsWithFiltersQuery>(
 
 **Current Configuration (Post-Fix):**
 - WordPress Memory: `WP_MAX_MEMORY_LIMIT` = 512M ✅
-- Batch Size: `first: 12` (conservative, can be increased)
-- **Recommendation:** Can safely increase to `first: 24` or `first: 50` with 512MB available
+- Batch Size: `first: 24` (WooCommerce standard)
+- **Safe for production:** 24 products per request provides good balance of performance and memory safety
 
 ### Future Optimization Options
 
@@ -394,10 +394,11 @@ const productsData = await client.request<GetProductsWithFiltersQuery>(
    - Current: WP_MAX_MEMORY_LIMIT = 512M
    - Allows increasing batch size to `first: 24` or `first: 50`
 
-2. **Increase Batch Size** (Safe to do now)
-   - Current: `first: 12` (very conservative)
-   - Recommended: `first: 24` or `first: 50` with 512MB
-   - Would reduce number of requests for pagination
+2. **✅ Optimized Batch Size** (COMPLETED May 7, 2026)
+   - Previous: `first: 100` (caused OOM)
+   - Current: `first: 24` (WooCommerce standard)
+   - Could increase to `first: 50` with 512MB if needed
+   - 24 provides good balance of performance and safety
 
 3. **Create Lighter "Filters-Only" Query** (Phase 2)
    - Fetch only product IDs + taxonomy fields

@@ -17,6 +17,9 @@ type ProductFromCategoryQuery = NonNullable<
 
 type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
+// Non-filter searchParams keys (excluded from badge count)
+const NON_FILTER_KEYS = new Set(['sort', 'page']);
+
 interface MobileFilterButtonProps {
   categorySlug: string;
   products: Product[];
@@ -36,9 +39,9 @@ export function MobileFilterButton({
 }: MobileFilterButtonProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Count active filters
-  const activeFilterCount = Object.values(currentFilters).filter(
-    (value) => value && value.length > 0
+  // Count active filters (exclude non-filter params like sort and page)
+  const activeFilterCount = Object.entries(currentFilters).filter(
+    ([key, value]) => value && value.length > 0 && !NON_FILTER_KEYS.has(key)
   ).length;
 
   return (

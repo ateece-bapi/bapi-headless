@@ -71,11 +71,13 @@ export async function generateMetadata({
 }
 
 /**
- * Category page component displaying subcategories or products with filtering.
- * Fetches category hierarchy, products, and filter attributes from GraphQL.
+ * Category page component displaying subcategories or products with context-aware filtering.
+ * Fetches category hierarchy and products (with taxonomy fields for filter extraction) from GraphQL.
+ * Filters are extracted dynamically from products in the current category.
+ *
  * @param root0 - Component props
  * @param root0.params - Category page parameters containing locale and category slug
- * @param root0.searchParams - URL search parameters (unused but required by Next.js)
+ * @param root0.searchParams - URL search parameters for filters, sort, and pagination
  * @returns JSX.Element
  */
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
@@ -131,8 +133,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Type-safe product array from GraphQL
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
-  // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
-  let products: ProductNode[] = [];
+  const products: ProductNode[] = [];
 
   // Fetch products if category has no subcategories (leaf category)
   if (!hasSubcategories) {
@@ -359,10 +360,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </div>
 
               {/* Product Sort */}
-              <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
-                <p className="text-sm text-neutral-700">
-                  Showing {products.length} products
-                </p>
+              <div className="flex justify-end border-b border-neutral-200 pb-4">
                 <ProductSortDropdown />
               </div>
 

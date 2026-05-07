@@ -36,9 +36,10 @@ export function MobileFilterButton({
 }: MobileFilterButtonProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Count active filters
-  const activeFilterCount = Object.values(currentFilters).filter(
-    (value) => value && value.length > 0
+  // Count active filters (exclude non-filter params like sort and page)
+  const NON_FILTER_KEYS = ['sort', 'page'];
+  const activeFilterCount = Object.entries(currentFilters).filter(
+    ([key, value]) => value && value.length > 0 && !NON_FILTER_KEYS.includes(key)
   ).length;
 
   return (

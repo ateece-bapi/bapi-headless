@@ -18,7 +18,6 @@ import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
-import logger from '@/lib/logger';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -30,14 +29,7 @@ interface SubcategoryPageProps {
     category: string;
     subcategory: string;
   }>;
-  searchParams: Promise<{
-    application?: string;
-    enclosure?: string;
-    output?: string;
-    display?: string;
-    sort?: string;
-    page?: string;
-  }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }
 
 export async function generateMetadata({ params }: SubcategoryPageProps): Promise<Metadata> {
@@ -119,17 +111,39 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   );
   const hasSubSubcategories = subSubcategories.length > 0;
 
+  // Type-safe product array from GraphQL
+  type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+  // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
+  let products: ProductNode[] = [];
+
   // Always fetch products (categories can have both subcategories AND direct products)
   // Using GetProductsWithFilters to include all taxonomy fields for context-aware filtering
-  const productsData = await client.request<GetProductsWithFiltersQuery>(
-    GetProductsWithFiltersDocument,
-    {
-      categorySlug: subcategory,
-      first: 24,
+  // Paginate through all products to ensure complete data
+  let after: string | null = null;
+  let hasNextPage = true;
+
+  while (hasNextPage && products.length < 1000) {
+    const productsData = await client.request<GetProductsWithFiltersQuery>(
+      GetProductsWithFiltersDocument,
+      {
+        categorySlug: subcategory,
+        first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
+        after: after || undefined,
+      }
+    );
+
+    const pageNodes = productsData.products?.nodes || [];
+    products.push(...pageNodes);
+
+    hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
+    after = productsData.products?.pageInfo?.endCursor ?? null;
+
+    // Safety guard: Stop if no valid cursor for next page
+    if (!hasNextPage || !after) {
+      break;
     }
-  );
-  const products = productsData.products?.nodes || [];
-  const hasNextPage = productsData.products?.pageInfo.hasNextPage || false;
+  }
+
   const hasProducts = products.length > 0;
 
   // Build breadcrumb trail
@@ -327,10 +341,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
               </div>
 
               {/* Product Sort */}
-              <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
-                <p className="text-sm text-neutral-700">
-                  Showing {products.length} products
-                </p>
+              <div className="flex justify-end border-b border-neutral-200 pb-4">
                 <ProductSortDropdown />
               </div>
 

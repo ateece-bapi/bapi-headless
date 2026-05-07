@@ -105,7 +105,40 @@ const mockProduct = {
       },
     ],
   },
-  // Add filter attributes for ProductFilters
+  // Add filter attributes for ProductFilters (new attributes field structure)
+  attributes: {
+    nodes: [
+      {
+        id: 'attr-1',
+        name: 'pa_application',
+        label: 'Application',
+        options: ['HVAC', 'Industrial'],
+        variation: false,
+      },
+      {
+        id: 'attr-2',
+        name: 'pa_temperature_sensor_output',
+        label: 'Temperature Sensor/Output',
+        options: ['4-20mA', '0-10V'],
+        variation: false,
+      },
+      {
+        id: 'attr-3',
+        name: 'pa_room_enclosure_style',
+        label: 'Room Enclosure Style',
+        options: ['Wall Mount', 'Duct Mount'],
+        variation: false,
+      },
+      {
+        id: 'attr-4',
+        name: 'pa_display',
+        label: 'Display',
+        options: ['LCD', 'No Display'],
+        variation: false,
+      },
+    ],
+  },
+  // Keep legacy allPa* fields for backward compatibility with other tests
   allPaApplication: {
     nodes: [
       { slug: 'hvac', name: 'HVAC' },

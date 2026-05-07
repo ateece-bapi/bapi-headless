@@ -133,8 +133,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Type-safe product array from GraphQL
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
-  // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
-  let products: ProductNode[] = [];
+  const products: ProductNode[] = [];
 
   // Fetch products if category has no subcategories (leaf category)
   if (!hasSubcategories) {

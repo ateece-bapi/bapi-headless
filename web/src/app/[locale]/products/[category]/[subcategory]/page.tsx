@@ -113,8 +113,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   // Type-safe product array from GraphQL
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
-  // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
-  let products: ProductNode[] = [];
+  const products: ProductNode[] = [];
 
   // Always fetch products (categories can have both subcategories AND direct products)
   // Using GetProductsWithFilters to include all taxonomy fields for context-aware filtering

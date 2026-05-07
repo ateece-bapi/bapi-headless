@@ -692,8 +692,6 @@ query GetProductsWithFilters(
       type
       __typename
       ... on SimpleProduct {
-        id
-        name
         price
         regularPrice
         salePrice
@@ -721,10 +719,19 @@ query GetProductsWithFilters(
             slug
           }
         }
+        # Fetch attributes with options for filtering UI (same as VariableProduct)
+        # NOTE: options field is inexpensive - the removed allPa* taxonomy JOINs were the bottleneck
+        attributes {
+          nodes {
+            id
+            name
+            label
+            options
+            variation
+          }
+        }
       }
       ... on VariableProduct {
-        id
-        name
         price
         regularPrice
         salePrice

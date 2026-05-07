@@ -312,6 +312,86 @@ pnpm test src/components/products/__tests__/FilteredProductGrid.test.tsx
 
 ---
 
+## Memory Constraints & Batch Size Optimization
+
+### Critical Issue Discovered (May 7, 2026)
+
+**Problem:** Initial implementation used `first: 100` products per GraphQL query, causing WordPress memory exhaustion:
+
+```
+Error: Allowed memory size of 268435456 bytes exhausted (tried to allocate 20480 bytes)
+Location: /wp-content/plugins/wp-graphql/src/Model/Model.php:338
+```
+
+**WordPress Memory Limit:** 256MB (268,435,456 bytes)  
+**Query Size:** Fetching 100 products × 15 taxonomy fields + variations = TOO LARGE
+
+### Why Memory Exhaustion Occurred
+
+`GetProductsWithFiltersDocument` is a **HEAVY** query:
+- 15 taxonomy fields per product (allPaApplication, allPaRoomEnclosureStyle, etc.)
+- Product categories with parent relationships
+- Variable products include up to 500 variations each
+- Each variation includes attributes, images, pricing
+- Total payload per product: ~50-150KB depending on type
+
+**100 products × 100KB average = 10MB raw data + PHP processing overhead = OOM**
+
+### Solution: Reduced Batch Size
+
+Changed from `first: 100` to `first: 12` in both page files:
+
+**Before (BROKEN):**
+```typescript
+const productsData = await client.request<GetProductsWithFiltersQuery>(
+  GetProductsWithFiltersDocument,
+  {
+    categorySlug: subcategory,
+    first: 100,  // ❌ Too large!
+  }
+);
+```
+
+**After (FIXED):**
+```typescript
+const productsData = await client.request<GetProductsWithFiltersQuery>(
+  GetProductsWithFiltersDocument,
+  {
+    categorySlug: subcategory,
+    first: 12,  // ✅ Safe for 256MB limit
+  }
+);
+```
+
+### Performance Trade-offs
+
+| Batch Size | Memory Usage | Requests for 100 Products | Status |
+|------------|--------------|---------------------------|--------|
+| 100 | ~15-20MB | 1 request | ❌ OOM Error |
+| 24 | ~4-5MB | 5 requests | ⚠️  Borderline |
+| 12 | ~2-3MB | 9 requests | ✅ Safe |
+
+**Recommendation:** Stay at `first: 12` until WordPress memory can be increased to 512MB or query can be optimized.
+
+### Future Optimization Options
+
+1. **Increase WordPress Memory Limit** (requires Kinsta config change)
+   - Current: 256MB
+   - Recommended: 512MB or 1GB
+   - Would allow `first: 24` or `first: 50`
+
+2. **Create Lighter "Filters-Only" Query** (Phase 2)
+   - Fetch only product IDs + taxonomy fields
+   - Skip images, descriptions, variations for filter extraction
+   - Separate from product display query
+
+3. **Server-Side Filter Aggregation** (Phase 2)
+   - Custom WordPress REST endpoint
+   - Returns unique filter values per category
+   - No need to fetch all products for filters
+
+---
+
 ## WordPress Backend Findings
 
 ### SSH Investigation Results

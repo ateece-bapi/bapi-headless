@@ -10,12 +10,13 @@ import {
   GetProductCategoryWithChildrenQuery,
   GetProductsWithFiltersDocument,
   GetProductsWithFiltersQuery,
-  GetProductAttributesDocument,
-  GetProductAttributesQuery,
 } from '@/lib/graphql/generated';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import CategoryContent from '@/components/category/CategoryContent';
+import { ProductFilters } from '@/components/products/ProductFilters';
+import { MobileFilterButton } from '@/components/products/MobileFilterButton';
+import FilteredProductGrid from '@/components/products/FilteredProductGrid';
+import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 import {
   getCategoryTranslationKey,
@@ -79,7 +80,7 @@ export async function generateMetadata({
  */
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { category, locale } = await params;
-  await searchParams; // Required by Next.js async API
+  const filters = await searchParams;
   const t = await getTranslations({ locale });
   const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
   const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
@@ -132,9 +133,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
   // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
   let products: ProductNode[] = [];
-  
-  // Fetch product attributes for filtering (required by CategoryContent)
-  let productAttributesData: GetProductAttributesQuery | null = null;
 
   // Fetch products if category has no subcategories (leaf category)
   if (!hasSubcategories) {
@@ -148,7 +146,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           GetProductsWithFiltersDocument,
           {
             categorySlug: category,
-            first: 50,  // Reduced from 100 to prevent PHP memory exhaustion
+            first: 100,  // Includes all filter taxonomy fields
             after: after || undefined,
           }
         );
@@ -177,18 +175,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       logger.error('Failed to fetch products for category', error, {
         categorySlug: category,
         categoryName: categoryData.name,
-        locale,
-      });
-    }
-    
-    // Fetch product attributes for filters
-    try {
-      productAttributesData = await client.request<GetProductAttributesQuery>(
-        GetProductAttributesDocument
-      );
-    } catch (error) {
-      logger.error('Failed to fetch product attributes', error, {
-        categorySlug: category,
         locale,
       });
     }
@@ -348,13 +334,43 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
       {/* Product Grid for Leaf Categories (no subcategories) */}
       {!hasSubcategories && (
-        <CategoryContent
-          categorySlugParam={category}
-          subcategories={[]}
-          products={products}
-          filters={productAttributesData || ({} as GetProductAttributesQuery)} // Graceful fallback for filter failure
-          locale={locale}
-        />
+        <div className="mx-auto max-w-content px-4 py-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
+            {/* Desktop Sidebar Filters */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-4">
+                <ProductFilters
+                  categorySlug={category}
+                  products={products}
+                  currentFilters={filters}
+                />
+              </div>
+            </aside>
+
+            {/* Main Content */}
+            <div className="space-y-6">
+              {/* Mobile Filter Button */}
+              <div className="lg:hidden">
+                <MobileFilterButton
+                  categorySlug={category}
+                  products={products}
+                  currentFilters={filters}
+                />
+              </div>
+
+              {/* Product Sort */}
+              <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
+                <p className="text-sm text-neutral-700">
+                  Showing {products.length} products
+                </p>
+                <ProductSortDropdown />
+              </div>
+
+              {/* Product Grid */}
+              <FilteredProductGrid products={products} locale={locale} />
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Quick Links */}

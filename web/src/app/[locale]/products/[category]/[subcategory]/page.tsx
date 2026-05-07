@@ -8,16 +8,13 @@ import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
-  GetProductsByCategoryDocument,
-  GetProductsByCategoryQuery,
-  GetProductAttributesDocument,
-  GetProductAttributesQuery,
+  GetProductsWithFiltersDocument,
+  GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
-import CategoryContent from '@/components/category/CategoryContent';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
@@ -123,9 +120,9 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const hasSubSubcategories = subSubcategories.length > 0;
 
   // Always fetch products (categories can have both subcategories AND direct products)
-  // Using lightweight query - GetProductsWithFilters is too heavy and causes empty results
-  const productsData = await client.request<GetProductsByCategoryQuery>(
-    GetProductsByCategoryDocument,
+  // Using GetProductsWithFilters to include all taxonomy fields for context-aware filtering
+  const productsData = await client.request<GetProductsWithFiltersQuery>(
+    GetProductsWithFiltersDocument,
     {
       categorySlug: subcategory,
       first: 100,
@@ -134,22 +131,6 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const products = productsData.products?.nodes || [];
   const hasNextPage = productsData.products?.pageInfo.hasNextPage || false;
   const hasProducts = products.length > 0;
-  
-  // Fetch product attributes for filters
-  let productAttributesData: GetProductAttributesQuery | null = null;
-  if (hasProducts) {
-    try {
-      productAttributesData = await client.request<GetProductAttributesQuery>(
-        GetProductAttributesDocument
-      );
-    } catch (error) {
-      logger.warn('Failed to fetch product attributes for subcategory', {
-        subcategorySlug: subcategory,
-        locale,
-        error,
-      });
-    }
-  }
 
   // Build breadcrumb trail
   const parentCategory = subcategoryData.parent?.node;
@@ -321,13 +302,43 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
       {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
       {hasProducts && (
-        <CategoryContent
-          categorySlugParam={subcategory}
-          subcategories={[]}
-          products={products}
-          filters={productAttributesData || ({} as GetProductAttributesQuery)} // Graceful fallback for filter failure
-          locale={locale}
-        />
+        <div className="mx-auto max-w-content px-4 py-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
+            {/* Desktop Sidebar Filters */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-4">
+                <ProductFilters
+                  categorySlug={subcategory}
+                  products={products}
+                  currentFilters={filters}
+                />
+              </div>
+            </aside>
+
+            {/* Main Content */}
+            <div className="space-y-6">
+              {/* Mobile Filter Button */}
+              <div className="lg:hidden">
+                <MobileFilterButton
+                  categorySlug={subcategory}
+                  products={products}
+                  currentFilters={filters}
+                />
+              </div>
+
+              {/* Product Sort */}
+              <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
+                <p className="text-sm text-neutral-700">
+                  Showing {products.length} products
+                </p>
+                <ProductSortDropdown />
+              </div>
+
+              {/* Product Grid */}
+              <FilteredProductGrid products={products} locale={locale} />
+            </div>
+          </div>
+        </div>
       )}
       
       {/* Fallback if no products */}

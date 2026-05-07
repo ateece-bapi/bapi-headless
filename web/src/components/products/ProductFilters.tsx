@@ -213,18 +213,18 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
 function extractFilterOptions(products: Product[]) {
   // Define all available filters with their GraphQL field names and display names
   const filterDefinitions = [
-    { key: 'application', field: 'allPaApplication', title: 'Application' },
+    { key: 'application', field: 'allPaApplication', title: 'Temperature Application' },
     {
       key: 'roomEnclosure',
       field: 'allPaRoomEnclosureStyle',
       title: 'Temperature Room Enclosure Style',
     },
-    { key: 'sensorOutput', field: 'allPaTemperatureSensorOutput', title: 'Sensor Output' },
+    { key: 'sensorOutput', field: 'allPaTemperatureSensorOutput', title: 'Temperature Sensor/Output' },
     { key: 'display', field: 'allPaDisplay', title: 'Display' },
     {
       key: 'setpointOverride',
       field: 'allPaTempSetpointAndOverride',
-      title: 'Temp Setpoint and Override',
+      title: 'Temperature Setpoint and Override',
     },
     {
       key: 'optionalTempHumidity',
@@ -234,7 +234,7 @@ function extractFilterOptions(products: Product[]) {
     {
       key: 'optionalSensorOutput',
       field: 'allPaOptionalTempSensorOutput',
-      title: 'Optional Input Sensor & Output',
+      title: 'Optional Temp Sensor & Output',
     },
     {
       key: 'humidityApplication',

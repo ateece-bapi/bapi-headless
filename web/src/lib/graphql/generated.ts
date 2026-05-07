@@ -39922,9 +39922,12 @@ export type GetProductsWithFiltersQueryVariables = Exact<{
 export type GetProductsWithFiltersQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', pageInfo: { __typename?: 'RootQueryToProductUnionConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, endCursor?: string | null | undefined, startCursor?: string | null | undefined }, nodes: Array<
       | { __typename: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
       | { __typename: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
-      | { __typename: 'SimpleProduct', id: string, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, databaseId: number, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+      | { __typename: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+            | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
+            | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
+          > } | null | undefined }
       | { __typename: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
-      | { __typename: 'VariableProduct', id: string, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, databaseId: number, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+      | { __typename: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
             | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
           > } | null | undefined }
@@ -41851,8 +41854,6 @@ export const GetProductsWithFiltersDocument = gql`
       type
       __typename
       ... on SimpleProduct {
-        id
-        name
         price
         regularPrice
         salePrice
@@ -41880,10 +41881,17 @@ export const GetProductsWithFiltersDocument = gql`
             slug
           }
         }
+        attributes {
+          nodes {
+            id
+            name
+            label
+            options
+            variation
+          }
+        }
       }
       ... on VariableProduct {
-        id
-        name
         price
         regularPrice
         salePrice

@@ -65,37 +65,41 @@ For a typical category page with **24 products**:
 1. **`web/src/lib/graphql/queries/products.graphql`**
    - New optimized `GetProductsWithFilters` query
    - Legacy query preserved as `GetProductsWithFiltersLegacy`
+   - **IMPORTANT:** Replaces existing query, deploys immediately on merge
 
 2. **`web/src/lib/graphql/generated.ts`**
    - Regenerated TypeScript types (via `pnpm run codegen`)
    - New types compatible with optimized query
 
-### Migration Steps (NOT YET DONE)
+### Deployment Behavior
 
-**⚠️ IMPORTANT:** The optimized query is ready but **not yet deployed**. Current pages still use the old query structure.
+**⚠️ CRITICAL:** This PR replaces the existing `GetProductsWithFilters` query in-place. When merged, category pages will **immediately** use the optimized query. No additional migration steps required.
 
-#### To Deploy the Fix:
+**Rollback:** If issues arise, revert to `GetProductsWithFiltersLegacy` (see Rollback Plan section).
 
-1. **Test the optimized query:**
-   ```bash
-   cd /home/ateece/bapi-headless/web
-   pnpm run dev
-   ```
-   - Navigate to category pages (e.g., `/products/humidity-sensors`)
-   - Verify product cards display correctly
-   - Check browser DevTools Network tab for response size
+### Pre-Merge Testing Checklist
 
-2. **Verify functionality:**
+**Staging Environment Testing Required:**
+
+1. **Functionality verification:**
    - [ ] Product images load correctly
    - [ ] Prices display properly
    - [ ] Stock status shows accurately
    - [ ] "Configure" badge appears on variable products
    - [ ] Pagination works (load more products)
 
+2. **Filter UI verification:**
+   - [ ] Filter options populate correctly from `attributes.options` field
+   - [ ] Filtering works for both Simple and Variable products
+   - [ ] Selected filters apply correctly to product list
+
 3. **Performance testing:**
    - [ ] First page load <2 seconds (vs 28s before)
    - [ ] Subsequent loads cached by CDN
    - [ ] GraphQL response size <500KB (vs 2MB+ before)
+   - [ ] Kinsta logs show <2s response times
+
+**Note:** QuickView modal is not yet implemented (only analytics hooks exist in codebase). Future QuickView implementation will fetch variations on-demand via separate query when modal opens.
 
 4. **If product filtering breaks:**
    - Create separate `GetProductFilterOptions` query for filter UI

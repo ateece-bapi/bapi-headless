@@ -323,8 +323,18 @@ Error: Allowed memory size of 268435456 bytes exhausted (tried to allocate 20480
 Location: /wp-content/plugins/wp-graphql/src/Model/Model.php:338
 ```
 
-**WordPress Memory Limit:** 256MB (268,435,456 bytes)  
-**Query Size:** Fetching 100 products × 15 taxonomy fields + variations = TOO LARGE
+**Root Cause:** Missing `WP_MAX_MEMORY_LIMIT` constant in wp-config.php
+- `WP_MEMORY_LIMIT` was set to 512M (frontend requests)
+- `WP_MAX_MEMORY_LIMIT` was **undefined**, defaulting to 256MB (admin/GraphQL requests)
+- GraphQL endpoint is treated as admin operation, so it hit the 256MB limit
+
+**Fixed by adding to wp-config.php:**
+```php
+define( 'WP_MEMORY_LIMIT', '512M' );
+define( 'WP_MAX_MEMORY_LIMIT', '512M' ); // Added this line
+```
+
+**Query Size:** Fetching 100 products × 15 taxonomy fields + variations = TOO LARGE for 256MB
 
 ### Why Memory Exhaustion Occurred
 
@@ -365,27 +375,36 @@ const productsData = await client.request<GetProductsWithFiltersQuery>(
 
 ### Performance Trade-offs
 
-| Batch Size | Memory Usage | Requests for 100 Products | Status |
-|------------|--------------|---------------------------|--------|
-| 100 | ~15-20MB | 1 request | ❌ OOM Error |
-| 24 | ~4-5MB | 5 requests | ⚠️  Borderline |
-| 12 | ~2-3MB | 9 requests | ✅ Safe |
+| Batch Size | Memory Usage | Requests for 100 Products | Status (256MB) | Status (512MB) |
+|------------|--------------|---------------------------|----------------|----------------|
+| 100 | ~15-20MB | 1 request | ❌ OOM Error | ⚠️ Risky |
+| 50 | ~10-12MB | 2 requests | ❌ OOM Error | ✅ Safe |
+| 24 | ~4-5MB | 5 requests | ⚠️ Borderline | ✅ Safe |
+| 12 | ~2-3MB | 9 requests | ✅ Safe | ✅ Very Safe |
 
-**Recommendation:** Stay at `first: 12` until WordPress memory can be increased to 512MB or query can be optimized.
+**Current Configuration (Post-Fix):**
+- WordPress Memory: `WP_MAX_MEMORY_LIMIT` = 512M ✅
+- Batch Size: `first: 12` (conservative, can be increased)
+- **Recommendation:** Can safely increase to `first: 24` or `first: 50` with 512MB available
 
 ### Future Optimization Options
 
-1. **Increase WordPress Memory Limit** (requires Kinsta config change)
-   - Current: 256MB
-   - Recommended: 512MB or 1GB
-   - Would allow `first: 24` or `first: 50`
+1. **✅ Increase WordPress Memory Limit** (COMPLETED May 7, 2026)
+   - Previous: WP_MAX_MEMORY_LIMIT undefined (256MB default)
+   - Current: WP_MAX_MEMORY_LIMIT = 512M
+   - Allows increasing batch size to `first: 24` or `first: 50`
 
-2. **Create Lighter "Filters-Only" Query** (Phase 2)
+2. **Increase Batch Size** (Safe to do now)
+   - Current: `first: 12` (very conservative)
+   - Recommended: `first: 24` or `first: 50` with 512MB
+   - Would reduce number of requests for pagination
+
+3. **Create Lighter "Filters-Only" Query** (Phase 2)
    - Fetch only product IDs + taxonomy fields
    - Skip images, descriptions, variations for filter extraction
    - Separate from product display query
 
-3. **Server-Side Filter Aggregation** (Phase 2)
+4. **Server-Side Filter Aggregation** (Phase 2)
    - Custom WordPress REST endpoint
    - Returns unique filter values per category
    - No need to fetch all products for filters

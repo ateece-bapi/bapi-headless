@@ -663,7 +663,112 @@ query GetProductAttributes {
   }
 }
 
+# PERFORMANCE OPTIMIZED: Lightweight query for category listings
+# Removed: 15+ attribute taxonomies, 500 variations per product, mediaDetails
+# Use GetProductBySlugWithVariations for product detail pages
 query GetProductsWithFilters(
+  $categorySlug: String!
+  $first: Int = 24
+  $after: String
+) {
+  products(
+    where: { 
+      category: $categorySlug
+    }
+    first: $first
+    after: $after
+  ) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      endCursor
+      startCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      type
+      __typename
+      ... on SimpleProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        stockQuantity
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+      ... on VariableProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        # Only fetch count and basic attribute info for "Configure" badge
+        attributes {
+          nodes {
+            id
+            name
+            label
+            variation
+          }
+        }
+      }
+    }
+  }
+}
+
+# DEPRECATED: Use GetProductsWithFilters for category listings (optimized)
+# This query fetches too much data (500 variations + 15 attributes per product)
+# Kept for backwards compatibility - will be removed in Phase 2
+query GetProductsWithFiltersLegacy(
   $categorySlug: String!
   $first: Int = 24
   $after: String

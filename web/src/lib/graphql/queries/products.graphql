@@ -751,12 +751,14 @@ query GetProductsWithFilters(
             slug
           }
         }
-        # Only fetch count and basic attribute info for "Configure" badge
+        # Fetch attributes with options for filtering UI and "Configure" badge
+        # NOTE: options field is inexpensive - the removed allPa* taxonomy JOINs were the bottleneck
         attributes {
           nodes {
             id
             name
             label
+            options
             variation
           }
         }

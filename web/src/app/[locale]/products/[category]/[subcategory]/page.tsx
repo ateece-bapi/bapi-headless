@@ -125,7 +125,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
     GetProductsWithFiltersDocument,
     {
       categorySlug: subcategory,
-      first: 12,
+      first: 24,
     }
   );
   const products = productsData.products?.nodes || [];

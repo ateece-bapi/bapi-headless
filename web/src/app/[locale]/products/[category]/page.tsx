@@ -146,7 +146,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           GetProductsWithFiltersDocument,
           {
             categorySlug: category,
-            first: 12,  // Reduced to prevent WordPress memory exhaustion (256MB limit)
+            first: 24,  // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
             after: after || undefined,
           }
         );

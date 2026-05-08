@@ -1129,7 +1129,8 @@
       "certifiedDesc": "अनुरूप"
     },
     "variationSelectors": {
-      "chooseOption": "एक विकल्प चुनें"
+      "chooseOption": "एक विकल्प चुनें",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

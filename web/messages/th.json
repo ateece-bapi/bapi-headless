@@ -1130,7 +1130,8 @@
       "certifiedDesc": "เป็นไปตามข้อกำหนด"
     },
     "variationSelectors": {
-      "chooseOption": "เลือกตัวเลือก"
+      "chooseOption": "เลือกตัวเลือก",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

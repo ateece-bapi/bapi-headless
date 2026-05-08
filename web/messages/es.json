@@ -679,7 +679,8 @@
       "certifiedDesc": "Conforme"
     },
     "variationSelectors": {
-      "chooseOption": "Elija una opción"
+      "chooseOption": "Elija una opción",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

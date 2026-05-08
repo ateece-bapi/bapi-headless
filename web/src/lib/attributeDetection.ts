@@ -53,20 +53,6 @@ export function detectAttributeType(attribute: ProductAttribute): AttributeUITyp
 }
 
 /**
- * Extracts a short display label from long option text
- * Example: "Standard Range (10 ranges from -5 to +5 WC)" → "Standard Range"
- */
-export function getShortLabel(option: string): string {
-  // Remove content in parentheses
-  const withoutParens = option.replace(/\([^)]*\)/g, '').trim();
-
-  // Take first part before dash or comma
-  const parts = withoutParens.split(/[-–—,]/);
-
-  return parts[0].trim();
-}
-
-/**
  * Detects if an option represents a "positive" choice
  * Used for binary toggles to determine which is "on"
  */

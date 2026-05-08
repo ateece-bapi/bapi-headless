@@ -679,7 +679,8 @@
       "certifiedDesc": "符合标准"
     },
     "variationSelectors": {
-      "chooseOption": "选择一个选项"
+      "chooseOption": "选择一个选项",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

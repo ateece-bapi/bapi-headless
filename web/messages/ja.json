@@ -679,7 +679,8 @@
       "certifiedDesc": "適合"
     },
     "variationSelectors": {
-      "chooseOption": "オプションを選択してください"
+      "chooseOption": "オプションを選択してください",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

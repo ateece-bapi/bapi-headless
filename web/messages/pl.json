@@ -1130,7 +1130,8 @@
       "certifiedDesc": "Zgodne"
     },
     "variationSelectors": {
-      "chooseOption": "Wybierz opcję"
+      "chooseOption": "Wybierz opcję",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

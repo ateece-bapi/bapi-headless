@@ -640,7 +640,8 @@
       "certifiedDesc": "Tuân Thủ"
     },
     "variationSelectors": {
-      "chooseOption": "Chọn một tùy chọn"
+      "chooseOption": "Chọn một tùy chọn",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { isPositiveOption } from '@/lib/attributeDetection';
 
 interface BinaryToggleSelectorProps {
@@ -26,6 +27,7 @@ export default function BinaryToggleSelector({
   className = '',
   description,
 }: BinaryToggleSelectorProps) {
+  const t = useTranslations('productPage.variationSelectors');
   // Determine which option is "positive" (yes, included, display, etc.)
   const positiveOption = options.find((opt) => isPositiveOption(opt)) || options[0];
   const negativeOption = options.find((opt) => opt !== positiveOption) || options[1];
@@ -76,7 +78,7 @@ export default function BinaryToggleSelector({
           <div
             className={`h-2 w-2 rounded-full transition-colors ${value ? 'bg-green-500' : 'bg-neutral-400'} `}
           />
-          <span className="text-xs font-medium text-neutral-700">{value || 'Not selected'}</span>
+          <span className="text-xs font-medium text-neutral-700">{value || t('notSelected')}</span>
         </div>
       </div>
     </div>

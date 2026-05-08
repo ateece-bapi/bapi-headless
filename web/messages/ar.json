@@ -679,7 +679,8 @@
       "certifiedDesc": "متوافق"
     },
     "variationSelectors": {
-      "chooseOption": "اختر خيارًا"
+      "chooseOption": "اختر خيارًا",
+      "notSelected": "Not selected"
     },
     "productAttributes": {
       "temperature": {

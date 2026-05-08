@@ -74,7 +74,7 @@ export default function BinaryToggleSelector({
         {/* Status indicator */}
         <div className="flex items-center gap-2">
           <div
-            className={`h-2 w-2 rounded-full transition-colors ${isPositiveSelected ? 'bg-green-500' : 'bg-neutral-400'} `}
+            className={`h-2 w-2 rounded-full transition-colors ${value ? 'bg-green-500' : 'bg-neutral-400'} `}
           />
           <span className="text-xs font-medium text-neutral-700">{value || 'Not selected'}</span>
         </div>

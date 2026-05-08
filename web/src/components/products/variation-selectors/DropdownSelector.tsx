@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { ChevronDownIcon } from '@/lib/icons';
-import { getShortLabel } from '@/lib/attributeDetection';
 
 interface DropdownSelectorProps {
   label: string;
@@ -66,15 +65,6 @@ export default function DropdownSelector({
           />
         </div>
       </div>
-
-      {/* Show shortened label for long selections */}
-      {value && value.length > 50 && (
-        <div className="mt-2 rounded border border-neutral-200 bg-neutral-50 p-2">
-          <span className="text-xs font-semibold text-neutral-700">Selected:</span>
-          <p className="mt-1 text-sm text-neutral-900">{getShortLabel(value)}</p>
-          <p className="mt-1 text-xs text-neutral-700">{value}</p>
-        </div>
-      )}
     </div>
   );
 }

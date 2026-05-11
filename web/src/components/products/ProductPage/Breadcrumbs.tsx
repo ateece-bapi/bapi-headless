@@ -75,7 +75,7 @@ export default function Breadcrumbs({ items, schema, variant = 'default' }: Brea
                   href={item.href}
                   className={
                     isGradient
-                      ? 'transition-colors hover:text-white'
+                      ? 'transition-colors hover:text-white focus-visible:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary-700'
                       : 'underline-offset-2 transition-colors hover:text-primary-600 focus:text-primary-700 focus:underline focus:outline-none'
                   }
                 >

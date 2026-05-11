@@ -11,7 +11,6 @@ import {
   ShieldIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Blu-Test™ HVAC Diagnostic Tools | BAPI',

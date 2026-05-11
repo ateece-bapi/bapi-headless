@@ -11,7 +11,6 @@ import {
   PackageIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'HVAC Sensor Accessories & Mounting Hardware | BAPI',

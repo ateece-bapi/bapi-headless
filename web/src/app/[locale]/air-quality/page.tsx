@@ -11,7 +11,6 @@ import {
   TrendingUpIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Air Quality Sensors - CO₂, VOC & IAQ | BAPI',

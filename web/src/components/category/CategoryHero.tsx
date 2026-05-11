@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import { Link } from '@/lib/navigation';
-import { ChevronRightIcon } from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 interface BreadcrumbItem {

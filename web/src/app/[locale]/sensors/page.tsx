@@ -12,7 +12,6 @@ import {
   ShoppingCartIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Temperature, Humidity & Pressure Sensors | BAPI',

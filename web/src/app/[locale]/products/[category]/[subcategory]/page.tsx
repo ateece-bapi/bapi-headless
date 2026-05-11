@@ -192,7 +192,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs with Blue Gradient Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b border-primary-700">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         

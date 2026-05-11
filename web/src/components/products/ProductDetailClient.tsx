@@ -147,7 +147,10 @@ export default function ProductDetailClient({
   })();
 
   return (
-    <>
+    <div className="container mx-auto px-4 py-8">
+      {/* Product title - full width to align with breadcrumbs */}
+      <h1 className="mb-6 text-3xl font-bold text-neutral-900">{product.name}</h1>
+      
       <div className="grid gap-8 lg:grid-cols-3">
         {/* Images */}
         <div className="lg:col-span-1">
@@ -207,7 +210,6 @@ export default function ProductDetailClient({
 
         {/* Info & actions */}
         <div className="lg:col-span-2">
-          <h1 className="mb-2 text-3xl font-bold text-neutral-900">{product.name}</h1>
           <p className="mb-4 text-lg font-semibold text-primary-500">{product.price}</p>
 
           {product.shortDescription && (
@@ -288,6 +290,6 @@ export default function ProductDetailClient({
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 }

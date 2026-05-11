@@ -611,10 +611,13 @@ export default async function ProductPage({
             {/* Structured Data for SEO */}
             <StructuredData schema={[productSchema, breadcrumbSchema]} />
 
-            {/* Breadcrumb Navigation */}
-            <div className="border-b border-neutral-200 bg-white">
-              <div className="mx-auto max-w-container px-4 py-4">
-                <Breadcrumbs items={breadcrumbItems} />
+            {/* Breadcrumb Navigation - Blue Gradient Header */}
+            <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
+              {/* Background decoration */}
+              <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+              
+              <div className="relative container mx-auto px-4 py-6">
+                <Breadcrumbs items={breadcrumbItems} variant="gradient" />
               </div>
             </div>
 

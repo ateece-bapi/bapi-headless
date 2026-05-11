@@ -11,7 +11,6 @@ import {
   PackageIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'HVAC Sensor Accessories & Mounting Hardware | BAPI',
@@ -23,13 +22,13 @@ export default function AccessoriesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32 border-b-4 border-accent-500">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="mb-6 flex items-center gap-2 text-sm text-primary-100"
+            className="flex items-center gap-2 text-sm text-primary-100"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">

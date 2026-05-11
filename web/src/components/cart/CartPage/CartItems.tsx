@@ -56,6 +56,10 @@ interface CartItem {
       };
     };
   };
+  // Product configuration details
+  selectedAttributes?: Record<string, string>;
+  variationSku?: string;
+  partNumber?: string;
 }
 
 interface CartItemsProps {
@@ -138,7 +142,27 @@ export default function CartItems({
                 </Link>
 
                 {/* Variation Details */}
-                {variation && <p className="mt-1 text-sm text-neutral-700">{variation.name}</p>}
+                {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 ? (
+                  <div className="mt-2 space-y-1 text-sm text-neutral-700">
+                    {Object.entries(item.selectedAttributes).map(([attr, value]) => (
+                      <div key={attr} className="flex gap-2">
+                        <span className="font-medium capitalize">
+                          {attr.replace(/-/g, ' ')}:
+                        </span>
+                        <span>{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  variation && <p className="mt-1 text-sm text-neutral-700">{variation.name}</p>
+                )}
+
+                {/* Part Number or SKU */}
+                {(item.partNumber || item.variationSku) && (
+                  <p className="mt-1 font-mono text-xs text-neutral-600">
+                    {item.partNumber || item.variationSku}
+                  </p>
+                )}
 
                 {/* Quantity and Remove - Mobile */}
                 <div className="mt-4 flex items-center gap-4 sm:hidden">

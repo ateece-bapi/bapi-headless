@@ -150,6 +150,10 @@ describe('CartItems Component', () => {
       const itemWithVariation = [
         {
           ...mockItems[0],
+          selectedAttributes: {
+            size: 'Large',
+            color: 'Blue',
+          },
           variation: {
             node: {
               id: 'var-1',
@@ -163,7 +167,11 @@ describe('CartItems Component', () => {
       ];
 
       render(<CartItems {...defaultProps} items={itemWithVariation} />);
-      expect(screen.getByText('Size: Large, Color: Blue')).toBeInTheDocument();
+      // Check that attributes are displayed with labels
+      expect(screen.getByText(/size:/i)).toBeInTheDocument();
+      expect(screen.getByText('Large')).toBeInTheDocument();
+      expect(screen.getByText(/color:/i)).toBeInTheDocument();
+      expect(screen.getByText('Blue')).toBeInTheDocument();
     });
 
     it('uses variation image when available', () => {

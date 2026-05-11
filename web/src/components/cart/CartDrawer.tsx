@@ -24,8 +24,8 @@ const CartDrawer = () => {
         aria-labelledby="cart-drawer-title"
         className="cart-drawer fixed right-0 top-0 z-modal flex h-full w-full max-w-md flex-col bg-white shadow-xl"
       >
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-neutral-200 p-4">
+        {/* Header with safe area padding to prevent overlap with sticky header */}
+        <div className="flex items-center justify-between border-b border-neutral-200 p-4 pt-24 sm:pt-28 lg:pt-32">
           <h2 id="cart-drawer-title" className="text-xl font-bold text-neutral-900">
             Shopping Cart
           </h2>

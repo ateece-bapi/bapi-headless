@@ -78,6 +78,10 @@ interface CartItem {
       };
     };
   };
+  // Product configuration details
+  selectedAttributes?: Record<string, string>;
+  variationSku?: string;
+  partNumber?: string;
 }
 
 export default function CartPageClient() {
@@ -164,9 +168,14 @@ export default function CartPageClient() {
               ? {
                   node: {
                     databaseId: item.variationId,
+                    name: item.variationName || '',
                   },
                 }
               : null,
+            // Pass through product configuration details
+            selectedAttributes: item.selectedAttributes,
+            variationSku: item.variationSku,
+            partNumber: item.partNumber,
           })),
         },
       };

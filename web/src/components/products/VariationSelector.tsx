@@ -396,7 +396,7 @@ export default function VariationSelector({
           {matchedVariation && (
             <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-6 pt-6">
               <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-4 shadow-xl">
-                {/* Header */}
+                {/* Header with Favorite Button */}
                 <div className="mb-3 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-500">
@@ -406,84 +406,169 @@ export default function VariationSelector({
                       {t('selectedConfig')}
                     </p>
                   </div>
-                  <p className="text-xs text-neutral-500">
-                    {t('attributesSelected', { selected: selectedCount, total: totalCount })}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-neutral-500">
+                      {t('attributesSelected', { selected: selectedCount, total: totalCount })}
+                    </p>
+                    {/* Inline Favorite Button */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newState = !isFavorited;
+                        setIsFavorited(newState);
+                        setFavoritedVariationId(newState ? matchedVariation.id : null);
+                      }}
+                      className={`flex items-center justify-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold shadow-sm transition-all hover:scale-105 focus:outline-none focus:ring-2 ${
+                        isFavorited
+                          ? 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500/50'
+                          : 'border border-neutral-300 bg-white text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
+                      }`}
+                      aria-pressed={isFavorited}
+                      aria-label={isFavorited ? t('removeFromFavorites') : t('addToFavorites')}
+                    >
+                      <HeartIcon className={`h-3.5 w-3.5 ${isFavorited ? 'fill-current' : ''}`} />
+                      <span className="hidden sm:inline">{t('favorite')}</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Layout: Image Left, Details Right */}
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {/* Left: Product Image */}
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  {/* Left: Product Image with Zoom */}
                   {((matchedVariation.image?.sourceUrl || product?.image?.sourceUrl)) && (
                     <div className="flex items-center justify-center">
-                      <div className="relative h-56 w-56 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-3 shadow-sm">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          // Simple image zoom - opens in new tab for now
+                          const imgSrc = matchedVariation.image?.sourceUrl || product?.image?.sourceUrl;
+                          if (imgSrc) window.open(imgSrc, '_blank');
+                        }}
+                        className="group relative h-80 w-80 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-2 shadow-sm transition-all hover:border-primary-400 hover:shadow-lg"
+                        aria-label="Click to view larger image"
+                      >
                         <Image
                           src={(matchedVariation.image?.sourceUrl || product?.image?.sourceUrl)!}
                           alt={(matchedVariation.image?.altText || product?.image?.altText || matchedVariation.name || t('productVariation'))}
                           fill
-                          className="object-contain"
-                          sizes="224px"
+                          className="object-contain transition-transform group-hover:scale-105"
+                          sizes="320px"
                         />
-                      </div>
+                        {/* Zoom indicator */}
+                        <div className="absolute bottom-2 right-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+                          🔍 Click to zoom
+                        </div>
+                      </button>
                     </div>
                   )}
 
                   {/* Right: Details Stacked */}
                   <div className="flex min-w-0 flex-col justify-center">
-                    {/* Part Number */}
-                    <div className="mb-2">
-                      <p className="mb-1 text-xs font-medium text-neutral-600">{t('partNumber')}</p>
-                      <p className="flex items-center gap-2 text-sm text-neutral-700">
-                        <PackageIcon className="h-4 w-4 text-neutral-500" />
-                        {matchedVariation.partNumber || matchedVariation.sku}
-                      </p>
+                    {/* Part Number with Copy */}
+                    <div className="mb-3">
+                      <p className="mb-1.5 text-xs font-medium uppercase tracking-wide text-neutral-600">{t('partNumber')}</p>
+                      <div className="group flex items-center gap-2">
+                        <code className="flex-1 rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 font-mono text-sm font-bold text-neutral-900 shadow-sm">
+                          {matchedVariation.partNumber || matchedVariation.sku}
+                        </code>
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const partNumber = matchedVariation.partNumber || matchedVariation.sku;
+                            try {
+                              await navigator.clipboard.writeText(partNumber);
+                              // Simple visual feedback
+                              const btn = document.activeElement as HTMLButtonElement;
+                              const originalHTML = btn.innerHTML;
+                              btn.innerHTML = '<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
+                              btn.classList.add('bg-green-500', 'text-white');
+                              setTimeout(() => {
+                                btn.innerHTML = originalHTML;
+                                btn.classList.remove('bg-green-500', 'text-white');
+                              }, 1500);
+                            } catch (err) {
+                              logger.error('Failed to copy part number', { error: err });
+                            }
+                          }}
+                          className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300 bg-white text-neutral-600 shadow-sm transition-all hover:border-primary-500 hover:bg-primary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+                          aria-label="Copy part number to clipboard"
+                          title="Copy to clipboard"
+                        >
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
 
-                    {/* Price */}
-                    <div className="mb-2 flex items-baseline justify-between">
-                      <p className="text-sm font-semibold text-neutral-700">{t('totalPrice')}</p>
-                      <p className="text-2xl font-bold text-primary-600">
-                        {formatPrice(
-                          convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity,
-                          region.currency
-                        )}
-                      </p>
+                    {/* Selected Configuration Details - Better Contrast */}
+                    {matchedVariation.attributes.nodes.length > 0 && (
+                      <div className="mb-4 rounded-lg border border-accent-300 bg-accent-50/70 p-3 shadow-sm">
+                        <div className="space-y-2">
+                          {matchedVariation.attributes.nodes.map((attr) => (
+                            <div key={attr.name} className="flex items-start gap-2 text-xs leading-relaxed">
+                              <span className="font-bold capitalize text-neutral-900">
+                                {attr.name.replace(/-/g, ' ')}:
+                              </span>
+                              <span className="text-neutral-800">{attr.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Price with Breakdown Tooltip */}
+                    <div className="mb-3">
+                      <div className="flex items-baseline justify-between">
+                        <p className="text-sm font-semibold text-neutral-700">{t('totalPrice')}</p>
+                        <div className="group relative">
+                          <p className="text-2xl font-bold text-primary-600">
+                            {formatPrice(
+                              convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity,
+                              region.currency
+                            )}
+                          </p>
+                          {/* Price Breakdown Tooltip */}
+                          {quantity > 1 && (
+                            <div className="absolute right-0 top-full z-10 mt-1 hidden w-48 rounded-lg border border-neutral-200 bg-white p-2 shadow-lg group-hover:block">
+                              <p className="mb-1 text-xs font-semibold text-neutral-700">Price Breakdown:</p>
+                              <div className="space-y-0.5 text-xs text-neutral-600">
+                                <div className="flex justify-between">
+                                  <span>Unit Price:</span>
+                                  <span className="font-mono">{formatPrice(convertWooCommercePriceNumeric(matchedVariation.price, region.currency), region.currency)}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span>Quantity:</span>
+                                  <span className="font-mono">× {quantity}</span>
+                                </div>
+                                <div className="mt-1 flex justify-between border-t border-neutral-200 pt-1 font-semibold text-neutral-900">
+                                  <span>Total:</span>
+                                  <span className="font-mono">{formatPrice(convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity, region.currency)}</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Favorite + Quantity Row */}
-                    <div className="mb-2 flex items-center gap-2">
-                      {/* Favorite Button */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const newState = !isFavorited;
-                          setIsFavorited(newState);
-                          setFavoritedVariationId(newState ? matchedVariation.id : null);
-                        }}
-                        className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold shadow-sm transition focus:outline-none focus:ring-2 ${
-                          isFavorited
-                            ? 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500/50'
-                            : 'border-2 border-neutral-300 bg-white text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
-                        }`}
-                        aria-pressed={isFavorited}
-                        aria-label={isFavorited ? t('removeFromFavorites') : t('addToFavorites')}
-                      >
-                        <HeartIcon className={`h-3.5 w-3.5 ${isFavorited ? 'fill-current' : ''}`} />
-                        {t('favorite')}
-                      </button>
-
-                      {/* Quantity Selector */}
-                      {onQuantityChange && (
-                        <div className="flex shrink-0 items-center gap-1.5">
+                    {/* Quantity Selector - Larger Touch Targets (44px) */}
+                    {onQuantityChange && (
+                      <div className="mb-3 flex items-center gap-3">
+                        <label htmlFor="qty-input" className="text-sm font-semibold text-neutral-700">
+                          {t('quantity')}:
+                        </label>
+                        <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-base font-bold text-neutral-700 shadow-sm transition hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-lg font-bold text-neutral-700 shadow-sm transition-all hover:bg-neutral-50 hover:border-primary-500 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500"
                             aria-label="Decrease quantity"
                           >
                             −
                           </button>
                           <input
+                            id="qty-input"
                             type="number"
                             min={1}
                             max={999}
@@ -492,22 +577,22 @@ export default function VariationSelector({
                               const val = Number(e.target.value);
                               onQuantityChange(isNaN(val) ? 1 : Math.max(1, Math.min(999, val)));
                             }}
-                            className="h-8 w-12 rounded-lg border-2 border-neutral-300 text-center text-sm font-semibold text-neutral-900 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                            className="h-11 w-16 rounded-lg border-2 border-neutral-300 text-center text-base font-bold text-neutral-900 shadow-sm transition-all focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
                             aria-label={t('qtyLabel')}
                           />
                           <button
                             type="button"
                             onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-base font-bold text-neutral-700 shadow-sm transition hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-lg font-bold text-neutral-700 shadow-sm transition-all hover:bg-neutral-50 hover:border-primary-500 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500"
                             aria-label="Increase quantity"
                           >
                             +
                           </button>
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
-                    {/* Add to Cart Button - Full Width */}
+                    {/* Add to Cart Button - Full Width with Micro-interaction */}
                     {product && (
                       <div className="mb-2">
                         <AddToCartButton
@@ -539,7 +624,7 @@ export default function VariationSelector({
                             ),
                           }}
                           quantity={quantity}
-                          className="w-full px-4 py-2 text-sm font-bold shadow-sm transition-all hover:shadow-md"
+                          className="w-full px-6 py-3.5 text-base font-bold shadow-md transition-all hover:shadow-lg active:scale-98"
                           disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
                           useCart={useCart}
                           useCartDrawer={useCartDrawer}
@@ -548,11 +633,11 @@ export default function VariationSelector({
                       </div>
                     )}
 
-                    {/* Add to Estimate Button - Full Width (Phase 2 feature) */}
+                    {/* Add to Estimate Button - Outline Style (Secondary Action) */}
                     <button
                       type="button"
                       disabled
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-500 shadow-sm opacity-60 cursor-not-allowed"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-400 transition-all cursor-not-allowed"
                       aria-label={t('addToEstimate')}
                       title={t('comingSoon')}
                     >

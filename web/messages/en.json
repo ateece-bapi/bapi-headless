@@ -1481,6 +1481,7 @@
       "contactForLeadTime": "Contact for lead time",
       "outOfStock": "Out of Stock",
       "qtyLabel": "Qty:",
+      "quantity": "Quantity",
       "decreaseQtyAriaLabel": "Decrease quantity",
       "increaseQtyAriaLabel": "Increase quantity",
       "attributesSelected": "{selected} of {total} Selected",

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { ChevronRightIcon } from '@/lib/icons';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 interface BreadcrumbItem {
   label: string;
-  href: string;
+  href?: string;
 }
 
 interface CategoryHeroProps {
@@ -27,63 +28,30 @@ interface CategoryHeroProps {
 export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProps) {
   return (
     <>
-      {/* Breadcrumbs */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
-            {breadcrumbs.map((crumb, index) => (
-              <div key={crumb.href} className="flex items-center">
-                {index > 0 && <ChevronRightIcon className="mx-2 h-4 w-4 text-neutral-400" aria-hidden="true" />}
-                {index === breadcrumbs.length - 1 ? (
-                  <span className="font-medium text-neutral-900" aria-current="page">
-                    {crumb.label}
-                  </span>
-                ) : (
-                  <Link
-                    href={crumb.href}
-                    className="text-neutral-700 transition-colors hover:text-primary-500"
-                  >
-                    {crumb.label}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-50 to-white py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-            {/* Content */}
-            <div className="lg:col-span-8">
-              <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
-                {category.name || 'Products'}
-              </h1>
-              {category.description && (
-                <p className="mb-4 text-lg text-neutral-700">{category.description}</p>
-              )}
-            </div>
-
-            {/* Image */}
-            {category.image?.sourceUrl && (
-              <div className="lg:col-span-4">
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg">
-                  <Image
-                    src={category.image.sourceUrl}
-                    alt={category.image.altText || category.name || 'Product category'}
-                    fill
-                    className="object-contain p-4"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    priority
-                  />
-                </div>
-              </div>
+      {/* Breadcrumbs with Blue Gradient Header */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+        
+        <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <Breadcrumbs items={breadcrumbs} variant="gradient" />
+          
+          {/* Category Title */}
+          <div className="mt-4">
+            <h1 className="text-4xl font-bold text-white lg:text-5xl">
+              {category.name || 'Products'}
+            </h1>
+            {category.description && (
+              <p className="mt-3 text-lg text-primary-100">{category.description}</p>
+            )}
+            {category.count !== null && category.count !== undefined && (
+              <p className="mt-2 text-sm text-primary-200">
+                {category.count} {category.count === 1 ? 'product' : 'products'}
+              </p>
             )}
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }

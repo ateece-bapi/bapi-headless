@@ -4,6 +4,7 @@ import { Link } from '@/lib/navigation';
 import { StarIcon, AwardIcon, ShieldIcon, ClockIcon, UsersIcon, ZapIcon, CheckCircle2Icon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 // Generate static params for all locales - ensures each locale is built separately
 export function generateStaticParams() {
@@ -25,10 +26,16 @@ export default async function WhyBapiPage() {
   const page = await getPageBySlug('why-bapi');
   const t = await getTranslations('companyPages.whyBapi');
 
+  const breadcrumbItems = [
+    { label: t('breadcrumb.home'), href: '/' },
+    { label: t('breadcrumb.company'), href: '/company' },
+    { label: t('breadcrumb.whyBapi') },
+  ];
+
   return (
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800 border-b-4 border-accent-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -36,17 +43,7 @@ export default async function WhyBapiPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('breadcrumb.home')}
-            </Link>
-            <span>/</span>
-            <Link href="/company" className="transition-colors hover:text-white">
-              {t('breadcrumb.company')}
-            </Link>
-            <span>/</span>
-            <span className="font-medium text-white">{t('breadcrumb.whyBapi')}</span>
-          </nav>
+          <Breadcrumbs items={breadcrumbItems} variant="gradient" />
 
           {/* Header */}
           <div className="max-w-4xl">

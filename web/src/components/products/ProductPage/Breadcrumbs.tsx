@@ -2,6 +2,7 @@
 
 import { Link } from '@/lib/navigation';
 import React from 'react';
+import { ChevronRightIcon } from '@/lib/icons';
 
 interface BreadcrumbsProps {
   items: Array<{
@@ -22,6 +23,10 @@ interface BreadcrumbsProps {
       item?: string;
     }>;
   };
+  /**
+   * Visual variant - 'default' for white background, 'gradient' for blue gradient hero
+   */
+  variant?: 'default' | 'gradient';
 }
 
 /**
@@ -39,10 +44,13 @@ interface BreadcrumbsProps {
  *     { label: 'Sensors' },
  *   ]}
  *   schema={breadcrumbsToSchemaOrg(items, siteUrl)}
+ *   variant="gradient"
  * />
  * ```
  */
-export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
+export default function Breadcrumbs({ items, schema, variant = 'default' }: BreadcrumbsProps) {
+  const isGradient = variant === 'gradient';
+
   return (
     <>
       {/* Schema.org Structured Data */}
@@ -54,35 +62,38 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
       )}
 
       {/* Visual Breadcrumb Navigation */}
-      <nav className="mb-6 text-sm" aria-label="Breadcrumb navigation">
-        <ol className="flex flex-wrap items-center gap-2 text-neutral-700">
+      <nav className="text-sm" aria-label="Breadcrumb navigation">
+        <ol
+          className={`flex flex-wrap items-center gap-2 ${
+            isGradient ? 'text-primary-100' : 'text-neutral-700'
+          }`}
+        >
           {items.map((item, idx) => (
             <li key={`${idx}-${item.label}`} className="flex items-center">
               {item.href && idx !== items.length - 1 ? (
                 <Link
                   href={item.href}
-                  className="underline-offset-2 transition-colors hover:text-primary-600 focus:text-primary-700 focus:underline focus:outline-none"
+                  className={
+                    isGradient
+                      ? 'transition-colors hover:text-white'
+                      : 'underline-offset-2 transition-colors hover:text-primary-600 focus:text-primary-700 focus:underline focus:outline-none'
+                  }
                 >
                   {item.label}
                 </Link>
               ) : (
-                <span className="font-medium text-neutral-900" aria-current="page">
+                <span
+                  className={isGradient ? 'font-medium text-white' : 'font-medium text-neutral-900'}
+                  aria-current="page"
+                >
                   {item.label}
                 </span>
               )}
               {idx < items.length - 1 && (
-                <svg
-                  className="mx-1 h-4 w-4 text-neutral-300"
+                <ChevronRightIcon
+                  className={`mx-1 h-4 w-4 ${isGradient ? 'text-primary-300' : 'text-neutral-300'}`}
                   aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
+                />
               )}
             </li>
           ))}

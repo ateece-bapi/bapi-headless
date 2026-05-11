@@ -214,15 +214,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumbs */}
-      <div className="border-b border-neutral-200">
-        <div className="mx-auto max-w-content px-4 py-4">
-          <Breadcrumbs items={breadcrumbs} schema={schema} />
+      {/* Category Header with BAPI Gradient and Breadcrumbs */}
+      <div className="bg-linear-to-br relative overflow-hidden border-b-4 border-accent-500 from-primary-600 to-primary-800">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+        
+        <div className="relative mx-auto max-w-content px-4 py-6">
+          <Breadcrumbs items={breadcrumbs} schema={schema} variant="gradient" />
         </div>
       </div>
 
-      {/* Category Header with BAPI Gradient */}
-      <div className="bg-linear-to-br relative border-b-4 border-accent-500 from-primary-700 via-primary-600 to-primary-500">
+      {/* Category Header Content */}
+      <div className="bg-linear-to-br relative border-b border-neutral-200 from-primary-700 via-primary-600 to-primary-500">
         <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
         <div className="relative mx-auto max-w-content px-4 py-8">
           <div className="max-w-3xl">

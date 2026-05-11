@@ -658,7 +658,14 @@
       "optionSingular": "",
       "optionPlural": "s",
       "variantDescription": "Description",
-      "weight": "Weight"
+      "weight": "Weight",
+      "clickToViewLargerImage": "Cliquez pour voir une image plus grande",
+      "clickToZoom": "Cliquez pour zoomer",
+      "copyPartNumber": "Copier le numéro de pièce dans le presse-papiers",
+      "copyToClipboard": "Copier dans le presse-papiers",
+      "priceBreakdown": "Détail des prix",
+      "unitPrice": "Prix unitaire",
+      "total": "Total"
     },
     "detail": {
       "configureSpecsSubtitle": "Configurez vos spécifications ci-dessous"

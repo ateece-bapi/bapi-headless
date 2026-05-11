@@ -657,6 +657,13 @@
       "partialSelectionMessage": "يرجى تحديد {count} خيار{plural} آخر لعرض التكوين النهائي",
       "optionSingular": "",
       "optionPlural": "ات",
+      "clickToViewLargerImage": "انقر لعرض صورة أكبر",
+      "clickToZoom": "انقر للتكبير",
+      "copyPartNumber": "نسخ رقم الجزء إلى الحافظة",
+      "copyToClipboard": "نسخ إلى الحافظة",
+      "priceBreakdown": "تفصيل السعر",
+      "unitPrice": "سعر الوحدة",
+      "total": "المجموع",
       "variantDescription": "Description",
       "weight": "Weight"
     },

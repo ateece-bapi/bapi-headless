@@ -1481,6 +1481,7 @@
       "contactForLeadTime": "Contact for lead time",
       "outOfStock": "Out of Stock",
       "qtyLabel": "Qty:",
+      "quantity": "Quantity",
       "decreaseQtyAriaLabel": "Decrease quantity",
       "increaseQtyAriaLabel": "Increase quantity",
       "attributesSelected": "{selected} of {total} Selected",
@@ -1495,7 +1496,14 @@
       "invalidConfigMessage": "This combination of options is not available. Please try different selections.",
       "partialSelectionMessage": "Please select {count} more option{plural} to see final configuration",
       "optionSingular": "",
-      "optionPlural": "s"
+      "optionPlural": "s",
+      "clickToViewLargerImage": "Click to view larger image",
+      "clickToZoom": "Click to zoom",
+      "copyPartNumber": "Copy part number to clipboard",
+      "copyToClipboard": "Copy to clipboard",
+      "priceBreakdown": "Price Breakdown",
+      "unitPrice": "Unit Price",
+      "total": "Total"
     },
     "detail": {
       "configureSpecsSubtitle": "Configure your specifications below"

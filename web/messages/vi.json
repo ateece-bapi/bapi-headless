@@ -618,6 +618,13 @@
       "partialSelectionMessage": "Vui lòng chọn {count} tùy chọn{plural} khác để xem cấu hình cuối cùng",
       "optionSingular": "",
       "optionPlural": "s",
+      "clickToViewLargerImage": "Nhấp để xem hình ảnh lớn hơn",
+      "clickToZoom": "Nhấp để phóng to",
+      "copyPartNumber": "Sao chép mã phụ tùng vào clipboard",
+      "copyToClipboard": "Sao chép vào clipboard",
+      "priceBreakdown": "Chi tiết giá",
+      "unitPrice": "Đơn giá",
+      "total": "Tổng cộng",
       "variantDescription": "Description",
       "weight": "Weight"
     },

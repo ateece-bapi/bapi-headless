@@ -142,7 +142,7 @@ export default function CartItems({
                 </Link>
 
                 {/* Variation Details */}
-                {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 && (
+                {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 ? (
                   <div className="mt-2 space-y-1 text-sm text-neutral-700">
                     {Object.entries(item.selectedAttributes).map(([attr, value]) => (
                       <div key={attr} className="flex gap-2">
@@ -153,6 +153,8 @@ export default function CartItems({
                       </div>
                     ))}
                   </div>
+                ) : (
+                  variation && <p className="mt-1 text-sm text-neutral-700">{variation.name}</p>
                 )}
 
                 {/* Part Number or SKU */}

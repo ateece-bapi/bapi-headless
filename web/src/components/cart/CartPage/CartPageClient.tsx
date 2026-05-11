@@ -163,12 +163,19 @@ export default function CartPageClient() {
                 image: item.image,
               },
             },
-            // Add variation data if present
+            // Add variation data if present (populate with required fields for display)
             variation: item.variationId
               ? {
                   node: {
+                    id: `variation-${item.variationId}`,
                     databaseId: item.variationId,
                     name: item.variationName || '',
+                    price: item.price,
+                    regularPrice: item.price, // Zustand store doesn't track separate regular/sale prices yet
+                    salePrice: undefined,
+                    stockStatus: 'IN_STOCK',
+                    stockQuantity: undefined,
+                    image: item.image,
                   },
                 }
               : null,

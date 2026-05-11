@@ -657,6 +657,13 @@
       "partialSelectionMessage": "请选择 {count} 个更多选项{plural}以查看最终配置",
       "optionSingular": "",
       "optionPlural": "个",
+      "clickToViewLargerImage": "点击查看大图",
+      "clickToZoom": "点击放大",
+      "copyPartNumber": "将零件号复制到剪贴板",
+      "copyToClipboard": "复制到剪贴板",
+      "priceBreakdown": "价格明细",
+      "unitPrice": "单价",
+      "total": "总计",
       "variantDescription": "Description",
       "weight": "Weight"
     },

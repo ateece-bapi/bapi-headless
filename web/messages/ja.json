@@ -657,6 +657,13 @@
       "partialSelectionMessage": "最終構成を確認するには、{count}つのオプションをさらに選択してください{plural}",
       "optionSingular": "",
       "optionPlural": "つ",
+      "clickToViewLargerImage": "クリックして拡大画像を表示",
+      "clickToZoom": "クリックしてズーム",
+      "copyPartNumber": "部品番号をクリップボードにコピー",
+      "copyToClipboard": "クリップボードにコピー",
+      "priceBreakdown": "価格の内訳",
+      "unitPrice": "単価",
+      "total": "合計",
       "variantDescription": "Description",
       "weight": "Weight"
     },

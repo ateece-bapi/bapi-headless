@@ -85,6 +85,7 @@ export default function VariationSelector({
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const [favoritedVariationId, setFavoritedVariationId] = useState<string | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false);
   const region = useRegion();
 
   // Filter to only attributes used for variations (memoized to prevent breaking availableOptionsMap memo)
@@ -442,10 +443,10 @@ export default function VariationSelector({
                         onClick={() => {
                           // Simple image zoom - opens in new tab for now
                           const imgSrc = matchedVariation.image?.sourceUrl || product?.image?.sourceUrl;
-                          if (imgSrc) window.open(imgSrc, '_blank');
+                          if (imgSrc) window.open(imgSrc, '_blank', 'noopener,noreferrer');
                         }}
                         className="group relative h-80 w-80 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-2 shadow-sm transition-all hover:border-primary-400 hover:shadow-lg"
-                        aria-label="Click to view larger image"
+                        aria-label={t('clickToViewLargerImage')}
                       >
                         <Image
                           src={(matchedVariation.image?.sourceUrl || product?.image?.sourceUrl)!}
@@ -456,7 +457,7 @@ export default function VariationSelector({
                         />
                         {/* Zoom indicator */}
                         <div className="absolute bottom-2 right-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
-                          🔍 Click to zoom
+                          {t('clickToZoom')}
                         </div>
                       </button>
                     </div>
@@ -477,26 +478,29 @@ export default function VariationSelector({
                             const partNumber = matchedVariation.partNumber || matchedVariation.sku;
                             try {
                               await navigator.clipboard.writeText(partNumber);
-                              // Simple visual feedback
-                              const btn = document.activeElement as HTMLButtonElement;
-                              const originalHTML = btn.innerHTML;
-                              btn.innerHTML = '<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
-                              btn.classList.add('bg-green-500', 'text-white');
-                              setTimeout(() => {
-                                btn.innerHTML = originalHTML;
-                                btn.classList.remove('bg-green-500', 'text-white');
-                              }, 1500);
+                              setCopySuccess(true);
+                              setTimeout(() => setCopySuccess(false), 1500);
                             } catch (err) {
                               logger.error('Failed to copy part number', { error: err });
                             }
                           }}
-                          className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300 bg-white text-neutral-600 shadow-sm transition-all hover:border-primary-500 hover:bg-primary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50"
-                          aria-label="Copy part number to clipboard"
-                          title="Copy to clipboard"
+                          className={`flex h-10 w-10 items-center justify-center rounded-lg border shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${
+                            copySuccess
+                              ? 'border-green-500 bg-green-500 text-white'
+                              : 'border-neutral-300 bg-white text-neutral-600 hover:border-primary-500 hover:bg-primary-50 hover:text-primary-600'
+                          }`}
+                          aria-label={t('copyPartNumber')}
+                          title={t('copyToClipboard')}
                         >
-                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
+                          {copySuccess ? (
+                            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          ) : (
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                          )}
                         </button>
                       </div>
                     </div>
@@ -531,18 +535,18 @@ export default function VariationSelector({
                           {/* Price Breakdown Tooltip */}
                           {quantity > 1 && (
                             <div className="absolute right-0 top-full z-10 mt-1 hidden w-48 rounded-lg border border-neutral-200 bg-white p-2 shadow-lg group-hover:block">
-                              <p className="mb-1 text-xs font-semibold text-neutral-700">Price Breakdown:</p>
+                              <p className="mb-1 text-xs font-semibold text-neutral-700">{t('priceBreakdown')}:</p>
                               <div className="space-y-0.5 text-xs text-neutral-600">
                                 <div className="flex justify-between">
-                                  <span>Unit Price:</span>
+                                  <span>{t('unitPrice')}:</span>
                                   <span className="font-mono">{formatPrice(convertWooCommercePriceNumeric(matchedVariation.price, region.currency), region.currency)}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span>Quantity:</span>
+                                  <span>{t('quantity')}:</span>
                                   <span className="font-mono">× {quantity}</span>
                                 </div>
                                 <div className="mt-1 flex justify-between border-t border-neutral-200 pt-1 font-semibold text-neutral-900">
-                                  <span>Total:</span>
+                                  <span>{t('total')}:</span>
                                   <span className="font-mono">{formatPrice(convertWooCommercePriceNumeric(matchedVariation.price, region.currency) * quantity, region.currency)}</span>
                                 </div>
                               </div>
@@ -563,7 +567,7 @@ export default function VariationSelector({
                             type="button"
                             onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
                             className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-lg font-bold text-neutral-700 shadow-sm transition-all hover:bg-neutral-50 hover:border-primary-500 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                            aria-label="Decrease quantity"
+                            aria-label={t('decreaseQtyAriaLabel')}
                           >
                             −
                           </button>
@@ -584,7 +588,7 @@ export default function VariationSelector({
                             type="button"
                             onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
                             className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-lg font-bold text-neutral-700 shadow-sm transition-all hover:bg-neutral-50 hover:border-primary-500 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                            aria-label="Increase quantity"
+                            aria-label={t('increaseQtyAriaLabel')}
                           >
                             +
                           </button>
@@ -624,7 +628,7 @@ export default function VariationSelector({
                             ),
                           }}
                           quantity={quantity}
-                          className="w-full px-6 py-3.5 text-base font-bold shadow-md transition-all hover:shadow-lg active:scale-98"
+                          className="w-full px-6 py-3.5 text-base font-bold shadow-md transition-all hover:shadow-lg active:scale-[0.98]"
                           disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
                           useCart={useCart}
                           useCartDrawer={useCartDrawer}

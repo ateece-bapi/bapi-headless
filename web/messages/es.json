@@ -657,6 +657,13 @@
       "partialSelectionMessage": "Selecciona {count} opción{plural} más para ver la configuración final",
       "optionSingular": "",
       "optionPlural": "es",
+      "clickToViewLargerImage": "Haga clic para ver una imagen más grande",
+      "clickToZoom": "Haga clic para ampliar",
+      "copyPartNumber": "Copiar número de pieza al portapapeles",
+      "copyToClipboard": "Copiar al portapapeles",
+      "priceBreakdown": "Desglose de precios",
+      "unitPrice": "Precio unitario",
+      "total": "Total",
       "variantDescription": "Description",
       "weight": "Weight"
     },

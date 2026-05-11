@@ -1107,6 +1107,13 @@
       "partialSelectionMessage": "अंतिम कॉन्फ़िगरेशन देखने के लिए कृपया {count} और विकल्प{plural} चुनें",
       "optionSingular": "",
       "optionPlural": "ों",
+      "clickToViewLargerImage": "बड़ी छवि देखने के लिए क्लिक करें",
+      "clickToZoom": "ज़ूम करने के लिए क्लिक करें",
+      "copyPartNumber": "पार्ट नंबर को क्लिपबोर्ड पर कॉपी करें",
+      "copyToClipboard": "क्लिपबोर्ड पर कॉपी करें",
+      "priceBreakdown": "मूल्य विवरण",
+      "unitPrice": "इकाई मूल्य",
+      "total": "कुल",
       "variantDescription": "Description",
       "weight": "Weight"
     },

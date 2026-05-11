@@ -1108,6 +1108,13 @@
       "partialSelectionMessage": "กรุณาเลือกตัวเลือกอีก {count} ตัว{plural} เพื่อดูการกำหนดค่าสุดท้าย",
       "optionSingular": "",
       "optionPlural": "ตัว",
+      "clickToViewLargerImage": "คลิกเพื่อดูภาพขนาดใหญ่",
+      "clickToZoom": "คลิกเพื่อซูม",
+      "copyPartNumber": "คัดลอกหมายเลขชิ้นส่วนไปยังคลิปบอร์ด",
+      "copyToClipboard": "คัดลอกไปยังคลิปบอร์ด",
+      "priceBreakdown": "รายละเอียดราคา",
+      "unitPrice": "ราคาต่อหน่วย",
+      "total": "ยอดรวม",
       "variantDescription": "Description",
       "weight": "Weight"
     },

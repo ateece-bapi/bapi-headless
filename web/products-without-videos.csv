@@ -1,0 +1,357 @@
+Database ID,Name,Slug,SKU,Has Videos,Video Count,URL
+420879,"Digital Output Module - BACnet IP Module",bacnet-ip-module,BA/BIP-BLE-EZ,NO,0,https://bapi.com/product/bacnet-ip-module
+420870,"Digital Output Module - BACnet MS/TP or Modbus RTU",wireless-digital-output-module,BA/DOM-BLE-EZ,NO,0,https://bapi.com/product/wireless-digital-output-module
+420600,"Water Leak Detector with a Rope Sensor",water-leak-detector-with-a-rope-sensor,N/A,YES,1,https://bapi.com/product/water-leak-detector-with-a-rope-sensor
+419221,"Blü-Test - Wireless Remote Temperature Piercing Tip",blu-test-wireless-remote-temperature-piercing-tip,BA/BTR-TPR,NO,0,https://bapi.com/product/blu-test-wireless-remote-temperature-piercing-tip
+418913,"Pendant Temperature and Humidity Sensor",pendant-temperature-and-humidity-sensor,BA/THP[40 TO 120F]-H220-12',NO,0,https://bapi.com/product/pendant-temperature-and-humidity-sensor
+418359,"Digital CO and NO2 Sensor",digital-co-and-no2-sensor,N/A,YES,1,https://bapi.com/product/digital-co-and-no2-sensor
+418241,"MXV - Dry Switch Monitor, Voltage Output",mxv-dry-switch-monitor-voltage-output,BA/MXV,NO,0,https://bapi.com/product/mxv-dry-switch-monitor-voltage-output
+410641,"ZPM Standard Accuracy (±1%) Pressure Sensor in a BAPI-Box - IP66 or NEMA 4 Rated, Field Selected Range and Output",zpm-standard-accuracy-%c2%b11-pressure-sensor-in-a-bapi-box-ip66-or-nema-4-rated-field-selected-range-and-output,N/A,NO,0,https://bapi.com/product/zpm-standard-accuracy-%c2%b11-pressure-sensor-in-a-bapi-box-ip66-or-nema-4-rated-field-selected-range-and-output
+410470,"Door Switch Magnet for BAPI-Stat ""Quantum Slim"" Sensors",door-switch-magnet-for-bapi-stat-quantum-slim-sensors,BA/DSM,NO,0,https://bapi.com/product/door-switch-magnet-for-bapi-stat-quantum-slim-sensors
+410150,"Novar UVC Compatible Aluminum Wall Plate Temperature Sensor",novar-uvc-compatible-aluminum-wall-plate-temperature-sensor,BA/SM990423-AP,NO,0,https://bapi.com/product/novar-uvc-compatible-aluminum-wall-plate-temperature-sensor
+410148,"Novar UVC Compatible Duct Temperature Sensor with BAPI-Box 4 Enclosure",novar-uvc-compatible-duct-temperature-sensor-with-bapi-box-4-enclosure,BA/SM990423-D-12?-BB4,NO,0,https://bapi.com/product/novar-uvc-compatible-duct-temperature-sensor-with-bapi-box-4-enclosure
+410146,"Low Profile (Button) Temperature Sensor",low-profile-button-temperature-sensor,BA/11K-2-LPW,NO,0,https://bapi.com/product/low-profile-button-temperature-sensor
+410139,"Aluminum Wall Plate Temperature Sensor with 11K-2 Ohm Thermistor",aluminum-wall-plate-temperature-sensor-with-11k-2-ohm-thermistor,BA/11K-2-AP,NO,0,https://bapi.com/product/aluminum-wall-plate-temperature-sensor-with-11k-2-ohm-thermistor
+410135,"Outside Air Humidity Sensor with Temperature Transmitter, -40 to 140°F Range",outside-air-humidity-sensor-with-temperature-transmitter-40-to-140f-range,BA/T1K[-40 TO 140F]-H200-O-BB,NO,0,https://bapi.com/product/outside-air-humidity-sensor-with-temperature-transmitter-40-to-140f-range
+410129,"Outside Air Temperature Transmitter, -40 to 140°F Range",outside-air-temperature-transmitter-40-to-140f-range,BA/T1K[-40 TO 140F]-O-BB2,NO,0,https://bapi.com/product/outside-air-temperature-transmitter-40-to-140f-range
+408531,"Bin Clips for Wireless Food Probes",bin-clips-for-wireless-food-probes,N/A,NO,0,https://bapi.com/product/bin-clips-for-wireless-food-probes
+408494,"Pluggable Terminal Blocks Kit for Wireless Output Modules",pluggable-terminal-blocks-kit,BA/AOM-CONN,NO,0,https://bapi.com/product/pluggable-terminal-blocks-kit
+408148,"Wireless BAPI-Stat “Quantum” Temperature and Humidity Sensor",wireless-bapi-stat-quantum-temperature-and-humidity-sensor,N/A,NO,0,https://bapi.com/product/wireless-bapi-stat-quantum-temperature-and-humidity-sensor
+408050,"Wireless BAPI-Stat “Quantum” Temperature Sensor",wireless-bapi-stat-quantum-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-bapi-stat-quantum-temperature-sensor
+408161,"Wireless Duct Temperature Sensor",wireless-duct-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-duct-temperature-sensor
+408182,"Wireless Duct Temp/Humidity Sensor",wireless-duct-temp-humidity-sensor,N/A,NO,0,https://bapi.com/product/wireless-duct-temp-humidity-sensor
+408194,"Wireless Immersion Temperature Sensor",wireless-immersion-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-immersion-temperature-sensor
+408204,"Wireless Remote Probe Temperature Sensor",wireless-remote-probe-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-remote-probe-temperature-sensor
+408231,"Wireless Outside Air Temperature Sensor",wireless-outside-air-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-outside-air-temperature-sensor
+408238,"Wireless Outside Air Temp/Humidity Sensor",wireless-outside-air-temp-humidity-sensor,N/A,NO,0,https://bapi.com/product/wireless-outside-air-temp-humidity-sensor
+408248,"Wireless BAPI-Stat “Quantum Slim” Temperature Sensor",wireless-bapi-stat-quantum-slim-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-bapi-stat-quantum-slim-temperature-sensor
+408277,"Wireless BAPI-Stat “Quantum Slim” Temp/Humidity Sensor",wireless-bapi-stat-quantum-slim-temp-humidity-sensor,N/A,NO,0,https://bapi.com/product/wireless-bapi-stat-quantum-slim-temp-humidity-sensor
+408243,"Wireless Thermobuffer Temperature Sensor",wireless-thermobuffer-temperature-sensor,N/A,NO,0,https://bapi.com/product/wireless-thermobuffer-temperature-sensor
+408283,"Wireless Food Temperature Probe",wireless-food-temperature-probe,BA/WFP-BLE-PT,NO,0,https://bapi.com/product/wireless-food-temperature-probe
+408288,"Wireless Gateway",wireless-gateway,BA/GTW-BLE,NO,0,https://bapi.com/product/wireless-gateway
+408289,"Wireless Receiver",wireless-receiver,BA/RCV-BLE-EZ,NO,0,https://bapi.com/product/wireless-receiver
+408291,"Resistance Output Module (ROM) for Wireless System",resistance-output-module-rom-for-wireless-system,N/A,NO,0,https://bapi.com/product/resistance-output-module-rom-for-wireless-system
+408296,"Voltage Output Module (VOM) for Wireless System",voltage-output-module-vom-for-wireless-system,N/A,NO,0,https://bapi.com/product/voltage-output-module-vom-for-wireless-system
+408373,"Setpoint Output Module (SOM) for Wireless System",setpoint-output-module-som-for-wireless-system,N/A,NO,0,https://bapi.com/product/setpoint-output-module-som-for-wireless-system
+408425,"Replacement Battery for Wireless Sensors",replacement-battery-for-wireless-sensors,BA/LI14505,NO,0,https://bapi.com/product/replacement-battery-for-wireless-sensors
+408429,"Replacement Battery for Wireless Food Probe Sensor",replacement-battery-for-wireless-food-probe-sensor,BA/BAT-5AA-HIT,NO,0,https://bapi.com/product/replacement-battery-for-wireless-food-probe-sensor
+405969,"Outside Air (%RH) Sensor with Optional Temperature Sensor",outside-air-rh-sensor-with-optional-temperature-sensor,N/A,NO,0,https://bapi.com/product/outside-air-rh-sensor-with-optional-temperature-sensor
+402797,"Particulate Sensor, Duct",particulate-sensor-duct,BA/PM-D-BB,YES,1,https://bapi.com/product/particulate-sensor-duct
+401423,"(ALC) Submersible Averaging Temperature Sensor, Flexible",alc-submersible-averaging-temperature-sensor-flexible,N/A,NO,0,https://bapi.com/product/alc-submersible-averaging-temperature-sensor-flexible
+401416,"(ALC) Submersible Averaging Temperature Transmitter, Flexible",alc-submersible-averaging-temperature-transmitter-flexible,N/A,NO,0,https://bapi.com/product/alc-submersible-averaging-temperature-transmitter-flexible
+401403,"Submersible Averaging Temperature Transmitter, Flexible",submersible-averaging-temperature-transmitter-flexible,N/A,YES,1,https://bapi.com/product/submersible-averaging-temperature-transmitter-flexible
+401330,"Submersible Averaging Temperature Sensor, Flexible",submersible-averaging-temperature-sensor,N/A,YES,1,https://bapi.com/product/submersible-averaging-temperature-sensor
+401238,"Rope Sensor Mounting Bracket (pack of 25)",rope-sensor-mounting-bracket-pack-of-25,BA/LDT-RR-MB,NO,0,https://bapi.com/product/rope-sensor-mounting-bracket-pack-of-25
+400665,"CCGA/1K-A",ccga-1k-a,N/A,NO,0,https://bapi.com/product/ccga-1k-a
+400582,"(ALC) Differential Pressure Switch",alc-differential-pressure-switch-2,N/A,NO,0,https://bapi.com/product/alc-differential-pressure-switch-2
+400470,"Reed Switches for the Door Monitor Alarm (DMA)",reed-switches-for-the-door-monitor-alarm-dma,N/A,NO,0,https://bapi.com/product/reed-switches-for-the-door-monitor-alarm-dma
+400467,"Door Monitor Alarm (DMA)",door-monitor-alarm-dma,BA/DMA,YES,1,https://bapi.com/product/door-monitor-alarm-dma
+400362,"Particulate Sensor, BAPI-Stat “Quantum” Enclosure",particulate-sensor-bapi-stat-quantum-enclosure,N/A,NO,0,https://bapi.com/product/particulate-sensor-bapi-stat-quantum-enclosure
+400334,"ZPM Precision Accuracy (±0.25%) Pressure Sensor in a BAPI-Box - IP66 or NEMA 4 Rated, Field Selected Range and Output",zpm-in-a-bapi-box-ip66-or-nema-4-rated-differential-pressure-sensor-field-selected-range-and-output,N/A,NO,0,https://bapi.com/product/zpm-in-a-bapi-box-ip66-or-nema-4-rated-differential-pressure-sensor-field-selected-range-and-output
+163265,"(ALC) Water Leak Detector in a BAPI-Box",alc-water-leak-detector-in-a-bapi-box-2,N/A,NO,0,https://bapi.com/product/alc-water-leak-detector-in-a-bapi-box-2
+160499,"Carrying Case for Blü-Test - Wireless Test Instruments",carrying-case-for-blu-test-wireless-test-instruments,BA/BT-HVAC-CASE,NO,0,https://bapi.com/product/carrying-case-for-blu-test-wireless-test-instruments
+160078,"Surface Temperature Sensor",surface-temperature-sensor,N/A,YES,1,https://bapi.com/product/surface-temperature-sensor
+159974,"(ALC) Trim Ring for BAPI-Stat 4 Sensor",alc-trim-ring-for-bapi-stat-4-sensor,N/A,NO,0,https://bapi.com/product/alc-trim-ring-for-bapi-stat-4-sensor
+159965,"Trim Ring for BAPI-Stat 4 Sensor",__trashed-2,N/A,NO,0,https://bapi.com/product/__trashed-2
+159794,"BAPI-Box Enclosure",bapi-box-enclosure,BA/BB,NO,0,https://bapi.com/product/bapi-box-enclosure
+159771,"(ALC) UIUO4 - Output Terminal Board for ALC ME(X) Controllers",alc-uiuo4-output-terminal-board-for-alc-mex-controllers,UIUO4,NO,0,https://bapi.com/product/alc-uiuo4-output-terminal-board-for-alc-mex-controllers
+159770,"(ALC) OUT66 - Output Terminal Board for ALC SE6166 Controller",alc-out66-output-terminal-board-for-alc-se6166-controller,OUT66,NO,0,https://bapi.com/product/alc-out66-output-terminal-board-for-alc-se6166-controller
+155911,"(ALC) Foamback Insulators (for Room Sensors)",alc-foamback-insulators-for-room-sensors-2,N/A,NO,0,https://bapi.com/product/alc-foamback-insulators-for-room-sensors-2
+143767,"(ALC) Room Pressure Pickup Ports",alc-room-pressure-pickup-ports,N/A,NO,0,https://bapi.com/product/alc-room-pressure-pickup-ports
+143762,"Room Pressure Pickup Ports",room-pressure-pickup-ports,N/A,YES,1,https://bapi.com/product/room-pressure-pickup-ports
+143192,"Adjustable Pressure Switch",adjustable-pressure-switch,N/A,NO,0,https://bapi.com/product/adjustable-pressure-switch
+143068,"BAPI-Stat ""Quantum Prime"" Wipedown Room Temperature and Humidity Sensor",bapi-stat-quantum-prime-wipedown-room-temperature-and-humidity-sensor,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-prime-wipedown-room-temperature-and-humidity-sensor
+138817,"(ACS) Thermobuffer Temperature Sensor",acs-thermobuffer-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/acs-thermobuffer-temperature-sensor-2
+142157,"(ALC) PE4 - Pulse Extender",alc-pe4-pulse-extender,ALC/PE4,NO,0,https://bapi.com/product/alc-pe4-pulse-extender
+142156,"(ALC) SD2 - Status Display, Dual 7-Segment Display",alc-sd2-status-display-dual-7-segment-display,ALC/SD2,NO,0,https://bapi.com/product/alc-sd2-status-display-dual-7-segment-display
+142155,"(ALC) SS-AC - Selector Switch/Alarm Counter 8",alc-ss-ac-selector-switch-alarm-counter-8,ALC/SS-AC,NO,0,https://bapi.com/product/alc-ss-ac-selector-switch-alarm-counter-8
+142154,"(ALC) UCRB2 - Universal Controller Relay Board",alc-ucrb2-universal-controller-relay-board,ALC/UCRB2,NO,0,https://bapi.com/product/alc-ucrb2-universal-controller-relay-board
+142153,"(ALC) PSOCL - Power Supply Output Current Limiter",alc-psocl-power-supply-output-current-limiter,ALC/PSOCL,NO,0,https://bapi.com/product/alc-psocl-power-supply-output-current-limiter
+142152,"(ALC) LRCA - Link Router Communications Adapter",alc-lrca-link-router-communications-adapter,ALC/LRCA,NO,0,https://bapi.com/product/alc-lrca-link-router-communications-adapter
+142151,"(ALC) IRM4 - Interposing Relay Module",alc-irm4-interposing-relay-module,ALC/IRM4,NO,0,https://bapi.com/product/alc-irm4-interposing-relay-module
+142144,"(ALC) BELCON - 4 Pole Connectors, Mating Pair",alc-belcon-4-pole-connectors-mating-pair,ALC/BELCON,NO,0,https://bapi.com/product/alc-belcon-4-pole-connectors-mating-pair
+142142,"(ALC) TUCOM - Terminal Unit Communications Block",alc-tucom-terminal-unit-communications-block,ALC/TUCOM,NO,0,https://bapi.com/product/alc-tucom-terminal-unit-communications-block
+142135,"(ALC) SRBP - Single Communications Repeater Backplane",alc-srbp-single-communications-repeater-backplane,N/A,NO,0,https://bapi.com/product/alc-srbp-single-communications-repeater-backplane
+142132,"(ALC) RBPCX - Extender for the Repeater Backplane",alc-rbpcx-extender-for-the-repeater-backplane,N/A,NO,0,https://bapi.com/product/alc-rbpcx-extender-for-the-repeater-backplane
+142131,"(ALC) RBP-PB - Repeater Backplane Power Bridge",alc-rbp-pb-repeater-backplane-power-bridge,ALC/RBP-PB,NO,0,https://bapi.com/product/alc-rbp-pb-repeater-backplane-power-bridge
+142126,"(ALC) RBP - Communications Repeater Backplane, 4 Row or 8 Row",alc-rbp-communications-repeater-backplane-4-row-or-8-row,N/A,NO,0,https://bapi.com/product/alc-rbp-communications-repeater-backplane-4-row-or-8-row
+142122,"(ALC) SOX - RS-485 Fiber Optic Transceiver (for single-mode fiber cable)",alc-sox-rs-485-fiber-optic-transceiver-for-single-mode-fiber-cable,ALC/SOX,NO,0,https://bapi.com/product/alc-sox-rs-485-fiber-optic-transceiver-for-single-mode-fiber-cable
+142119,"(ALC) FOX - RS-485 to Fiber Optic Transceiver (standalone or kit)",alc-fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit,N/A,NO,0,https://bapi.com/product/alc-fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit
+142116,"(ALC) RPTR - RS-485 Repeater (standalone or kit)",alc-rptr-rs-485-repeater-standalone-or-kit,N/A,NO,0,https://bapi.com/product/alc-rptr-rs-485-repeater-standalone-or-kit
+142112,"(ALC) TB18 - Pluggable Terminal Blocks",alc-tb18-pluggable-terminal-blocks,N/A,NO,0,https://bapi.com/product/alc-tb18-pluggable-terminal-blocks
+142107,"(ALC) COMBLK & COMBLK2 - Communications Cable Terminal Blocks",alc-comblk-comblk2-communications-cable-terminal-blocks,N/A,NO,0,https://bapi.com/product/alc-comblk-comblk2-communications-cable-terminal-blocks
+142106,"(ALC) PAN 16 - Panduit Wire Duct, 1""x3""x16""",alc-pan-16-panduit-wire-duct-1x3x16,ALC/PAN16,NO,0,https://bapi.com/product/alc-pan-16-panduit-wire-duct-1x3x16
+142098,"(ALC) Snaptrack, 2.75 Inch Wide",alc-snaptrack-2-75-inch-wide,N/A,NO,0,https://bapi.com/product/alc-snaptrack-2-75-inch-wide
+142090,"(ALC) Backplanes and Vertical Backplane for ETA Devices",alc-backplanes-and-vertical-backplane-for-eta-devices,N/A,NO,0,https://bapi.com/product/alc-backplanes-and-vertical-backplane-for-eta-devices
+142087,"(ALC) TURB - Terminal Unit Relay Board",alc-turb-terminal-unit-relay-board,N/A,NO,0,https://bapi.com/product/alc-turb-terminal-unit-relay-board
+142084,"(ALC) R49 - Relay Interface, 9 Output",alc-r49-relay-interface-9-output,ALC/R49,NO,0,https://bapi.com/product/alc-r49-relay-interface-9-output
+142081,"(ALC) 3312VC & 3324VC - Voltage Converters, 1.2 Amps",alc-3312vc-3324vc-voltage-converters-eta-line-1-2-amps,N/A,NO,0,https://bapi.com/product/alc-3312vc-3324vc-voltage-converters-eta-line-1-2-amps
+142076,"(ALC) SQ4 - Sequencer, 4-Step",alc-sq4-sequencer-4-step,N/A,NO,0,https://bapi.com/product/alc-sq4-sequencer-4-step
+142075,"(ALC) CDSP2 - Carbon Dioxide Sensor Power Supply",alc-cdsp2-carbon-dioxide-sensor-power-supply,ALC/CDSP2,NO,0,https://bapi.com/product/alc-cdsp2-carbon-dioxide-sensor-power-supply
+142073,"(ALC) EA1 - Actuator Interface, 2 Position",alc-ea1-actuator-interface-2-position,ALC/EA1,NO,0,https://bapi.com/product/alc-ea1-actuator-interface-2-position
+142072,"(ALC) DS8 - Discrete Summary Module, 8 Input",alc-ds8-discrete-summary-module-8-input,ALC/DS8,NO,0,https://bapi.com/product/alc-ds8-discrete-summary-module-8-input
+142004,"(ALC) Duct Static Pressure Probes and Probe Assemblies",alc-duct-static-pressure-probes-and-probe-assemblies,N/A,NO,0,https://bapi.com/product/alc-duct-static-pressure-probes-and-probe-assemblies
+141874,"(ALC) Wall Plate Pickup Port with Temperature Sensor",alc-room-pressure-pickup-ports-with-temperature-sensor,ALC/ZPS-ACC01-102,NO,0,https://bapi.com/product/alc-room-pressure-pickup-ports-with-temperature-sensor
+141845,"(ALC) Outside Pressure Pickup Port",alc-outside-pressure-pickup-port,N/A,NO,0,https://bapi.com/product/alc-outside-pressure-pickup-port
+141840,"(ALC) Duct Total Pressure Probes, 6"" & 3.5""",alc-duct-total-pressure-probes-6-3-5,N/A,NO,0,https://bapi.com/product/alc-duct-total-pressure-probes-6-3-5
+141835,"(ALC) Duct Pitot Pressure Probe Assembly, 6"" or 3.5""",alc-duct-pitot-pressure-probe-assembly-6-or-3-5,N/A,NO,0,https://bapi.com/product/alc-duct-pitot-pressure-probe-assembly-6-or-3-5
+141826,"Total Pressure Probes and Tubing for Beck Adjustable Pressure Switch",total-pressure-probes-and-tubing-for-beck-adjustable-pressure-switch,BA/APSW-ACC,NO,0,https://bapi.com/product/total-pressure-probes-and-tubing-for-beck-adjustable-pressure-switch
+57505,"Blü-Test - Wireless Temperature, Humidity and Pressure Test Instruments",blu-test-bluetooth-testing-probe-suite,N/A,NO,0,https://bapi.com/product/blu-test-bluetooth-testing-probe-suite
+141705,"(ALC) Pierceable Knockout Plugs for Enclosure Ports (bag of 100)",alc-pierceable-knockout-plugs-for-enclosure-ports-bag-of-100,ALC/PKP-100,NO,0,https://bapi.com/product/alc-pierceable-knockout-plugs-for-enclosure-ports-bag-of-100
+141698,"(ALC) Sealant Filled Connectors",alc-sealant-filled-connectors,N/A,NO,0,https://bapi.com/product/alc-sealant-filled-connectors
+141697,"(ALC) Replacement Humidity Filter for Duct and Outside Air Humidity Sensors",alc-replacement-humidity-filter-for-duct-and-outside-air-humidity-sensors,ALC/HDOFS3,NO,0,https://bapi.com/product/alc-replacement-humidity-filter-for-duct-and-outside-air-humidity-sensors
+141691,"(ALC) Replacement Keys for BAPI-Guards and Wall Plates with Keyswitch Override",alc-replacement-keys-for-bapi-guards-or-wall-plates-with-keyswitch-override,N/A,NO,0,https://bapi.com/product/alc-replacement-keys-for-bapi-guards-or-wall-plates-with-keyswitch-override
+141688,"(ALC) Security Screws and Spanner Bit",alc-security-screws-and-spanner-bit,N/A,NO,0,https://bapi.com/product/alc-security-screws-and-spanner-bit
+141683,"(ALC) RJ22 Jack Adaptor (RJ11 to RJ22)",alc-rj22-jack-adaptor-rj11-to-rj22,N/A,NO,0,https://bapi.com/product/alc-rj22-jack-adaptor-rj11-to-rj22
+141656,"(ALC) Adaptor Plates for Wall Sensors",alc-adaptor-plates-for-wall-sensors,N/A,NO,0,https://bapi.com/product/alc-adaptor-plates-for-wall-sensors
+141652,"(ALC) BAPI Screwdriver - Screwdriver with Allen Key (for Room Sensors)",alc-bapi-screwdriver-screwdriver-with-allen-key-for-room-sensors,N/A,NO,0,https://bapi.com/product/alc-bapi-screwdriver-screwdriver-with-allen-key-for-room-sensors
+141647,"(ALC) TS1 and TS2 Transient Suppressors - Digital / Analog Input Points",alc-ts1-and-ts2-transient-suppressors-digital-analog-input-points,N/A,NO,0,https://bapi.com/product/alc-ts1-and-ts2-transient-suppressors-digital-analog-input-points
+141644,"(ALC) PMPB5 - Pulse Meter Pulse Buffer",alc-pmpb5-pulse-meter-pulse-buffer,N/A,NO,0,https://bapi.com/product/alc-pmpb5-pulse-meter-pulse-buffer
+141643,"(ALC) Flexible Probe Brackets (pack of 50)",alc-flexible-probe-brackets-pack-of-50,ALC/FPB-50,NO,0,https://bapi.com/product/alc-flexible-probe-brackets-pack-of-50
+141640,"(ALC) BAPI-Guard - Thermostat Guard",alc-bapi-guard-thermostat-guard-2,N/A,NO,0,https://bapi.com/product/alc-bapi-guard-thermostat-guard-2
+141587,"(ALC) PS17 and PS17CB - Power Supplies",alc-ps17-and-ps17cb-power-supplies,N/A,NO,0,https://bapi.com/product/alc-ps17-and-ps17cb-power-supplies
+141580,"(ALC) VC2000 – AC to DC Voltage Converter, 2 Amps",alc-vc2000-ac-to-dc-voltage-converter-2-amps,N/A,NO,0,https://bapi.com/product/alc-vc2000-ac-to-dc-voltage-converter-2-amps
+141564,"(ALC) VC350A – AC to DC Voltage Converter, 350 mA",alc-vc350a-ac-to-dc-voltage-converter-350-ma-2,N/A,NO,0,https://bapi.com/product/alc-vc350a-ac-to-dc-voltage-converter-350-ma-2
+141557,"(ALC) VC350A-EZ – AC to DC Voltage Converter, 350 mA EZ Mount",alc-vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2,N/A,NO,0,https://bapi.com/product/alc-vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2
+141539,"Carbon Monoxide (CO) Rough Service",carbon-monoxide-rough-service-with-optional-bacnet,N/A,NO,0,https://bapi.com/product/carbon-monoxide-rough-service-with-optional-bacnet
+141536,"Replacement Sensor for the Nitrogen Dioxide (NO2) Duct and Rough Service Sensor",replacement-sensor-for-the-nitrogen-dioxide-no2-duct-and-rough-service-sensor,BA/NO2S,NO,0,https://bapi.com/product/replacement-sensor-for-the-nitrogen-dioxide-no2-duct-and-rough-service-sensor
+141524,"(ALC) CO - Duct and Rough Service Carbon Monoxide Sensor",alc-co-duct-and-rough-service-carbon-monoxide-sensor,N/A,NO,0,https://bapi.com/product/alc-co-duct-and-rough-service-carbon-monoxide-sensor
+141507,"(ALC) CO2 - ""24/7"" Duct and Rough Service Carbon Dioxide Sensor, Constant Occupancy",alc-co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy,N/A,NO,0,https://bapi.com/product/alc-co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy
+141495,"(ALC) VOC - Duct or Rough Service VOC Sensor",alc-voc-duct-or-rough-service-voc-sensor,N/A,NO,0,https://bapi.com/product/alc-voc-duct-or-rough-service-voc-sensor
+140943,"(ALC) EZ - Differential Pressure Sensor, Field Selected Range and Output",alc-ez-differential-pressure-sensor-field-selected-range-and-output,N/A,NO,0,https://bapi.com/product/alc-ez-differential-pressure-sensor-field-selected-range-and-output
+140861,"(ALC) Delta Style Room Humidity or Temperature/Humidity Sensor",alc-delta-style-room-humidity-or-temperature-humidity-sensor,N/A,NO,0,https://bapi.com/product/alc-delta-style-room-humidity-or-temperature-humidity-sensor
+140722,"(ALC) Outside Air Humidity (%RH) Sensor with Temperature Transmitter",alc-outside-air-humidity-rh-sensor-with-temperature-transmitter,N/A,NO,0,https://bapi.com/product/alc-outside-air-humidity-rh-sensor-with-temperature-transmitter
+140705,"(ALC) Outside Air Humidity (%RH) Sensor with Optional Temperature Sensor",alc-outside-air-humidity-rh-sensor-with-optional-temperature-sensor,N/A,NO,0,https://bapi.com/product/alc-outside-air-humidity-rh-sensor-with-optional-temperature-sensor
+140695,"(ALC) Duct Humidity (%RH) Sensor with Temperature Transmitter",alc-duct-humidity-rh-sensor-with-temperature-transmitter,N/A,NO,0,https://bapi.com/product/alc-duct-humidity-rh-sensor-with-temperature-transmitter
+140677,"(ALC) Duct Humidity (%RH) Sensor with Optional Temperature Sensor",alc-duct-humidity-rh-sensor-with-optional-temperature-sensor,N/A,NO,0,https://bapi.com/product/alc-duct-humidity-rh-sensor-with-optional-temperature-sensor
+140660,"(ALC) Thermobuffer Temperature Transmitter",alc-thermobuffer-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-thermobuffer-temperature-transmitter-2
+140620,"(ALC) Thermobuffer Temperature Sensor",alc-thermobuffer-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-thermobuffer-temperature-sensor-2
+140546,"(ALC) Temperature Transmitter, Platinum RTD",alc-temperature-transmitter-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/alc-temperature-transmitter-platinum-rtd-2
+140525,"(ALC) Remote Probe Temperature Transmitter",alc-remote-probe-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-remote-probe-temperature-transmitter-2
+140487,"(ALC) Remote Probe Temperature Sensor",alc-remote-probe-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-remote-probe-temperature-sensor-2
+140455,"(ALC) Concave Remote Probe Temperature Transmitter with Colored Cable",alc-concave-remote-probe-temperature-transmitter-with-colored-cable,N/A,NO,0,https://bapi.com/product/alc-concave-remote-probe-temperature-transmitter-with-colored-cable
+140392,"(ALC) Concave Remote Probe Temperature Sensors with Colored Cable",alc-concave-remote-probe-temperature-sensors-with-colored-cable,N/A,NO,0,https://bapi.com/product/alc-concave-remote-probe-temperature-sensors-with-colored-cable
+140387,"(ALC) Outside Air Temperature Transmitter",alc-outside-air-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-outside-air-temperature-transmitter-2
+140381,"(ALC) Outside Air Temperature Sensor",alc-outside-air-temperature-sensor-2,ALC/10K-2-O-BB2,NO,0,https://bapi.com/product/alc-outside-air-temperature-sensor-2
+140360,"(ALC) Remote Probe Extreme Temperature Sensor, Platinum RTD",alc-remote-probe-extreme-temperature-sensor-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/alc-remote-probe-extreme-temperature-sensor-platinum-rtd-2
+140350,"(ALC) Immersion Extreme Temperature Sensor, Platinum RTD",alc-immersion-extreme-temperature-sensor-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/alc-immersion-extreme-temperature-sensor-platinum-rtd-2
+140323,"(ALC) Immersion Temperature Transmitter, Stainless Steel Fitting",alc-immersion-temperature-transmitter-stainless-steel-fitting-2,N/A,NO,0,https://bapi.com/product/alc-immersion-temperature-transmitter-stainless-steel-fitting-2
+140309,"(ALC) Immersion Temperature Sensor, Stainless Steel Fitting",alc-immersion-temperature-sensor-stainless-steel-fitting-2,N/A,NO,0,https://bapi.com/product/alc-immersion-temperature-sensor-stainless-steel-fitting-2
+140277,"(ALC) Strap Temperature Transmitter",alc-strap-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-strap-temperature-transmitter-2
+140259,"(ALC) Strap Temperature Sensor",alc-strap-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-strap-temperature-sensor-2
+140246,"(ALC) Thermowell",alc-thermowell-2,N/A,NO,0,https://bapi.com/product/alc-thermowell-2
+140228,"(ALC) Immersion Temperature Transmitter, Nylon Fitting",alc-immersion-temperature-transmitter-nylon-fitting-2,N/A,NO,0,https://bapi.com/product/alc-immersion-temperature-transmitter-nylon-fitting-2
+140202,"(ALC) Immersion Temperature Sensor, Nylon Fitting",alc-immersion-temperature-sensor-nylon-fitting-2,N/A,NO,0,https://bapi.com/product/alc-immersion-temperature-sensor-nylon-fitting-2
+140132,"(ALC) Submersible Duct Temperature Transmitter",alc-submersible-duct-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-submersible-duct-temperature-transmitter-2
+140094,"(ALC) Submersible Duct Temperature Sensor",alc-submersible-duct-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-submersible-duct-temperature-sensor-2
+140080,"(ALC) Duct Averaging Temperature Transmitter, Rigid",alc-duct-averaging-temperature-transmitter-rigid-2,N/A,NO,0,https://bapi.com/product/alc-duct-averaging-temperature-transmitter-rigid-2
+140043,"(ALC) Duct Averaging Temperature Sensor, Rigid",alc-duct-averaging-temperature-sensor-rigid-2,N/A,NO,0,https://bapi.com/product/alc-duct-averaging-temperature-sensor-rigid-2
+140029,"(ALC) Duct Averaging Temperature Transmitter, Flexible",alc-duct-averaging-temperature-transmitter-flexible-2,N/A,NO,0,https://bapi.com/product/alc-duct-averaging-temperature-transmitter-flexible-2
+139987,"(ALC) Duct Averaging Temperature Sensor, Flexible",alc-duct-averaging-temperature-sensor-flexible-2,N/A,NO,0,https://bapi.com/product/alc-duct-averaging-temperature-sensor-flexible-2
+139972,"(ALC) Duct Temperature Transmitter",alc-duct-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/alc-duct-temperature-transmitter-2
+139923,"(ALC) Duct Temperature Sensor",alc-duct-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-duct-temperature-sensor-2
+139902,"(ALC) Wall Plate Temperature Sensor with Rotary Setpoint",alc-wall-plate-temperature-sensor-with-rotary-setpoint,N/A,NO,0,https://bapi.com/product/alc-wall-plate-temperature-sensor-with-rotary-setpoint
+139882,"(ALC) Wall Plate Temperature Sensor with Optional Override Pushbutton",alc-wall-plate-temperature-sensor-with-optional-override-pushbutton,N/A,NO,0,https://bapi.com/product/alc-wall-plate-temperature-sensor-with-optional-override-pushbutton
+139856,"(ALC) BAPI-Stat 4 Room Temperature Transmitter without Display",alc-room-temperature-transmitter-bapi-stat-4-enclosure-without-display,N/A,NO,0,https://bapi.com/product/alc-room-temperature-transmitter-bapi-stat-4-enclosure-without-display
+139838,"(ALC) BAPI-Stat 4 Room Temperature Transmitter with Display",alc-room-temperature-transmitter-bapi-stat-4-enclosure-with-display,N/A,NO,0,https://bapi.com/product/alc-room-temperature-transmitter-bapi-stat-4-enclosure-with-display
+139819,"(ALC) Button Sensor - Low Profile Room Temperature Sensor",alc-button-sensor-low-profile-room-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-button-sensor-low-profile-room-temperature-sensor-2
+139772,"(ALC) Decora - Low Profile Room Temperature Sensor",alc-decora-low-profile-room-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/alc-decora-low-profile-room-temperature-sensor-2
+139747,"(ALC) Modbus BAPI-Stat 4MB Temperature and Humidity Sensor",alc-modbus-bapi-stat-4mb-temperature-and-humidity-sensor,N/A,NO,0,https://bapi.com/product/alc-modbus-bapi-stat-4mb-temperature-and-humidity-sensor
+139719,"(ALC) Modbus BAPI-Stat 4MB Temperature Sensor",alc-modbus-bapi-stat-4mb-temperature-sensor,N/A,NO,0,https://bapi.com/product/alc-modbus-bapi-stat-4mb-temperature-sensor
+139700,"(ALC) Delta Style Temperature Sensor without Display, Optional Setpoint and Override",alc-delta-style-temperature-sensor-without-display-optional-setpoint-and-override,N/A,NO,0,https://bapi.com/product/alc-delta-style-temperature-sensor-without-display-optional-setpoint-and-override
+139359,"(EMC) EMC-DMA-2.0 Door Monitor Assembly",emc-emc-dma-2-0-door-monitor-assembly,EMC-DMA-2.0,NO,0,https://bapi.com/product/emc-emc-dma-2-0-door-monitor-assembly
+139350,"CCGA/10K-2[XP]-D-4""-BB4",ccga-10k-2xp-d-4-bb4,CCGA/10K-2[XP]-D-4"-BB4,NO,0,https://bapi.com/product/ccga-10k-2xp-d-4-bb4
+139347,"CCGA/10K-2[XP]-RPP-10'-BB4",ccga-10k-2xp-rpp-10-bb4,CCGA/10K-2[XP]-RPP-10'-BB4,NO,0,https://bapi.com/product/ccga-10k-2xp-rpp-10-bb4
+139342,"CCGA/H200-O",ccga-h200-o,N/A,NO,0,https://bapi.com/product/ccga-h200-o
+139338,"CCGA/H300-O-BB2",ccga-h300-o-bb2,CCGA/H300-O-BB2,NO,0,https://bapi.com/product/ccga-h300-o-bb2
+139329,"CCGA/H200-D",ccga-h200-d,N/A,NO,0,https://bapi.com/product/ccga-h200-d
+139328,"CCGA/H300-D-BB2",ccga-h300-d-bb2,CCGA/H300-D-BB2,NO,0,https://bapi.com/product/ccga-h300-d-bb2
+139252,"(CCG) Differential Pressure Transmitter, Field Selected Range and Output",ccg-differential-pressure-transmitter-field-selected-range-and-output-2,N/A,YES,1,https://bapi.com/product/ccg-differential-pressure-transmitter-field-selected-range-and-output-2
+138912,"Water Leak Detector with Attached or Remote Sensor",water-leak-detector-in-a-bapi-box-2,N/A,NO,0,https://bapi.com/product/water-leak-detector-in-a-bapi-box-2
+138798,"(ACS) Strap Temperature Sensor",acs-strap-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/acs-strap-temperature-sensor-2
+138749,"(ACS) Immersion Temperature Sensor, Nylon Fitting",acs-immersion-temperature-sensor-nylon-fitting-2,N/A,NO,0,https://bapi.com/product/acs-immersion-temperature-sensor-nylon-fitting-2
+138710,"(ACS) Duct Averaging Temperature Sensor, Rigid",acs-duct-averaging-temperature-sensor-rigid-2,N/A,NO,0,https://bapi.com/product/acs-duct-averaging-temperature-sensor-rigid-2
+136372,"Duct Averaging Temperature Transmitter, Flexible",duct-averaging-temperature-transmitter-flexible-2,N/A,NO,0,https://bapi.com/product/duct-averaging-temperature-transmitter-flexible-2
+136309,"Duct Averaging Temperature Sensor, Flexible",duct-averaging-temperature-sensor-flexible-2,N/A,NO,0,https://bapi.com/product/duct-averaging-temperature-sensor-flexible-2
+136296,"Duct Temperature Transmitter",duct-temperature-transmitter-2,N/A,YES,1,https://bapi.com/product/duct-temperature-transmitter-2
+136511,"Submersible Duct Temperature Sensor",submersible-duct-temperature-sensor-2,N/A,YES,1,https://bapi.com/product/submersible-duct-temperature-sensor-2
+136279,"Duct Temperature Sensor",duct-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/duct-temperature-sensor-2
+136837,"Thermowell",thermowell-2,N/A,NO,0,https://bapi.com/product/thermowell-2
+136851,"Immersion Extreme Temperature Sensor, Platinum RTD",immersion-extreme-temperature-sensor-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/immersion-extreme-temperature-sensor-platinum-rtd-2
+136889,"Strap Temperature Sensor",strap-temperature-sensor-2,N/A,YES,1,https://bapi.com/product/strap-temperature-sensor-2
+136931,"Outside Air Temperature Sensor",outside-air-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/outside-air-temperature-sensor-2
+136945,"Remote Temperature Sensor",remote-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/remote-temperature-sensor-2
+136959,"Remote Probe Temperature Sensor",remote-probe-temperature-sensor-2,N/A,YES,1,https://bapi.com/product/remote-probe-temperature-sensor-2
+137236,"Thermobuffer Temperature Sensor",thermobuffer-temperature-sensor-2,N/A,YES,1,https://bapi.com/product/thermobuffer-temperature-sensor-2
+137205,"Temperature Transmitter, Platinum RTD",temperature-transmitter-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/temperature-transmitter-platinum-rtd-2
+137285,"Thermobuffer Temperature Transmitter",thermobuffer-temperature-transmitter-2,N/A,YES,1,https://bapi.com/product/thermobuffer-temperature-transmitter-2
+137299,"BAPI-Stat ""Quantum"" Temperature Sensor with Display and Pushbutton Setpoint",bapi-stat-quantum-temperature-sensor-with-display-and-pushbutton-setpoint,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-temperature-sensor-with-display-and-pushbutton-setpoint
+137390,"BAPI-Stat ""Quantum Slim"" Temperature Sensor",bapi-stat-quantum-slim-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-slim-temperature-sensor-2
+137400,"Delta Style Temperature Sensor without Display, Optional Setpoint and Override",delta-style-temperature-sensor-without-display-optional-setpoint-and-override,N/A,NO,0,https://bapi.com/product/delta-style-temperature-sensor-without-display-optional-setpoint-and-override
+137504,"Button Sensor - Low Profile Room Temperature Sensor",button-sensor-low-profile-room-temperature-sensor-2,N/A,YES,1,https://bapi.com/product/button-sensor-low-profile-room-temperature-sensor-2
+137579,"Wall Plate Temperature Sensor with Optional Override Pushbutton",wall-plate-temperature-sensor-with-optional-override-pushbutton,N/A,NO,0,https://bapi.com/product/wall-plate-temperature-sensor-with-optional-override-pushbutton
+137612,"Wall Plate Temperature Sensor with Rotary Setpoint",wall-plate-temperature-sensor-with-rotary-setpoint-2,N/A,YES,1,https://bapi.com/product/wall-plate-temperature-sensor-with-rotary-setpoint-2
+137636,"Duct Humidity (%RH) Sensor with Optional Temperature Sensor",duct-humidity-rh-sensor-with-optional-temperature-sensor,N/A,YES,1,https://bapi.com/product/duct-humidity-rh-sensor-with-optional-temperature-sensor
+137652,"Duct Humidity (%RH) Sensor with Temperature Transmitter",duct-humidity-rh-sensor-with-temperature-transmitter,N/A,YES,1,https://bapi.com/product/duct-humidity-rh-sensor-with-temperature-transmitter
+137685,"BAPI-Stat ""Quantum"" Humidity or Temp/Humidity Sensor without Display",bapi-stat-quantum-humidity-sensor-without-display,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-humidity-sensor-without-display
+137821,"Delta Style Room Humidity or Temperature/Humidity Sensor",delta-style-room-humidity-or-temperature-humidity-sensor,N/A,NO,0,https://bapi.com/product/delta-style-room-humidity-or-temperature-humidity-sensor
+137434,"Modbus BAPI-Stat 4MB Temperature Sensor",modbus-bapi-stat-4mb-temperature-sensor,N/A,NO,0,https://bapi.com/product/modbus-bapi-stat-4mb-temperature-sensor
+137924,"EZ - Differential Pressure Sensor, Field Selected Range and Output",ez-differential-pressure-sensor-field-selected-range-and-output,N/A,NO,0,https://bapi.com/product/ez-differential-pressure-sensor-field-selected-range-and-output
+137933,"ZPM - Differential Pressure Sensor, Field Selected Range and Output",zone-pressure-multi-sensor-zpm-differential-pressure-sensor-field-selected-range-and-output,N/A,NO,0,https://bapi.com/product/zone-pressure-multi-sensor-zpm-differential-pressure-sensor-field-selected-range-and-output
+137952,"Fixed Range Pressure (FRP) Differential Pressure Sensor",fixed-range-pressure-frp-differential-pressure-sensor,N/A,YES,1,https://bapi.com/product/fixed-range-pressure-frp-differential-pressure-sensor
+138082,"VOC - BAPI-Stat ""Quantum"" VOC Sensor",voc-bapi-stat-quantum-voc-sensor,N/A,NO,0,https://bapi.com/product/voc-bapi-stat-quantum-voc-sensor
+138076,"NO2 - Duct and Rough Service Nitrogen Dioxide Sensor",no2-duct-and-rough-service-nitrogen-dioxide-sensor,N/A,NO,0,https://bapi.com/product/no2-duct-and-rough-service-nitrogen-dioxide-sensor
+138049,"VOC - Duct or Rough VOC Service Sensor",voc-duct-or-rough-service-voc-sensor,N/A,NO,0,https://bapi.com/product/voc-duct-or-rough-service-voc-sensor
+138548,"Replacement Temperature Probes",replacement-temperature-probes,N/A,NO,0,https://bapi.com/product/replacement-temperature-probes
+138447,"VOC - BAPI-Stat ""Quantum Prime"" VOC, Temp and Humidity Sensor",voc-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor,N/A,NO,0,https://bapi.com/product/voc-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor
+138346,"CO2 - ""24/7"" BAPI-Stat ""Quantum Prime"" CO2, Temp and Humidity Sensor, Constant Occupancy",co2-24-7-bapi-stat-quantum-prime-co2-temp-and-humidity-sensor-constant-occupancy,N/A,NO,0,https://bapi.com/product/co2-24-7-bapi-stat-quantum-prime-co2-temp-and-humidity-sensor-constant-occupancy
+138190,"CO2 - ""24/7"" BAPI-Stat ""Quantum Prime"" Carbon Dioxide, Temp and Humidity Sensor Without Display, Constant Occupancy",co2-24-7-bapi-stat-quantum-prime-carbon-dioxide-temp-and-humidity-sensor-without-display-constant-occupancy,N/A,NO,0,https://bapi.com/product/co2-24-7-bapi-stat-quantum-prime-carbon-dioxide-temp-and-humidity-sensor-without-display-constant-occupancy
+138099,"VOC - BAPI-Stat ""Quantum Prime"" VOC, Temp and Humidity Sensor Without Display",voc-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor-without-display,N/A,NO,0,https://bapi.com/product/voc-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor-without-display
+138088,"CO2 - ""24/7"" BAPI-Stat ""Quantum"" Carbon Dioxide Sensor, Constant Occupancy",co2-24-7-bapi-stat-quantum-carbon-dioxide-sensor-constant-occupancy,N/A,NO,0,https://bapi.com/product/co2-24-7-bapi-stat-quantum-carbon-dioxide-sensor-constant-occupancy
+138079,"CO - Duct and Rough Service Carbon Monoxide Sensor",co-duct-and-rough-service-carbon-monoxide-sensor,N/A,YES,1,https://bapi.com/product/co-duct-and-rough-service-carbon-monoxide-sensor
+138059,"CO2 - ""24/7"" Duct and Rough Service Carbon Dioxide Sensor, Constant Occupancy",co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy,N/A,NO,0,https://bapi.com/product/co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy
+137899,"Modbus BAPI-Stat 4MB Temperature and Humidity Sensor",modbus-bapi-stat-4mb-temperature-and-humidity-sensor,N/A,NO,0,https://bapi.com/product/modbus-bapi-stat-4mb-temperature-and-humidity-sensor
+137690,"BAPI-Stat ""Quantum"" Temperature and Humidity Sensor with Display",bapi-stat-quantum-temperature-and-humidity-sensor-with-display,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-temperature-and-humidity-sensor-with-display
+137676,"Outside Air Humidity (%RH) Sensor with Temperature Transmitter",outside-air-humidity-rh-sensor-with-temperature-transmitter,N/A,NO,0,https://bapi.com/product/outside-air-humidity-rh-sensor-with-temperature-transmitter
+137537,"BAPI-Stat 4 Room Temperature Transmitter with Display",room-temperature-transmitter-bapi-stat-4-enclosure-with-display,N/A,NO,0,https://bapi.com/product/room-temperature-transmitter-bapi-stat-4-enclosure-with-display
+137523,"BAPI-Stat 4 Room Temperature Transmitter without Display",room-temperature-transmitter-bapi-stat-4-enclosure-without-display,N/A,NO,0,https://bapi.com/product/room-temperature-transmitter-bapi-stat-4-enclosure-without-display
+137459,"Decora - Low Profile Room Temperature Sensor",decora-low-profile-room-temperature-sensor-2,N/A,NO,0,https://bapi.com/product/decora-low-profile-room-temperature-sensor-2
+137417,"BAPI-Stat ""Quantum"" Temperature Sensor without Display, Optional Setpoint and Override",bapi-stat-quantum-temperature-sensor-without-display-optional-setpoint-and-override,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-temperature-sensor-without-display-optional-setpoint-and-override
+137345,"BAPI-Stat ""Quantum"" Temperature Sensor with Display and Slider Setpoint",bapi-stat-quantum-temperature-sensor-with-display-and-slider-setpoint,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-temperature-sensor-with-display-and-slider-setpoint
+137113,"Concave Remote Probe Temperature Transmitter with Colored Cable",concave-remote-probe-temperature-transmitter-with-colored-cable,N/A,YES,1,https://bapi.com/product/concave-remote-probe-temperature-transmitter-with-colored-cable
+137051,"Concave Remote Probe Temperature Sensors with Colored Cables",concave-remote-probe-temperature-sensors-with-colored-cable,N/A,YES,1,https://bapi.com/product/concave-remote-probe-temperature-sensors-with-colored-cable
+136996,"Remote Probe Temperature Transmitter",remote-probe-temperature-transmitter-2,N/A,YES,1,https://bapi.com/product/remote-probe-temperature-transmitter-2
+136936,"Outside Air Temperature Transmitter",outside-air-temperature-transmitter-2,N/A,NO,0,https://bapi.com/product/outside-air-temperature-transmitter-2
+136906,"Strap Temperature Transmitter",strap-temperature-transmitter-2,N/A,YES,1,https://bapi.com/product/strap-temperature-transmitter-2
+136861,"Remote Probe Extreme Temperature Sensor, Platinum RTD",remote-probe-extreme-temperature-sensor-platinum-rtd-2,N/A,NO,0,https://bapi.com/product/remote-probe-extreme-temperature-sensor-platinum-rtd-2
+136803,"Immersion Temperature Transmitter, Stainless Steel Fitting",immersion-temperature-transmitter-stainless-steel-fitting-2,N/A,YES,1,https://bapi.com/product/immersion-temperature-transmitter-stainless-steel-fitting-2
+136754,"Immersion Temperature Sensor, Stainless Steel Fitting",immersion-temperature-sensor-stainless-steel-fitting-2,N/A,NO,0,https://bapi.com/product/immersion-temperature-sensor-stainless-steel-fitting-2
+136732,"Immersion Temperature Transmitter, Nylon Fitting",immersion-temperature-transmitter-nylon-fitting-2,N/A,NO,0,https://bapi.com/product/immersion-temperature-transmitter-nylon-fitting-2
+136671,"Immersion Temperature Sensor, Nylon Fitting",immersion-temperature-sensor-nylon-fitting-2,N/A,NO,0,https://bapi.com/product/immersion-temperature-sensor-nylon-fitting-2
+136548,"Submersible Duct Temperature Transmitter",submersible-duct-temperature-transmitter-2,N/A,YES,1,https://bapi.com/product/submersible-duct-temperature-transmitter-2
+136462,"Duct Averaging Temperature Transmitter, Rigid",duct-averaging-temperature-transmitter-rigid-2,N/A,YES,2,https://bapi.com/product/duct-averaging-temperature-transmitter-rigid-2
+136388,"Duct Averaging Temperature Sensor, Rigid",duct-averaging-temperature-sensor-rigid-2,N/A,YES,1,https://bapi.com/product/duct-averaging-temperature-sensor-rigid-2
+135494,"Weather Shade Kit for Outside Air Sensors",weather-shade-kit-for-outside-air-sensors,BA/WSK,YES,1,https://bapi.com/product/weather-shade-kit-for-outside-air-sensors
+135485,"Pierceable Knockout Plugs for Enclosure Ports (bag of 100)",pierceable-knockout-plugs-for-enclosure-ports-bag-of-100,BA/PKP-100,YES,1,https://bapi.com/product/pierceable-knockout-plugs-for-enclosure-ports-bag-of-100
+135475,"Sealant Filled Connectors",sealant-filled-connectors-2,N/A,NO,0,https://bapi.com/product/sealant-filled-connectors-2
+135472,"Replacement Humidity Filter for Duct and Outside Air Humidity Sensors",replacement-humidity-filters-for-duct-and-outside-air-humidity-sensors-2,BA/HDOFS3,NO,0,https://bapi.com/product/replacement-humidity-filters-for-duct-and-outside-air-humidity-sensors-2
+135466,"Foamback Insulators (for Room Sensors)",foamback-insulators-for-room-sensors-2,N/A,NO,0,https://bapi.com/product/foamback-insulators-for-room-sensors-2
+135463,"Replacement Keys for BAPI-Guards or Wall Plates with Keyswitch Override",replacement-keys-for-bapi-guards-or-wall-plates-with-keyswitch-override-2,N/A,NO,0,https://bapi.com/product/replacement-keys-for-bapi-guards-or-wall-plates-with-keyswitch-override-2
+135460,"RJ22 Jack Adaptor (RJ11 to RJ22)",rj22-jack-adaptor-rj11-to-rj22-2,N/A,NO,0,https://bapi.com/product/rj22-jack-adaptor-rj11-to-rj22-2
+135453,"Outdoor Light Level Sensor",outdoor-light-level-sensor-2,N/A,NO,0,https://bapi.com/product/outdoor-light-level-sensor-2
+135432,"Adaptor Plates for Wall Sensors",adaptor-plates-for-wall-sensors-2,N/A,YES,1,https://bapi.com/product/adaptor-plates-for-wall-sensors-2
+135430,"Clean-Cut - Knockout Cutting Tool for BAPI-Box Enclosures",clean-cut-knockout-cutting-bits-for-bapi-box-enclosures-2,BA/CLN-CUT-50,NO,0,https://bapi.com/product/clean-cut-knockout-cutting-bits-for-bapi-box-enclosures-2
+135425,"BAPI Screwdriver - Screwdriver with Allen Key (for Room Sensors)",bapi-screwdriver-screwdriver-with-allen-key-for-room-sensors-2,N/A,NO,0,https://bapi.com/product/bapi-screwdriver-screwdriver-with-allen-key-for-room-sensors-2
+135419,"TS1 and TS2 Transient Suppressors - Digital / Analog Input Points",ts1-and-ts2-transient-suppressors-digital-analog-input-points-2,N/A,NO,0,https://bapi.com/product/ts1-and-ts2-transient-suppressors-digital-analog-input-points-2
+135416,"PMPB5 - Pulse Meter Pulse Buffer",pmpb5-pulse-meter-pulse-buffer-2,N/A,NO,0,https://bapi.com/product/pmpb5-pulse-meter-pulse-buffer-2
+135415,"Flexible Probe Brackets (pack of 50)",flexible-probe-brackets-pack-of-50,BA/FPB-50,YES,1,https://bapi.com/product/flexible-probe-brackets-pack-of-50
+135412,"BAPI-Guard - Thermostat Guard",bapi-guard-thermostat-guard-2,N/A,YES,1,https://bapi.com/product/bapi-guard-thermostat-guard-2
+135409,"PS17RF, PS18RF and PS19RF - Power Supplies",ps17-and-ps17cb-power-supplies-2,N/A,NO,0,https://bapi.com/product/ps17-and-ps17cb-power-supplies-2
+135404,"VC2000 – AC to DC Voltage Converter, 2 Amps",vc2000-ac-to-dc-voltage-converter-2-amps-2,N/A,NO,0,https://bapi.com/product/vc2000-ac-to-dc-voltage-converter-2-amps-2
+135395,"PDM – Power Distribution Module",pdm-power-distribution-module-2,N/A,NO,0,https://bapi.com/product/pdm-power-distribution-module-2
+135384,"VC350A – AC to DC Voltage Converter, 350 mA",vc350a-ac-to-dc-voltage-converter-350-ma-2,N/A,NO,0,https://bapi.com/product/vc350a-ac-to-dc-voltage-converter-350-ma-2
+135373,"VC350A-EZ – AC to DC Voltage Converter, 350 mA EZ Mount",vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2,N/A,YES,1,https://bapi.com/product/vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2
+135372,"BAPI-Stat ""Quantum"" Carbon Monoxide Sensor",carbon-monoxide-room,N/A,NO,0,https://bapi.com/product/carbon-monoxide-room
+134683,"(EMC) BAPI-Box 2 Enclosure",emc-bapi-box-2-enclosure,BA/BB2-70-EMC,NO,0,https://bapi.com/product/emc-bapi-box-2-enclosure
+59828,"CCGA/10K-2-A",ccga10k-2-a-12-bb4,N/A,NO,0,https://bapi.com/product/ccga10k-2-a-12-bb4
+59272,"CCGA/10K-2-RA-12""-BB4",ccga10k-2-ra-12-bb4,CCGA/10K-2-RA-12"-BB4,NO,0,https://bapi.com/product/ccga10k-2-ra-12-bb4
+57357,"BAPI-Stat ""Quantum Prime"" Wipedown Room Temperature Sensor",bapi-stat-quantum-prime-wipedown-room-temperature-or-temp-humidity-sensor,N/A,NO,0,https://bapi.com/product/bapi-stat-quantum-prime-wipedown-room-temperature-or-temp-humidity-sensor
+51691,"PSOCL - Power Supply Output Current Limiter",psocl-power-supply-output-current-limiter,BA/PSOCL,NO,0,https://bapi.com/product/psocl-power-supply-output-current-limiter
+51689,"LRCA - Link Router Communications Adapter",lrca-link-router-communications-adapter,BA/LRCA,NO,0,https://bapi.com/product/lrca-link-router-communications-adapter
+51677,"UCRB2 - Universal Controller Relay Board",ucrb2-universal-controller-relay-board,BA/UCRB2,NO,0,https://bapi.com/product/ucrb2-universal-controller-relay-board
+51121,"SOX - RS-485 Fiber Optic Transceiver (for single-mode fiber cable)",sox-rs-485-fiber-optic-transceiver-single-mode,BA/SOX,YES,1,https://bapi.com/product/sox-rs-485-fiber-optic-transceiver-single-mode
+51108,"SS-AC - Selector Switch/Alarm Counter 8",ss-ac-selector-switchalarm-counter-8,BA/SS-AC,NO,0,https://bapi.com/product/ss-ac-selector-switchalarm-counter-8
+51104,"PE4 - Pulse Extender",pe4-pulse-extender,BA/PE4,NO,0,https://bapi.com/product/pe4-pulse-extender
+51097,"SD2 - Status Display, Dual 7-Segment Display",sd2-status-display-dual-7-segment-display,BA/SD2,NO,0,https://bapi.com/product/sd2-status-display-dual-7-segment-display
+51076,"IRM4 - Interposing Relay Module",irm4-interposing-relay-module,BA/IRM4,NO,0,https://bapi.com/product/irm4-interposing-relay-module
+50475,"(ALC) CO2 Sensor Calibration Kit",alc-co2-sensor-calibration-kit,ALC/CO2-KIT,NO,0,https://bapi.com/product/alc-co2-sensor-calibration-kit
+50474,"CO2 Sensor Calibration Kit",co2-sensor-calibration-kit,BA/CO2-KIT,NO,0,https://bapi.com/product/co2-sensor-calibration-kit
+50466,"(ALC) UO4R Output Relay Board",uo4r-output-relay-board,UO4R,NO,0,https://bapi.com/product/uo4r-output-relay-board
+50465,"(ALC) BAPI-Stat 4 X-Combo - Room Temperature Transmitter and Humidity Transmitter",alc-bapi-stat-4-x-combo-room-temperature-transmitter-and-humidity-transmitter,N/A,NO,0,https://bapi.com/product/alc-bapi-stat-4-x-combo-room-temperature-transmitter-and-humidity-transmitter
+50459,"Silicone Rubber Tubing, 50 foot roll",silicone-rubber-tubing-50-foot-roll,ZPS-SIL-250-125-50,NO,0,https://bapi.com/product/silicone-rubber-tubing-50-foot-roll
+50452,"EMC-REF-EL",emc-ref-el,EMC-REF-EL,NO,0,https://bapi.com/product/emc-ref-el
+50444,"BAPI-Stat 4 X-Combo - Room Temperature and Humidity Sensor",bapi-stat-4-x-combo-room-temperature-transmitter-and-humidity-transmitter,N/A,NO,0,https://bapi.com/product/bapi-stat-4-x-combo-room-temperature-transmitter-and-humidity-transmitter
+50443,"RBP-PB - Repeater Backplane Power Bridge",rbp-pb-repeater-backplane-power-bridge,BA/RBP-PB,NO,0,https://bapi.com/product/rbp-pb-repeater-backplane-power-bridge
+50433,"(CCG) Differential Pressure Switch",ccg-differential-pressure-switch,N/A,NO,0,https://bapi.com/product/ccg-differential-pressure-switch
+50432,"CCG/LCD-10K-T56-VOC10-H210",ccglcd-10k-t56-voc10-h210,CCG/LCD-10K-T56-VOC10-H210,NO,0,https://bapi.com/product/ccglcd-10k-t56-voc10-h210
+50431,"(CCG) BAPI-Stat 4 - Room Humidity (%RH) Transmitter with Temperature Sensor",ccg-bapi-stat-4-room-humidity-rh-transmitter-with-temperature-sensor,N/A,NO,0,https://bapi.com/product/ccg-bapi-stat-4-room-humidity-rh-transmitter-with-temperature-sensor
+50430,"(CCG) BAPI-Stat 4 - Room Temperature Sensor",ccg-bapi-stat-4-room-temperature-sensor,CCG/LCD-10K-T56,NO,0,https://bapi.com/product/ccg-bapi-stat-4-room-temperature-sensor
+50427,"CCG/BS3F-VOC05-H205-N-LED",ccgbs3f-voc05-h205-n-led,CCG/BS3F-VOC05-H205-N-LED,NO,0,https://bapi.com/product/ccgbs3f-voc05-h205-n-led
+50426,"CCG/10K-T56",ccg10k-t56,N/A,NO,0,https://bapi.com/product/ccg10k-t56
+50425,"CCG/10K-T55",ccg10k-t55,N/A,NO,0,https://bapi.com/product/ccg10k-t55
+50424,"(CCG) Strap Temperature Sensor",ccg-strap-temperature-sensor,N/A,NO,0,https://bapi.com/product/ccg-strap-temperature-sensor
+50422,"(CCG) Stainless Steel Immersion Sensor with Matching Thermowell",ccg10k-i2-m304,N/A,NO,0,https://bapi.com/product/ccg10k-i2-m304
+50421,"(CCG) Duct Temperature Sensor",ccg-duct-temperature-sensor,N/A,NO,0,https://bapi.com/product/ccg-duct-temperature-sensor
+50419,"CCG/VOC10-D-BB",ccgvoc10-d-bb,CCG/VOC10-D-BB,NO,0,https://bapi.com/product/ccgvoc10-d-bb
+50418,"CCG/VC350A-ADJ-TRK",ccgvc350a-adj-trk,CCG/VC350A-ADJ-TRK,NO,0,https://bapi.com/product/ccgvc350a-adj-trk
+50417,"CCG/H300-D-BB2",ccgh300-d-bb2,CCG/H300-D-BB2,NO,0,https://bapi.com/product/ccgh300-d-bb2
+50416,"CCG/H205-B4X-Z-CG-WMW",ccgh205-b4x-z-cg-wmw,CCG/H205-B4X-Z-CG-WMW,NO,0,https://bapi.com/product/ccgh205-b4x-z-cg-wmw
+50415,"CCG/420CO-1-D-EUO-PM",ccg420co-1-d-euo-pm,CCG/420CO-1-D-EUO-PM,NO,0,https://bapi.com/product/ccg420co-1-d-euo-pm
+50414,"CCG/10K-THERMO",ccg10k-thermo,CCG/10K-THERMO,NO,0,https://bapi.com/product/ccg10k-thermo
+50413,"CCG/BS3F2-0[32 TO 134F]-10M-OFW",ccgbs3f2-032-to-134f-10m-ofw,CCG/BS3F2-0[32 TO 134F]-10M-OFW,NO,0,https://bapi.com/product/ccgbs3f2-032-to-134f-10m-ofw
+50412,"CCG/BG2",ccgbg2,CCG/BG2,NO,0,https://bapi.com/product/ccgbg2
+50411,"CCG/BG",ccgbg,CCG/BG,NO,0,https://bapi.com/product/ccgbg
+50410,"CCG/D-H210",ccgd-h210,CCG/D-H210,NO,0,https://bapi.com/product/ccgd-h210
+50407,"CCG/TRK48",ccgtrk48,CCG/TRK48,NO,0,https://bapi.com/product/ccgtrk48
+50406,"CCG/10K-D-H210",ccg10k-d-h210,CCG/10K-D-H210,NO,0,https://bapi.com/product/ccg10k-d-h210
+50405,"CCG/10K-A12",ccg10k-a12,CCG/10K-A12,NO,0,https://bapi.com/product/ccg10k-a12
+50404,"CCG/10K-2-H200-D-BB",ccg10k-2-h200-d-bb,CCG/10K-2-H200-D-BB,NO,0,https://bapi.com/product/ccg10k-2-h200-d-bb
+50403,"CCG/10K-2-SP",ccg10k-2-sp,CCG/10K-2-SP,NO,0,https://bapi.com/product/ccg10k-2-sp
+50398,"CCG/10K-BP",ccg10k-bp,CCG/10K-BP,NO,0,https://bapi.com/product/ccg10k-bp
+50397,"VOC Sensor Verification Kit",voc-sensor-verification-kit,BA/VOC-KIT,NO,0,https://bapi.com/product/voc-sensor-verification-kit
+50395,"17285-WHITE",17285,17285-WHITE,NO,0,https://bapi.com/product/17285
+50381,"Backplane Bridge for ETA Interface Devices",backplane-bridge-for-eta-interface-devices,BA/BP-BR,NO,0,https://bapi.com/product/backplane-bridge-for-eta-interface-devices
+50370,"RBPCX - Extender for the Repeater Backplane",rbpcx-extender-for-the-repeater-backplane,N/A,NO,0,https://bapi.com/product/rbpcx-extender-for-the-repeater-backplane
+50362,"(ALC) Replacement CO Sensor Module for the Carbon Monoxide Sensor",alc-replacement-co-sensor-module-for-the-carbon-monoxide-sensor,ALC/COS,NO,0,https://bapi.com/product/alc-replacement-co-sensor-module-for-the-carbon-monoxide-sensor
+50361,"Replacement CO Sensor Module for the Carbon Monoxide Sensor",replacement-co-sensor-module-for-the-carbon-monoxide-sensor,BA/COS,NO,0,https://bapi.com/product/replacement-co-sensor-module-for-the-carbon-monoxide-sensor
+50322,"(EMC) Duct Temperature Sensor",emc-duct-temperature-sensor,EMC/CONDTEMP-8",NO,0,https://bapi.com/product/emc-duct-temperature-sensor
+50321,"(EMC) Remote Probe Temperature Sensor",emc-remote-probe-temperature-sensor,EMC-RTP-10KT2-10FT,NO,0,https://bapi.com/product/emc-remote-probe-temperature-sensor
+50320,"(EMC) Refrigerant Leak Detector",emc-refrigerant-leak-detector,EMC-REF-LK-832,NO,0,https://bapi.com/product/emc-refrigerant-leak-detector
+50319,"(EMC) No-Box Duct Probe",emc-no-box-duct-probe,EMC-NB-8-10,NO,0,https://bapi.com/product/emc-no-box-duct-probe
+50304,"(EMC) EMC-REF-LK-832",emc-emc-ref-lk-832,EMC-REF-LK-832,NO,0,https://bapi.com/product/emc-emc-ref-lk-832
+50302,"(EMC) EMC-DMA24A",emc-emc-dma24a,EMC-DMA24A,NO,0,https://bapi.com/product/emc-emc-dma24a
+50299,"(EMC) BAPI-Box Enclosure",emc-bapi-box-enclosure,BA/BB-60-EMC,NO,0,https://bapi.com/product/emc-bapi-box-enclosure
+50297,"Tubing with Surge Damper",tubing-with-surge-damper,ZPS-ACC09,NO,0,https://bapi.com/product/tubing-with-surge-damper
+50296,"Pressure Surge Damper",pressure-surge-damper,ZPS-ACC15-10,NO,0,https://bapi.com/product/pressure-surge-damper
+50276,"CCG/10K-OAT-H210",ccg10k-oat-h210,CCG/10K-OAT-H210,NO,0,https://bapi.com/product/ccg10k-oat-h210
+50270,"(ALC) EA2 - Actuator Interface, Modulating",alc-ea2-actuator-interface-modulating,ALC/EA2,NO,0,https://bapi.com/product/alc-ea2-actuator-interface-modulating
+50269,"(ALC) DS6R - Dry Switch Monitor",alc-ds6r-dry-switch-monitor,N/A,NO,0,https://bapi.com/product/alc-ds6r-dry-switch-monitor
+50254,"(ALC) Refrigerant Leak Detector",alc-refrigerant-leak-detector-and-transmitter,N/A,NO,0,https://bapi.com/product/alc-refrigerant-leak-detector-and-transmitter
+50167,"Differential Pressure Switch",differential-pressure-switch,N/A,NO,0,https://bapi.com/product/differential-pressure-switch
+50166,"(ALC) Pressure Surge Damper",alc-pressure-surge-damper,ALC/ZPS-ACC15-10,NO,0,https://bapi.com/product/alc-pressure-surge-damper
+50165,"Duct Total Pressure Probes, 6"" & 3.5""",duct-total-pressure-probes-6-3-5,N/A,NO,0,https://bapi.com/product/duct-total-pressure-probes-6-3-5
+50164,"Duct Pitot Pressure Probe Assembly, 6"" or 3.5""",duct-pitot-pressure-probe-assembly-6-or-3-5,ZPS-,NO,0,https://bapi.com/product/duct-pitot-pressure-probe-assembly-6-or-3-5
+50163,"(ALC) Tubing with Surge Damper",alc-tubing-with-surge-damper,ALC/ZPS-ACC09,NO,0,https://bapi.com/product/alc-tubing-with-surge-damper
+50162,"Duct Static Pressure Probes and Probe Assemblies",duct-static-pressure-probe-6-and-probe-assemblies,N/A,NO,0,https://bapi.com/product/duct-static-pressure-probe-6-and-probe-assemblies
+50161,"Outside Pressure Pickup Port",outside-pressure-pickup-port,N/A,NO,0,https://bapi.com/product/outside-pressure-pickup-port
+50160,"Room Pressure Pickup Ports with Temperature Sensor",room-pressure-pickup-ports-with-temperature-sensor,N/A,NO,0,https://bapi.com/product/room-pressure-pickup-ports-with-temperature-sensor
+50156,"Refrigerant Leak Detector",refrigerant-leak-detector-and-transmitter,N/A,YES,1,https://bapi.com/product/refrigerant-leak-detector-and-transmitter
+50149,"Security Screws and Spanner Bit",security-screws,N/A,NO,0,https://bapi.com/product/security-screws
+50137,"(ALC) VOC Sensor Verification Kit",alc-voc-sensor-verification-kit,ALC/VOC-KIT,NO,0,https://bapi.com/product/alc-voc-sensor-verification-kit
+50134,"CCGA/10K-2-I",ccga10k-2-i,N/A,NO,0,https://bapi.com/product/ccga10k-2-i
+50133,"CCGA/10K-2-SP-631",ccga10k-2-sp-631,CCGA/10K-2-SP-631,NO,0,https://bapi.com/product/ccga10k-2-sp-631
+50132,"CCGA/10K-2-S-BB4",ccga10k-2-s-bb4,CCGA/10K-2-S-BB4,NO,0,https://bapi.com/product/ccga10k-2-s-bb4
+50131,"CCGA/10K-2-RA-2'-BB4",ccga10k-2-ra-2-bb4,CCGA/10K-2-RA-2'-BB4,NO,0,https://bapi.com/product/ccga10k-2-ra-2-bb4
+50129,"CCGA/10K-2-O",ccga10k-2-o-wp,N/A,NO,0,https://bapi.com/product/ccga10k-2-o-wp
+50128,"FOX - RS-485 to Fiber Optic Transceiver (standalone or kit)",fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit,N/A,YES,1,https://bapi.com/product/fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit
+50127,"RPTR - RS-485 Repeater (standalone or kit)",rptr-rs-485-repeater-standalone-or-kit,N/A,YES,1,https://bapi.com/product/rptr-rs-485-repeater-standalone-or-kit
+50126,"PAN 16 - Panduit Wire Duct, 1""x3""x16""",pan-16-panduit-wire-duct-1x3x16,BA/PAN16,NO,0,https://bapi.com/product/pan-16-panduit-wire-duct-1x3x16
+50125,"Snaptrack, 2.75 Inch Wide",snaptrack-2-75-wide,N/A,NO,0,https://bapi.com/product/snaptrack-2-75-wide
+50120,"BELCON - 4 Pole Connectors, Mating Pair",belcon-4-pole-connectors-mating-pair,BA/BELCON,NO,0,https://bapi.com/product/belcon-4-pole-connectors-mating-pair
+50119,"TUCOM - Terminal Unit Communications Block",tucom-terminal-unit-communications-block,BA/TUCOM,NO,0,https://bapi.com/product/tucom-terminal-unit-communications-block
+50118,"COMSRG - Communications Surge Protector",comsrg-communications-surge-protector,BA/COMSRG,NO,0,https://bapi.com/product/comsrg-communications-surge-protector
+50117,"SRBP - Single Communications Repeater Backplane",srbp-communications-repeater-backplane-single,N/A,NO,0,https://bapi.com/product/srbp-communications-repeater-backplane-single
+50116,"CCGA/10K-2-D",ccga10k-2-d,N/A,NO,0,https://bapi.com/product/ccga10k-2-d
+50115,"RBP - Communications Repeater Backplane, 4 Row or 8 Row",rbp-communications-repeater-backplane-4-place,N/A,NO,0,https://bapi.com/product/rbp-communications-repeater-backplane-4-place
+50114,"3324VC - Voltage Converter, 1.5 Amp",3312vc-3324vc-voltage-converters-eta-line-1-2-amps,BA/3324VC,YES,1,https://bapi.com/product/3312vc-3324vc-voltage-converters-eta-line-1-2-amps
+50113,"TB18 - Pluggable Terminal Blocks",tb18-terminal-block-pluggable,N/A,NO,0,https://bapi.com/product/tb18-terminal-block-pluggable
+50112,"COMBLK & COMBLK2 - Communications Cable Terminal Blocks",comblk-communications-cable-terminal-block,N/A,NO,0,https://bapi.com/product/comblk-communications-cable-terminal-block
+50105,"Backplanes and Vertical Backplane for ETA Devices",backplanes-for-eta-interface-devices,N/A,YES,1,https://bapi.com/product/backplanes-for-eta-interface-devices
+50104,"TURB - Terminal Unit Relay Board",turb-terminal-unit-relay-board,N/A,NO,0,https://bapi.com/product/turb-terminal-unit-relay-board
+50101,"DS6R - Dry Switch Monitor",ds6r-dry-switch-monitor,N/A,YES,1,https://bapi.com/product/ds6r-dry-switch-monitor
+50100,"R49 – Relay Interface, 9 Output",r49-relay-interface-9-output,BA/R49,NO,0,https://bapi.com/product/r49-relay-interface-9-output
+50097,"SQ4 - Sequencer, 4-Step",sq4-sequencer-4-step,N/A,NO,0,https://bapi.com/product/sq4-sequencer-4-step
+50096,"EA2 - Actuator Interface, Modulating",ea2-actuator-interface-modulating,BA/EA2,YES,1,https://bapi.com/product/ea2-actuator-interface-modulating
+50095,"EA1 - Actuator Interface, 2 Position",ea1-actuator-interface-2-position,BA/EA1,YES,1,https://bapi.com/product/ea1-actuator-interface-2-position
+50094,"DS8 - Discrete Summary Module, 8 Input",ds8-discrete-summary-module-8-input,BA/DS8,YES,1,https://bapi.com/product/ds8-discrete-summary-module-8-input
+50069,"CDSP2 - Carbon Dioxide Sensor Power Supply",cdsp2-carbon-dioxide-sensor-power-supply,BA/CDSP2,NO,0,https://bapi.com/product/cdsp2-carbon-dioxide-sensor-power-supply

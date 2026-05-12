@@ -1,0 +1,152 @@
+# Scan Products Without Videos - GraphQL Queries
+# 
+# Use these queries in GraphiQL: https://bapiheadlessstaging.kinsta.cloud/graphql
+# 
+# These queries will help identify which products are missing video content.
+
+# ============================================================================
+# Query 1: Get first 100 products with video data
+# ============================================================================
+query GetProductsWithVideos_Page1 {
+  products(first: 100) {
+    pageInfo {
+      hasNextPage
+      endCursor
+      # If hasNextPage is true, copy endCursor value and use it in Query 2
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      productVideos {
+        heading
+        videos {
+          url
+          title
+        }
+      }
+      ... on SimpleProduct {
+        sku
+      }
+      ... on VariableProduct {
+        sku
+      }
+    }
+  }
+}
+
+# ============================================================================
+# Query 2: Get next page of products (if hasNextPage was true)
+# ============================================================================
+# Replace "YOUR_CURSOR_HERE" with the endCursor from previous query
+query GetProductsWithVideos_Page2 {
+  products(first: 100, after: "YOUR_CURSOR_HERE") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      productVideos {
+        heading
+        videos {
+          url
+          title
+        }
+      }
+      ... on SimpleProduct {
+        sku
+      }
+      ... on VariableProduct {
+        sku
+      }
+    }
+  }
+}
+
+# ============================================================================
+# Query 3: Get ALL products in one query (⚠️ May timeout with 608 products)
+# ============================================================================
+# Only use this if you have high query limits configured
+query GetAllProductsWithVideos {
+  products(first: 1000) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      productVideos {
+        heading
+        videos {
+          url
+          title
+        }
+      }
+      ... on SimpleProduct {
+        sku
+      }
+      ... on VariableProduct {
+        sku
+      }
+    }
+  }
+}
+
+# ============================================================================
+# How to Identify Products Without Videos
+# ============================================================================
+# 
+# After running the query, inspect the results:
+# 
+# Products WITHOUT videos will have:
+# 1. "productVideos": null
+# 2. "productVideos": []
+# 3. "productVideos": [{ "heading": "...", "videos": [] }]
+# 
+# Products WITH videos will have:
+# "productVideos": [
+#   {
+#     "heading": "Installation",
+#     "videos": [
+#       {
+#         "url": "https://youtube.com/...",
+#         "title": "Product Demo"
+#       }
+#     ]
+#   }
+# ]
+# 
+# ============================================================================
+# Processing Results with JavaScript (Browser Console)
+# ============================================================================
+# 
+# After running the query in GraphiQL, open browser console and run:
+# 
+# // Parse the response (adjust variable name if needed)
+# const products = data.products.nodes;
+# 
+# // Filter products WITHOUT videos
+# const noVideos = products.filter(p => 
+#   !p.productVideos || 
+#   p.productVideos.length === 0 || 
+#   p.productVideos.every(cat => !cat.videos || cat.videos.length === 0)
+# );
+# 
+# // Display results
+# console.log(`Total products: ${products.length}`);
+# console.log(`Products without videos: ${noVideos.length}`);
+# 
+# // Export as CSV
+# const csv = 'ID,Name,Slug,SKU\n' + noVideos.map(p => 
+#   `${p.databaseId},"${p.name}",${p.slug},${p.sku || 'N/A'}`
+# ).join('\n');
+# console.log(csv);
+# 
+# // Copy to clipboard
+# copy(csv); // Works in Chrome/Edge DevTools
+# 
+# ============================================================================

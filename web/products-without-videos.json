@@ -1,9 +1,11 @@
 {
   "summary": {
-    "total": 356,
-    "withVideos": 2,
-    "withoutVideos": 354,
-    "scanDate": "2026-05-12T14:03:29.251Z"
+    "totalProducts": 356,
+    "withVideos": 45,
+    "withoutVideos": 311,
+    "videoEntriesInJson": 46,
+    "totalVideosInJson": 47,
+    "scanDate": "2026-05-12T14:08:00.770Z"
   },
   "productsWithoutVideos": [
     {
@@ -21,13 +23,6 @@
       "url": "https://bapi.com/product/wireless-digital-output-module"
     },
     {
-      "id": 420600,
-      "name": "Water Leak Detector with a Rope Sensor",
-      "slug": "water-leak-detector-with-a-rope-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/water-leak-detector-with-a-rope-sensor"
-    },
-    {
       "id": 419221,
       "name": "Blü-Test - Wireless Remote Temperature Piercing Tip",
       "slug": "blu-test-wireless-remote-temperature-piercing-tip",
@@ -40,13 +35,6 @@
       "slug": "pendant-temperature-and-humidity-sensor",
       "sku": "BA/THP[40 TO 120F]-H220-12'",
       "url": "https://bapi.com/product/pendant-temperature-and-humidity-sensor"
-    },
-    {
-      "id": 418359,
-      "name": "Digital CO and NO2 Sensor",
-      "slug": "digital-co-and-no2-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/digital-co-and-no2-sensor"
     },
     {
       "id": 418241,
@@ -266,13 +254,6 @@
       "url": "https://bapi.com/product/outside-air-rh-sensor-with-optional-temperature-sensor"
     },
     {
-      "id": 402797,
-      "name": "Particulate Sensor, Duct",
-      "slug": "particulate-sensor-duct",
-      "sku": "BA/PM-D-BB",
-      "url": "https://bapi.com/product/particulate-sensor-duct"
-    },
-    {
       "id": 401423,
       "name": "(ALC) Submersible Averaging Temperature Sensor, Flexible",
       "slug": "alc-submersible-averaging-temperature-sensor-flexible",
@@ -285,20 +266,6 @@
       "slug": "alc-submersible-averaging-temperature-transmitter-flexible",
       "sku": "N/A",
       "url": "https://bapi.com/product/alc-submersible-averaging-temperature-transmitter-flexible"
-    },
-    {
-      "id": 401403,
-      "name": "Submersible Averaging Temperature Transmitter, Flexible",
-      "slug": "submersible-averaging-temperature-transmitter-flexible",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/submersible-averaging-temperature-transmitter-flexible"
-    },
-    {
-      "id": 401330,
-      "name": "Submersible Averaging Temperature Sensor, Flexible",
-      "slug": "submersible-averaging-temperature-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/submersible-averaging-temperature-sensor"
     },
     {
       "id": 401238,
@@ -329,13 +296,6 @@
       "url": "https://bapi.com/product/reed-switches-for-the-door-monitor-alarm-dma"
     },
     {
-      "id": 400467,
-      "name": "Door Monitor Alarm (DMA)",
-      "slug": "door-monitor-alarm-dma",
-      "sku": "BA/DMA",
-      "url": "https://bapi.com/product/door-monitor-alarm-dma"
-    },
-    {
       "id": 400362,
       "name": "Particulate Sensor, BAPI-Stat “Quantum” Enclosure",
       "slug": "particulate-sensor-bapi-stat-quantum-enclosure",
@@ -362,13 +322,6 @@
       "slug": "carrying-case-for-blu-test-wireless-test-instruments",
       "sku": "BA/BT-HVAC-CASE",
       "url": "https://bapi.com/product/carrying-case-for-blu-test-wireless-test-instruments"
-    },
-    {
-      "id": 160078,
-      "name": "Surface Temperature Sensor",
-      "slug": "surface-temperature-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/surface-temperature-sensor"
     },
     {
       "id": 159974,
@@ -418,13 +371,6 @@
       "slug": "alc-room-pressure-pickup-ports",
       "sku": "N/A",
       "url": "https://bapi.com/product/alc-room-pressure-pickup-ports"
-    },
-    {
-      "id": 143762,
-      "name": "Room Pressure Pickup Ports",
-      "slug": "room-pressure-pickup-ports",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/room-pressure-pickup-ports"
     },
     {
       "id": 143192,
@@ -684,6 +630,13 @@
       "slug": "total-pressure-probes-and-tubing-for-beck-adjustable-pressure-switch",
       "sku": "BA/APSW-ACC",
       "url": "https://bapi.com/product/total-pressure-probes-and-tubing-for-beck-adjustable-pressure-switch"
+    },
+    {
+      "id": 57505,
+      "name": "Blü-Test - Wireless Temperature, Humidity and Pressure Test Instruments",
+      "slug": "blu-test-bluetooth-testing-probe-suite",
+      "sku": "N/A",
+      "url": "https://bapi.com/product/blu-test-bluetooth-testing-probe-suite"
     },
     {
       "id": 141705,
@@ -1169,13 +1122,6 @@
       "url": "https://bapi.com/product/ccga-h300-d-bb2"
     },
     {
-      "id": 139252,
-      "name": "(CCG) Differential Pressure Transmitter, Field Selected Range and Output",
-      "slug": "ccg-differential-pressure-transmitter-field-selected-range-and-output-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/ccg-differential-pressure-transmitter-field-selected-range-and-output-2"
-    },
-    {
       "id": 138912,
       "name": "Water Leak Detector with Attached or Remote Sensor",
       "slug": "water-leak-detector-in-a-bapi-box-2",
@@ -1218,20 +1164,6 @@
       "url": "https://bapi.com/product/duct-averaging-temperature-sensor-flexible-2"
     },
     {
-      "id": 136296,
-      "name": "Duct Temperature Transmitter",
-      "slug": "duct-temperature-transmitter-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/duct-temperature-transmitter-2"
-    },
-    {
-      "id": 136511,
-      "name": "Submersible Duct Temperature Sensor",
-      "slug": "submersible-duct-temperature-sensor-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/submersible-duct-temperature-sensor-2"
-    },
-    {
       "id": 136279,
       "name": "Duct Temperature Sensor",
       "slug": "duct-temperature-sensor-2",
@@ -1253,13 +1185,6 @@
       "url": "https://bapi.com/product/immersion-extreme-temperature-sensor-platinum-rtd-2"
     },
     {
-      "id": 136889,
-      "name": "Strap Temperature Sensor",
-      "slug": "strap-temperature-sensor-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/strap-temperature-sensor-2"
-    },
-    {
       "id": 136931,
       "name": "Outside Air Temperature Sensor",
       "slug": "outside-air-temperature-sensor-2",
@@ -1274,32 +1199,11 @@
       "url": "https://bapi.com/product/remote-temperature-sensor-2"
     },
     {
-      "id": 136959,
-      "name": "Remote Probe Temperature Sensor",
-      "slug": "remote-probe-temperature-sensor-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/remote-probe-temperature-sensor-2"
-    },
-    {
-      "id": 137236,
-      "name": "Thermobuffer Temperature Sensor",
-      "slug": "thermobuffer-temperature-sensor-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/thermobuffer-temperature-sensor-2"
-    },
-    {
       "id": 137205,
       "name": "Temperature Transmitter, Platinum RTD",
       "slug": "temperature-transmitter-platinum-rtd-2",
       "sku": "N/A",
       "url": "https://bapi.com/product/temperature-transmitter-platinum-rtd-2"
-    },
-    {
-      "id": 137285,
-      "name": "Thermobuffer Temperature Transmitter",
-      "slug": "thermobuffer-temperature-transmitter-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/thermobuffer-temperature-transmitter-2"
     },
     {
       "id": 137299,
@@ -1323,39 +1227,11 @@
       "url": "https://bapi.com/product/delta-style-temperature-sensor-without-display-optional-setpoint-and-override"
     },
     {
-      "id": 137504,
-      "name": "Button Sensor - Low Profile Room Temperature Sensor",
-      "slug": "button-sensor-low-profile-room-temperature-sensor-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/button-sensor-low-profile-room-temperature-sensor-2"
-    },
-    {
       "id": 137579,
       "name": "Wall Plate Temperature Sensor with Optional Override Pushbutton",
       "slug": "wall-plate-temperature-sensor-with-optional-override-pushbutton",
       "sku": "N/A",
       "url": "https://bapi.com/product/wall-plate-temperature-sensor-with-optional-override-pushbutton"
-    },
-    {
-      "id": 137612,
-      "name": "Wall Plate Temperature Sensor with Rotary Setpoint",
-      "slug": "wall-plate-temperature-sensor-with-rotary-setpoint-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/wall-plate-temperature-sensor-with-rotary-setpoint-2"
-    },
-    {
-      "id": 137636,
-      "name": "Duct Humidity (%RH) Sensor with Optional Temperature Sensor",
-      "slug": "duct-humidity-rh-sensor-with-optional-temperature-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/duct-humidity-rh-sensor-with-optional-temperature-sensor"
-    },
-    {
-      "id": 137652,
-      "name": "Duct Humidity (%RH) Sensor with Temperature Transmitter",
-      "slug": "duct-humidity-rh-sensor-with-temperature-transmitter",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/duct-humidity-rh-sensor-with-temperature-transmitter"
     },
     {
       "id": 137685,
@@ -1386,11 +1262,11 @@
       "url": "https://bapi.com/product/ez-differential-pressure-sensor-field-selected-range-and-output"
     },
     {
-      "id": 137952,
-      "name": "Fixed Range Pressure (FRP) Differential Pressure Sensor",
-      "slug": "fixed-range-pressure-frp-differential-pressure-sensor",
+      "id": 137933,
+      "name": "ZPM - Differential Pressure Sensor, Field Selected Range and Output",
+      "slug": "zone-pressure-multi-sensor-zpm-differential-pressure-sensor-field-selected-range-and-output",
       "sku": "N/A",
-      "url": "https://bapi.com/product/fixed-range-pressure-frp-differential-pressure-sensor"
+      "url": "https://bapi.com/product/zone-pressure-multi-sensor-zpm-differential-pressure-sensor-field-selected-range-and-output"
     },
     {
       "id": 138082,
@@ -1456,13 +1332,6 @@
       "url": "https://bapi.com/product/co2-24-7-bapi-stat-quantum-carbon-dioxide-sensor-constant-occupancy"
     },
     {
-      "id": 138079,
-      "name": "CO - Duct and Rough Service Carbon Monoxide Sensor",
-      "slug": "co-duct-and-rough-service-carbon-monoxide-sensor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/co-duct-and-rough-service-carbon-monoxide-sensor"
-    },
-    {
       "id": 138059,
       "name": "CO2 - \"24/7\" Duct and Rough Service Carbon Dioxide Sensor, Constant Occupancy",
       "slug": "co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy",
@@ -1526,27 +1395,6 @@
       "url": "https://bapi.com/product/bapi-stat-quantum-temperature-sensor-with-display-and-slider-setpoint"
     },
     {
-      "id": 137113,
-      "name": "Concave Remote Probe Temperature Transmitter with Colored Cable",
-      "slug": "concave-remote-probe-temperature-transmitter-with-colored-cable",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/concave-remote-probe-temperature-transmitter-with-colored-cable"
-    },
-    {
-      "id": 137051,
-      "name": "Concave Remote Probe Temperature Sensors with Colored Cables",
-      "slug": "concave-remote-probe-temperature-sensors-with-colored-cable",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/concave-remote-probe-temperature-sensors-with-colored-cable"
-    },
-    {
-      "id": 136996,
-      "name": "Remote Probe Temperature Transmitter",
-      "slug": "remote-probe-temperature-transmitter-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/remote-probe-temperature-transmitter-2"
-    },
-    {
       "id": 136936,
       "name": "Outside Air Temperature Transmitter",
       "slug": "outside-air-temperature-transmitter-2",
@@ -1554,25 +1402,11 @@
       "url": "https://bapi.com/product/outside-air-temperature-transmitter-2"
     },
     {
-      "id": 136906,
-      "name": "Strap Temperature Transmitter",
-      "slug": "strap-temperature-transmitter-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/strap-temperature-transmitter-2"
-    },
-    {
       "id": 136861,
       "name": "Remote Probe Extreme Temperature Sensor, Platinum RTD",
       "slug": "remote-probe-extreme-temperature-sensor-platinum-rtd-2",
       "sku": "N/A",
       "url": "https://bapi.com/product/remote-probe-extreme-temperature-sensor-platinum-rtd-2"
-    },
-    {
-      "id": 136803,
-      "name": "Immersion Temperature Transmitter, Stainless Steel Fitting",
-      "slug": "immersion-temperature-transmitter-stainless-steel-fitting-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/immersion-temperature-transmitter-stainless-steel-fitting-2"
     },
     {
       "id": 136754,
@@ -1594,41 +1428,6 @@
       "slug": "immersion-temperature-sensor-nylon-fitting-2",
       "sku": "N/A",
       "url": "https://bapi.com/product/immersion-temperature-sensor-nylon-fitting-2"
-    },
-    {
-      "id": 136548,
-      "name": "Submersible Duct Temperature Transmitter",
-      "slug": "submersible-duct-temperature-transmitter-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/submersible-duct-temperature-transmitter-2"
-    },
-    {
-      "id": 136462,
-      "name": "Duct Averaging Temperature Transmitter, Rigid",
-      "slug": "duct-averaging-temperature-transmitter-rigid-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/duct-averaging-temperature-transmitter-rigid-2"
-    },
-    {
-      "id": 136388,
-      "name": "Duct Averaging Temperature Sensor, Rigid",
-      "slug": "duct-averaging-temperature-sensor-rigid-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/duct-averaging-temperature-sensor-rigid-2"
-    },
-    {
-      "id": 135494,
-      "name": "Weather Shade Kit for Outside Air Sensors",
-      "slug": "weather-shade-kit-for-outside-air-sensors",
-      "sku": "BA/WSK",
-      "url": "https://bapi.com/product/weather-shade-kit-for-outside-air-sensors"
-    },
-    {
-      "id": 135485,
-      "name": "Pierceable Knockout Plugs for Enclosure Ports (bag of 100)",
-      "slug": "pierceable-knockout-plugs-for-enclosure-ports-bag-of-100",
-      "sku": "BA/PKP-100",
-      "url": "https://bapi.com/product/pierceable-knockout-plugs-for-enclosure-ports-bag-of-100"
     },
     {
       "id": 135475,
@@ -1673,13 +1472,6 @@
       "url": "https://bapi.com/product/outdoor-light-level-sensor-2"
     },
     {
-      "id": 135432,
-      "name": "Adaptor Plates for Wall Sensors",
-      "slug": "adaptor-plates-for-wall-sensors-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/adaptor-plates-for-wall-sensors-2"
-    },
-    {
       "id": 135430,
       "name": "Clean-Cut - Knockout Cutting Tool for BAPI-Box Enclosures",
       "slug": "clean-cut-knockout-cutting-bits-for-bapi-box-enclosures-2",
@@ -1708,20 +1500,6 @@
       "url": "https://bapi.com/product/pmpb5-pulse-meter-pulse-buffer-2"
     },
     {
-      "id": 135415,
-      "name": "Flexible Probe Brackets (pack of 50)",
-      "slug": "flexible-probe-brackets-pack-of-50",
-      "sku": "BA/FPB-50",
-      "url": "https://bapi.com/product/flexible-probe-brackets-pack-of-50"
-    },
-    {
-      "id": 135412,
-      "name": "BAPI-Guard - Thermostat Guard",
-      "slug": "bapi-guard-thermostat-guard-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/bapi-guard-thermostat-guard-2"
-    },
-    {
       "id": 135409,
       "name": "PS17RF, PS18RF and PS19RF - Power Supplies",
       "slug": "ps17-and-ps17cb-power-supplies-2",
@@ -1748,13 +1526,6 @@
       "slug": "vc350a-ac-to-dc-voltage-converter-350-ma-2",
       "sku": "N/A",
       "url": "https://bapi.com/product/vc350a-ac-to-dc-voltage-converter-350-ma-2"
-    },
-    {
-      "id": 135373,
-      "name": "VC350A-EZ – AC to DC Voltage Converter, 350 mA EZ Mount",
-      "slug": "vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2"
     },
     {
       "id": 135372,
@@ -1811,13 +1582,6 @@
       "slug": "ucrb2-universal-controller-relay-board",
       "sku": "BA/UCRB2",
       "url": "https://bapi.com/product/ucrb2-universal-controller-relay-board"
-    },
-    {
-      "id": 51121,
-      "name": "SOX - RS-485 Fiber Optic Transceiver (for single-mode fiber cable)",
-      "slug": "sox-rs-485-fiber-optic-transceiver-single-mode",
-      "sku": "BA/SOX",
-      "url": "https://bapi.com/product/sox-rs-485-fiber-optic-transceiver-single-mode"
     },
     {
       "id": 51108,
@@ -2275,13 +2039,6 @@
       "url": "https://bapi.com/product/room-pressure-pickup-ports-with-temperature-sensor"
     },
     {
-      "id": 50156,
-      "name": "Refrigerant Leak Detector",
-      "slug": "refrigerant-leak-detector-and-transmitter",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/refrigerant-leak-detector-and-transmitter"
-    },
-    {
       "id": 50149,
       "name": "Security Screws and Spanner Bit",
       "slug": "security-screws",
@@ -2329,20 +2086,6 @@
       "slug": "ccga10k-2-o-wp",
       "sku": "N/A",
       "url": "https://bapi.com/product/ccga10k-2-o-wp"
-    },
-    {
-      "id": 50128,
-      "name": "FOX - RS-485 to Fiber Optic Transceiver (standalone or kit)",
-      "slug": "fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit"
-    },
-    {
-      "id": 50127,
-      "name": "RPTR - RS-485 Repeater (standalone or kit)",
-      "slug": "rptr-rs-485-repeater-standalone-or-kit",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/rptr-rs-485-repeater-standalone-or-kit"
     },
     {
       "id": 50126,
@@ -2401,13 +2144,6 @@
       "url": "https://bapi.com/product/rbp-communications-repeater-backplane-4-place"
     },
     {
-      "id": 50114,
-      "name": "3324VC - Voltage Converter, 1.5 Amp",
-      "slug": "3312vc-3324vc-voltage-converters-eta-line-1-2-amps",
-      "sku": "BA/3324VC",
-      "url": "https://bapi.com/product/3312vc-3324vc-voltage-converters-eta-line-1-2-amps"
-    },
-    {
       "id": 50113,
       "name": "TB18 - Pluggable Terminal Blocks",
       "slug": "tb18-terminal-block-pluggable",
@@ -2422,25 +2158,11 @@
       "url": "https://bapi.com/product/comblk-communications-cable-terminal-block"
     },
     {
-      "id": 50105,
-      "name": "Backplanes and Vertical Backplane for ETA Devices",
-      "slug": "backplanes-for-eta-interface-devices",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/backplanes-for-eta-interface-devices"
-    },
-    {
       "id": 50104,
       "name": "TURB - Terminal Unit Relay Board",
       "slug": "turb-terminal-unit-relay-board",
       "sku": "N/A",
       "url": "https://bapi.com/product/turb-terminal-unit-relay-board"
-    },
-    {
-      "id": 50101,
-      "name": "DS6R - Dry Switch Monitor",
-      "slug": "ds6r-dry-switch-monitor",
-      "sku": "N/A",
-      "url": "https://bapi.com/product/ds6r-dry-switch-monitor"
     },
     {
       "id": 50100,
@@ -2457,10 +2179,356 @@
       "url": "https://bapi.com/product/sq4-sequencer-4-step"
     },
     {
+      "id": 50069,
+      "name": "CDSP2 - Carbon Dioxide Sensor Power Supply",
+      "slug": "cdsp2-carbon-dioxide-sensor-power-supply",
+      "sku": "BA/CDSP2",
+      "url": "https://bapi.com/product/cdsp2-carbon-dioxide-sensor-power-supply"
+    }
+  ],
+  "productsWithVideos": [
+    {
+      "id": 420600,
+      "name": "Water Leak Detector with a Rope Sensor",
+      "slug": "water-leak-detector-with-a-rope-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/water-leak-detector-with-a-rope-sensor"
+    },
+    {
+      "id": 418359,
+      "name": "Digital CO and NO2 Sensor",
+      "slug": "digital-co-and-no2-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/digital-co-and-no2-sensor"
+    },
+    {
+      "id": 402797,
+      "name": "Particulate Sensor, Duct",
+      "slug": "particulate-sensor-duct",
+      "sku": "BA/PM-D-BB",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/particulate-sensor-duct"
+    },
+    {
+      "id": 401403,
+      "name": "Submersible Averaging Temperature Transmitter, Flexible",
+      "slug": "submersible-averaging-temperature-transmitter-flexible",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/submersible-averaging-temperature-transmitter-flexible"
+    },
+    {
+      "id": 401330,
+      "name": "Submersible Averaging Temperature Sensor, Flexible",
+      "slug": "submersible-averaging-temperature-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/submersible-averaging-temperature-sensor"
+    },
+    {
+      "id": 400467,
+      "name": "Door Monitor Alarm (DMA)",
+      "slug": "door-monitor-alarm-dma",
+      "sku": "BA/DMA",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/door-monitor-alarm-dma"
+    },
+    {
+      "id": 160078,
+      "name": "Surface Temperature Sensor",
+      "slug": "surface-temperature-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/surface-temperature-sensor"
+    },
+    {
+      "id": 143762,
+      "name": "Room Pressure Pickup Ports",
+      "slug": "room-pressure-pickup-ports",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/room-pressure-pickup-ports"
+    },
+    {
+      "id": 139252,
+      "name": "(CCG) Differential Pressure Transmitter, Field Selected Range and Output",
+      "slug": "ccg-differential-pressure-transmitter-field-selected-range-and-output-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/ccg-differential-pressure-transmitter-field-selected-range-and-output-2"
+    },
+    {
+      "id": 136296,
+      "name": "Duct Temperature Transmitter",
+      "slug": "duct-temperature-transmitter-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/duct-temperature-transmitter-2"
+    },
+    {
+      "id": 136511,
+      "name": "Submersible Duct Temperature Sensor",
+      "slug": "submersible-duct-temperature-sensor-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/submersible-duct-temperature-sensor-2"
+    },
+    {
+      "id": 136889,
+      "name": "Strap Temperature Sensor",
+      "slug": "strap-temperature-sensor-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/strap-temperature-sensor-2"
+    },
+    {
+      "id": 136959,
+      "name": "Remote Probe Temperature Sensor",
+      "slug": "remote-probe-temperature-sensor-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/remote-probe-temperature-sensor-2"
+    },
+    {
+      "id": 137236,
+      "name": "Thermobuffer Temperature Sensor",
+      "slug": "thermobuffer-temperature-sensor-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/thermobuffer-temperature-sensor-2"
+    },
+    {
+      "id": 137285,
+      "name": "Thermobuffer Temperature Transmitter",
+      "slug": "thermobuffer-temperature-transmitter-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/thermobuffer-temperature-transmitter-2"
+    },
+    {
+      "id": 137504,
+      "name": "Button Sensor - Low Profile Room Temperature Sensor",
+      "slug": "button-sensor-low-profile-room-temperature-sensor-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/button-sensor-low-profile-room-temperature-sensor-2"
+    },
+    {
+      "id": 137612,
+      "name": "Wall Plate Temperature Sensor with Rotary Setpoint",
+      "slug": "wall-plate-temperature-sensor-with-rotary-setpoint-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/wall-plate-temperature-sensor-with-rotary-setpoint-2"
+    },
+    {
+      "id": 137636,
+      "name": "Duct Humidity (%RH) Sensor with Optional Temperature Sensor",
+      "slug": "duct-humidity-rh-sensor-with-optional-temperature-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/duct-humidity-rh-sensor-with-optional-temperature-sensor"
+    },
+    {
+      "id": 137652,
+      "name": "Duct Humidity (%RH) Sensor with Temperature Transmitter",
+      "slug": "duct-humidity-rh-sensor-with-temperature-transmitter",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/duct-humidity-rh-sensor-with-temperature-transmitter"
+    },
+    {
+      "id": 137952,
+      "name": "Fixed Range Pressure (FRP) Differential Pressure Sensor",
+      "slug": "fixed-range-pressure-frp-differential-pressure-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/fixed-range-pressure-frp-differential-pressure-sensor"
+    },
+    {
+      "id": 138079,
+      "name": "CO - Duct and Rough Service Carbon Monoxide Sensor",
+      "slug": "co-duct-and-rough-service-carbon-monoxide-sensor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/co-duct-and-rough-service-carbon-monoxide-sensor"
+    },
+    {
+      "id": 137113,
+      "name": "Concave Remote Probe Temperature Transmitter with Colored Cable",
+      "slug": "concave-remote-probe-temperature-transmitter-with-colored-cable",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/concave-remote-probe-temperature-transmitter-with-colored-cable"
+    },
+    {
+      "id": 137051,
+      "name": "Concave Remote Probe Temperature Sensors with Colored Cables",
+      "slug": "concave-remote-probe-temperature-sensors-with-colored-cable",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/concave-remote-probe-temperature-sensors-with-colored-cable"
+    },
+    {
+      "id": 136996,
+      "name": "Remote Probe Temperature Transmitter",
+      "slug": "remote-probe-temperature-transmitter-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/remote-probe-temperature-transmitter-2"
+    },
+    {
+      "id": 136906,
+      "name": "Strap Temperature Transmitter",
+      "slug": "strap-temperature-transmitter-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/strap-temperature-transmitter-2"
+    },
+    {
+      "id": 136803,
+      "name": "Immersion Temperature Transmitter, Stainless Steel Fitting",
+      "slug": "immersion-temperature-transmitter-stainless-steel-fitting-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/immersion-temperature-transmitter-stainless-steel-fitting-2"
+    },
+    {
+      "id": 136548,
+      "name": "Submersible Duct Temperature Transmitter",
+      "slug": "submersible-duct-temperature-transmitter-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/submersible-duct-temperature-transmitter-2"
+    },
+    {
+      "id": 136462,
+      "name": "Duct Averaging Temperature Transmitter, Rigid",
+      "slug": "duct-averaging-temperature-transmitter-rigid-2",
+      "sku": "N/A",
+      "videoCount": 2,
+      "url": "https://bapi.com/product/duct-averaging-temperature-transmitter-rigid-2"
+    },
+    {
+      "id": 136388,
+      "name": "Duct Averaging Temperature Sensor, Rigid",
+      "slug": "duct-averaging-temperature-sensor-rigid-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/duct-averaging-temperature-sensor-rigid-2"
+    },
+    {
+      "id": 135494,
+      "name": "Weather Shade Kit for Outside Air Sensors",
+      "slug": "weather-shade-kit-for-outside-air-sensors",
+      "sku": "BA/WSK",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/weather-shade-kit-for-outside-air-sensors"
+    },
+    {
+      "id": 135485,
+      "name": "Pierceable Knockout Plugs for Enclosure Ports (bag of 100)",
+      "slug": "pierceable-knockout-plugs-for-enclosure-ports-bag-of-100",
+      "sku": "BA/PKP-100",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/pierceable-knockout-plugs-for-enclosure-ports-bag-of-100"
+    },
+    {
+      "id": 135432,
+      "name": "Adaptor Plates for Wall Sensors",
+      "slug": "adaptor-plates-for-wall-sensors-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/adaptor-plates-for-wall-sensors-2"
+    },
+    {
+      "id": 135415,
+      "name": "Flexible Probe Brackets (pack of 50)",
+      "slug": "flexible-probe-brackets-pack-of-50",
+      "sku": "BA/FPB-50",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/flexible-probe-brackets-pack-of-50"
+    },
+    {
+      "id": 135412,
+      "name": "BAPI-Guard - Thermostat Guard",
+      "slug": "bapi-guard-thermostat-guard-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/bapi-guard-thermostat-guard-2"
+    },
+    {
+      "id": 135373,
+      "name": "VC350A-EZ – AC to DC Voltage Converter, 350 mA EZ Mount",
+      "slug": "vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2"
+    },
+    {
+      "id": 51121,
+      "name": "SOX - RS-485 Fiber Optic Transceiver (for single-mode fiber cable)",
+      "slug": "sox-rs-485-fiber-optic-transceiver-single-mode",
+      "sku": "BA/SOX",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/sox-rs-485-fiber-optic-transceiver-single-mode"
+    },
+    {
+      "id": 50156,
+      "name": "Refrigerant Leak Detector",
+      "slug": "refrigerant-leak-detector-and-transmitter",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/refrigerant-leak-detector-and-transmitter"
+    },
+    {
+      "id": 50128,
+      "name": "FOX - RS-485 to Fiber Optic Transceiver (standalone or kit)",
+      "slug": "fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/fox-rs-485-to-fiber-optic-transceiver-standalone-or-kit"
+    },
+    {
+      "id": 50127,
+      "name": "RPTR - RS-485 Repeater (standalone or kit)",
+      "slug": "rptr-rs-485-repeater-standalone-or-kit",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/rptr-rs-485-repeater-standalone-or-kit"
+    },
+    {
+      "id": 50114,
+      "name": "3324VC - Voltage Converter, 1.5 Amp",
+      "slug": "3312vc-3324vc-voltage-converters-eta-line-1-2-amps",
+      "sku": "BA/3324VC",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/3312vc-3324vc-voltage-converters-eta-line-1-2-amps"
+    },
+    {
+      "id": 50105,
+      "name": "Backplanes and Vertical Backplane for ETA Devices",
+      "slug": "backplanes-for-eta-interface-devices",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/backplanes-for-eta-interface-devices"
+    },
+    {
+      "id": 50101,
+      "name": "DS6R - Dry Switch Monitor",
+      "slug": "ds6r-dry-switch-monitor",
+      "sku": "N/A",
+      "videoCount": 1,
+      "url": "https://bapi.com/product/ds6r-dry-switch-monitor"
+    },
+    {
       "id": 50096,
       "name": "EA2 - Actuator Interface, Modulating",
       "slug": "ea2-actuator-interface-modulating",
       "sku": "BA/EA2",
+      "videoCount": 1,
       "url": "https://bapi.com/product/ea2-actuator-interface-modulating"
     },
     {
@@ -2468,6 +2536,7 @@
       "name": "EA1 - Actuator Interface, 2 Position",
       "slug": "ea1-actuator-interface-2-position",
       "sku": "BA/EA1",
+      "videoCount": 1,
       "url": "https://bapi.com/product/ea1-actuator-interface-2-position"
     },
     {
@@ -2475,14 +2544,8 @@
       "name": "DS8 - Discrete Summary Module, 8 Input",
       "slug": "ds8-discrete-summary-module-8-input",
       "sku": "BA/DS8",
+      "videoCount": 1,
       "url": "https://bapi.com/product/ds8-discrete-summary-module-8-input"
-    },
-    {
-      "id": 50069,
-      "name": "CDSP2 - Carbon Dioxide Sensor Power Supply",
-      "slug": "cdsp2-carbon-dioxide-sensor-power-supply",
-      "sku": "BA/CDSP2",
-      "url": "https://bapi.com/product/cdsp2-carbon-dioxide-sensor-power-supply"
     }
   ]
 }

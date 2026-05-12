@@ -49,6 +49,16 @@
       "category": "Product Demo"
     }
   ],
+  "57266": [
+    {
+      "id": "qkjD2IebyQE",
+      "title": "BAPI VOC Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=qkjD2IebyQE",
+      "publishedAt": "4/30/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
   "57505": [
     {
       "id": "09iowt2yVME",
@@ -56,6 +66,26 @@
       "url": "https://www.youtube.com/watch?v=09iowt2yVME",
       "publishedAt": "4/26/2024",
       "duration": "PT57S",
+      "category": "Product Demo"
+    }
+  ],
+  "62470": [
+    {
+      "id": "qkjD2IebyQE",
+      "title": "BAPI VOC Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=qkjD2IebyQE",
+      "publishedAt": "4/30/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
+  "135348": [
+    {
+      "id": "qkjD2IebyQE",
+      "title": "BAPI VOC Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=qkjD2IebyQE",
+      "publishedAt": "4/30/2024",
+      "duration": "PT38S",
       "category": "Product Demo"
     }
   ],
@@ -336,6 +366,86 @@
     }
   ],
   "138082": [
+    {
+      "id": "qkjD2IebyQE",
+      "title": "BAPI VOC Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=qkjD2IebyQE",
+      "publishedAt": "4/30/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
+  "138085": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138088": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138099": [
+    {
+      "id": "qkjD2IebyQE",
+      "title": "BAPI VOC Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=qkjD2IebyQE",
+      "publishedAt": "4/30/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
+  "138164": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138190": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138215": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138346": [
+    {
+      "id": "K_zzUrRoKZg",
+      "title": "BAPI CO2 Quantum Sensors",
+      "url": "https://www.youtube.com/watch?v=K_zzUrRoKZg",
+      "publishedAt": "4/30/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "138447": [
     {
       "id": "qkjD2IebyQE",
       "title": "BAPI VOC Quantum Sensors",
@@ -740,6 +850,15 @@
       "duration": ""
     }
   ],
+  "BAPI Duct Humidity Sensors": [
+    {
+      "id": "",
+      "title": "",
+      "url": "",
+      "publishedAt": "",
+      "duration": ""
+    }
+  ],
   "BA/WSK": [
     {
       "id": "Ea7zQ5XaiZw",
@@ -748,6 +867,33 @@
       "publishedAt": "5/2/2024",
       "duration": "PT29S",
       "category": "Product Demo"
+    }
+  ],
+  "BAPI CO2 Quantum Sensors": [
+    {
+      "id": "",
+      "title": "",
+      "url": "",
+      "publishedAt": "",
+      "duration": ""
+    }
+  ],
+  "BAPI VOC Quantum Sensors": [
+    {
+      "id": "",
+      "title": "",
+      "url": "",
+      "publishedAt": "",
+      "duration": ""
+    }
+  ],
+  "BAPI Pressure Sensors": [
+    {
+      "id": "",
+      "title": "",
+      "url": "",
+      "publishedAt": "",
+      "duration": ""
     }
   ]
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env tsx
 /**
  * Scan Products Without Videos (Using JSON Data)
  * 
@@ -215,7 +215,7 @@ async function main() {
       console.log(`📄 JSON report saved to: ${outputPath}\n`);
 
     } else if (OUTPUT_FORMAT === 'csv') {
-      const outputPath = path.join(process.cwd(), 'products-without-videos.csv');
+      const outputPath = path.join(process.cwd(), 'products-video-status.csv');
       const csvHeader = 'Database ID,Name,Slug,SKU,Has Videos,Video Count,URL\n';
       const csvRows = allProducts.map(p => {
         const hasVids = hasVideos(p);

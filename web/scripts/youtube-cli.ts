@@ -370,6 +370,7 @@ async function generateJSON(options: CLIOptions) {
   const productVideos = new Map<string, ProductVideo[]>();
   let mappedCount = 0;
   let skippedCount = 0;
+  let duplicateCount = 0;
 
   for (const line of lines) {
     if (!line.trim()) continue;
@@ -387,8 +388,8 @@ async function generateJSON(options: CLIOptions) {
     
     const [sku, videoId, title, url, publishedDate, duration, category] = fields;
     
-    // Skip rows without SKU/ID
-    if (!sku || sku.trim() === '') {
+    // Skip rows without SKU/ID or videoId (section headers, incomplete rows)
+    if (!sku || sku.trim() === '' || !videoId || videoId.trim() === '') {
       skippedCount++;
       continue;
     }
@@ -399,7 +400,16 @@ async function generateJSON(options: CLIOptions) {
       productVideos.set(productKey, []);
     }
     
-    productVideos.get(productKey)!.push({
+    // Check for duplicate video for this product (by videoId)
+    const existingVideos = productVideos.get(productKey)!;
+    const isDuplicate = existingVideos.some(v => v.id === videoId);
+    
+    if (isDuplicate) {
+      duplicateCount++;
+      continue;
+    }
+    
+    existingVideos.push({
       id: videoId,
       title,
       url,
@@ -414,7 +424,10 @@ async function generateJSON(options: CLIOptions) {
   console.log(`   📊 Statistics:`);
   console.log(`      Total mapped videos: ${mappedCount}`);
   console.log(`      Unique products: ${productVideos.size}`);
-  console.log(`      Skipped (no SKU): ${skippedCount}`);
+  console.log(`      Skipped (no SKU/videoId): ${skippedCount}`);
+  if (duplicateCount > 0) {
+    console.log(`      Duplicates removed: ${duplicateCount}`);
+  }
   console.log('');
 
   // Convert Map to object for JSON

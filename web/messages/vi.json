@@ -480,8 +480,9 @@
     },
     "certifications": {
       "title": "Chứng nhận",
-      "bacnet": "Chứng nhận BACnet B-ASC",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "Đăng ký UL",
       "madeInUsa": "Sản xuất tại Hoa Kỳ"
     },

@@ -478,8 +478,9 @@
     },
     "certifications": {
       "title": "प्रमाणीकरण",
-      "bacnet": "BACnet B-ASC प्रमाणित",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "UL सूचीबद्ध",
       "madeInUsa": "अमेरिका में बना"
     },

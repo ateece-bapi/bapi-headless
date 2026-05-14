@@ -292,8 +292,9 @@
     },
     "certifications": {
       "title": "Certifications",
-      "bacnet": "Certifié BACnet B-ASC",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "Répertorié UL",
       "madeInUsa": "Fabriqué aux États-Unis"
     },

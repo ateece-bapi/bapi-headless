@@ -1,10 +1,36 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** April 16, 2026 (Evening)  
-**Launch Date:** May 8, 2026 (22 days remaining)  
-**Current Phase:** Phase 1 Development - Stakeholder Testing Period  
-**Testing Period:** 3 weeks (Sales Manager, Product Manager, Customer Service, Select Customers)  
-**Launch Readiness:** 100% (Variation SKU search + Recently Viewed fix deployed to production)
+**Updated:** May 14, 2026  
+**Launch Date:** May 8, 2026 (LAUNCHED - 6 days post-launch)  
+**Current Phase:** Phase 1 Complete - Production Live  
+**Status:** Post-launch feedback implementation
+
+---
+
+## 🔧 MAY 14, 2026 - CERTIFICATION SECTION FEEDBACK FIXES
+
+**Branch:** `fix/feedback-items`  
+**Status:** ✅ IN PROGRESS  
+**Context:** Post-launch feedback on certifications section in footer
+
+### ✅ COMPLETED
+
+1. ✅ **BACnet Text Update** - Removed "Certified" from "BACnet B-ASC Certified" → "BACnet B-ASC"
+2. ✅ **CE Certification Added** - Added "CE EN 61326-1:2013 EMC" to certifications
+3. ✅ **5 Year Warranty Logo Removed** - Not a certification, removed from section
+4. ✅ **Made in USA Removed** - Text removed (Poland & Vietnam manufacturing now active)
+5. ✅ **Translation Updates** - All 11 locales updated (en, de, fr, es, ja, zh, ar, hi, vi, th, pl)
+
+### 🚧 PENDING
+
+- [ ] **FCC Logo Image** - Add `/web/public/images/logos/FCC_Logo.webp` image file
+  - Footer.tsx already updated with FCC logo reference
+  - Placeholder comment added: `TODO: Add FCC logo image file to /images/logos/FCC_Logo.webp`
+  - Need to source FCC certification logo in WebP format
+
+**Files Changed:**
+- `web/src/components/layout/Footer.tsx` - Updated certifications logos and text
+- `web/messages/*.json` - 11 locale files updated with new certification keys
 
 ---
 

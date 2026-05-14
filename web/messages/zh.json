@@ -292,8 +292,9 @@
     },
     "certifications": {
       "title": "认证",
-      "bacnet": "BACnet B-ASC认证",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "UL列表",
       "madeInUsa": "美国制造"
     },

@@ -248,13 +248,6 @@ const Footer: React.FC = () => {
               {/* Logo Badges */}
               <div className="flex flex-wrap items-center gap-4">
                 <Image
-                  src="/images/logos/5_year_warranty_C92M55.webp"
-                  alt="5 Year Warranty"
-                  width={60}
-                  height={48}
-                  className="h-12 w-auto transition-transform duration-300 hover:scale-110"
-                />
-                <Image
                   src="/images/logos/NSF_Logo.webp"
                   alt="NSF Certified"
                   width={50}
@@ -268,13 +261,21 @@ const Footer: React.FC = () => {
                   height={40}
                   className="h-10 w-auto transition-transform duration-300 hover:scale-110"
                 />
+                {/* TODO: Add FCC logo image file to /images/logos/FCC_Logo.webp */}
+                <Image
+                  src="/images/logos/FCC_Logo.webp"
+                  alt="FCC Certified"
+                  width={50}
+                  height={40}
+                  className="h-10 w-auto transition-transform duration-300 hover:scale-110"
+                />
               </div>
 
               {/* Text Certifications */}
               <div className="space-y-1.5 text-sm font-medium text-neutral-700">
                 <p className="font-semibold text-neutral-900">{t('certifications.bacnet')}</p>
                 <p className="font-semibold text-neutral-900">{t('certifications.iso')}</p>
-                <p className="text-neutral-700">{t('certifications.madeInUsa')}</p>
+                <p className="font-semibold text-neutral-900">{t('certifications.ce')}</p>
               </div>
             </div>
           </div>

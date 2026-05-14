@@ -260,7 +260,7 @@ export default function ProductGallery({ images, productName, variation, variati
         {/* Main Image */}
         <div
           data-testid="main-image-container"
-          className="group relative flex h-[400px] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white md:h-[450px]"
+          className="group relative flex h-[300px] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white md:h-[350px]"
           onClick={() => openLightbox(selectedIndex)}
           aria-label={`View ${productName} in full screen`}
         >

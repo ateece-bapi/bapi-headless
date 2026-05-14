@@ -127,7 +127,7 @@ async function fetchAllProducts(client: GraphQLClient): Promise<Product[]> {
     pageCount++;
     console.log(`Fetching page ${pageCount}...`);
 
-    const response = await client.request<ProductsResponse>(PRODUCTS_QUERY, {
+    const response: ProductsResponse = await client.request<ProductsResponse>(PRODUCTS_QUERY, {
       first: BATCH_SIZE,
       after,
     });

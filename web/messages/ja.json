@@ -239,41 +239,38 @@
       "products": {
         "title": "製品",
         "links": {
-          "allSensors": "全センサー",
-          "wireless": "ワイヤレスモニタリング",
-          "testInstruments": "テスト機器",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "空気質センサー",
-          "accessories": "アクセサリー",
+          "wireless": "ワイヤレスモニタリング",
           "browseCatalog": "カタログを閲覧"
         }
       },
       "resources": {
         "title": "リソース",
         "links": {
-          "datasheets": "テクニカルデータシート",
-          "installation": "設置ガイド",
-          "applicationNotes": "アプリケーションノート",
-          "videos": "ビデオライブラリー",
-          "caseStudies": "事例研究"
-        }
-      },
-      "company": {
-        "title": "会社",
-        "links": {
-          "mission": "ミッションと価値観",
-          "whyBapi": "なぜBAPIか",
-          "news": "ニュース",
-          "careers": "採用情報",
-          "contact": "お問い合わせ"
+          "instructionsManuals": "取扱説明書とマニュアル",
+          "applicationNotes": "アプリケーションノート"
         }
       },
       "support": {
         "title": "サポート",
         "links": {
           "technical": "テクニカルサポート",
+          "whereToBuy": "販売店ネットワーク",
           "selector": "製品セレクター",
-          "crossReference": "クロスリファレンス",
-          "distributorNetwork": "販売店ネットワーク"
+          "crossReference": "クロスリファレンス"
+        }
+      },
+      "company": {
+        "title": "会社",
+        "links": {
+          "whyBapi": "なぜBAPIか",
+          "mission": "ミッションと価値観",
+          "news": "ニュース",
+          "careers": "採用情報",
+          "contact": "お問い合わせ"
         }
       }
     },
@@ -313,6 +310,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "フォローする"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "region": {

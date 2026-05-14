@@ -11,65 +11,44 @@ const getFooterSections = (t: any) => [
   {
     titleKey: 'sections.products.title' as const,
     links: [
-      { labelKey: 'sections.products.links.allSensors' as const, href: '/sensors' },
-      { labelKey: 'sections.products.links.wireless' as const, href: '/wireless' },
-      { labelKey: 'sections.products.links.testInstruments' as const, href: '/test-instruments' },
+      { labelKey: 'sections.products.links.temperature' as const, href: '/products/temperature-sensors' },
+      { labelKey: 'sections.products.links.humidity' as const, href: '/products/humidity-sensors' },
+      { labelKey: 'sections.products.links.pressure' as const, href: '/products/pressure-sensors' },
       { labelKey: 'sections.products.links.airQuality' as const, href: '/air-quality' },
-      { labelKey: 'sections.products.links.accessories' as const, href: '/accessories' },
+      { labelKey: 'sections.products.links.wireless' as const, href: '/wireless' },
       { labelKey: 'sections.products.links.browseCatalog' as const, href: '/products' },
     ],
   },
-  // PHASE 2: Solutions section deferred to Phase 2 (April 10, 2026 deadline)
-  // Awaiting content creation from marketing team
-  // {
-  //   titleKey: 'sections.solutions.title' as const,
-  //   links: [
-  //     { labelKey: 'sections.solutions.links.healthcare' as const, href: '/solutions/healthcare' },
-  //     { labelKey: 'sections.solutions.links.datacenters' as const, href: '/solutions/data-centers' },
-  //     { labelKey: 'sections.solutions.links.commercial' as const, href: '/solutions/commercial' },
-  //     { labelKey: 'sections.solutions.links.manufacturing' as const, href: '/solutions/manufacturing' },
-  //     { labelKey: 'sections.solutions.links.bacnet' as const, href: '/solutions/bacnet' },
-  //   ],
-  // },
   {
     titleKey: 'sections.resources.title' as const,
     links: [
-      { labelKey: 'sections.resources.links.datasheets' as const, href: '/resources/datasheets' },
-      {
-        labelKey: 'sections.resources.links.installation' as const,
-        href: '/resources/installation',
-      },
+      { labelKey: 'sections.resources.links.instructionsManuals' as const, href: '/resources/datasheets' },
       {
         labelKey: 'sections.resources.links.applicationNotes' as const,
         href: '/application-notes',
       },
-      { labelKey: 'sections.resources.links.videos' as const, href: '/resources/videos' },
-      {
-        labelKey: 'sections.resources.links.caseStudies' as const,
-        href: '/resources/case-studies',
-      },
-    ],
-  },
-  {
-    titleKey: 'sections.company.title' as const,
-    links: [
-      { labelKey: 'sections.company.links.mission' as const, href: '/company/mission-values' },
-      { labelKey: 'sections.company.links.whyBapi' as const, href: '/company/why-bapi' },
-      { labelKey: 'sections.company.links.news' as const, href: '/company/news' },
-      { labelKey: 'sections.company.links.careers' as const, href: '/company/careers' },
-      { labelKey: 'sections.company.links.contact' as const, href: '/company/contact-us' },
     ],
   },
   {
     titleKey: 'sections.support.title' as const,
     links: [
       { labelKey: 'sections.support.links.technical' as const, href: '/support' },
+      { labelKey: 'sections.support.links.whereToBuy' as const, href: '/where-to-buy' },
       { labelKey: 'sections.support.links.selector' as const, href: '/resources/selector' },
       {
         labelKey: 'sections.support.links.crossReference' as const,
         href: '/resources/cross-reference',
       },
-      { labelKey: 'sections.support.links.distributorNetwork' as const, href: '/where-to-buy' },
+    ],
+  },
+  {
+    titleKey: 'sections.company.title' as const,
+    links: [
+      { labelKey: 'sections.company.links.whyBapi' as const, href: '/company/why-bapi' },
+      { labelKey: 'sections.company.links.mission' as const, href: '/company/mission-values' },
+      { labelKey: 'sections.company.links.news' as const, href: '/company/news' },
+      { labelKey: 'sections.company.links.careers' as const, href: '/company/careers' },
+      { labelKey: 'sections.company.links.contact' as const, href: '/contact' },
     ],
   },
 ];
@@ -176,6 +155,32 @@ const Footer: React.FC = () => {
               </ul>
             </nav>
           ))}
+        </div>
+
+        {/* Featured WAM Section - Enterprise Solution Highlight */}
+        <div className="border-b border-neutral-200 py-8">
+          <Link
+            href="/wam"
+            className="group flex flex-col gap-4 rounded-xl border-2 border-primary-200 bg-gradient-to-br from-primary-50 to-primary-100/50 p-6 transition-all duration-300 hover:border-primary-400 hover:shadow-xl lg:flex-row lg:items-center lg:justify-between"
+          >
+            <div className="flex-1">
+              <div className="mb-2 inline-block rounded-full bg-accent-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-neutral-900">
+                {t('featured.badge')}
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-primary-900 lg:text-2xl">
+                {t('featured.title')}
+              </h3>
+              <p className="text-sm text-neutral-700 lg:text-base">
+                {t('featured.description')}
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 text-sm font-bold text-white transition-all duration-300 group-hover:bg-primary-700 lg:text-base">
+                {t('featured.cta')}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* Bottom Section - Contact & Legal */}

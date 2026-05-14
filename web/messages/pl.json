@@ -426,41 +426,38 @@
       "products": {
         "title": "Produkty",
         "links": {
-          "allSensors": "Wszystkie czujniki",
-          "wireless": "Monitorowanie bezprzewodowe",
-          "testInstruments": "Instrumenty testowe",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "Czujniki jakości powietrza",
-          "accessories": "Akcesoria",
+          "wireless": "Monitorowanie bezprzewodowe",
           "browseCatalog": "Przeglądaj katalog"
         }
       },
       "resources": {
         "title": "Zasoby",
         "links": {
-          "datasheets": "Karty katalogowe",
-          "installation": "Przewodniki instalacji",
-          "applicationNotes": "Notatki aplikacyjne",
-          "videos": "Biblioteka wideo",
-          "caseStudies": "Studia przypadków"
-        }
-      },
-      "company": {
-        "title": "Firma",
-        "links": {
-          "mission": "Misja i wartości",
-          "whyBapi": "Dlaczego BAPI",
-          "news": "Aktualności",
-          "careers": "Kariera",
-          "contact": "Skontaktuj się z nami"
+          "instructionsManuals": "Instrukcje i podręczniki",
+          "applicationNotes": "Notatki aplikacyjne"
         }
       },
       "support": {
         "title": "Wsparcie",
         "links": {
           "technical": "Wsparcie techniczne",
+          "whereToBuy": "Sieć dystrybutorów",
           "selector": "Selektor produktów",
-          "crossReference": "Odnośnik krzyżowy",
-          "distributorNetwork": "Sieć dystrybutorów"
+          "crossReference": "Odnośnik krzyżowy"
+        }
+      },
+      "company": {
+        "title": "Firma",
+        "links": {
+          "whyBapi": "Dlaczego BAPI",
+          "mission": "Misja i wartości",
+          "news": "Aktualności",
+          "careers": "Kariera",
+          "contact": "Skontaktuj się z nami"
         }
       }
     },
@@ -500,6 +497,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "Obserwuj nas"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "region": {

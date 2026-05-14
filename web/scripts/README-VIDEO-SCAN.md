@@ -12,7 +12,7 @@ The automated script will scan all products and generate a detailed report.
 
 ### Prerequisites
 ```bash
-cd /home/ateece/bapi-headless/web
+cd web
 ```
 
 Make sure you have your `.env.local` file with:
@@ -24,18 +24,18 @@ NEXT_PUBLIC_WORDPRESS_GRAPHQL=https://bapiheadlessstaging.kinsta.cloud/graphql
 
 **Console Output (Default):**
 ```bash
-pnpm tsx ../scripts/scan-products-without-videos.ts
+pnpm tsx scripts/scan-products-without-videos.ts
 ```
 
 **Save as JSON:**
 ```bash
-pnpm tsx ../scripts/scan-products-without-videos.ts --output json
+pnpm tsx scripts/scan-products-without-videos.ts --output json
 ```
 Creates `products-without-videos.json` with full details.
 
 **Save as CSV:**
 ```bash
-pnpm tsx ../scripts/scan-products-without-videos.ts --output csv
+pnpm tsx scripts/scan-products-without-videos.ts --output csv
 ```
 Creates `products-without-videos.csv` (Excel/Sheets compatible).
 
@@ -159,6 +159,6 @@ Database ID,Name,Slug,SKU,URL
 4. **Bulk Import** - Use the WordPress sync tools in `web/src/lib/youtube/wordpress-sync.ts` to add videos in bulk
 
 ## Related Documentation
-- [YouTube Video Setup Guide](../docs/YOUTUBE-VIDEO-SETUP.md)
-- [Product Videos WordPress Sync](../web/src/lib/youtube/wordpress-sync.ts)
-- [Product Videos Frontend Integration](../web/src/lib/productVideos.ts)
+- [YouTube Video Setup Guide](../../docs/YOUTUBE-VIDEO-SETUP.md)
+- [Product Videos WordPress Sync](../src/lib/youtube/wordpress-sync.ts)
+- [Product Videos Frontend Integration](../src/lib/productVideos.ts)

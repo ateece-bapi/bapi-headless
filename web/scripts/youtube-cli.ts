@@ -25,6 +25,43 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || '@BAPIHVAC';
 
+/**
+ * Parse a CSV line handling mixed quoted/unquoted fields
+ * Supports standard CSV quoting where only fields with commas are quoted
+ */
+function parseCsvLine(line: string): string[] {
+  const fields: string[] = [];
+  let currentField = '';
+  let insideQuotes = false;
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+    
+    if (char === '"') {
+      if (insideQuotes && nextChar === '"') {
+        // Escaped quote (double quote)
+        currentField += '"';
+        i++; // Skip next quote
+      } else {
+        // Toggle quote state
+        insideQuotes = !insideQuotes;
+      }
+    } else if (char === ',' && !insideQuotes) {
+      // Field separator (only when not inside quotes)
+      fields.push(currentField.trim());
+      currentField = '';
+    } else {
+      currentField += char;
+    }
+  }
+  
+  // Add last field
+  fields.push(currentField.trim());
+  
+  return fields;
+}
+
 interface CLIOptions {
   command: 'fetch' | 'sync' | 'generate-json' | 'help';
   limit?: number;
@@ -226,21 +263,17 @@ async function syncVideos(options: CLIOptions) {
   
   const mappings: VideoMapping[] = [];
   let skippedCount = 0;
+  let parseErrorCount = 0;
 
   for (const line of lines) {
     if (!line.trim()) continue;
     
-    // Parse CSV - handle both quoted and unquoted formats (Excel compatibility)
-    let fields: string[];
-    if (line.includes('"')) {
-      // Quoted format (original)
-      const matches = line.match(/"([^"]*)"/g);
-      if (!matches || matches.length < 8) continue;
-      fields = matches.map(m => m.slice(1, -1).replace(/""/g, '"'));
-    } else {
-      // Unquoted format (Excel saves this way)
-      fields = line.split(',').map(f => f.trim());
-      if (fields.length < 8) continue;
+    // Parse CSV using proper parser that handles mixed quoted/unquoted fields
+    const fields = parseCsvLine(line);
+    
+    if (fields.length < 8) {
+      parseErrorCount++;
+      continue;
     }
     
     const [sku, videoId, title, url, publishedDate, duration, category, notes] = fields;
@@ -251,9 +284,12 @@ async function syncVideos(options: CLIOptions) {
       continue;
     }
     
+    // Normalize videoId to handle whitespace
+    const videoIdNormalized = videoId?.trim() || '';
+    
     mappings.push({
       sku: sku.trim(),
-      videoId,
+      videoId: videoIdNormalized,
       title,
       url,
       publishedDate,
@@ -267,6 +303,7 @@ async function syncVideos(options: CLIOptions) {
   console.log(`      Total rows: ${lines.filter(l => l.trim()).length}`);
   console.log(`      Mapped videos: ${mappings.length}`);
   console.log(`      Unmapped (skipped): ${skippedCount}`);
+  console.log(`      Parse errors: ${parseErrorCount}`);
   console.log('');
 
   if (mappings.length === 0) {
@@ -370,25 +407,27 @@ async function generateJSON(options: CLIOptions) {
   const productVideos = new Map<string, ProductVideo[]>();
   let mappedCount = 0;
   let skippedCount = 0;
+  let duplicateCount = 0;
+  let parseErrorCount = 0;
 
   for (const line of lines) {
     if (!line.trim()) continue;
     
-    // Parse CSV - handle both quoted and unquoted
-    let fields: string[];
-    if (line.includes('"')) {
-      const matches = line.match(/"([^"]*)"/g);
-      if (!matches || matches.length < 8) continue;
-      fields = matches.map(m => m.slice(1, -1).replace(/""/g, '"'));
-    } else {
-      fields = line.split(',').map(f => f.trim());
-      if (fields.length < 8) continue;
+    // Parse CSV using proper parser that handles mixed quoted/unquoted fields
+    const fields = parseCsvLine(line);
+    
+    if (fields.length < 8) {
+      parseErrorCount++;
+      continue;
     }
     
     const [sku, videoId, title, url, publishedDate, duration, category] = fields;
     
-    // Skip rows without SKU/ID
-    if (!sku || sku.trim() === '') {
+    // Normalize videoId to handle whitespace
+    const videoIdNormalized = videoId?.trim() || '';
+    
+    // Skip rows without SKU/ID or videoId (section headers, incomplete rows)
+    if (!sku || sku.trim() === '' || !videoIdNormalized) {
       skippedCount++;
       continue;
     }
@@ -399,8 +438,17 @@ async function generateJSON(options: CLIOptions) {
       productVideos.set(productKey, []);
     }
     
-    productVideos.get(productKey)!.push({
-      id: videoId,
+    // Check for duplicate video for this product (by normalized videoId)
+    const existingVideos = productVideos.get(productKey)!;
+    const isDuplicate = existingVideos.some(v => v.id === videoIdNormalized);
+    
+    if (isDuplicate) {
+      duplicateCount++;
+      continue;
+    }
+    
+    existingVideos.push({
+      id: videoIdNormalized,
       title,
       url,
       publishedAt: publishedDate,
@@ -414,7 +462,13 @@ async function generateJSON(options: CLIOptions) {
   console.log(`   📊 Statistics:`);
   console.log(`      Total mapped videos: ${mappedCount}`);
   console.log(`      Unique products: ${productVideos.size}`);
-  console.log(`      Skipped (no SKU): ${skippedCount}`);
+  console.log(`      Skipped (no SKU/videoId): ${skippedCount}`);
+  if (duplicateCount > 0) {
+    console.log(`      Duplicates removed: ${duplicateCount}`);
+  }
+  if (parseErrorCount > 0) {
+    console.log(`      Parse errors: ${parseErrorCount}`);
+  }
   console.log('');
 
   // Convert Map to object for JSON

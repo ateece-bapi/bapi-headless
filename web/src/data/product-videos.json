@@ -59,6 +59,16 @@
       "category": "Product Demo"
     }
   ],
+  "50161": [
+    {
+      "id": "px-f682fNJ0",
+      "title": "BAPI Outside Air Sensors",
+      "url": "https://www.youtube.com/watch?v=px-f682fNJ0",
+      "publishedAt": "4/15/2024",
+      "duration": "PT30S",
+      "category": "Product Demo"
+    }
+  ],
   "50167": [
     {
       "id": "vF8j7pbZAV0",
@@ -132,7 +142,7 @@
   "57357": [
     {
       "id": "ku2AMjsupuE",
-      "title": "BAPI-Stat  Quantum Prime Sensor",
+      "title": "BAPI-Stat Quantum Prime Sensor",
       "url": "https://www.youtube.com/watch?v=ku2AMjsupuE",
       "publishedAt": "4/18/2024",
       "duration": "PT33S",
@@ -240,14 +250,6 @@
     }
   ],
   "136309": [
-    {
-      "id": "1NKVr93KecI",
-      "title": "BAPI Duct Averaging Sensors",
-      "url": "https://www.youtube.com/watch?v=1NKVr93KecI",
-      "publishedAt": "4/15/2024",
-      "duration": "PT30S",
-      "category": "Product Demo"
-    },
     {
       "id": "1NKVr93KecI",
       "title": "BAPI Duct Averaging Sensors",
@@ -873,14 +875,6 @@
       "publishedAt": "6/21/2024",
       "duration": "PT43S",
       "category": "Product Demo"
-    },
-    {
-      "id": "sHtZWZTjEvk",
-      "title": "BAPI Remote Surface Sensors",
-      "url": "https://www.youtube.com/watch?v=sHtZWZTjEvk",
-      "publishedAt": "6/21/2024",
-      "duration": "PT43S",
-      "category": "Product Demo"
     }
   ],
   "160107": [
@@ -1133,42 +1127,6 @@
       "category": "Product Demo"
     }
   ],
-  "BAPI Pressure Switches": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Remote Surface Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Submersible Duct Transmitters": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Duct Humidity Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
   "BA/WSK": [
     {
       "id": "Ea7zQ5XaiZw",
@@ -1177,60 +1135,6 @@
       "publishedAt": "5/2/2024",
       "duration": "PT29S",
       "category": "Product Demo"
-    }
-  ],
-  "BAPI CO2 Quantum Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI VOC Quantum Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Pressure Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Immersion Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Duct Averaging Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
-    }
-  ],
-  "BAPI Outside Air Sensors": [
-    {
-      "id": "",
-      "title": "",
-      "url": "",
-      "publishedAt": "",
-      "duration": ""
     }
   ]
 }

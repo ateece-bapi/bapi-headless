@@ -1,14 +1,19 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env tsx
 /**
- * Scan Products Without Videos (Using JSON Data)
+ * Scan Product Video Status (Using JSON Data)
  * 
  * This script checks which products have videos in the product-videos.json file
- * vs which products exist in WordPress but don't have videos mapped yet.
+ * vs which products exist in WordPress.
+ * 
+ * Output formats:
+ *   - console (default): Shows only products WITHOUT videos
+ *   - json: Generates JSON report with all products and their video status
+ *   - csv: Generates CSV with ALL products including video status columns
  * 
  * Usage:
- *   pnpm tsx scripts/scan-products-videos-json.ts
- *   pnpm tsx scripts/scan-products-videos-json.ts --output csv
- *   pnpm tsx scripts/scan-products-videos-json.ts --output json
+ *   pnpm tsx scripts/scan-products-videos-json.ts                # Console: products without videos
+ *   pnpm tsx scripts/scan-products-videos-json.ts --output csv   # CSV: all products with status
+ *   pnpm tsx scripts/scan-products-videos-json.ts --output json  # JSON: all products with status
  */
 
 import { GraphQLClient, gql } from 'graphql-request';
@@ -215,7 +220,7 @@ async function main() {
       console.log(`📄 JSON report saved to: ${outputPath}\n`);
 
     } else if (OUTPUT_FORMAT === 'csv') {
-      const outputPath = path.join(process.cwd(), 'products-without-videos.csv');
+      const outputPath = path.join(process.cwd(), 'products-video-status.csv');
       const csvHeader = 'Database ID,Name,Slug,SKU,Has Videos,Video Count,URL\n';
       const csvRows = allProducts.map(p => {
         const hasVids = hasVideos(p);

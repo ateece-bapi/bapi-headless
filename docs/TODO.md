@@ -19,18 +19,13 @@
 2. ✅ **CE Certification Added** - Added "CE EN 61326-1:2013 EMC" to certifications
 3. ✅ **5 Year Warranty Logo Removed** - Not a certification, removed from section
 4. ✅ **Made in USA Removed** - Text removed (Poland & Vietnam manufacturing now active)
-5. ✅ **Translation Updates** - All 11 locales updated (en, de, fr, es, ja, zh, ar, hi, vi, th, pl)
-
-### 🚧 PENDING
-
-- [ ] **FCC Logo Image** - Add `/web/public/images/logos/FCC_Logo.webp` image file
-  - Footer.tsx already updated with FCC logo reference
-  - Placeholder comment added: `TODO: Add FCC logo image file to /images/logos/FCC_Logo.webp`
-  - Need to source FCC certification logo in WebP format
+5. ✅ **FCC Logo Added** - Added `/web/public/images/logos/fcc-logo-blue-2020-large.png`
+6. ✅ **Translation Updates** - All 11 locales updated (en, de, fr, es, ja, zh, ar, hi, vi, th, pl)
 
 **Files Changed:**
 - `web/src/components/layout/Footer.tsx` - Updated certifications logos and text
 - `web/messages/*.json` - 11 locale files updated with new certification keys
+- `web/public/images/logos/fcc-logo-blue-2020-large.png` - Added FCC logo image
 
 ---
 

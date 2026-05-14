@@ -8,6 +8,57 @@
 
 ---
 
+## May 14, 2026 — Product Image Size Fix 🖼️✅
+
+**Status:** ✅ COMPLETE - PR merged to main  
+**Branch:** `fix/product-image-size` (merged & deleted)  
+**Context:** Product page main image appearing too large (200% scale)  
+**Priority:** 🟡 P1 - UX/Visual Quality  
+**Time:** ~30 minutes (investigation + fix + validation)  
+**Approach:** Reduce container height → Test → Branch → PR → Merge
+
+### 🎯 SCOPE
+
+**Problem Reported:**
+- User noticed product page main image appearing too large
+- Image seemed to be rendering at 200% scale
+- Taking up excessive vertical space in the product hero section
+
+**Solution:**
+- Reduced ProductGallery main image container heights by ~25%
+- Mobile: 400px → 300px
+- Desktop (md+): 450px → 350px
+
+**Impact:**
+- Better visual balance with product description content (7-column layout)
+- More appropriate sizing for 5-column gallery container (lg:col-span-5 of 12-column grid)
+- Maintains all functionality: zoom, lightbox, responsive behavior, accessibility
+
+### 📁 FILES CHANGED
+
+**Component (1 file):**
+- `web/src/components/products/ProductGallery.tsx` - Main image container height adjustment
+
+**Git History:**
+- Commit `4d34292` - Reduce product image height from 400px/450px to 300px/350px
+- Commit `baea754` - Merged to main via PR
+
+### ✅ VALIDATION
+
+**Tests:** All 1350 tests passing (3 skipped)  
+**Build:** Production build successful (exit code 0)  
+**Branch Cleanup:** Local + remote branches deleted  
+**Working Tree:** Clean
+
+### 🎓 LESSONS LEARNED
+
+1. **Quick Wins Matter** - Simple height adjustment had immediate UX impact
+2. **Maintain Proportions** - Reduced both mobile/desktop by same percentage (25%)
+3. **Test Everything** - Even minor CSS changes validated with full test suite
+4. **Git Workflow** - Followed branch → PR → merge pattern for code quality review
+
+---
+
 ## May 14, 2026 — Product Video Scan Copilot PR Review Fixes 🎬✅
 
 **Status:** ✅ COMPLETE - PR #524 merged to main (2 commits)  

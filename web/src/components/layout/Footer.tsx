@@ -261,9 +261,8 @@ const Footer: React.FC = () => {
                   height={40}
                   className="h-10 w-auto transition-transform duration-300 hover:scale-110"
                 />
-                {/* TODO: Add FCC logo image file to /images/logos/FCC_Logo.webp */}
                 <Image
-                  src="/images/logos/FCC_Logo.webp"
+                  src="/images/logos/fcc-logo-blue-2020-large.png"
                   alt="FCC Certified"
                   width={50}
                   height={40}

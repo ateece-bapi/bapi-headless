@@ -426,41 +426,38 @@
       "products": {
         "title": "ผลิตภัณฑ์",
         "links": {
-          "allSensors": "เซ็นเซอร์ทั้งหมด",
-          "wireless": "การตรวจสอบแบบไร้สาย",
-          "testInstruments": "เครื่องมือทดสอบ",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "เซ็นเซอร์คุณภาพอากาศ",
-          "accessories": "อุปกรณ์เสริม",
+          "wireless": "การตรวจสอบแบบไร้สาย",
           "browseCatalog": "เรียกดูแค็ตตาล็อก"
         }
       },
       "resources": {
         "title": "ทรัพยากร",
         "links": {
-          "datasheets": "แผ่นข้อมูลทางเทคนิค",
-          "installation": "คู่มือการติดตั้ง",
-          "applicationNotes": "บันทึกการใช้งาน",
-          "videos": "ห้องสมุดวิดีโอ",
-          "caseStudies": "กรณีศึกษา"
-        }
-      },
-      "company": {
-        "title": "บริษัท",
-        "links": {
-          "mission": "ภารกิจและค่านิยม",
-          "whyBapi": "ทำไมถึงเลือก BAPI",
-          "news": "ข่าวสาร",
-          "careers": "ตำแหน่งงาน",
-          "contact": "ติดต่อเรา"
+          "instructionsManuals": "คำแนะนำและคู่มือ",
+          "applicationNotes": "บันทึกการใช้งาน"
         }
       },
       "support": {
         "title": "การสนับสนุน",
         "links": {
           "technical": "การสนับสนุนทางเทคนิค",
+          "whereToBuy": "เครือข่ายผู้จัดจำหน่าย",
           "selector": "เครื่องมือเลือกผลิตภัณฑ์",
-          "crossReference": "การอ้างอิงข้าม",
-          "distributorNetwork": "เครือข่ายผู้จัดจำหน่าย"
+          "crossReference": "การอ้างอิงข้าม"
+        }
+      },
+      "company": {
+        "title": "บริษัท",
+        "links": {
+          "whyBapi": "ทำไมถึงเลือก BAPI",
+          "mission": "ภารกิจและค่านิยม",
+          "news": "ข่าวสาร",
+          "careers": "ตำแหน่งงาน",
+          "contact": "ติดต่อเรา"
         }
       }
     },
@@ -479,8 +476,9 @@
     },
     "certifications": {
       "title": "การรับรอง",
-      "bacnet": "ได้รับการรับรอง BACnet B-ASC",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "ได้รับการรับรอง UL",
       "madeInUsa": "ผลิตในสหรัฐอเมริกา"
     },
@@ -499,6 +497,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "ติดตามเรา"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "region": {

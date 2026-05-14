@@ -425,41 +425,38 @@
       "products": {
         "title": "उत्पाद",
         "links": {
-          "allSensors": "सभी सेंसर",
-          "wireless": "वायरलेस निगरानी",
-          "testInstruments": "परीक्षण उपकरण",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "वायु गुणवत्ता सेंसर",
-          "accessories": "सहायक उपकरण",
+          "wireless": "वायरलेस निगरानी",
           "browseCatalog": "कैटलॉग ब्राउज़ करें"
         }
       },
       "resources": {
         "title": "संसाधन",
         "links": {
-          "datasheets": "तकनीकी डेटाशीट",
-          "installation": "स्थापना मार्गदर्शिका",
-          "applicationNotes": "अनुप्रयोग नोट्स",
-          "videos": "वीडियो लाइब्रेरी",
-          "caseStudies": "केस अध्ययन"
-        }
-      },
-      "company": {
-        "title": "कंपनी",
-        "links": {
-          "mission": "मिशन और मूल्य",
-          "whyBapi": "BAPI क्यों",
-          "news": "समाचार",
-          "careers": "करियर",
-          "contact": "हमसे संपर्क करें"
+          "instructionsManuals": "निर्देश और मैनुअल",
+          "applicationNotes": "अनुप्रयोग नोट्स"
         }
       },
       "support": {
         "title": "सहायता",
         "links": {
           "technical": "तकनीकी सहायता",
+          "whereToBuy": "वितरक नेटवर्क",
           "selector": "उत्पाद चयनकर्ता",
-          "crossReference": "क्रॉस रेफरेंस",
-          "distributorNetwork": "वितरक नेटवर्क"
+          "crossReference": "क्रॉस रेफरेंस"
+        }
+      },
+      "company": {
+        "title": "कंपनी",
+        "links": {
+          "whyBapi": "BAPI क्यों",
+          "mission": "मिशन और मूल्य",
+          "news": "समाचार",
+          "careers": "करियर",
+          "contact": "हमसे संपर्क करें"
         }
       }
     },
@@ -478,8 +475,9 @@
     },
     "certifications": {
       "title": "प्रमाणीकरण",
-      "bacnet": "BACnet B-ASC प्रमाणित",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "UL सूचीबद्ध",
       "madeInUsa": "अमेरिका में बना"
     },
@@ -498,6 +496,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "हमें फॉलो करें"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "region": {

@@ -239,41 +239,38 @@
       "products": {
         "title": "产品",
         "links": {
-          "allSensors": "所有传感器",
-          "wireless": "无线监测",
-          "testInstruments": "测试仪器",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "空气质量传感器",
-          "accessories": "配件",
+          "wireless": "无线监测",
           "browseCatalog": "浏览目录"
         }
       },
       "resources": {
         "title": "资源",
         "links": {
-          "datasheets": "技术数据表",
-          "installation": "安装指南",
-          "applicationNotes": "应用说明",
-          "videos": "视频库",
-          "caseStudies": "案例研究"
-        }
-      },
-      "company": {
-        "title": "公司",
-        "links": {
-          "mission": "使命与价值观",
-          "whyBapi": "为什么选择BAPI",
-          "news": "新闻",
-          "careers": "职业机会",
-          "contact": "联系我们"
+          "instructionsManuals": "说明书和手册",
+          "applicationNotes": "应用说明"
         }
       },
       "support": {
         "title": "支持",
         "links": {
           "technical": "技术支持",
+          "whereToBuy": "经销商网络",
           "selector": "产品选择器",
-          "crossReference": "交叉参考",
-          "distributorNetwork": "经销商网络"
+          "crossReference": "交叉参考"
+        }
+      },
+      "company": {
+        "title": "公司",
+        "links": {
+          "whyBapi": "为什么选择BAPI",
+          "mission": "使命与价值观",
+          "news": "新闻",
+          "careers": "职业机会",
+          "contact": "联系我们"
         }
       }
     },
@@ -292,8 +289,9 @@
     },
     "certifications": {
       "title": "认证",
-      "bacnet": "BACnet B-ASC认证",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "UL列表",
       "madeInUsa": "美国制造"
     },
@@ -312,6 +310,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "关注我们"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "region": {

@@ -427,41 +427,38 @@
       "products": {
         "title": "Sản phẩm",
         "links": {
-          "allSensors": "Tất cả Cảm biến",
-          "wireless": "Giám sát Không dây",
-          "testInstruments": "Dụng cụ Kiểm tra",
+          "temperature": "Temperature Sensors",
+          "humidity": "Humidity Sensors",
+          "pressure": "Pressure Sensors",
           "airQuality": "Cảm biến Chất lượng Không khí",
-          "accessories": "Phụ kiện",
+          "wireless": "Giám sát Không dây",
           "browseCatalog": "Xem Danh mục"
         }
       },
       "resources": {
         "title": "Tài nguyên",
         "links": {
-          "datasheets": "Tài liệu Kỹ thuật",
-          "installation": "Hướng dẫn Lắp đặt",
-          "applicationNotes": "Ghi chú Ứng dụng",
-          "videos": "Thư viện Video",
-          "caseStudies": "Các Nghiên cứu Trường hợp"
-        }
-      },
-      "company": {
-        "title": "Công ty",
-        "links": {
-          "mission": "Sứ mệnh & Giá trị",
-          "whyBapi": "Tại sao lại BAPI",
-          "news": "Tin tức",
-          "careers": "Cơ hội nghề nghiệp",
-          "contact": "Liên hệ với chúng tôi"
+          "instructionsManuals": "Hướng dẫn và sổ tay",
+          "applicationNotes": "Ghi chú Ứng dụng"
         }
       },
       "support": {
         "title": "Hỗ trợ",
         "links": {
           "technical": "Hỗ trợ Kỹ thuật",
+          "whereToBuy": "Mạng lưới Nhà phân phối",
           "selector": "Trình chọn Sản phẩm",
-          "crossReference": "Tham chiếu Chéo",
-          "distributorNetwork": "Mạng lưới Nhà phân phối"
+          "crossReference": "Tham chiếu Chéo"
+        }
+      },
+      "company": {
+        "title": "Công ty",
+        "links": {
+          "whyBapi": "Tại sao lại BAPI",
+          "mission": "Sứ mệnh & Giá trị",
+          "news": "Tin tức",
+          "careers": "Cơ hội nghề nghiệp",
+          "contact": "Liên hệ với chúng tôi"
         }
       }
     },
@@ -480,8 +477,9 @@
     },
     "certifications": {
       "title": "Chứng nhận",
-      "bacnet": "Chứng nhận BACnet B-ASC",
+      "bacnet": "BACnet B-ASC",
       "iso": "ISO 9001:2015",
+      "ce": "CE EN 61326-1:2013 EMC",
       "ul": "Đăng ký UL",
       "madeInUsa": "Sản xuất tại Hoa Kỳ"
     },
@@ -500,6 +498,12 @@
       "linkedin": "LinkedIn",
       "youtube": "YouTube",
       "follow": "Theo dõi Chúng tôi"
+    },
+    "featured": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
+      "cta": "Explore WAM"
     }
   },
   "productPage": {

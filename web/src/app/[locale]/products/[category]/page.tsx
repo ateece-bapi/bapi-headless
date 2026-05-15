@@ -125,9 +125,13 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const translatedCategoryName = getTranslatedCategoryName(categoryData.name);
 
   // Filter subcategories to only include valid entries with required fields
+  // Exclude WAM subcategory as it has no products and is shown separately on dedicated WAM page
   const subcategories = (categoryData.children?.nodes || []).filter(
     (sub): sub is NonNullable<typeof sub> & { name: string; slug: string } =>
-      !!sub && !!sub.name && !!sub.slug
+      !!sub && 
+      !!sub.name && 
+      !!sub.slug &&
+      !sub.slug.includes('wam') // Exclude WAM subcategory
   );
   const hasSubcategories = subcategories.length > 0;
 

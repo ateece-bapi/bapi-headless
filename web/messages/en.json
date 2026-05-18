@@ -103,6 +103,8 @@
       },
       "wireless": {
         "title": "Wireless",
+        "wirelessSolutions": "Wireless Solutions Overview",
+        "wirelessSolutionsDesc": "Complete wireless connectivity for building automation",
         "roomSensors": "Room Sensors",
         "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
         "nonRoomSensors": "Industrial Sensors",

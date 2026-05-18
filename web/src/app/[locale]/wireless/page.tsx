@@ -59,10 +59,10 @@ export default function WirelessPage() {
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/products?category=wireless"
+                  href="/products/bluetooth-wireless"
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
-                  View All Products
+                  Browse Wireless Products
                   <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
@@ -144,6 +144,16 @@ export default function WirelessPage() {
                 <p>
                   BAPI's Wireless System provides both flexibility and reliability. Each sensor/transmitter features a customizable transmission rate and transmission power, which allows users to optimize battery life and signal reliability at each unique installation. The Wireless Receiver supports up to 28 sensors and 127 Analog Output Modules. The Receiver and Analog Output Modules can be surface, snaptrack or DIN rail mounted.
                 </p>
+              </div>
+
+              <div className="mt-8 text-center">
+                <Link
+                  href="/products/bluetooth-wireless"
+                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+                >
+                  Browse All Wireless Products
+                  <ArrowRightIcon className="h-5 w-5" />
+                </Link>
               </div>
             </div>
           </div>

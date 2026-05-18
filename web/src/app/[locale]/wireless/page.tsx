@@ -5,30 +5,29 @@ import {
   ArrowRightIcon,
   RadioIcon,
   WifiIcon,
-  BellIcon,
-  BarChart3Icon,
-  BatteryIcon,
-  ShieldIcon,
+  CableIcon,
+  SettingsIcon,
   ChevronRightIcon,
+  CheckCircleIcon,
 } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Wireless Sensors & Monitoring Solutions | BAPI WAM',
+  title: 'Wireless Building Automation Solutions | BAPI',
   description:
-    'Wireless Asset Monitoring (WAM) for temperature, humidity, and door monitoring. Battery-powered sensors with cloud dashboards for remote facility management.',
+    'BAPI Wireless sensors and controls for HVAC and building automation systems. BLE Gateway, BACnet/IP integration, and modular I/O expansion for seamless BAS connectivity.',
 };
 
 export default function WirelessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32 border-b-4 border-accent-500">
+      <section className="relative overflow-hidden border-b-4 border-accent-500 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="flex items-center gap-2 text-sm text-primary-100"
+            className="mb-8 flex items-center gap-2 text-sm text-primary-100"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
@@ -39,51 +38,51 @@ export default function WirelessPage() {
               Products
             </Link>
             <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">Wireless Asset Monitoring</span>
+            <span className="font-medium text-white">Wireless Solutions</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
                 <RadioIcon className="h-4 w-4" />
-                <span>Wireless Asset Monitoring</span>
+                <span>Building Automation</span>
               </div>
 
               <h1 className="mb-6 text-balance text-4xl font-bold sm:text-5xl lg:text-6xl">
-                Monitor Anywhere,
-                <span className="mt-2 block text-accent-500">Without Wiring</span>
+                Wireless Sensors & Controls
+                <span className="mt-2 block text-accent-500">for HVAC Systems</span>
               </h1>
               <p className="mb-8 max-w-2xl text-xl text-primary-50 lg:text-2xl">
-                BAPI WAM™ wireless sensors provide real-time temperature and humidity monitoring
-                with instant alerts—no wiring required.
+                BAPI Wireless solutions deliver reliable sensor data and control signals to your
+                building automation system—without running wires.
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/wam"
+                  href="/products/bluetooth-wireless"
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
-                  Explore WAM Solutions
+                  Browse Wireless Products
                   <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
                   className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
-                  Request Demo
+                  Request Quote
                 </Link>
               </div>
 
-              {/* Stats */}
+              {/* Key Stats */}
               <div className="mt-12 grid grid-cols-3 gap-6 border-t border-white/20 pt-12">
                 <div className="group relative cursor-default">
                   <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
                   <div className="relative p-4 text-center">
                     <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      5 min
+                      900 MHz
                     </div>
                     <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      Setup Time
+                      LoRa Range
                     </div>
                   </div>
                 </div>
@@ -91,10 +90,10 @@ export default function WirelessPage() {
                   <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
                   <div className="relative p-4 text-center">
                     <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      5-Year
+                      BLE
                     </div>
                     <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      Battery Life
+                      Bluetooth 5.0
                     </div>
                   </div>
                 </div>
@@ -102,10 +101,10 @@ export default function WirelessPage() {
                   <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
                   <div className="relative p-4 text-center">
                     <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      24/7
+                      BACnet
                     </div>
                     <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      Cloud Access
+                      Native IP
                     </div>
                   </div>
                 </div>
@@ -113,249 +112,536 @@ export default function WirelessPage() {
             </div>
 
             <div className="relative">
-              <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl shadow-2xl">
+              <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl bg-white p-2 shadow-2xl">
                 <Image
-                  src="/images/wam/dashboards/WAM_Graphic.webp"
-                  alt="WAM wireless monitoring dashboard"
+                  src="/images/wireless/wireless-hvac-banner-web-scaled.png"
+                  alt="BAPI Wireless building automation sensors"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover/image:scale-105"
+                  className="object-contain transition-transform duration-700 group-hover/image:scale-105"
                   priority
                 />
-                <div className="bg-linear-to-t absolute inset-0 from-primary-900/20 to-transparent" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* WAM Product Categories */}
-      <section className="bg-neutral-50 py-16 lg:py-24">
+      {/* Seamless Wireless Integration */}
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Wireless Product Line
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Complete wireless monitoring solutions for every application
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: RadioIcon,
-                title: 'WAM Temperature Sensors',
-                description:
-                  'Wireless temperature monitoring for coolers, freezers, rooms, and outdoor environments.',
-                features: ['±0.5°F accuracy', '900 MHz LoRa', '5-year battery', 'IP67 rated'],
-                link: '/products?category=wireless-temperature',
-              },
-              {
-                icon: WifiIcon,
-                title: 'WAM Humidity Sensors',
-                description:
-                  'Combined temperature and humidity monitoring for climate-critical applications.',
-                features: ['±2% RH accuracy', 'Condensation safe', 'LCD display', 'Remote alerts'],
-                link: '/products?category=wireless-humidity',
-              },
-              {
-                icon: BellIcon,
-                title: 'WAM Door Sensors',
-                description:
-                  'Magnetic door switches for open/close monitoring and alert notification.',
-                features: ['Instant alerts', 'Low power', 'Easy mount', 'Cloud logging'],
-                link: '/products?category=wireless-door',
-              },
-            ].map((product, idx) => (
-              <div
-                key={idx}
-                className="group relative rounded-xl bg-white p-8 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="bg-linear-to-br mb-6 flex h-16 w-16 items-center justify-center rounded-xl from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
-                  <product.icon className="h-8 w-8 text-white" />
-                </div>
-
-                <h3 className="mb-3 text-2xl font-bold text-neutral-900">{product.title}</h3>
-                <p className="mb-6 text-neutral-700">{product.description}</p>
-
-                <ul className="mb-8 space-y-3">
-                  {product.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-neutral-700">
-                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-600">
-                        ✓
-                      </span>
-                      <span className="leading-relaxed">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={product.link}
-                  className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
-                >
-                  View Products
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
-
-                <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8 border-t-4 border-accent-500 pt-8">
+              <h2 className="mb-8 text-3xl font-bold uppercase tracking-wide text-primary-600 lg:text-4xl">
+                Seamless Wireless Integration Into Your BMS
+              </h2>
+              
+              <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+                <p>
+                  BAPI's Wireless System offers a cost-effective and reliable way to enhance your hard-wired HVAC system. The suite of room and non-room sensors transmit their data to a Wireless Receiver up to 100 feet away. The user-adjustable receiver then converts the data into either a voltage or resistive value for the controller of a BAS.
+                </p>
+                
+                <p>
+                  BAPI's Wireless System provides both flexibility and reliability. Each sensor/transmitter features a customizable transmission rate and transmission power, which allows users to optimize battery life and signal reliability at each unique installation. The Wireless Receiver supports up to 28 sensors and 127 Analog Output Modules. The Receiver and Analog Output Modules can be surface, snaptrack or DIN rail mounted.
+                </p>
               </div>
-            ))}
+
+              <div className="mt-8 text-center">
+                <Link
+                  href="/products/bluetooth-wireless"
+                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+                >
+                  Browse All Wireless Products
+                  <ArrowRightIcon className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Cloud Platform Features */}
+      {/* Wireless Receiver */}
+      <section className="bg-white py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          <div className="mb-16 text-center">
+            <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+              Wireless Receiver
+            </h2>
+            <p className="mx-auto max-w-5xl text-base leading-relaxed text-neutral-700 lg:text-lg">
+              The Wireless Receiver from BAPI receives the data from one or more wireless sensors. The data is then transferred to the Digital & Analog Output Modules and converted to BACnet IP, BACnet MS/TP, Modbus RTU, or an analog voltage or resistance. The receiver supports analog up to 28 sensors and up to 127 different Analog Output Modules, and supports digital up to 28 sensors. The receiver includes several user-adjustable settings to maximize battery life while ensuring the BMS gets the information it needs.
+            </p>
+          </div>
+
+          <div className="mb-20 grid items-start gap-12 md:grid-cols-2 lg:gap-20">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <div className="flex justify-center md:justify-start">
+                <Image
+                  src="/images/wireless/wireless-receiver.png"
+                  alt="BAPI Wireless Receiver"
+                  width={350}
+                  height={280}
+                  className="h-auto w-auto"
+                  priority
+                />
+              </div>
+              
+              <div className="rounded-lg bg-neutral-50 p-6">
+                <p className="mb-4 text-base font-bold text-neutral-900">
+                  Field Selectable Settings:
+                </p>
+                <ul className="ml-5 list-disc space-y-2 text-neutral-700">
+                  <li>Sample Rate/Interval</li>
+                  <li>Transmit Rate/Interval</li>
+                  <li>Delta Temperature</li>
+                  <li>Delta Humidity</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="flex flex-col items-center justify-start">
+              <div className="rounded-lg bg-neutral-50 p-4">
+                <Image
+                  src="/images/wireless/wireless-receiver-settings.png"
+                  alt="Wireless Receiver Field Selectable Settings"
+                  width={480}
+                  height={380}
+                  className="h-auto w-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* How Does It Work - Full Width */}
+          <div className="overflow-hidden rounded-xl shadow-lg">
+            <Image
+              src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
+              alt="Wireless Receiver - How Does It Work?"
+              width={1200}
+              height={350}
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Analog Output Modules */}
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header Section - Two Column Layout */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Left Column - Text */}
+            <div className="flex flex-col justify-center">
+              <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+                Analog Output Modules
+              </h2>
+              <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
+                <p>
+                  The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to <strong className="text-primary-600">Analog Output Modules</strong> through an RS485 four-wire bus. The modules convert the signal to an analog voltage or resistance for the controller. The receiver can accommodate up to 127 different modules.
+                </p>
+                <p>
+                  The modules are easily trained to a single sensor variable with a pushbutton and LCD. All modules are surface, 2.75" snaptrack, or 35mm DIN rail mountable. They are powered by the receiver, or optionally may be powered separately when the Pluggable Terminal Block Kit is used for remote connections.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Image */}
+            <div className="flex items-center justify-center lg:justify-end">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
+                  <Image
+                    src="/images/wireless/1-wireless-receiver-dom-modules.png"
+                    alt="Wireless Receiver and Analog Output Modules"
+                    width={700}
+                    height={350}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Cards - 3 Column Grid */}
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {/* Resistance Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Resistance Output Module"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Resistance Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Resistance Output Module (ROM) converts the temperature data from the BAPI Receiver into a resistance for the BAS controller inputs. The unit is factory calibrated to output a 10K-2, 10K-3, 10K-3(UK), or 20K thermistor curve.
+                </p>
+                <Link 
+                  href="/product/resistance-output-module-rom-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Voltage Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Voltage Output Module"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Voltage Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Voltage Output Module (VOM) converts the temperature or humidity data from the BAPI Receiver into a linear 0 to 5 or 0 to 10 volt signal for the controller. There are eight factory set temperature ranges (°F and °C) and two humidity ranges of 0 to 100% or 35 to 70%RH.
+                </p>
+                <Link 
+                  href="/product/voltage-output-module-vom-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Setpoint Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Setpoint Output Module"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Setpoint Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Setpoint Output Module (SOM) converts the setpoint data from the BAPI receiver into a resistance or a voltage for the BAS controller. There are five factory set voltage and resistive ranges, each with an optional override function.
+                </p>
+                <Link 
+                  href="/product/setpoint-output-module-som-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Digital Output Modules */}
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header Section - Two Column Layout */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Left Column - Text */}
+            <div className="flex flex-col justify-center">
+              <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+                Digital Output Modules
+              </h2>
+              <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
+                <p>
+                  The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to <strong className="text-primary-600">Digital Output Modules</strong>. The modules convert the data to a digital signal for integration with the ethernet communication network or the RS-485 field communication network. The receiver can accommodate up to 28 wireless sensors for digital output.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Image */}
+            <div className="flex items-center justify-center lg:justify-end">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
+                  <Image
+                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    alt="Wireless Receiver with Digital Output Modules"
+                    width={700}
+                    height={350}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Cards - 2 Column Grid */}
+          <div className="grid gap-10 md:grid-cols-2">
+            {/* BACnet IP Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/Wireless_BLE_BACnet_IP_Module-1.png"
+                    alt="BACnet IP Module"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  BACnet IP Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The BACnet IP Module converts the data from wireless sensors for integration into the BMS ethernet communication network. Because BACnet IP is a standard protocol, the module is perfect for retrofitting older systems or adding new ones.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  Configuration is quick and easy through a web-based interface, allowing both setup and adjustment without physically accessing the device once it's installed.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The receiver and BACnet IP module are surface, 2.75" snaptrack or 35mmDIN rail mountable.
+                </p>
+                <Link 
+                  href="/product/bacnet-ip-module"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* BACnet MS/TP or Modbus RTU Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/wireless-receiver-bacnet-ip-1.png"
+                    alt="BACnet MS/TP or Modbus RTU Module"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  BACnet MS/TP or Modbus RTU Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The BACnet MS/TP or Modbus RTU output module converts the data from wireless sensors for integration into the RS-485 field communication network. The field-selectable BACnet MS/TP or Modbus RTU output lets customers choose the best protocol for their system without the need for multiple devices. This makes the module perfect for retrofitting older systems or adding new ones.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  Configuration is quick and easy with the USB-C port and a computer running the downloadable application. The receiver and module are surface, 2.75" snaptrack or 35mm DIN rail mountable.
+                </p>
+                <Link 
+                  href="/product/wireless-digital-output-module"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BAPI Wireless Solution Integration */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Powerful Cloud Platform
+              System Integration
             </h2>
             <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Monitor, analyze, and manage all your sensors from anywhere
+              Complete wireless solution for building automation systems
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: BarChart3Icon,
-                title: 'Real-Time Dashboards',
-                description:
-                  'View live temperature data from all sensors on customizable dashboards',
-              },
-              {
-                icon: BellIcon,
-                title: 'Instant Alerts',
-                description:
-                  'Get email, SMS, or push notifications when temperatures go out of range',
-              },
-              {
-                icon: ShieldIcon,
-                title: 'Compliance Reporting',
-                description: 'Automated reports for HACCP, FDA, and food safety compliance',
-              },
-              {
-                icon: BatteryIcon,
-                title: 'Battery Monitoring',
-                description: 'Track battery levels and receive low-battery alerts before failure',
-              },
-              {
-                icon: WifiIcon,
-                title: 'Multi-Site Management',
-                description: 'Manage sensors across multiple locations from a single account',
-              },
-              {
-                icon: BarChart3Icon,
-                title: 'Historical Trends',
-                description: 'Analyze temperature patterns over days, weeks, or months',
-              },
-            ].map((feature, idx) => (
-              <div key={idx} className="flex gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h3>
-                  <p className="text-neutral-700">{feature.description}</p>
-                </div>
+          <div className="mx-auto max-w-4xl">
+            <div className="overflow-hidden rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/wireless/wireless-integration-graphic.png"
+                  alt="BAPI Wireless Solution Integration Architecture"
+                  fill
+                  sizes="(min-width: 1024px) 900px, 100vw"
+                  className="object-contain"
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Installation Gallery Preview */}
-      <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
+      {/* Contact Form */}
+      <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Real-World Installations
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              See WAM wireless sensors protecting assets in convenience stores, restaurants, and
-              food service operations
-            </p>
-          </div>
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Left Column - Heading & Image */}
+            <div>
+              <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+                Have Questions? Ready to Move Your Wireless Project Forward?
+              </h2>
+              <p className="mb-8 text-xl text-neutral-700">
+                Our wireless specialists can help you design the right solution for your
+                building automation needs.
+              </p>
 
-          <div className="mb-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                src: '/images/applications/retail/coolers/Cooler_Front_4.webp',
-                alt: 'Walk-in cooler monitoring',
-                title: 'Walk-In Coolers',
-              },
-              {
-                src: '/images/applications/retail/freezers/Freezer_Door_1.webp',
-                alt: 'Freezer temperature sensor',
-                title: 'Walk-In Freezers',
-              },
-              {
-                src: '/images/applications/retail/deli-cases/Deli_Cases_All_1.webp',
-                alt: 'Deli case monitoring',
-                title: 'Deli Cases',
-              },
-              {
-                src: '/images/applications/retail/convenience/Mini-Mart_Overhead_4.webp',
-                alt: 'Convenience store sensors',
-                title: 'Convenience Stores',
-              },
-            ].map((image, idx) => (
-              <div
-                key={idx}
-                className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+              <div className="relative aspect-[2/1] overflow-hidden rounded-xl bg-white p-2 shadow-lg">
+                <Image
+                  src="/images/wireless/technician-checking-laptop.png"
+                  alt="BAPI wireless receiver system"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="mt-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-6 w-6 text-primary-500" />
+                  <span className="text-neutral-700">Free technical consultation</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-6 w-6 text-primary-500" />
+                  <span className="text-neutral-700">Signal strength site analysis available</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircleIcon className="h-6 w-6 text-primary-500" />
+                  <span className="text-neutral-700">Custom system design support</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Form */}
+            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
+              <form className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="mb-2 block text-sm font-semibold text-neutral-900">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    placeholder="Your full name"
                   />
                 </div>
-                <div className="p-4">
-                  <h4 className="text-sm font-bold text-neutral-900">{image.title}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
 
-          <div className="text-center">
-            <Link
-              href="/wam#installations"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
-            >
-              View All Installation Examples
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
+                <div>
+                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-neutral-900">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    placeholder="your.email@company.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-neutral-900">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="company" className="mb-2 block text-sm font-semibold text-neutral-900">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    placeholder="Your company name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="mb-2 block text-sm font-semibold text-neutral-900">
+                    Project Details / Questions *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                    placeholder="Tell us about your wireless project needs..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                >
+                  Send Message
+                </button>
+
+                <p className="text-center text-xs text-neutral-600">
+                  We'll respond within 1 business day. Or call us at{' '}
+                  <a href="tel:+1-952-808-9999" className="font-semibold text-primary-500 hover:underline">
+                    952-808-9999
+                  </a>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-24">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-3xl font-bold lg:text-4xl">Ready to Go Wireless?</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">
-            Explore our complete WAM wireless monitoring solution or request a demo
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/wam"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
-            >
-              Explore WAM Solutions
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur transition-all duration-300 hover:bg-white/20"
-            >
-              Contact Sales Team
-            </Link>
+      {/* WAM Cross-Reference */}
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="rounded-xl border-l-4 border-primary-500 bg-white p-8 shadow-sm">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50">
+                <WifiIcon className="h-6 w-6 text-primary-500" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  Looking for Wireless Asset Monitoring (WAM)?
+                </h3>
+                <p className="mb-4 text-neutral-700">
+                  WAM is our retail/food service temperature monitoring solution with cloud
+                  dashboards and mobile app—a separate product line from our building automation
+                  wireless products.
+                </p>
+                <Link
+                  href="/wam"
+                  className="inline-flex items-center gap-2 font-semibold text-primary-500 transition-colors hover:text-primary-600"
+                >
+                  Learn About WAM
+                  <ArrowRightIcon className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -22,6 +22,9 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
+import WirelessCategoryHero from '@/components/category/WirelessCategoryHero';
+import WirelessBenefits from '@/components/category/WirelessBenefits';
+import WirelessCTA from '@/components/category/WirelessCTA';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -125,9 +128,13 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const translatedCategoryName = getTranslatedCategoryName(categoryData.name);
 
   // Filter subcategories to only include valid entries with required fields
+  // Exclude WAM subcategory as it has no products and is shown separately on dedicated WAM page
   const subcategories = (categoryData.children?.nodes || []).filter(
     (sub): sub is NonNullable<typeof sub> & { name: string; slug: string } =>
-      !!sub && !!sub.name && !!sub.slug
+      !!sub && 
+      !!sub.name && 
+      !!sub.slug &&
+      !sub.slug.includes('wam') // Exclude WAM subcategory
   );
   const hasSubcategories = subcategories.length > 0;
 
@@ -212,9 +219,42 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
   const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl, locale);
 
+  // Check if this is the bluetooth-wireless category for enhanced layout
+  const isWirelessCategory = category === 'bluetooth-wireless';
+
+  // Prepare wireless-specific translations (only load if needed)
+  const wirelessTranslations = isWirelessCategory
+    ? {
+        hero: {
+          title: 'Wireless Sensors',
+          subtitle: 'No Wiring. No Limits.',
+          description:
+            'Battery-powered sensors with 5+ year battery life. Easy installation for retrofit, hard-to-reach locations, and temporary monitoring.',
+          browseCTA: 'Browse Products',
+          quoteCTA: 'Request Quote',
+        },
+        benefits: {
+          benefit1Title: 'No Wiring',
+          benefit1Text: 'Install anywhere without running cables',
+          benefit2Title: '5+ Year Battery',
+          benefit2Text: 'Long-lasting power, low maintenance',
+          benefit3Title: 'Cloud Ready',
+          benefit3Text: 'Integrate with BMS and cloud platforms',
+          benefit4Title: 'Easy Install',
+          benefit4Text: 'Mount in minutes, configure remotely',
+        },
+        cta: {
+          title: 'Need help choosing the right wireless sensor?',
+          description: "Talk to our technical experts. We'll help you find the perfect solution.",
+          contactCTA: 'Contact Sales',
+          viewAllCTA: 'View All Products',
+        },
+      }
+    : null;
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Category Header with BAPI Gradient and Breadcrumbs */}
+      {/* Breadcrumbs - Always shown */}
       <div className="bg-linear-to-br relative overflow-hidden border-b-4 border-accent-500 from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
@@ -224,38 +264,49 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         </div>
       </div>
 
-      {/* Category Header Content */}
-      <div className="bg-linear-to-br relative border-b border-neutral-200 from-primary-700 via-primary-600 to-primary-500">
-        <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
-        <div className="relative mx-auto max-w-content px-4 py-8">
-          <div className="max-w-3xl">
-            <div className="mb-2 flex items-center gap-3">
-              {/* BAPI Category Icon Badge */}
-              <div className="bg-linear-to-br inline-flex shrink-0 items-center justify-center rounded-xl from-white/20 to-white/10 p-2.5 shadow-md backdrop-blur-sm">
-                <Image
-                  src={getCategoryIcon(category)}
-                  alt={`${getCategoryIconName(category)} icon`}
-                  width={32}
-                  height={32}
-                  className="object-contain drop-shadow-md"
-                />
+      {/* Conditional Wireless Hero OR Standard Category Header */}
+      {isWirelessCategory && wirelessTranslations ? (
+        <>
+          {/* Enhanced Wireless Category Hero */}
+          <WirelessCategoryHero locale={locale} translations={wirelessTranslations.hero} />
+
+          {/* Wireless Benefits Bar */}
+          <WirelessBenefits translations={wirelessTranslations.benefits} />
+        </>
+      ) : (
+        /* Standard Category Header */
+        <div className="bg-linear-to-br relative border-b border-neutral-200 from-primary-700 via-primary-600 to-primary-500">
+          <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
+          <div className="relative mx-auto max-w-content px-4 py-8">
+            <div className="max-w-3xl">
+              <div className="mb-2 flex items-center gap-3">
+                {/* BAPI Category Icon Badge */}
+                <div className="bg-linear-to-br inline-flex shrink-0 items-center justify-center rounded-xl from-white/20 to-white/10 p-2.5 shadow-md backdrop-blur-sm">
+                  <Image
+                    src={getCategoryIcon(category)}
+                    alt={`${getCategoryIconName(category)} icon`}
+                    width={32}
+                    height={32}
+                    className="object-contain drop-shadow-md"
+                  />
+                </div>
+                <h1 className="text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
+                  {translatedCategoryName}
+                </h1>
               </div>
-              <h1 className="text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
-                {translatedCategoryName}
-              </h1>
+              {categoryData.description && (
+                <p className="text-lg leading-relaxed text-white/95 drop-shadow-md">
+                  {categoryData.description}
+                </p>
+              )}
             </div>
-            {categoryData.description && (
-              <p className="text-lg leading-relaxed text-white/95 drop-shadow-md">
-                {categoryData.description}
-              </p>
-            )}
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Subcategories Grid */}
+      {/* Subcategories Grid (shown for all categories with subcategories) */}
       {hasSubcategories && (
-        <div className="mx-auto max-w-container px-4 py-12">
+        <div id="categories" className="mx-auto max-w-container px-4 py-12">
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('categoryPage.subcategories.title')}
           </h2>
@@ -374,26 +425,30 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         </div>
       )}
 
-      {/* Quick Links */}
-      <div className="border-t border-neutral-200 bg-neutral-50">
-        <div className="mx-auto max-w-content px-4 py-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/products"
-              className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.quickLinks.backToProducts')}
-            </Link>
-            <span className="text-neutral-300">|</span>
-            <Link
-              href="/contact"
-              className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.quickLinks.needHelp')}
-            </Link>
+      {/* Bottom CTA - Wireless category gets enhanced CTA, others get standard quick links */}
+      {isWirelessCategory && wirelessTranslations ? (
+        <WirelessCTA locale={locale} translations={wirelessTranslations.cta} />
+      ) : (
+        <div className="border-t border-neutral-200 bg-neutral-50">
+          <div className="mx-auto max-w-content px-4 py-8">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/products"
+                className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
+              >
+                {t('categoryPage.quickLinks.backToProducts')}
+              </Link>
+              <span className="text-neutral-300">|</span>
+              <Link
+                href="/contact"
+                className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
+              >
+                {t('categoryPage.quickLinks.needHelp')}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -151,6 +151,12 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {
+              label: t('products.wireless.wirelessSolutions'),
+              href: '/wireless',
+              description: t('products.wireless.wirelessSolutionsDesc'),
+              badge: t('badges.new'),
+            },
+            {
               label: t('products.wireless.roomSensors'),
               href: '/products/bluetooth-wireless/wireless-room',
               description: t('products.wireless.roomSensorsDesc'),

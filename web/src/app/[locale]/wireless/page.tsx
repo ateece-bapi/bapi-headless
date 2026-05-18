@@ -127,252 +127,322 @@ export default function WirelessPage() {
         </div>
       </section>
 
-      {/* WIRELESS RECEIVERS Banner */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-8">
+      {/* Seamless Wireless Integration */}
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold uppercase tracking-wider text-white lg:text-3xl">
-              WIRELESS RECEIVERS
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8 border-t-4 border-accent-500 pt-8">
+              <h2 className="mb-8 text-3xl font-bold uppercase tracking-wide text-primary-600 lg:text-4xl">
+                Seamless Wireless Integration Into Your BMS
+              </h2>
+              
+              <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+                <p>
+                  BAPI's Wireless System offers a cost-effective and reliable way to enhance your hard-wired HVAC system. The suite of room and non-room sensors transmit their data to a Wireless Receiver up to 100 feet away. The user-adjustable receiver then converts the data into either a voltage or resistive value for the controller of a BAS.
+                </p>
+                
+                <p>
+                  BAPI's Wireless System provides both flexibility and reliability. Each sensor/transmitter features a customizable transmission rate and transmission power, which allows users to optimize battery life and signal reliability at each unique installation. The Wireless Receiver supports up to 28 sensors and 127 Analog Output Modules. The Receiver and Analog Output Modules can be surface, snaptrack or DIN rail mounted.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wireless Receiver */}
+      <section className="bg-white py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          <div className="mb-16 text-center">
+            <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+              Wireless Receiver
             </h2>
-            <p className="mt-2 text-base text-primary-100">
-              900 MHz LoRa receivers with analog and digital outputs for direct BAS integration
+            <p className="mx-auto max-w-5xl text-base leading-relaxed text-neutral-700 lg:text-lg">
+              The Wireless Receiver from BAPI receives the data from one or more wireless sensors. The data is then transferred to the Digital & Analog Output Modules and converted to BACnet IP, BACnet MS/TP, Modbus RTU, or an analog voltage or resistance. The receiver supports analog up to 28 sensors and up to 127 different Analog Output Modules, and supports digital up to 28 sensors. The receiver includes several user-adjustable settings to maximize battery life while ensuring the BMS gets the information it needs.
             </p>
+          </div>
+
+          <div className="mb-20 grid items-start gap-12 md:grid-cols-2 lg:gap-20">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <div className="flex justify-center md:justify-start">
+                <Image
+                  src="/images/wireless/wireless-receiver.png"
+                  alt="BAPI Wireless Receiver"
+                  width={350}
+                  height={280}
+                  className="h-auto w-auto"
+                  priority
+                />
+              </div>
+              
+              <div className="rounded-lg bg-neutral-50 p-6">
+                <p className="mb-4 text-base font-bold text-neutral-900">
+                  Field Selectable Settings:
+                </p>
+                <ul className="ml-5 list-disc space-y-2 text-neutral-700">
+                  <li>Sample Rate/Interval</li>
+                  <li>Transmit Rate/Interval</li>
+                  <li>Delta Temperature</li>
+                  <li>Delta Humidity</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="flex flex-col items-center justify-start">
+              <div className="rounded-lg bg-neutral-50 p-4">
+                <Image
+                  src="/images/wireless/wireless-receiver-settings.png"
+                  alt="Wireless Receiver Field Selectable Settings"
+                  width={480}
+                  height={380}
+                  className="h-auto w-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* How Does It Work - Full Width */}
+          <div className="overflow-hidden rounded-xl shadow-lg">
+            <Image
+              src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
+              alt="Wireless Receiver - How Does It Work?"
+              width={1200}
+              height={350}
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>
 
       {/* Analog Output Modules */}
-      <section className="bg-neutral-50 py-14 lg:py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900 lg:text-3xl">
-              Analog Output Modules
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-neutral-700">
-              900 MHz LoRa receivers with analog voltage or current outputs for direct BAS integration
-            </p>
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header Section - Two Column Layout */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Left Column - Text */}
+            <div className="flex flex-col justify-center">
+              <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+                Analog Output Modules
+              </h2>
+              <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
+                <p>
+                  The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to <strong className="text-primary-600">Analog Output Modules</strong> through an RS485 four-wire bus. The modules convert the signal to an analog voltage or resistance for the controller. The receiver can accommodate up to 127 different modules.
+                </p>
+                <p>
+                  The modules are easily trained to a single sensor variable with a pushbutton and LCD. All modules are surface, 2.75" snaptrack, or 35mm DIN rail mountable. They are powered by the receiver, or optionally may be powered separately when the Pluggable Terminal Block Kit is used for remote connections.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Image */}
+            <div className="flex items-center justify-center lg:justify-end">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
+                  <Image
+                    src="/images/wireless/1-wireless-receiver-dom-modules.png"
+                    alt="Wireless Receiver and Analog Output Modules"
+                    width={700}
+                    height={350}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* 16-Channel 0-10V Receiver */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-xl">
-              <div className="mb-6">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-neutral-50">
+          {/* Product Cards - 3 Column Grid */}
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {/* Resistance Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
                   <Image
-                    src="/images/wireless/Wireless_BLE_Gateway_2023.webp"
-                    alt="16-Channel 0-10V Wireless Receiver"
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Resistance Output Module"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Resistance Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Resistance Output Module (ROM) converts the temperature data from the BAPI Receiver into a resistance for the BAS controller inputs. The unit is factory calibrated to output a 10K-2, 10K-3, 10K-3(UK), or 20K thermistor curve.
+                </p>
+                <Link 
+                  href="/product/resistance-output-module-rom-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
               </div>
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                16-Channel 0-10V Receiver
-              </h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Receive data from up to 16 wireless sensors with 0-10V DC analog outputs
-              </p>
-              <ul className="mb-6 space-y-2 text-xs text-neutral-700">
-                {[
-                  '16 analog 0-10V DC outputs',
-                  'DIN rail or wall mount',
-                  'BACnet/IP or Modbus TCP',
-                  '900 MHz LoRa wireless',
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-3 w-3 flex-shrink-0 text-primary-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/products/bluetooth-wireless/wireless-gateway"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600"
-              >
-                View Details
-                <ArrowRightIcon className="h-3 w-3" />
-              </Link>
             </div>
 
-            {/* 8-Channel 4-20mA Receiver */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-xl">
-              <div className="mb-6">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-neutral-50">
+            {/* Voltage Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
                   <Image
-                    src="/images/wireless/Wireless_BLE_Receiver_Group_DIN.webp"
-                    alt="8-Channel 4-20mA Wireless Receiver"
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Voltage Output Module"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Voltage Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Voltage Output Module (VOM) converts the temperature or humidity data from the BAPI Receiver into a linear 0 to 5 or 0 to 10 volt signal for the controller. There are eight factory set temperature ranges (°F and °C) and two humidity ranges of 0 to 100% or 35 to 70%RH.
+                </p>
+                <Link 
+                  href="/product/voltage-output-module-vom-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
               </div>
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                8-Channel 4-20mA Receiver
-              </h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Industrial-grade current loop outputs for process control applications
-              </p>
-              <ul className="mb-6 space-y-2 text-xs text-neutral-700">
-                {[
-                  '8 analog 4-20mA outputs',
-                  'Isolated current loops',
-                  'BACnet/IP or Modbus RTU',
-                  'DIN rail mount',
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-3 w-3 flex-shrink-0 text-primary-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/products/bluetooth-wireless/wireless-gateway"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600"
-              >
-                View Details
-                <ArrowRightIcon className="h-3 w-3" />
-              </Link>
             </div>
 
-            {/* BACnet/IP Module */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-xl">
-              <div className="mb-6">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-neutral-50">
+            {/* Setpoint Output Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
                   <Image
-                    src="/images/wireless/Wireless_BLE_BACnet_IP_Module-1.png"
-                    alt="BACnet/IP Wireless Module"
+                    src="/images/wireless/Wireless_BLE_ROM_Module-3.png"
+                    alt="Setpoint Output Module"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  Setpoint Output Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The Setpoint Output Module (SOM) converts the setpoint data from the BAPI receiver into a resistance or a voltage for the BAS controller. There are five factory set voltage and resistive ranges, each with an optional override function.
+                </p>
+                <Link 
+                  href="/product/setpoint-output-module-som-for-wireless-system"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
               </div>
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                BACnet/IP Integration Module
-              </h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Native BACnet/IP connectivity for plug-and-play BAS integration
-              </p>
-              <ul className="mb-6 space-y-2 text-xs text-neutral-700">
-                {[
-                  'Direct BACnet/IP protocol',
-                  'Ethernet connectivity',
-                  'Up to 16 sensor points',
-                  'Standard BACnet objects',
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-3 w-3 flex-shrink-0 text-primary-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/products/bluetooth-wireless/wireless-gateway"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600"
-              >
-                View Details
-                <ArrowRightIcon className="h-3 w-3" />
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Digital Output Modules */}
-      <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Digital Output Modules (DOM)
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Modular relay output systems for wireless sensor-based control applications
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:max-w-4xl lg:mx-auto">
-            {/* Receiver with DOM Modules */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-xl">
-              <div className="mb-6">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-neutral-50">
-                  <Image
-                    src="/images/wireless/wireless-receiver-with-output-modules.png"
-                    alt="Wireless Receiver with Output Modules"
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
-                  />
-                </div>
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header Section - Two Column Layout */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-2 lg:gap-20">
+            {/* Left Column - Text */}
+            <div className="flex flex-col justify-center">
+              <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
+                Digital Output Modules
+              </h2>
+              <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
+                <p>
+                  The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to <strong className="text-primary-600">Digital Output Modules</strong>. The modules convert the data to a digital signal for integration with the ethernet communication network or the RS-485 field communication network. The receiver can accommodate up to 28 wireless sensors for digital output.
+                </p>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-neutral-900">
-                Receiver with DOM Slots
-              </h3>
-              <p className="mb-6 text-neutral-700">
-                Base receiver with hot-swappable digital output module slots for flexible configuration
-              </p>
-              <ul className="mb-6 space-y-2 text-sm text-neutral-700">
-                {[
-                  'Up to 8 DOM module slots',
-                  'Hot-swappable modules',
-                  'Web-based configuration',
-                  '16 wireless sensor inputs',
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/products/bluetooth-wireless/wireless-accessories"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
-              >
-                View Details
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
             </div>
 
-            {/* Individual DOM Modules */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-xl">
-              <div className="mb-6">
-                <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-neutral-50">
+            {/* Right Column - Image */}
+            <div className="flex items-center justify-center lg:justify-end">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
                   <Image
-                    src="/images/wireless/wireless-receiver-with-dom-module-1.png"
-                    alt="Digital Output Module"
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
+                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    alt="Wireless Receiver with Digital Output Modules"
+                    width={700}
+                    height={350}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="h-auto w-full"
                   />
                 </div>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-neutral-900">
-                Individual DOM Modules
-              </h3>
-              <p className="mb-6 text-neutral-700">
-                SPDT relay output modules for on/off control based on wireless sensor readings
-              </p>
-              <ul className="mb-6 space-y-2 text-sm text-neutral-700">
-                {[
-                  'SPDT relay (1A @ 24VAC)',
-                  'Configurable setpoints',
-                  'High/low alarm outputs',
-                  'LED status indicators',
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/products/bluetooth-wireless/wireless-accessories"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
-              >
-                View Details
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
+            </div>
+          </div>
+
+          {/* Product Cards - 2 Column Grid */}
+          <div className="grid gap-10 md:grid-cols-2">
+            {/* BACnet IP Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/Wireless_BLE_BACnet_IP_Module-1.png"
+                    alt="BACnet IP Module"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  BACnet IP Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The BACnet IP Module converts the data from wireless sensors for integration into the BMS ethernet communication network. Because BACnet IP is a standard protocol, the module is perfect for retrofitting older systems or adding new ones.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  Configuration is quick and easy through a web-based interface, allowing both setup and adjustment without physically accessing the device once it's installed.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The receiver and BACnet IP module are surface, 2.75" snaptrack or 35mmDIN rail mountable.
+                </p>
+                <Link 
+                  href="/product/bacnet-ip-module"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* BACnet MS/TP or Modbus RTU Module */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-600"></div>
+              <div className="p-8">
+                <div className="relative mb-6 h-52 overflow-hidden rounded-lg bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/wireless-receiver-bacnet-ip-1.png"
+                    alt="BACnet MS/TP or Modbus RTU Module"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-primary-600 transition-colors group-hover:text-primary-700 lg:text-2xl">
+                  BACnet MS/TP or Modbus RTU Module
+                </h3>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  The BACnet MS/TP or Modbus RTU output module converts the data from wireless sensors for integration into the RS-485 field communication network. The field-selectable BACnet MS/TP or Modbus RTU output lets customers choose the best protocol for their system without the need for multiple devices. This makes the module perfect for retrofitting older systems or adding new ones.
+                </p>
+                <p className="mb-8 leading-relaxed text-neutral-700">
+                  Configuration is quick and easy with the USB-C port and a computer running the downloadable application. The receiver and module are surface, 2.75" snaptrack or 35mm DIN rail mountable.
+                </p>
+                <Link 
+                  href="/product/wireless-digital-output-module"
+                  className="block w-full rounded-lg bg-primary-500 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-600 hover:shadow-lg"
+                >
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -406,112 +476,6 @@ export default function WirelessPage() {
         </div>
       </section>
 
-      {/* Wireless Sensors */}
-      <section className="bg-white py-14 lg:py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900 lg:text-3xl">
-              Wireless Sensors
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-neutral-700">
-              Bluetooth Low Energy sensors with 5-year battery life for temperature, humidity,
-              and environmental monitoring
-            </p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: 'Room Temperature & Humidity',
-                description: 'Wall-mount sensor with LCD display for occupied spaces',
-                features: ['±0.3°C / ±2% RH accuracy', 'LCD display', '5-year battery'],
-                href: '/products/bluetooth-wireless/wireless-room',
-              },
-              {
-                title: 'Duct Temperature',
-                description: 'High-accuracy duct mount sensor for HVAC applications',
-                features: ['±0.2°C accuracy', '316 SS probe', 'Duct mount'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'Outside Air Temperature',
-                description: 'Weatherproof sensor for outdoor environmental monitoring',
-                features: ['IP67 rated', '-40°C to 80°C range', 'UV resistant'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'Immersion Temperature',
-                description: 'Probe sensor for liquid temperature monitoring',
-                features: ['6" stainless probe', '±0.2°C accuracy', 'Glycol compatible'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'CO₂ Sensor',
-                description: 'Indoor air quality sensor with CO₂ and temperature',
-                features: ['NDIR CO₂ (0-2000 ppm)', 'Temperature sensor', '5-year battery'],
-                href: '/products/bluetooth-wireless/wireless-room',
-              },
-              {
-                title: 'Differential Pressure',
-                description: 'Filter and airflow monitoring sensor',
-                features: ['0-1" W.C. range', '±3% accuracy', 'Magnet mount'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'Averaging Temperature',
-                description: 'Multi-point averaging for large spaces and ducts',
-                features: ['Up to 16 sensing points', 'Flexible cable lengths', 'RTD accuracy'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'Outdoor Humidity',
-                description: 'Weatherproof temperature and humidity monitoring',
-                features: ['IP67 rated', '±2% RH accuracy', 'Solar radiation shield'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-              {
-                title: 'Pressure Sensor',
-                description: 'Static pressure monitoring for HVAC systems',
-                features: ['0-5" W.C. range', '±2% accuracy', 'Compact design'],
-                href: '/products/bluetooth-wireless/wireless-non-room',
-              },
-            ].map((sensor, idx) => (
-              <div
-                key={idx}
-                className="rounded-lg border border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-md"
-              >
-                <h3 className="mb-1 text-base font-bold text-neutral-900">{sensor.title}</h3>
-                <p className="mb-3 text-xs text-neutral-700">{sensor.description}</p>
-                <ul className="mb-3 space-y-1 text-xs text-neutral-600">
-                  {sensor.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="h-1 w-1 flex-shrink-0 rounded-full bg-primary-500" />
-                      <span className="leading-tight">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={sensor.href}
-                  className="text-xs font-semibold text-primary-500 transition-colors hover:text-primary-600"
-                >
-                  View Products →
-                </Link>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/products/bluetooth-wireless"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
-            >
-              Browse All Wireless Sensors
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form */}
       <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -528,7 +492,7 @@ export default function WirelessPage() {
 
               <div className="relative aspect-[2/1] overflow-hidden rounded-xl bg-white p-2 shadow-lg">
                 <Image
-                  src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
+                  src="/images/wireless/technician-checking-laptop.png"
                   alt="BAPI wireless receiver system"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -637,36 +601,6 @@ export default function WirelessPage() {
                   </a>
                 </p>
               </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="border-t-4 border-accent-500 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
-              Ready to Go Wireless?
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">
-              Contact our team to discuss your wireless building automation project
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/request-quote"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
-              >
-                Request a Quote
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-              <Link
-                href="/support"
-                className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
-              >
-                Technical Support
-              </Link>
             </div>
           </div>
         </div>

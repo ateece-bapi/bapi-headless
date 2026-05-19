@@ -33,7 +33,7 @@ interface SubcategoryPageProps {
 }
 
 export async function generateMetadata({ params }: SubcategoryPageProps): Promise<Metadata> {
-  const { subcategory } = await params;
+  const { locale, subcategory } = await params;
   const client = getGraphQLClient(['product-categories'], true);
 
   try {

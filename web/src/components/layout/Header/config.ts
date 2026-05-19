@@ -147,7 +147,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.wireless.title'),
-          slug: 'bluetooth-wireless',
+          slug: 'wireless-sensors/bluetooth-wireless',
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {
@@ -169,7 +169,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
             },
             {
               label: t('products.wireless.receiversModules'),
-              href: '/products/bluetooth-wireless',
+              href: '/products/bluetooth-wireless/wireless-receivers-bluetooth-wireless',
               description: t('products.wireless.receiversModulesDesc'),
             },
             {

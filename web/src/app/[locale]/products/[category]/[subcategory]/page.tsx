@@ -33,7 +33,7 @@ interface SubcategoryPageProps {
 }
 
 export async function generateMetadata({ params }: SubcategoryPageProps): Promise<Metadata> {
-  const { subcategory } = await params;
+  const { locale, subcategory } = await params;
   const client = getGraphQLClient(['product-categories'], true);
 
   try {
@@ -49,11 +49,18 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
       };
     }
 
+    // Override title for combined wireless receivers page
+    // Use translation key for i18n support
+    const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
+    const pageTitle = subcategory === 'wireless-receivers-bluetooth-wireless'
+      ? tSubcategories('wirelessReceiversBluetoothWireless.name')
+      : categoryData.name;
+
     return {
-      title: `${categoryData.name} | BAPI`,
+      title: `${pageTitle} | BAPI`,
       description:
         categoryData.description ||
-        `Browse ${categoryData.name} from BAPI - Building Automation Products Inc.`,
+        `Browse ${pageTitle} from BAPI - Building Automation Products Inc.`,
     };
   } catch (error) {
     return {
@@ -115,31 +122,36 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
   const products: ProductNode[] = [];
 
-  // Always fetch products (categories can have both subcategories AND direct products)
-  // Using GetProductsWithFilters to include all taxonomy fields for context-aware filtering
-  // Paginate through all products to ensure complete data
-  let after: string | null = null;
-  let hasNextPage = true;
+  // For wireless receivers, combine both receivers AND output modules
+  const categoriesToFetch = subcategory === 'wireless-receivers-bluetooth-wireless'
+    ? ['wireless-receivers-bluetooth-wireless', 'wireless-output-modules-bluetooth-wireless']
+    : [subcategory];
 
-  while (hasNextPage && products.length < 1000) {
-    const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
-      GetProductsWithFiltersDocument,
-      {
-        categorySlug: subcategory,
-        first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
-        after: after || undefined,
+  // Fetch products from all relevant categories
+  for (const categorySlug of categoriesToFetch) {
+    let after: string | null = null;
+    let hasNextPage = true;
+
+    while (hasNextPage && products.length < 1000) {
+      const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
+        GetProductsWithFiltersDocument,
+        {
+          categorySlug: categorySlug,
+          first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
+          after: after || undefined,
+        }
+      );
+
+      const pageNodes = productsData.products?.nodes || [];
+      products.push(...pageNodes);
+
+      hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
+      after = productsData.products?.pageInfo?.endCursor ?? null;
+
+      // Safety guard: Stop if no valid cursor for next page
+      if (!hasNextPage || !after) {
+        break;
       }
-    );
-
-    const pageNodes = productsData.products?.nodes || [];
-    products.push(...pageNodes);
-
-    hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
-    after = productsData.products?.pageInfo?.endCursor ?? null;
-
-    // Safety guard: Stop if no valid cursor for next page
-    if (!hasNextPage || !after) {
-      break;
     }
   }
 
@@ -152,7 +164,9 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const translatedCategoryName = parentCategory
     ? getTranslatedCategoryName(parentCategory.name)
     : '';
-  const translatedSubcategoryName = getTranslatedSubcategoryName(subcategoryData.name);
+  const translatedSubcategoryName = subcategory === 'wireless-receivers-bluetooth-wireless'
+    ? tSubcategories('wirelessReceiversBluetoothWireless.name')
+    : getTranslatedSubcategoryName(subcategoryData.name);
 
   let breadcrumbs;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
@@ -330,17 +344,21 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
             {/* Custom "Receiver and Output Modules" card for bluetooth-wireless */}
             {subcategory === 'bluetooth-wireless' && (
               <Link
-                href={`/products/${category}/${subcategory}`}
+                href={`/products/${subcategory}/wireless-receivers-bluetooth-wireless`}
                 className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
                 <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                {/* Placeholder Image */}
-                <div className="relative flex aspect-[3/2] items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50">
-                  <span className="text-xl font-semibold text-primary-600">
-                    Receiver and Output Modules
-                  </span>
+                {/* Product Image */}
+                <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    alt="Receiver and Output Modules"
+                    fill
+                    className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
 
                 {/* Info */}
@@ -367,28 +385,32 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
       {hasProducts && (
         <div className="mx-auto max-w-content px-4 py-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
-            {/* Desktop Sidebar Filters */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-4">
-                <ProductFilters
-                  categorySlug={subcategory}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
-            </aside>
+          <div className={`grid grid-cols-1 gap-8 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[280px_1fr]'}`}>
+            {/* Desktop Sidebar Filters (hidden for wireless receivers) */}
+            {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
+              <aside className="hidden lg:block">
+                <div className="sticky top-4">
+                  <ProductFilters
+                    categorySlug={subcategory}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              </aside>
+            )}
 
             {/* Main Content */}
             <div className="space-y-6">
-              {/* Mobile Filter Button */}
-              <div className="lg:hidden">
-                <MobileFilterButton
-                  categorySlug={subcategory}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
+              {/* Mobile Filter Button (hidden for wireless receivers) */}
+              {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
+                <div className="lg:hidden">
+                  <MobileFilterButton
+                    categorySlug={subcategory}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              )}
 
               {/* Product Sort */}
               <div className="flex justify-end border-b border-neutral-200 pb-4">

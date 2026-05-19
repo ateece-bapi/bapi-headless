@@ -1715,6 +1715,10 @@
       "wamWireless": {
         "name": "WAM - Wireless Asset Monitoring",
         "description": "Long-range wireless monitoring with cloud platform"
+      },
+      "wirelessReceiversBluetoothWireless": {
+        "name": "Receiver and Output Modules",
+        "description": "Wireless receivers, analog and digital output modules"
       }
     },
     "featured": {

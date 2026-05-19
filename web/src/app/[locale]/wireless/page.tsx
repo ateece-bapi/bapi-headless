@@ -716,29 +716,39 @@ export default function WirelessPage() {
       </section>
 
       {/* WAM Cross-Reference */}
-      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
+      <section className="bg-gradient-to-br from-neutral-50 via-white to-primary-50/20 py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl border-l-4 border-primary-500 bg-white p-8 shadow-sm">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50">
-                <WifiIcon className="h-6 w-6 text-primary-500" />
-              </div>
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  Looking for Wireless Asset Monitoring (WAM)?
-                </h3>
-                <p className="mb-4 text-neutral-700">
-                  WAM is our retail/food service temperature monitoring solution with cloud
-                  dashboards and mobile app—a separate product line from our building automation
-                  wireless products.
-                </p>
-                <Link
-                  href="/wam"
-                  className="inline-flex items-center gap-2 font-semibold text-primary-500 transition-colors hover:text-primary-600"
-                >
-                  Learn About WAM
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
+          <div className="mx-auto max-w-4xl">
+            <div className="relative">
+              {/* Gradient glow effect */}
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-500/20 via-accent-500/10 to-primary-500/20 opacity-60 blur-2xl" />
+              
+              <div className="relative overflow-hidden rounded-2xl border-2 border-primary-200 bg-white p-8 shadow-xl lg:p-12">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+                  {/* Icon */}
+                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg lg:h-20 lg:w-20">
+                    <WifiIcon className="h-8 w-8 text-white lg:h-10 lg:w-10" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="mb-3 text-2xl font-bold text-neutral-900 lg:text-3xl">
+                      Looking for Wireless Asset Monitoring (WAM)?
+                    </h3>
+                    <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+                      WAM is our retail/food service temperature monitoring solution with cloud
+                      dashboards and mobile app—a separate product line from our building automation
+                      wireless products.
+                    </p>
+                    <Link
+                      href="/wam"
+                      className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+                    >
+                      Learn About WAM
+                      <ArrowRightIcon className="h-5 w-5" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

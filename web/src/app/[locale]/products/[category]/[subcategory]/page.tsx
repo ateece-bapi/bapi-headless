@@ -115,31 +115,36 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
   const products: ProductNode[] = [];
 
-  // Always fetch products (categories can have both subcategories AND direct products)
-  // Using GetProductsWithFilters to include all taxonomy fields for context-aware filtering
-  // Paginate through all products to ensure complete data
-  let after: string | null = null;
-  let hasNextPage = true;
+  // For wireless receivers, combine both receivers AND output modules
+  const categoriesToFetch = subcategory === 'wireless-receivers-bluetooth-wireless'
+    ? ['wireless-receivers-bluetooth-wireless', 'wireless-output-modules-bluetooth-wireless']
+    : [subcategory];
 
-  while (hasNextPage && products.length < 1000) {
-    const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
-      GetProductsWithFiltersDocument,
-      {
-        categorySlug: subcategory,
-        first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
-        after: after || undefined,
+  // Fetch products from all relevant categories
+  for (const categorySlug of categoriesToFetch) {
+    let after: string | null = null;
+    let hasNextPage = true;
+
+    while (hasNextPage && products.length < 1000) {
+      const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
+        GetProductsWithFiltersDocument,
+        {
+          categorySlug: categorySlug,
+          first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
+          after: after || undefined,
+        }
+      );
+
+      const pageNodes = productsData.products?.nodes || [];
+      products.push(...pageNodes);
+
+      hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
+      after = productsData.products?.pageInfo?.endCursor ?? null;
+
+      // Safety guard: Stop if no valid cursor for next page
+      if (!hasNextPage || !after) {
+        break;
       }
-    );
-
-    const pageNodes = productsData.products?.nodes || [];
-    products.push(...pageNodes);
-
-    hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
-    after = productsData.products?.pageInfo?.endCursor ?? null;
-
-    // Safety guard: Stop if no valid cursor for next page
-    if (!hasNextPage || !after) {
-      break;
     }
   }
 

@@ -263,7 +263,21 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
             {t('subcategories.title')}
           </h2>
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {subSubcategories.map((subSub, index) => {
+            {subSubcategories
+              .filter((subSub) => {
+                // For bluetooth-wireless subcategory, filter out specific sub-subcategories
+                if (subcategory === 'bluetooth-wireless') {
+                  const excludedSlugs = [
+                    'wireless-gateway', // Gateway is WAM-only
+                    'wireless-receivers-bluetooth-wireless', // Will be combined with Output Modules
+                    'wireless-output-modules-bluetooth-wireless', // Will be combined with Receivers
+                    'wireless-food-probe', // Food Probe moved to Non-Room Sensors
+                  ];
+                  return !excludedSlugs.includes(subSub.slug || '');
+                }
+                return true;
+              })
+              .map((subSub, index) => {
               const translatedName = getTranslatedSubcategoryName(subSub.name);
               return (
                 <Link
@@ -312,6 +326,40 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                 </Link>
               );
             })}
+            
+            {/* Custom "Receiver and Output Modules" card for bluetooth-wireless */}
+            {subcategory === 'bluetooth-wireless' && (
+              <Link
+                href={`/products/${category}/${subcategory}`}
+                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
+              >
+                {/* BAPI Gradient Top Border */}
+                <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                {/* Placeholder Image */}
+                <div className="relative flex aspect-[3/2] items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50">
+                  <span className="text-xl font-semibold text-primary-600">
+                    Receiver and Output Modules
+                  </span>
+                </div>
+
+                {/* Info */}
+                <div className="relative z-10 bg-white p-4">
+                  <h3 className="mb-3 text-xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
+                    Receiver and Output Modules
+                  </h3>
+                  <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-neutral-700">
+                    Wireless receivers, analog and digital output modules
+                  </p>
+                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                    <span>{t('subcategories.browseButton')}</span>
+                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       )}

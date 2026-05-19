@@ -59,7 +59,7 @@ export default function WirelessPage() {
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/products/bluetooth-wireless"
+                  href="/products/wireless-sensors/bluetooth-wireless"
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Wireless Products
@@ -148,8 +148,8 @@ export default function WirelessPage() {
 
               <div className="mt-8 text-center">
                 <Link
-                  href="/products/bluetooth-wireless"
-                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+                  href="/products/wireless-sensors/bluetooth-wireless"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
                 >
                   Browse All Wireless Products
                   <ArrowRightIcon className="h-5 w-5" />
@@ -161,68 +161,116 @@ export default function WirelessPage() {
       </section>
 
       {/* Wireless Receiver */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header */}
           <div className="mb-16 text-center">
             <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
               Wireless Receiver
             </h2>
-            <p className="mx-auto max-w-5xl text-base leading-relaxed text-neutral-700 lg:text-lg">
+            <p className="mx-auto max-w-5xl text-lg leading-relaxed text-neutral-700 lg:text-xl">
               The Wireless Receiver from BAPI receives the data from one or more wireless sensors. The data is then transferred to the Digital & Analog Output Modules and converted to BACnet IP, BACnet MS/TP, Modbus RTU, or an analog voltage or resistance. The receiver supports analog up to 28 sensors and up to 127 different Analog Output Modules, and supports digital up to 28 sensors. The receiver includes several user-adjustable settings to maximize battery life while ensuring the BMS gets the information it needs.
             </p>
           </div>
 
-          <div className="mb-20 grid items-start gap-12 md:grid-cols-2 lg:gap-20">
-            {/* Left Column */}
-            <div className="space-y-8">
-              <div className="flex justify-center md:justify-start">
-                <Image
-                  src="/images/wireless/wireless-receiver.png"
-                  alt="BAPI Wireless Receiver"
-                  width={350}
-                  height={280}
-                  className="h-auto w-auto"
-                  priority
-                />
-              </div>
-              
-              <div className="rounded-lg bg-neutral-50 p-6">
-                <p className="mb-4 text-base font-bold text-neutral-900">
-                  Field Selectable Settings:
-                </p>
-                <ul className="ml-5 list-disc space-y-2 text-neutral-700">
-                  <li>Sample Rate/Interval</li>
-                  <li>Transmit Rate/Interval</li>
-                  <li>Delta Temperature</li>
-                  <li>Delta Humidity</li>
-                </ul>
+          {/* Product Showcase - Three Column Grid */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-3">
+            {/* Column 1: Receiver Unit Image */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-8 shadow-xl">
+                  <div className="relative aspect-square">
+                    <Image
+                      src="/images/wireless/wireless-receiver.png"
+                      alt="BAPI Wireless Receiver"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column */}
-            <div className="flex flex-col items-center justify-start">
-              <div className="rounded-lg bg-neutral-50 p-4">
-                <Image
-                  src="/images/wireless/wireless-receiver-settings.png"
-                  alt="Wireless Receiver Field Selectable Settings"
-                  width={480}
-                  height={380}
-                  className="h-auto w-auto"
-                />
+            {/* Column 2: Field Selectable Settings */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="h-full rounded-xl border-2 border-primary-200 bg-gradient-to-br from-white to-primary-50/30 p-8 shadow-lg">
+                <h3 className="mb-6 text-2xl font-bold text-primary-600">
+                  Field Selectable Settings
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    'Sample Rate/Interval',
+                    'Transmit Rate/Interval',
+                    'Delta Temperature',
+                    'Delta Humidity',
+                  ].map((setting) => (
+                    <li key={setting} className="flex items-start gap-3">
+                      <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+                      <span className="text-lg text-neutral-700">{setting}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 rounded-lg bg-white/60 p-4">
+                  <p className="text-sm italic text-neutral-600">
+                    User-adjustable settings optimize battery life while ensuring the BMS receives timely data.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: Settings Diagram */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-accent-100 to-primary-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
+                  <div className="relative aspect-[4/5]">
+                    <Image
+                      src="/images/wireless/wireless-receiver-settings.png"
+                      alt="Wireless Receiver Field Selectable Settings Diagram"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* How Does It Work - Full Width */}
-          <div className="overflow-hidden rounded-xl shadow-lg">
-            <Image
-              src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
-              alt="Wireless Receiver - How Does It Work?"
-              width={1200}
-              height={350}
-              className="h-auto w-full"
-            />
+          <div className="relative">
+            <div className="mb-6 text-center">
+              <h3 className="text-3xl font-bold text-primary-600">
+                How Does It Work?
+              </h3>
+            </div>
+            <div className="overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white shadow-2xl">
+              <div className="relative aspect-[16/5]">
+                <Image
+                  src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
+                  alt="Wireless Receiver System Architecture - How Does It Work?"
+                  fill
+                  sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 1000px, 100vw"
+                  className="object-contain"
+                />
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA - Browse Wireless Products */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
+          <Link
+            href="/products/wireless-sensors/bluetooth-wireless"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+          >
+            Browse Our Wireless Products
+            <ArrowRightIcon className="h-5 w-5" />
+          </Link>
         </div>
       </section>
 
@@ -459,7 +507,7 @@ export default function WirelessPage() {
       </section>
 
       {/* BAPI Wireless Solution Integration */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-gradient-to-br from-primary-50/30 via-white to-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
@@ -470,19 +518,69 @@ export default function WirelessPage() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="overflow-hidden rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src="/images/wireless/wireless-integration-graphic.png"
-                  alt="BAPI Wireless Solution Integration Architecture"
-                  fill
-                  sizes="(min-width: 1024px) 900px, 100vw"
-                  className="object-contain"
-                />
+          {/* Integration Features */}
+          <div className="mx-auto mb-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Multi-Protocol Support</h3>
+                <p className="text-sm text-neutral-700">
+                  BACnet IP, Modbus RTU, and analog outputs for seamless integration
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Scalable Architecture</h3>
+                <p className="text-sm text-neutral-700">
+                  From single-zone to enterprise-wide deployments with centralized management
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Field-Proven Reliability</h3>
+                <p className="text-sm text-neutral-700">
+                  900 MHz LoRa technology with superior range and penetration
+                </p>
               </div>
             </div>
           </div>
+
+          {/* Integration Diagram */}
+          <div className="mx-auto max-w-5xl">
+            <div className="relative">
+              {/* Gradient glow effect */}
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-500/20 via-accent-500/10 to-primary-500/20 opacity-75 blur-2xl" />
+              
+              <div className="relative overflow-hidden rounded-xl border-2 border-primary-200 bg-white p-8 shadow-xl">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src="/images/wireless/wireless-integration-graphic.png"
+                    alt="BAPI Wireless Solution Integration Architecture"
+                    fill
+                    sizes="(min-width: 1024px) 1000px, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA - Browse Wireless Products */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
+          <Link
+            href="/products/wireless-sensors/bluetooth-wireless"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+          >
+            Browse Our Wireless Products
+            <ArrowRightIcon className="h-5 w-5" />
+          </Link>
         </div>
       </section>
 
@@ -617,29 +715,39 @@ export default function WirelessPage() {
       </section>
 
       {/* WAM Cross-Reference */}
-      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
+      <section className="bg-gradient-to-br from-neutral-50 via-white to-primary-50/20 py-16 lg:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl border-l-4 border-primary-500 bg-white p-8 shadow-sm">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50">
-                <WifiIcon className="h-6 w-6 text-primary-500" />
-              </div>
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  Looking for Wireless Asset Monitoring (WAM)?
-                </h3>
-                <p className="mb-4 text-neutral-700">
-                  WAM is our retail/food service temperature monitoring solution with cloud
-                  dashboards and mobile app—a separate product line from our building automation
-                  wireless products.
-                </p>
-                <Link
-                  href="/wam"
-                  className="inline-flex items-center gap-2 font-semibold text-primary-500 transition-colors hover:text-primary-600"
-                >
-                  Learn About WAM
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
+          <div className="mx-auto max-w-4xl">
+            <div className="relative">
+              {/* Gradient glow effect */}
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-500/20 via-accent-500/10 to-primary-500/20 opacity-60 blur-2xl" />
+              
+              <div className="relative overflow-hidden rounded-2xl border-2 border-primary-200 bg-white p-8 shadow-xl lg:p-12">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+                  {/* Icon */}
+                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg lg:h-20 lg:w-20">
+                    <WifiIcon className="h-8 w-8 text-white lg:h-10 lg:w-10" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="mb-3 text-2xl font-bold text-neutral-900 lg:text-3xl">
+                      Looking for Wireless Asset Monitoring (WAM)?
+                    </h3>
+                    <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+                      WAM is our retail/food service temperature monitoring solution with cloud
+                      dashboards and mobile app—a separate product line from our building automation
+                      wireless products.
+                    </p>
+                    <Link
+                      href="/wam"
+                      className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+                    >
+                      Learn About WAM
+                      <ArrowRightIcon className="h-5 w-5" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

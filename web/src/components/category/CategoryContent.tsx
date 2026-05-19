@@ -505,7 +505,23 @@ export default function CategoryContent({
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
               {subcategories
-                .filter((sub) => sub.name && sub.slug) // Only show subcategories with valid name and slug
+                .filter((sub) => {
+                  // Only show subcategories with valid name and slug
+                  if (!sub.name || !sub.slug) return false;
+                  
+                  // For bluetooth-wireless category, filter out specific subcategories
+                  if (categorySlugParam === 'bluetooth-wireless') {
+                    const excludedSlugs = [
+                      'wireless-gateway', // Gateway is WAM-only
+                      'wireless-receivers-bluetooth-wireless', // Will be combined with Output Modules
+                      'wireless-output-modules-bluetooth-wireless', // Will be combined with Receivers
+                      'wireless-food-probe', // Food Probe moved to Non-Room Sensors
+                    ];
+                    return !excludedSlugs.includes(sub.slug);
+                  }
+                  
+                  return true;
+                })
                 .map((subcategory) => (
                 <SubcategoryCard
                   key={subcategory.id}
@@ -516,6 +532,18 @@ export default function CategoryContent({
                   categorySlug={categorySlugParam}
                 />
               ))}
+              
+              {/* Custom "Receiver and Output Modules" card for bluetooth-wireless */}
+              {categorySlugParam === 'bluetooth-wireless' && (
+                <SubcategoryCard
+                  key="receivers-modules-combined"
+                  name="Receiver and Output Modules"
+                  slug="bluetooth-wireless" // Link to parent category showing all
+                  description="Wireless receivers, analog and digital output modules"
+                  image={null}
+                  categorySlug="wireless-sensors"
+                />
+              )}
             </div>
           </div>
         )}

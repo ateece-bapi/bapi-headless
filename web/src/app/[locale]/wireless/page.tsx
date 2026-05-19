@@ -161,67 +161,103 @@ export default function WirelessPage() {
       </section>
 
       {/* Wireless Receiver */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          {/* Header */}
           <div className="mb-16 text-center">
             <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
               Wireless Receiver
             </h2>
-            <p className="mx-auto max-w-5xl text-base leading-relaxed text-neutral-700 lg:text-lg">
+            <p className="mx-auto max-w-5xl text-lg leading-relaxed text-neutral-700 lg:text-xl">
               The Wireless Receiver from BAPI receives the data from one or more wireless sensors. The data is then transferred to the Digital & Analog Output Modules and converted to BACnet IP, BACnet MS/TP, Modbus RTU, or an analog voltage or resistance. The receiver supports analog up to 28 sensors and up to 127 different Analog Output Modules, and supports digital up to 28 sensors. The receiver includes several user-adjustable settings to maximize battery life while ensuring the BMS gets the information it needs.
             </p>
           </div>
 
-          <div className="mb-20 grid items-start gap-12 md:grid-cols-2 lg:gap-20">
-            {/* Left Column */}
-            <div className="space-y-8">
-              <div className="flex justify-center md:justify-start">
-                <Image
-                  src="/images/wireless/wireless-receiver.png"
-                  alt="BAPI Wireless Receiver"
-                  width={350}
-                  height={280}
-                  className="h-auto w-auto"
-                  priority
-                />
-              </div>
-              
-              <div className="rounded-lg bg-neutral-50 p-6">
-                <p className="mb-4 text-base font-bold text-neutral-900">
-                  Field Selectable Settings:
-                </p>
-                <ul className="ml-5 list-disc space-y-2 text-neutral-700">
-                  <li>Sample Rate/Interval</li>
-                  <li>Transmit Rate/Interval</li>
-                  <li>Delta Temperature</li>
-                  <li>Delta Humidity</li>
-                </ul>
+          {/* Product Showcase - Three Column Grid */}
+          <div className="mb-20 grid gap-12 lg:grid-cols-3">
+            {/* Column 1: Receiver Unit Image */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-8 shadow-xl">
+                  <div className="relative aspect-square">
+                    <Image
+                      src="/images/wireless/wireless-receiver.png"
+                      alt="BAPI Wireless Receiver"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column */}
-            <div className="flex flex-col items-center justify-start">
-              <div className="rounded-lg bg-neutral-50 p-4">
-                <Image
-                  src="/images/wireless/wireless-receiver-settings.png"
-                  alt="Wireless Receiver Field Selectable Settings"
-                  width={480}
-                  height={380}
-                  className="h-auto w-auto"
-                />
+            {/* Column 2: Field Selectable Settings */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="h-full rounded-xl border-2 border-primary-200 bg-gradient-to-br from-white to-primary-50/30 p-8 shadow-lg">
+                <h3 className="mb-6 text-2xl font-bold text-primary-600">
+                  Field Selectable Settings
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    'Sample Rate/Interval',
+                    'Transmit Rate/Interval',
+                    'Delta Temperature',
+                    'Delta Humidity',
+                  ].map((setting) => (
+                    <li key={setting} className="flex items-start gap-3">
+                      <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+                      <span className="text-lg text-neutral-700">{setting}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 rounded-lg bg-white/60 p-4">
+                  <p className="text-sm italic text-neutral-600">
+                    User-adjustable settings optimize battery life while ensuring the BMS receives timely data.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: Settings Diagram */}
+            <div className="flex flex-col justify-center lg:col-span-1">
+              <div className="relative w-full">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-accent-100 to-primary-100 opacity-20 blur-2xl"></div>
+                <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
+                  <div className="relative aspect-[4/5]">
+                    <Image
+                      src="/images/wireless/wireless-receiver-settings.png"
+                      alt="Wireless Receiver Field Selectable Settings Diagram"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* How Does It Work - Full Width */}
-          <div className="overflow-hidden rounded-xl shadow-lg">
-            <Image
-              src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
-              alt="Wireless Receiver - How Does It Work?"
-              width={1200}
-              height={350}
-              className="h-auto w-full"
-            />
+          <div className="relative">
+            <div className="mb-6 text-center">
+              <h3 className="text-3xl font-bold text-primary-600">
+                How Does It Work?
+              </h3>
+            </div>
+            <div className="overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white shadow-2xl">
+              <div className="relative aspect-[16/5]">
+                <Image
+                  src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
+                  alt="Wireless Receiver System Architecture - How Does It Work?"
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -330,7 +330,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
             {/* Custom "Receiver and Output Modules" card for bluetooth-wireless */}
             {subcategory === 'bluetooth-wireless' && (
               <Link
-                href={`/products/${category}/${subcategory}`}
+                href={`/products/${subcategory}/wireless-receivers-bluetooth-wireless`}
                 className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}

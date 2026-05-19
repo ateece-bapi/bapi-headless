@@ -157,7 +157,7 @@ export default function WAMPage() {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="bg-neutral-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">How It Works</h2>
             <p className="mx-auto max-w-3xl text-xl text-neutral-700">
@@ -226,7 +226,7 @@ export default function WAMPage() {
 
       {/* Alert Banner */}
       <section className="bg-accent-500 py-6">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4 text-neutral-900">
             <AlertTriangleIcon className="h-6 w-6 flex-shrink-0" />
             <p className="text-center text-lg font-semibold">
@@ -239,7 +239,7 @@ export default function WAMPage() {
 
       {/* Why WAM Section */}
       <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Why Choose WAM?
@@ -340,7 +340,7 @@ export default function WAMPage() {
 
       {/* Wireless Products Section */}
       <section id="products" className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Wireless Products
@@ -402,7 +402,7 @@ export default function WAMPage() {
 
       {/* Real-World Installations Gallery */}
       <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Real-World Installations
@@ -742,7 +742,7 @@ export default function WAMPage() {
 
       {/* WAM Dashboard & Software */}
       <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Powerful Cloud Dashboard

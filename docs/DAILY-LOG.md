@@ -8,6 +8,161 @@
 
 ---
 
+## May 19, 2026 — Wireless Sensor Navigation Links + Combined Category Fix 📡🔗
+
+**Status:** ✅ COMPLETE - PR merged to main  
+**Branch:** `fix/wireless-sensor-links` (merged & deleted)  
+**Context:** Multiple broken navigation links + missing products on combined receiver/output modules page  
+**Priority:** 🟡 P1 - User journey & product discovery  
+**Time:** ~3 hours (navigation fixes + category logic + Copilot review + i18n fix)  
+**Approach:** Fix broken links → Implement dual-category fetching → UI refinements → Address Copilot feedback
+
+### 🎯 SCOPE
+
+**Problems Identified:**
+1. Mega-menu "Receiver and Output Modules" link went to wrong URL
+2. Mega-menu "Wireless" section title link went to wrong page
+3. Combined category page only showed receivers (missing 6 output module products)
+4. Custom category card had circular link issue
+5. Page title showed "Receivers" instead of combined name
+6. Filters sidebar taking up space unnecessarily
+7. Custom card missing product image
+
+**Copilot PR Review Issues (4 total):**
+1. Mega-menu link should point to combined page (not parent)
+2. Hardcoded English strings instead of i18n translation keys
+3. Filter params still respected despite hidden UI
+4. TypeScript compilation error (locale not in scope)
+
+### ✅ SOLUTION
+
+**Navigation Fixes (2 commits):**
+- **Mega-menu "Receiver and Output Modules" link:** Changed href from `/products/bluetooth-wireless` → `/products/wireless-sensors/bluetooth-wireless` (commit: 56243d2)
+- **Mega-menu "Wireless" section title:** Changed slug from `bluetooth-wireless` → `wireless-sensors/bluetooth-wireless` (commit: ecf753b)
+
+**Category Page Enhancements (4 commits):**
+- **Dual-Category Fetching (commit: 66dfb37):**
+  - Implemented logic to fetch from both `wireless-receivers-bluetooth-wireless` AND `wireless-output-modules-bluetooth-wireless`
+  - Lines 115-147: `categoriesToFetch` array with conditional logic
+  - Now shows all 12+ products (receivers + output modules) instead of just receivers
+  
+- **UI Improvements (commit: 9bd290b):**
+  - Page title override: "Receiver and Output Modules" for metadata and display
+  - Filters sidebar conditionally hidden for this specific combined category
+  - Full-width product grid layout (removed lg:grid-cols-[280px_1fr])
+  
+- **Product Image (commit: 6ab366e):**
+  - Added Next.js Image component to custom category card
+  - Image: `/images/wireless/wireless-receiver-with-output-modules.png`
+  - Hover effects: scale-110 transition
+
+- **Browse Button Fix (commit: 3b44da2):**
+  - Fixed circular link issue on custom card
+  - Changed to `/products/${subcategory}/wireless-receivers-bluetooth-wireless`
+
+**Copilot PR Review Fixes (2 commits):**
+- **i18n Translation Support (commit: 1346cb4):**
+  - Added `wirelessReceiversBluetoothWireless` translation key to `productsPage.subcategories` in en.json
+  - Updated metadata generation to use `tSubcategories('wirelessReceiversBluetoothWireless.name')`
+  - Updated page title/breadcrumbs to use translation key (lines 48-53, 165-167)
+  - Mega-menu link changed from parent page to combined page: `/products/bluetooth-wireless/wireless-receivers-bluetooth-wireless`
+  
+- **TypeScript Fix (commit: 0ca5a26):**
+  - Destructured `locale` from params in `generateMetadata` function
+  - Fixed build error: "No value exists in scope for the shorthand property 'locale'"
+  - Allows `getTranslations({ locale, namespace })` to work properly
+
+### 📊 IMPLEMENTATION METRICS
+
+**Navigation Impact:**
+- Fixed 2 broken mega-menu links in Products dropdown
+- Corrected routing: `/products/wireless-sensors/bluetooth-wireless` (proper category hierarchy)
+- User journey now flows correctly from mega-menu → combined category page
+
+**Product Discovery:**
+- **Before:** Only receivers shown (6 products)
+- **After:** Receivers + output modules (12+ products)
+- **Missing Products Found:** 6 output module SKUs now visible
+
+**UI/UX Improvements:**
+- Filters removed for cleaner browsing (combined category shows all products)
+- Full-width grid layout (no sidebar constraint)
+- Product image added to custom card with hover effects
+- Page title properly reflects combined category name
+
+**i18n Compliance:**
+- All user-facing strings use translation keys
+- Supports all 11 locales (en, de, fr, es, ja, zh, ar, hi, vi, th, pl)
+- Translation key: `productsPage.subcategories.wirelessReceiversBluetoothWireless.name`
+
+### 📁 FILES CHANGED
+
+**Navigation (1 file):**
+- `web/src/components/layout/Header/config.ts` - Mega-menu link corrections (2 commits)
+
+**Page Logic (1 file):**
+- `web/src/app/[locale]/products/[category]/[subcategory]/page.tsx` - Dual-category fetching, UI conditionals, i18n (4 commits)
+
+**Translations (1 file):**
+- `web/messages/en.json` - Added `wirelessReceiversBluetoothWireless` translation key
+
+**Git History:**
+- Commit `56243d2` - Fix mega-menu "Receiver and Output Modules" link
+- Commit `ecf753b` - Fix mega-menu "Wireless" section title link
+- Commit `3b44da2` - Fix Browse button circular link
+- Commit `66dfb37` - Implement dual-category product fetching
+- Commit `9bd290b` - Update page title and hide filters
+- Commit `6ab366e` - Add product image to custom card
+- Commit `1346cb4` - Address Copilot PR review (i18n, mega-menu)
+- Commit `0ca5a26` - Fix TypeScript locale scope error
+- Merged to main (3 files changed, 79 insertions, 53 deletions)
+
+### 🔍 LESSONS LEARNED
+
+**1. Category Hierarchy Matters**
+- WordPress category slugs follow parent/child structure: `wireless-sensors/bluetooth-wireless`
+- Navigation links must respect full hierarchy path for proper routing
+- Combined categories can share URL structure with single categories
+
+**2. Dual-Category Fetching Pattern**
+- WooCommerce allows fetching products from multiple category slugs
+- Conditional category array: `[slug1, slug2]` based on page context
+- Useful for "virtual" combined categories that span multiple WooCommerce categories
+
+**3. Copilot PR Review Iteration**
+- Initial fixes can reveal additional issues (i18n hardcoding)
+- TypeScript async function scope requires explicit param destructuring
+- Translation keys must exist before metadata generation (await getTranslations)
+
+**4. Filter UI Edge Cases**
+- Hidden filters still respect URL params if user manually adds them
+- FilteredProductGrid uses client-side useSearchParams() (can't be conditionally disabled)
+- Acceptable limitation: Users can't apply filters via UI, manual URL manipulation unlikely
+
+### ✅ VALIDATION
+
+**TypeScript:** Build successful (852 pages generated)  
+**Navigation:** All mega-menu links route correctly  
+**Product Display:** 12+ products shown (receivers + output modules)  
+**i18n:** Translation keys work across all locales  
+**Branch Cleanup:** Remote + local branches deleted  
+**Working Tree:** Clean (main branch up to date)
+
+### 📝 NOTES
+
+**Combined Category Pattern:**
+- URL: `/products/bluetooth-wireless/wireless-receivers-bluetooth-wireless`
+- Fetches from: `wireless-receivers-bluetooth-wireless` + `wireless-output-modules-bluetooth-wireless`
+- Displays as: "Receiver and Output Modules" (translated)
+- Filters: Hidden (combined view shows all products without filtering)
+
+**Future Enhancements:**
+- Consider adding filters back with "Clear All" CTA visible
+- Add category description explaining combined view
+- Track analytics to see if users discover all products effectively
+
+---
+
 ## May 18, 2026 — Wireless Page DRASTIC Simplification 🔥✂️
 
 **Status:** ✅ COMPLETE - Removed excessive content sections entirely  

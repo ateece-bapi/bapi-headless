@@ -110,7 +110,7 @@ export default function WAMPage() {
 
       {/* What is WAM Section */}
       <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
             <p className="mx-auto max-w-3xl text-xl text-neutral-700">
@@ -306,7 +306,7 @@ export default function WAMPage() {
 
       {/* Industries Section */}
       <section className="bg-neutral-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Industries We Serve
@@ -864,7 +864,7 @@ export default function WAMPage() {
 
       {/* Demo Request Section */}
       <section id="demo" className="bg-linear-to-br from-primary-50 to-primary-100 py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-12">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Left - Content */}
@@ -1051,7 +1051,7 @@ export default function WAMPage() {
 
       {/* Final CTA Section */}
       <section className="bg-primary-600 py-12 text-white">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold lg:text-3xl">
             Have questions about wireless monitoring?
           </h2>

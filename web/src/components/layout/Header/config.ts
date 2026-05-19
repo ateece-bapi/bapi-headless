@@ -147,7 +147,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.wireless.title'),
-          slug: 'bluetooth-wireless',
+          slug: 'wireless-sensors/bluetooth-wireless',
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {

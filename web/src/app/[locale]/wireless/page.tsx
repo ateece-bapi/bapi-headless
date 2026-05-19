@@ -59,7 +59,7 @@ export default function WirelessPage() {
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/products/bluetooth-wireless"
+                  href="/products/wireless-sensors/bluetooth-wireless"
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Wireless Products
@@ -148,7 +148,7 @@ export default function WirelessPage() {
 
               <div className="mt-8 text-center">
                 <Link
-                  href="/products/bluetooth-wireless"
+                  href="/products/wireless-sensors/bluetooth-wireless"
                   className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
                 >
                   Browse All Wireless Products
@@ -265,7 +265,7 @@ export default function WirelessPage() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Link
-            href="/products/bluetooth-wireless"
+            href="/products/wireless-sensors/bluetooth-wireless"
             className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
           >
             Browse Our Wireless Products
@@ -575,7 +575,7 @@ export default function WirelessPage() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Link
-            href="/products/bluetooth-wireless"
+            href="/products/wireless-sensors/bluetooth-wireless"
             className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
           >
             Browse Our Wireless Products

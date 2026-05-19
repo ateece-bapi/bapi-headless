@@ -168,9 +168,9 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               description: t('products.wireless.nonRoomSensorsDesc'),
             },
             {
-              label: t('products.wireless.gateway'),
-              href: '/products/bluetooth-wireless/wireless-gateway',
-              description: t('products.wireless.gatewayDesc'),
+              label: t('products.wireless.receiversModules'),
+              href: '/products/bluetooth-wireless',
+              description: t('products.wireless.receiversModulesDesc'),
             },
             {
               label: t('products.wireless.wirelessAccessories'),

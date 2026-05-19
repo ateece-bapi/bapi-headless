@@ -169,7 +169,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
             },
             {
               label: t('products.wireless.receiversModules'),
-              href: '/products/bluetooth-wireless',
+              href: '/products/wireless-sensors/bluetooth-wireless',
               description: t('products.wireless.receiversModulesDesc'),
             },
             {

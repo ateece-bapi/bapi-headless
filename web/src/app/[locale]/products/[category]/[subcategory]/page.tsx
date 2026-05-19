@@ -348,11 +348,15 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                 {/* BAPI Gradient Top Border */}
                 <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                {/* Placeholder Image */}
-                <div className="relative flex aspect-[3/2] items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50">
-                  <span className="text-xl font-semibold text-primary-600">
-                    Receiver and Output Modules
-                  </span>
+                {/* Product Image */}
+                <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    alt="Receiver and Output Modules"
+                    fill
+                    className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
 
                 {/* Info */}

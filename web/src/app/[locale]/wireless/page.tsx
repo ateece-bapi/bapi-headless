@@ -508,7 +508,7 @@ export default function WirelessPage() {
       </section>
 
       {/* BAPI Wireless Solution Integration */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-gradient-to-br from-primary-50/30 via-white to-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
@@ -519,16 +519,53 @@ export default function WirelessPage() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="overflow-hidden rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src="/images/wireless/wireless-integration-graphic.png"
-                  alt="BAPI Wireless Solution Integration Architecture"
-                  fill
-                  sizes="(min-width: 1024px) 900px, 100vw"
-                  className="object-contain"
-                />
+          {/* Integration Features */}
+          <div className="mx-auto mb-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Multi-Protocol Support</h3>
+                <p className="text-sm text-neutral-700">
+                  BACnet IP, Modbus RTU, and analog outputs for seamless integration
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Scalable Architecture</h3>
+                <p className="text-sm text-neutral-700">
+                  From single-zone to enterprise-wide deployments with centralized management
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+              <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <div>
+                <h3 className="mb-1 font-bold text-neutral-900">Field-Proven Reliability</h3>
+                <p className="text-sm text-neutral-700">
+                  900 MHz LoRa technology with superior range and penetration
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Integration Diagram */}
+          <div className="mx-auto max-w-5xl">
+            <div className="relative">
+              {/* Gradient glow effect */}
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-500/20 via-accent-500/10 to-primary-500/20 opacity-75 blur-2xl" />
+              
+              <div className="relative overflow-hidden rounded-xl border-2 border-primary-200 bg-white p-8 shadow-xl">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src="/images/wireless/wireless-integration-graphic.png"
+                    alt="BAPI Wireless Solution Integration Architecture"
+                    fill
+                    sizes="(min-width: 1024px) 1000px, 100vw"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>

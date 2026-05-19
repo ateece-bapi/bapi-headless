@@ -50,8 +50,10 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
     }
 
     // Override title for combined wireless receivers page
+    // Use translation key for i18n support
+    const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
     const pageTitle = subcategory === 'wireless-receivers-bluetooth-wireless'
-      ? 'Receiver and Output Modules'
+      ? tSubcategories('wirelessReceiversBluetoothWireless.name')
       : categoryData.name;
 
     return {
@@ -163,7 +165,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
     ? getTranslatedCategoryName(parentCategory.name)
     : '';
   const translatedSubcategoryName = subcategory === 'wireless-receivers-bluetooth-wireless'
-    ? 'Receiver and Output Modules'
+    ? tSubcategories('wirelessReceiversBluetoothWireless.name')
     : getTranslatedSubcategoryName(subcategoryData.name);
 
   let breadcrumbs;

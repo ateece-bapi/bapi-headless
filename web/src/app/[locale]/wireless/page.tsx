@@ -262,6 +262,19 @@ export default function WirelessPage() {
         </div>
       </section>
 
+      {/* CTA - Browse Wireless Products */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
+          <Link
+            href="/products/bluetooth-wireless"
+            className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+          >
+            Browse Our Wireless Products
+            <ArrowRightIcon className="h-5 w-5" />
+          </Link>
+        </div>
+      </section>
+
       {/* Analog Output Modules */}
       <section className="bg-gradient-to-b from-white to-neutral-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">

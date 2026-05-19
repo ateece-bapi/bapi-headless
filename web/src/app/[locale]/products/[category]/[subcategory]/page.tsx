@@ -49,11 +49,16 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
       };
     }
 
+    // Override title for combined wireless receivers page
+    const pageTitle = subcategory === 'wireless-receivers-bluetooth-wireless'
+      ? 'Receiver and Output Modules'
+      : categoryData.name;
+
     return {
-      title: `${categoryData.name} | BAPI`,
+      title: `${pageTitle} | BAPI`,
       description:
         categoryData.description ||
-        `Browse ${categoryData.name} from BAPI - Building Automation Products Inc.`,
+        `Browse ${pageTitle} from BAPI - Building Automation Products Inc.`,
     };
   } catch (error) {
     return {
@@ -157,7 +162,9 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const translatedCategoryName = parentCategory
     ? getTranslatedCategoryName(parentCategory.name)
     : '';
-  const translatedSubcategoryName = getTranslatedSubcategoryName(subcategoryData.name);
+  const translatedSubcategoryName = subcategory === 'wireless-receivers-bluetooth-wireless'
+    ? 'Receiver and Output Modules'
+    : getTranslatedSubcategoryName(subcategoryData.name);
 
   let breadcrumbs;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
@@ -372,28 +379,32 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
       {hasProducts && (
         <div className="mx-auto max-w-content px-4 py-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
-            {/* Desktop Sidebar Filters */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-4">
-                <ProductFilters
-                  categorySlug={subcategory}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
-            </aside>
+          <div className={`grid grid-cols-1 gap-8 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[280px_1fr]'}`}>
+            {/* Desktop Sidebar Filters (hidden for wireless receivers) */}
+            {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
+              <aside className="hidden lg:block">
+                <div className="sticky top-4">
+                  <ProductFilters
+                    categorySlug={subcategory}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              </aside>
+            )}
 
             {/* Main Content */}
             <div className="space-y-6">
-              {/* Mobile Filter Button */}
-              <div className="lg:hidden">
-                <MobileFilterButton
-                  categorySlug={subcategory}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
+              {/* Mobile Filter Button (hidden for wireless receivers) */}
+              {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
+                <div className="lg:hidden">
+                  <MobileFilterButton
+                    categorySlug={subcategory}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              )}
 
               {/* Product Sort */}
               <div className="flex justify-end border-b border-neutral-200 pb-4">

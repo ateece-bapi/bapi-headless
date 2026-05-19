@@ -149,7 +149,7 @@ export default function WirelessPage() {
               <div className="mt-8 text-center">
                 <Link
                   href="/products/bluetooth-wireless"
-                  className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
                 >
                   Browse All Wireless Products
                   <ArrowRightIcon className="h-5 w-5" />
@@ -187,7 +187,6 @@ export default function WirelessPage() {
                       fill
                       sizes="(min-width: 1024px) 33vw, 100vw"
                       className="object-contain"
-                      priority
                     />
                   </div>
                 </div>
@@ -253,7 +252,7 @@ export default function WirelessPage() {
                   src="/images/wireless/wireless-receiver-graphic-2-e1757514218714.png"
                   alt="Wireless Receiver System Architecture - How Does It Work?"
                   fill
-                  sizes="100vw"
+                  sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 1000px, 100vw"
                   className="object-contain"
                 />
               </div>
@@ -267,7 +266,7 @@ export default function WirelessPage() {
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Link
             href="/products/bluetooth-wireless"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
           >
             Browse Our Wireless Products
             <ArrowRightIcon className="h-5 w-5" />
@@ -577,7 +576,7 @@ export default function WirelessPage() {
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Link
             href="/products/bluetooth-wireless"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
           >
             Browse Our Wireless Products
             <ArrowRightIcon className="h-5 w-5" />
@@ -742,7 +741,7 @@ export default function WirelessPage() {
                     </p>
                     <Link
                       href="/wam"
-                      className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+                      className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
                     >
                       Learn About WAM
                       <ArrowRightIcon className="h-5 w-5" />

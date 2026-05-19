@@ -149,7 +149,7 @@ export default function WirelessPage() {
               <div className="mt-8 text-center">
                 <Link
                   href="/products/bluetooth-wireless"
-                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
                 >
                   Browse All Wireless Products
                   <ArrowRightIcon className="h-5 w-5" />
@@ -267,7 +267,7 @@ export default function WirelessPage() {
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Link
             href="/products/bluetooth-wireless"
-            className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
           >
             Browse Our Wireless Products
             <ArrowRightIcon className="h-5 w-5" />

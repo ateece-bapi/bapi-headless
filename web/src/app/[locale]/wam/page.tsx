@@ -166,6 +166,20 @@ export default function WAMPage() {
             </p>
           </div>
 
+          {/* How It Works Infographic */}
+          <div className="mb-16">
+            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
+              <Image
+                src="/images/wam/dashboards/WAM_Graphic.webp"
+                alt="WAM System How It Works - Sensors send readings to gateway, gateway sends to cloud, view on any device"
+                width={1400}
+                height={900}
+                className="h-auto w-full"
+                priority
+              />
+            </div>
+          </div>
+
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {

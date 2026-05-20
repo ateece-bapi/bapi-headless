@@ -83,7 +83,7 @@ export default function WAMPage() {
             </div>
 
             {/* Right Column - Visual */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative">
               <div className="overflow-hidden rounded-2xl">
                 <Image
                   src="/images/wam/dashboards/wam-sensors-with-gateway.png"
@@ -91,7 +91,7 @@ export default function WAMPage() {
                   width={522}
                   height={336}
                   className="h-auto w-full"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 522px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 60vw, 50vw"
                   priority
                   quality={90}
                 />

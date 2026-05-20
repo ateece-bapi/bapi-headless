@@ -273,9 +273,9 @@ export default function WAMPage() {
               },
               {
                 icon: ShieldIcon,
-                title: 'Enterprise Security',
+                title: 'Enhanced Operational Efficiency',
                 description:
-                  'Bank-level encryption, secure cloud infrastructure, and data redundancy protect your information.',
+                  'Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations.',
               },
               {
                 icon: TrendingUpIcon,

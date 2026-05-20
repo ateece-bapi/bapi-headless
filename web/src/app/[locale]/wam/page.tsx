@@ -263,7 +263,7 @@ export default function WAMPage() {
                 icon: SmartphoneIcon,
                 title: 'Monitor Anywhere',
                 description:
-                  'Check conditions from your phone, tablet, or computer. 24/7 access to live data and alerts.',
+                  'Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence.',
               },
               {
                 icon: LineChartIcon,

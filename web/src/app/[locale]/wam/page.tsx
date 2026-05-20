@@ -84,24 +84,15 @@ export default function WAMPage() {
 
             {/* Right Column - Visual */}
             <div className="relative">
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-lg">
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: WifiIcon, label: 'Real-time Data', value: '24/7' },
-                    { icon: BellIcon, label: 'Instant Alerts', value: 'SMS/Email' },
-                    { icon: CloudIcon, label: 'Cloud Dashboard', value: 'Anywhere' },
-                    { icon: ShieldIcon, label: 'Prevent Losses', value: 'Proactive' },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm"
-                    >
-                      <stat.icon className="mb-2 h-8 w-8 text-accent-500" />
-                      <div className="mb-1 text-2xl font-bold">{stat.value}</div>
-                      <div className="text-sm text-primary-100">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
+              <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-lg">
+                <Image
+                  src="/images/wam/dashboards/wam-sensors-with-gateway.png"
+                  alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
+                  width={800}
+                  height={600}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>

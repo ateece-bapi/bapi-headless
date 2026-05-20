@@ -349,19 +349,19 @@ export default function WAMPage() {
                 title: 'Temperature Sensors',
                 description:
                   'Wireless temperature monitoring for refrigeration, freezers, and critical spaces',
-                link: '/products/bluetooth-wireless',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
               {
                 title: 'Humidity Sensors',
                 description:
                   'Monitor relative humidity in warehouses, data centers, and clean rooms',
-                link: '/products/bluetooth-wireless',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
               {
                 title: 'Pressure Sensors',
                 description:
                   'Differential pressure monitoring for filter status and room pressurization',
-                link: '/products/bluetooth-wireless',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
             ].map((product) => (
               <Link
@@ -383,7 +383,7 @@ export default function WAMPage() {
 
           <div className="text-center">
             <Link
-              href="/products/bluetooth-wireless"
+              href="/products/wireless-sensors/bluetooth-wireless"
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Wireless Products
@@ -598,7 +598,7 @@ export default function WAMPage() {
               Contact Support
             </Link>
             <Link
-              href="/products/bluetooth-wireless"
+              href="/products/wireless-sensors/bluetooth-wireless"
               className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-primary-500 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700"
             >
               Browse Wireless Products

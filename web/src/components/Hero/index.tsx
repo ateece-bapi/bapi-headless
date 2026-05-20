@@ -67,10 +67,10 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,200,67,0.08)_0%,transparent_50%)]" />
 
       <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-        {/* Two-column at 2xl only: text+CTAs left, product showcase right */}
-        <div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
+        {/* Two-column at xl+: text+CTAs left, product showcase right */}
+        <div className="xl:grid xl:grid-cols-2 xl:items-center xl:gap-12 2xl:gap-16">
           {/* Left column: headline + CTAs - LEFT-ALIGNED AT XL+ (1280px+) */}
-          <div className="2xl:pb-4">
+          <div className="xl:pb-4">
             <HeroContent
               title={translations.title}
               description={translations.description}

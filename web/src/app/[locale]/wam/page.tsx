@@ -238,8 +238,10 @@ export default function WAMPage() {
               Why Choose WAM?
             </h2>
             <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Trusted by enterprises, healthcare facilities, and data centers worldwide for
-              mission-critical monitoring.
+              Traditional asset monitoring methods can be time-consuming, error-prone, and often
+              fail to provide real-time insights. However, with our advanced wireless sensor
+              technology, you can take control of your asset protection strategy like never before.
+              Here&apos;s how our solution can transform your business:
             </p>
           </div>
 

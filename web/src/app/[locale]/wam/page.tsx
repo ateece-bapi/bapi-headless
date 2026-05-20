@@ -31,7 +31,7 @@ export default function WAMPage() {
       {/* Hero Section */}
       <section className="bg-linear-to-br relative from-primary-700 via-primary-600 to-primary-500 text-white">
         <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 lg:grid-cols-[40%_60%] xl:grid-cols-2">
             {/* Left Column - Content */}
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
@@ -83,15 +83,15 @@ export default function WAMPage() {
             </div>
 
             {/* Right Column - Visual */}
-            <div className="relative flex items-center justify-center">
-              <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-lg">
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
                 <Image
                   src="/images/wam/dashboards/wam-sensors-with-gateway.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
                   width={522}
                   height={336}
-                  className="h-auto w-auto max-w-full"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 522px"
+                  className="h-auto w-full"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 60vw, 640px"
                   priority
                   quality={90}
                 />

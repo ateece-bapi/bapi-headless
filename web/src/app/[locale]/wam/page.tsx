@@ -240,7 +240,7 @@ export default function WAMPage() {
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-accent-500 lg:text-base">
+            <p className="mb-3 text-base font-semibold uppercase tracking-wide text-primary-600 lg:text-lg">
               Benefits
             </p>
             <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">

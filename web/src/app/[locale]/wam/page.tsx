@@ -255,9 +255,9 @@ export default function WAMPage() {
               },
               {
                 icon: ZapIcon,
-                title: 'Fast Installation',
+                title: 'Proactive Loss Prevention',
                 description:
-                  'Battery-powered sensors install in minutes. No electrician, no downtime, no disruption.',
+                  'Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively.',
               },
               {
                 icon: SmartphoneIcon,

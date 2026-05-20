@@ -2,9 +2,143 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** May 15, 2026  
-**Status:** Phase 1 Complete - Live in Production (7 days post-launch)  
+**Updated:** May 20, 2026  
+**Status:** Phase 1 Complete - Live in Production (12 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## May 20, 2026 — WAM Landing Page Hero Image Sizing Fix 🖼️📐
+
+**Status:** ✅ COMPLETE - PR merged to main  
+**Branch:** `feat/wam-landing-page-fixes` (merged & deleted)  
+**Context:** Hero product image appeared too small on laptop screens (1024-1280px) while displaying correctly on XL desktop screens  
+**Priority:** 🟡 P1 - User experience & product marketing  
+**Time:** ~2 hours (10 commits with iterative debugging + Copilot review fixes)  
+**Approach:** Grid proportion adjustments → Remove decorative elements → Fix container constraints → Address Copilot feedback
+
+### 🎯 SCOPE
+
+**Problem Identified:**
+- Hero product image too small on laptop screens (1024-1280px viewport)
+- Image appeared correct on XL screens (1280px+)
+- User unable to see changes initially (browser cache suspected)
+- Multiple attempts needed to identify root causes
+
+**Root Causes Found:**
+1. **Grid Layout**: 50/50 split didn't provide sufficient space for product image on laptop viewports
+2. **Flex Container**: `flex items-center justify-center` wrapper caused image container to shrink to intrinsic size (522px) instead of expanding to fill grid column
+3. **Decorative Elements**: Border, backdrop blur, and excessive padding consumed valuable image space
+4. **Invalid Tailwind Class**: Attempted `scale-130` doesn't exist (silently ignored)
+
+**Copilot PR Review Issues (2 total):**
+1. **`max-w-xl` incorrect**: Tailwind's `max-w-xl` is 576px, not the intended 640px cap for preventing fuzziness
+2. **`sizes` attribute wrong**: Didn't match grid breakpoints, causing Next.js Image to select undersized srcsets and upscale (blurry) on tablets (769-1023px)
+
+### ✅ SOLUTION
+
+**Grid Proportions (3 commits):**
+- **Initial adjustment (commit: 049b514):** Changed from `w-auto max-w-full` to `w-full`, adjusted padding `p-4 md:p-6 lg:p-8`
+- **Aggressive scaling attempt (commit: 4164a72):** Added `lg:scale-110 xl:scale-100` transform, reduced padding to `p-3 md:p-4 lg:p-3 xl:p-6`
+- **Final grid layout (commit: 8b2270b, reverted in 021e6f0):**
+  - Mobile/Tablet: Single column (100% width)
+  - Laptop (lg: 1024-1280px): `grid-cols-[40%_60%]` - 60% to image column (20% increase)
+  - XL (1280px+): `grid-cols-2` - 50/50 split (original correct proportion)
+  - Reduced gap from `gap-12` to `gap-8`
+
+**Decorative Element Removal (commit: 6d0b799):**
+- Removed `border border-white/20` (visual outline consuming space)
+- Removed `bg-white/10 backdrop-blur-lg` (decorative effects)
+- Removed all padding (`p-3 md:p-4 lg:p-1`)
+- Removed `lg:scale-150` transform
+- Left only `overflow-hidden rounded-2xl` container
+
+**Container Constraint Fix (commit: ae73b2e):**
+- **Critical fix:** Removed `flex items-center justify-center` from outer container
+- Flex was causing inner div to shrink to image intrinsic size (522px)
+- Changed to simple `relative` positioning
+- Image container now expands to fill full grid column width
+- Image properly scales with `w-full` to fill available space
+
+**XL Screen Refinement (commit: ecfed34):**
+- Added `xl:max-w-xl xl:mx-auto` (intended 640px cap, but incorrect - see Copilot review)
+- Prevents image from scaling beyond native resolution on large displays
+- Centers constrained image on XL screens
+
+**Copilot PR Review Fixes (commit: 180c5d1):**
+- **Fixed max-width cap:** `xl:max-w-xl` (576px) → `xl:max-w-[640px]` (explicit 640px)
+- **Fixed sizes attribute:** Aligned with actual grid breakpoints
+  - `(max-width: 1023px) 100vw` - Single column grid (was incorrectly 50vw causing tablet blur)
+  - `(max-width: 1279px) 60vw` - Laptop 60% column
+  - `640px` - XL capped width (prevents upscaling beyond native resolution)
+- Ensures Next.js Image selects correct srcset and prevents upscaling blur
+
+### 📊 IMPLEMENTATION METRICS
+
+**Visual Impact:**
+- **Laptop screens (1024-1280px):** Image now fills 60% of viewport width (20% larger than 50/50 split)
+- **XL screens (1280px+):** Image capped at 640px to prevent fuzziness, centered in column
+- **Tablets (769-1023px):** Fixed blurry upscaling issue with correct sizes attribute
+- **All screen sizes:** Clean, minimal container maximizes visible product area
+
+**Code Quality:**
+- Removed invalid Tailwind class `scale-130` (attempted in commit 01b03a0, fixed in 6da9119)
+- Simplified container structure (removed unnecessary flex wrapper)
+- Removed decorative elements that consumed space without adding value
+- Responsive behavior: Smooth scaling across all breakpoints
+
+**Performance:**
+- Correct `sizes` attribute ensures optimal image srcset selection
+- Prevents browser from loading oversized images unnecessarily
+- Prevents undersized images from being upscaled (blurry rendering)
+
+### 📁 FILES CHANGED
+
+**Landing Page (1 file):**
+- `web/src/app/[locale]/wam/page.tsx` - Hero section grid layout and image container (11 commits)
+
+**Git History:**
+- Commit `049b514` - Initial image sizing fix (w-full, responsive padding)
+- Commit `4164a72` - Aggressive fix with scale transform
+- Commit `01b03a0` - Invalid scale-130 attempt (breaking bug)
+- Commit `6da9119` - Fixed to valid scale-150
+- Commit `2d85fde` - Corrected breakpoint lg: instead of md:
+- Commit `6d0b799` - Removed border, padding, backdrop effects
+- Commit `8b2270b` - Grid proportions 45/55 (lg:) and 40/60 (xl:)
+- Commit `021e6f0` - Reverted xl: to 50/50, only lg: gets 40/60
+- Commit `ae73b2e` - Removed flex container causing shrinkage
+- Commit `ecfed34` - Added xl:max-w-xl and xl:mx-auto
+- Commit `180c5d1` - Copilot review fixes (max-w-[640px], sizes attribute)
+- Merged to main (1 file changed, 5 insertions, 5 deletions)
+
+### 🔍 LESSONS LEARNED
+
+**CSS Debugging:**
+- Browser caching can mask code changes - always verify with hard refresh (Ctrl+Shift+R)
+- Flex containers can cause unexpected shrinking behavior - use carefully with responsive images
+- Dev server restart doesn't always clear cached styles - hard refresh essential
+
+**Tailwind CSS:**
+- Not all scale values exist - `scale-110`, `scale-125`, `scale-150` are valid, but `scale-130` is not
+- `max-w-xl` is 576px (36rem), not 640px - use explicit `max-w-[640px]` for exact sizing
+- Responsive utilities must match actual layout breakpoints or cause visual bugs
+
+**Next.js Image Optimization:**
+- `sizes` attribute must accurately reflect responsive layout breakpoints
+- Incorrect sizes causes Next.js to select wrong srcset → blurry upscaling on tablets
+- Format: `(max-width: [breakpoint]px) [width]vw` must match grid columns at each breakpoint
+- Default width should match max-width constraint to prevent unnecessary upscaling
+
+**Iterative Debugging:**
+- Multiple small commits better than one large change when root cause unclear
+- User feedback essential for cross-device testing (developer viewport doesn't catch all issues)
+- Copilot PR review caught critical issues (max-width, sizes) that would affect production
+
+**Grid Layout Optimization:**
+- Different viewports may need different column proportions
+- Laptop screens (1024-1280px) benefit from asymmetric layouts for visual hierarchy
+- XL screens can revert to symmetric layouts when space allows
+- Gap spacing consumes valuable space - reduce from gap-12 to gap-8 for tighter layouts
 
 ---
 

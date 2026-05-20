@@ -84,14 +84,14 @@ export default function WAMPage() {
 
             {/* Right Column - Visual */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl">
+              <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-xl">
                 <Image
                   src="/images/wam/dashboards/wam-sensors-with-gateway.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
                   width={522}
                   height={336}
                   className="h-auto w-full"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 60vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 60vw, 522px"
                   priority
                   quality={90}
                 />

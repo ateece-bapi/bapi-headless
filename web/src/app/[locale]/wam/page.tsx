@@ -249,9 +249,9 @@ export default function WAMPage() {
             {[
               {
                 icon: DollarSignIcon,
-                title: 'Prevent Costly Failures',
+                title: 'Cost Savings',
                 description:
-                  'Avoid equipment damage, inventory loss, and downtime. One prevented failure pays for the entire system.',
+                  'Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets.',
               },
               {
                 icon: ZapIcon,

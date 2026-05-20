@@ -83,25 +83,18 @@ export default function WAMPage() {
             </div>
 
             {/* Right Column - Visual */}
-            <div className="relative">
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-lg">
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: WifiIcon, label: 'Real-time Data', value: '24/7' },
-                    { icon: BellIcon, label: 'Instant Alerts', value: 'SMS/Email' },
-                    { icon: CloudIcon, label: 'Cloud Dashboard', value: 'Anywhere' },
-                    { icon: ShieldIcon, label: 'Prevent Losses', value: 'Proactive' },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm"
-                    >
-                      <stat.icon className="mb-2 h-8 w-8 text-accent-500" />
-                      <div className="mb-1 text-2xl font-bold">{stat.value}</div>
-                      <div className="text-sm text-primary-100">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
+            <div className="relative flex items-center justify-center">
+              <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-lg">
+                <Image
+                  src="/images/wam/dashboards/wam-sensors-with-gateway.png"
+                  alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
+                  width={522}
+                  height={336}
+                  className="h-auto w-auto max-w-full"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 522px"
+                  priority
+                  quality={90}
+                />
               </div>
             </div>
           </div>
@@ -110,13 +103,26 @@ export default function WAMPage() {
 
       {/* What is WAM Section */}
       <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              WAM™ (Wireless Asset Monitoring) is BAPI&apos;s complete solution for protecting
-              temperature-sensitive equipment and inventory from costly failures.
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              The Solution
             </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">What is WAM?</h2>
+            <div className="mx-auto max-w-3xl space-y-4 text-lg leading-relaxed text-neutral-600 lg:text-xl">
+              <p>
+                The Wireless Asset Monitoring (WAM) Remote website allows users to monitor and
+                record readings from sensors and receive alerts if a problem arises. Readings from
+                the sensors are sent to the cloud and can be accessed via a web browser on any
+                web-enabled device.
+              </p>
+              <p>
+                WAM helps protect your assets against incidents like equipment failure, power loss
+                and more. You can set up custom alerts to warn you when there is a problem so you
+                can address it quickly. WAM can also increase efficiency by eliminating the need to
+                take manual readings and logs. WAM provides peace of mind for your business.
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
@@ -157,13 +163,30 @@ export default function WAMPage() {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="bg-neutral-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">How It Works</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Simple Setup
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">How It Works</h2>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy
               steps.
             </p>
+          </div>
+
+          {/* How It Works Infographic */}
+          <div className="mb-16">
+            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
+              <Image
+                src="/images/wam/dashboards/WAM_Graphic.webp"
+                alt="WAM System How It Works - Sensors send readings to gateway, gateway sends to cloud, view on any device"
+                width={1400}
+                height={900}
+                className="h-auto w-full"
+                sizes="(max-width: 1024px) 100vw, 1024px"
+              />
+            </div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -212,7 +235,7 @@ export default function WAMPage() {
 
       {/* Alert Banner */}
       <section className="bg-accent-500 py-6">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4 text-neutral-900">
             <AlertTriangleIcon className="h-6 w-6 flex-shrink-0" />
             <p className="text-center text-lg font-semibold">
@@ -224,37 +247,42 @@ export default function WAMPage() {
       </section>
 
       {/* Why WAM Section */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+      <section className="bg-white py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-base font-semibold uppercase tracking-wide text-primary-600 lg:text-lg">
+              Benefits
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Why Choose WAM?
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Trusted by enterprises, healthcare facilities, and data centers worldwide for
-              mission-critical monitoring.
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
+              Traditional asset monitoring methods can be time-consuming, error-prone, and often
+              fail to provide real-time insights. However, with our advanced wireless sensor
+              technology, you can take control of your asset protection strategy like never before.
+              Here&apos;s how our solution can transform your business:
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {[
               {
                 icon: DollarSignIcon,
-                title: 'Prevent Costly Failures',
+                title: 'Cost Savings',
                 description:
-                  'Avoid equipment damage, inventory loss, and downtime. One prevented failure pays for the entire system.',
+                  'Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets.',
               },
               {
                 icon: ZapIcon,
-                title: 'Fast Installation',
+                title: 'Proactive Loss Prevention',
                 description:
-                  'Battery-powered sensors install in minutes. No electrician, no downtime, no disruption.',
+                  'Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively.',
               },
               {
                 icon: SmartphoneIcon,
                 title: 'Monitor Anywhere',
                 description:
-                  'Check conditions from your phone, tablet, or computer. 24/7 access to live data and alerts.',
+                  'Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence.',
               },
               {
                 icon: LineChartIcon,
@@ -264,26 +292,26 @@ export default function WAMPage() {
               },
               {
                 icon: ShieldIcon,
-                title: 'Enterprise Security',
+                title: 'Enhanced Operational Efficiency',
                 description:
-                  'Bank-level encryption, secure cloud infrastructure, and data redundancy protect your information.',
+                  'Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations.',
               },
               {
                 icon: TrendingUpIcon,
-                title: 'Scalable Solution',
+                title: 'Scalable Solutions',
                 description:
-                  'Start with one sensor or deploy hundreds. Grows with your business needs.',
+                  'We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands.',
               },
             ].map((benefit) => (
               <div
                 key={benefit.title}
-                className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-200 hover:bg-white hover:shadow-xl"
+                className="group flex h-full flex-col rounded-xl border border-neutral-100 bg-neutral-50 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-primary-200 hover:bg-white hover:shadow-2xl"
               >
-                <div className="bg-linear-to-br mb-4 flex h-14 w-14 items-center justify-center rounded-full from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 shadow-md transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-3">
                   <benefit.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-700">{benefit.description}</p>
+                <h3 className="mb-3 text-xl font-bold text-neutral-900">{benefit.title}</h3>
+                <p className="text-base leading-relaxed text-neutral-700">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -292,12 +320,15 @@ export default function WAMPage() {
 
       {/* Industries Section */}
       <section className="bg-neutral-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Applications
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Industries We Serve
             </h2>
-            <p className="text-xl text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               WAM™ protects critical assets across diverse industries
             </p>
           </div>
@@ -326,12 +357,15 @@ export default function WAMPage() {
 
       {/* Wireless Products Section */}
       <section id="products" className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Our Products
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Wireless Products
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               Complete range of wireless sensors for temperature, humidity, pressure, and more
             </p>
           </div>
@@ -342,19 +376,19 @@ export default function WAMPage() {
                 title: 'Temperature Sensors',
                 description:
                   'Wireless temperature monitoring for refrigeration, freezers, and critical spaces',
-                link: '/products/wireless/temperature',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
               {
                 title: 'Humidity Sensors',
                 description:
                   'Monitor relative humidity in warehouses, data centers, and clean rooms',
-                link: '/products/wireless/humidity',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
               {
                 title: 'Pressure Sensors',
                 description:
                   'Differential pressure monitoring for filter status and room pressurization',
-                link: '/products/wireless/pressure',
+                link: '/products/wireless-sensors/bluetooth-wireless',
               },
             ].map((product) => (
               <Link
@@ -376,7 +410,7 @@ export default function WAMPage() {
 
           <div className="text-center">
             <Link
-              href="/products/wireless"
+              href="/products/wireless-sensors/bluetooth-wireless"
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Wireless Products
@@ -386,479 +420,20 @@ export default function WAMPage() {
         </div>
       </section>
 
-      {/* Real-World Installations Gallery */}
-      <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Real-World Installations
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              See WAM™ in action protecting food safety and valuable assets across convenience
-              stores, grocery stores, and food service operations
-            </p>
-          </div>
-
-          {/* Walk-In Coolers */}
-          <div className="mb-16">
-            <div className="mb-8">
-              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
-                Walk-In Coolers
-              </h3>
-              <div className="bg-linear-to-r mx-auto h-1 w-20 rounded-full from-primary-600 to-primary-400" />
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Front_4.webp',
-                  alt: 'Walk-in cooler door monitoring',
-                  title: 'Cooler Door Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Back_1.webp',
-                  alt: 'Interior cooler sensor placement',
-                  title: 'Interior Temperature Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Buffer_1.webp',
-                  alt: 'Cooler buffer zone sensor',
-                  title: 'Buffer Zone Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Room_Buffer_1.webp',
-                  alt: 'Multi-zone cooler monitoring',
-                  title: 'Multi-Zone Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Case_1.webp',
-                  alt: 'Cooler case temperature monitoring',
-                  title: 'Display Case Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Slim_2.webp',
-                  alt: 'Slim profile cooler sensor',
-                  title: 'Slim Profile Installation',
-                },
-                {
-                  src: '/images/applications/retail/coolers/Cooler_Slim_3.webp',
-                  alt: 'Compact cooler sensor installation',
-                  title: 'Compact Installation',
-                },
-              ].map((image, idx) => (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </div>
-                  <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
-                      {image.title}
-                    </h4>
-                  </div>
-                  <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Walk-In Freezers */}
-          <div className="mb-16">
-            <div className="mb-8">
-              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
-                Walk-In Freezers
-              </h3>
-              <div className="bg-linear-to-r mx-auto h-1 w-20 rounded-full from-primary-600 to-primary-400" />
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Door_1.webp',
-                  alt: 'Freezer door temperature sensor',
-                  title: 'Freezer Door Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Buffer_1.webp',
-                  alt: 'Freezer buffer zone monitoring',
-                  title: 'Buffer Zone Temperature',
-                },
-                {
-                  src: '/images/applications/retail/freezers/FrozenFoods_1.webp',
-                  alt: 'Frozen food storage monitoring',
-                  title: 'Frozen Food Storage',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Case_7.webp',
-                  alt: 'Freezer case temperature control',
-                  title: 'Freezer Case Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Slim_2.webp',
-                  alt: 'Slim sensor in freezer',
-                  title: 'Compact Sensor Installation',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Door_2.webp',
-                  alt: 'Multiple freezer door sensors',
-                  title: 'Multi-Door Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Buffer_3.webp',
-                  alt: 'Large freezer buffer monitoring',
-                  title: 'Large Freezer Rooms',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Slim_4.webp',
-                  alt: 'Freezer slim sensor placement',
-                  title: 'Space-Saving Sensors',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Buffer_2.webp',
-                  alt: 'Freezer buffer area sensor',
-                  title: 'Additional Buffer Zone',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Door_3.webp',
-                  alt: 'Freezer door sensor configuration',
-                  title: 'Door Sensor Configuration',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Slim_3.webp',
-                  alt: 'Slim profile freezer sensor',
-                  title: 'Low-Profile Installation',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Slim_5.webp',
-                  alt: 'Freezer slim sensor variant',
-                  title: 'Flexible Sensor Placement',
-                },
-                {
-                  src: '/images/applications/retail/freezers/Freezer_Buffer_2_Edited.webp',
-                  alt: 'Freezer buffer monitoring system',
-                  title: 'Complete Buffer System',
-                },
-              ].map((image, idx) => (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </div>
-                  <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
-                      {image.title}
-                    </h4>
-                  </div>
-                  <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Deli Cases & Prepared Foods */}
-          <div className="mb-16">
-            <div className="mb-8">
-              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
-                Deli Cases & Prepared Foods
-              </h3>
-              <div className="bg-linear-to-r mx-auto h-1 w-20 rounded-full from-primary-600 to-primary-400" />
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_1.webp',
-                  alt: 'Multiple deli case monitoring',
-                  title: 'Multi-Case Deli Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_4.webp',
-                  alt: 'Deli case temperature array',
-                  title: 'Comprehensive Temperature Control',
-                },
-                {
-                  src: '/images/applications/retail/deli-cases/Deli_Case_1.webp',
-                  alt: 'Single deli case sensor',
-                  title: 'Individual Case Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_2.webp',
-                  alt: 'Deli display case monitoring',
-                  title: 'Display Case Array',
-                },
-                {
-                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_3.webp',
-                  alt: 'Prepared foods temperature control',
-                  title: 'Prepared Foods Safety',
-                },
-              ].map((image, idx) => (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </div>
-                  <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
-                      {image.title}
-                    </h4>
-                  </div>
-                  <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Convenience Stores */}
-          <div className="mb-12">
-            <div className="mb-8">
-              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
-                Convenience Stores & Mini-Marts
-              </h3>
-              <div className="bg-linear-to-r mx-auto h-1 w-20 rounded-full from-primary-600 to-primary-400" />
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_4.webp',
-                  alt: 'Convenience store overhead sensors',
-                  title: 'Store-Wide Climate Control',
-                },
-                {
-                  src: '/images/applications/retail/convenience/DoorSwitch_1.webp',
-                  alt: 'Door switch on refrigerator',
-                  title: 'Door Open/Close Alerts',
-                },
-                {
-                  src: '/images/applications/retail/convenience/Island 1.webp',
-                  alt: 'Island cooler monitoring',
-                  title: 'Island Cooler Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_1.webp',
-                  alt: 'Mini-mart sensor deployment',
-                  title: 'Multi-Zone Store Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_2.webp',
-                  alt: 'Convenience store overhead view',
-                  title: 'Comprehensive Coverage',
-                },
-                {
-                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_3.webp',
-                  alt: 'Mini-mart temperature zones',
-                  title: 'Zone-Based Monitoring',
-                },
-                {
-                  src: '/images/applications/retail/convenience/DoorSwitch_1_Blue.webp',
-                  alt: 'Blue door sensor installation',
-                  title: 'Door Alert System',
-                },
-                {
-                  src: '/images/applications/retail/convenience/DoorSwitch_2.webp',
-                  alt: 'Door switch variant installation',
-                  title: 'Alternate Door Sensor',
-                },
-                {
-                  src: '/images/applications/retail/convenience/DoorSwitch_3.webp',
-                  alt: 'Door monitoring configuration',
-                  title: 'Advanced Door Control',
-                },
-              ].map((image, idx) => (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </div>
-                  <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
-                      {image.title}
-                    </h4>
-                  </div>
-                  <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA to Installations Page */}
-          <div className="mt-12 text-center">
-            <Link
-              href="/installations#wam"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
-            >
-              View All Installation Examples
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* WAM Dashboard & Software */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Powerful Cloud Dashboard
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Monitor temperatures, view trends, and receive alerts from anywhere with our intuitive
-              web-based dashboard
-            </p>
-          </div>
-
-          <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                src: '/images/wam/dashboards/WAM_Graphic.webp',
-                alt: 'WAM dashboard interface',
-                title: 'Real-Time Monitoring Dashboard',
-                description: 'View all sensor data at a glance with customizable views',
-              },
-              {
-                src: '/images/wam/dashboards/Trays_1.webp',
-                alt: 'Food serving tray temperature monitoring',
-                title: 'Multi-Asset Monitoring',
-                description: 'Track multiple locations and equipment simultaneously',
-              },
-              {
-                src: '/images/wam/dashboards/Serving_Tray_Trend.webp',
-                alt: 'Temperature trend graph',
-                title: 'Historical Trending',
-                description: 'Analyze patterns and prove compliance with detailed reports',
-              },
-              {
-                src: '/images/wam/dashboards/WAM_Graphic2.webp',
-                alt: 'WAM system overview dashboard',
-                title: 'System Overview',
-                description: 'Monitor entire facility status from a single screen',
-              },
-              {
-                src: '/images/wam/dashboards/WAM_Graphic3.webp',
-                alt: 'WAM alert management interface',
-                title: 'Alert Management',
-                description: 'Configure and manage temperature alerts and notifications',
-              },
-              {
-                src: '/images/wam/dashboards/Trays_2.webp',
-                alt: 'Multiple serving tray monitoring',
-                title: 'Zone Comparison',
-                description: 'Compare temperatures across different zones or assets',
-              },
-              {
-                src: '/images/wam/dashboards/Serving_Tray_Trend2.webp',
-                alt: 'Extended temperature trend analysis',
-                title: 'Long-Term Trends',
-                description: 'Track performance over days, weeks, or months',
-              },
-            ].map((dashboard, idx) => (
-              <div
-                key={idx}
-                className="group overflow-hidden rounded-xl bg-neutral-50 transition-all duration-500 hover:shadow-2xl"
-              >
-                <div className="relative aspect-video overflow-hidden bg-neutral-100">
-                  <Image
-                    src={dashboard.src}
-                    alt={dashboard.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
-                    {dashboard.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-neutral-700">
-                    {dashboard.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Dashboard Features Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: LineChartIcon,
-                title: 'Temperature Trends',
-                description: 'Visualize temperature patterns over time',
-              },
-              {
-                icon: BellIcon,
-                title: 'Custom Alerts',
-                description: 'Set thresholds for instant notifications',
-              },
-              {
-                icon: SmartphoneIcon,
-                title: 'Mobile Access',
-                description: 'Monitor from any device, anywhere',
-              },
-              {
-                icon: TrendingUpIcon,
-                title: 'Compliance Reports',
-                description: 'Export data for audits and compliance',
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-lg bg-neutral-50 p-6 text-center transition-all duration-300 hover:bg-white hover:shadow-lg"
-              >
-                <div className="bg-linear-to-br mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full from-primary-500 to-primary-600">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h4 className="mb-2 font-bold text-neutral-900">{feature.title}</h4>
-                <p className="text-sm text-neutral-700">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Demo Request Section */}
       <section id="demo" className="bg-linear-to-br from-primary-50 to-primary-100 py-16 lg:py-24">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-12">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Left - Content */}
               <div>
-                <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600">
+                  Get Started
+                </p>
+                <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
                   Ready to Get Started?
                 </h2>
-                <p className="mb-6 text-lg text-neutral-700">
+                <p className="mb-8 text-lg leading-relaxed text-neutral-600">
                   Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
                   out the form and we&apos;ll contact you to schedule a personalized demo.
                 </p>
@@ -1037,7 +612,7 @@ export default function WAMPage() {
 
       {/* Final CTA Section */}
       <section className="bg-primary-600 py-12 text-white">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold lg:text-3xl">
             Have questions about wireless monitoring?
           </h2>
@@ -1053,7 +628,7 @@ export default function WAMPage() {
               Contact Support
             </Link>
             <Link
-              href="/products/wireless"
+              href="/products/wireless-sensors/bluetooth-wireless"
               className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-primary-500 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700"
             >
               Browse Wireless Products

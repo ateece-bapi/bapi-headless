@@ -109,10 +109,20 @@ export default function WAMPage() {
               The Solution
             </p>
             <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">What is WAM?</h2>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              WAM™ (Wireless Asset Monitoring) is BAPI&apos;s complete solution for protecting
-              temperature-sensitive equipment and inventory from costly failures.
-            </p>
+            <div className="mx-auto max-w-3xl space-y-4 text-lg leading-relaxed text-neutral-600 lg:text-xl">
+              <p>
+                The Wireless Asset Monitoring (WAM) Remote website allows users to monitor and
+                record readings from sensors and receive alerts if a problem arises. Readings from
+                the sensors are sent to the cloud and can be accessed via a web browser on any
+                web-enabled device.
+              </p>
+              <p>
+                WAM helps protect your assets against incidents like equipment failure, power loss
+                and more. You can set up custom alerts to warn you when there is a problem so you
+                can address it quickly. WAM can also increase efficiency by eliminating the need to
+                take manual readings and logs. WAM provides peace of mind for your business.
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">

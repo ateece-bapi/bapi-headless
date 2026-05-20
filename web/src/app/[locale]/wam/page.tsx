@@ -31,7 +31,7 @@ export default function WAMPage() {
       {/* Hero Section */}
       <section className="bg-linear-to-br relative from-primary-700 via-primary-600 to-primary-500 text-white">
         <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 lg:grid-cols-[45%_55%] xl:grid-cols-[40%_60%]">
             {/* Left Column - Content */}
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">

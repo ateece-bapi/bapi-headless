@@ -231,13 +231,13 @@ export default function WAMPage() {
       </section>
 
       {/* Why WAM Section */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Why Choose WAM?
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-700">
               Traditional asset monitoring methods can be time-consuming, error-prone, and often
               fail to provide real-time insights. However, with our advanced wireless sensor
               technology, you can take control of your asset protection strategy like never before.
@@ -245,7 +245,7 @@ export default function WAMPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {[
               {
                 icon: DollarSignIcon,
@@ -286,13 +286,13 @@ export default function WAMPage() {
             ].map((benefit) => (
               <div
                 key={benefit.title}
-                className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-200 hover:bg-white hover:shadow-xl"
+                className="group flex h-full flex-col rounded-xl border border-neutral-100 bg-neutral-50 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-primary-200 hover:bg-white hover:shadow-2xl"
               >
-                <div className="bg-linear-to-br mb-4 flex h-14 w-14 items-center justify-center rounded-full from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 shadow-md transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-3">
                   <benefit.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-700">{benefit.description}</p>
+                <h3 className="mb-3 text-xl font-bold text-neutral-900">{benefit.title}</h3>
+                <p className="text-base leading-relaxed text-neutral-700">{benefit.description}</p>
               </div>
             ))}
           </div>

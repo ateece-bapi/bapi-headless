@@ -91,9 +91,9 @@ export default function WAMPage() {
                   width={522}
                   height={336}
                   className="h-auto w-auto max-w-full"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 522px"
                   priority
-                  quality={100}
-                  unoptimized
+                  quality={90}
                 />
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function WAMPage() {
                 width={1400}
                 height={900}
                 className="h-auto w-full"
-                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
               />
             </div>
           </div>

@@ -279,9 +279,9 @@ export default function WAMPage() {
               },
               {
                 icon: TrendingUpIcon,
-                title: 'Scalable Solution',
+                title: 'Scalable Solutions',
                 description:
-                  'Start with one sensor or deploy hundreds. Grows with your business needs.',
+                  'We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands.',
               },
             ].map((benefit) => (
               <div

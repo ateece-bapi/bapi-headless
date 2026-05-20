@@ -104,9 +104,12 @@ export default function WAMPage() {
       {/* What is WAM Section */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              The Solution
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">What is WAM?</h2>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               WAM™ (Wireless Asset Monitoring) is BAPI&apos;s complete solution for protecting
               temperature-sensitive equipment and inventory from costly failures.
             </p>
@@ -151,9 +154,12 @@ export default function WAMPage() {
       {/* How It Works Section */}
       <section id="how-it-works" className="bg-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">How It Works</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Simple Setup
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">How It Works</h2>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy
               steps.
             </p>
@@ -234,10 +240,13 @@ export default function WAMPage() {
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-neutral-900 lg:text-4xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-accent-500 lg:text-base">
+              Benefits
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Why Choose WAM?
             </h2>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               Traditional asset monitoring methods can be time-consuming, error-prone, and often
               fail to provide real-time insights. However, with our advanced wireless sensor
               technology, you can take control of your asset protection strategy like never before.
@@ -302,11 +311,14 @@ export default function WAMPage() {
       {/* Industries Section */}
       <section className="bg-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Applications
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Industries We Serve
             </h2>
-            <p className="text-xl text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               WAM™ protects critical assets across diverse industries
             </p>
           </div>
@@ -336,11 +348,14 @@ export default function WAMPage() {
       {/* Wireless Products Section */}
       <section id="products" className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
+              Our Products
+            </p>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
               Wireless Products
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
               Complete range of wireless sensors for temperature, humidity, pressure, and more
             </p>
           </div>
@@ -402,10 +417,13 @@ export default function WAMPage() {
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Left - Content */}
               <div>
-                <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600">
+                  Get Started
+                </p>
+                <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
                   Ready to Get Started?
                 </h2>
-                <p className="mb-6 text-lg text-neutral-700">
+                <p className="mb-8 text-lg leading-relaxed text-neutral-600">
                   Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
                   out the form and we&apos;ll contact you to schedule a personalized demo.
                 </p>

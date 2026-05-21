@@ -8,6 +8,102 @@
 
 ---
 
+## May 21, 2026 — Homepage Hero Grid Breakpoint Fix (Edge Browser) 🌐📐
+
+**Status:** ✅ COMPLETE - PR merged to main  
+**Branch:** `fix/hero-grid-breakpoint-xl` (merged & deleted)  
+**Context:** Homepage product family image appearing below text in Edge browser, but side-by-side in Firefox  
+**Priority:** 🔴 P0 - Homepage layout broken in Edge (critical browser compatibility)  
+**Time:** ~1 hour (investigation + fix + testing)  
+**Approach:** Browser quirk investigation → Viewport width debugging → CSS Grid breakpoint analysis
+
+### 🎯 SCOPE
+
+**Problem Identified:**
+- Homepage hero product family image stacked vertically below text in Microsoft Edge
+- Same layout displayed correctly (side-by-side) in Firefox
+- Initial investigation suspected Edge-specific CSS quirks or caching issues
+- User confirmed cache clearing did not resolve the issue
+
+**Root Cause:**
+- Grid layout activated at `2xl` breakpoint (1536px)
+- Edge browser likely viewing at 1280-1535px viewport width
+- Firefox viewing at 1536px+ viewport width
+- Arbitrary grid column values `grid-cols-[1fr_1.2fr]` used instead of standard Tailwind classes
+- Image visibility set to `xl:block` (1280px) but grid not activated until `2xl` (1536px) — **mismatched breakpoints**
+
+**Why Edge Showed Differently:**
+- Most likely viewport width difference between browsers (Edge at ~1400px, Firefox at ~1600px)
+- 2xl breakpoint (1536px) is too high for many laptop screens (1280-1535px common range)
+- Image visible at 1280px (`xl:block`) but grid not active, causing vertical stack
+
+### ✅ SOLUTION
+
+**Grid Breakpoint Changes:**
+```tsx
+// BEFORE (causing issue):
+<div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
+  <div className="2xl:pb-4">...</div>
+  <div className="mt-12 hidden xl:mt-0 xl:block">...</div>
+</div>
+
+// AFTER (fixed):
+<div className="xl:grid xl:grid-cols-2 xl:items-center xl:gap-12 2xl:gap-16">
+  <div className="xl:pb-4">...</div>
+  <div className="mt-12 hidden xl:mt-0 xl:block">...</div>
+</div>
+```
+
+**Changes Made:**
+1. **Lowered grid activation**: `2xl:grid` → `xl:grid` (1536px → 1280px)
+2. **Standard grid classes**: `grid-cols-[1fr_1.2fr]` → `grid-cols-2` (better browser compatibility)
+3. **Aligned breakpoints**: Grid activation matches image visibility (both at `xl`)
+4. **Responsive gaps**: `xl:gap-12` for laptop, `2xl:gap-16` for desktop
+5. **Consistent padding**: `2xl:pb-4` → `xl:pb-4` to match grid activation
+
+**Impact:**
+- Side-by-side layout now activates at 1280px (xl breakpoint)
+- Covers Edge viewports in 1280-1535px range
+- Standard Tailwind classes improve cross-browser compatibility
+- Breakpoints now aligned between image visibility and grid layout
+
+### 📁 FILES MODIFIED
+
+**Component Changes:**
+- `web/src/components/Hero/index.tsx` - Grid breakpoint adjustments (3 insertions, 3 deletions)
+
+**Documentation Created:**
+- `EDGE-GRID-DEBUG.md` - Debugging notes (not committed, local reference only)
+
+### 🔍 LESSONS LEARNED
+
+**1. Viewport Width > Browser Quirks**
+- Layout differences often viewport-related, not browser rendering bugs
+- Always check viewport width (F12 DevTools) before assuming browser quirks
+- Common laptop range is 1280-1535px, desktop is 1536px+
+- Modern browsers (Chrome/Edge/Firefox) share rendering engines with minimal quirks
+
+**2. Breakpoint Alignment Critical**
+- Image visibility and grid activation must use same breakpoint
+- `xl:block` image + `2xl:grid` layout = broken layout between 1280-1535px
+- Mismatched breakpoints create "in-between" viewport ranges with broken layouts
+
+**3. Standard Tailwind Classes > Arbitrary Values**
+- Arbitrary grid values (`grid-cols-[1fr_1.2fr]`) may have compatibility issues
+- Standard classes (`grid-cols-2`) better tested across browsers
+- Edge might handle arbitrary CSS Grid values differently than Firefox/Chrome
+
+**4. 2xl Breakpoint Too High for Laptops**
+- 1536px (2xl) excludes many laptop screens (1366px, 1440px, 1512px)
+- xl breakpoint (1280px) better targets laptop + desktop ranges
+- Consider user's actual device distribution when choosing breakpoints
+
+**Git History:**
+- Commit `1f9ca0e` - fix(hero): lower grid breakpoint from 2xl to xl for better browser compatibility
+- Commit `f23db6a` - Merged to main (1 file changed: 3 insertions, 3 deletions)
+
+---
+
 ## May 20, 2026 — WAM Landing Page Hero Image Sizing Fix 🖼️📐
 
 **Status:** ✅ COMPLETE - PR merged to main  

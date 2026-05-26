@@ -77,8 +77,8 @@ describe('CheckoutSummary', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
 
       expect(screen.getByText('Order Summary')).toBeInTheDocument();
-      // Icon is rendered (lucide ShoppingCart)
-      const icons = document.querySelectorAll('svg[aria-hidden="true"]');
+      // Icon is rendered (Material Symbols)
+      const icons = document.querySelectorAll('.material-symbols-rounded[aria-hidden="true"]');
       expect(icons.length).toBeGreaterThan(0);
     });
 

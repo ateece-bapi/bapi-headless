@@ -71,7 +71,7 @@ export default function RadioGroupSelector({
               >
                 {isSelected && (
                   <div className="flex h-full w-full items-center justify-center">
-                    <CheckIcon className="h-3 w-3 text-white" strokeWidth={3} />
+                    <CheckIcon className="h-3 w-3 text-white" />
                   </div>
                 )}
               </div>

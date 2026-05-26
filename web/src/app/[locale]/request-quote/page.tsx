@@ -106,7 +106,7 @@ export default function RequestQuotePage() {
         <div className="w-full max-w-md rounded-xl border border-neutral-200 bg-white p-8 text-center shadow-lg">
           <div className="mb-6 flex justify-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-              <CheckCircleIcon className="h-8 w-8 text-green-600" strokeWidth={2.5} />
+              <CheckCircleIcon className="h-8 w-8 text-green-600" />
             </div>
           </div>
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">Quote Request Submitted!</h2>
@@ -142,7 +142,7 @@ export default function RequestQuotePage() {
             href={user ? '/account/quotes' : '/'}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
-            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" />
             {user ? 'Back to Quotes' : 'Back to Home'}
           </Link>
           <h1 className="mb-3 text-3xl font-bold lg:text-4xl">Request a Custom Quote</h1>
@@ -361,7 +361,7 @@ export default function RequestQuotePage() {
                   className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 transition-colors hover:border-primary-400 hover:bg-primary-50/50"
                 >
                   <div className="flex flex-col items-center justify-center gap-2">
-                    <UploadIcon className="h-8 w-8 text-neutral-400" strokeWidth={2} />
+                    <UploadIcon className="h-8 w-8 text-neutral-400" />
                     <p className="text-sm font-semibold text-neutral-700">
                       Click to upload or drag and drop
                     </p>
@@ -385,7 +385,7 @@ export default function RequestQuotePage() {
                       >
                         <div className="flex min-w-0 flex-1 items-center gap-3">
                           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded bg-primary-100">
-                            <UploadIcon className="h-4 w-4 text-primary-600" strokeWidth={2} />
+                            <UploadIcon className="h-4 w-4 text-primary-600" />
                           </div>
                           <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-neutral-900">
@@ -401,7 +401,7 @@ export default function RequestQuotePage() {
                           onClick={() => removeFile(index)}
                           className="flex-shrink-0 p-1 text-neutral-400 transition-colors hover:text-red-600"
                         >
-                          <XIcon className="h-5 w-5" strokeWidth={2} />
+                          <XIcon className="h-5 w-5" />
                         </button>
                       </div>
                     ))}
@@ -425,7 +425,7 @@ export default function RequestQuotePage() {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2Icon className="h-5 w-5 animate-spin" strokeWidth={2.5} />
+                    <Loader2Icon className="h-5 w-5 animate-spin" />
                     Submitting...
                   </>
                 ) : (

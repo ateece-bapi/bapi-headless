@@ -1,207 +1,211 @@
 /**
  * Centralized Icon Library for BAPI Headless
  * 
- * This module provides Material UI icons for consistency with BAPI's WAM application.
- * All icons are exported with consistent naming for easy migration from lucide-react.
+ * This module provides Material Symbols icons as specified by BAPI's UI/UX design team.
+ * All icons use Google Material Symbols with the following settings:
+ * - Variant: Rounded
+ * - Weight: 400
+ * - Fill: 0 (no fill/outline)
+ * - Optical Size: 24
  * 
  * BAPI Branded Icons:
  * - Product category icons remain as custom BAPI-branded SVG assets
- * - Do NOT replace branded icons with Material UI equivalents
+ * - Do NOT replace branded icons with Material Symbols equivalents
  * 
  * Usage:
  * import { ShoppingCartIcon, CheckIcon } from '@/lib/icons';
  */
 
-// Import all MUI icons with their original names
-import {
-  // Navigation & UI
-  Menu,
-  Close,
-  ExpandMore,
-  ChevronRight,
-  ChevronLeft,
-  ExpandLess,
-  ArrowForward,
-  ArrowBack,
-  ArrowUpward,
-  Search,
-  
-  // E-Commerce
-  ShoppingCart,
-  Favorite,
-  FavoriteBorder,
-  LocalOffer,
-  Delete,
-  Add,
-  Remove,
-  LocalShipping,
-  
-  // Status & Feedback
-  Check,
-  CheckCircle,
-  Error,
-  Info,
-  Warning,
-  HourglassEmpty,
-  Loop,
-  Cancel,
-  
-  // Content & Media
-  Image,
-  VideoLibrary,
-  Article,
-  Description,
-  PictureAsPdf,
-  Download,
-  Upload,
-  ZoomIn,
-  ZoomOut,
-  Rotate90DegreesCcw,
-  
-  // Communication
-  Email,
-  Phone,
-  Message,
-  Send,
-  Share,
-  Print,
-  ThumbUp,
-  ThumbDown,
-  Person,
-  
-  // Business & Location
-  Business,
-  LocationOn,
-  Inventory,
-  ViewModule,
-  ViewList,
-  Tune,
-  AccountCircle,
-  Group,
-  
-  // Product & Category
-  DeviceThermostat,
-  WaterDrop,
-  Speed,
-  Air,
-  Wifi,
-  Biotech,
-  Category,
-  
-  // Payment & Financial
-  CreditCard,
-  AttachMoney,
-  Money,
-  
-  // Security & Trust
-  Shield,
-  Lock,
-  LockOpen,
-  Verified,
-  
-  // Actions
-  Edit,
-  ContentCopy,
-  Refresh,
-  Schedule,
-  Link,
-  Bookmark,
-  Work,
-  Home,
-  MoreVert,
-  MoreHoriz,
-  Compare,
-  Visibility,
-  VisibilityOff,
-  CheckBox,
-  CheckBoxOutlineBlank,
-  TrendingUp,
-  History,
-  AutoAwesome,
-  EmojiEvents,
-  Settings,
-  EventAvailable,
-  CalendarMonth,
-  Block,
-  
-  // Special
-  Mouse,
-  Laptop,
-  QrCode,
-  Key,
-  Smartphone,
-  
-  // Social & Utility
-  YouTube,
-  LinkedIn,
-  Language,
-  Public,
-  Logout,
-  VerifiedUser,
-  Radio,
-  Build,
-  Support,
-  School,
-  
-  // Additional Icons for Batch 9
-  PlayArrow,
-  Yard,
-  Restaurant,
-  MonitorHeart,
-  SetMeal,
-  AcUnit,
-  Waves,
-  Cable,
-  Bolt,
-  FilterList,
-  Storage,
-  TableChart,
-  Assignment,
-  MenuBook,
-  Sort,
-  
-  // Batch 10 Icons (Account Pages)
-  LocalMall,
-  AlternateEmail,
-  
-  // Batch 11 Icons (Resources Pages)
-  Computer,
-  
-  // Batch 12 Icons (Company/Support/Applications Pages)
-  ChatBubble,
-  Factory as FactoryMUI,
-  Adjust,
-  
-  // Batch 13 Icons (Product Type Pages - Sensors/Accessories/Wireless)
-  Inventory2,
-  Layers,
-  Grass,
-  LocalHospital,
-  Notifications,
-  BarChart,
-  BatteryFull,
-  
-  // Batch 14 Icons (Contact/Quote/RMA Pages)
-  Headphones,
-  
-  // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
-  Newspaper,
-  
-  // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
-  SignalCellular4Bar,
-  
-  // Batch 17 Icons (Company Pages)
-  CardGiftcard,
-  Flight,
-  FitnessCenter,
-  Lightbulb,
-  Star,
-  
-  // Batch 19 Icons (App Notes/Solutions/WAM/SignIn Pages)
-  LocalActivity,
-  Cloud,
-  ShowChart,
-} from '@mui/icons-material';
+import { createMaterialSymbolIcon } from '@/components/icons/MaterialSymbol';
+
+// Create Material Symbol icon components using Google's snake_case naming
+// Navigation & UI
+const Menu = createMaterialSymbolIcon('menu', 'Menu');
+const Close = createMaterialSymbolIcon('close', 'Close');
+const ExpandMore = createMaterialSymbolIcon('expand_more', 'ExpandMore');
+const ChevronRight = createMaterialSymbolIcon('chevron_right', 'ChevronRight');
+const ChevronLeft = createMaterialSymbolIcon('chevron_left', 'ChevronLeft');
+const ExpandLess = createMaterialSymbolIcon('expand_less', 'ExpandLess');
+const ArrowForward = createMaterialSymbolIcon('arrow_forward', 'ArrowForward');
+const ArrowBack = createMaterialSymbolIcon('arrow_back', 'ArrowBack');
+const ArrowUpward = createMaterialSymbolIcon('arrow_upward', 'ArrowUpward');
+const Search = createMaterialSymbolIcon('search', 'Search');
+
+// E-Commerce
+const ShoppingCart = createMaterialSymbolIcon('shopping_cart', 'ShoppingCart');
+const Favorite = createMaterialSymbolIcon('favorite', 'Favorite');
+const FavoriteBorder = createMaterialSymbolIcon('favorite_border', 'FavoriteBorder');
+const LocalOffer = createMaterialSymbolIcon('local_offer', 'LocalOffer');
+const Delete = createMaterialSymbolIcon('delete', 'Delete');
+const Add = createMaterialSymbolIcon('add', 'Add');
+const Remove = createMaterialSymbolIcon('remove', 'Remove');
+const LocalShipping = createMaterialSymbolIcon('local_shipping', 'LocalShipping');
+
+// Status & Feedback
+const Check = createMaterialSymbolIcon('check', 'Check');
+const CheckCircle = createMaterialSymbolIcon('check_circle', 'CheckCircle');
+const Error = createMaterialSymbolIcon('error', 'Error');
+const Info = createMaterialSymbolIcon('info', 'Info');
+const Warning = createMaterialSymbolIcon('warning', 'Warning');
+const HourglassEmpty = createMaterialSymbolIcon('hourglass_empty', 'HourglassEmpty');
+const Loop = createMaterialSymbolIcon('loop', 'Loop');
+const Cancel = createMaterialSymbolIcon('cancel', 'Cancel');
+
+// Content & Media
+const Image = createMaterialSymbolIcon('image', 'Image');
+const VideoLibrary = createMaterialSymbolIcon('video_library', 'VideoLibrary');
+const Article = createMaterialSymbolIcon('article', 'Article');
+const Description = createMaterialSymbolIcon('description', 'Description');
+const PictureAsPdf = createMaterialSymbolIcon('picture_as_pdf', 'PictureAsPdf');
+const Download = createMaterialSymbolIcon('download', 'Download');
+const Upload = createMaterialSymbolIcon('upload', 'Upload');
+const ZoomIn = createMaterialSymbolIcon('zoom_in', 'ZoomIn');
+const ZoomOut = createMaterialSymbolIcon('zoom_out', 'ZoomOut');
+const Rotate90DegreesCcw = createMaterialSymbolIcon('rotate_90_degrees_ccw', 'Rotate90DegreesCcw');
+
+// Communication
+const Email = createMaterialSymbolIcon('email', 'Email');
+const Phone = createMaterialSymbolIcon('phone', 'Phone');
+const Message = createMaterialSymbolIcon('message', 'Message');
+const Send = createMaterialSymbolIcon('send', 'Send');
+const Share = createMaterialSymbolIcon('share', 'Share');
+const Print = createMaterialSymbolIcon('print', 'Print');
+const ThumbUp = createMaterialSymbolIcon('thumb_up', 'ThumbUp');
+const ThumbDown = createMaterialSymbolIcon('thumb_down', 'ThumbDown');
+const Person = createMaterialSymbolIcon('person', 'Person');
+
+// Business & Location
+const Business = createMaterialSymbolIcon('business', 'Business');
+const LocationOn = createMaterialSymbolIcon('location_on', 'LocationOn');
+const Inventory = createMaterialSymbolIcon('inventory', 'Inventory');
+const ViewModule = createMaterialSymbolIcon('view_module', 'ViewModule');
+const ViewList = createMaterialSymbolIcon('view_list', 'ViewList');
+const Tune = createMaterialSymbolIcon('tune', 'Tune');
+const AccountCircle = createMaterialSymbolIcon('account_circle', 'AccountCircle');
+const Group = createMaterialSymbolIcon('group', 'Group');
+
+// Product & Category
+const DeviceThermostat = createMaterialSymbolIcon('device_thermostat', 'DeviceThermostat');
+const WaterDrop = createMaterialSymbolIcon('water_drop', 'WaterDrop');
+const Speed = createMaterialSymbolIcon('speed', 'Speed');
+const Air = createMaterialSymbolIcon('air', 'Air');
+const Wifi = createMaterialSymbolIcon('wifi', 'Wifi');
+const Biotech = createMaterialSymbolIcon('biotech', 'Biotech');
+const Category = createMaterialSymbolIcon('category', 'Category');
+
+// Payment & Financial
+const CreditCard = createMaterialSymbolIcon('credit_card', 'CreditCard');
+const AttachMoney = createMaterialSymbolIcon('attach_money', 'AttachMoney');
+const Money = createMaterialSymbolIcon('money', 'Money');
+
+// Security & Trust
+const Shield = createMaterialSymbolIcon('shield', 'Shield');
+const Lock = createMaterialSymbolIcon('lock', 'Lock');
+const LockOpen = createMaterialSymbolIcon('lock_open', 'LockOpen');
+const Verified = createMaterialSymbolIcon('verified', 'Verified');
+
+// Actions
+const Edit = createMaterialSymbolIcon('edit', 'Edit');
+const ContentCopy = createMaterialSymbolIcon('content_copy', 'ContentCopy');
+const Refresh = createMaterialSymbolIcon('refresh', 'Refresh');
+const Schedule = createMaterialSymbolIcon('schedule', 'Schedule');
+const Link = createMaterialSymbolIcon('link', 'Link');
+const Bookmark = createMaterialSymbolIcon('bookmark', 'Bookmark');
+const Work = createMaterialSymbolIcon('work', 'Work');
+const Home = createMaterialSymbolIcon('home', 'Home');
+const MoreVert = createMaterialSymbolIcon('more_vert', 'MoreVert');
+const MoreHoriz = createMaterialSymbolIcon('more_horiz', 'MoreHoriz');
+const Compare = createMaterialSymbolIcon('compare', 'Compare');
+const Visibility = createMaterialSymbolIcon('visibility', 'Visibility');
+const VisibilityOff = createMaterialSymbolIcon('visibility_off', 'VisibilityOff');
+const CheckBox = createMaterialSymbolIcon('check_box', 'CheckBox');
+const CheckBoxOutlineBlank = createMaterialSymbolIcon('check_box_outline_blank', 'CheckBoxOutlineBlank');
+const TrendingUp = createMaterialSymbolIcon('trending_up', 'TrendingUp');
+const History = createMaterialSymbolIcon('history', 'History');
+const AutoAwesome = createMaterialSymbolIcon('auto_awesome', 'AutoAwesome');
+const EmojiEvents = createMaterialSymbolIcon('emoji_events', 'EmojiEvents');
+const Settings = createMaterialSymbolIcon('settings', 'Settings');
+const EventAvailable = createMaterialSymbolIcon('event_available', 'EventAvailable');
+const CalendarMonth = createMaterialSymbolIcon('calendar_month', 'CalendarMonth');
+const Block = createMaterialSymbolIcon('block', 'Block');
+
+// Special
+const Mouse = createMaterialSymbolIcon('mouse', 'Mouse');
+const Laptop = createMaterialSymbolIcon('laptop', 'Laptop');
+const QrCode = createMaterialSymbolIcon('qr_code', 'QrCode');
+const Key = createMaterialSymbolIcon('key', 'Key');
+const Smartphone = createMaterialSymbolIcon('smartphone', 'Smartphone');
+
+// Social & Utility
+const YouTube = createMaterialSymbolIcon('youtube_activity', 'YouTube');
+const LinkedIn = createMaterialSymbolIcon('linked_services', 'LinkedIn');
+const Language = createMaterialSymbolIcon('language', 'Language');
+const Public = createMaterialSymbolIcon('public', 'Public');
+const Logout = createMaterialSymbolIcon('logout', 'Logout');
+const VerifiedUser = createMaterialSymbolIcon('verified_user', 'VerifiedUser');
+const Radio = createMaterialSymbolIcon('radio', 'Radio');
+const Build = createMaterialSymbolIcon('build', 'Build');
+const Support = createMaterialSymbolIcon('support', 'Support');
+const School = createMaterialSymbolIcon('school', 'School');
+
+// Additional Icons for Batch 9
+const PlayArrow = createMaterialSymbolIcon('play_arrow', 'PlayArrow');
+const Yard = createMaterialSymbolIcon('yard', 'Yard');
+const Restaurant = createMaterialSymbolIcon('restaurant', 'Restaurant');
+const MonitorHeart = createMaterialSymbolIcon('monitor_heart', 'MonitorHeart');
+const SetMeal = createMaterialSymbolIcon('set_meal', 'SetMeal');
+const AcUnit = createMaterialSymbolIcon('ac_unit', 'AcUnit');
+const Waves = createMaterialSymbolIcon('waves', 'Waves');
+const Cable = createMaterialSymbolIcon('cable', 'Cable');
+const Bolt = createMaterialSymbolIcon('bolt', 'Bolt');
+const FilterList = createMaterialSymbolIcon('filter_list', 'FilterList');
+const Storage = createMaterialSymbolIcon('storage', 'Storage');
+const TableChart = createMaterialSymbolIcon('table_chart', 'TableChart');
+const Assignment = createMaterialSymbolIcon('assignment', 'Assignment');
+const MenuBook = createMaterialSymbolIcon('menu_book', 'MenuBook');
+const Sort = createMaterialSymbolIcon('sort', 'Sort');
+
+// Batch 10 Icons (Account Pages)
+const LocalMall = createMaterialSymbolIcon('local_mall', 'LocalMall');
+const AlternateEmail = createMaterialSymbolIcon('alternate_email', 'AlternateEmail');
+
+// Batch 11 Icons (Resources Pages)
+const Computer = createMaterialSymbolIcon('computer', 'Computer');
+
+// Batch 12 Icons (Company/Support/Applications Pages)
+const ChatBubble = createMaterialSymbolIcon('chat_bubble', 'ChatBubble');
+const Factory = createMaterialSymbolIcon('factory', 'Factory');
+const Adjust = createMaterialSymbolIcon('adjust', 'Adjust');
+
+// Batch 13 Icons (Product Type Pages - Sensors/Accessories/Wireless)
+const Inventory2 = createMaterialSymbolIcon('inventory_2', 'Inventory2');
+const Layers = createMaterialSymbolIcon('layers', 'Layers');
+const Grass = createMaterialSymbolIcon('grass', 'Grass');
+const LocalHospital = createMaterialSymbolIcon('local_hospital', 'LocalHospital');
+const Notifications = createMaterialSymbolIcon('notifications', 'Notifications');
+const BarChart = createMaterialSymbolIcon('bar_chart', 'BarChart');
+const BatteryFull = createMaterialSymbolIcon('battery_full', 'BatteryFull');
+
+// Batch 14 Icons (Contact/Quote/RMA Pages)
+const Headphones = createMaterialSymbolIcon('headphones', 'Headphones');
+
+// Batch 15 Icons (Home/Search/Where-to-Buy Pages)
+const Newspaper = createMaterialSymbolIcon('newspaper', 'Newspaper');
+
+// Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
+const SignalCellular4Bar = createMaterialSymbolIcon('signal_cellular_4_bar', 'SignalCellular4Bar');
+
+// Batch 17 Icons (Company Pages)
+const CardGiftcard = createMaterialSymbolIcon('card_giftcard', 'CardGiftcard');
+const Flight = createMaterialSymbolIcon('flight', 'Flight');
+const FitnessCenter = createMaterialSymbolIcon('fitness_center', 'FitnessCenter');
+const Lightbulb = createMaterialSymbolIcon('lightbulb', 'Lightbulb');
+const Star = createMaterialSymbolIcon('star', 'Star');
+
+// Batch 19 Icons (App Notes/Solutions/WAM/SignIn Pages)
+const LocalActivity = createMaterialSymbolIcon('local_activity', 'LocalActivity');
+const Cloud = createMaterialSymbolIcon('cloud', 'Cloud');
+const ShowChart = createMaterialSymbolIcon('show_chart', 'ShowChart');
 
 // Export with lucide-react compatible names
 // Navigation & UI Icons
@@ -362,7 +366,7 @@ export { Computer as MonitorIcon };
 
 // Batch 12 Icons (Company/Support/Applications Pages)
 export { ChatBubble as MessageSquareIcon };
-export { FactoryMUI as FactoryIcon };
+export { Factory as FactoryIcon };
 export { Adjust as TargetIcon };
 
 // Batch 13 Icons (Product Type Pages - Sensors/Accessories/Wireless)
@@ -403,11 +407,16 @@ export { ShowChart as LineChartIcon };
 // ========================================
 
 /**
- * Material UI Icon Props
+ * Material Symbols Icon Props
  * 
- * Note: This project is Tailwind-first and does NOT use MUI ThemeProvider.
- * Use className for styling (recommended). MUI-specific props are listed for reference
- * but will not work properly without MUI theme configuration.
+ * Material Symbols use a span element with the 'material-symbols-rounded' class.
+ * The icon name is rendered as text content inside the span.
+ * 
+ * Default settings (per UI/UX design specifications):
+ * - Variant: Rounded
+ * - Weight: 400
+ * - Fill: 0 (no fill)
+ * - Optical Size: 24
  */
 export interface IconProps {
   /**
@@ -416,18 +425,6 @@ export interface IconProps {
    * Example: className="h-6 w-6 text-primary-500 mb-4"
    */
   className?: string;
-  
-  /**
-   * Icon size - MUI fontSize prop (REQUIRES MUI THEME - not recommended)
-   * Use className with Tailwind sizing instead: "h-4 w-4", "h-6 w-6", etc.
-   */
-  fontSize?: 'small' | 'medium' | 'large' | 'inherit';
-  
-  /**
-   * Icon color - MUI color prop (REQUIRES MUI THEME - not recommended)
-   * Use className with Tailwind colors instead: "text-primary-500", etc.
-   */
-  color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error';
   
   /**
    * Inline styles (use sparingly, prefer Tailwind classes)
@@ -446,33 +443,36 @@ export interface IconProps {
 }
 
 /**
- * Material UI Icons + Tailwind Best Practices
+ * Material Symbols + Tailwind Best Practices
  * 
- * This project uses MUI Icons as simple React components in a Tailwind-first design system.
- * We do NOT use MUI ThemeProvider, so MUI-specific props (fontSize, color, sx) are not used.
+ * This project uses Material Symbols from Google Fonts in a Tailwind-first design system.
+ * Icons are rendered as React components that output <span> elements with the appropriate class.
+ * 
+ * Design Settings (per UI/UX specifications):
+ * - Variant: Rounded (material-symbols-rounded)
+ * - Weight: 400 (configured via font-variation-settings: 'wght' 400)
+ * - Fill: 0 / No fill (configured via font-variation-settings: 'FILL' 0)
+ * - Optical Size: 24 (configured via font-variation-settings: 'opsz' 24)
  * 
  * ✅ CORRECT: Use className for all styling (Tailwind standard)
- * - Size: className="h-4 w-4" (16px), "h-5 w-5" (20px), "h-6 w-6" (24px), "h-14 w-14" (56px)
+ * - Size: className="text-base" (16px), "text-xl" (20px), "text-2xl" (24px), "text-5xl" (56px)
+ *   Or use w/h: className="h-4 w-4" (16px), "h-5 w-5" (20px), "h-6 w-6" (24px)
  * - Color: className="text-primary-500", "text-accent-500", "text-neutral-700", etc.
  * - Spacing: className="mb-4 mr-2 ml-3", etc.
  * - Transitions: className="transition-transform duration-300 hover:scale-110"
- * - Animation: className="animate-spin" (works perfectly with MUI icons)
+ * - Animation: className="animate-spin" (works perfectly with Material Symbols)
  * 
- * ❌ AVOID: MUI theme props (require MUI ThemeProvider which we don't use)
- * - fontSize="small|medium|large" → Only works with MUI theme
- * - color="primary|secondary" → Only works with MUI theme  
- * - sx={{ ... }} → Requires MUI styling engine
+ * Migration from MUI Icons:
+ * - No changes needed to component code - exports remain the same
+ * - Material Symbols have 2,500+ icons vs MUI's smaller set
+ * - Better coverage for sensor icons (BAPI's core products)
+ * - All existing className usage continues to work
  * 
- * Migration Pattern (Lucide → MUI Icons):
- * - lucide size={16} → className="h-4 w-4"
- * - lucide size={20} → className="h-5 w-5"
- * - lucide size={24} → className="h-6 w-6"
- * - lucide strokeWidth → Remove (MUI icons are filled SVGs, no stroke control)
- * - Keep all existing Tailwind classes (colors, spacing, transitions)
- * 
- * Why This Approach:
- * - MUI Icons are just React components that render SVG elements
- * - They accept className like any React component
- * - Tailwind is our design system, maintaining consistency across all components
- * - This is the industry standard for MUI Icons + Tailwind (without MUI theme)
+ * Why Material Symbols:
+ * - More comprehensive icon library (2,500+ icons)
+ * - Better sensor icon coverage (critical for BAPI's product line)
+ * - Variable font allows customization without changing components
+ * - Matches UI/UX design specifications (Rounded, 400, no fill, 24dp)
+ * - Same React component pattern as MUI icons
+ * - Maintained by Google, part of Material Design 3
  */

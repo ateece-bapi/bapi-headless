@@ -341,10 +341,10 @@ describe('MegaMenuItem - ARIA Attributes & Keyboard Navigation', () => {
 
     // ChevronDown icon should have aria-hidden
     const trigger = screen.getByRole('link', { name: /products/i });
-    const svgIcons = trigger.querySelectorAll('svg');
-    expect(svgIcons.length).toBeGreaterThan(0);
-    svgIcons.forEach((svg) => {
-      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    const icons = trigger.querySelectorAll('.material-symbols-rounded');
+    expect(icons.length).toBeGreaterThan(0);
+    icons.forEach((icon) => {
+      expect(icon).toHaveAttribute('aria-hidden', 'true');
     });
   });
 });
@@ -827,10 +827,10 @@ describe('MobileMenu - Accordion Pattern', () => {
 
     const productsButton = screen.getByRole('button', { name: /products/i });
     // Should have ChevronRight icon
-    const chevrons = productsButton.querySelectorAll('svg');
+    const chevrons = productsButton.querySelectorAll('.material-symbols-rounded');
     expect(chevrons.length).toBeGreaterThan(0);
-    chevrons.forEach((svg) => {
-      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    chevrons.forEach((icon) => {
+      expect(icon).toHaveAttribute('aria-hidden', 'true');
     });
   });
 });
@@ -1056,7 +1056,7 @@ describe('Breadcrumbs - Navigation Structure', () => {
   it('separators are decorative with aria-hidden', () => {
     const { container } = render(<Breadcrumbs items={mockBreadcrumbItems} />);
 
-    const chevrons = container.querySelectorAll('svg');
+    const chevrons = container.querySelectorAll('.material-symbols-rounded');
     // There should be 3 chevrons (n-1 for n items)
     expect(chevrons.length).toBe(3);
     chevrons.forEach((chevron) => {

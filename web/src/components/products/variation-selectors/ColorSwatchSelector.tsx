@@ -62,7 +62,7 @@ export default function ColorSwatchSelector({
                   <div className="absolute inset-0 flex items-center justify-center">
                     <CheckIcon
                       className={`h-5 w-5 ${isLightColor ? 'text-primary-600' : 'text-white'}`}
-                      strokeWidth={3}
+                     
                     />
                   </div>
                 )}

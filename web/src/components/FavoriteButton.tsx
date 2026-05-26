@@ -164,8 +164,8 @@ export default function FavoriteButton({
       >
         <HeartIcon
           className={iconSizes[size]}
-          fill={isFavorited ? 'currentColor' : 'none'}
-          strokeWidth={2.5}
+         
+         
         />
         {isFavorited ? 'Saved' : 'Save'}
       </button>
@@ -190,8 +190,8 @@ export default function FavoriteButton({
     >
       <HeartIcon
         className={iconSizes[size]}
-        fill={isFavorited ? 'currentColor' : 'none'}
-        strokeWidth={2.5}
+       
+       
       />
     </button>
   );

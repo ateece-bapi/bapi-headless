@@ -111,7 +111,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
             href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
-            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" />
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold lg:text-4xl">{t('title')}</h1>
@@ -131,7 +131,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
             <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center shadow-sm">
               <div className="mb-6 flex justify-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100">
-                  <PackageIcon className="h-10 w-10 text-primary-600" strokeWidth={2} />
+                  <PackageIcon className="h-10 w-10 text-primary-600" />
                 </div>
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
@@ -227,14 +227,14 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                         href={`/account/orders/${order.databaseId}`}
                         className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
-                        <EyeIcon className="h-4 w-4" strokeWidth={2.5} />
+                        <EyeIcon className="h-4 w-4" />
                         {t('actions.viewDetails')}
                       </Link>
                       <button
                         type="button"
                         className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
                       >
-                        <DownloadIcon className="h-4 w-4" strokeWidth={2.5} />
+                        <DownloadIcon className="h-4 w-4" />
                         {t('actions.invoice')}
                       </button>
                     </div>

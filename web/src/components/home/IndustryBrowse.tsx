@@ -117,7 +117,7 @@ export default function IndustryBrowse() {
                   <div className="absolute right-6 top-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 transition-colors group-hover:bg-primary-100 lg:h-20 lg:w-20">
                     <IconComponent
                       className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10"
-                      strokeWidth={2}
+                     
                     />
                   </div>
 
@@ -146,7 +146,7 @@ export default function IndustryBrowse() {
                   <div className="absolute right-6 top-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 transition-colors group-hover:bg-primary-100 lg:h-20 lg:w-20">
                     <IconComponent
                       className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10"
-                      strokeWidth={2}
+                     
                     />
                   </div>
 

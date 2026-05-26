@@ -55,7 +55,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
             href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
-            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" />
             {t('backToDashboard')}
           </Link>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -67,7 +67,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
               href="/request-quote"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-700 shadow-lg transition-all hover:bg-neutral-50 hover:shadow-xl"
             >
-              <PlusIcon className="h-5 w-5" strokeWidth={2.5} />
+              <PlusIcon className="h-5 w-5" />
               {t('newQuoteRequest')}
             </Link>
           </div>
@@ -82,7 +82,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
             <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center shadow-sm">
               <div className="mb-6 flex justify-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100">
-                  <FileTextIcon className="h-10 w-10 text-primary-600" strokeWidth={2} />
+                  <FileTextIcon className="h-10 w-10 text-primary-600" />
                 </div>
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
@@ -93,7 +93,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                 href="/request-quote"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
-                <PlusIcon className="h-5 w-5" strokeWidth={2.5} />
+                <PlusIcon className="h-5 w-5" />
                 {t('empty.submitQuote')}
               </Link>
 
@@ -101,7 +101,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
               <div className="mt-12 grid gap-6 text-left md:grid-cols-3">
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
-                    <FileTextIcon className="h-6 w-6 text-primary-600" strokeWidth={2} />
+                    <FileTextIcon className="h-6 w-6 text-primary-600" />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.customSolutions.title')}</h3>
                   <p className="text-sm text-neutral-700">
@@ -110,7 +110,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                 </div>
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
-                    <ClockIcon className="h-6 w-6 text-primary-600" strokeWidth={2} />
+                    <ClockIcon className="h-6 w-6 text-primary-600" />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.fastResponse.title')}</h3>
                   <p className="text-sm text-neutral-700">
@@ -119,7 +119,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                 </div>
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
-                    <CheckCircleIcon className="h-6 w-6 text-primary-600" strokeWidth={2} />
+                    <CheckCircleIcon className="h-6 w-6 text-primary-600" />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.expertSupport.title')}</h3>
                   <p className="text-sm text-neutral-700">
@@ -210,10 +210,10 @@ function getStatusBadge(status: QuoteStatus, t: (key: string) => string) {
   };
 
   const icons = {
-    pending: <ClockIcon className="h-3.5 w-3.5" strokeWidth={2.5} />,
-    reviewing: <FileTextIcon className="h-3.5 w-3.5" strokeWidth={2.5} />,
-    quoted: <CheckCircleIcon className="h-3.5 w-3.5" strokeWidth={2.5} />,
-    declined: <XCircleIcon className="h-3.5 w-3.5" strokeWidth={2.5} />,
+    pending: <ClockIcon className="h-3.5 w-3.5" />,
+    reviewing: <FileTextIcon className="h-3.5 w-3.5" />,
+    quoted: <CheckCircleIcon className="h-3.5 w-3.5" />,
+    declined: <XCircleIcon className="h-3.5 w-3.5" />,
   };
 
   return (

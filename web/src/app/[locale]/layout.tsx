@@ -11,7 +11,6 @@ import { ToastProvider } from '@/components/ui/Toast';
 import { AnalyticsClient, SpeedInsightsClient } from '@/components/analytics/AnalyticsClient';
 import { WebVitalsClient } from '@/components/analytics/WebVitalsClient';
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
-import ThemeRegistry from '@/lib/mui/ThemeRegistry';
 import { generateDefaultMetadata } from '@/lib/metadata';
 import { locales } from '@/i18n';
 import { notFound } from 'next/navigation';
@@ -78,10 +77,9 @@ export default async function LocaleLayout({
       <StructuredData schema={[organizationSchema, websiteSchema]} />
 
       <NextIntlClientProvider messages={messages} locale={locale}>
-        <ThemeRegistry>
-          <ToastProvider>
-            <>
-              {/* Skip to main content link for keyboard users */}
+        <ToastProvider>
+          <>
+            {/* Skip to main content link for keyboard users */}
               <a
                 href="#main-content"
                 className="focus:z-skip-link sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-lg focus:bg-primary-600 focus:px-6 focus:py-3 focus:font-semibold focus:text-white focus:shadow-lg focus:ring-4 focus:ring-primary-300"
@@ -100,7 +98,6 @@ export default async function LocaleLayout({
               <ChatWidgetClient />
             </>
           </ToastProvider>
-        </ThemeRegistry>
       </NextIntlClientProvider>
       <BackToTop />
       <WebVitalsClient />

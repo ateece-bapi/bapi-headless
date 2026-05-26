@@ -265,7 +265,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <div
                     className={`h-14 w-14 ${bgColor} mb-4 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110`}
                   >
-                    <IconComponent className={`h-7 w-7 ${iconColor}`} strokeWidth={2} />
+                    <IconComponent className={`h-7 w-7 ${iconColor}`} />
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">{section.title}</h3>
                   <p className="text-sm leading-relaxed text-neutral-700">{section.description}</p>

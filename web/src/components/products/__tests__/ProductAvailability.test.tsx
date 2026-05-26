@@ -51,7 +51,7 @@ describe('ProductAvailability Component', () => {
     it('displays warning icon for low stock', () => {
       const { container } = render(<ProductAvailability stockStatus="instock" stockQuantity={3} />);
       // AlertCircle is used for low stock warnings
-      const icon = container.querySelector('svg[aria-hidden="true"]');
+      const icon = container.querySelector('.material-symbols-rounded[aria-hidden="true"]');
       expect(icon).toBeInTheDocument();
     });
 
@@ -164,7 +164,7 @@ describe('ProductAvailability Component', () => {
     it('displays alert icon for unknown status', () => {
       const { container } = render(<ProductAvailability stockStatus={null} />);
       // AlertCircle is used for unknown status
-      const icon = container.querySelector('svg[aria-hidden="true"]');
+      const icon = container.querySelector('.material-symbols-rounded[aria-hidden="true"]');
       expect(icon).toBeInTheDocument();
     });
 
@@ -231,7 +231,7 @@ describe('ProductAvailability Component', () => {
   describe('Accessibility', () => {
     it('marks icon as decorative with aria-hidden', () => {
       const { container } = render(<ProductAvailability stockStatus="instock" />);
-      const icon = container.querySelector('svg[aria-hidden="true"]');
+      const icon = container.querySelector('.material-symbols-rounded[aria-hidden="true"]');
       expect(icon).toBeInTheDocument();
     });
 

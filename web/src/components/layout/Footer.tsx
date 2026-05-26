@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
                     aria-label={item.name}
                     className="flex h-11 w-11 transform items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-neutral-700 shadow-md transition-all duration-300 hover:scale-110 hover:border-primary-600 hover:bg-gradient-to-br hover:from-primary-600 hover:to-primary-700 hover:text-white hover:shadow-xl"
                   >
-                    <IconComponent className="h-5 w-5" strokeWidth={2.5} />
+                    <IconComponent className="h-5 w-5" />
                   </a>
                 );
               })}

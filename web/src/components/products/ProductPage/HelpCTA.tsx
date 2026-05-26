@@ -46,7 +46,7 @@ export default function HelpCTA({ className = '' }: HelpCTAProps) {
         </div>
         <div className="flex-shrink-0">
           <div className="rounded-full bg-white p-6 shadow-lg">
-            <MessageCircleIcon className="h-12 w-12 text-primary-600" strokeWidth={1.5} />
+            <MessageCircleIcon className="h-12 w-12 text-primary-600" />
           </div>
         </div>
       </div>

@@ -73,7 +73,7 @@ export default function FavoritesPage() {
               href="/account"
               className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
             >
-              <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+              <ArrowLeftIcon className="h-4 w-4" />
               {t('backToDashboard')}
             </Link>
             <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
@@ -107,7 +107,7 @@ export default function FavoritesPage() {
             href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" />
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
@@ -121,7 +121,7 @@ export default function FavoritesPage() {
             /* Empty State */
             <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center shadow-sm">
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-accent-50">
-                <HeartIcon className="h-10 w-10 text-accent-500" strokeWidth={2} />
+                <HeartIcon className="h-10 w-10 text-accent-500" />
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
               <p className="mx-auto mb-8 max-w-md text-neutral-700">

@@ -249,7 +249,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
           <div className="max-w-4xl">
             <div className="mb-6 flex items-center gap-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm lg:h-20 lg:w-20">
-                <IconComponent className="h-8 w-8 text-white lg:h-10 lg:w-10" strokeWidth={2} />
+                <IconComponent className="h-8 w-8 text-white lg:h-10 lg:w-10" />
               </div>
               <div>
                 <p className="mb-1 text-sm font-semibold text-accent-400 lg:text-base">

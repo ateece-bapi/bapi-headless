@@ -512,7 +512,7 @@ export default function ContactPage() {
               {/* Team Members */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <UsersIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <UsersIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   20
@@ -523,7 +523,7 @@ export default function ContactPage() {
               {/* Global Regions */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <GlobeIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <GlobeIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   10
@@ -534,7 +534,7 @@ export default function ContactPage() {
               {/* Countries Served */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <AwardIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <AwardIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   50+
@@ -545,7 +545,7 @@ export default function ContactPage() {
               {/* Support Available */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <HeadphonesIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <HeadphonesIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   24/7
@@ -1092,7 +1092,7 @@ export default function ContactPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={2}
+                     
                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                   </svg>

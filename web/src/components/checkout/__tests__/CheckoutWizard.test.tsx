@@ -291,8 +291,8 @@ describe('CheckoutWizard', () => {
         />
       );
 
-      // Should render a checkmark icon (lucide Check component)
-      const checkIcons = document.querySelectorAll('svg[aria-hidden="true"]');
+      // Should render a checkmark icon (Material Symbols)
+      const checkIcons = document.querySelectorAll('.material-symbols-rounded[aria-hidden="true"]');
       expect(checkIcons.length).toBeGreaterThan(0);
     });
 
@@ -310,7 +310,7 @@ describe('CheckoutWizard', () => {
       );
 
       // Should render 2 checkmark icons
-      const checkIcons = document.querySelectorAll('svg[aria-hidden="true"]');
+      const checkIcons = document.querySelectorAll('.material-symbols-rounded[aria-hidden="true"]');
       expect(checkIcons.length).toBeGreaterThanOrEqual(2);
     });
 

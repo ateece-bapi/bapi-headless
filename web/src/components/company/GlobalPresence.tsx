@@ -130,7 +130,7 @@ export function GlobalPresence({
                         geography={geo}
                         fill="#E5E7EB" // neutral-200
                         stroke="#D1D5DB" // neutral-300
-                        strokeWidth={0.5}
+                       
                         style={{
                           default: { outline: 'none' },
                           hover: { outline: 'none', fill: '#D1D5DB' },
@@ -169,7 +169,7 @@ export function GlobalPresence({
                         r={8}
                         fill="none"
                         stroke={FACILITY_TYPE_COLORS[location.type]}
-                        strokeWidth={2}
+                       
                         opacity={0.6}
                         className="animate-ping"
                       />

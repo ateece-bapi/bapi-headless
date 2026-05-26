@@ -72,7 +72,7 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
           return (
             <div key={badge.label} className="flex flex-col items-center text-center">
               <div className={`mb-2 ${badge.color}`}>
-                <Icon className="h-8 w-8" strokeWidth={1.5} />
+                <Icon className="h-8 w-8" />
               </div>
               <div className="text-sm font-semibold text-neutral-900">{badge.label}</div>
               <div className="text-xs text-neutral-700">{badge.description}</div>

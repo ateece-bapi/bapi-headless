@@ -529,9 +529,9 @@ describe('ProductTabs - Color Contrast', () => {
     // Icons are SVG elements inside tabs - check parent classes
     const tabs = screen.getAllByRole('tab');
     tabs.forEach(tab => {
-      const svg = tab.querySelector('svg');
-      expect(svg).toBeInTheDocument();
-      expect(svg).toHaveClass('h-5', 'w-5');
+      const icon = tab.querySelector('.material-symbols-rounded');
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveClass('h-5', 'w-5');
       // Icon color inherits from parent text color (verified above)
     });
   });

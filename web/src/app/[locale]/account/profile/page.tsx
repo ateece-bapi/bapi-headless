@@ -26,7 +26,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" />
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
@@ -61,7 +61,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 {/* Display Name */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50">
-                    <UserIcon className="h-5 w-5 text-primary-600" strokeWidth={2} />
+                    <UserIcon className="h-5 w-5 text-primary-600" />
                   </div>
                   <div>
                     <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.displayName')}</p>
@@ -74,7 +74,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 {/* Username */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-50">
-                    <AtSignIcon className="h-5 w-5 text-accent-600" strokeWidth={2} />
+                    <AtSignIcon className="h-5 w-5 text-accent-600" />
                   </div>
                   <div>
                     <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.username')}</p>
@@ -85,7 +85,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 {/* Email */}
                 <div className="flex items-start gap-4 md:col-span-2">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
-                    <MailIcon className="h-5 w-5 text-green-600" strokeWidth={2} />
+                    <MailIcon className="h-5 w-5 text-green-600" />
                   </div>
                   <div>
                     <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.email')}</p>

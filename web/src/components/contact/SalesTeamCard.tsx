@@ -63,7 +63,7 @@ export default function SalesTeamCard({
           {/* Video Badge - Always Visible */}
           {video && (
             <div className="absolute right-3 top-3 z-30 flex animate-pulse items-center gap-1.5 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 px-3 py-1.5 text-xs font-bold text-neutral-900 shadow-lg">
-              <PlayIcon className="h-3.5 w-3.5" fill="currentColor" />
+              <PlayIcon className="h-3.5 w-3.5" />
               Watch Video
             </div>
           )}
@@ -83,7 +83,7 @@ export default function SalesTeamCard({
               aria-label={`Play introduction video for ${name}`}
             >
               <div className="mb-3 flex h-20 w-20 transform items-center justify-center rounded-full bg-white/95 shadow-xl transition-transform duration-300 group-hover/video:scale-110">
-                <PlayIcon className="ml-1 h-10 w-10 text-primary-600" fill="currentColor" />
+                <PlayIcon className="ml-1 h-10 w-10 text-primary-600" />
               </div>
               <span className="text-base font-bold tracking-wide text-white">
                 Watch Introduction

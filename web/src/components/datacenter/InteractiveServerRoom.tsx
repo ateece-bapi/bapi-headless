@@ -11,11 +11,17 @@ export function InteractiveServerRoom() {
   const [activeCard, setActiveCard] = useState<ProductCard>('leak-detector');
   const [hoveredCard, setHoveredCard] = useState<ProductCard | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
-  // Keyboard navigation
+  // Keyboard navigation (scoped to this component)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle keyboard navigation if focus is within this component
+      if (!containerRef.current?.contains(document.activeElement)) {
+        return;
+      }
+
       const currentIndex = productOrder.indexOf(activeCard);
       
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -86,7 +92,7 @@ export function InteractiveServerRoom() {
   };
 
   return (
-    <div className="space-y-8">
+    <div ref={containerRef} className="space-y-8">
       {/* Skip Link for Accessibility */}
       <a
         href="#product-details"
@@ -115,6 +121,7 @@ export function InteractiveServerRoom() {
               {/* Top Left Position - Pressure (Ceiling/Plenum) OR Yellow Decorative */}
               {activeCard === 'pressure' ? (
                 <button
+                  type="button"
                   onClick={() => {
                     setActiveCard('pressure');
                     if (window.innerWidth < 1024) {
@@ -145,6 +152,7 @@ export function InteractiveServerRoom() {
               {/* Left Bottom Position - Leak Detector OR Yellow Decorative */}
               {activeCard === 'leak-detector' ? (
                 <button
+                  type="button"
                   ref={(el) => { buttonRefs.current['leak-detector'] = el; }}
                   onClick={() => {
                     setActiveCard('leak-detector');
@@ -176,6 +184,7 @@ export function InteractiveServerRoom() {
               {/* Center Bottom Position - Pressure (Front of Racks) OR Yellow Decorative */}
               {activeCard === 'pressure' ? (
                 <button
+                  type="button"
                   ref={(el) => { buttonRefs.current['pressure'] = el; }}
                   onClick={() => {
                     setActiveCard('pressure');
@@ -219,6 +228,7 @@ export function InteractiveServerRoom() {
             {/* Navigation Buttons */}
             <div className="mt-6 flex items-center justify-center gap-4">
               <button
+                type="button"
                 onClick={() => navigateProduct('prev')}
                 className="flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
                 aria-label="Previous product"
@@ -232,6 +242,7 @@ export function InteractiveServerRoom() {
                 {productOrder.indexOf(activeCard) + 1} / {productOrder.length}
               </span>
               <button
+                type="button"
                 onClick={() => navigateProduct('next')}
                 className="flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
                 aria-label="Next product"

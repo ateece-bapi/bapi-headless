@@ -430,7 +430,7 @@ export default function DataCenterPage() {
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">CE Certified &amp; RoHS Compliant</h3>
                   <p className="leading-relaxed text-neutral-700">
-                    BAPI holds itself to a higher standard with CE certification on select models of temperature, humidity and pressure sensors. We are also committed to environmentally responsible manufacturing practices and complies with the European Union&apos;s RoHS directive.
+                    BAPI holds itself to a higher standard with CE certification on select models of temperature, humidity and pressure sensors. We are also committed to environmentally responsible manufacturing practices and comply with the European Union&apos;s RoHS directive.
                   </p>
                 </div>
               </div>

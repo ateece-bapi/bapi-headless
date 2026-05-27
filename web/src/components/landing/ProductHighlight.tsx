@@ -42,8 +42,7 @@ export function ProductHighlight({
   description,
   imageSrc,
   imageAlt,
-  features = [],
-  learnMoreHref,
+  features = [],  featuresHeading,  learnMoreHref,
   imagePosition = 'right',
 }: ProductHighlightProps) {
   const imageOrder = imagePosition === 'left' ? 'lg:order-first' : 'lg:order-last';
@@ -76,9 +75,11 @@ export function ProductHighlight({
         {/* Features List */}
         {features.length > 0 && (
           <div className="mb-6">
-            <h3 className="mb-3 font-bold text-neutral-900">
-              Field Selectable Settings:
-            </h3>
+            {featuresHeading && (
+              <h3 className="mb-3 font-bold text-neutral-900">
+                {featuresHeading}
+              </h3>
+            )}
             <ul className="space-y-2">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-2">
@@ -98,6 +99,7 @@ export function ProductHighlight({
           <Link
             href={learnMoreHref}
             className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-bold text-white transition-all hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+            aria-label={`Learn more about ${title}`}
           >
             Learn More
           </Link>

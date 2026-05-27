@@ -11,7 +11,6 @@ import {
 } from '@/lib/icons';
 import { FeatureGrid } from '@/components/landing/FeatureGrid';
 import { ProcessSteps } from '@/components/landing/ProcessSteps';
-import { ProductHighlight } from '@/components/landing/ProductHighlight';
 
 export const metadata: Metadata = {
   title: 'Wireless HVAC Sensors | BAPI',
@@ -411,8 +410,9 @@ export default function WirelessPage() {
                     ))}
                   </ul>
                   <Link
-                    href={`/products/${sensor.slug}`}
+                    href={`/product/${sensor.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                    aria-label={`Learn more about ${sensor.name}`}
                   >
                     Learn More
                   </Link>

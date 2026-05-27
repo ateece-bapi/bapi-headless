@@ -7,7 +7,7 @@ interface Step {
 interface ProcessStepsProps {
   steps: Step[];
   /**
-   * Number of columns on large screens
+   * Number of columns on medium and larger screens
    * @default 3
    */
   columns?: 2 | 3 | 4;

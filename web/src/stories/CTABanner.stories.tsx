@@ -65,7 +65,7 @@ export const WithImage: Story = {
       'Wireless Asset Monitoring protects your critical equipment and inventory. Monitor temperature, humidity, and more from anywhere. Schedule a demo today.',
     buttonText: 'Contact Us',
     buttonHref: '/contact',
-    imageSrc: '/images/wireless/background-pattern.jpg',
+    imageSrc: '/images/wireless/Image (Wireless Integration Diagram).png',
     imageAlt: 'Wireless monitoring background',
     variant: 'blue',
   },

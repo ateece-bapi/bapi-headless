@@ -56,22 +56,27 @@ export function FeatureGrid({
   return (
     <div className={`grid gap-8 md:grid-cols-2 ${gridCols} ${bgClass}`}>
       {features.map((feature, index) => (
-        <div key={index} className="text-center">
-          {/* Icon */}
-          <div
-            className="mb-4 flex justify-center text-primary-600"
-            aria-hidden="true"
-          >
-            {feature.icon}
+        <div
+          key={index}
+          className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-md transition-shadow hover:shadow-lg"
+        >
+          {/* Icon with rounded background */}
+          <div className="mb-6 flex justify-center">
+            <div
+              className="inline-flex rounded-2xl bg-primary-100 p-6 text-primary-600"
+              aria-hidden="true"
+            >
+              {feature.icon}
+            </div>
           </div>
 
           {/* Title */}
-          <h3 className="mb-2 text-xl font-bold text-neutral-900">
+          <h3 className="mb-2 text-center text-xl font-bold text-neutral-900">
             {feature.title}
           </h3>
 
           {/* Description */}
-          <p className="text-base leading-relaxed text-neutral-600">
+          <p className="text-center text-base leading-relaxed text-neutral-600">
             {feature.description}
           </p>
         </div>

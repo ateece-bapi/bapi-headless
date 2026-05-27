@@ -56,23 +56,23 @@ export function ProcessSteps({
           {/* Connector Line (hidden on mobile) */}
           {showConnector && index < steps.length - 1 && (
             <div
-              className="absolute left-8 top-8 hidden h-0.5 w-full bg-primary-200 md:block"
+              className="absolute left-1/2 top-8 hidden h-0.5 w-full bg-primary-200 md:block"
               aria-hidden="true"
             />
           )}
 
-          {/* Step Content */}
-          <div className="relative">
+          {/* Step Card */}
+          <div className="relative flex h-full flex-col items-center rounded-2xl border border-neutral-200 bg-white p-8 text-center shadow-md transition-shadow hover:shadow-lg">
             {/* Number Badge */}
             <div
-              className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-600 text-2xl font-bold text-white shadow-lg"
+              className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-600 text-2xl font-bold text-white shadow-lg"
               aria-label={`Step ${step.number}`}
             >
               {step.number}
             </div>
 
             {/* Title */}
-            <h3 className="mb-2 text-xl font-bold text-neutral-900">
+            <h3 className="mb-3 text-xl font-bold text-neutral-900">
               {step.title}
             </h3>
 

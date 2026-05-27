@@ -34,7 +34,7 @@ export const Yellow: Story = {
   args: {
     title: 'Ready to go wireless?',
     description:
-      'Schedule a free consultation with our wireless experts. We'll help you design the perfect wireless solution for your building.',
+      "Schedule a free consultation with our wireless experts. We'll help you design the perfect wireless solution for your building.",
     buttonText: 'Contact Us',
     buttonHref: '/contact',
     variant: 'yellow',

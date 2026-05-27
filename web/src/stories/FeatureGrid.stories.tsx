@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FeatureGrid } from '@/components/landing/FeatureGrid';
 import {
-  WifiOffIcon,
-  SignalCellularAltIcon,
-  BatteryFullIcon,
+  CableIcon,
+  SignalIcon,
+  BatteryIcon,
   LayersIcon,
 } from '@/lib/icons';
 
@@ -21,19 +21,19 @@ type Story = StoryObj<typeof FeatureGrid>;
 
 const wirelessFeatures = [
   {
-    icon: <WifiOffIcon className="h-12 w-12" />,
+    icon: <CableIcon className="h-12 w-12" />,
     title: 'No Wiring Required',
     description:
       'Eliminate expensive wire runs and reduce installation time by up to 70%.',
   },
   {
-    icon: <SignalCellularAltIcon className="h-12 w-12" />,
+    icon: <SignalIcon className="h-12 w-12" />,
     title: 'Long Range Signal',
     description:
       'Up to 400ft range through walls and floors in typical commercial buildings.',
   },
   {
-    icon: <BatteryFullIcon className="h-12 w-12" />,
+    icon: <BatteryIcon className="h-12 w-12" />,
     title: '10-Year Battery Life',
     description:
       'User-replaceable batteries last up to 10 years with optimized transmit intervals.',

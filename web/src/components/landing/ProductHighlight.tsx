@@ -8,6 +8,7 @@ interface ProductHighlightProps {
   imageSrc: string;
   imageAlt: string;
   features?: string[];
+  featuresHeading?: string;
   learnMoreHref?: string;
   /**
    * Image position

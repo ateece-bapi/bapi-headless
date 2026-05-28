@@ -504,15 +504,19 @@
         "refrigerantLeakDesc": "冷媒漏れセンサー"
       },
       "wireless": {
-        "title": "ワイヤレス",
-        "roomSensors": "室内センサー",
-        "roomSensorsDesc": "屋内環境用温湿度センサー",
-        "nonRoomSensors": "産業用センサー",
-        "nonRoomSensorsDesc": "ダクト、外気、および特殊用途向け",
         "gateway": "ゲートウェイ",
         "gatewayDesc": "センサー接続用ワイヤレスゲートウェイ",
+        "nonRoomSensors": "産業用センサー",
+        "nonRoomSensorsDesc": "ダクト、外気、および特殊用途向け",
+        "receiversModules": "レシーバーおよび出力モジュール",
+        "receiversModulesDesc": "レシーバー、アナログおよびデジタル出力モジュール",
+        "roomSensors": "室内センサー",
+        "roomSensorsDesc": "屋内環境用温湿度センサー",
+        "title": "ワイヤレス",
         "wirelessAccessories": "アクセサリー",
-        "wirelessAccessoriesDesc": "取付・設置用アクセサリー"
+        "wirelessAccessoriesDesc": "取付・設置用アクセサリー",
+        "wirelessSolutions": "ワイヤレスソリューション概要",
+        "wirelessSolutionsDesc": "ビル自動化のための完全なワイヤレス接続"
       },
       "accessories": {
         "title": "アクセサリー",

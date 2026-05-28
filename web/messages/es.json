@@ -505,12 +505,14 @@
       },
       "wireless": {
         "title": "Inalámbrico",
+        "wirelessSolutions": "Descripción General de Soluciones Inalámbricas",
+        "wirelessSolutionsDesc": "Conectividad inalámbrica completa para automatización de edificios",
         "roomSensors": "Sensores de Ambiente",
         "roomSensorsDesc": "Sensores de temperatura y humedad para ambientes interiores",
         "nonRoomSensors": "Sensores Industriales",
         "nonRoomSensorsDesc": "Conductos, aire exterior y aplicaciones especializadas",
-        "gateway": "Gateway",
-        "gatewayDesc": "Gateway inalámbrico para conectividad de sensores",
+        "receiversModules": "Módulos de Receptor y Salida",
+        "receiversModulesDesc": "Receptores, módulos de salida analógica y digital",
         "wirelessAccessories": "Accesorios",
         "wirelessAccessoriesDesc": "Accesorios de montaje e instalación"
       },

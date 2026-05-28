@@ -504,15 +504,19 @@
         "refrigerantLeakDesc": "Capteurs de fuite de réfrigérant"
       },
       "wireless": {
-        "title": "Sans fil",
-        "roomSensors": "Capteurs d'ambiance",
-        "roomSensorsDesc": "Capteurs de température et d'humidité pour environnements intérieurs",
-        "nonRoomSensors": "Capteurs industriels",
-        "nonRoomSensorsDesc": "Gaines, air extérieur et applications spécialisées",
         "gateway": "Passerelle",
         "gatewayDesc": "Passerelle sans fil pour la connectivité des capteurs",
+        "nonRoomSensors": "Capteurs industriels",
+        "nonRoomSensorsDesc": "Gaines, air extérieur et applications spécialisées",
+        "receiversModules": "Modules de Récepteur et de Sortie",
+        "receiversModulesDesc": "Récepteurs, modules de sortie analogiques et numériques",
+        "roomSensors": "Capteurs d'ambiance",
+        "roomSensorsDesc": "Capteurs de température et d'humidité pour environnements intérieurs",
+        "title": "Sans fil",
         "wirelessAccessories": "Accessoires",
-        "wirelessAccessoriesDesc": "Accessoires de montage et d'installation"
+        "wirelessAccessoriesDesc": "Accessoires de montage et d'installation",
+        "wirelessSolutions": "Aperçu des Solutions Sans Fil",
+        "wirelessSolutionsDesc": "Connectivité sans fil complète pour l'automatisation des bâtiments"
       },
       "accessories": {
         "title": "Accessoires",

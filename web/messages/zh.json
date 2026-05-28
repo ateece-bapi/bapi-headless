@@ -504,15 +504,19 @@
         "refrigerantLeakDesc": "制冷剂泄漏传感器"
       },
       "wireless": {
-        "title": "无线",
-        "roomSensors": "房间传感器",
-        "roomSensorsDesc": "用于室内环境的温湿度传感器",
-        "nonRoomSensors": "工业传感器",
-        "nonRoomSensorsDesc": "风管、室外空气和专业应用",
         "gateway": "网关",
         "gatewayDesc": "传感器连接的无线网关",
+        "nonRoomSensors": "工业传感器",
+        "nonRoomSensorsDesc": "风管、室外空气和专业应用",
+        "receiversModules": "接收器和输出模块",
+        "receiversModulesDesc": "接收器、模拟和数字输出模块",
+        "roomSensors": "房间传感器",
+        "roomSensorsDesc": "用于室内环境的温湿度传感器",
+        "title": "无线",
         "wirelessAccessories": "配件",
-        "wirelessAccessoriesDesc": "安装和安装配件"
+        "wirelessAccessoriesDesc": "安装和安装配件",
+        "wirelessSolutions": "无线解决方案概述",
+        "wirelessSolutionsDesc": "楼宇自动化完整无线连接解决方案"
       },
       "accessories": {
         "title": "配件",

@@ -504,15 +504,19 @@
         "refrigerantLeakDesc": "أجهزة استشعار تسرب المبرد"
       },
       "wireless": {
-        "title": "لاسلكي",
-        "roomSensors": "حساسات الغرف",
-        "roomSensorsDesc": "حساسات درجة الحرارة والرطوبة للبيئات الداخلية",
-        "nonRoomSensors": "الحساسات الصناعية",
-        "nonRoomSensorsDesc": "القنوات والهواء الخارجي والتطبيقات المتخصصة",
         "gateway": "البوابة",
         "gatewayDesc": "بوابة لاسلكية لربط الحساسات",
+        "nonRoomSensors": "الحساسات الصناعية",
+        "nonRoomSensorsDesc": "القنوات والهواء الخارجي والتطبيقات المتخصصة",
+        "receiversModules": "وحدات الاستقبال والإخراج",
+        "receiversModulesDesc": "أجهزة الاستقبال ووحدات الإخراج التناظرية والرقمية",
+        "roomSensors": "حساسات الغرف",
+        "roomSensorsDesc": "حساسات درجة الحرارة والرطوبة للبيئات الداخلية",
+        "title": "لاسلكي",
         "wirelessAccessories": "الملحقات",
-        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت"
+        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت",
+        "wirelessSolutions": "نظرة عامة على الحلول اللاسلكية",
+        "wirelessSolutionsDesc": "اتصال لاسلكي كامل لأتمتة المباني"
       },
       "accessories": {
         "title": "الملحقات",

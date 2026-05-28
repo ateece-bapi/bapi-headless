@@ -3060,5 +3060,220 @@
       "browseButton": "Explorar Sensores de Temperatura",
       "contactButton": "Contactar Soporte"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "Soluciones de Sensores Inalámbricos | BAPI",
+      "description": "Conectividad inalámbrica completa para automatización de edificios. Sin cableado requerido - monitoreo inalámbrico de largo alcance para temperatura, humedad y ambiente con conectividad a la nube.",
+      "keywords": "sensores inalámbricos, automatización de edificios inalámbrica, WAM monitoreo inalámbrico de activos, sensores de temperatura inalámbricos, sensores de humedad inalámbricos, sensores LoRaWAN, sensores conectados a la nube, monitoreo ambiental inalámbrico"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos",
+      "wireless": "Inalámbrico"
+    },
+    "hero": {
+      "badge": "Sin Cableado Requerido",
+      "title": "Soluciones de Sensores Inalámbricos",
+      "subtitle": "Conectividad inalámbrica completa para automatización de edificios",
+      "description": "Monitoreo inalámbrico de largo alcance sin conductos, sin cableado y sin complicaciones. Confiabilidad de nivel empresarial para monitoreo de temperatura, humedad y ambiente.",
+      "cta": "Explorar Productos",
+      "secondaryCta": "Hablar con Ventas"
+    },
+    "features": {
+      "title": "¿Por Qué Elegir BAPI Inalámbrico?",
+      "subtitle": "Soluciones inalámbricas de nivel empresarial diseñadas para profesionales de automatización de edificios",
+      "noWiring": {
+        "title": "Sin Cableado Requerido",
+        "description": "Instalación rápida sin costos de conductos o cableado. Implemente sensores en minutos, no horas."
+      },
+      "longRange": {
+        "title": "Cobertura de Largo Alcance",
+        "description": "Hasta 1000 pies de línea de vista con tecnología LoRaWAN. Penetra paredes y pisos."
+      },
+      "reliable": {
+        "title": "Confiabilidad Empresarial",
+        "description": "Rendimiento de grado industrial para aplicaciones críticas. Vida útil de batería de 5 años en la mayoría de modelos."
+      },
+      "cloudConnected": {
+        "title": "Conectividad a la Nube",
+        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Acceda a sus datos desde cualquier lugar."
+      },
+      "easyIntegration": {
+        "title": "Integración Fácil",
+        "description": "Integración perfecta con sistemas BAS existentes. Salidas estándar BACnet y Modbus."
+      },
+      "scalable": {
+        "title": "Altamente Escalable",
+        "description": "Desde habitaciones individuales hasta campus completos. Agregue sensores conforme crezcan sus necesidades."
+      }
+    },
+    "categories": {
+      "title": "Categorías de Productos Inalámbricos",
+      "subtitle": "Soluciones inalámbricas completas para cada aplicación de automatización de edificios",
+      "roomSensors": {
+        "title": "Sensores de Ambiente",
+        "description": "Sensores de temperatura y humedad para ambientes interiores",
+        "cta": "Ver Productos"
+      },
+      "nonRoomSensors": {
+        "title": "Sensores No Ambientales",
+        "description": "Sensores de conducto, aire exterior, inmersión y sonda de alimentos",
+        "cta": "Ver Productos"
+      },
+      "receiversModules": {
+        "title": "Receptores y Módulos",
+        "description": "Receptores, módulos de salida analógica y digital",
+        "cta": "Ver Productos"
+      },
+      "accessories": {
+        "title": "Accesorios",
+        "description": "Hardware de montaje y accesorios de instalación",
+        "cta": "Ver Productos"
+      }
+    },
+    "wam": {
+      "badge": "Solución Premium",
+      "title": "WAM™ Monitoreo Inalámbrico de Activos",
+      "subtitle": "Monitoreo remoto 24/7 con alertas instantáneas",
+      "description": "Proteja sus activos críticos con monitoreo inalámbrico de temperatura y ambiente de nivel empresarial. Sin cableado requerido - funcione en minutos.",
+      "features": {
+        "monitoring": "Monitoreo Remoto 24/7",
+        "alerts": "Alertas Instantáneas por Email y SMS",
+        "cloud": "Panel de Control Basado en la Nube",
+        "battery": "Vida Útil de Batería de 5 Años",
+        "range": "Alcance de 1000 pies",
+        "scalable": "Sensores Ilimitados"
+      },
+      "cta": "Conocer Más Sobre WAM™",
+      "secondaryCta": "Solicitar Cotización"
+    },
+    "applications": {
+      "title": "Aplicaciones Comunes",
+      "subtitle": "Soluciones inalámbricas para diversos desafíos de automatización de edificios",
+      "retrofits": {
+        "title": "Proyectos de Actualización",
+        "description": "Agregue sensores sin cableado costoso o daños a las paredes"
+      },
+      "criticalAssets": {
+        "title": "Monitoreo de Activos Críticos",
+        "description": "Monitoreo 24/7 de refrigeración, congeladores y salas de servidores"
+      },
+      "remoteSites": {
+        "title": "Ubicaciones Remotas",
+        "description": "Monitoree áreas de difícil acceso o ambientes exteriores"
+      },
+      "temporaryMonitoring": {
+        "title": "Monitoreo Temporal",
+        "description": "Sitios de construcción, instalaciones estacionales o eventos especiales"
+      },
+      "energyManagement": {
+        "title": "Gestión de Energía",
+        "description": "Optimice el rendimiento de HVAC con recolección de datos inalámbrica"
+      },
+      "iaq": {
+        "title": "Calidad del Aire Interior",
+        "description": "Monitoreo inalámbrico de CO₂, VOC y partículas"
+      }
+    },
+    "specifications": {
+      "title": "Especificaciones Técnicas",
+      "wireless": {
+        "title": "Tecnología Inalámbrica",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz (EE.UU./Canadá)",
+        "range": "Hasta 1000 pies de línea de vista",
+        "battery": "Batería de litio reemplazable de 5 años"
+      },
+      "outputs": {
+        "title": "Opciones de Salida",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA, 0-5VDC, 0-10VDC",
+        "digital": "Relé de contacto seco"
+      },
+      "environmental": {
+        "title": "Ambiental",
+        "temperature": "-40°F a 185°F de operación",
+        "humidity": "0-100% HR sin condensación",
+        "rating": "Gabinetes con clasificación IP65 disponibles"
+      }
+    },
+    "benefits": {
+      "title": "Beneficios de los Sensores Inalámbricos",
+      "subtitle": "Por qué los ingenieros eligen las soluciones inalámbricas BAPI",
+      "costSavings": {
+        "title": "Reduzca Costos de Instalación",
+        "description": "Elimine costos de conductos, cableado y mano de obra. La instalación inalámbrica es hasta 75% más rápida que los sensores cableados tradicionales."
+      },
+      "flexibility": {
+        "title": "Máxima Flexibilidad",
+        "description": "Coloque sensores exactamente donde se necesiten sin restricciones de cableado. Reubique o agregue sensores fácilmente conforme cambien los requisitos."
+      },
+      "reliability": {
+        "title": "Confiabilidad Empresarial",
+        "description": "Componentes de grado industrial y garantía de 5 años. Confiado por hospitales, centros de datos e instalaciones críticas en todo el mundo."
+      },
+      "remoteAccess": {
+        "title": "Monitoreo Remoto",
+        "description": "Acceda a datos en tiempo real y reciba alertas instantáneas desde cualquier lugar. Panel de control basado en la nube con tendencias históricas y reportes."
+      }
+    },
+    "comparison": {
+      "title": "Sensores Inalámbricos vs. Cableados",
+      "wireless": "Inalámbrico",
+      "wired": "Cableado",
+      "installation": {
+        "label": "Tiempo de Instalación",
+        "wireless": "5-10 minutos por sensor",
+        "wired": "30-60 minutos por sensor"
+      },
+      "cost": {
+        "label": "Costo de Instalación",
+        "wireless": "Bajo (sin conductos/cableado)",
+        "wired": "Alto (mano de obra + materiales)"
+      },
+      "flexibility": {
+        "label": "Flexibilidad",
+        "wireless": "Fácil de reubicar",
+        "wired": "Instalación permanente"
+      },
+      "range": {
+        "label": "Rango de Cobertura",
+        "wireless": "Hasta 1000 pies",
+        "wired": "Limitado por cableado"
+      },
+      "scalability": {
+        "label": "Escalabilidad",
+        "wireless": "Agregue sensores al instante",
+        "wired": "Requiere nuevo cableado"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Ser Inalámbrico?",
+      "description": "Explore nuestra línea completa de sensores inalámbricos o hable con un especialista de productos sobre su aplicación específica.",
+      "primaryButton": "Explorar Productos Inalámbricos",
+      "secondaryButton": "Hablar con Ventas",
+      "phoneLabel": "O llámenos al",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "Soporte y Recursos Inalámbricos",
+      "siteVerification": {
+        "title": "Herramienta de Verificación de Sitio",
+        "description": "Pruebe la intensidad de señal inalámbrica antes de la instalación",
+        "cta": "Descargar Herramienta"
+      },
+      "installationGuide": {
+        "title": "Guías de Instalación",
+        "description": "Instalación paso a paso de sensores inalámbricos",
+        "cta": "Ver Guías"
+      },
+      "technicalSupport": {
+        "title": "Soporte Técnico",
+        "description": "Ayuda experta con diseño de sistemas inalámbricos",
+        "cta": "Contactar Soporte"
+      }
+    }
   }
 }

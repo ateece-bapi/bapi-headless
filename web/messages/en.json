@@ -3106,5 +3106,220 @@
       "browseButton": "Browse Temperature Sensors",
       "contactButton": "Contact Support"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "Wireless Sensor Solutions | BAPI",
+      "description": "Complete wireless connectivity for building automation. No wiring required - long-range wireless temperature, humidity, and environmental monitoring with cloud connectivity.",
+      "keywords": "wireless sensors, building automation wireless, WAM wireless asset monitoring, wireless temperature sensors, wireless humidity sensors, LoRaWAN sensors, cloud-connected sensors, wireless environmental monitoring"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "wireless": "Wireless"
+    },
+    "hero": {
+      "badge": "No Wiring Required",
+      "title": "Wireless Sensor Solutions",
+      "subtitle": "Complete wireless connectivity for building automation",
+      "description": "Long-range wireless monitoring with no conduit, no wiring, and no hassle. Enterprise-grade reliability for temperature, humidity, and environmental monitoring.",
+      "cta": "Explore Products",
+      "secondaryCta": "Talk to Sales"
+    },
+    "features": {
+      "title": "Why Choose BAPI Wireless?",
+      "subtitle": "Enterprise-grade wireless solutions designed for building automation professionals",
+      "noWiring": {
+        "title": "No Wiring Required",
+        "description": "Quick installation with no conduit or wiring costs. Deploy sensors in minutes, not hours."
+      },
+      "longRange": {
+        "title": "Long Range Coverage",
+        "description": "Up to 1000 ft line-of-sight with LoRaWAN technology. Penetrates walls and floors."
+      },
+      "reliable": {
+        "title": "Enterprise Reliability",
+        "description": "Industrial-grade performance for critical applications. 5-year battery life on most models."
+      },
+      "cloudConnected": {
+        "title": "Cloud Connectivity",
+        "description": "24/7 remote monitoring with instant alerts. Access your data from anywhere."
+      },
+      "easyIntegration": {
+        "title": "Easy Integration",
+        "description": "Seamless integration with existing BAS systems. Standard BACnet and Modbus outputs."
+      },
+      "scalable": {
+        "title": "Highly Scalable",
+        "description": "From single rooms to entire campuses. Add sensors as your needs grow."
+      }
+    },
+    "categories": {
+      "title": "Wireless Product Categories",
+      "subtitle": "Complete wireless solutions for every building automation application",
+      "roomSensors": {
+        "title": "Room Sensors",
+        "description": "Temperature & humidity sensors for indoor environments",
+        "cta": "View Products"
+      },
+      "nonRoomSensors": {
+        "title": "Non-Room Sensors",
+        "description": "Duct, outside air, immersion, and food probe sensors",
+        "cta": "View Products"
+      },
+      "receiversModules": {
+        "title": "Receivers & Modules",
+        "description": "Receivers, analog and digital output modules",
+        "cta": "View Products"
+      },
+      "accessories": {
+        "title": "Accessories",
+        "description": "Mounting hardware and installation accessories",
+        "cta": "View Products"
+      }
+    },
+    "wam": {
+      "badge": "Premium Solution",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "subtitle": "24/7 remote monitoring with instant alerts",
+      "description": "Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring. No wiring required - get up and running in minutes.",
+      "features": {
+        "monitoring": "24/7 Remote Monitoring",
+        "alerts": "Instant Email & SMS Alerts",
+        "cloud": "Cloud-Based Dashboard",
+        "battery": "5-Year Battery Life",
+        "range": "1000 ft Range",
+        "scalable": "Unlimited Sensors"
+      },
+      "cta": "Learn More About WAM™",
+      "secondaryCta": "Request Quote"
+    },
+    "applications": {
+      "title": "Common Applications",
+      "subtitle": "Wireless solutions for diverse building automation challenges",
+      "retrofits": {
+        "title": "Retrofit Projects",
+        "description": "Add sensors without expensive wiring or wall damage"
+      },
+      "criticalAssets": {
+        "title": "Critical Asset Monitoring",
+        "description": "24/7 monitoring of refrigeration, freezers, and server rooms"
+      },
+      "remoteSites": {
+        "title": "Remote Locations",
+        "description": "Monitor hard-to-reach areas or outdoor environments"
+      },
+      "temporaryMonitoring": {
+        "title": "Temporary Monitoring",
+        "description": "Construction sites, seasonal facilities, or special events"
+      },
+      "energyManagement": {
+        "title": "Energy Management",
+        "description": "Optimize HVAC performance with wireless data collection"
+      },
+      "iaq": {
+        "title": "Indoor Air Quality",
+        "description": "Wireless CO₂, VOC, and particulate monitoring"
+      }
+    },
+    "specifications": {
+      "title": "Technical Specifications",
+      "wireless": {
+        "title": "Wireless Technology",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz (US/Canada)",
+        "range": "Up to 1000 ft line-of-sight",
+        "battery": "5-year replaceable lithium battery"
+      },
+      "outputs": {
+        "title": "Output Options",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA, 0-5VDC, 0-10VDC",
+        "digital": "Dry contact relay"
+      },
+      "environmental": {
+        "title": "Environmental",
+        "temperature": "-40°F to 185°F operating",
+        "humidity": "0-100% RH non-condensing",
+        "rating": "IP65 rated enclosures available"
+      }
+    },
+    "benefits": {
+      "title": "Benefits of Wireless Sensors",
+      "subtitle": "Why engineers choose BAPI wireless solutions",
+      "costSavings": {
+        "title": "Reduce Installation Costs",
+        "description": "Eliminate conduit, wiring, and labor costs. Wireless installation is up to 75% faster than traditional wired sensors."
+      },
+      "flexibility": {
+        "title": "Maximum Flexibility",
+        "description": "Place sensors exactly where needed without wiring constraints. Easily relocate or add sensors as requirements change."
+      },
+      "reliability": {
+        "title": "Enterprise Reliability",
+        "description": "Industrial-grade components and 5-year warranty. Trusted by hospitals, data centers, and critical facilities worldwide."
+      },
+      "remoteAccess": {
+        "title": "Remote Monitoring",
+        "description": "Access real-time data and receive instant alerts from anywhere. Cloud-based dashboard with historical trending and reports."
+      }
+    },
+    "comparison": {
+      "title": "Wireless vs. Wired Sensors",
+      "wireless": "Wireless",
+      "wired": "Wired",
+      "installation": {
+        "label": "Installation Time",
+        "wireless": "5-10 minutes per sensor",
+        "wired": "30-60 minutes per sensor"
+      },
+      "cost": {
+        "label": "Installation Cost",
+        "wireless": "Low (no conduit/wiring)",
+        "wired": "High (labor + materials)"
+      },
+      "flexibility": {
+        "label": "Flexibility",
+        "wireless": "Easy to relocate",
+        "wired": "Permanent installation"
+      },
+      "range": {
+        "label": "Coverage Range",
+        "wireless": "Up to 1000 ft",
+        "wired": "Limited by wiring"
+      },
+      "scalability": {
+        "label": "Scalability",
+        "wireless": "Add sensors instantly",
+        "wired": "Requires new wiring"
+      }
+    },
+    "cta": {
+      "title": "Ready to Go Wireless?",
+      "description": "Explore our complete line of wireless sensors or talk to a product specialist about your specific application.",
+      "primaryButton": "Browse Wireless Products",
+      "secondaryButton": "Talk to Sales",
+      "phoneLabel": "Or call us at",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "Wireless Support & Resources",
+      "siteVerification": {
+        "title": "Site Verification Tool",
+        "description": "Test wireless signal strength before installation",
+        "cta": "Download Tool"
+      },
+      "installationGuide": {
+        "title": "Installation Guides",
+        "description": "Step-by-step wireless sensor installation",
+        "cta": "View Guides"
+      },
+      "technicalSupport": {
+        "title": "Technical Support",
+        "description": "Expert help with wireless system design",
+        "cta": "Contact Support"
+      }
+    }
   }
 }

@@ -3060,5 +3060,220 @@
       "browseButton": "温度センサーを閲覧",
       "contactButton": "サポートに連絡"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "ワイヤレスセンサーソリューション | BAPI",
+      "description": "ビル自動化のための完全なワイヤレス接続。配線不要 - クラウド接続対応の長距離ワイヤレス温度、湿度、環境監視。",
+      "keywords": "ワイヤレスセンサー, ビル自動化ワイヤレス, WAM™ワイヤレス資産監視, ワイヤレス温度センサー, ワイヤレス湿度センサー, LoRaWANセンサー, クラウド接続センサー, ワイヤレス環境監視"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品",
+      "wireless": "ワイヤレス"
+    },
+    "hero": {
+      "badge": "配線不要",
+      "title": "ワイヤレスセンサーソリューション",
+      "subtitle": "ビル自動化のための完全なワイヤレス接続",
+      "description": "配管、配線、手間不要の長距離ワイヤレス監視。温度、湿度、環境監視のためのエンタープライズグレードの信頼性。",
+      "cta": "製品を見る",
+      "secondaryCta": "営業に相談"
+    },
+    "features": {
+      "title": "BAPIワイヤレスを選ぶ理由",
+      "subtitle": "ビル自動化専門家向けに設計されたエンタープライズグレードのワイヤレスソリューション",
+      "noWiring": {
+        "title": "配線不要",
+        "description": "配管や配線コスト不要の迅速な設置。数時間ではなく数分でセンサーを設置。"
+      },
+      "longRange": {
+        "title": "長距離カバレッジ",
+        "description": "LoRaWAN技術により見通し距離最大1000フィート。壁や床を貫通。"
+      },
+      "reliable": {
+        "title": "エンタープライズ信頼性",
+        "description": "重要なアプリケーション向けの産業グレード性能。ほとんどのモデルで5年のバッテリー寿命。"
+      },
+      "cloudConnected": {
+        "title": "クラウド接続",
+        "description": "即座のアラートによる24時間365日のリモート監視。どこからでもデータにアクセス。"
+      },
+      "easyIntegration": {
+        "title": "簡単統合",
+        "description": "既存のBASシステムとのシームレスな統合。標準BACnetおよびModbus出力。"
+      },
+      "scalable": {
+        "title": "高いスケーラビリティ",
+        "description": "単一の部屋からキャンパス全体まで。ニーズの拡大に応じてセンサーを追加。"
+      }
+    },
+    "categories": {
+      "title": "ワイヤレス製品カテゴリ",
+      "subtitle": "あらゆるビル自動化アプリケーション向けの完全なワイヤレスソリューション",
+      "roomSensors": {
+        "title": "室内センサー",
+        "description": "屋内環境用の温度・湿度センサー",
+        "cta": "製品を見る"
+      },
+      "nonRoomSensors": {
+        "title": "非室内センサー",
+        "description": "ダクト、外気、浸漬、食品プローブセンサー",
+        "cta": "製品を見る"
+      },
+      "receiversModules": {
+        "title": "受信機・モジュール",
+        "description": "受信機、アナログ・デジタル出力モジュール",
+        "cta": "製品を見る"
+      },
+      "accessories": {
+        "title": "アクセサリ",
+        "description": "取り付けハードウェアと設置アクセサリ",
+        "cta": "製品を見る"
+      }
+    },
+    "wam": {
+      "badge": "プレミアムソリューション",
+      "title": "WAM™ワイヤレス資産監視",
+      "subtitle": "即座のアラートによる24時間365日のリモート監視",
+      "description": "エンタープライズグレードのワイヤレス温度・環境監視で重要な資産を保護。配線不要 - 数分で稼働開始。",
+      "features": {
+        "monitoring": "24時間365日リモート監視",
+        "alerts": "即座のメール・SMSアラート",
+        "cloud": "クラウドベースダッシュボード",
+        "battery": "5年バッテリー寿命",
+        "range": "1000フィート範囲",
+        "scalable": "無制限センサー"
+      },
+      "cta": "WAM™について詳しく見る",
+      "secondaryCta": "見積もりを依頼"
+    },
+    "applications": {
+      "title": "一般的なアプリケーション",
+      "subtitle": "多様なビル自動化課題のためのワイヤレスソリューション",
+      "retrofits": {
+        "title": "改修プロジェクト",
+        "description": "高価な配線や壁の損傷なしでセンサーを追加"
+      },
+      "criticalAssets": {
+        "title": "重要資産監視",
+        "description": "冷蔵・冷凍設備、サーバールームの24時間365日監視"
+      },
+      "remoteSites": {
+        "title": "遠隔地",
+        "description": "到達困難な場所や屋外環境の監視"
+      },
+      "temporaryMonitoring": {
+        "title": "一時的監視",
+        "description": "建設現場、季節施設、特別イベント"
+      },
+      "energyManagement": {
+        "title": "エネルギー管理",
+        "description": "ワイヤレスデータ収集によるHVAC性能の最適化"
+      },
+      "iaq": {
+        "title": "室内空気質",
+        "description": "ワイヤレスCO₂、VOC、粒子状物質監視"
+      }
+    },
+    "specifications": {
+      "title": "技術仕様",
+      "wireless": {
+        "title": "ワイヤレス技術",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz（米国/カナダ）",
+        "range": "見通し距離最大1000フィート",
+        "battery": "5年交換可能リチウムバッテリー"
+      },
+      "outputs": {
+        "title": "出力オプション",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA、0-5VDC、0-10VDC",
+        "digital": "ドライ接点リレー"
+      },
+      "environmental": {
+        "title": "環境",
+        "temperature": "動作温度-40°F～185°F",
+        "humidity": "0-100% RH非結露",
+        "rating": "IP65定格エンクロージャ利用可能"
+      }
+    },
+    "benefits": {
+      "title": "ワイヤレスセンサーのメリット",
+      "subtitle": "エンジニアがBAPIワイヤレスソリューションを選ぶ理由",
+      "costSavings": {
+        "title": "設置コストの削減",
+        "description": "配管、配線、労働コストを排除。ワイヤレス設置は従来の有線センサーより最大75%高速。"
+      },
+      "flexibility": {
+        "title": "最大の柔軟性",
+        "description": "配線制約なしで必要な場所にセンサーを正確に設置。要件の変更に応じてセンサーの移設や追加が容易。"
+      },
+      "reliability": {
+        "title": "エンタープライズ信頼性",
+        "description": "産業グレードのコンポーネントと5年保証。世界中の病院、データセンター、重要施設で信頼されています。"
+      },
+      "remoteAccess": {
+        "title": "リモート監視",
+        "description": "どこからでもリアルタイムデータにアクセスし、即座のアラートを受信。履歴トレンドとレポート機能付きクラウドベースダッシュボード。"
+      }
+    },
+    "comparison": {
+      "title": "ワイヤレス vs 有線センサー",
+      "wireless": "ワイヤレス",
+      "wired": "有線",
+      "installation": {
+        "label": "設置時間",
+        "wireless": "センサー1台あたり5-10分",
+        "wired": "センサー1台あたり30-60分"
+      },
+      "cost": {
+        "label": "設置コスト",
+        "wireless": "低い（配管/配線不要）",
+        "wired": "高い（労働+材料）"
+      },
+      "flexibility": {
+        "label": "柔軟性",
+        "wireless": "移設が容易",
+        "wired": "永続的設置"
+      },
+      "range": {
+        "label": "カバレッジ範囲",
+        "wireless": "最大1000フィート",
+        "wired": "配線により制限"
+      },
+      "scalability": {
+        "label": "スケーラビリティ",
+        "wireless": "即座にセンサー追加",
+        "wired": "新しい配線が必要"
+      }
+    },
+    "cta": {
+      "title": "ワイヤレス導入の準備はできましたか？",
+      "description": "ワイヤレスセンサーの完全ラインナップをご覧いただくか、お客様の具体的なアプリケーションについて製品スペシャリストにご相談ください。",
+      "primaryButton": "ワイヤレス製品を閲覧",
+      "secondaryButton": "営業に相談",
+      "phoneLabel": "またはお電話で",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "ワイヤレスサポート・リソース",
+      "siteVerification": {
+        "title": "サイト検証ツール",
+        "description": "設置前にワイヤレス信号強度をテスト",
+        "cta": "ツールをダウンロード"
+      },
+      "installationGuide": {
+        "title": "設置ガイド",
+        "description": "ワイヤレスセンサー設置の詳細手順",
+        "cta": "ガイドを見る"
+      },
+      "technicalSupport": {
+        "title": "技術サポート",
+        "description": "ワイヤレスシステム設計の専門的支援",
+        "cta": "サポートに連絡"
+      }
+    }
   }
 }

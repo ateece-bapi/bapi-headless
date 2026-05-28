@@ -3060,5 +3060,220 @@
       "browseButton": "浏览温度传感器",
       "contactButton": "联系支持"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "无线传感器解决方案 | BAPI",
+      "description": "楼宇自动化完整无线连接解决方案。无需布线 - 远距离无线温度、湿度和环境监测，支持云端连接。",
+      "keywords": "无线传感器，楼宇自动化无线，WAM无线资产监测，无线温度传感器，无线湿度传感器，LoRaWAN传感器，云连接传感器，无线环境监测"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "wireless": "无线"
+    },
+    "hero": {
+      "badge": "无需布线",
+      "title": "无线传感器解决方案",
+      "subtitle": "楼宇自动化完整无线连接",
+      "description": "远距离无线监测，无需管道、布线和麻烦。企业级可靠性的温度、湿度和环境监测。",
+      "cta": "探索产品",
+      "secondaryCta": "联系销售"
+    },
+    "features": {
+      "title": "为什么选择BAPI无线？",
+      "subtitle": "专为楼宇自动化专业人士设计的企业级无线解决方案",
+      "noWiring": {
+        "title": "无需布线",
+        "description": "快速安装，无需管道或布线成本。几分钟而非几小时即可部署传感器。"
+      },
+      "longRange": {
+        "title": "远距离覆盖",
+        "description": "采用LoRaWAN技术，直线距离高达1000英尺。可穿透墙体和楼层。"
+      },
+      "reliable": {
+        "title": "企业级可靠性",
+        "description": "关键应用的工业级性能。大多数型号电池寿命5年。"
+      },
+      "cloudConnected": {
+        "title": "云端连接",
+        "description": "24/7远程监测，即时警报。随时随地访问您的数据。"
+      },
+      "easyIntegration": {
+        "title": "易于集成",
+        "description": "与现有BAS系统无缝集成。标准BACnet和Modbus输出。"
+      },
+      "scalable": {
+        "title": "高度可扩展",
+        "description": "从单个房间到整个园区。根据需求增长添加传感器。"
+      }
+    },
+    "categories": {
+      "title": "无线产品类别",
+      "subtitle": "适用于每种楼宇自动化应用的完整无线解决方案",
+      "roomSensors": {
+        "title": "房间传感器",
+        "description": "室内环境温度和湿度传感器",
+        "cta": "查看产品"
+      },
+      "nonRoomSensors": {
+        "title": "非房间传感器",
+        "description": "风管、室外空气、浸入式和食品探头传感器",
+        "cta": "查看产品"
+      },
+      "receiversModules": {
+        "title": "接收器和模块",
+        "description": "接收器、模拟和数字输出模块",
+        "cta": "查看产品"
+      },
+      "accessories": {
+        "title": "配件",
+        "description": "安装硬件和安装配件",
+        "cta": "查看产品"
+      }
+    },
+    "wam": {
+      "badge": "高端解决方案",
+      "title": "WAM™ 无线资产监测",
+      "subtitle": "24/7远程监测，即时警报",
+      "description": "通过企业级无线温度和环境监测保护您的关键资产。无需布线 - 几分钟内即可启动运行。",
+      "features": {
+        "monitoring": "24/7远程监测",
+        "alerts": "即时邮件和短信警报",
+        "cloud": "基于云端的仪表板",
+        "battery": "5年电池寿命",
+        "range": "1000英尺范围",
+        "scalable": "无限传感器"
+      },
+      "cta": "了解更多WAM™",
+      "secondaryCta": "申请报价"
+    },
+    "applications": {
+      "title": "常见应用",
+      "subtitle": "针对不同楼宇自动化挑战的无线解决方案",
+      "retrofits": {
+        "title": "改造项目",
+        "description": "无需昂贵布线或墙体损坏即可添加传感器"
+      },
+      "criticalAssets": {
+        "title": "关键资产监测",
+        "description": "24/7监测制冷、冷冻和服务器机房"
+      },
+      "remoteSites": {
+        "title": "远程位置",
+        "description": "监测难以到达的区域或室外环境"
+      },
+      "temporaryMonitoring": {
+        "title": "临时监测",
+        "description": "建筑工地、季节性设施或特殊活动"
+      },
+      "energyManagement": {
+        "title": "能源管理",
+        "description": "通过无线数据收集优化HVAC性能"
+      },
+      "iaq": {
+        "title": "室内空气质量",
+        "description": "无线CO₂、VOC和颗粒物监测"
+      }
+    },
+    "specifications": {
+      "title": "技术规格",
+      "wireless": {
+        "title": "无线技术",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz（美国/加拿大）",
+        "range": "直线距离高达1000英尺",
+        "battery": "5年可更换锂电池"
+      },
+      "outputs": {
+        "title": "输出选项",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA，0-5VDC，0-10VDC",
+        "digital": "干接点继电器"
+      },
+      "environmental": {
+        "title": "环境条件",
+        "temperature": "工作温度-40°F至185°F",
+        "humidity": "0-100% RH非冷凝",
+        "rating": "可选IP65防护等级外壳"
+      }
+    },
+    "benefits": {
+      "title": "无线传感器的优势",
+      "subtitle": "工程师选择BAPI无线解决方案的原因",
+      "costSavings": {
+        "title": "降低安装成本",
+        "description": "消除管道、布线和人工成本。无线安装比传统有线传感器快75%。"
+      },
+      "flexibility": {
+        "title": "最大灵活性",
+        "description": "不受布线限制，可在需要的确切位置放置传感器。随着需求变化，轻松重新定位或添加传感器。"
+      },
+      "reliability": {
+        "title": "企业级可靠性",
+        "description": "工业级组件和5年保修。受到全球医院、数据中心和关键设施的信赖。"
+      },
+      "remoteAccess": {
+        "title": "远程监测",
+        "description": "随时随地访问实时数据并接收即时警报。具有历史趋势和报告的云端仪表板。"
+      }
+    },
+    "comparison": {
+      "title": "无线与有线传感器对比",
+      "wireless": "无线",
+      "wired": "有线",
+      "installation": {
+        "label": "安装时间",
+        "wireless": "每个传感器5-10分钟",
+        "wired": "每个传感器30-60分钟"
+      },
+      "cost": {
+        "label": "安装成本",
+        "wireless": "低（无需管道/布线）",
+        "wired": "高（人工+材料）"
+      },
+      "flexibility": {
+        "label": "灵活性",
+        "wireless": "易于重新定位",
+        "wired": "永久安装"
+      },
+      "range": {
+        "label": "覆盖范围",
+        "wireless": "高达1000英尺",
+        "wired": "受布线限制"
+      },
+      "scalability": {
+        "label": "可扩展性",
+        "wireless": "即时添加传感器",
+        "wired": "需要新布线"
+      }
+    },
+    "cta": {
+      "title": "准备采用无线？",
+      "description": "探索我们完整的无线传感器产品线，或与产品专家讨论您的具体应用。",
+      "primaryButton": "浏览无线产品",
+      "secondaryButton": "联系销售",
+      "phoneLabel": "或致电",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "无线支持和资源",
+      "siteVerification": {
+        "title": "现场验证工具",
+        "description": "安装前测试无线信号强度",
+        "cta": "下载工具"
+      },
+      "installationGuide": {
+        "title": "安装指南",
+        "description": "无线传感器安装分步指导",
+        "cta": "查看指南"
+      },
+      "technicalSupport": {
+        "title": "技术支持",
+        "description": "无线系统设计专家帮助",
+        "cta": "联系支持"
+      }
+    }
   }
 }

@@ -3061,5 +3061,220 @@
       "browseButton": "Duyệt Cảm biến Nhiệt độ",
       "contactButton": "Liên hệ Hỗ trợ"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "Giải Pháp Cảm Biến Không Dây | BAPI",
+      "description": "Kết nối không dây hoàn chỉnh cho tự động hóa tòa nhà. Không cần dây - giám sát nhiệt độ, độ ẩm và môi trường tầm xa không dây với kết nối đám mây.",
+      "keywords": "cảm biến không dây, tự động hóa tòa nhà không dây, WAM giám sát tài sản không dây, cảm biến nhiệt độ không dây, cảm biến độ ẩm không dây, cảm biến LoRaWAN, cảm biến kết nối đám mây, giám sát môi trường không dây"
+    },
+    "breadcrumb": {
+      "home": "Trang Chủ",
+      "products": "Sản Phẩm",
+      "wireless": "Không Dây"
+    },
+    "hero": {
+      "badge": "Không Cần Dây",
+      "title": "Giải Pháp Cảm Biến Không Dây",
+      "subtitle": "Kết nối không dây hoàn chỉnh cho tự động hóa tòa nhà",
+      "description": "Giám sát không dây tầm xa không cần ống dẫn, không cần dây và không rắc rối. Độ tin cậy cấp doanh nghiệp cho giám sát nhiệt độ, độ ẩm và môi trường.",
+      "cta": "Khám Phá Sản Phẩm",
+      "secondaryCta": "Liên Hệ Bán Hàng"
+    },
+    "features": {
+      "title": "Tại Sao Chọn BAPI Không Dây?",
+      "subtitle": "Giải pháp không dây cấp doanh nghiệp được thiết kế cho các chuyên gia tự động hóa tòa nhà",
+      "noWiring": {
+        "title": "Không Cần Dây",
+        "description": "Lắp đặt nhanh chóng không tốn chi phí ống dẫn hoặc dây. Triển khai cảm biến trong vài phút, không phải hàng giờ."
+      },
+      "longRange": {
+        "title": "Phủ Sóng Tầm Xa",
+        "description": "Lên đến 1000 ft tầm nhìn với công nghệ LoRaWAN. Xuyên qua tường và sàn nhà."
+      },
+      "reliable": {
+        "title": "Độ Tin Cậy Doanh Nghiệp",
+        "description": "Hiệu năng cấp công nghiệp cho các ứng dụng quan trọng. Tuổi thọ pin 5 năm trên hầu hết các mẫu."
+      },
+      "cloudConnected": {
+        "title": "Kết Nối Đám Mây",
+        "description": "Giám sát từ xa 24/7 với cảnh báo tức thì. Truy cập dữ liệu của bạn từ mọi nơi."
+      },
+      "easyIntegration": {
+        "title": "Tích Hợp Dễ Dàng",
+        "description": "Tích hợp mượt mà với hệ thống BAS hiện có. Đầu ra BACnet và Modbus tiêu chuẩn."
+      },
+      "scalable": {
+        "title": "Khả Năng Mở Rộng Cao",
+        "description": "Từ phòng đơn lẻ đến toàn bộ khuôn viên. Thêm cảm biến khi nhu cầu của bạn tăng."
+      }
+    },
+    "categories": {
+      "title": "Danh Mục Sản Phẩm Không Dây",
+      "subtitle": "Giải pháp không dây hoàn chỉnh cho mọi ứng dụng tự động hóa tòa nhà",
+      "roomSensors": {
+        "title": "Cảm Biến Phòng",
+        "description": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
+        "cta": "Xem Sản Phẩm"
+      },
+      "nonRoomSensors": {
+        "title": "Cảm Biến Ngoài Phòng",
+        "description": "Cảm biến ống dẫn, không khí bên ngoài, ngâm nước và đầu dò thực phẩm",
+        "cta": "Xem Sản Phẩm"
+      },
+      "receiversModules": {
+        "title": "Bộ Thu & Mô-đun",
+        "description": "Bộ thu, mô-đun đầu ra analog và digital",
+        "cta": "Xem Sản Phẩm"
+      },
+      "accessories": {
+        "title": "Phụ Kiện",
+        "description": "Phần cứng lắp đặt và phụ kiện cài đặt",
+        "cta": "Xem Sản Phẩm"
+      }
+    },
+    "wam": {
+      "badge": "Giải Pháp Cao Cấp",
+      "title": "WAM™ Giám Sát Tài Sản Không Dây",
+      "subtitle": "Giám sát từ xa 24/7 với cảnh báo tức thì",
+      "description": "Bảo vệ tài sản quan trọng của bạn với giám sát nhiệt độ và môi trường không dây cấp doanh nghiệp. Không cần dây - vận hành trong vài phút.",
+      "features": {
+        "monitoring": "Giám Sát Từ Xa 24/7",
+        "alerts": "Cảnh Báo Email & SMS Tức Thì",
+        "cloud": "Bảng Điều Khiển Đám Mây",
+        "battery": "Tuổi Thọ Pin 5 Năm",
+        "range": "Tầm Hoạt Động 1000 ft",
+        "scalable": "Cảm Biến Không Giới Hạn"
+      },
+      "cta": "Tìm Hiểu Thêm Về WAM™",
+      "secondaryCta": "Yêu Cầu Báo Giá"
+    },
+    "applications": {
+      "title": "Ứng Dụng Thông Dụng",
+      "subtitle": "Giải pháp không dây cho các thách thức tự động hóa tòa nhà đa dạng",
+      "retrofits": {
+        "title": "Dự Án Cải Tạo",
+        "description": "Thêm cảm biến mà không tốn kém dây điện hoặc hư hại tường"
+      },
+      "criticalAssets": {
+        "title": "Giám Sát Tài Sản Quan Trọng",
+        "description": "Giám sát 24/7 hệ thống làm lạnh, tủ đông và phòng máy chủ"
+      },
+      "remoteSites": {
+        "title": "Địa Điểm Xa Xôi",
+        "description": "Giám sát các khu vực khó tiếp cận hoặc môi trường ngoài trời"
+      },
+      "temporaryMonitoring": {
+        "title": "Giám Sát Tạm Thời",
+        "description": "Công trường xây dựng, cơ sở theo mùa hoặc sự kiện đặc biệt"
+      },
+      "energyManagement": {
+        "title": "Quản Lý Năng Lượng",
+        "description": "Tối ưu hóa hiệu năng HVAC với thu thập dữ liệu không dây"
+      },
+      "iaq": {
+        "title": "Chất Lượng Không Khí Trong Nhà",
+        "description": "Giám sát CO₂, VOC và hạt không dây"
+      }
+    },
+    "specifications": {
+      "title": "Thông Số Kỹ Thuật",
+      "wireless": {
+        "title": "Công Nghệ Không Dây",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz (Mỹ/Canada)",
+        "range": "Lên đến 1000 ft tầm nhìn",
+        "battery": "Pin lithium có thể thay thế 5 năm"
+      },
+      "outputs": {
+        "title": "Tùy Chọn Đầu Ra",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA, 0-5VDC, 0-10VDC",
+        "digital": "Relay tiếp xúc khô"
+      },
+      "environmental": {
+        "title": "Môi Trường",
+        "temperature": "-40°F đến 185°F hoạt động",
+        "humidity": "0-100% RH không ngưng tụ",
+        "rating": "Có vỏ bọc cấp độ IP65"
+      }
+    },
+    "benefits": {
+      "title": "Lợi Ích Của Cảm Biến Không Dây",
+      "subtitle": "Tại sao các kỹ sư chọn giải pháp không dây BAPI",
+      "costSavings": {
+        "title": "Giảm Chi Phí Lắp Đặt",
+        "description": "Loại bỏ chi phí ống dẫn, dây điện và nhân công. Lắp đặt không dây nhanh hơn tới 75% so với cảm biến dây truyền thống."
+      },
+      "flexibility": {
+        "title": "Linh Hoạt Tối Đa",
+        "description": "Đặt cảm biến chính xác nơi cần thiết mà không bị ràng buộc bởi dây. Dễ dàng di chuyển hoặc thêm cảm biến khi yêu cầu thay đổi."
+      },
+      "reliability": {
+        "title": "Độ Tin Cậy Doanh Nghiệp",
+        "description": "Linh kiện cấp công nghiệp và bảo hành 5 năm. Được tin tưởng bởi bệnh viện, trung tâm dữ liệu và cơ sở quan trọng trên toàn thế giới."
+      },
+      "remoteAccess": {
+        "title": "Giám Sát Từ Xa",
+        "description": "Truy cập dữ liệu thời gian thực và nhận cảnh báo tức thì từ mọi nơi. Bảng điều khiển đám mây với xu hướng lịch sử và báo cáo."
+      }
+    },
+    "comparison": {
+      "title": "Cảm Biến Không Dây vs Có Dây",
+      "wireless": "Không Dây",
+      "wired": "Có Dây",
+      "installation": {
+        "label": "Thời Gian Lắp Đặt",
+        "wireless": "5-10 phút mỗi cảm biến",
+        "wired": "30-60 phút mỗi cảm biến"
+      },
+      "cost": {
+        "label": "Chi Phí Lắp Đặt",
+        "wireless": "Thấp (không ống dẫn/dây)",
+        "wired": "Cao (nhân công + vật liệu)"
+      },
+      "flexibility": {
+        "label": "Linh Hoạt",
+        "wireless": "Dễ di chuyển",
+        "wired": "Lắp đặt cố định"
+      },
+      "range": {
+        "label": "Tầm Phủ Sóng",
+        "wireless": "Lên đến 1000 ft",
+        "wired": "Bị giới hạn bởi dây"
+      },
+      "scalability": {
+        "label": "Khả Năng Mở Rộng",
+        "wireless": "Thêm cảm biến ngay lập tức",
+        "wired": "Cần dây mới"
+      }
+    },
+    "cta": {
+      "title": "Sẵn Sàng Chuyển Sang Không Dây?",
+      "description": "Khám phá dòng cảm biến không dây hoàn chỉnh của chúng tôi hoặc nói chuyện với chuyên gia sản phẩm về ứng dụng cụ thể của bạn.",
+      "primaryButton": "Duyệt Sản Phẩm Không Dây",
+      "secondaryButton": "Liên Hệ Bán Hàng",
+      "phoneLabel": "Hoặc gọi cho chúng tôi tại",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "Hỗ Trợ & Tài Nguyên Không Dây",
+      "siteVerification": {
+        "title": "Công Cụ Xác Minh Địa Điểm",
+        "description": "Kiểm tra cường độ tín hiệu không dây trước khi lắp đặt",
+        "cta": "Tải Công Cụ"
+      },
+      "installationGuide": {
+        "title": "Hướng Dẫn Lắp Đặt",
+        "description": "Hướng dẫn từng bước lắp đặt cảm biến không dây",
+        "cta": "Xem Hướng Dẫn"
+      },
+      "technicalSupport": {
+        "title": "Hỗ Trợ Kỹ Thuật",
+        "description": "Hỗ trợ chuyên gia với thiết kế hệ thống không dây",
+        "cta": "Liên Hệ Hỗ Trợ"
+      }
+    }
   }
 }

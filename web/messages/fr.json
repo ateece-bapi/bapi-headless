@@ -3061,5 +3061,220 @@
       "browseButton": "Parcourir les Capteurs de Température",
       "contactButton": "Contacter le Support"
     }
+  },
+  "wirelessLandingPage": {
+    "metadata": {
+      "title": "Solutions de Capteurs Sans Fil | BAPI",
+      "description": "Connectivité sans fil complète pour l'automatisation des bâtiments. Aucun câblage requis - surveillance sans fil longue portée de la température, humidité et environnement avec connectivité cloud.",
+      "keywords": "capteurs sans fil, automatisation bâtiment sans fil, surveillance d'actifs sans fil WAM, capteurs température sans fil, capteurs humidité sans fil, capteurs LoRaWAN, capteurs connectés cloud, surveillance environnementale sans fil"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits",
+      "wireless": "Sans Fil"
+    },
+    "hero": {
+      "badge": "Aucun Câblage Requis",
+      "title": "Solutions de Capteurs Sans Fil",
+      "subtitle": "Connectivité sans fil complète pour l'automatisation des bâtiments",
+      "description": "Surveillance sans fil longue portée sans conduit, sans câblage et sans tracas. Fiabilité de niveau entreprise pour la surveillance de température, humidité et environnement.",
+      "cta": "Explorer les Produits",
+      "secondaryCta": "Parler aux Ventes"
+    },
+    "features": {
+      "title": "Pourquoi Choisir BAPI Sans Fil ?",
+      "subtitle": "Solutions sans fil de niveau entreprise conçues pour les professionnels de l'automatisation des bâtiments",
+      "noWiring": {
+        "title": "Aucun Câblage Requis",
+        "description": "Installation rapide sans coûts de conduit ou câblage. Déployez les capteurs en minutes, pas en heures."
+      },
+      "longRange": {
+        "title": "Couverture Longue Portée",
+        "description": "Jusqu'à 1000 pieds en ligne de vue avec la technologie LoRaWAN. Pénètre les murs et planchers."
+      },
+      "reliable": {
+        "title": "Fiabilité Entreprise",
+        "description": "Performance de niveau industriel pour applications critiques. Autonomie de batterie de 5 ans sur la plupart des modèles."
+      },
+      "cloudConnected": {
+        "title": "Connectivité Cloud",
+        "description": "Surveillance à distance 24h/24 7j/7 avec alertes instantanées. Accédez à vos données de n'importe où."
+      },
+      "easyIntegration": {
+        "title": "Intégration Facile",
+        "description": "Intégration transparente avec les systèmes BAS existants. Sorties BACnet et Modbus standard."
+      },
+      "scalable": {
+        "title": "Hautement Évolutif",
+        "description": "De salles individuelles à des campus entiers. Ajoutez des capteurs selon vos besoins croissants."
+      }
+    },
+    "categories": {
+      "title": "Catégories de Produits Sans Fil",
+      "subtitle": "Solutions sans fil complètes pour chaque application d'automatisation des bâtiments",
+      "roomSensors": {
+        "title": "Capteurs d'Ambiance",
+        "description": "Capteurs de température et humidité pour environnements intérieurs",
+        "cta": "Voir Produits"
+      },
+      "nonRoomSensors": {
+        "title": "Capteurs Hors Ambiance",
+        "description": "Capteurs de gaine, air extérieur, immersion et sonde alimentaire",
+        "cta": "Voir Produits"
+      },
+      "receiversModules": {
+        "title": "Récepteurs et Modules",
+        "description": "Récepteurs, modules de sortie analogique et numérique",
+        "cta": "Voir Produits"
+      },
+      "accessories": {
+        "title": "Accessoires",
+        "description": "Matériel de montage et accessoires d'installation",
+        "cta": "Voir Produits"
+      }
+    },
+    "wam": {
+      "badge": "Solution Premium",
+      "title": "WAM™ Surveillance d'Actifs Sans Fil",
+      "subtitle": "Surveillance à distance 24h/24 7j/7 avec alertes instantanées",
+      "description": "Protégez vos actifs critiques avec surveillance sans fil de niveau entreprise de la température et environnement. Aucun câblage requis - opérationnel en minutes.",
+      "features": {
+        "monitoring": "Surveillance à Distance 24h/24 7j/7",
+        "alerts": "Alertes Email et SMS Instantanées",
+        "cloud": "Tableau de Bord Cloud",
+        "battery": "Autonomie Batterie 5 Ans",
+        "range": "Portée 1000 Pieds",
+        "scalable": "Capteurs Illimités"
+      },
+      "cta": "En Savoir Plus sur WAM™",
+      "secondaryCta": "Demander Devis"
+    },
+    "applications": {
+      "title": "Applications Courantes",
+      "subtitle": "Solutions sans fil pour divers défis d'automatisation des bâtiments",
+      "retrofits": {
+        "title": "Projets de Rénovation",
+        "description": "Ajoutez des capteurs sans câblage coûteux ou dommage aux murs"
+      },
+      "criticalAssets": {
+        "title": "Surveillance d'Actifs Critiques",
+        "description": "Surveillance 24h/24 7j/7 de réfrigération, congélateurs et salles serveurs"
+      },
+      "remoteSites": {
+        "title": "Emplacements Distants",
+        "description": "Surveillez les zones difficiles d'accès ou environnements extérieurs"
+      },
+      "temporaryMonitoring": {
+        "title": "Surveillance Temporaire",
+        "description": "Chantiers de construction, installations saisonnières ou événements spéciaux"
+      },
+      "energyManagement": {
+        "title": "Gestion Énergétique",
+        "description": "Optimisez les performances CVC avec collecte de données sans fil"
+      },
+      "iaq": {
+        "title": "Qualité de l'Air Intérieur",
+        "description": "Surveillance sans fil CO₂, COV et particules"
+      }
+    },
+    "specifications": {
+      "title": "Spécifications Techniques",
+      "wireless": {
+        "title": "Technologie Sans Fil",
+        "protocol": "LoRaWAN 1.0.3",
+        "frequency": "915 MHz (États-Unis/Canada)",
+        "range": "Jusqu'à 1000 pieds en ligne de vue",
+        "battery": "Batterie lithium remplaçable 5 ans"
+      },
+      "outputs": {
+        "title": "Options de Sortie",
+        "bacnet": "BACnet MS/TP",
+        "modbus": "Modbus RTU",
+        "analog": "4-20mA, 0-5VDC, 0-10VDC",
+        "digital": "Relais contact sec"
+      },
+      "environmental": {
+        "title": "Environnemental",
+        "temperature": "-40°F à 185°F fonctionnement",
+        "humidity": "0-100% HR sans condensation",
+        "rating": "Boîtiers classés IP65 disponibles"
+      }
+    },
+    "benefits": {
+      "title": "Avantages des Capteurs Sans Fil",
+      "subtitle": "Pourquoi les ingénieurs choisissent les solutions sans fil BAPI",
+      "costSavings": {
+        "title": "Réduire les Coûts d'Installation",
+        "description": "Éliminez les coûts de conduit, câblage et main-d'œuvre. L'installation sans fil est jusqu'à 75% plus rapide que les capteurs câblés traditionnels."
+      },
+      "flexibility": {
+        "title": "Flexibilité Maximale",
+        "description": "Placez les capteurs exactement où nécessaire sans contraintes de câblage. Relocalisez ou ajoutez facilement des capteurs selon l'évolution des exigences."
+      },
+      "reliability": {
+        "title": "Fiabilité Entreprise",
+        "description": "Composants de niveau industriel et garantie 5 ans. Approuvé par hôpitaux, centres de données et installations critiques mondialement."
+      },
+      "remoteAccess": {
+        "title": "Surveillance à Distance",
+        "description": "Accédez aux données temps réel et recevez alertes instantanées de n'importe où. Tableau de bord cloud avec tendances historiques et rapports."
+      }
+    },
+    "comparison": {
+      "title": "Capteurs Sans Fil vs Câblés",
+      "wireless": "Sans Fil",
+      "wired": "Câblé",
+      "installation": {
+        "label": "Temps d'Installation",
+        "wireless": "5-10 minutes par capteur",
+        "wired": "30-60 minutes par capteur"
+      },
+      "cost": {
+        "label": "Coût d'Installation",
+        "wireless": "Faible (sans conduit/câblage)",
+        "wired": "Élevé (main-d'œuvre + matériaux)"
+      },
+      "flexibility": {
+        "label": "Flexibilité",
+        "wireless": "Facile à relocaliser",
+        "wired": "Installation permanente"
+      },
+      "range": {
+        "label": "Portée de Couverture",
+        "wireless": "Jusqu'à 1000 pieds",
+        "wired": "Limité par câblage"
+      },
+      "scalability": {
+        "label": "Évolutivité",
+        "wireless": "Ajoutez capteurs instantanément",
+        "wired": "Nécessite nouveau câblage"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Passer au Sans Fil ?",
+      "description": "Explorez notre gamme complète de capteurs sans fil ou parlez à un spécialiste produit de votre application spécifique.",
+      "primaryButton": "Parcourir Produits Sans Fil",
+      "secondaryButton": "Parler aux Ventes",
+      "phoneLabel": "Ou appelez-nous au",
+      "phone": "(608) 735-4800"
+    },
+    "support": {
+      "title": "Support et Ressources Sans Fil",
+      "siteVerification": {
+        "title": "Outil de Vérification Site",
+        "description": "Testez la force du signal sans fil avant installation",
+        "cta": "Télécharger Outil"
+      },
+      "installationGuide": {
+        "title": "Guides d'Installation",
+        "description": "Installation étape par étape de capteurs sans fil",
+        "cta": "Voir Guides"
+      },
+      "technicalSupport": {
+        "title": "Support Technique",
+        "description": "Aide d'expert pour conception de système sans fil",
+        "cta": "Contacter Support"
+      }
+    }
   }
 }

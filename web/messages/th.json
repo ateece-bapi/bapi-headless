@@ -3063,216 +3063,216 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Wireless Sensor Solutions | BAPI",
-      "description": "Complete wireless connectivity for building automation. No wiring required - long-range wireless temperature, humidity, and environmental monitoring with cloud connectivity.",
-      "keywords": "wireless sensors, building automation wireless, WAM wireless asset monitoring, wireless temperature sensors, wireless humidity sensors, LoRaWAN sensors, cloud-connected sensors, wireless environmental monitoring"
+      "title": "โซลูชั่นเซ็นเซอร์ไร้สาย | BAPI",
+      "description": "ระบบเชื่อมต่อไร้สายที่สมบูรณ์สำหรับระบบอัตโนมัติของอาคาร ไม่ต้องเดินสายไฟ - เซ็นเซอร์วัดอุณหภูมิ ความชื้น และสิ่งแวดล้อมแบบไร้สายระยะไกล พร้อมเชื่อมต่อคลาวด์",
+      "keywords": "เซ็นเซอร์ไร้สาย, ระบบอัตโนมัติอาคารไร้สาย, WAM การติดตามทรัพย์สินไร้สาย, เซ็นเซอร์อุณหภูมิไร้สาย, เซ็นเซอร์ความชื้นไร้สาย, เซ็นเซอร์ LoRaWAN, เซ็นเซอร์เชื่อมต่อคลาวด์, การติดตามสิ่งแวดล้อมไร้สาย"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wireless": "Wireless"
+      "home": "หน้าแรก",
+      "products": "สินค้า",
+      "wireless": "ไร้สาย"
     },
     "hero": {
-      "badge": "No Wiring Required",
-      "title": "Wireless Sensor Solutions",
-      "subtitle": "Complete wireless connectivity for building automation",
-      "description": "Long-range wireless monitoring with no conduit, no wiring, and no hassle. Enterprise-grade reliability for temperature, humidity, and environmental monitoring.",
-      "cta": "Explore Products",
-      "secondaryCta": "Talk to Sales"
+      "badge": "ไม่ต้องใช้สายไฟ",
+      "title": "โซลูชันเซ็นเซอร์ไร้สาย",
+      "subtitle": "การเชื่อมต่อไร้สายที่สมบูรณ์สำหรับระบบอัตโนมัติของอาคาร",
+      "description": "การตรวจสอบไร้สายระยะไกลโดยไม่ต้องใช้ท่อสายไฟ ไม่ต้องเดินสาย และไม่มีความยุ่งยาก ความน่าเชื่อถือระดับองค์กรสำหรับการตรวจสอบอุณหภูมิ ความชื้น และสิ่งแวดล้อม",
+      "cta": "สำรวจผลิตภัณฑ์",
+      "secondaryCta": "ติดต่อฝ่ายขาย"
     },
     "features": {
-      "title": "Why Choose BAPI Wireless?",
-      "subtitle": "Enterprise-grade wireless solutions designed for building automation professionals",
+      "title": "ทำไมต้องเลือก BAPI Wireless?",
+      "subtitle": "โซลูชันไร้สายระดับองค์กรที่ออกแบบมาสำหรับผู้เชี่ยวชาญด้านระบบอัตโนมัติอาคาร",
       "noWiring": {
-        "title": "No Wiring Required",
-        "description": "Quick installation with no conduit or wiring costs. Deploy sensors in minutes, not hours."
+        "title": "ไม่ต้องเดินสายไฟ",
+        "description": "ติดตั้งได้อย่างรวดเร็วโดยไม่มีค่าใช้จ่ายเรื่องท่อร้อยสายหรือการเดินสาย ติดตั้งเซนเซอร์ได้ในเวลาไม่กี่นาที ไม่ใช่หลายชั่วโมง"
       },
       "longRange": {
-        "title": "Long Range Coverage",
-        "description": "Up to 1000 ft line-of-sight with LoRaWAN technology. Penetrates walls and floors."
+        "title": "ครอบคลุมระยะไกล",
+        "description": "ระยะทางสูงสุด 1,000 ฟุตในแนวเส้นตรงด้วยเทคโนโลยี LoRaWAN สามารถทะลุผนังและพื้นได้"
       },
       "reliable": {
-        "title": "Enterprise Reliability",
-        "description": "Industrial-grade performance for critical applications. 5-year battery life on most models."
+        "title": "ความน่าเชื่อถือระดับองค์กร",
+        "description": "ประสิทธิภาพระดับอุตสาหกรรมสำหรับแอปพลิเคชันสำคัญ อายุแบตเตอรี่ 5 ปีในรุ่นส่วนใหญ่"
       },
       "cloudConnected": {
-        "title": "Cloud Connectivity",
-        "description": "24/7 remote monitoring with instant alerts. Access your data from anywhere."
+        "title": "เชื่อมต่อคลาวด์",
+        "description": "ติดตามระยะไกล 24/7 พร้อมการแจ้งเตือนทันที เข้าถึงข้อมูลของคุณได้จากทุกที่"
       },
       "easyIntegration": {
-        "title": "Easy Integration",
-        "description": "Seamless integration with existing BAS systems. Standard BACnet and Modbus outputs."
+        "title": "เชื่อมต่อง่าย",
+        "description": "เชื่อมต่อแบบไร้รอยต่อกับระบบ BAS ที่มีอยู่ เอาต์พุต BACnet และ Modbus มาตรฐาน"
       },
       "scalable": {
-        "title": "Highly Scalable",
-        "description": "From single rooms to entire campuses. Add sensors as your needs grow."
+        "title": "ขยายได้สูง",
+        "description": "ตั้งแต่ห้องเดี่ยวไปจนถึงทั้งมหาวิทยาลัย เพิ่มเซนเซอร์ตามความต้องการที่เติบโต"
       }
     },
     "categories": {
-      "title": "Wireless Product Categories",
-      "subtitle": "Complete wireless solutions for every building automation application",
+      "title": "หมวดหมู่ผลิตภัณฑ์ไร้สาย",
+      "subtitle": "โซลูชันไร้สายครบครันสำหรับการใช้งานระบบอัตโนมัติในอาคารทุกประเภท",
       "roomSensors": {
-        "title": "Room Sensors",
-        "description": "Temperature & humidity sensors for indoor environments",
-        "cta": "View Products"
+        "title": "เซ็นเซอร์ภายในห้อง",
+        "description": "เซ็นเซอร์วัดอุณหภูมิและความชื้นสำหรับสภาพแวดล้อมภายในอาคาร",
+        "cta": "ดูผลิตภัณฑ์"
       },
       "nonRoomSensors": {
-        "title": "Non-Room Sensors",
-        "description": "Duct, outside air, immersion, and food probe sensors",
-        "cta": "View Products"
+        "title": "เซ็นเซอร์นอกห้อง",
+        "description": "เซ็นเซอร์สำหรับท่อลม อากาศภายนอก แบบจุ่ม และโพรบสำหรับอาหาร",
+        "cta": "ดูผลิตภัณฑ์"
       },
       "receiversModules": {
-        "title": "Receivers & Modules",
-        "description": "Receivers, analog and digital output modules",
-        "cta": "View Products"
+        "title": "ตัวรับสัญญาณและโมดูล",
+        "description": "ตัวรับสัญญาณ โมดูลเอาต์พุตแบบอนาล็อกและดิจิทัล",
+        "cta": "ดูผลิตภัณฑ์"
       },
       "accessories": {
-        "title": "Accessories",
-        "description": "Mounting hardware and installation accessories",
-        "cta": "View Products"
+        "title": "อุปกรณ์เสริม",
+        "description": "ฮาร์ดแวร์สำหรับติดตั้งและอุปกรณ์เสริมการติดตั้ง",
+        "cta": "ดูผลิตภัณฑ์"
       }
     },
     "wam": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "subtitle": "24/7 remote monitoring with instant alerts",
-      "description": "Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring. No wiring required - get up and running in minutes.",
+      "badge": "โซลูชันพรีเมียม",
+      "title": "WAM™ การตรวจสอบทรัพย์สินแบบไร้สาย",
+      "subtitle": "การตรวจสอบระยะไกล 24/7 พร้อมการแจ้งเตือนทันที",
+      "description": "ปกป้องทรัพย์สินสำคัญของคุณด้วยการตรวจสอบอุณหภูมิและสภาพแวดล้อมแบบไร้สายระดับองค์กร ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ในเวลาเพียงไม่กี่นาที",
       "features": {
-        "monitoring": "24/7 Remote Monitoring",
-        "alerts": "Instant Email & SMS Alerts",
-        "cloud": "Cloud-Based Dashboard",
-        "battery": "5-Year Battery Life",
-        "range": "1000 ft Range",
-        "scalable": "Unlimited Sensors"
+        "monitoring": "การตรวจสอบระยะไกล 24/7",
+        "alerts": "การแจ้งเตือนทันทีทางอีเมลและ SMS",
+        "cloud": "แดชบอร์ดบนคลาวด์",
+        "battery": "อายุแบตเตอรี่ 5 ปี",
+        "range": "ระยะการรับสัญญาณ 1,000 ฟุต",
+        "scalable": "เซ็นเซอร์ไม่จำกัด"
       },
-      "cta": "Learn More About WAM™",
-      "secondaryCta": "Request Quote"
+      "cta": "เรียนรู้เพิ่มเติมเกี่ยวกับ WAM™",
+      "secondaryCta": "ขอใบเสนอราคา"
     },
     "applications": {
-      "title": "Common Applications",
-      "subtitle": "Wireless solutions for diverse building automation challenges",
+      "title": "การใช้งานทั่วไป",
+      "subtitle": "โซลูชันไร้สายสำหรับความท้าทายด้านระบบอัตโนมัติในอาคารที่หลากหลาย",
       "retrofits": {
-        "title": "Retrofit Projects",
-        "description": "Add sensors without expensive wiring or wall damage"
+        "title": "โครงการปรับปรุงระบบเดิม",
+        "description": "เพิ่มเซ็นเซอร์โดยไม่ต้องเดินสายไฟราคาแพงหรือทำลายผนัง"
       },
       "criticalAssets": {
-        "title": "Critical Asset Monitoring",
-        "description": "24/7 monitoring of refrigeration, freezers, and server rooms"
+        "title": "การติดตามทรัพย์สินสำคัญ",
+        "description": "ติดตาม 24/7 สำหรับระบบทำความเย็น ตู้แช่แข็ง และห้องเซิร์ฟเวอร์"
       },
       "remoteSites": {
-        "title": "Remote Locations",
-        "description": "Monitor hard-to-reach areas or outdoor environments"
+        "title": "สถานที่ห่างไกล",
+        "description": "ติดตามพื้นที่ที่เข้าถึงได้ยากหรือสภาพแวดล้อมกลางแจ้ง"
       },
       "temporaryMonitoring": {
-        "title": "Temporary Monitoring",
-        "description": "Construction sites, seasonal facilities, or special events"
+        "title": "การติดตามชั่วคราว",
+        "description": "ไซต์ก่อสร้าง สิ่งอำนวยความสะดวกตามฤดูกาล หรือกิจกรรมพิเศษ"
       },
       "energyManagement": {
-        "title": "Energy Management",
-        "description": "Optimize HVAC performance with wireless data collection"
+        "title": "การจัดการพลังงาน",
+        "description": "เพิ่มประสิทธิภาพระบบ HVAC ด้วยการเก็บข้อมูลแบบไร้สาย"
       },
       "iaq": {
-        "title": "Indoor Air Quality",
-        "description": "Wireless CO₂, VOC, and particulate monitoring"
+        "title": "คุณภาพอากาศภายในอาคาร",
+        "description": "การติดตามแบบไร้สายสำหรับ CO₂, VOC และอนุภาคแขวนลอย"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
+      "title": "ข้อมูลจำเพาะทางเทคนิค",
       "wireless": {
-        "title": "Wireless Technology",
+        "title": "เทคโนโลยีไร้สาย",
         "protocol": "LoRaWAN 1.0.3",
-        "frequency": "915 MHz (US/Canada)",
-        "range": "Up to 1000 ft line-of-sight",
-        "battery": "5-year replaceable lithium battery"
+        "frequency": "915 MHz (สหรัฐอเมริกา/แคนาดา)",
+        "range": "ระยะทางสูงสุด 1000 ฟุต แบบเส้นตรง",
+        "battery": "แบตเตอรี่ลิเธียมใช้งาน 5 ปี สามารถเปลี่ยนได้"
       },
       "outputs": {
-        "title": "Output Options",
+        "title": "ตัวเลือกเอาต์พุต",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
-        "digital": "Dry contact relay"
+        "digital": "รีเลย์คอนแทคแห้ง"
       },
       "environmental": {
-        "title": "Environmental",
-        "temperature": "-40°F to 185°F operating",
-        "humidity": "0-100% RH non-condensing",
-        "rating": "IP65 rated enclosures available"
+        "title": "สิ่งแวดล้อม",
+        "temperature": "อุณหภูมิการทำงาน -40°F ถึง 185°F",
+        "humidity": "ความชื้น 0-100% RH แบบไม่เกิดการควบแน่น",
+        "rating": "มีตัวเลือกเคสป้องกันระดับ IP65"
       }
     },
     "benefits": {
-      "title": "Benefits of Wireless Sensors",
-      "subtitle": "Why engineers choose BAPI wireless solutions",
+      "title": "ประโยชน์ของเซ็นเซอร์ไร้สาย",
+      "subtitle": "เหตุผลที่วิศวกรเลือกโซลูชันไร้สายของ BAPI",
       "costSavings": {
-        "title": "Reduce Installation Costs",
-        "description": "Eliminate conduit, wiring, and labor costs. Wireless installation is up to 75% faster than traditional wired sensors."
+        "title": "ลดต้นทุนการติดตั้ง",
+        "description": "ขจัดต้นทุนท่อร้อยสาย การเดินสาย และแรงงาน การติดตั้งแบบไร้สายเร็วกว่าเซ็นเซอร์แบบมีสายแบบดั้งเดิมถึง 75%"
       },
       "flexibility": {
-        "title": "Maximum Flexibility",
-        "description": "Place sensors exactly where needed without wiring constraints. Easily relocate or add sensors as requirements change."
+        "title": "ความยืดหยุ่นสูงสุด",
+        "description": "วางเซ็นเซอร์ในตำแหน่งที่ต้องการได้อย่างแม่นยำโดยไม่มีข้อจำกัดเรื่องการเดินสาย สามารถย้ายตำแหน่งหรือเพิ่มเซ็นเซอร์ได้อย่างง่ายดายเมื่อความต้องการเปลี่ยนแปลง"
       },
       "reliability": {
-        "title": "Enterprise Reliability",
-        "description": "Industrial-grade components and 5-year warranty. Trusted by hospitals, data centers, and critical facilities worldwide."
+        "title": "ความเชื่อถือได้ระดับองค์กร",
+        "description": "ชิ้นส่วนระดับอุตสาหกรรมพร้อมการรับประกัน 5 ปี ได้รับความไว้วางใจจากโรงพยาบาล ศูนย์ข้อมูล และสิ่งอำนวยความสะดวกที่สำคัญทั่วโลก"
       },
       "remoteAccess": {
-        "title": "Remote Monitoring",
-        "description": "Access real-time data and receive instant alerts from anywhere. Cloud-based dashboard with historical trending and reports."
+        "title": "การตรวจสอบระยะไกล",
+        "description": "เข้าถึงข้อมูลแบบเรียลไทม์และรับการแจ้งเตือนทันทีจากทุกที่ แดชบอร์ดบนคลาวด์พร้อมแนวโน้มย้อนหลังและรายงาน"
       }
     },
     "comparison": {
-      "title": "Wireless vs. Wired Sensors",
-      "wireless": "Wireless",
-      "wired": "Wired",
+      "title": "เซ็นเซอร์ไร้สาย vs. เซ็นเซอร์แบบมีสาย",
+      "wireless": "ไร้สาย",
+      "wired": "มีสาย",
       "installation": {
-        "label": "Installation Time",
-        "wireless": "5-10 minutes per sensor",
-        "wired": "30-60 minutes per sensor"
+        "label": "เวลาในการติดตั้ง",
+        "wireless": "5-10 นาทีต่อเซ็นเซอร์",
+        "wired": "30-60 นาทีต่อเซ็นเซอร์"
       },
       "cost": {
-        "label": "Installation Cost",
-        "wireless": "Low (no conduit/wiring)",
-        "wired": "High (labor + materials)"
+        "label": "ค่าใช้จ่ายในการติดตั้ง",
+        "wireless": "ต่ำ (ไม่ต้องใช้ท่อร้อยสาย/สายไฟ)",
+        "wired": "สูง (แรงงาน + วัสดุ)"
       },
       "flexibility": {
-        "label": "Flexibility",
-        "wireless": "Easy to relocate",
-        "wired": "Permanent installation"
+        "label": "ความยืดหยุ่น",
+        "wireless": "ง่ายต่อการย้ายที่ตั้ง",
+        "wired": "การติดตั้งแบบถาวร"
       },
       "range": {
-        "label": "Coverage Range",
-        "wireless": "Up to 1000 ft",
-        "wired": "Limited by wiring"
+        "label": "ระยะครอบคลุม",
+        "wireless": "ได้ถึง 1000 ฟุต",
+        "wired": "จำกัดด้วยสายไฟ"
       },
       "scalability": {
-        "label": "Scalability",
-        "wireless": "Add sensors instantly",
-        "wired": "Requires new wiring"
+        "label": "การขยายระบบ",
+        "wireless": "เพิ่มเซ็นเซอร์ได้ทันที",
+        "wired": "ต้องการสายไฟใหม่"
       }
     },
     "cta": {
-      "title": "Ready to Go Wireless?",
-      "description": "Explore our complete line of wireless sensors or talk to a product specialist about your specific application.",
-      "primaryButton": "Browse Wireless Products",
-      "secondaryButton": "Talk to Sales",
-      "phoneLabel": "Or call us at",
+      "title": "พร้อมใช้เทคโนโลยีไร้สายแล้วหรือยัง?",
+      "description": "สำรวจผลิตภัณฑ์เซ็นเซอร์ไร้สายครบชุดของเรา หรือพูดคุยกับผู้เชี่ยวชาญผลิตภัณฑ์เกี่ยวกับการใช้งานเฉพาะของคุณ",
+      "primaryButton": "เรียกดูผลิตภัณฑ์ไร้สาย",
+      "secondaryButton": "พูดคุยกับฝ่ายขาย",
+      "phoneLabel": "หรือโทรหาเราที่",
       "phone": "(608) 735-4800"
     },
     "support": {
-      "title": "Wireless Support & Resources",
+      "title": "การสนับสนุนและทรัพยากรไร้สาย",
       "siteVerification": {
-        "title": "Site Verification Tool",
-        "description": "Test wireless signal strength before installation",
-        "cta": "Download Tool"
+        "title": "เครื่องมือตรวจสอบไซต์",
+        "description": "ทดสอบความแรงของสัญญาณไร้สายก่อนการติดตั้ง",
+        "cta": "ดาวน์โหลดเครื่องมือ"
       },
       "installationGuide": {
-        "title": "Installation Guides",
-        "description": "Step-by-step wireless sensor installation",
-        "cta": "View Guides"
+        "title": "คู่มือการติดตั้ง",
+        "description": "การติดตั้งเซ็นเซอร์ไร้สายทีละขั้นตอน",
+        "cta": "ดูคู่มือ"
       },
       "technicalSupport": {
-        "title": "Technical Support",
-        "description": "Expert help with wireless system design",
-        "cta": "Contact Support"
+        "title": "การสนับสนุนทางเทคนิค",
+        "description": "ความช่วยเหลือจากผู้เชี่ยวชาญในการออกแบบระบบไร้สาย",
+        "cta": "ติดต่อฝ่ายสนับสนุน"
       }
     }
   }

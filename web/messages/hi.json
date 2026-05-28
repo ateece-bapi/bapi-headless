@@ -3062,216 +3062,216 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Wireless Sensor Solutions | BAPI",
-      "description": "Complete wireless connectivity for building automation. No wiring required - long-range wireless temperature, humidity, and environmental monitoring with cloud connectivity.",
-      "keywords": "wireless sensors, building automation wireless, WAM wireless asset monitoring, wireless temperature sensors, wireless humidity sensors, LoRaWAN sensors, cloud-connected sensors, wireless environmental monitoring"
+      "title": "वायरलेस सेंसर समाधान | BAPI",
+      "description": "बिल्डिंग ऑटोमेशन के लिए संपूर्ण वायरलेस कनेक्टिविटी। कोई वायरिंग आवश्यक नहीं - क्लाउड कनेक्टिविटी के साथ लंबी दूरी का वायरलेस तापमान, आर्द्रता और पर्यावरणीय निगरानी।",
+      "keywords": "वायरलेस सेंसर, बिल्डिंग ऑटोमेशन वायरलेस, WAM वायरलेस एसेट मॉनिटरिंग, वायरलेस तापमान सेंसर, वायरलेस आर्द्रता सेंसर, LoRaWAN सेंसर, क्लाउड-कनेक्टेड सेंसर, वायरलेस पर्यावरणीय निगरानी"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wireless": "Wireless"
+      "home": "होम",
+      "products": "उत्पाद",
+      "wireless": "वायरलेस"
     },
     "hero": {
-      "badge": "No Wiring Required",
-      "title": "Wireless Sensor Solutions",
-      "subtitle": "Complete wireless connectivity for building automation",
-      "description": "Long-range wireless monitoring with no conduit, no wiring, and no hassle. Enterprise-grade reliability for temperature, humidity, and environmental monitoring.",
-      "cta": "Explore Products",
-      "secondaryCta": "Talk to Sales"
+      "badge": "वायरिंग की आवश्यकता नहीं",
+      "title": "वायरलेस सेंसर समाधान",
+      "subtitle": "बिल्डिंग ऑटोमेशन के लिए संपूर्ण वायरलेस कनेक्टिविटी",
+      "description": "बिना कंड्यूट, बिना वायरिंग, और बिना परेशानी के लंबी दूरी की वायरलेस निगरानी। तापमान, आर्द्रता, और पर्यावरणीय निगरानी के लिए एंटरप्राइज़-ग्रेड विश्वसनीयता।",
+      "cta": "उत्पाद देखें",
+      "secondaryCta": "बिक्री से बात करें"
     },
     "features": {
-      "title": "Why Choose BAPI Wireless?",
-      "subtitle": "Enterprise-grade wireless solutions designed for building automation professionals",
+      "title": "BAPI वायरलेस क्यों चुनें?",
+      "subtitle": "बिल्डिंग ऑटोमेशन प्रोफेशनल्स के लिए डिज़ाइन किए गए एंटरप्राइज़-ग्रेड वायरलेस समाधान",
       "noWiring": {
-        "title": "No Wiring Required",
-        "description": "Quick installation with no conduit or wiring costs. Deploy sensors in minutes, not hours."
+        "title": "वायरिंग की आवश्यकता नहीं",
+        "description": "कंड्यूट या वायरिंग की लागत के बिना त्वरित इंस्टॉलेशन। सेंसर को घंटों में नहीं, मिनटों में तैनात करें।"
       },
       "longRange": {
-        "title": "Long Range Coverage",
-        "description": "Up to 1000 ft line-of-sight with LoRaWAN technology. Penetrates walls and floors."
+        "title": "लंबी दूरी की कवरेज",
+        "description": "LoRaWAN तकनीक के साथ 1000 फीट तक लाइन-ऑफ-साइट। दीवारों और फर्शों को भेदती है।"
       },
       "reliable": {
-        "title": "Enterprise Reliability",
-        "description": "Industrial-grade performance for critical applications. 5-year battery life on most models."
+        "title": "एंटरप्राइज़ विश्वसनीयता",
+        "description": "महत्वपूर्ण अनुप्रयोगों के लिए औद्योगिक-ग्रेड प्रदर्शन। अधिकांश मॉडल्स पर 5-वर्षीय बैटरी लाइफ।"
       },
       "cloudConnected": {
-        "title": "Cloud Connectivity",
-        "description": "24/7 remote monitoring with instant alerts. Access your data from anywhere."
+        "title": "क्लाउड कनेक्टिविटी",
+        "description": "तत्काल अलर्ट के साथ 24/7 रिमोट मॉनिटरिंग। कहीं से भी अपने डेटा तक पहुंचें।"
       },
       "easyIntegration": {
-        "title": "Easy Integration",
-        "description": "Seamless integration with existing BAS systems. Standard BACnet and Modbus outputs."
+        "title": "आसान एकीकरण",
+        "description": "मौजूदा BAS सिस्टम के साथ निर्बाध एकीकरण। मानक BACnet और Modbus आउटपुट।"
       },
       "scalable": {
-        "title": "Highly Scalable",
-        "description": "From single rooms to entire campuses. Add sensors as your needs grow."
+        "title": "अत्यधिक स्केलेबल",
+        "description": "एकल कमरों से लेकर संपूर्ण कैंपस तक। जैसे-जैसे आपकी आवश्यकताएं बढ़ती हैं, सेंसर जोड़ें।"
       }
     },
     "categories": {
-      "title": "Wireless Product Categories",
-      "subtitle": "Complete wireless solutions for every building automation application",
+      "title": "वायरलेस उत्पाद श्रेणियां",
+      "subtitle": "हर बिल्डिंग ऑटोमेशन एप्लिकेशन के लिए संपूर्ण वायरलेस समाधान",
       "roomSensors": {
-        "title": "Room Sensors",
-        "description": "Temperature & humidity sensors for indoor environments",
-        "cta": "View Products"
+        "title": "कमरा सेंसर",
+        "description": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
+        "cta": "उत्पाद देखें"
       },
       "nonRoomSensors": {
-        "title": "Non-Room Sensors",
-        "description": "Duct, outside air, immersion, and food probe sensors",
-        "cta": "View Products"
+        "title": "गैर-कमरा सेंसर",
+        "description": "डक्ट, बाहरी हवा, डुबकी, और खाद्य प्रोब सेंसर",
+        "cta": "उत्पाद देखें"
       },
       "receiversModules": {
-        "title": "Receivers & Modules",
-        "description": "Receivers, analog and digital output modules",
-        "cta": "View Products"
+        "title": "रिसीवर और मॉड्यूल",
+        "description": "रिसीवर, एनालॉग और डिजिटल आउटपुट मॉड्यूल",
+        "cta": "उत्पाद देखें"
       },
       "accessories": {
-        "title": "Accessories",
-        "description": "Mounting hardware and installation accessories",
-        "cta": "View Products"
+        "title": "सहायक उपकरण",
+        "description": "माउंटिंग हार्डवेयर और स्थापना सहायक उपकरण",
+        "cta": "उत्पाद देखें"
       }
     },
     "wam": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "subtitle": "24/7 remote monitoring with instant alerts",
-      "description": "Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring. No wiring required - get up and running in minutes.",
+      "badge": "प्रीमियम समाधान",
+      "title": "WAM™ वायरलेस एसेट मॉनिटरिंग",
+      "subtitle": "तत्काल अलर्ट के साथ 24/7 रिमोट मॉनिटरिंग",
+      "description": "एंटरप्राइज-ग्रेड वायरलेस तापमान और पर्यावरणीय मॉनिटरिंग के साथ अपनी महत्वपूर्ण संपत्तियों की सुरक्षा करें। किसी वायरिंग की आवश्यकता नहीं - मिनटों में चालू हो जाएं।",
       "features": {
-        "monitoring": "24/7 Remote Monitoring",
-        "alerts": "Instant Email & SMS Alerts",
-        "cloud": "Cloud-Based Dashboard",
-        "battery": "5-Year Battery Life",
-        "range": "1000 ft Range",
-        "scalable": "Unlimited Sensors"
+        "monitoring": "24/7 रिमोट मॉनिटरिंग",
+        "alerts": "तत्काल ईमेल और SMS अलर्ट",
+        "cloud": "क्लाउड-आधारित डैशबोर्ड",
+        "battery": "5-वर्षीय बैटरी लाइफ",
+        "range": "1000 फुट रेंज",
+        "scalable": "असीमित सेंसर"
       },
-      "cta": "Learn More About WAM™",
-      "secondaryCta": "Request Quote"
+      "cta": "WAM™ के बारे में और जानें",
+      "secondaryCta": "कोटेशन का अनुरोध करें"
     },
     "applications": {
-      "title": "Common Applications",
-      "subtitle": "Wireless solutions for diverse building automation challenges",
+      "title": "सामान्य अनुप्रयोग",
+      "subtitle": "विविध बिल्डिंग ऑटोमेशन चुनौतियों के लिए वायरलेस समाधान",
       "retrofits": {
-        "title": "Retrofit Projects",
-        "description": "Add sensors without expensive wiring or wall damage"
+        "title": "रेट्रोफिट प्रोजेक्ट्स",
+        "description": "महंगी वायरिंग या दीवार के नुकसान के बिना सेंसर जोड़ें"
       },
       "criticalAssets": {
-        "title": "Critical Asset Monitoring",
-        "description": "24/7 monitoring of refrigeration, freezers, and server rooms"
+        "title": "महत्वपूर्ण संपत्ति निगरानी",
+        "description": "रेफ्रिजरेशन, फ्रीजर और सर्वर रूम की 24/7 निगरानी"
       },
       "remoteSites": {
-        "title": "Remote Locations",
-        "description": "Monitor hard-to-reach areas or outdoor environments"
+        "title": "दूरदराज के स्थान",
+        "description": "दुर्गम क्षेत्रों या बाहरी वातावरण की निगरानी करें"
       },
       "temporaryMonitoring": {
-        "title": "Temporary Monitoring",
-        "description": "Construction sites, seasonal facilities, or special events"
+        "title": "अस्थायी निगरानी",
+        "description": "निर्माण स्थल, मौसमी सुविधाएं, या विशेष कार्यक्रम"
       },
       "energyManagement": {
-        "title": "Energy Management",
-        "description": "Optimize HVAC performance with wireless data collection"
+        "title": "ऊर्जा प्रबंधन",
+        "description": "वायरलेस डेटा संग्रह के साथ HVAC प्रदर्शन को अनुकूलित करें"
       },
       "iaq": {
-        "title": "Indoor Air Quality",
-        "description": "Wireless CO₂, VOC, and particulate monitoring"
+        "title": "इनडोर एयर क्वालिटी",
+        "description": "वायरलेस CO₂, VOC, और कण निगरानी"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
+      "title": "तकनीकी विशिष्टताएं",
       "wireless": {
-        "title": "Wireless Technology",
+        "title": "वायरलेस तकनीक",
         "protocol": "LoRaWAN 1.0.3",
-        "frequency": "915 MHz (US/Canada)",
-        "range": "Up to 1000 ft line-of-sight",
-        "battery": "5-year replaceable lithium battery"
+        "frequency": "915 MHz (यूएस/कनाडा)",
+        "range": "1000 फीट तक दृष्टि-रेखा",
+        "battery": "5-वर्षीय बदली योग्य लिथियम बैटरी"
       },
       "outputs": {
-        "title": "Output Options",
+        "title": "आउटपुट विकल्प",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
-        "digital": "Dry contact relay"
+        "digital": "ड्राई कॉन्टैक्ट रिले"
       },
       "environmental": {
-        "title": "Environmental",
-        "temperature": "-40°F to 185°F operating",
-        "humidity": "0-100% RH non-condensing",
-        "rating": "IP65 rated enclosures available"
+        "title": "पर्यावरणीय",
+        "temperature": "-40°F से 185°F संचालन",
+        "humidity": "0-100% RH गैर-संघनन",
+        "rating": "IP65 रेटेड एन्क्लोज़र उपलब्ध"
       }
     },
     "benefits": {
-      "title": "Benefits of Wireless Sensors",
-      "subtitle": "Why engineers choose BAPI wireless solutions",
+      "title": "वायरलेस सेंसर के फायदे",
+      "subtitle": "क्यों इंजीनियर BAPI वायरलेस समाधान चुनते हैं",
       "costSavings": {
-        "title": "Reduce Installation Costs",
-        "description": "Eliminate conduit, wiring, and labor costs. Wireless installation is up to 75% faster than traditional wired sensors."
+        "title": "इंस्टॉलेशन लागत कम करें",
+        "description": "नालियों, तारों और श्रम लागत को समाप्त करें। वायरलेस इंस्टॉलेशन पारंपरिक तार वाले सेंसर की तुलना में 75% तक तेज है।"
       },
       "flexibility": {
-        "title": "Maximum Flexibility",
-        "description": "Place sensors exactly where needed without wiring constraints. Easily relocate or add sensors as requirements change."
+        "title": "अधिकतम लचीलापन",
+        "description": "बिना तारों की बाधाओं के सेंसर को बिल्कुल वहीं लगाएं जहां जरूरत है। आवश्यकताओं के बदलने पर आसानी से सेंसर को स्थानांतरित करें या जोड़ें।"
       },
       "reliability": {
-        "title": "Enterprise Reliability",
-        "description": "Industrial-grade components and 5-year warranty. Trusted by hospitals, data centers, and critical facilities worldwide."
+        "title": "एंटरप्राइज विश्वसनीयता",
+        "description": "औद्योगिक-ग्रेड घटक और 5-साल की वारंटी। दुनिया भर के अस्पतालों, डेटा सेंटर और महत्वपूर्ण सुविधाओं द्वारा भरोसेमंद।"
       },
       "remoteAccess": {
-        "title": "Remote Monitoring",
-        "description": "Access real-time data and receive instant alerts from anywhere. Cloud-based dashboard with historical trending and reports."
+        "title": "रिमोट मॉनिटरिंग",
+        "description": "कहीं से भी रीयल-टाइम डेटा एक्सेस करें और तत्काल अलर्ट प्राप्त करें। ऐतिहासिक ट्रेंडिंग और रिपोर्ट के साथ क्लाउड-आधारित डैशबोर्ड।"
       }
     },
     "comparison": {
-      "title": "Wireless vs. Wired Sensors",
-      "wireless": "Wireless",
-      "wired": "Wired",
+      "title": "वायरलेस बनाम वायर्ड सेंसर",
+      "wireless": "वायरलेस",
+      "wired": "वायर्ड",
       "installation": {
-        "label": "Installation Time",
-        "wireless": "5-10 minutes per sensor",
-        "wired": "30-60 minutes per sensor"
+        "label": "स्थापना समय",
+        "wireless": "प्रति सेंसर 5-10 मिनट",
+        "wired": "प्रति सेंसर 30-60 मिनट"
       },
       "cost": {
-        "label": "Installation Cost",
-        "wireless": "Low (no conduit/wiring)",
-        "wired": "High (labor + materials)"
+        "label": "स्थापना लागत",
+        "wireless": "कम (कोई नलिका/तारबंदी नहीं)",
+        "wired": "उच्च (श्रम + सामग्री)"
       },
       "flexibility": {
-        "label": "Flexibility",
-        "wireless": "Easy to relocate",
-        "wired": "Permanent installation"
+        "label": "लचीलापन",
+        "wireless": "स्थानांतरित करना आसान",
+        "wired": "स्थायी स्थापना"
       },
       "range": {
-        "label": "Coverage Range",
-        "wireless": "Up to 1000 ft",
-        "wired": "Limited by wiring"
+        "label": "कवरेज रेंज",
+        "wireless": "1000 फीट तक",
+        "wired": "तारबंदी से सीमित"
       },
       "scalability": {
-        "label": "Scalability",
-        "wireless": "Add sensors instantly",
-        "wired": "Requires new wiring"
+        "label": "स्केलेबिलिटी",
+        "wireless": "तुरंत सेंसर जोड़ें",
+        "wired": "नई तारबंदी की आवश्यकता"
       }
     },
     "cta": {
-      "title": "Ready to Go Wireless?",
-      "description": "Explore our complete line of wireless sensors or talk to a product specialist about your specific application.",
-      "primaryButton": "Browse Wireless Products",
-      "secondaryButton": "Talk to Sales",
-      "phoneLabel": "Or call us at",
+      "title": "वायरलेस के लिए तैयार हैं?",
+      "description": "हमारे वायरलेस सेंसर की संपूर्ण श्रृंखला देखें या अपने विशिष्ट एप्लिकेशन के बारे में उत्पाद विशेषज्ञ से बात करें।",
+      "primaryButton": "वायरलेस उत्पाद ब्राउज़ करें",
+      "secondaryButton": "सेल्स से बात करें",
+      "phoneLabel": "या हमें कॉल करें",
       "phone": "(608) 735-4800"
     },
     "support": {
-      "title": "Wireless Support & Resources",
+      "title": "वायरलेस सपोर्ट और संसाधन",
       "siteVerification": {
-        "title": "Site Verification Tool",
-        "description": "Test wireless signal strength before installation",
-        "cta": "Download Tool"
+        "title": "साइट वेरिफिकेशन टूल",
+        "description": "इंस्टॉलेशन से पहले वायरलेस सिग्नल स्ट्रेंथ टेस्ट करें",
+        "cta": "टूल डाउनलोड करें"
       },
       "installationGuide": {
-        "title": "Installation Guides",
-        "description": "Step-by-step wireless sensor installation",
-        "cta": "View Guides"
+        "title": "इंस्टॉलेशन गाइड",
+        "description": "वायरलेस सेंसर इंस्टॉलेशन की चरणबद्ध गाइड",
+        "cta": "गाइड देखें"
       },
       "technicalSupport": {
-        "title": "Technical Support",
-        "description": "Expert help with wireless system design",
-        "cta": "Contact Support"
+        "title": "तकनीकी सहायता",
+        "description": "वायरलेस सिस्टम डिजाइन में विशेषज्ञ सहायता",
+        "cta": "सहायता संपर्क करें"
       }
     }
   }

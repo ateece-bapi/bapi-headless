@@ -98,15 +98,19 @@
         "refrigerantLeakDesc": "Czujniki wycieku chłodziwa"
       },
       "wireless": {
-        "title": "Bezprzewodowe",
-        "roomSensors": "Czujniki Pomieszczeniowe",
-        "roomSensorsDesc": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
-        "nonRoomSensors": "Czujniki Przemysłowe",
-        "nonRoomSensorsDesc": "Kanałowe, powietrza zewnętrznego i aplikacje specjalistyczne",
         "gateway": "Bramka",
         "gatewayDesc": "Bramka bezprzewodowa do łączności z czujnikami",
+        "nonRoomSensors": "Czujniki Przemysłowe",
+        "nonRoomSensorsDesc": "Kanałowe, powietrza zewnętrznego i aplikacje specjalistyczne",
+        "receiversModules": "Odbiorniki i Moduły Wyjściowe",
+        "receiversModulesDesc": "Odbiorniki, analogowe i cyfrowe moduły wyjściowe",
+        "roomSensors": "Czujniki Pomieszczeniowe",
+        "roomSensorsDesc": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
+        "title": "Bezprzewodowe",
         "wirelessAccessories": "Akcesoria",
-        "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne"
+        "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne",
+        "wirelessSolutions": "Przegląd Rozwiązań Bezprzewodowych",
+        "wirelessSolutionsDesc": "Kompletna bezprzewodowa łączność dla automatyki budynkowej"
       },
       "accessories": {
         "title": "Akcesoria",

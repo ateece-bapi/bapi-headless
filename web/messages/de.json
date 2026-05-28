@@ -182,15 +182,19 @@
         "refrigerantLeakDesc": "Kältemittelleck-Sensoren"
       },
       "wireless": {
-        "title": "Drahtlos",
-        "roomSensors": "Raumsensoren",
-        "roomSensorsDesc": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
-        "nonRoomSensors": "Industriesensoren",
-        "nonRoomSensorsDesc": "Kanal-, Außenluft- und Spezialanwendungen",
         "gateway": "Gateway",
         "gatewayDesc": "Drahtloses Gateway für Sensorkonnektivität",
+        "nonRoomSensors": "Industriesensoren",
+        "nonRoomSensorsDesc": "Kanal-, Außenluft- und Spezialanwendungen",
+        "receiversModules": "Empfänger- und Ausgangsmodule",
+        "receiversModulesDesc": "Empfänger, analoge und digitale Ausgangsmodule",
+        "roomSensors": "Raumsensoren",
+        "roomSensorsDesc": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
+        "title": "Drahtlos",
         "wirelessAccessories": "Zubehör",
-        "wirelessAccessoriesDesc": "Montage- und Installationszubehör"
+        "wirelessAccessoriesDesc": "Montage- und Installationszubehör",
+        "wirelessSolutions": "Wireless Solutions Übersicht",
+        "wirelessSolutionsDesc": "Komplette drahtlose Konnektivität für Gebäudeautomation"
       },
       "accessories": {
         "title": "Zubehör",

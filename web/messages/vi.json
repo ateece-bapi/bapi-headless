@@ -138,15 +138,19 @@
         "refrigerantLeakDesc": "Cảm biến rò rỉ chất làm lạnh"
       },
       "wireless": {
-        "title": "Không dây",
-        "roomSensors": "Cảm biến Phòng",
-        "roomSensorsDesc": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
-        "nonRoomSensors": "Cảm biến Công nghiệp",
-        "nonRoomSensorsDesc": "Ống gió, không khí bên ngoài và các ứng dụng chuyên dụng",
         "gateway": "Cổng kết nối",
         "gatewayDesc": "Cổng kết nối không dây cho kết nối cảm biến",
+        "nonRoomSensors": "Cảm biến Công nghiệp",
+        "nonRoomSensorsDesc": "Ống gió, không khí bên ngoài và các ứng dụng chuyên dụng",
+        "receiversModules": "Module Thu và Đầu ra",
+        "receiversModulesDesc": "Bộ thu, module đầu ra analog và digital",
+        "roomSensors": "Cảm biến Phòng",
+        "roomSensorsDesc": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
+        "title": "Không dây",
         "wirelessAccessories": "Phụ kiện",
-        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt & cài đặt"
+        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt & cài đặt",
+        "wirelessSolutions": "Tổng quan Giải pháp Không dây",
+        "wirelessSolutionsDesc": "Kết nối không dây hoàn chỉnh cho tự động hóa tòa nhà"
       },
       "accessories": {
         "title": "Phụ kiện",

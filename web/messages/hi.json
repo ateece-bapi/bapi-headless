@@ -97,15 +97,19 @@
         "refrigerantLeakDesc": "रेफ्रिजरेंट रिसाव सेंसर"
       },
       "wireless": {
-        "title": "वायरलेस",
-        "roomSensors": "रूम सेंसर",
-        "roomSensorsDesc": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
-        "nonRoomSensors": "औद्योगिक सेंसर",
-        "nonRoomSensorsDesc": "डक्ट, बाहरी हवा, और विशेषीकृत अनुप्रयोग",
         "gateway": "गेटवे",
         "gatewayDesc": "सेंसर कनेक्टिविटी के लिए वायरलेस गेटवे",
+        "nonRoomSensors": "औद्योगिक सेंसर",
+        "nonRoomSensorsDesc": "डक्ट, बाहरी हवा, और विशेषीकृत अनुप्रयोग",
+        "receiversModules": "रिसीवर और आउटपुट मॉड्यूल",
+        "receiversModulesDesc": "रिसीवर, एनालॉग और डिजिटल आउटपुट मॉड्यूल",
+        "roomSensors": "रूम सेंसर",
+        "roomSensorsDesc": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
+        "title": "वायरलेस",
         "wirelessAccessories": "सहायक उपकरण",
-        "wirelessAccessoriesDesc": "माउंटिंग और इंस्टॉलेशन सहायक उपकरण"
+        "wirelessAccessoriesDesc": "माउंटिंग और इंस्टॉलेशन सहायक उपकरण",
+        "wirelessSolutions": "वायरलेस सॉल्यूशन्स ओवरव्यू",
+        "wirelessSolutionsDesc": "बिल्डिंग ऑटोमेशन के लिए संपूर्ण वायरलेस कनेक्टिविटी"
       },
       "accessories": {
         "title": "सहायक उपकरण",

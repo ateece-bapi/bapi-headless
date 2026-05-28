@@ -3090,7 +3090,7 @@
       },
       "longRange": {
         "title": "Große Reichweite",
-        "description": "Bis zu 300 m Sichtlinie mit LoRaWAN-Technologie. Durchdringt Wände und Böden."
+        "description": "Bis zu 1000 ft Sichtlinie mit LoRaWAN-Technologie. Durchdringt Wände und Böden."
       },
       "reliable": {
         "title": "Zuverlässigkeit auf Unternehmensniveau",
@@ -3143,7 +3143,7 @@
         "alerts": "Sofortige E-Mail- & SMS-Benachrichtigungen",
         "cloud": "Cloud-basiertes Dashboard",
         "battery": "5 Jahre Batterielaufzeit",
-        "range": "300 m Reichweite",
+        "range": "1000 ft Reichweite",
         "scalable": "Unbegrenzte Sensoren"
       },
       "cta": "Mehr über WAM™ erfahren",
@@ -3183,7 +3183,7 @@
         "title": "Drahtlose Technologie",
         "protocol": "LoRaWAN 1.0.3",
         "frequency": "915 MHz (US/Kanada)",
-        "range": "Bis zu 300 m Sichtlinie",
+        "range": "Bis zu 1000 ft Sichtlinie",
         "battery": "5 Jahre austauschbare Lithiumbatterie"
       },
       "outputs": {
@@ -3195,7 +3195,7 @@
       },
       "environmental": {
         "title": "Umgebungsbedingungen",
-        "temperature": "-40°C bis 85°C Betrieb",
+        "temperature": "-40°F bis 185°F Betrieb",
         "humidity": "0-100% rF nichtkondensierend",
         "rating": "IP65-zertifizierte Gehäuse verfügbar"
       }
@@ -3241,7 +3241,7 @@
       },
       "range": {
         "label": "Abdeckungsbereich",
-        "wireless": "Bis zu 300 m",
+        "wireless": "Bis zu 1000 ft",
         "wired": "Durch Verkabelung begrenzt"
       },
       "scalability": {

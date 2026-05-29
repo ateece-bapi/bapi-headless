@@ -3065,40 +3065,40 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Soluciones de Sensores Inalámbricos | BAPI",
-      "description": "Conectividad inalámbrica completa para automatización de edificios. Sin cableado requerido - monitoreo inalámbrico de largo alcance para temperatura, humedad y ambiente con conectividad a la nube.",
-      "keywords": "sensores inalámbricos, automatización de edificios inalámbrica, WAM monitoreo inalámbrico de activos, sensores de temperatura inalámbricos, sensores de humedad inalámbricos, sensores LoRaWAN, sensores conectados a la nube, monitoreo ambiental inalámbrico"
+      "title": "Sensores HVAC Inalámbricos | BAPI",
+      "description": "Monitoreo inalámbrico de temperatura y humedad rentable y confiable para edificios comerciales. Integración perfecta con su BMS existente sin necesidad de cableado nuevo.",
+      "keywords": "sensores inalámbricos, sensores HVAC, automatización de edificios, monitoreo de temperatura, sensores de humedad"
     },
     "breadcrumb": {
       "home": "Inicio",
       "products": "Productos",
-      "wireless": "Inalámbrico"
+      "wireless": "Soluciones Inalámbricas"
     },
     "hero": {
-      "badge": "Sin Cableado Requerido",
-      "title": "Soluciones de Sensores Inalámbricos",
-      "subtitle": "Conectividad inalámbrica completa para automatización de edificios",
-      "description": "Monitoreo inalámbrico de largo alcance sin conductos, sin cableado y sin complicaciones. Confiabilidad de nivel empresarial para monitoreo de temperatura, humedad y ambiente.",
-      "cta": "Explorar Productos",
-      "secondaryCta": "Hablar con Ventas"
+      "badge": "Soluciones Inalámbricas",
+      "title": "Sensores HVAC Inalámbricos",
+      "subtitle": "",
+      "description": "Monitoreo inalámbrico de temperatura y humedad rentable y confiable para edificios comerciales. Integración perfecta con su BMS existente sin necesidad de cableado nuevo.",
+      "cta": "Comenzar",
+      "secondaryCta": ""
     },
     "features": {
-      "title": "¿Por Qué Elegir BAPI Inalámbrico?",
-      "subtitle": "Soluciones inalámbricas de nivel empresarial diseñadas para profesionales de automatización de edificios",
+      "title": "¿Por Qué Elegir Inalámbrico?",
+      "subtitle": "Reduzca los costos de instalación, aumente la flexibilidad y simplifique las modernizaciones con nuestra tecnología inalámbrica comprobada.",
       "noWiring": {
         "title": "Sin Cableado Requerido",
-        "description": "Instalación rápida sin costos de conductos o cableado. Implemente sensores en minutos, no horas."
+        "description": "Elimine costosos tendidos de cables y reduzca el tiempo de instalación hasta en un 70%."
       },
       "longRange": {
-        "title": "Cobertura de Largo Alcance",
-        "description": "Hasta 1000 pies de línea de vista con tecnología LoRaWAN. Penetra paredes y pisos."
+        "title": "Señal de Largo Alcance",
+        "description": "Alcance de hasta 122 m a través de paredes y pisos en edificios comerciales típicos."
       },
       "reliable": {
-        "title": "Confiabilidad Empresarial",
-        "description": "Rendimiento de grado industrial para aplicaciones críticas. Vida útil de batería de 5 años en la mayoría de modelos."
+        "title": "Duración de Batería de 10 Años",
+        "description": "Las baterías reemplazables por el usuario duran hasta 10 años con intervalos de transmisión optimizados."
       },
       "cloudConnected": {
-        "title": "Conectividad a la Nube",
+        "title": "Conectividad en la Nube",
         "description": "Monitoreo remoto 24/7 con alertas instantáneas. Acceda a sus datos desde cualquier lugar."
       },
       "easyIntegration": {
@@ -3106,13 +3106,13 @@
         "description": "Integración perfecta con sistemas BAS existentes. Salidas estándar BACnet y Modbus."
       },
       "scalable": {
-        "title": "Altamente Escalable",
-        "description": "Desde habitaciones individuales hasta campus completos. Agregue sensores conforme crezcan sus necesidades."
+        "title": "Escalabilidad Fácil",
+        "description": "Agregue hasta 127 sensores por receptor. Expanda su sistema conforme crezcan sus necesidades."
       }
     },
     "categories": {
-      "title": "Categorías de Productos Inalámbricos",
-      "subtitle": "Soluciones inalámbricas completas para cada aplicación de automatización de edificios",
+      "title": "Sensores Inalámbricos",
+      "subtitle": "Los mismos sensores de alta calidad, 100% probados que BAPI ha fabricado durante 30 años, ahora con integración inalámbrica. Elija el sensor perfecto para su aplicación.",
       "roomSensors": {
         "title": "Sensores de Ambiente",
         "description": "Sensores de temperatura y humedad para ambientes interiores",
@@ -3120,7 +3120,7 @@
       },
       "nonRoomSensors": {
         "title": "Sensores No Ambientales",
-        "description": "Sensores de conducto, aire exterior, inmersión y sonda de alimentos",
+        "description": "Sensores de ducto, aire exterior, inmersión y sonda de alimentos",
         "cta": "Ver Productos"
       },
       "receiversModules": {
@@ -3138,24 +3138,24 @@
       "badge": "Solución Premium",
       "title": "WAM™ Monitoreo Inalámbrico de Activos",
       "subtitle": "Monitoreo remoto 24/7 con alertas instantáneas",
-      "description": "Proteja sus activos críticos con monitoreo inalámbrico de temperatura y ambiente de nivel empresarial. Sin cableado requerido - funcione en minutos.",
+      "description": "Proteja sus activos críticos con monitoreo inalámbrico de temperatura y ambiental de nivel empresarial. Sin cableado requerido - póngase en funcionamiento en minutos.",
       "features": {
         "monitoring": "Monitoreo Remoto 24/7",
         "alerts": "Alertas Instantáneas por Email y SMS",
         "cloud": "Panel de Control Basado en la Nube",
-        "battery": "Vida Útil de Batería de 5 Años",
-        "range": "Alcance de 1000 pies",
+        "battery": "Duración de Batería de 5 Años",
+        "range": "Alcance de 305 m",
         "scalable": "Sensores Ilimitados"
       },
-      "cta": "Conocer Más Sobre WAM™",
+      "cta": "Más Información sobre WAM™",
       "secondaryCta": "Solicitar Cotización"
     },
     "applications": {
       "title": "Aplicaciones Comunes",
       "subtitle": "Soluciones inalámbricas para diversos desafíos de automatización de edificios",
       "retrofits": {
-        "title": "Proyectos de Actualización",
-        "description": "Agregue sensores sin cableado costoso o daños a las paredes"
+        "title": "Proyectos de Modernización",
+        "description": "Agregue sensores sin cableado costoso o daño a las paredes"
       },
       "criticalAssets": {
         "title": "Monitoreo de Activos Críticos",
@@ -3171,24 +3171,37 @@
       },
       "energyManagement": {
         "title": "Gestión de Energía",
-        "description": "Optimice el rendimiento de HVAC con recolección de datos inalámbrica"
+        "description": "Optimice el rendimiento HVAC con recolección de datos inalámbrica"
       },
       "iaq": {
         "title": "Calidad del Aire Interior",
-        "description": "Monitoreo inalámbrico de CO₂, VOC y partículas"
+        "description": "Monitoreo inalámbrico de CO₂, COV y partículas"
       }
     },
     "specifications": {
-      "title": "Especificaciones Técnicas",
+      "title": "Cómo Funciona",
+      "subtitle": "Nuestro sistema inalámbrico proporciona flexibilidad completa con múltiples opciones de integración para adaptarse a su configuración de automatización de edificios.",
       "wireless": {
-        "title": "Tecnología Inalámbrica",
+        "title": "Sensores Inalámbricos",
+        "description": "Elija entre sensores de temperatura, humedad o combinados para cualquier aplicación desde aire exterior hasta ducto y monitoreo de ambiente.",
         "protocol": "LoRaWAN 1.0.3",
         "frequency": "915 MHz (EE.UU./Canadá)",
-        "range": "Hasta 1000 pies de línea de vista",
+        "range": "Hasta 305 m en línea de vista",
         "battery": "Batería de litio reemplazable de 5 años"
       },
+      "receiver": {
+        "title": "Receptor Inalámbrico",
+        "description": "El Receptor Inalámbrico recolecta datos de uno o más sensores inalámbricos y los distribuye a módulos de salida para integración perfecta con BMS. Con configuraciones seleccionables en campo, puede personalizar el rendimiento para maximizar la vida útil de la batería mientras asegura que su BMS obtenga los datos que necesita.",
+        "settingsTitle": "Configuraciones Seleccionables en Campo:",
+        "sampleRate": "Tasa/Intervalo de Muestreo",
+        "transmitRate": "Tasa/Intervalo de Transmisión",
+        "deltaTemperature": "Delta de Temperatura",
+        "deltaHumidity": "Delta de Humedad",
+        "callout": "Soporta hasta 127 módulos de salida diferentes"
+      },
       "outputs": {
-        "title": "Opciones de Salida",
+        "title": "Módulos de Salida",
+        "description": "Convierta los datos del sensor a señales analógicas (0-10V, resistencia) o protocolos digitales (BACnet IP, BACnet MS/TP, Modbus RTU).",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
@@ -3196,17 +3209,46 @@
       },
       "environmental": {
         "title": "Ambiental",
-        "temperature": "-40°F a 185°F de operación",
+        "temperature": "-40°C a 85°C de operación",
         "humidity": "0-100% HR sin condensación",
         "rating": "Gabinetes con clasificación IP65 disponibles"
+      }
+    },
+    "analogModules": {
+      "title": "Módulos de Salida Analógica",
+      "paragraph1": "El Receptor Inalámbrico recibe la señal de uno o más sensores inalámbricos y suministra los datos a los Módulos de Salida Analógica a través de un bus RS485 de cuatro hilos. Los módulos convierten la señal a voltaje analógico o resistencia para el controlador. El receptor puede acomodar hasta 127 módulos diferentes.",
+      "paragraph2": "Los módulos se entrenan fácilmente a una variable de sensor única con un botón y LCD. Todos los módulos son montables en superficie, riel snaptrack de 2.75\" o riel DIN de 35mm. Son alimentados por el receptor, u opcionalmente pueden ser alimentados por separado cuando se usa el Kit de Bloque Terminal Enchufable para conexiones remotas.",
+      "resistance": {
+        "name": "Módulo de Salida de Resistencia",
+        "description": "Convierte datos de temperatura en resistencia para entradas BAS. Calibrado de fábrica para generar curvas de termistor 10K-2, 10K 3, 10K 3(11K) o 20K."
+      },
+      "voltage": {
+        "name": "Módulo de Salida de Voltaje",
+        "description": "Convierte datos de temp/humedad en señales lineales de 0-5V o 0-10V. Ocho rangos de temperatura preestablecidos de fábrica y dos rangos de humedad disponibles."
+      },
+      "setpoint": {
+        "name": "Módulo de Salida de Punto de Ajuste",
+        "description": "Convierte datos de punto de ajuste en resistencia o voltaje para BAS. Cinco rangos de fábrica con función de anulación opcional para control de ocupación."
+      }
+    },
+    "digitalModules": {
+      "title": "Módulos de Salida Digital",
+      "paragraph1": "El Receptor Inalámbrico recibe la señal de uno o más sensores inalámbricos y suministra los datos a los Módulos de Salida Digital. Los módulos convierten los datos a una señal digital para integración con la red de comunicación ethernet o la red de comunicación de campo RS-485. El receptor puede acomodar hasta 28 sensores inalámbricos para salida digital.",
+      "bacnetIP": {
+        "name": "Módulo BACnet IP",
+        "description": "Convierte datos de sensores inalámbricos para integración en la red de comunicación ethernet BMS. Configuración rápida y fácil basada en web. Montable en superficie, riel snaptrack de 2.75 o riel DIN de 35mm."
+      },
+      "bacnetModbus": {
+        "name": "Módulo BACnet MS/TP o Modbus RTU",
+        "description": "El protocolo seleccionable en campo le permite elegir BACnet MS/TP o Modbus RTU sin necesidad de múltiples dispositivos. Perfecto para integración de red de campo RS-485. Configuración USB-C."
       }
     },
     "benefits": {
       "title": "Beneficios de los Sensores Inalámbricos",
       "subtitle": "Por qué los ingenieros eligen las soluciones inalámbricas BAPI",
       "costSavings": {
-        "title": "Reduzca Costos de Instalación",
-        "description": "Elimine costos de conductos, cableado y mano de obra. La instalación inalámbrica es hasta 75% más rápida que los sensores cableados tradicionales."
+        "title": "Reduzca los Costos de Instalación",
+        "description": "Elimine costos de conducto, cableado y mano de obra. La instalación inalámbrica es hasta 75% más rápida que los sensores cableados tradicionales."
       },
       "flexibility": {
         "title": "Máxima Flexibilidad",
@@ -3218,7 +3260,7 @@
       },
       "remoteAccess": {
         "title": "Monitoreo Remoto",
-        "description": "Acceda a datos en tiempo real y reciba alertas instantáneas desde cualquier lugar. Panel de control basado en la nube con tendencias históricas y reportes."
+        "description": "Acceda a datos en tiempo real y reciba alertas instantáneas desde cualquier lugar. Panel de control basado en la nube con tendencias históricas e informes."
       }
     },
     "comparison": {
@@ -3232,7 +3274,7 @@
       },
       "cost": {
         "label": "Costo de Instalación",
-        "wireless": "Bajo (sin conductos/cableado)",
+        "wireless": "Bajo (sin conducto/cableado)",
         "wired": "Alto (mano de obra + materiales)"
       },
       "flexibility": {
@@ -3242,18 +3284,18 @@
       },
       "range": {
         "label": "Rango de Cobertura",
-        "wireless": "Hasta 1000 pies",
+        "wireless": "Hasta 305 m",
         "wired": "Limitado por cableado"
       },
       "scalability": {
         "label": "Escalabilidad",
-        "wireless": "Agregue sensores al instante",
-        "wired": "Requiere nuevo cableado"
+        "wireless": "Agregue sensores instantáneamente",
+        "wired": "Requiere cableado nuevo"
       }
     },
     "cta": {
-      "title": "¿Listo para Ser Inalámbrico?",
-      "description": "Explore nuestra línea completa de sensores inalámbricos o hable con un especialista de productos sobre su aplicación específica.",
+      "title": "¿Listo para Volverse Inalámbrico?",
+      "description": "Explore nuestra línea completa de sensores inalámbricos o hable con un especialista en productos sobre su aplicación específica.",
       "primaryButton": "Explorar Productos Inalámbricos",
       "secondaryButton": "Hablar con Ventas",
       "phoneLabel": "O llámenos al",
@@ -3280,39 +3322,39 @@
     "products": {
       "outsideAir": {
         "name": "Sensor de Aire Exterior",
-        "feature1": "Temperature o Temp/Humidity",
-        "feature2": "Detección de presión barométrica",
-        "feature3": "Detección opcional de nivel de luz"
+        "feature1": "Temperatura o Temp/Humedad",
+        "feature2": "Sensado de presión barométrica",
+        "feature3": "Sensado de nivel de luz opcional"
       },
       "quantum": {
         "name": "BAPI-Stat Quantum",
-        "feature1": "Temperature o Temp/Humidity",
+        "feature1": "Temperatura o Temp/Humedad",
         "feature2": "Punto de ajuste de temperatura opcional",
         "feature3": "Botón de anulación del ocupante"
       },
       "duct": {
-        "name": "Sensor de Conducto",
-        "feature1": "Temperature o Temp/Humidity",
-        "feature2": "Carcasa BAPI-Box con clasificación IP66",
-        "feature3": "Sondas de acero inoxidable 4 to 18\""
+        "name": "Sensor de Ducto",
+        "feature1": "Temperatura o Temp/Humedad",
+        "feature2": "Gabinete BAPI-Box con clasificación IP66",
+        "feature3": "Sondas de acero inoxidable de 10 a 46 cm"
       },
       "quantumSlim": {
         "name": "BAPI-Stat Quantum Slim",
-        "feature1": "Temperature o Temp/Humidity",
+        "feature1": "Temperatura o Temp/Humedad",
         "feature2": "Sensor interno o remoto",
         "feature3": "Perfecto para congeladores y refrigeradores"
       },
       "immersion": {
-        "name": "Temperature de Inmersión",
-        "feature1": "Carcasa resistente con clasificación IP66",
-        "feature2": "Sondas de acero inoxidable (2-8\")",
+        "name": "Temperatura de Inmersión",
+        "feature1": "Gabinete robusto con clasificación IP66",
+        "feature2": "Sondas de acero inoxidable (5-20 cm)",
         "feature3": "Ideal para monitoreo de tuberías y tanques"
       },
       "thermobuffer": {
         "name": "Sensor Thermobuffer",
         "feature1": "Ideal para congeladores y refrigeradores",
-        "feature2": "2 or 4 attached chamber",
-        "feature3": "Rastrea temperatura del contenido vs temperatura del aire"
+        "feature2": "Cámara adjunta de 2 o 4",
+        "feature3": "Rastrea temp del contenido vs temp del aire"
       }
     }
   }

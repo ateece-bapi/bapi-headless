@@ -3067,61 +3067,61 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "无线传感器解决方案 | BAPI",
-      "description": "楼宇自动化完整无线连接解决方案。无需布线 - 远距离无线温度、湿度和环境监测，支持云端连接。",
-      "keywords": "无线传感器，楼宇自动化无线，WAM无线资产监测，无线温度传感器，无线湿度传感器，LoRaWAN传感器，云连接传感器，无线环境监测"
+      "title": "无线暖通传感器 | BAPI",
+      "description": "经济高效、可靠的商业建筑无线温湿度监测解决方案。无需布线即可与现有楼宇管理系统无缝集成。",
+      "keywords": "无线传感器, 暖通传感器, 楼宇自动化, 温度监测, 湿度传感器"
     },
     "breadcrumb": {
       "home": "首页",
       "products": "产品",
-      "wireless": "无线"
+      "wireless": "无线解决方案"
     },
     "hero": {
-      "badge": "无需布线",
-      "title": "无线传感器解决方案",
-      "subtitle": "楼宇自动化完整无线连接",
-      "description": "远距离无线监测，无需管道、布线和麻烦。企业级可靠性的温度、湿度和环境监测。",
-      "cta": "探索产品",
-      "secondaryCta": "联系销售"
+      "badge": "无线解决方案",
+      "title": "无线暖通传感器",
+      "subtitle": "",
+      "description": "经济高效、可靠的商业建筑无线温湿度监测解决方案。无需布线即可与现有楼宇管理系统无缝集成。",
+      "cta": "立即开始",
+      "secondaryCta": ""
     },
     "features": {
-      "title": "为什么选择BAPI无线？",
-      "subtitle": "专为楼宇自动化专业人士设计的企业级无线解决方案",
+      "title": "为什么选择无线？",
+      "subtitle": "通过我们成熟的无线技术降低安装成本、提高灵活性并简化改造项目。",
       "noWiring": {
         "title": "无需布线",
-        "description": "快速安装，无需管道或布线成本。几分钟而非几小时即可部署传感器。"
+        "description": "消除昂贵的布线工程，安装时间最多可减少70%。"
       },
       "longRange": {
-        "title": "远距离覆盖",
-        "description": "采用LoRaWAN技术，直线距离高达1000英尺。可穿透墙体和楼层。"
+        "title": "远距离信号",
+        "description": "在典型商业建筑中可穿透墙体和楼板，传输距离达122米。"
       },
       "reliable": {
-        "title": "企业级可靠性",
-        "description": "关键应用的工业级性能。大多数型号电池寿命5年。"
+        "title": "10年电池寿命",
+        "description": "用户可更换电池，通过优化传输间隔可使用长达10年。"
       },
       "cloudConnected": {
         "title": "云端连接",
-        "description": "24/7远程监测，即时警报。随时随地访问您的数据。"
+        "description": "24/7远程监控，即时报警。随时随地访问您的数据。"
       },
       "easyIntegration": {
-        "title": "易于集成",
-        "description": "与现有BAS系统无缝集成。标准BACnet和Modbus输出。"
+        "title": "轻松集成",
+        "description": "与现有楼宇自动化系统无缝集成。标准BACnet和Modbus输出。"
       },
       "scalable": {
-        "title": "高度可扩展",
-        "description": "从单个房间到整个园区。根据需求增长添加传感器。"
+        "title": "易于扩展",
+        "description": "每个接收器最多可连接127个传感器。随着需求增长扩展您的系统。"
       }
     },
     "categories": {
-      "title": "无线产品类别",
-      "subtitle": "适用于每种楼宇自动化应用的完整无线解决方案",
+      "title": "无线传感器",
+      "subtitle": "BAPI 30年来制造的同样高品质、100%测试的传感器，现在具备无线集成功能。为您的应用选择完美的传感器。",
       "roomSensors": {
-        "title": "房间传感器",
-        "description": "室内环境温度和湿度传感器",
+        "title": "室内传感器",
+        "description": "用于室内环境的温湿度传感器",
         "cta": "查看产品"
       },
       "nonRoomSensors": {
-        "title": "非房间传感器",
+        "title": "非室内传感器",
         "description": "风管、室外空气、浸入式和食品探头传感器",
         "cta": "查看产品"
       },
@@ -3137,43 +3137,43 @@
       }
     },
     "wam": {
-      "badge": "高端解决方案",
-      "title": "WAM™ 无线资产监测",
-      "subtitle": "24/7远程监测，即时警报",
-      "description": "通过企业级无线温度和环境监测保护您的关键资产。无需布线 - 几分钟内即可启动运行。",
+      "badge": "高级解决方案",
+      "title": "WAM™ 无线资产监控",
+      "subtitle": "24/7远程监控，即时报警",
+      "description": "通过企业级无线温度和环境监控保护您的关键资产。无需布线 - 几分钟内即可启动运行。",
       "features": {
-        "monitoring": "24/7远程监测",
-        "alerts": "即时邮件和短信警报",
-        "cloud": "基于云端的仪表板",
+        "monitoring": "24/7远程监控",
+        "alerts": "即时邮件和短信报警",
+        "cloud": "云端仪表板",
         "battery": "5年电池寿命",
-        "range": "1000英尺范围",
+        "range": "305米传输距离",
         "scalable": "无限传感器"
       },
-      "cta": "了解更多WAM™",
+      "cta": "了解更多WAM™信息",
       "secondaryCta": "申请报价"
     },
     "applications": {
       "title": "常见应用",
-      "subtitle": "针对不同楼宇自动化挑战的无线解决方案",
+      "subtitle": "针对多样化楼宇自动化挑战的无线解决方案",
       "retrofits": {
         "title": "改造项目",
-        "description": "无需昂贵布线或墙体损坏即可添加传感器"
+        "description": "无需昂贵布线或墙体破坏即可添加传感器"
       },
       "criticalAssets": {
-        "title": "关键资产监测",
-        "description": "24/7监测制冷、冷冻和服务器机房"
+        "title": "关键资产监控",
+        "description": "24/7监控制冷设备、冷冻库和服务器机房"
       },
       "remoteSites": {
         "title": "远程位置",
-        "description": "监测难以到达的区域或室外环境"
+        "description": "监控难以到达的区域或室外环境"
       },
       "temporaryMonitoring": {
-        "title": "临时监测",
+        "title": "临时监控",
         "description": "建筑工地、季节性设施或特殊活动"
       },
       "energyManagement": {
         "title": "能源管理",
-        "description": "通过无线数据收集优化HVAC性能"
+        "description": "通过无线数据采集优化暖通空调性能"
       },
       "iaq": {
         "title": "室内空气质量",
@@ -3181,16 +3181,29 @@
       }
     },
     "specifications": {
-      "title": "技术规格",
+      "title": "工作原理",
+      "subtitle": "我们的无线系统提供完全的灵活性，具有多种集成选项以匹配您的楼宇自动化设置。",
       "wireless": {
-        "title": "无线技术",
+        "title": "无线传感器",
+        "description": "从温度、湿度或组合传感器中选择，适用于从室外空气到风管到室内监控的任何应用。",
         "protocol": "LoRaWAN 1.0.3",
         "frequency": "915 MHz（美国/加拿大）",
-        "range": "直线距离高达1000英尺",
+        "range": "视距传输距离达305米",
         "battery": "5年可更换锂电池"
       },
+      "receiver": {
+        "title": "无线接收器",
+        "description": "无线接收器从一个或多个无线传感器收集数据，并将其分发到输出模块以实现与楼宇管理系统的无缝集成。通过现场可选设置，您可以自定义性能以最大化电池寿命，同时确保您的楼宇管理系统获得所需数据。",
+        "settingsTitle": "现场可选设置：",
+        "sampleRate": "采样频率/间隔",
+        "transmitRate": "传输频率/间隔",
+        "deltaTemperature": "温度变化量",
+        "deltaHumidity": "湿度变化量",
+        "callout": "支持多达127个不同的输出模块"
+      },
       "outputs": {
-        "title": "输出选项",
+        "title": "输出模块",
+        "description": "将传感器数据转换为模拟信号（0-10V，电阻）或数字协议（BACnet IP，BACnet MS/TP，Modbus RTU）。",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA，0-5VDC，0-10VDC",
@@ -3198,9 +3211,38 @@
       },
       "environmental": {
         "title": "环境条件",
-        "temperature": "工作温度-40°F至185°F",
-        "humidity": "0-100% RH非冷凝",
-        "rating": "可选IP65防护等级外壳"
+        "temperature": "工作温度-40°C至85°C",
+        "humidity": "0-100% RH 非冷凝",
+        "rating": "可提供IP65防护等级外壳"
+      }
+    },
+    "analogModules": {
+      "title": "模拟输出模块",
+      "paragraph1": "无线接收器接收来自一个或多个无线传感器的信号，并通过RS485四线总线将数据提供给模拟输出模块。模块将信号转换为控制器所需的模拟电压或电阻。接收器最多可容纳127个不同的模块。",
+      "paragraph2": "模块可通过按钮和LCD轻松训练到单个传感器变量。所有模块均可表面安装、2.75英寸卡轨安装或35mm DIN导轨安装。它们由接收器供电，或在使用可插拔端子块套件进行远程连接时可选择单独供电。",
+      "resistance": {
+        "name": "电阻输出模块",
+        "description": "将温度数据转换为楼宇自动化系统输入所需的电阻。出厂校准输出10K-2、10K 3、10K 3(11K)或20K热敏电阻曲线。"
+      },
+      "voltage": {
+        "name": "电压输出模块",
+        "description": "将温湿度数据转换为线性0-5V或0-10V信号。提供八种出厂设定温度范围和两种湿度范围。"
+      },
+      "setpoint": {
+        "name": "设定点输出模块",
+        "description": "将设定点数据转换为楼宇自动化系统所需的电阻或电压。五种出厂范围，可选占用控制覆盖功能。"
+      }
+    },
+    "digitalModules": {
+      "title": "数字输出模块",
+      "paragraph1": "无线接收器接收来自一个或多个无线传感器的信号，并将数据提供给数字输出模块。模块将数据转换为数字信号，以便与以太网通信网络或RS-485现场通信网络集成。接收器最多可容纳28个无线传感器进行数字输出。",
+      "bacnetIP": {
+        "name": "BACnet IP模块",
+        "description": "转换无线传感器数据以集成到楼宇管理系统以太网通信网络中。快速简便的基于Web的配置。可表面安装、2.75卡轨安装或35mm DIN导轨安装。"
+      },
+      "bacnetModbus": {
+        "name": "BACnet MS/TP或Modbus RTU模块",
+        "description": "现场可选协议让您可以选择BACnet MS/TP或Modbus RTU，无需多个设备。非常适合RS-485现场网络集成。USB-C配置。"
       }
     },
     "benefits": {
@@ -3212,19 +3254,19 @@
       },
       "flexibility": {
         "title": "最大灵活性",
-        "description": "不受布线限制，可在需要的确切位置放置传感器。随着需求变化，轻松重新定位或添加传感器。"
+        "description": "无布线限制，可将传感器精确放置在所需位置。随着需求变化轻松重新定位或添加传感器。"
       },
       "reliability": {
         "title": "企业级可靠性",
         "description": "工业级组件和5年保修。受到全球医院、数据中心和关键设施的信赖。"
       },
       "remoteAccess": {
-        "title": "远程监测",
-        "description": "随时随地访问实时数据并接收即时警报。具有历史趋势和报告的云端仪表板。"
+        "title": "远程监控",
+        "description": "随时随地访问实时数据并接收即时报警。云端仪表板具有历史趋势和报告功能。"
       }
     },
     "comparison": {
-      "title": "无线与有线传感器对比",
+      "title": "无线传感器 vs 有线传感器",
       "wireless": "无线",
       "wired": "有线",
       "installation": {
@@ -3234,7 +3276,7 @@
       },
       "cost": {
         "label": "安装成本",
-        "wireless": "低（无需管道/布线）",
+        "wireless": "低（无管道/布线）",
         "wired": "高（人工+材料）"
       },
       "flexibility": {
@@ -3244,7 +3286,7 @@
       },
       "range": {
         "label": "覆盖范围",
-        "wireless": "高达1000英尺",
+        "wireless": "达305米",
         "wired": "受布线限制"
       },
       "scalability": {
@@ -3254,7 +3296,7 @@
       }
     },
     "cta": {
-      "title": "准备采用无线？",
+      "title": "准备使用无线了吗？",
       "description": "探索我们完整的无线传感器产品线，或与产品专家讨论您的具体应用。",
       "primaryButton": "浏览无线产品",
       "secondaryButton": "联系销售",
@@ -3270,7 +3312,7 @@
       },
       "installationGuide": {
         "title": "安装指南",
-        "description": "无线传感器安装分步指导",
+        "description": "无线传感器安装分步指南",
         "cta": "查看指南"
       },
       "technicalSupport": {
@@ -3282,38 +3324,38 @@
     "products": {
       "outsideAir": {
         "name": "室外空气传感器",
-        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature1": "温度或温湿度",
         "feature2": "大气压力感应",
-        "feature3": "可选光照水平感应"
+        "feature3": "可选光照度感应"
       },
       "quantum": {
         "name": "BAPI-Stat Quantum",
-        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature1": "温度或温湿度",
         "feature2": "可选温度设定点",
-        "feature3": "住户超控按钮"
+        "feature3": "住户覆盖按钮"
       },
       "duct": {
-        "name": "管道传感器",
-        "feature1": "Temperature 或 Temperature/Humidity",
-        "feature2": "IP66级BAPI-Box外壳",
-        "feature3": "不锈钢探头 4 to 18\""
+        "name": "风管传感器",
+        "feature1": "温度或温湿度",
+        "feature2": "IP66防护等级BAPI-Box外壳",
+        "feature3": "不锈钢探头4至18英寸"
       },
       "quantumSlim": {
         "name": "BAPI-Stat Quantum Slim",
-        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature1": "温度或温湿度",
         "feature2": "内置或远程传感器",
-        "feature3": "完美适用于冷冻柜和冷却器"
+        "feature3": "非常适合冷冻库和冷藏室"
       },
       "immersion": {
-        "name": "浸入式Temperature",
-        "feature1": "坚固的IP66级外壳",
-        "feature2": "不锈钢探头 (2-8\")",
-        "feature3": "适用于管道和储罐监测"
+        "name": "浸入式温度传感器",
+        "feature1": "坚固的IP66防护等级外壳",
+        "feature2": "不锈钢探头（2-8英寸）",
+        "feature3": "非常适合管道和储罐监控"
       },
       "thermobuffer": {
-        "name": "热缓冲传感器",
-        "feature1": "适用于冷冻柜和冷却器",
-        "feature2": "2 or 4 attached chamber",
+        "name": "Thermobuffer传感器",
+        "feature1": "非常适合冷冻库和冷藏室",
+        "feature2": "2或4个附加腔室",
         "feature3": "跟踪内容物温度与空气温度"
       }
     }

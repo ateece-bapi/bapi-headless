@@ -3067,130 +3067,143 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Rozwiązania Czujników Bezprzewodowych | BAPI",
-      "description": "Kompletna łączność bezprzewodowa dla automatyki budynków. Bez konieczności okablowania - długozasięgowe bezprzewodowe monitorowanie temperatury, wilgotności i środowiska z połączeniem w chmurze.",
-      "keywords": "czujniki bezprzewodowe, automatyka budynków bezprzewodowa, WAM bezprzewodowe monitorowanie zasobów, bezprzewodowe czujniki temperatury, bezprzewodowe czujniki wilgotności, czujniki LoRaWAN, czujniki połączone z chmurą, bezprzewodowe monitorowanie środowiska"
+      "title": "Bezprzewodowe czujniki HVAC | BAPI",
+      "description": "Ekonomiczne, niezawodne bezprzewodowe monitorowanie temperatury i wilgotności w budynkach komercyjnych. Bezproblemowa integracja z istniejącym BMS bez prowadzenia nowych przewodów.",
+      "keywords": "czujniki bezprzewodowe, czujniki HVAC, automatyka budynkowa, monitorowanie temperatury, czujniki wilgotności"
     },
     "breadcrumb": {
       "home": "Strona główna",
       "products": "Produkty",
-      "wireless": "Bezprzewodowe"
+      "wireless": "Rozwiązania bezprzewodowe"
     },
     "hero": {
-      "badge": "Bez Konieczności Okablowania",
-      "title": "Rozwiązania Czujników Bezprzewodowych",
-      "subtitle": "Kompletna łączność bezprzewodowa dla automatyki budynków",
-      "description": "Długozasięgowe monitorowanie bezprzewodowe bez instalacji rurowej, okablowania i problemów. Niezawodność klasy korporacyjnej dla monitorowania temperatury, wilgotności i środowiska.",
-      "cta": "Poznaj Produkty",
-      "secondaryCta": "Porozmawiaj ze Sprzedażą"
+      "badge": "Rozwiązania bezprzewodowe",
+      "title": "Bezprzewodowe czujniki HVAC",
+      "subtitle": "",
+      "description": "Ekonomiczne, niezawodne bezprzewodowe monitorowanie temperatury i wilgotności w budynkach komercyjnych. Bezproblemowa integracja z istniejącym BMS bez prowadzenia nowych przewodów.",
+      "cta": "Rozpocznij",
+      "secondaryCta": ""
     },
     "features": {
-      "title": "Dlaczego Wybrać BAPI Bezprzewodowe?",
-      "subtitle": "Rozwiązania bezprzewodowe klasy korporacyjnej zaprojektowane dla profesjonalistów automatyki budynków",
+      "title": "Dlaczego wybrać rozwiązania bezprzewodowe?",
+      "subtitle": "Zmniejsz koszty instalacji, zwiększ elastyczność i uprość modernizacje dzięki naszej sprawdzonej technologii bezprzewodowej.",
       "noWiring": {
-        "title": "Bez Konieczności Okablowania",
-        "description": "Szybka instalacja bez kosztów instalacji rurowej czy okablowania. Wdrażaj czujniki w minuty, nie godziny."
+        "title": "Bez konieczności okablowania",
+        "description": "Wyeliminuj kosztowne prowadzenie przewodów i skróć czas instalacji nawet o 70%."
       },
       "longRange": {
-        "title": "Długi Zasięg Pokrycia",
-        "description": "Do 1000 stóp w linii wzroku z technologią LoRaWAN. Przenika przez ściany i podłogi."
+        "title": "Sygnał dalekiego zasięgu",
+        "description": "Zasięg do 120 m przez ściany i stropy w typowych budynkach komercyjnych."
       },
       "reliable": {
-        "title": "Niezawodność Korporacyjna",
-        "description": "Wydajność klasy przemysłowej dla krytycznych zastosowań. 5-letnia żywotność baterii w większości modeli."
+        "title": "10-letnia żywotność baterii",
+        "description": "Wymienne baterie działają do 10 lat przy zoptymalizowanych interwałach transmisji."
       },
       "cloudConnected": {
-        "title": "Połączenie z Chmurą",
-        "description": "Monitorowanie zdalne 24/7 z natychmiastowymi alertami. Dostęp do danych z dowolnego miejsca."
+        "title": "Łączność z chmurą",
+        "description": "Zdalne monitorowanie 24/7 z natychmiastowymi alertami. Dostęp do danych z dowolnego miejsca."
       },
       "easyIntegration": {
-        "title": "Łatwa Integracja",
+        "title": "Łatwa integracja",
         "description": "Bezproblemowa integracja z istniejącymi systemami BAS. Standardowe wyjścia BACnet i Modbus."
       },
       "scalable": {
-        "title": "Wysoce Skalowalne",
-        "description": "Od pojedynczych pomieszczeń po całe kampusy. Dodawaj czujniki w miarę wzrostu potrzeb."
+        "title": "Łatwa skalowalność",
+        "description": "Dodaj do 127 czujników na odbiornik. Rozbudowuj system wraz z rosnącymi potrzebami."
       }
     },
     "categories": {
-      "title": "Kategorie Produktów Bezprzewodowych",
-      "subtitle": "Kompletne rozwiązania bezprzewodowe dla każdego zastosowania automatyki budynków",
+      "title": "Czujniki bezprzewodowe",
+      "subtitle": "Te same wysokiej jakości, w 100% testowane czujniki, które BAPI produkuje od 30 lat, teraz z integracją bezprzewodową. Wybierz idealny czujnik do swojej aplikacji.",
       "roomSensors": {
-        "title": "Czujniki Pomieszczeniowe",
-        "description": "Czujniki temperatury i wilgotności dla środowisk wewnętrznych",
-        "cta": "Zobacz Produkty"
+        "title": "Czujniki pomieszczeniowe",
+        "description": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
+        "cta": "Zobacz produkty"
       },
       "nonRoomSensors": {
-        "title": "Czujniki Niepomieszczeniowe",
+        "title": "Czujniki niepomieszczeniowe",
         "description": "Czujniki kanałowe, powietrza zewnętrznego, zanurzeniowe i sondy żywności",
-        "cta": "Zobacz Produkty"
+        "cta": "Zobacz produkty"
       },
       "receiversModules": {
-        "title": "Odbiorniki i Moduły",
+        "title": "Odbiorniki i moduły",
         "description": "Odbiorniki, moduły wyjść analogowych i cyfrowych",
-        "cta": "Zobacz Produkty"
+        "cta": "Zobacz produkty"
       },
       "accessories": {
         "title": "Akcesoria",
         "description": "Osprzęt montażowy i akcesoria instalacyjne",
-        "cta": "Zobacz Produkty"
+        "cta": "Zobacz produkty"
       }
     },
     "wam": {
-      "badge": "Rozwiązanie Premium",
-      "title": "WAM™ Bezprzewodowe Monitorowanie Zasobów",
-      "subtitle": "Monitorowanie zdalne 24/7 z natychmiastowymi alertami",
-      "description": "Chroń swoje krytyczne zasoby dzięki bezprzewodowemu monitorowaniu temperatury i środowiska klasy korporacyjnej. Bez konieczności okablowania - uruchom w ciągu minut.",
+      "badge": "Rozwiązanie premium",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "subtitle": "Zdalne monitorowanie 24/7 z natychmiastowymi alertami",
+      "description": "Chroń swoje krytyczne zasoby dzięki bezprzewodowemu monitorowaniu temperatury i środowiska klasy korporacyjnej. Bez konieczności okablowania - uruchom system w kilka minut.",
       "features": {
-        "monitoring": "Monitorowanie Zdalne 24/7",
-        "alerts": "Natychmiastowe Alerty Email i SMS",
-        "cloud": "Panel w Chmurze",
-        "battery": "5-letnia Żywotność Baterii",
-        "range": "Zasięg 1000 stóp",
-        "scalable": "Nieograniczona Liczba Czujników"
+        "monitoring": "Zdalne monitorowanie 24/7",
+        "alerts": "Natychmiastowe alerty e-mail i SMS",
+        "cloud": "Panel w chmurze",
+        "battery": "5-letnia żywotność baterii",
+        "range": "Zasięg 300 m",
+        "scalable": "Nieograniczona liczba czujników"
       },
-      "cta": "Dowiedz Się Więcej o WAM™",
-      "secondaryCta": "Poproś o Wycenę"
+      "cta": "Dowiedz się więcej o WAM™",
+      "secondaryCta": "Poproś o wycenę"
     },
     "applications": {
-      "title": "Typowe Zastosowania",
-      "subtitle": "Rozwiązania bezprzewodowe dla różnorodnych wyzwań automatyki budynków",
+      "title": "Typowe zastosowania",
+      "subtitle": "Rozwiązania bezprzewodowe dla różnorodnych wyzwań automatyki budynkowej",
       "retrofits": {
-        "title": "Projekty Modernizacyjne",
-        "description": "Dodawaj czujniki bez kosztownego okablowania czy uszkodzeń ścian"
+        "title": "Projekty modernizacyjne",
+        "description": "Dodaj czujniki bez kosztownego okablowania lub uszkodzeń ścian"
       },
       "criticalAssets": {
-        "title": "Monitorowanie Krytycznych Zasobów",
+        "title": "Monitorowanie krytycznych zasobów",
         "description": "Monitorowanie 24/7 chłodnictwa, zamrażarek i serwerowni"
       },
       "remoteSites": {
-        "title": "Lokalizacje Zdalne",
+        "title": "Lokalizacje zdalne",
         "description": "Monitorowanie trudno dostępnych obszarów lub środowisk zewnętrznych"
       },
       "temporaryMonitoring": {
-        "title": "Monitorowanie Tymczasowe",
+        "title": "Monitorowanie tymczasowe",
         "description": "Place budowy, obiekty sezonowe lub wydarzenia specjalne"
       },
       "energyManagement": {
-        "title": "Zarządzanie Energią",
-        "description": "Optymalizacja wydajności HVAC dzięki bezprzewodowemu zbieraniu danych"
+        "title": "Zarządzanie energią",
+        "description": "Optymalizuj wydajność HVAC dzięki bezprzewodowemu zbieraniu danych"
       },
       "iaq": {
-        "title": "Jakość Powietrza Wewnętrznego",
+        "title": "Jakość powietrza wewnętrznego",
         "description": "Bezprzewodowe monitorowanie CO₂, VOC i cząstek stałych"
       }
     },
     "specifications": {
-      "title": "Specyfikacje Techniczne",
+      "title": "Jak to działa",
+      "subtitle": "Nasz system bezprzewodowy zapewnia pełną elastyczność z wieloma opcjami integracji dopasowanymi do konfiguracji automatyki budynkowej.",
       "wireless": {
-        "title": "Technologia Bezprzewodowa",
+        "title": "Czujniki bezprzewodowe",
+        "description": "Wybierz spośród czujników temperatury, wilgotności lub kombinowanych do każdej aplikacji - od powietrza zewnętrznego po monitorowanie kanałów i pomieszczeń.",
         "protocol": "LoRaWAN 1.0.3",
-        "frequency": "915 MHz (US/Kanada)",
-        "range": "Do 1000 stóp w linii wzroku",
+        "frequency": "915 MHz (USA/Kanada)",
+        "range": "Do 300 m w linii prostej",
         "battery": "5-letnia wymienna bateria litowa"
       },
+      "receiver": {
+        "title": "Odbiornik bezprzewodowy",
+        "description": "Odbiornik bezprzewodowy zbiera dane z jednego lub więcej czujników bezprzewodowych i dystrybuuje je do modułów wyjściowych w celu bezproblemowej integracji z BMS. Dzięki ustawieniom konfigurowalnym w terenie możesz dostosować wydajność, aby zmaksymalizować żywotność baterii, zapewniając jednocześnie BMS potrzebne dane.",
+        "settingsTitle": "Ustawienia konfigurowalne w terenie:",
+        "sampleRate": "Częstotliwość/interwał próbkowania",
+        "transmitRate": "Częstotliwość/interwał transmisji",
+        "deltaTemperature": "Delta temperatury",
+        "deltaHumidity": "Delta wilgotności",
+        "callout": "Obsługuje do 127 różnych modułów wyjściowych"
+      },
       "outputs": {
-        "title": "Opcje Wyjść",
+        "title": "Moduły wyjściowe",
+        "description": "Konwertuj dane z czujników na sygnały analogowe (0-10V, rezystancja) lub protokoły cyfrowe (BACnet IP, BACnet MS/TP, Modbus RTU).",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
@@ -3198,123 +3211,152 @@
       },
       "environmental": {
         "title": "Środowiskowe",
-        "temperature": "-40°F do 185°F robocza",
+        "temperature": "Praca od -40°C do 85°C",
         "humidity": "0-100% RH bez kondensacji",
-        "rating": "Obudowy o stopniu ochrony IP65 dostępne"
+        "rating": "Dostępne obudowy o stopniu IP65"
+      }
+    },
+    "analogModules": {
+      "title": "Moduły wyjść analogowych",
+      "paragraph1": "Odbiornik bezprzewodowy odbiera sygnał z jednego lub więcej czujników bezprzewodowych i dostarcza dane do modułów wyjść analogowych przez magistralę RS485 czteroprzewodową. Moduły konwertują sygnał na napięcie analogowe lub rezystancję dla sterownika. Odbiornik może obsłużyć do 127 różnych modułów.",
+      "paragraph2": "Moduły są łatwo programowane do pojedynczej zmiennej czujnika za pomocą przycisku i wyświetlacza LCD. Wszystkie moduły można montować na powierzchni, szynie snaptrack 2,75\" lub szynie DIN 35mm. Są zasilane przez odbiornik lub opcjonalnie mogą być zasilane oddzielnie przy użyciu zestawu wtykowych zacisków do połączeń zdalnych.",
+      "resistance": {
+        "name": "Moduł wyjścia rezystancyjnego",
+        "description": "Konwertuje dane temperatury na rezystancję dla wejść BAS. Fabrycznie skalibrowany do wyjścia krzywych termistorów 10K-2, 10K 3, 10K 3(11K) lub 20K."
+      },
+      "voltage": {
+        "name": "Moduł wyjścia napięciowego",
+        "description": "Konwertuje dane temp/wilgotności na liniowe sygnały 0-5V lub 0-10V. Dostępnych osiem fabrycznie ustawionych zakresów temperatury i dwa zakresy wilgotności."
+      },
+      "setpoint": {
+        "name": "Moduł wyjścia nastawy",
+        "description": "Konwertuje dane nastawy na rezystancję lub napięcie dla BAS. Pięć fabrycznie ustawionych zakresów z opcjonalną funkcją nadpisania do kontroli obecności."
+      }
+    },
+    "digitalModules": {
+      "title": "Moduły wyjść cyfrowych",
+      "paragraph1": "Odbiornik bezprzewodowy odbiera sygnał z jednego lub więcej czujników bezprzewodowych i dostarcza dane do modułów wyjść cyfrowych. Moduły konwertują dane na sygnał cyfrowy do integracji z siecią komunikacyjną ethernet lub terenową siecią komunikacyjną RS-485. Odbiornik może obsłużyć do 28 czujników bezprzewodowych dla wyjścia cyfrowego.",
+      "bacnetIP": {
+        "name": "Moduł BACnet IP",
+        "description": "Konwertuje dane czujników bezprzewodowych do integracji z siecią komunikacyjną ethernet BMS. Szybka i łatwa konfiguracja przez przeglądarkę. Montaż na powierzchni, szynie snaptrack 2,75\" lub szynie DIN 35mm."
+      },
+      "bacnetModbus": {
+        "name": "Moduł BACnet MS/TP lub Modbus RTU",
+        "description": "Protokół wybieralny w terenie pozwala wybrać BACnet MS/TP lub Modbus RTU bez potrzeby wielu urządzeń. Idealny do integracji z terenową siecią RS-485. Konfiguracja USB-C."
       }
     },
     "benefits": {
-      "title": "Korzyści z Czujników Bezprzewodowych",
+      "title": "Korzyści z czujników bezprzewodowych",
       "subtitle": "Dlaczego inżynierowie wybierają rozwiązania bezprzewodowe BAPI",
       "costSavings": {
-        "title": "Zmniejsz Koszty Instalacji",
-        "description": "Wyeliminuj koszty instalacji rurowej, okablowania i robocizny. Instalacja bezprzewodowa jest do 75% szybsza niż tradycyjne czujniki przewodowe."
+        "title": "Zmniejsz koszty instalacji",
+        "description": "Wyeliminuj koszty przewodów, okablowania i robocizny. Instalacja bezprzewodowa jest do 75% szybsza niż tradycyjne czujniki przewodowe."
       },
       "flexibility": {
-        "title": "Maksymalna Elastyczność",
-        "description": "Umieszczaj czujniki dokładnie tam, gdzie są potrzebne, bez ograniczeń okablowania. Łatwo przenosź lub dodawaj czujniki w miarę zmian wymagań."
+        "title": "Maksymalna elastyczność",
+        "description": "Umieść czujniki dokładnie tam, gdzie są potrzebne, bez ograniczeń okablowania. Łatwo przenoś lub dodawaj czujniki wraz ze zmianą wymagań."
       },
       "reliability": {
-        "title": "Niezawodność Korporacyjna",
+        "title": "Niezawodność klasy korporacyjnej",
         "description": "Komponenty klasy przemysłowej i 5-letnia gwarancja. Zaufane przez szpitale, centra danych i obiekty krytyczne na całym świecie."
       },
       "remoteAccess": {
-        "title": "Monitorowanie Zdalne",
+        "title": "Zdalne monitorowanie",
         "description": "Dostęp do danych w czasie rzeczywistym i otrzymywanie natychmiastowych alertów z dowolnego miejsca. Panel w chmurze z trendami historycznymi i raportami."
       }
     },
     "comparison": {
-      "title": "Czujniki Bezprzewodowe vs. Przewodowe",
+      "title": "Czujniki bezprzewodowe vs przewodowe",
       "wireless": "Bezprzewodowe",
       "wired": "Przewodowe",
       "installation": {
-        "label": "Czas Instalacji",
+        "label": "Czas instalacji",
         "wireless": "5-10 minut na czujnik",
         "wired": "30-60 minut na czujnik"
       },
       "cost": {
-        "label": "Koszt Instalacji",
-        "wireless": "Niski (bez instalacji rurowej/okablowania)",
+        "label": "Koszt instalacji",
+        "wireless": "Niski (bez przewodów/okablowania)",
         "wired": "Wysoki (robocizna + materiały)"
       },
       "flexibility": {
         "label": "Elastyczność",
-        "wireless": "Łatwe do przeniesienia",
+        "wireless": "Łatwe przenoszenie",
         "wired": "Instalacja stała"
       },
       "range": {
-        "label": "Zasięg Pokrycia",
-        "wireless": "Do 1000 stóp",
-        "wired": "Ograniczony przez okablowanie"
+        "label": "Zasięg pokrycia",
+        "wireless": "Do 300 m",
+        "wired": "Ograniczony okablowaniem"
       },
       "scalability": {
         "label": "Skalowalność",
-        "wireless": "Dodawaj czujniki natychmiast",
+        "wireless": "Natychmiastowe dodawanie czujników",
         "wired": "Wymaga nowego okablowania"
       }
     },
     "cta": {
-      "title": "Gotowy na Przejście na Bezprzewodowe?",
-      "description": "Poznaj naszą kompletną linię czujników bezprzewodowych lub porozmawiaj ze specjalistą produktowym o swoim konkretnym zastosowaniu.",
-      "primaryButton": "Przeglądaj Produkty Bezprzewodowe",
-      "secondaryButton": "Porozmawiaj ze Sprzedażą",
-      "phoneLabel": "Lub zadzwoń do nas pod numer",
+      "title": "Gotowy na rozwiązania bezprzewodowe?",
+      "description": "Poznaj naszą kompletną linię czujników bezprzewodowych lub porozmawiaj ze specjalistą produktu o swojej konkretnej aplikacji.",
+      "primaryButton": "Przeglądaj produkty bezprzewodowe",
+      "secondaryButton": "Porozmawiaj ze sprzedażą",
+      "phoneLabel": "Lub zadzwoń do nas",
       "phone": "(608) 735-4800"
     },
     "support": {
-      "title": "Wsparcie i Zasoby Bezprzewodowe",
+      "title": "Wsparcie i zasoby bezprzewodowe",
       "siteVerification": {
-        "title": "Narzędzie Weryfikacji Lokalizacji",
+        "title": "Narzędzie weryfikacji lokalizacji",
         "description": "Testuj siłę sygnału bezprzewodowego przed instalacją",
-        "cta": "Pobierz Narzędzie"
+        "cta": "Pobierz narzędzie"
       },
       "installationGuide": {
-        "title": "Przewodniki Instalacji",
-        "description": "Krokowa instalacja czujników bezprzewodowych",
-        "cta": "Zobacz Przewodniki"
+        "title": "Przewodniki instalacji",
+        "description": "Krok po kroku instalacja czujników bezprzewodowych",
+        "cta": "Zobacz przewodniki"
       },
       "technicalSupport": {
-        "title": "Wsparcie Techniczne",
-        "description": "Ekspertowa pomoc w projektowaniu systemów bezprzewodowych",
-        "cta": "Skontaktuj się ze Wsparciem"
+        "title": "Wsparcie techniczne",
+        "description": "Ekspercka pomoc w projektowaniu systemów bezprzewodowych",
+        "cta": "Skontaktuj się ze wsparciem"
       }
     },
     "products": {
       "outsideAir": {
-        "name": "Czujnik Powietrza Zewnętrznego",
-        "feature1": "Temperature lub Temp/Humidity",
-        "feature2": "Wykrywanie ciśnienia barometrycznego",
-        "feature3": "Opcjonalne wykrywanie poziomu światła"
+        "name": "Czujnik powietrza zewnętrznego",
+        "feature1": "Temperatura lub Temp/Wilgotność",
+        "feature2": "Pomiar ciśnienia barometrycznego",
+        "feature3": "Opcjonalny pomiar poziomu światła"
       },
       "quantum": {
         "name": "BAPI-Stat Quantum",
-        "feature1": "Temperature lub Temp/Humidity",
-        "feature2": "Opcjonalny punkt nastawy temperatury",
-        "feature3": "Przycisk nadpisania przez użytkownika"
+        "feature1": "Temperatura lub Temp/Wilgotność",
+        "feature2": "Opcjonalna nastawa temperatury",
+        "feature3": "Przycisk nadpisania użytkownika"
       },
       "duct": {
-        "name": "Czujnik Kanałowy",
-        "feature1": "Temperature lub Temp/Humidity",
-        "feature2": "Obudowa BAPI-Box o klasie IP66",
-        "feature3": "Sondy ze stali nierdzewnej 4 to 18\""
+        "name": "Czujnik kanałowy",
+        "feature1": "Temperatura lub Temp/Wilgotność",
+        "feature2": "Obudowa BAPI-Box o stopniu IP66",
+        "feature3": "Sondy ze stali nierdzewnej 10-45 cm"
       },
       "quantumSlim": {
         "name": "BAPI-Stat Quantum Slim",
-        "feature1": "Temperature lub Temp/Humidity",
+        "feature1": "Temperatura lub Temp/Wilgotność",
         "feature2": "Czujnik wewnętrzny lub zdalny",
         "feature3": "Idealny do zamrażarek i chłodni"
       },
       "immersion": {
-        "name": "Temperature Zanurzeniowa",
-        "feature1": "Wytrzymała obudowa o klasie IP66",
-        "feature2": "Sondy ze stali nierdzewnej (2-8\")",
-        "feature3": "Idealny do monitorowania rur i zbiorników"
+        "name": "Temperatura zanurzeniowa",
+        "feature1": "Wytrzymała obudowa o stopniu IP66",
+        "feature2": "Sondy ze stali nierdzewnej (5-20 cm)",
+        "feature3": "Idealna do monitorowania rur i zbiorników"
       },
       "thermobuffer": {
         "name": "Czujnik Thermobuffer",
         "feature1": "Idealny do zamrażarek i chłodni",
-        "feature2": "2 or 4 attached chamber",
-        "feature3": "Śledzi temperaturę zawartości względem temperatury powietrza"
+        "feature2": "Komora 2 lub 4-przyłączowa",
+        "feature3": "Śledzi temp. zawartości vs temp. powietrza"
       }
     }
   }

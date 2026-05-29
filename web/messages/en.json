@@ -3109,37 +3109,37 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Wireless Sensor Solutions | BAPI",
-      "description": "Complete wireless connectivity for building automation. No wiring required - long-range wireless temperature, humidity, and environmental monitoring with cloud connectivity.",
-      "keywords": "wireless sensors, building automation wireless, WAM wireless asset monitoring, wireless temperature sensors, wireless humidity sensors, LoRaWAN sensors, cloud-connected sensors, wireless environmental monitoring"
+      "title": "Wireless HVAC Sensors | BAPI",
+      "description": "Cost-effective, reliable wireless temperature and humidity monitoring for commercial buildings. Seamlessly integrate with your existing BMS without running new wires.",
+      "keywords": "wireless sensors, HVAC sensors, building automation, temperature monitoring, humidity sensors"
     },
     "breadcrumb": {
       "home": "Home",
       "products": "Products",
-      "wireless": "Wireless"
+      "wireless": "Wireless Solutions"
     },
     "hero": {
-      "badge": "No Wiring Required",
-      "title": "Wireless Sensor Solutions",
-      "subtitle": "Complete wireless connectivity for building automation",
-      "description": "Long-range wireless monitoring with no conduit, no wiring, and no hassle. Enterprise-grade reliability for temperature, humidity, and environmental monitoring.",
-      "cta": "Explore Products",
-      "secondaryCta": "Talk to Sales"
+      "badge": "Wireless Solutions",
+      "title": "Wireless HVAC Sensors",
+      "subtitle": "",
+      "description": "Cost-effective, reliable wireless temperature and humidity monitoring for commercial buildings. Seamlessly integrate with your existing BMS without running new wires.",
+      "cta": "Get Started",
+      "secondaryCta": ""
     },
     "features": {
-      "title": "Why Choose BAPI Wireless?",
-      "subtitle": "Enterprise-grade wireless solutions designed for building automation professionals",
+      "title": "Why Choose Wireless?",
+      "subtitle": "Reduce installation costs, increase flexibility, and simplify retrofits with our proven wireless technology.",
       "noWiring": {
         "title": "No Wiring Required",
-        "description": "Quick installation with no conduit or wiring costs. Deploy sensors in minutes, not hours."
+        "description": "Eliminate expensive wire runs and reduce installation time by up to 70%."
       },
       "longRange": {
-        "title": "Long Range Coverage",
-        "description": "Up to 1000 ft line-of-sight with LoRaWAN technology. Penetrates walls and floors."
+        "title": "Long Range Signal",
+        "description": "Up to 400ft range through walls and floors in typical commercial buildings."
       },
       "reliable": {
-        "title": "Enterprise Reliability",
-        "description": "Industrial-grade performance for critical applications. 5-year battery life on most models."
+        "title": "10-Year Battery Life",
+        "description": "User-replaceable batteries last up to 10 years with optimized transmit intervals."
       },
       "cloudConnected": {
         "title": "Cloud Connectivity",
@@ -3150,13 +3150,13 @@
         "description": "Seamless integration with existing BAS systems. Standard BACnet and Modbus outputs."
       },
       "scalable": {
-        "title": "Highly Scalable",
-        "description": "From single rooms to entire campuses. Add sensors as your needs grow."
+        "title": "Easy Scalability",
+        "description": "Add up to 127 sensors per receiver. Expand your system as your needs grow."
       }
     },
     "categories": {
-      "title": "Wireless Product Categories",
-      "subtitle": "Complete wireless solutions for every building automation application",
+      "title": "Wireless Sensors",
+      "subtitle": "The same high-quality, 100% tested sensors BAPI has made for 30 years, now with wireless integration. Choose the perfect sensor for your application.",
       "roomSensors": {
         "title": "Room Sensors",
         "description": "Temperature & humidity sensors for indoor environments",
@@ -3223,16 +3223,29 @@
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
+      "title": "How It Works",
+      "subtitle": "Our wireless system provides complete flexibility with multiple integration options to match your building automation setup.",
       "wireless": {
-        "title": "Wireless Technology",
+        "title": "Wireless Sensors",
+        "description": "Choose from temperature, humidity, or combination sensors for any application from outside air to duct to room monitoring.",
         "protocol": "LoRaWAN 1.0.3",
         "frequency": "915 MHz (US/Canada)",
         "range": "Up to 1000 ft line-of-sight",
         "battery": "5-year replaceable lithium battery"
       },
+      "receiver": {
+        "title": "Wireless Receiver",
+        "description": "The Wireless Receiver collects data from one or more wireless sensors and distributes it to output modules for seamless BMS integration. With field-selectable settings, you can customize performance to maximize battery life while ensuring your BMS gets the data it needs.",
+        "settingsTitle": "Field Selectable Settings:",
+        "sampleRate": "Sample Rate/Interval",
+        "transmitRate": "Transmit Rate/Interval",
+        "deltaTemperature": "Delta Temperature",
+        "deltaHumidity": "Delta Humidity",
+        "callout": "Supports up to 127 different output modules"
+      },
       "outputs": {
-        "title": "Output Options",
+        "title": "Output Modules",
+        "description": "Convert sensor data to analog signals (0-10V, resistance) or digital protocols (BACnet IP, BACnet MS/TP, Modbus RTU).",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
@@ -3243,6 +3256,35 @@
         "temperature": "-40°F to 185°F operating",
         "humidity": "0-100% RH non-condensing",
         "rating": "IP65 rated enclosures available"
+      }
+    },
+    "analogModules": {
+      "title": "Analog Output Modules",
+      "paragraph1": "The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to Analog Output Modules through an RS485 four-wire bus. The modules convert the signal to an analog voltage or resistance for the controller. The receiver can accommodate up to 127 different modules.",
+      "paragraph2": "The modules are easily trained to a single sensor variable with a pushbutton and LCD. All modules are surface, 2.75\" snaptrack, or 35mm DIN rail mountable. They are powered by the receiver, or optionally may be powered separately when the Pluggable Terminal Block Kit is used for remote connections.",
+      "resistance": {
+        "name": "Resistance Output Module",
+        "description": "Converts temperature data into resistance for BAS inputs. Factory calibrated to output 10K-2, 10K 3, 10K 3(11K) or 20K thermistor curves."
+      },
+      "voltage": {
+        "name": "Voltage Output Module",
+        "description": "Converts temp/humidity data into linear 0-5V or 0-10V signals. Eight factory set temperature ranges and two humidity ranges available."
+      },
+      "setpoint": {
+        "name": "Setpoint Output Module",
+        "description": "Converts setpoint data into resistance or voltage for BAS. Five factory ranges with optional override function for occupancy control."
+      }
+    },
+    "digitalModules": {
+      "title": "Digital Output Modules",
+      "paragraph1": "The Wireless Receiver receives the signal from one or more wireless sensors and supplies the data to Digital Output Modules. The modules convert the data to a digital signal for integration with the ethernet communication network or the RS-485 field communication network. The receiver can accommodate up to 28 wireless sensors for digital output.",
+      "bacnetIP": {
+        "name": "BACnet IP Module",
+        "description": "Converts wireless sensor data for integration into the BMS ethernet communication network. Quick and easy web-based configuration. Surface, 2.75 snaptrack or 35mm DIN rail mountable."
+      },
+      "bacnetModbus": {
+        "name": "BACnet MS/TP or Modbus RTU Module",
+        "description": "Field-selectable protocol lets you choose BACnet MS/TP or Modbus RTU without needing multiple devices. Perfect for RS-485 field network integration. USB-C configuration."
       }
     },
     "benefits": {

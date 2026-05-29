@@ -67,17 +67,17 @@ export default async function WirelessPage({ params }: Props) {
     {
       number: 1,
       title: t('specifications.wireless.title'),
-      description: t('specifications.wireless.range'),
+      description: t('specifications.wireless.description'),
     },
     {
       number: 2,
-      title: t('categories.receiversModules.title'),
-      description: t('categories.receiversModules.description'),
+      title: t('specifications.receiver.title'),
+      description: t('specifications.receiver.description'),
     },
     {
       number: 3,
       title: t('specifications.outputs.title'),
-      description: t('specifications.outputs.analog'),
+      description: t('specifications.outputs.description'),
     },
   ];
 
@@ -149,23 +149,23 @@ export default async function WirelessPage({ params }: Props) {
   const analogModules = [
     {
       id: 'resistance-output',
-      name: t('specifications.outputs.title'),
+      name: t('analogModules.resistance.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
-      description: t('specifications.outputs.analog'),
+      description: t('analogModules.resistance.description'),
       image: '/images/wireless/modules/resistance.png',
     },
     {
       id: 'voltage-output',
-      name: t('specifications.outputs.title'),
+      name: t('analogModules.voltage.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
-      description: t('specifications.outputs.analog'),
+      description: t('analogModules.voltage.description'),
       image: '/images/wireless/modules/voltage.png',
     },
     {
       id: 'setpoint-output',
-      name: t('specifications.outputs.title'),
+      name: t('analogModules.setpoint.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
-      description: t('specifications.outputs.digital'),
+      description: t('analogModules.setpoint.description'),
       image: '/images/wireless/modules/setpoint.png',
     },
   ];
@@ -174,16 +174,16 @@ export default async function WirelessPage({ params }: Props) {
   const digitalModules = [
     {
       id: 'bacnet-ip',
-      name: t('specifications.outputs.bacnet'),
+      name: t('digitalModules.bacnetIP.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
-      description: t('specifications.outputs.digital'),
+      description: t('digitalModules.bacnetIP.description'),
       image: '/images/wireless/modules/bacnet-ip.png',
     },
     {
       id: 'bacnet-modbus',
-      name: t('specifications.outputs.modbus'),
+      name: t('digitalModules.bacnetModbus.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
-      description: t('specifications.outputs.digital'),
+      description: t('digitalModules.bacnetModbus.description'),
       image: '/images/wireless/modules/bacnet-modbus.png',
     },
   ];
@@ -191,7 +191,7 @@ export default async function WirelessPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-28">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -211,121 +211,48 @@ export default async function WirelessPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.wireless')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Left Column - Content */}
             <div>
-              <div className="mb-4 inline-block rounded-full bg-primary-400/30 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+              <div className="mb-6 inline-block rounded-full bg-primary-400/30 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 {t('hero.badge')}
               </div>
-              <h1 className="mb-6 text-4xl font-bold leading-tight lg:text-5xl">
+              <h1 className="mb-6 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl">
                 {t('hero.title')}
               </h1>
-              <p className="mb-2 text-lg font-semibold text-primary-100 lg:text-xl">
-                {t('hero.subtitle')}
-              </p>
-              <p className="mb-8 text-lg leading-relaxed text-primary-50">
+              <p className="mb-10 text-lg leading-relaxed text-primary-50 drop-shadow-md lg:text-xl">
                 {t('hero.description')}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <Link
                   href="#wireless-sensors"
-                  className="inline-flex items-center gap-2 rounded-lg bg-accent-500 px-8 py-4 font-bold text-neutral-900 transition-all hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-8 py-4 font-bold text-neutral-900 shadow-xl transition-all hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
                 >
                   {t('hero.cta')}
                 </Link>
                 <Link
                   href="/company/contact-us"
-                  className="inline-flex items-center gap-2 rounded-lg border-2 border-white bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/50"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/80 bg-white/5 px-8 py-4 font-bold text-white shadow-lg backdrop-blur-sm transition-all hover:border-white hover:bg-white/15 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
-                  {t('hero.secondaryCta')}
+                  Contact Us
                 </Link>
               </div>
             </div>
 
-            {/* Right Column - Hero Images */}
+            {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="relative overflow-hidden rounded-3xl bg-primary-600/40 p-8 shadow-2xl backdrop-blur-sm">
-                <div className="flex items-center justify-center gap-6">
-                  {/* Wireless Receiver with Signal Lines */}
-                  <div className="relative flex-shrink-0">
-                    {/* Wireless Signal Lines (Yellow) - Right side */}
-                    <div className="absolute -right-6 top-1/2 z-10 -translate-y-1/2">
-                      <div className="flex flex-col gap-1.5">
-                        <div className="h-0.5 w-8 rounded-full bg-accent-500"></div>
-                        <div className="h-0.5 w-10 rounded-full bg-accent-500"></div>
-                        <div className="h-0.5 w-8 rounded-full bg-accent-500"></div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative h-64 w-64">
-                      <Image
-                        src="/images/wireless/Image (Wireless Receiver)@3x.png"
-                        alt="BAPI Wireless Receiver"
-                        fill
-                        className="object-contain"
-                        sizes="256px"
-                        priority
-                      />
-                    </div>
-                    
-                    {/* Receiver Label */}
-                    <div className="mt-3 text-center">
-                      <div className="inline-block rounded-full bg-white/90 px-4 py-1.5 text-sm font-semibold text-primary-700 shadow-md backdrop-blur-sm">
-                        {t('categories.receiversModules.title')}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Sensor Units Row */}
-                  <div className="flex items-end gap-4">
-                    {/* White Sensor */}
-                    <div className="flex flex-col items-center">
-                      <div className="relative h-52 w-36">
-                        <Image
-                          src="/images/wireless/Quantum_Wireless_Main-1 1.png"
-                          alt="BAPI Quantum Wireless Sensor"
-                          fill
-                          className="object-contain"
-                          sizes="144px"
-                        />
-                      </div>
-                      <div className="mt-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary-700 shadow-md backdrop-blur-sm">
-                        {t('categories.roomSensors.title')}
-                      </div>
-                    </div>
-
-                    {/* Black Sensor */}
-                    <div className="flex flex-col items-center">
-                      <div className="relative h-52 w-36">
-                        <Image
-                          src="/images/wireless/Quantum_Wireless_Main-1 1.png"
-                          alt="BAPI Quantum Wireless Sensor"
-                          fill
-                          className="object-contain brightness-[0.4] saturate-0"
-                          sizes="144px"
-                        />
-                      </div>
-                      <div className="mt-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary-700 shadow-md backdrop-blur-sm">
-                        {t('categories.roomSensors.title')}
-                      </div>
-                    </div>
-
-                    {/* Slim Sensor */}
-                    <div className="flex flex-col items-center">
-                      <div className="relative h-52 w-36">
-                        <Image
-                          src="/images/wireless/Quantum-Slim-temp 1.png"
-                          alt="BAPI Quantum Slim Sensor"
-                          fill
-                          className="object-contain"
-                          sizes="144px"
-                        />
-                      </div>
-                      <div className="mt-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary-700 shadow-md backdrop-blur-sm">
-                        {t('categories.roomSensors.title')}
-                      </div>
-                    </div>
-                  </div>
+              <div className="relative h-80 overflow-hidden rounded-3xl shadow-2xl ring-4 ring-white/10 lg:h-96">
+                {/* Glow effect */}
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent-400/20 to-primary-400/20 opacity-75 blur-2xl"></div>
+                <div className="relative h-full">
+                  <Image
+                    src="/images/wireless/Wireless_HVAC_2025_Plain.png"
+                    alt="BAPI Wireless HVAC Sensors"
+                    fill
+                    className="object-contain p-4"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    priority
+                  />
                 </div>
               </div>
             </div>
@@ -338,10 +265,10 @@ export default async function WirelessPage({ params }: Props) {
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
-              {t('benefits.title')}
+              {t('features.title')}
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-neutral-600">
-              {t('benefits.subtitle')}
+              {t('features.subtitle')}
             </p>
           </div>
           <FeatureGrid features={features} columns={4} />
@@ -356,7 +283,7 @@ export default async function WirelessPage({ params }: Props) {
               {t('specifications.title')}
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-neutral-600">
-              {t('features.easyIntegration.description')}
+              {t('specifications.subtitle')}
             </p>
           </div>
 
@@ -386,7 +313,7 @@ export default async function WirelessPage({ params }: Props) {
               {t('categories.title')}
             </h2>
             <p className="mx-auto max-w-4xl text-lg text-neutral-600">
-              {t('wam.subtitle')}
+              {t('categories.subtitle')}
             </p>
           </div>
 
@@ -444,7 +371,7 @@ export default async function WirelessPage({ params }: Props) {
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           {/* Centered Title */}
           <h2 className="mb-12 text-center text-3xl font-bold text-primary-700 lg:text-4xl">
-            {t('categories.receiversModules.title')}
+            {t('specifications.receiver.title')}
           </h2>
 
           {/* Two Column Layout */}
@@ -465,33 +392,40 @@ export default async function WirelessPage({ params }: Props) {
             {/* Content - Right Side */}
             <div>
               <p className="mb-6 text-lg leading-relaxed text-neutral-700">
-                {t('categories.receiversModules.description')}
+                {t('specifications.receiver.description')}
               </p>
 
               {/* Features List */}
               <div className="mb-6">
-                <h3 className="mb-4 font-bold text-neutral-900">{t('features.title')}:</h3>
+                <h3 className="mb-4 font-bold text-neutral-900">{t('specifications.receiver.settingsTitle')}</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
                     <CheckCircleIcon
                       className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
                       aria-hidden="true"
                     />
-                    <span className="text-neutral-700">{t('features.cloudConnected.description')}</span>
+                    <span className="text-neutral-700">{t('specifications.receiver.sampleRate')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircleIcon
                       className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
                       aria-hidden="true"
                     />
-                    <span className="text-neutral-700">{t('features.easyIntegration.description')}</span>
+                    <span className="text-neutral-700">{t('specifications.receiver.transmitRate')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircleIcon
                       className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
                       aria-hidden="true"
                     />
-                    <span className="text-neutral-700">{t('features.scalable.description')}</span>
+                    <span className="text-neutral-700">{t('specifications.receiver.deltaTemperature')}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                      aria-hidden="true"
+                    />
+                    <span className="text-neutral-700">{t('specifications.receiver.deltaHumidity')}</span>
                   </li>
                 </ul>
               </div>
@@ -499,7 +433,7 @@ export default async function WirelessPage({ params }: Props) {
               {/* Callout Box */}
               <div className="rounded-lg border border-neutral-300 bg-white p-4 shadow-sm">
                 <p className="text-center font-medium text-neutral-900">
-                  {t('features.scalable.description')}
+                  {t('specifications.receiver.callout')}
                 </p>
               </div>
             </div>
@@ -515,11 +449,11 @@ export default async function WirelessPage({ params }: Props) {
             {/* Left Column - Text */}
             <div className="flex flex-col justify-center">
               <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
-                {t('specifications.outputs.title')}
+                {t('analogModules.title')}
               </h2>
               <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
-                <p>{t('specifications.outputs.analog')}</p>
-                <p>{t('specifications.outputs.digital')}</p>
+                <p>{t('analogModules.paragraph1')}</p>
+                <p>{t('analogModules.paragraph2')}</p>
               </div>
             </div>
 
@@ -589,10 +523,10 @@ export default async function WirelessPage({ params }: Props) {
             {/* Left Column - Text */}
             <div className="flex flex-col justify-center">
               <h2 className="mb-8 text-4xl font-bold text-primary-600 lg:text-5xl">
-                {t('specifications.outputs.title')}
+                {t('digitalModules.title')}
               </h2>
               <div className="space-y-6 text-base leading-relaxed text-neutral-700 lg:text-lg">
-                <p>{t('specifications.outputs.digital')}</p>
+                <p>{t('digitalModules.paragraph1')}</p>
               </div>
             </div>
 

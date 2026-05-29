@@ -3068,62 +3068,62 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Drahtlose Sensorlösungen | BAPI",
-      "description": "Komplette drahtlose Konnektivität für die Gebäudeautomation. Keine Verkabelung erforderlich - drahtlose Fernüberwachung von Temperatur, Feuchtigkeit und Umgebungsbedingungen mit Cloud-Anbindung.",
-      "keywords": "drahtlose Sensoren, drahtlose Gebäudeautomation, WAM drahtlose Anlagenüberwachung, drahtlose Temperatursensoren, drahtlose Feuchtigkeitssensoren, LoRaWAN Sensoren, cloud-verbundene Sensoren, drahtlose Umgebungsüberwachung"
+      "title": "Drahtlose HLK-Sensoren | BAPI",
+      "description": "Kostengünstige, zuverlässige drahtlose Temperatur- und Feuchtigkeitsüberwachung für Gewerbegebäude. Nahtlose Integration in Ihr bestehendes Gebäudemanagementsystem ohne neue Verkabelung.",
+      "keywords": "drahtlose Sensoren, HLK-Sensoren, Gebäudeautomation, Temperaturüberwachung, Feuchtigkeitssensoren"
     },
     "breadcrumb": {
       "home": "Startseite",
       "products": "Produkte",
-      "wireless": "Drahtlos"
+      "wireless": "Drahtlose Lösungen"
     },
     "hero": {
-      "badge": "Keine Verkabelung erforderlich",
-      "title": "Drahtlose Sensorlösungen",
-      "subtitle": "Komplette drahtlose Konnektivität für die Gebäudeautomation",
-      "description": "Drahtlose Fernüberwachung ohne Leitungsrohre, ohne Verkabelung und ohne Probleme. Zuverlässigkeit auf Unternehmensniveau für Temperatur-, Feuchtigkeits- und Umgebungsüberwachung.",
-      "cta": "Produkte erkunden",
-      "secondaryCta": "Vertrieb kontaktieren"
+      "badge": "Drahtlose Lösungen",
+      "title": "Drahtlose HLK-Sensoren",
+      "subtitle": "",
+      "description": "Kostengünstige, zuverlässige drahtlose Temperatur- und Feuchtigkeitsüberwachung für Gewerbegebäude. Nahtlose Integration in Ihr bestehendes Gebäudemanagementsystem ohne neue Verkabelung.",
+      "cta": "Jetzt starten",
+      "secondaryCta": ""
     },
     "features": {
-      "title": "Warum BAPI Drahtlos wählen?",
-      "subtitle": "Drahtlose Lösungen auf Unternehmensniveau für Gebäudeautomationsprofis entwickelt",
+      "title": "Warum drahtlos wählen?",
+      "subtitle": "Reduzieren Sie Installationskosten, erhöhen Sie die Flexibilität und vereinfachen Sie Nachrüstungen mit unserer bewährten drahtlosen Technologie.",
       "noWiring": {
         "title": "Keine Verkabelung erforderlich",
-        "description": "Schnelle Installation ohne Leitungsrohr- oder Verkabelungskosten. Sensoren in Minuten, nicht Stunden installieren."
+        "description": "Eliminieren Sie teure Kabelverlegungen und reduzieren Sie die Installationszeit um bis zu 70%."
       },
       "longRange": {
-        "title": "Große Reichweite",
-        "description": "Bis zu 1000 ft Sichtlinie mit LoRaWAN-Technologie. Durchdringt Wände und Böden."
+        "title": "Weitreichendes Signal",
+        "description": "Bis zu 120m Reichweite durch Wände und Böden in typischen Gewerbegebäuden."
       },
       "reliable": {
-        "title": "Zuverlässigkeit auf Unternehmensniveau",
-        "description": "Leistung in Industriequalität für kritische Anwendungen. 5 Jahre Batterielaufzeit bei den meisten Modellen."
+        "title": "10 Jahre Batterielebensdauer",
+        "description": "Vom Benutzer austauschbare Batterien halten bis zu 10 Jahre bei optimierten Übertragungsintervallen."
       },
       "cloudConnected": {
         "title": "Cloud-Konnektivität",
-        "description": "24/7 Fernüberwachung mit sofortigen Benachrichtigungen. Greifen Sie von überall auf Ihre Daten zu."
+        "description": "24/7 Fernüberwachung mit sofortigen Alarmen. Greifen Sie von überall auf Ihre Daten zu."
       },
       "easyIntegration": {
         "title": "Einfache Integration",
-        "description": "Nahtlose Integration in bestehende BAS-Systeme. Standard BACnet- und Modbus-Ausgänge."
+        "description": "Nahtlose Integration in bestehende Gebäudeautomationssysteme. Standard BACnet und Modbus Ausgänge."
       },
       "scalable": {
-        "title": "Hochskalierbar",
-        "description": "Von einzelnen Räumen bis hin zu ganzen Campusgeländen. Fügen Sie Sensoren hinzu, während Ihre Anforderungen wachsen."
+        "title": "Einfache Skalierbarkeit",
+        "description": "Bis zu 127 Sensoren pro Empfänger. Erweitern Sie Ihr System entsprechend Ihren wachsenden Anforderungen."
       }
     },
     "categories": {
-      "title": "Drahtlose Produktkategorien",
-      "subtitle": "Komplette drahtlose Lösungen für jede Gebäudeautomationsanwendung",
+      "title": "Drahtlose Sensoren",
+      "subtitle": "Die gleichen hochwertigen, 100% getesteten Sensoren, die BAPI seit 30 Jahren herstellt, jetzt mit drahtloser Integration. Wählen Sie den perfekten Sensor für Ihre Anwendung.",
       "roomSensors": {
         "title": "Raumsensoren",
-        "description": "Temperatur- und Feuchtigkeitssensoren für Innenumgebungen",
+        "description": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
         "cta": "Produkte anzeigen"
       },
-      "nonRoomSensors": {
-        "title": "Nicht-Raumsensoren",
-        "description": "Kanal-, Außenluft-, Eintauch- und Lebensmittelsonden-Sensoren",
+      "nonRoomSensoren": {
+        "title": "Nicht-Raum-Sensoren",
+        "description": "Kanal-, Außenluft-, Eintauch- und Lebensmittelsonden",
         "cta": "Produkte anzeigen"
       },
       "receiversModules": {
@@ -3139,15 +3139,15 @@
     },
     "wam": {
       "badge": "Premium-Lösung",
-      "title": "WAM™ Drahtlose Anlagenüberwachung",
-      "subtitle": "24/7 Fernüberwachung mit sofortigen Benachrichtigungen",
-      "description": "Schützen Sie Ihre kritischen Anlagen mit drahtloser Temperatur- und Umgebungsüberwachung auf Unternehmensniveau. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
+      "title": "WAM™ Wireless Asset Monitoring",
+      "subtitle": "24/7 Fernüberwachung mit sofortigen Alarmen",
+      "description": "Schützen Sie Ihre kritischen Anlagen mit professioneller drahtloser Temperatur- und Umgebungsüberwachung. Keine Verkabelung erforderlich - in wenigen Minuten einsatzbereit.",
       "features": {
         "monitoring": "24/7 Fernüberwachung",
-        "alerts": "Sofortige E-Mail- & SMS-Benachrichtigungen",
+        "alerts": "Sofortige E-Mail- & SMS-Alarme",
         "cloud": "Cloud-basiertes Dashboard",
-        "battery": "5 Jahre Batterielaufzeit",
-        "range": "1000 ft Reichweite",
+        "battery": "5 Jahre Batterielebensdauer",
+        "range": "300m Reichweite",
         "scalable": "Unbegrenzte Sensoren"
       },
       "cta": "Mehr über WAM™ erfahren",
@@ -3155,7 +3155,7 @@
     },
     "applications": {
       "title": "Häufige Anwendungen",
-      "subtitle": "Drahtlose Lösungen für diverse Gebäudeautomationsherausforderungen",
+      "subtitle": "Drahtlose Lösungen für vielfältige Herausforderungen in der Gebäudeautomation",
       "retrofits": {
         "title": "Nachrüstprojekte",
         "description": "Sensoren hinzufügen ohne teure Verkabelung oder Wandschäden"
@@ -3174,24 +3174,37 @@
       },
       "energyManagement": {
         "title": "Energiemanagement",
-        "description": "HVAC-Leistung mit drahtloser Datenerfassung optimieren"
+        "description": "Optimieren Sie die HLK-Leistung mit drahtloser Datenerfassung"
       },
       "iaq": {
-        "title": "Innenraumluftqualität",
+        "title": "Raumluftqualität",
         "description": "Drahtlose CO₂-, VOC- und Partikelüberwachung"
       }
     },
     "specifications": {
-      "title": "Technische Spezifikationen",
+      "title": "Funktionsweise",
+      "subtitle": "Unser drahtloses System bietet vollständige Flexibilität mit mehreren Integrationsoptionen, die zu Ihrer Gebäudeautomation passen.",
       "wireless": {
-        "title": "Drahtlose Technologie",
+        "title": "Drahtlose Sensoren",
+        "description": "Wählen Sie aus Temperatur-, Feuchtigkeits- oder Kombinationssensoren für jede Anwendung von Außenluft über Kanal bis zur Raumüberwachung.",
         "protocol": "LoRaWAN 1.0.3",
-        "frequency": "915 MHz (US/Kanada)",
-        "range": "Bis zu 1000 ft Sichtlinie",
+        "frequency": "915 MHz (USA/Kanada)",
+        "range": "Bis zu 300m Sichtlinie",
         "battery": "5 Jahre austauschbare Lithiumbatterie"
       },
+      "receiver": {
+        "title": "Drahtloser Empfänger",
+        "description": "Der drahtlose Empfänger sammelt Daten von einem oder mehreren drahtlosen Sensoren und verteilt sie an Ausgangsmodule für nahtlose Integration in das Gebäudemanagementsystem. Mit feldwählbaren Einstellungen können Sie die Leistung anpassen, um die Batterielebensdauer zu maximieren und gleichzeitig sicherzustellen, dass Ihr Gebäudemanagementsystem die benötigten Daten erhält.",
+        "settingsTitle": "Feldwählbare Einstellungen:",
+        "sampleRate": "Abtastrate/Intervall",
+        "transmitRate": "Übertragungsrate/Intervall",
+        "deltaTemperature": "Delta-Temperatur",
+        "deltaHumidity": "Delta-Feuchtigkeit",
+        "callout": "Unterstützt bis zu 127 verschiedene Ausgangsmodule"
+      },
       "outputs": {
-        "title": "Ausgangsoptionen",
+        "title": "Ausgangsmodule",
+        "description": "Wandeln Sie Sensordaten in analoge Signale (0-10V, Widerstand) oder digitale Protokolle (BACnet IP, BACnet MS/TP, Modbus RTU) um.",
         "bacnet": "BACnet MS/TP",
         "modbus": "Modbus RTU",
         "analog": "4-20mA, 0-5VDC, 0-10VDC",
@@ -3199,29 +3212,58 @@
       },
       "environmental": {
         "title": "Umgebungsbedingungen",
-        "temperature": "-40°F bis 185°F Betrieb",
-        "humidity": "0-100% rF nichtkondensierend",
+        "temperature": "-40°C bis 85°C Betrieb",
+        "humidity": "0-100% rF nicht kondensierend",
         "rating": "IP65-zertifizierte Gehäuse verfügbar"
+      }
+    },
+    "analogModules": {
+      "title": "Analoge Ausgangsmodule",
+      "paragraph1": "Der drahtlose Empfänger empfängt das Signal von einem oder mehreren drahtlosen Sensoren und liefert die Daten über einen RS485-Vierdrahtbus an analoge Ausgangsmodule. Die Module wandeln das Signal in eine analoge Spannung oder einen Widerstand für den Controller um. Der Empfänger kann bis zu 127 verschiedene Module aufnehmen.",
+      "paragraph2": "Die Module werden einfach mit einem Druckknopf und LCD auf eine einzelne Sensorvariable trainiert. Alle Module sind oberflächenmontierbar, 2,75\" Snaptrack oder 35mm DIN-Schienen montierbar. Sie werden vom Empfänger mit Strom versorgt oder können optional separat versorgt werden, wenn das steckbare Klemmenblocksatz für Fernverbindungen verwendet wird.",
+      "resistance": {
+        "name": "Widerstandsausgangsmodul",
+        "description": "Wandelt Temperaturdaten in Widerstand für Gebäudeautomationseingänge um. Werkskalibriert für 10K-2, 10K 3, 10K 3(11K) oder 20K Thermistorkurven."
+      },
+      "voltage": {
+        "name": "Spannungsausgangsmodul",
+        "description": "Wandelt Temperatur-/Feuchtigkeitsdaten in lineare 0-5V oder 0-10V Signale um. Acht werkseitig eingestellte Temperaturbereiche und zwei Feuchtigkeitsbereiche verfügbar."
+      },
+      "setpoint": {
+        "name": "Sollwert-Ausgangsmodul",
+        "description": "Wandelt Sollwertdaten in Widerstand oder Spannung für Gebäudeautomation um. Fünf Werksbereiche mit optionaler Überschreibungsfunktion für Belegungssteuerung."
+      }
+    },
+    "digitalModules": {
+      "title": "Digitale Ausgangsmodule",
+      "paragraph1": "Der drahtlose Empfänger empfängt das Signal von einem oder mehreren drahtlosen Sensoren und liefert die Daten an digitale Ausgangsmodule. Die Module wandeln die Daten in ein digitales Signal für die Integration in das Ethernet-Kommunikationsnetzwerk oder das RS-485-Feldkommunikationsnetzwerk um. Der Empfänger kann bis zu 28 drahtlose Sensoren für digitale Ausgabe aufnehmen.",
+      "bacnetIP": {
+        "name": "BACnet IP Modul",
+        "description": "Wandelt drahtlose Sensordaten für die Integration in das Ethernet-Kommunikationsnetzwerk des Gebäudemanagementsystems um. Schnelle und einfache webbasierte Konfiguration. Oberflächenmontage, 2,75 Snaptrack oder 35mm DIN-Schienen montierbar."
+      },
+      "bacnetModbus": {
+        "name": "BACnet MS/TP oder Modbus RTU Modul",
+        "description": "Feldwählbares Protokoll ermöglicht die Wahl zwischen BACnet MS/TP oder Modbus RTU ohne mehrere Geräte zu benötigen. Perfekt für RS-485 Feldnetzwerkintegration. USB-C Konfiguration."
       }
     },
     "benefits": {
       "title": "Vorteile drahtloser Sensoren",
-      "subtitle": "Warum Ingenieure BAPI-Drahtloslösungen wählen",
+      "subtitle": "Warum Ingenieure BAPI drahtlose Lösungen wählen",
       "costSavings": {
         "title": "Installationskosten reduzieren",
         "description": "Eliminieren Sie Leitungsrohr-, Verkabelungs- und Arbeitskosten. Drahtlose Installation ist bis zu 75% schneller als herkömmliche verkabelte Sensoren."
       },
       "flexibility": {
         "title": "Maximale Flexibilität",
-        "description": "Platzieren Sie Sensoren genau dort, wo sie benötigt werden, ohne Verkabelungsbeschränkungen. Sensoren einfach umplatzieren oder hinzufügen, wenn sich Anforderungen ändern."
+        "description": "Platzieren Sie Sensoren genau dort, wo sie benötigt werden, ohne Verkabelungseinschränkungen. Sensoren einfach verlagern oder hinzufügen, wenn sich Anforderungen ändern."
       },
       "reliability": {
-        "title": "Zuverlässigkeit auf Unternehmensniveau",
-        "description": "Komponenten in Industriequalität und 5 Jahre Garantie. Vertraut von Krankenhäusern, Rechenzentren und kritischen Einrichtungen weltweit."
+        "title": "Unternehmenszuverlässigkeit",
+        "description": "Industrietaugliche Komponenten und 5 Jahre Garantie. Vertraut von Krankenhäusern, Rechenzentren und kritischen Einrichtungen weltweit."
       },
       "remoteAccess": {
         "title": "Fernüberwachung",
-        "description": "Greifen Sie von überall auf Echtzeitdaten zu und erhalten Sie sofortige Benachrichtigungen. Cloud-basiertes Dashboard mit historischen Trends und Berichten."
+        "description": "Greifen Sie von überall auf Echtzeitdaten zu und erhalten Sie sofortige Alarme. Cloud-basiertes Dashboard mit historischen Trends und Berichten."
       }
     },
     "comparison": {
@@ -3236,7 +3278,7 @@
       "cost": {
         "label": "Installationskosten",
         "wireless": "Niedrig (keine Leitungsrohre/Verkabelung)",
-        "wired": "Hoch (Arbeit + Materialien)"
+        "wired": "Hoch (Arbeit + Material)"
       },
       "flexibility": {
         "label": "Flexibilität",
@@ -3245,7 +3287,7 @@
       },
       "range": {
         "label": "Abdeckungsbereich",
-        "wireless": "Bis zu 1000 ft",
+        "wireless": "Bis zu 300m",
         "wired": "Durch Verkabelung begrenzt"
       },
       "scalability": {
@@ -3256,17 +3298,17 @@
     },
     "cta": {
       "title": "Bereit für drahtlos?",
-      "description": "Erkunden Sie unser komplettes Sortiment drahtloser Sensoren oder sprechen Sie mit einem Produktspezialisten über Ihre spezielle Anwendung.",
+      "description": "Erkunden Sie unser komplettes Sortiment drahtloser Sensoren oder sprechen Sie mit einem Produktspezialisten über Ihre spezifische Anwendung.",
       "primaryButton": "Drahtlose Produkte durchsuchen",
-      "secondaryButton": "Vertrieb kontaktieren",
+      "secondaryButton": "Mit Vertrieb sprechen",
       "phoneLabel": "Oder rufen Sie uns an unter",
       "phone": "(608) 735-4800"
     },
     "support": {
       "title": "Drahtlose Unterstützung & Ressourcen",
       "siteVerification": {
-        "title": "Standortverifizierungs-Tool",
-        "description": "Drahtlose Signalstärke vor Installation testen",
+        "title": "Standortverifizierungstool",
+        "description": "Testen Sie die drahtlose Signalstärke vor der Installation",
         "cta": "Tool herunterladen"
       },
       "installationGuide": {
@@ -3275,9 +3317,47 @@
         "cta": "Anleitungen anzeigen"
       },
       "technicalSupport": {
-        "title": "Technische Unterstützung",
-        "description": "Expertenhelfe bei der Entwicklung drahtloser Systeme",
+        "title": "Technischer Support",
+        "description": "Expertenunterstützung bei der Planung drahtloser Systeme",
         "cta": "Support kontaktieren"
+      }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Außenluftsensor",
+        "feature1": "Temperatur oder Temp/Feuchtigkeit",
+        "feature2": "Barometrische Druckmessung",
+        "feature3": "Optionale Lichtpegelmessung"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperatur oder Temp/Feuchtigkeit",
+        "feature2": "Optionaler Temperatursollwert",
+        "feature3": "Nutzer-Überschreibungstaste"
+      },
+      "duct": {
+        "name": "Kanalsensor",
+        "feature1": "Temperatur oder Temp/Feuchtigkeit",
+        "feature2": "IP66-zertifiziertes BAPI-Box Gehäuse",
+        "feature3": "Edelstahlsonden 10 bis 45cm"
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperatur oder Temp/Feuchtigkeit",
+        "feature2": "Interner oder externer Sensor",
+        "feature3": "Perfekt für Gefrier- und Kühlgeräte"
+      },
+      "immersion": {
+        "name": "Eintauchtemperatur",
+        "feature1": "Robustes IP66-zertifiziertes Gehäuse",
+        "feature2": "Edelstahlsonden (5-20cm)",
+        "feature3": "Ideal für Rohr- und Tanküberwachung"
+      },
+      "thermobuffer": {
+        "name": "Thermobuffer Sensor",
+        "feature1": "Ideal für Gefrier- und Kühlgeräte",
+        "feature2": "2 oder 4 angeschlossene Kammer",
+        "feature3": "Verfolgt Inhaltstemperatur vs. Lufttemperatur"
       }
     }
   }

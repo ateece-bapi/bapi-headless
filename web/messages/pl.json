@@ -3278,6 +3278,44 @@
         "description": "Ekspertowa pomoc w projektowaniu systemów bezprzewodowych",
         "cta": "Skontaktuj się ze Wsparciem"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Czujnik Powietrza Zewnętrznego",
+        "feature1": "Temperature lub Temp/Humidity",
+        "feature2": "Wykrywanie ciśnienia barometrycznego",
+        "feature3": "Opcjonalne wykrywanie poziomu światła"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature lub Temp/Humidity",
+        "feature2": "Opcjonalny punkt nastawy temperatury",
+        "feature3": "Przycisk nadpisania przez użytkownika"
+      },
+      "duct": {
+        "name": "Czujnik Kanałowy",
+        "feature1": "Temperature lub Temp/Humidity",
+        "feature2": "Obudowa BAPI-Box o klasie IP66",
+        "feature3": "Sondy ze stali nierdzewnej 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature lub Temp/Humidity",
+        "feature2": "Czujnik wewnętrzny lub zdalny",
+        "feature3": "Idealny do zamrażarek i chłodni"
+      },
+      "immersion": {
+        "name": "Temperature Zanurzeniowa",
+        "feature1": "Wytrzymała obudowa o klasie IP66",
+        "feature2": "Sondy ze stali nierdzewnej (2-8\")",
+        "feature3": "Idealny do monitorowania rur i zbiorników"
+      },
+      "thermobuffer": {
+        "name": "Czujnik Thermobuffer",
+        "feature1": "Idealny do zamrażarek i chłodni",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Śledzi temperaturę zawartości względem temperatury powietrza"
+      }
     }
   }
 }

@@ -3276,6 +3276,44 @@
         "description": "Ayuda experta con diseño de sistemas inalámbricos",
         "cta": "Contactar Soporte"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Sensor de Aire Exterior",
+        "feature1": "Temperature o Temp/Humidity",
+        "feature2": "Detección de presión barométrica",
+        "feature3": "Detección opcional de nivel de luz"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature o Temp/Humidity",
+        "feature2": "Punto de ajuste de temperatura opcional",
+        "feature3": "Botón de anulación del ocupante"
+      },
+      "duct": {
+        "name": "Sensor de Conducto",
+        "feature1": "Temperature o Temp/Humidity",
+        "feature2": "Carcasa BAPI-Box con clasificación IP66",
+        "feature3": "Sondas de acero inoxidable 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature o Temp/Humidity",
+        "feature2": "Sensor interno o remoto",
+        "feature3": "Perfecto para congeladores y refrigeradores"
+      },
+      "immersion": {
+        "name": "Temperature de Inmersión",
+        "feature1": "Carcasa resistente con clasificación IP66",
+        "feature2": "Sondas de acero inoxidable (2-8\")",
+        "feature3": "Ideal para monitoreo de tuberías y tanques"
+      },
+      "thermobuffer": {
+        "name": "Sensor Thermobuffer",
+        "feature1": "Ideal para congeladores y refrigeradores",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Rastrea temperatura del contenido vs temperatura del aire"
+      }
     }
   }
 }

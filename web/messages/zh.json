@@ -3278,6 +3278,44 @@
         "description": "无线系统设计专家帮助",
         "cta": "联系支持"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "室外空气传感器",
+        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature2": "大气压力感应",
+        "feature3": "可选光照水平感应"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature2": "可选温度设定点",
+        "feature3": "住户超控按钮"
+      },
+      "duct": {
+        "name": "管道传感器",
+        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature2": "IP66级BAPI-Box外壳",
+        "feature3": "不锈钢探头 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature 或 Temperature/Humidity",
+        "feature2": "内置或远程传感器",
+        "feature3": "完美适用于冷冻柜和冷却器"
+      },
+      "immersion": {
+        "name": "浸入式Temperature",
+        "feature1": "坚固的IP66级外壳",
+        "feature2": "不锈钢探头 (2-8\")",
+        "feature3": "适用于管道和储罐监测"
+      },
+      "thermobuffer": {
+        "name": "热缓冲传感器",
+        "feature1": "适用于冷冻柜和冷却器",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "跟踪内容物温度与空气温度"
+      }
     }
   }
 }

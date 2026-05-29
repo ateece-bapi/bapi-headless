@@ -3277,6 +3277,44 @@
         "description": "वायरलेस सिस्टम डिजाइन में विशेषज्ञ सहायता",
         "cta": "सहायता संपर्क करें"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "बाहरी वायु सेंसर",
+        "feature1": "Temperature या Temp/Humidity",
+        "feature2": "बैरोमेट्रिक दबाव संवेदन",
+        "feature3": "वैकल्पिक प्रकाश स्तर संवेदन"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature या Temp/Humidity",
+        "feature2": "वैकल्पिक temperature सेटपॉइंट",
+        "feature3": "उपयोगकर्ता ओवरराइड बटन"
+      },
+      "duct": {
+        "name": "डक्ट सेंसर",
+        "feature1": "Temperature या Temp/Humidity",
+        "feature2": "IP66-रेटेड BAPI-Box एन्क्लोज़र",
+        "feature3": "स्टेनलेस स्टील प्रोब 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature या Temp/Humidity",
+        "feature2": "आंतरिक या रिमोट सेंसर",
+        "feature3": "फ्रीज़र और कूलर के लिए बिल्कुल उपयुक्त"
+      },
+      "immersion": {
+        "name": "विसर्जन Temperature",
+        "feature1": "मजबूत IP66-रेटेड एन्क्लोज़र",
+        "feature2": "स्टेनलेस स्टील प्रोब (2-8\")",
+        "feature3": "पाइप और टैंक निगरानी के लिए आदर्श"
+      },
+      "thermobuffer": {
+        "name": "थर्मोबफर सेंसर",
+        "feature1": "फ्रीज़र और कूलर के लिए आदर्श",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "सामग्री temp बनाम वायु temp को ट्रैक करता है"
+      }
     }
   }
 }

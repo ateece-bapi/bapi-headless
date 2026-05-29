@@ -3278,6 +3278,44 @@
         "description": "ความช่วยเหลือจากผู้เชี่ยวชาญในการออกแบบระบบไร้สาย",
         "cta": "ติดต่อฝ่ายสนับสนุน"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "เซ็นเซอร์อากาศภายนอก",
+        "feature1": "Temperature หรือ Temp/Humidity",
+        "feature2": "การตรวจจับความดันบรรยากาศ",
+        "feature3": "การตรวจจับระดับแสงเสริม"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature หรือ Temp/Humidity",
+        "feature2": "จุดตั้งค่า temperature เสริม",
+        "feature3": "ปุ่มควบคุมสำหรับผู้ใช้งาน"
+      },
+      "duct": {
+        "name": "เซ็นเซอร์ท่อลม",
+        "feature1": "Temperature หรือ Temp/Humidity",
+        "feature2": "กล่องครอบ BAPI-Box มาตรฐาน IP66",
+        "feature3": "หัววัดสแตนเลส 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature หรือ Temp/Humidity",
+        "feature2": "เซ็นเซอร์ภายในหรือภายนอก",
+        "feature3": "เหมาะสำหรับห้องแช่แข็งและห้องเย็น"
+      },
+      "immersion": {
+        "name": "Immersion Temperature",
+        "feature1": "กล่องครอบแข็งแรงมาตรฐาน IP66",
+        "feature2": "หัววัดสแตนเลส (2-8\")",
+        "feature3": "เหมาะสำหรับการตรวจจับท่อและถังเก็บ"
+      },
+      "thermobuffer": {
+        "name": "เซ็นเซอร์ Thermobuffer",
+        "feature1": "เหมาะสำหรับห้องแช่แข็งและห้องเย็น",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "ติดตามอุณหภูมิเนื้อหาเทียบกับอุณหภูมิอากาศ"
+      }
     }
   }
 }

@@ -3320,6 +3320,44 @@
         "description": "Expert help with wireless system design",
         "cta": "Contact Support"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Outside Air Sensor",
+        "feature1": "Temperature or Temp/Humidity",
+        "feature2": "Barometric pressure sensing",
+        "feature3": "Optional light level sensing"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature or Temp/Humidity",
+        "feature2": "Optional temperature setpoint",
+        "feature3": "Occupant override button"
+      },
+      "duct": {
+        "name": "Duct Sensor",
+        "feature1": "Temperature or Temp/Humidity",
+        "feature2": "IP66-rated BAPI-Box enclosure",
+        "feature3": "Stainless steel probes 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature or Temp/Humidity",
+        "feature2": "Internal or remote sensor",
+        "feature3": "Perfect for freezers & coolers"
+      },
+      "immersion": {
+        "name": "Immersion Temperature",
+        "feature1": "Rugged IP66-rated enclosure",
+        "feature2": "Stainless steel probes (2-8\")",
+        "feature3": "Ideal for pipe and tank monitoring"
+      },
+      "thermobuffer": {
+        "name": "Thermobuffer Sensor",
+        "feature1": "Ideal for freezers and coolers",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Tracks contents temp vs air temp"
+      }
     }
   }
 }

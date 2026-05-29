@@ -3279,6 +3279,44 @@
         "description": "Hỗ trợ chuyên gia với thiết kế hệ thống không dây",
         "cta": "Liên Hệ Hỗ Trợ"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Cảm biến không khí ngoài trời",
+        "feature1": "Temperature hoặc Temp/Humidity",
+        "feature2": "Cảm biến áp suất khí quyển",
+        "feature3": "Cảm biến mức độ ánh sáng tùy chọn"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature hoặc Temp/Humidity",
+        "feature2": "Điểm đặt nhiệt độ tùy chọn",
+        "feature3": "Nút ghi đè của người sử dụng"
+      },
+      "duct": {
+        "name": "Cảm biến ống dẫn",
+        "feature1": "Temperature hoặc Temp/Humidity",
+        "feature2": "Vỏ bọc BAPI-Box chuẩn IP66",
+        "feature3": "Đầu dò thép không gỉ 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature hoặc Temp/Humidity",
+        "feature2": "Cảm biến nội bộ hoặc từ xa",
+        "feature3": "Hoàn hảo cho tủ đông và tủ lạnh"
+      },
+      "immersion": {
+        "name": "Nhiệt độ ngâm",
+        "feature1": "Vỏ bọc bền chuẩn IP66",
+        "feature2": "Đầu dò thép không gỉ (2-8\")",
+        "feature3": "Lý tưởng cho giám sát ống và bể"
+      },
+      "thermobuffer": {
+        "name": "Cảm biến Thermobuffer",
+        "feature1": "Lý tưởng cho tủ đông và tủ lạnh",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Theo dõi nhiệt độ nội dung so với nhiệt độ không khí"
+      }
     }
   }
 }

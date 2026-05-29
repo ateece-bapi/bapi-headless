@@ -81,31 +81,67 @@ export default async function WirelessPage({ params }: Props) {
     },
   ];
 
-  // Wireless product categories with translated content
-  const productCategories = [
+  // Wireless sensors - 6 product cards with translations
+  const wirelessSensors = [
     {
-      title: t('categories.roomSensors.title'),
-      description: t('categories.roomSensors.description'),
-      href: '/products/room-temperature-sensors',
-      image: '/images/wireless/Image (BAPI-Stat Quantum).png',
-    },
-    {
-      title: t('categories.nonRoomSensors.title'),
-      description: t('categories.nonRoomSensors.description'),
-      href: '/products/non-room-temperature-sensors',
+      name: t('products.outsideAir.name'),
+      slug: 'wireless-outside-air-sensor',
+      features: [
+        t('products.outsideAir.feature1'),
+        t('products.outsideAir.feature2'),
+        t('products.outsideAir.feature3'),
+      ],
       image: '/images/wireless/Image (Outside Air Sensor).png',
     },
     {
-      title: t('categories.receiversModules.title'),
-      description: t('categories.receiversModules.description'),
-      href: '/products/bluetooth-wireless',
-      image: '/images/wireless/Image (Wireless Receiver).png',
+      name: t('products.quantum.name'),
+      slug: 'bapi-stat-quantum-wireless',
+      features: [
+        t('products.quantum.feature1'),
+        t('products.quantum.feature2'),
+        t('products.quantum.feature3'),
+      ],
+      image: '/images/wireless/Image (BAPI-Stat Quantum).png',
     },
     {
-      title: t('categories.accessories.title'),
-      description: t('categories.accessories.description'),
-      href: '/products/accessories',
+      name: t('products.duct.name'),
+      slug: 'wireless-duct-sensor',
+      features: [
+        t('products.duct.feature1'),
+        t('products.duct.feature2'),
+        t('products.duct.feature3'),
+      ],
       image: '/images/wireless/Image (Duct Sensor).png',
+    },
+    {
+      name: t('products.quantumSlim.name'),
+      slug: 'bapi-stat-quantum-slim',
+      features: [
+        t('products.quantumSlim.feature1'),
+        t('products.quantumSlim.feature2'),
+        t('products.quantumSlim.feature3'),
+      ],
+      image: '/images/wireless/Image (BAPI-Stat Quantum Slim).png',
+    },
+    {
+      name: t('products.immersion.name'),
+      slug: 'wireless-immersion-temperature',
+      features: [
+        t('products.immersion.feature1'),
+        t('products.immersion.feature2'),
+        t('products.immersion.feature3'),
+      ],
+      image: '/images/wireless/Image (Immersion Temperature).png',
+    },
+    {
+      name: t('products.thermobuffer.name'),
+      slug: 'wireless-thermobuffer',
+      features: [
+        t('products.thermobuffer.feature1'),
+        t('products.thermobuffer.feature2'),
+        t('products.thermobuffer.feature3'),
+      ],
+      image: '/images/wireless/Image (Thermobuffer Sensor).png',
     },
   ];
 
@@ -354,21 +390,21 @@ export default async function WirelessPage({ params }: Props) {
             </p>
           </div>
 
-          {/* 2x2 Grid */}
-          <div className="grid gap-8 md:grid-cols-2">
-            {productCategories.map((category, index) => (
+          {/* 3x2 Grid */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {wirelessSensors.map((sensor) => (
               <div
-                key={index}
+                key={sensor.slug}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all hover:shadow-xl"
               >
                 {/* Product Image */}
                 <div className="relative h-64 bg-neutral-50 p-16">
                   <Image
-                    src={category.image}
-                    alt={category.title}
+                    src={sensor.image}
+                    alt={sensor.name}
                     fill
                     className="object-contain"
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
                 </div>
 
@@ -377,14 +413,24 @@ export default async function WirelessPage({ params }: Props) {
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
-                  <h3 className="mb-4 text-xl font-bold text-primary-600">{category.title}</h3>
-                  <p className="mb-8 flex-1 text-base text-neutral-700">{category.description}</p>
+                  <h3 className="mb-8 text-xl font-bold text-primary-600">{sensor.name}</h3>
+                  <ul className="mb-12 flex-1 space-y-4 text-base text-neutral-700">
+                    {sensor.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircleIcon
+                          className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                          aria-hidden="true"
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <Link
-                    href={category.href}
+                    href={`/product/${sensor.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
-                    aria-label={`${tCommon('learnMore')} ${category.title}`}
+                    aria-label={`${tCommon('learnMore')} ${sensor.name}`}
                   >
-                    {t('categories.roomSensors.cta')}
+                    {tCommon('learnMore')}
                   </Link>
                 </div>
               </div>

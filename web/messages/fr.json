@@ -3279,6 +3279,44 @@
         "description": "Aide d'expert pour conception de système sans fil",
         "cta": "Contacter Support"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Capteur d'Air Extérieur",
+        "feature1": "Temperature ou Temp/Humidity",
+        "feature2": "Détection de pression barométrique",
+        "feature3": "Détection de niveau de lumière optionnelle"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature ou Temp/Humidity",
+        "feature2": "Point de consigne de température optionnel",
+        "feature3": "Bouton de dérogation occupant"
+      },
+      "duct": {
+        "name": "Capteur de Conduit",
+        "feature1": "Temperature ou Temp/Humidity",
+        "feature2": "Boîtier BAPI-Box certifié IP66",
+        "feature3": "Sondes en acier inoxydable 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature ou Temp/Humidity",
+        "feature2": "Capteur interne ou distant",
+        "feature3": "Parfait pour congélateurs et refroidisseurs"
+      },
+      "immersion": {
+        "name": "Temperature d'Immersion",
+        "feature1": "Boîtier robuste certifié IP66",
+        "feature2": "Sondes en acier inoxydable (2-8\")",
+        "feature3": "Idéal pour surveillance de tuyaux et réservoirs"
+      },
+      "thermobuffer": {
+        "name": "Capteur Thermobuffer",
+        "feature1": "Idéal pour congélateurs et refroidisseurs",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Suit la température du contenu vs température de l'air"
+      }
     }
   }
 }

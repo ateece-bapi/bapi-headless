@@ -3279,6 +3279,44 @@
         "description": "Expertenhelfe bei der Entwicklung drahtloser Systeme",
         "cta": "Support kontaktieren"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "Außenluft-Sensor",
+        "feature1": "Temperature oder Temp/Humidity",
+        "feature2": "Barometrische Druckmessung",
+        "feature3": "Optionale Lichtpegelmessung"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature oder Temp/Humidity",
+        "feature2": "Optionaler Temperatursollwert",
+        "feature3": "Nutzer-Override-Taste"
+      },
+      "duct": {
+        "name": "Kanal-Sensor",
+        "feature1": "Temperature oder Temp/Humidity",
+        "feature2": "IP66-zertifiziertes BAPI-Box Gehäuse",
+        "feature3": "Edelstahlsonden 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature oder Temp/Humidity",
+        "feature2": "Interner oder externer Sensor",
+        "feature3": "Perfekt für Tiefkühlräume & Kühlräume"
+      },
+      "immersion": {
+        "name": "Eintauch-Temperature",
+        "feature1": "Robustes IP66-zertifiziertes Gehäuse",
+        "feature2": "Edelstahlsonden (2-8\")",
+        "feature3": "Ideal für Rohr- und Tanküberwachung"
+      },
+      "thermobuffer": {
+        "name": "Thermobuffer-Sensor",
+        "feature1": "Ideal für Tiefkühlräume und Kühlräume",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "Verfolgt Inhaltstemperatur vs Lufttemperatur"
+      }
     }
   }
 }

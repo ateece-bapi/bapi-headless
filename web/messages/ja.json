@@ -3278,6 +3278,44 @@
         "description": "ワイヤレスシステム設計の専門的支援",
         "cta": "サポートに連絡"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "外気センサー",
+        "feature1": "Temperature または Temperature/Humidity",
+        "feature2": "気圧センシング",
+        "feature3": "オプションの照度センシング"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature または Temperature/Humidity",
+        "feature2": "オプションの温度設定点",
+        "feature3": "居住者オーバーライドボタン"
+      },
+      "duct": {
+        "name": "ダクトセンサー",
+        "feature1": "Temperature または Temperature/Humidity",
+        "feature2": "IP66定格BAPI-Boxエンクロージャー",
+        "feature3": "ステンレス鋼プローブ 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature または Temperature/Humidity",
+        "feature2": "内蔵またはリモートセンサー",
+        "feature3": "冷凍庫・冷蔵庫に最適"
+      },
+      "immersion": {
+        "name": "浸漬Temperature",
+        "feature1": "堅牢なIP66定格エンクロージャー",
+        "feature2": "ステンレス鋼プローブ (2-8\")",
+        "feature3": "配管・タンク監視に最適"
+      },
+      "thermobuffer": {
+        "name": "サーモバッファーセンサー",
+        "feature1": "冷凍庫・冷蔵庫に最適",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "内容物温度対空気温度を追跡"
+      }
     }
   }
 }

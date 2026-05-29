@@ -3279,6 +3279,44 @@
         "description": "مساعدة الخبراء في تصميم النظام اللاسلكي",
         "cta": "اتصل بالدعم"
       }
+    },
+    "products": {
+      "outsideAir": {
+        "name": "مستشعر الهواء الخارجي",
+        "feature1": "Temperature أو Temp/Humidity",
+        "feature2": "استشعار الضغط الجوي",
+        "feature3": "استشعار مستوى الإضاءة اختياري"
+      },
+      "quantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Temperature أو Temp/Humidity",
+        "feature2": "نقطة ضبط درجة الحرارة اختيارية",
+        "feature3": "زر تجاوز المستخدم"
+      },
+      "duct": {
+        "name": "مستشعر القناة",
+        "feature1": "Temperature أو Temp/Humidity",
+        "feature2": "صندوق IP66 محمي بتصنيف BAPI-Box",
+        "feature3": "مجسات من الفولاذ المقاوم للصدأ 4 to 18\""
+      },
+      "quantumSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Temperature أو Temp/Humidity",
+        "feature2": "مستشعر داخلي أو بعيد",
+        "feature3": "مثالي للمجمدات والمبردات"
+      },
+      "immersion": {
+        "name": "Immersion Temperature",
+        "feature1": "صندوق محمي قوي بتصنيف IP66",
+        "feature2": "مجسات من الفولاذ المقاوم للصدأ (2-8\")",
+        "feature3": "مثالي لمراقبة الأنابيب والخزانات"
+      },
+      "thermobuffer": {
+        "name": "مستشعر Thermobuffer",
+        "feature1": "مثالي للمجمدات والمبردات",
+        "feature2": "2 or 4 attached chamber",
+        "feature3": "يتتبع درجة حرارة المحتويات مقابل درجة حرارة الهواء"
+      }
     }
   }
 }

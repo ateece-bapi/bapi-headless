@@ -3359,5 +3359,268 @@
         "feature3": "跟踪内容物温度与空气温度"
       }
     }
+  },
+  "wamLandingPage": {
+    "metadata": {
+      "title": "WAM™ Wireless Asset Monitoring | BAPI",
+      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
+      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "wam": "WAM™ Wireless Asset Monitoring"
+    },
+    "hero": {
+      "badge": "WAM™ Wireless Asset Monitoring",
+      "title": "Protect your valuable assets with real-time monitoring",
+      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
+      "cta": "Request Demo",
+      "secondaryCta": "How It Works"
+    },
+    "features": {
+      "title": "What is WAM?",
+      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "multiSensor": {
+        "title": "Multi-Sensor Monitoring",
+        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+      },
+      "realTimeAlerts": {
+        "title": "Real-Time Alerts",
+        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+      },
+      "dataAnalytics": {
+        "title": "Data Analytics & Compliance",
+        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+      }
+    },
+    "howItWorks": {
+      "badge": "Simple Setup",
+      "title": "How It Works",
+      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "step1": {
+        "title": "Install Sensors",
+        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+      },
+      "step2": {
+        "title": "Connect Gateway",
+        "description": "Gateway receives sensor data and sends to secure cloud."
+      },
+      "step3": {
+        "title": "Access Dashboard",
+        "description": "View real-time data and historical trends from any device."
+      },
+      "step4": {
+        "title": "Receive Alerts",
+        "description": "Get instant notifications when conditions exceed thresholds."
+      }
+    },
+    "alertBanner": {
+      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+    },
+    "benefits": {
+      "badge": "Benefits",
+      "title": "Why Choose WAM?",
+      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "costSavings": {
+        "title": "Cost Savings",
+        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+      },
+      "proactivePrevention": {
+        "title": "Proactive Loss Prevention",
+        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+      },
+      "monitorAnywhere": {
+        "title": "Monitor Anywhere",
+        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+      },
+      "historicalTrends": {
+        "title": "Historical Trends",
+        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+      },
+      "operationalEfficiency": {
+        "title": "Enhanced Operational Efficiency",
+        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+      },
+      "scalable": {
+        "title": "Scalable Solutions",
+        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+      }
+    },
+    "industries": {
+      "badge": "Applications",
+      "title": "Industries We Serve",
+      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "restaurants": {
+        "title": "Restaurants",
+        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "benefits": [
+          "Walk-in cooler monitoring",
+          "Prevent temperature tracking",
+          "HACCP compliance reporting"
+        ]
+      },
+      "greenhouses": {
+        "title": "Greenhouses",
+        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "benefits": [
+          "Zone temperature control influences plant health",
+          "Monitor door activity for stable greenhouse conditions",
+          "Quickly spot equipment failures to minimize downtime"
+        ]
+      },
+      "meatProcessing": {
+        "title": "Meat Processing",
+        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "benefits": [
+          "Processing room monitoring",
+          "Humidity control tracking",
+          "FDA/USDA compliance logs"
+        ]
+      },
+      "hospitalsPharmacies": {
+        "title": "Hospitals and Pharmacies",
+        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "benefits": [
+          "Enhanced health inspections with IoT data",
+          "IoT solutions for precise temperature control",
+          "Streamlined management for hospitals and pharmacies"
+        ]
+      },
+      "groceryStores": {
+        "title": "Grocery Stores",
+        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "benefits": [
+          "Display case monitoring",
+          "Deli and bakery tracking",
+          "Back-of-house storage alerts"
+        ]
+      },
+      "convenienceStores": {
+        "title": "Convenience Stores",
+        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "benefits": [
+          "Beverage cooler monitoring",
+          "Ice cream freezer alerts",
+          "Multi-store dashboard"
+        ]
+      },
+      "healthcare": "Healthcare & Pharmaceuticals",
+      "foodService": "Food Service & Restaurants",
+      "coldStorage": "Cold Storage & Distribution",
+      "dataCenters": "Data Centers & IT",
+      "manufacturing": "Manufacturing & Industrial",
+      "grocery": "Grocery & Retail",
+      "researchLabs": "Research Labs",
+      "transportation": "Transportation & Logistics"
+    },
+    "products": {
+      "badge": "Our Products",
+      "title": "Wireless Products",
+      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "temperature": {
+        "title": "Temperature Sensors",
+        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+      },
+      "humidity": {
+        "title": "Humidity Sensors",
+        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+      },
+      "pressure": {
+        "title": "Pressure Sensors",
+        "description": "Differential pressure monitoring for filter status and room pressurization"
+      },
+      "viewAll": "View All Wireless Products"
+    },
+    "demo": {
+      "badge": "Get Started",
+      "title": "Ready to Get Started?",
+      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "benefits": {
+        "consultation": {
+          "title": "Free Consultation",
+          "description": "Talk to our monitoring experts about your specific needs"
+        },
+        "pricing": {
+          "title": "Custom Pricing",
+          "description": "Flexible plans based on your monitoring requirements"
+        },
+        "implementation": {
+          "title": "Fast Implementation",
+          "description": "Be up and running in days, not weeks"
+        }
+      },
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "company": "Company",
+        "industry": "Industry",
+        "selectIndustry": "Select Industry",
+        "message": "What would you like to monitor?",
+        "messagePlaceholder": "Tell us about your monitoring needs...",
+        "submit": "Request Demo",
+        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "required": "*"
+      }
+    },
+    "finalCta": {
+      "title": "Have questions about wireless monitoring?",
+      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
+      "contactSupport": "Contact Support",
+      "browseProducts": "Browse Wireless Products"
+    },
+    "trustBadges": {
+      "madeInUSA": "Made in USA",
+      "iso9001": "ISO 9001 Certified",
+      "experience": "30+ Years Experience"
+    },
+    "costlyLosses": {
+      "title": "Avoid Costly Losses",
+      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
+      "preventSpoilage": {
+        "title": "Prevent Spoilage",
+        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
+      },
+      "maintainCompliance": {
+        "title": "Maintain Compliance",
+        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
+      },
+      "detectWaterDamage": {
+        "title": "Detect Water Damage",
+        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
+      }
+    },
+    "sensorCoverage": {
+      "title": "Comprehensive Sensor Coverage",
+      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
+      "temperature": {
+        "title": "Temperature",
+        "description": "Precision temperature monitoring from -40°F to 185°F"
+      },
+      "humidity": {
+        "title": "Humidity",
+        "description": "Relative humidity tracking for optimal storage conditions"
+      },
+      "barometricPressure": {
+        "title": "Barometric Pressure",
+        "description": "Atmospheric pressure monitoring for environmental control"
+      },
+      "doorContact": {
+        "title": "Door Contact",
+        "description": "Track door open/close status and duration alerts"
+      },
+      "waterLeak": {
+        "title": "Water Leak",
+        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
+      },
+      "lightLevel": {
+        "title": "Light Level",
+        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
+      },
+      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
+      "browseSensors": "Browse WAM Sensors"
+    }
   }
 }

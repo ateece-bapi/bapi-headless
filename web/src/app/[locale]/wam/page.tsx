@@ -1,97 +1,137 @@
-import type { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/metadata';
 import {
-  RadioIcon,
-  WifiIcon,
   BellIcon,
+  ThermometerIcon,
   LineChartIcon,
+  TrendingUpIcon,
   ShieldIcon,
+  FileTextIcon,
+  DropletIcon,
   ZapIcon,
   DollarSignIcon,
-  TrendingUpIcon,
   CheckCircleIcon,
   ArrowRightIcon,
-  CloudIcon,
   SmartphoneIcon,
   AlertTriangleIcon,
+  ChevronRightIcon,
+  HumidityPercentageIcon,
+  SpeedIcon,
+  DoorOpenIcon,
+  WaterDamageIcon,
+  LightbulbIcon,
 } from '@/lib/icons';
+import { ProcessSteps } from '@/components/landing/ProcessSteps';
 
-export const metadata: Metadata = {
-  title: 'WAM™ Wireless Asset Monitoring | BAPI',
-  description:
-    'Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.',
-  keywords:
-    'wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring',
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function WAMPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'wamLandingPage' });
+
+  return generatePageMetadata(
+    {
+      title: t('metadata.title'),
+      description: t('metadata.description'),
+      path: 'wam',
+      keywords: t('metadata.keywords').split(', '),
+    },
+    locale
+  );
+}
+
+export default async function WAMPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'wamLandingPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+
+  // Industries list for demo form
+  const industries = [
+    t('industries.restaurants.title'),
+    t('industries.greenhouses.title'),
+    t('industries.meatProcessing.title'),
+    t('industries.hospitalsPharmacies.title'),
+    t('industries.groceryStores.title'),
+    t('industries.convenienceStores.title'),
+  ];
+
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative from-primary-700 via-primary-600 to-primary-500 text-white">
-        <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-8 lg:grid-cols-[40%_60%] xl:grid-cols-2">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
+        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+
+        <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav
+            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
+            aria-label="Breadcrumb"
+          >
+            <Link href="/" className="transition-colors hover:text-white">
+              {t('breadcrumb.home')}
+            </Link>
+            <ChevronRightIcon className="h-4 w-4" />
+            <Link href="/products" className="transition-colors hover:text-white">
+              {t('breadcrumb.products')}
+            </Link>
+            <ChevronRightIcon className="h-4 w-4" />
+            <span className="font-medium text-white">{t('breadcrumb.wam')}</span>
+          </nav>
+
+          <div className="grid items-center gap-12 lg:grid-cols-[55%_45%] lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
             <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
-                <RadioIcon className="h-4 w-4" />
-                <span className="text-sm font-semibold">WAM™ Wireless Asset Monitoring</span>
+              {/* WAM Logo */}
+              <div className="mb-6 xl:mb-5">
+                <Image
+                  src="/images/wam/dashboards/wam-logo.png"
+                  alt="WAM Logo"
+                  width={120}
+                  height={60}
+                  className="h-auto w-32"
+                  priority
+                />
               </div>
 
-              <h1 className="mb-6 text-4xl font-bold leading-tight lg:text-5xl xl:text-6xl">
-                Protect your valuable assets with real-time monitoring
+              <h1 className="mb-5 text-4xl font-bold leading-tight text-accent-500 lg:text-5xl xl:mb-4 xl:text-6xl">
+                {t('hero.title')}
               </h1>
-
-              <p className="mb-8 text-xl leading-relaxed text-primary-50">
-                24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor
-                temperature, humidity, and more from anywhere with BAPI&apos;s proven wireless
-                solutions.
+              <p className="mb-6 text-lg leading-relaxed text-white lg:text-xl xl:mb-5">
+                {t('hero.description')}
               </p>
-
               <div className="flex flex-col gap-4 sm:flex-row">
                 <a
                   href="#demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl"
+                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                  style={{ color: '#08304B' }}
                 >
-                  Request Demo
+                  {t('hero.cta')}
                   <ArrowRightIcon className="h-5 w-5" />
                 </a>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
-                  How It Works
+                  {t('hero.secondaryCta')}
                 </a>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="mt-12 flex flex-wrap gap-6 text-sm text-primary-100">
-                <div className="flex items-center gap-2">
-                  <CheckCircleIcon className="h-5 w-5" />
-                  <span>Made in USA</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircleIcon className="h-5 w-5" />
-                  <span>ISO 9001 Certified</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircleIcon className="h-5 w-5" />
-                  <span>30+ Years Experience</span>
-                </div>
               </div>
             </div>
 
-            {/* Right Column - Visual */}
+            {/* Right Column - Hero Image */}
             <div className="relative">
               <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
                 <Image
-                  src="/images/wam/dashboards/wam-sensors-with-gateway.png"
+                  src="/images/wam/dashboards/Updated WAM Fam 2 1.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
-                  width={522}
-                  height={336}
+                  width={640}
+                  height={411}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 60vw, 640px"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
                   priority
                   quality={90}
                 />
@@ -102,76 +142,152 @@ export default function WAMPage() {
       </section>
 
       {/* What is WAM Section */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-neutral-50 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
-              The Solution
+          <div className="mb-12 text-center">
+            <h2 className="mb-6 text-4xl font-bold text-primary-600 lg:text-5xl">
+              {t('features.title')}
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
+              {t('features.description')}
             </p>
-            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">What is WAM?</h2>
-            <div className="mx-auto max-w-3xl space-y-4 text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              <p>
-                The Wireless Asset Monitoring (WAM) Remote website allows users to monitor and
-                record readings from sensors and receive alerts if a problem arises. Readings from
-                the sensors are sent to the cloud and can be accessed via a web browser on any
-                web-enabled device.
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid gap-8 md:grid-cols-3">
+            {/* Multi-Sensor Monitoring */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">
+                <ThermometerIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('features.multiSensor.title')}
+              </h3>
+              <p className="text-neutral-600">
+                {t('features.multiSensor.description')}
               </p>
-              <p>
-                WAM helps protect your assets against incidents like equipment failure, power loss
-                and more. You can set up custom alerts to warn you when there is a problem so you
-                can address it quickly. WAM can also increase efficiency by eliminating the need to
-                take manual readings and logs. WAM provides peace of mind for your business.
+            </div>
+
+            {/* Real-Time Alerts */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">
+                <BellIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('features.realTimeAlerts.title')}
+              </h3>
+              <p className="text-neutral-600">
+                {t('features.realTimeAlerts.description')}
+              </p>
+            </div>
+
+            {/* Data Analytics & Compliance */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">
+                <TrendingUpIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('features.dataAnalytics.title')}
+              </h3>
+              <p className="text-neutral-600">
+                {t('features.dataAnalytics.description')}
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: RadioIcon,
-                title: 'Wireless Sensors',
-                description:
-                  'Battery-powered sensors transmit real-time temperature, humidity, and pressure data without complex wiring.',
-              },
-              {
-                icon: CloudIcon,
-                title: 'Cloud Dashboard',
-                description:
-                  'Web-based monitoring accessible from any device. View trends, set thresholds, and receive instant alerts.',
-              },
-              {
-                icon: BellIcon,
-                title: 'Smart Alerts',
-                description:
-                  'Customizable notifications via SMS, email, or phone call when conditions exceed safe operating ranges.',
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-xl bg-neutral-50 p-8 transition-shadow duration-300 hover:shadow-lg"
-              >
-                <div className="bg-linear-to-br mb-6 flex h-16 w-16 items-center justify-center rounded-full from-primary-500 to-primary-600">
-                  <feature.icon className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="mb-3 text-xl font-bold text-neutral-900">{feature.title}</h3>
-                <p className="leading-relaxed text-neutral-700">{feature.description}</p>
+      {/* Avoid Costly Losses Section */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left Column - Image */}
+            <div className="order-2 lg:order-1">
+              <div className="overflow-hidden rounded-2xl shadow-xl">
+                <Image
+                  src="/images/wam/dashboards/wam-real-time-visibility.png"
+                  alt="Store employee using tablet to monitor refrigeration"
+                  width={692}
+                  height={577}
+                  className="h-auto w-full"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
-            ))}
+            </div>
+
+            {/* Right Column - Content */}
+            <div className="order-1 lg:order-2">
+              <h2 className="mb-6 text-4xl font-bold text-primary-600 lg:text-5xl">
+                {t('costlyLosses.title')}
+              </h2>
+              <p className="mb-8 text-lg leading-relaxed text-neutral-600">
+                {t('costlyLosses.description')}
+              </p>
+
+              {/* Benefits List */}
+              <div className="space-y-6">
+                {/* Prevent Spoilage */}
+                <div className="flex gap-4">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-accent-500">
+                    <ShieldIcon className="h-7 w-7 text-neutral-900" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                      {t('costlyLosses.preventSpoilage.title')}
+                    </h3>
+                    <p className="text-neutral-600">
+                      {t('costlyLosses.preventSpoilage.description')}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Maintain Compliance */}
+                <div className="flex gap-4">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-accent-500">
+                    <FileTextIcon className="h-7 w-7 text-neutral-900" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                      {t('costlyLosses.maintainCompliance.title')}
+                    </h3>
+                    <p className="text-neutral-600">
+                      {t('costlyLosses.maintainCompliance.description')}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Detect Water Damage */}
+                <div className="flex gap-4">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-accent-500">
+                    <DropletIcon className="h-7 w-7 text-neutral-900" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                      {t('costlyLosses.detectWaterDamage.title')}
+                    </h3>
+                    <p className="text-neutral-600">
+                      {t('costlyLosses.detectWaterDamage.description')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="bg-neutral-50 py-16 lg:py-24">
+      <section id="how-it-works" className="scroll-mt-20 bg-neutral-50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
-              Simple Setup
+              {t('howItWorks.badge')}
             </p>
-            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">How It Works</h2>
+            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
+              {t('howItWorks.title')}
+            </h2>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy
-              steps.
+              {t('howItWorks.subtitle')}
             </p>
           </div>
 
@@ -188,48 +304,6 @@ export default function WAMPage() {
               />
             </div>
           </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                step: '1',
-                icon: RadioIcon,
-                title: 'Install Sensors',
-                description: 'Mount wireless sensors near critical equipment. No wiring needed.',
-              },
-              {
-                step: '2',
-                icon: WifiIcon,
-                title: 'Connect Gateway',
-                description: 'Gateway receives sensor data and sends to secure cloud.',
-              },
-              {
-                step: '3',
-                icon: CloudIcon,
-                title: 'Access Dashboard',
-                description: 'View real-time data and historical trends from any device.',
-              },
-              {
-                step: '4',
-                icon: BellIcon,
-                title: 'Receive Alerts',
-                description: 'Get instant notifications when conditions exceed thresholds.',
-              },
-            ].map((step) => (
-              <div key={step.step} className="relative">
-                <div className="rounded-xl bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-xl">
-                  <div className="absolute -left-4 -top-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-500 text-xl font-bold text-neutral-900 shadow-lg">
-                    {step.step}
-                  </div>
-                  <div className="bg-linear-to-br mb-4 mt-2 flex h-14 w-14 items-center justify-center rounded-full from-primary-500 to-primary-600">
-                    <step.icon className="h-7 w-7 text-white" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-bold text-neutral-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-700">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -238,10 +312,7 @@ export default function WAMPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4 text-neutral-900">
             <AlertTriangleIcon className="h-6 w-6 flex-shrink-0" />
-            <p className="text-center text-lg font-semibold">
-              Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring
-              from BAPI.
-            </p>
+            <p className="text-center text-lg font-semibold">{t('alertBanner.text')}</p>
           </div>
         </div>
       </section>
@@ -251,16 +322,13 @@ export default function WAMPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <p className="mb-3 text-base font-semibold uppercase tracking-wide text-primary-600 lg:text-lg">
-              Benefits
+              {t('benefits.badge')}
             </p>
             <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
-              Why Choose WAM?
+              {t('benefits.title')}
             </h2>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              Traditional asset monitoring methods can be time-consuming, error-prone, and often
-              fail to provide real-time insights. However, with our advanced wireless sensor
-              technology, you can take control of your asset protection strategy like never before.
-              Here&apos;s how our solution can transform your business:
+              {t('benefits.subtitle')}
             </p>
           </div>
 
@@ -268,39 +336,33 @@ export default function WAMPage() {
             {[
               {
                 icon: DollarSignIcon,
-                title: 'Cost Savings',
-                description:
-                  'Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets.',
+                title: t('benefits.costSavings.title'),
+                description: t('benefits.costSavings.description'),
               },
               {
                 icon: ZapIcon,
-                title: 'Proactive Loss Prevention',
-                description:
-                  'Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively.',
+                title: t('benefits.proactivePrevention.title'),
+                description: t('benefits.proactivePrevention.description'),
               },
               {
                 icon: SmartphoneIcon,
-                title: 'Monitor Anywhere',
-                description:
-                  'Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence.',
+                title: t('benefits.monitorAnywhere.title'),
+                description: t('benefits.monitorAnywhere.description'),
               },
               {
                 icon: LineChartIcon,
-                title: 'Historical Trends',
-                description:
-                  'Analyze patterns, prove compliance, and optimize operations with detailed reporting.',
+                title: t('benefits.historicalTrends.title'),
+                description: t('benefits.historicalTrends.description'),
               },
               {
                 icon: ShieldIcon,
-                title: 'Enhanced Operational Efficiency',
-                description:
-                  'Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations.',
+                title: t('benefits.operationalEfficiency.title'),
+                description: t('benefits.operationalEfficiency.description'),
               },
               {
                 icon: TrendingUpIcon,
-                title: 'Scalable Solutions',
-                description:
-                  'We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands.',
+                title: t('benefits.scalable.title'),
+                description: t('benefits.scalable.description'),
               },
             ].map((benefit) => (
               <div
@@ -319,150 +381,387 @@ export default function WAMPage() {
       </section>
 
       {/* Industries Section */}
-      <section className="bg-neutral-50 py-16 lg:py-24">
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
-              Applications
-            </p>
+          <div className="mb-12 text-center">
             <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
-              Industries We Serve
+              {t('industries.title')}
             </h2>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              WAM™ protects critical assets across diverse industries
+              {t('industries.subtitle')}
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              'Healthcare & Pharmaceuticals',
-              'Food Service & Restaurants',
-              'Cold Storage & Distribution',
-              'Data Centers & IT',
-              'Manufacturing & Industrial',
-              'Grocery & Retail',
-              'Research Labs',
-              'Transportation & Logistics',
-            ].map((industry) => (
-              <div
-                key={industry}
-                className="rounded-lg border border-neutral-200 bg-white p-4 text-center transition-all duration-300 hover:border-primary-500 hover:shadow-md"
-              >
-                <p className="font-medium text-neutral-700">{industry}</p>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Restaurants */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/restaurants-wam.png"
+                  alt="Restaurant monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
               </div>
-            ))}
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.restaurants.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.restaurants.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.restaurants.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Greenhouses */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/greenhouses-wam.png"
+                  alt="Greenhouse monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.greenhouses.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.greenhouses.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.greenhouses.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Meat Processing */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/hospitals-pharmacies-wam.png"
+                  alt="Meat processing monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.meatProcessing.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.meatProcessing.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.meatProcessing.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Hospitals and Pharmacies */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/hospitals-pharmacies-wam.png"
+                  alt="Hospital and pharmacy monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.hospitalsPharmacies.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.hospitalsPharmacies.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.hospitalsPharmacies.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Grocery Stores */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/grocery-stores-wam.png"
+                  alt="Grocery store monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.groceryStores.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.groceryStores.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.groceryStores.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Convenience Stores */}
+            <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src="/images/wam/dashboards/convenience-stores-wam.png"
+                  alt="Convenience store monitoring"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="mb-3 text-xl font-bold text-primary-600">
+                  {t('industries.convenienceStores.title')}
+                </h3>
+                <p className="mb-4 text-neutral-600">
+                  {t('industries.convenienceStores.description')}
+                </p>
+                <ul className="space-y-2 text-sm text-neutral-700">
+                  {(t.raw('industries.convenienceStores.benefits') as string[]).map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary-600">•</span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Wireless Products Section */}
-      <section id="products" className="bg-white py-16 lg:py-24">
+      {/* Comprehensive Sensor Coverage Section */}
+      <section className="bg-neutral-50 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600 lg:text-base">
-              Our Products
-            </p>
-            <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
-              Wireless Products
+          <div className="mb-12 text-center">
+            <h2 className="mb-6 text-4xl font-bold text-primary-600 lg:text-5xl">
+              {t('sensorCoverage.title')}
             </h2>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-600 lg:text-xl">
-              Complete range of wireless sensors for temperature, humidity, pressure, and more
+              {t('sensorCoverage.subtitle')}
             </p>
           </div>
 
-          <div className="mb-12 grid gap-8 md:grid-cols-3">
-            {[
-              {
-                title: 'Temperature Sensors',
-                description:
-                  'Wireless temperature monitoring for refrigeration, freezers, and critical spaces',
-                link: '/products/wireless-sensors/bluetooth-wireless',
-              },
-              {
-                title: 'Humidity Sensors',
-                description:
-                  'Monitor relative humidity in warehouses, data centers, and clean rooms',
-                link: '/products/wireless-sensors/bluetooth-wireless',
-              },
-              {
-                title: 'Pressure Sensors',
-                description:
-                  'Differential pressure monitoring for filter status and room pressurization',
-                link: '/products/wireless-sensors/bluetooth-wireless',
-              },
-            ].map((product) => (
-              <Link
-                key={product.title}
-                href={product.link}
-                className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-500 hover:bg-white hover:shadow-xl"
-              >
-                <h3 className="mb-3 text-xl font-bold text-neutral-900 transition-colors group-hover:text-primary-500">
-                  {product.title}
+          {/* Sensor Grid */}
+          <div className="mb-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Temperature */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <ThermometerIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.temperature.title')}
                 </h3>
-                <p className="mb-4 text-neutral-700">{product.description}</p>
-                <div className="flex items-center gap-2 font-semibold text-primary-500">
-                  Learn More
-                  <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </div>
-              </Link>
-            ))}
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.temperature.description')}
+                </p>
+              </div>
+            </div>
+
+            {/* Humidity */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <HumidityPercentageIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.humidity.title')}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.humidity.description')}
+                </p>
+              </div>
+            </div>
+
+            {/* Barometric Pressure */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <SpeedIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.barometricPressure.title')}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.barometricPressure.description')}
+                </p>
+              </div>
+            </div>
+
+            {/* Door Contact */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <DoorOpenIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.doorContact.title')}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.doorContact.description')}
+                </p>
+              </div>
+            </div>
+
+            {/* Water Leak */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <WaterDamageIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.waterLeak.title')}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.waterLeak.description')}
+                </p>
+              </div>
+            </div>
+
+            {/* Light Level */}
+            <div className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-primary-100">
+                <LightbulbIcon className="h-8 w-8 text-primary-600" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('sensorCoverage.lightLevel.title')}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t('sensorCoverage.lightLevel.description')}
+                </p>
+              </div>
+            </div>
           </div>
+
+          {/* Sensor Icons Row */}
+          <div className="mb-8 flex items-center justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <ThermometerIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+            <div className="-ml-4 flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <HumidityPercentageIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+            <div className="-ml-4 flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <SpeedIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+            <div className="-ml-4 flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <DoorOpenIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+            <div className="-ml-4 flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <WaterDamageIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+            <div className="-ml-4 flex h-16 w-16 items-center justify-center rounded-full border-4 bg-accent-500" style={{ borderColor: '#08304B' }}>
+              <LightbulbIcon className="h-8 w-8" style={{ color: '#08304B', fontVariationSettings: "'FILL' 1, 'wght' 500" }} />
+            </div>
+          </div>
+
+          <p className="mb-8 text-center text-lg leading-relaxed text-neutral-700">
+            {t('sensorCoverage.seamlessIntegration')}
+          </p>
 
           <div className="text-center">
             <Link
               href="/products/wireless-sensors/bluetooth-wireless"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
+              className="bg-bapi-accent-gradient inline-flex items-center gap-3 rounded-full px-12 py-5 text-2xl font-bold transition-all duration-300 hover:shadow-xl"
+              style={{ color: '#08304B' }}
             >
-              View All Wireless Products
-              <ArrowRightIcon className="h-5 w-5" />
+              {t('sensorCoverage.browseSensors')}
+              <ChevronRightIcon className="h-8 w-8" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Demo Request Section */}
-      <section id="demo" className="bg-linear-to-br from-primary-50 to-primary-100 py-16 lg:py-24">
+      <section id="demo" className="scroll-mt-20 bg-gradient-to-br from-primary-50 to-primary-100 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-12">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Left - Content */}
               <div>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600">
-                  Get Started
+                  {t('demo.badge')}
                 </p>
                 <h2 className="mb-6 text-4xl font-bold text-neutral-900 lg:text-5xl">
-                  Ready to Get Started?
+                  {t('demo.title')}
                 </h2>
                 <p className="mb-8 text-lg leading-relaxed text-neutral-600">
-                  Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
-                  out the form and we&apos;ll contact you to schedule a personalized demo.
+                  {t('demo.subtitle')}
                 </p>
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
-                      <h4 className="font-bold text-neutral-900">Free Consultation</h4>
+                      <h4 className="font-bold text-neutral-900">
+                        {t('demo.benefits.consultation.title')}
+                      </h4>
                       <p className="text-sm text-neutral-700">
-                        Talk to our monitoring experts about your specific needs
+                        {t('demo.benefits.consultation.description')}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
-                      <h4 className="font-bold text-neutral-900">Custom Pricing</h4>
+                      <h4 className="font-bold text-neutral-900">
+                        {t('demo.benefits.pricing.title')}
+                      </h4>
                       <p className="text-sm text-neutral-700">
-                        Flexible plans based on your monitoring requirements
+                        {t('demo.benefits.pricing.description')}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
-                      <h4 className="font-bold text-neutral-900">Fast Implementation</h4>
+                      <h4 className="font-bold text-neutral-900">
+                        {t('demo.benefits.implementation.title')}
+                      </h4>
                       <p className="text-sm text-neutral-700">
-                        Be up and running in days, not weeks
+                        {t('demo.benefits.implementation.description')}
                       </p>
                     </div>
                   </div>
@@ -478,7 +777,7 @@ export default function WAMPage() {
                         htmlFor="firstName"
                         className="mb-2 block text-sm font-semibold text-neutral-700"
                       >
-                        First Name *
+                        {t('demo.form.firstName')} {t('demo.form.required')}
                       </label>
                       <input
                         type="text"
@@ -493,7 +792,7 @@ export default function WAMPage() {
                         htmlFor="lastName"
                         className="mb-2 block text-sm font-semibold text-neutral-700"
                       >
-                        Last Name *
+                        {t('demo.form.lastName')} {t('demo.form.required')}
                       </label>
                       <input
                         type="text"
@@ -510,7 +809,7 @@ export default function WAMPage() {
                       htmlFor="email"
                       className="mb-2 block text-sm font-semibold text-neutral-700"
                     >
-                      Email *
+                      {t('demo.form.email')} {t('demo.form.required')}
                     </label>
                     <input
                       type="email"
@@ -526,7 +825,7 @@ export default function WAMPage() {
                       htmlFor="phone"
                       className="mb-2 block text-sm font-semibold text-neutral-700"
                     >
-                      Phone *
+                      {t('demo.form.phone')} {t('demo.form.required')}
                     </label>
                     <input
                       type="tel"
@@ -542,7 +841,7 @@ export default function WAMPage() {
                       htmlFor="company"
                       className="mb-2 block text-sm font-semibold text-neutral-700"
                     >
-                      Company
+                      {t('demo.form.company')}
                     </label>
                     <input
                       type="text"
@@ -557,23 +856,19 @@ export default function WAMPage() {
                       htmlFor="industry"
                       className="mb-2 block text-sm font-semibold text-neutral-700"
                     >
-                      Industry
+                      {t('demo.form.industry')}
                     </label>
                     <select
                       id="industry"
                       name="industry"
                       className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                     >
-                      <option value="">Select Industry</option>
-                      <option value="healthcare">Healthcare & Pharmaceuticals</option>
-                      <option value="food-service">Food Service & Restaurants</option>
-                      <option value="cold-storage">Cold Storage & Distribution</option>
-                      <option value="data-center">Data Centers & IT</option>
-                      <option value="manufacturing">Manufacturing & Industrial</option>
-                      <option value="grocery">Grocery & Retail</option>
-                      <option value="research">Research Labs</option>
-                      <option value="transportation">Transportation & Logistics</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('demo.form.selectIndustry')}</option>
+                      {industries.map((industry) => (
+                        <option key={industry} value={industry}>
+                          {industry}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -582,27 +877,26 @@ export default function WAMPage() {
                       htmlFor="message"
                       className="mb-2 block text-sm font-semibold text-neutral-700"
                     >
-                      What would you like to monitor?
+                      {t('demo.form.message')}
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       rows={4}
                       className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
-                      placeholder="Tell us about your monitoring needs..."
+                      placeholder={t('demo.form.messagePlaceholder')}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl"
+                    className="bg-bapi-accent-gradient w-full rounded-full px-12 py-5 text-2xl font-bold transition-all duration-300 hover:shadow-xl"
+                    style={{ color: '#08304B' }}
                   >
-                    Request Demo
+                    {t('demo.form.submit')}
                   </button>
 
-                  <p className="text-center text-xs text-neutral-700">
-                    By submitting this form, you agree to our privacy policy and terms of service.
-                  </p>
+                  <p className="text-center text-xs text-neutral-700">{t('demo.form.privacy')}</p>
                 </form>
               </div>
             </div>
@@ -613,29 +907,24 @@ export default function WAMPage() {
       {/* Final CTA Section */}
       <section className="bg-primary-600 py-12 text-white">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-2xl font-bold lg:text-3xl">
-            Have questions about wireless monitoring?
-          </h2>
-          <p className="mb-6 text-primary-100">
-            Talk to one of our technical experts. We&apos;re here to help you find the right
-            solution.
-          </p>
+          <h2 className="mb-4 text-2xl font-bold lg:text-3xl">{t('finalCta.title')}</h2>
+          <p className="mb-6 text-primary-100">{t('finalCta.subtitle')}</p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/support/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-10 py-4 text-lg font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50 hover:shadow-lg"
             >
-              Contact Support
+              {t('finalCta.contactSupport')}
             </Link>
             <Link
               href="/products/wireless-sensors/bluetooth-wireless"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-primary-500 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-primary-500 px-10 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-700 hover:shadow-lg"
             >
-              Browse Wireless Products
+              {t('finalCta.browseProducts')}
             </Link>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

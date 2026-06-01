@@ -191,13 +191,13 @@ export default async function WirelessPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="mb-8 flex items-center gap-2 text-sm text-primary-100"
+            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
@@ -211,28 +211,29 @@ export default async function WirelessPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.wireless')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[55%_45%] lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
             <div>
               <div className="mb-6 inline-block rounded-full bg-primary-400/30 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 {t('hero.badge')}
               </div>
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl">
+              <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
                 {t('hero.title')}
               </h1>
-              <p className="mb-10 text-lg leading-relaxed text-primary-50 drop-shadow-md lg:text-xl">
+              <p className="mb-6 text-lg leading-relaxed text-primary-50 drop-shadow-md lg:text-xl xl:mb-5">
                 {t('hero.description')}
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="#wireless-sensors"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-8 py-4 font-bold text-neutral-900 shadow-xl transition-all hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                  style={{ color: '#08304B' }}
                 >
                   {t('hero.cta')}
                 </Link>
                 <Link
                   href="/company/contact-us"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/80 bg-white/5 px-8 py-4 font-bold text-white shadow-lg backdrop-blur-sm transition-all hover:border-white hover:bg-white/15 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/30"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
                   Contact Us
                 </Link>
@@ -241,19 +242,17 @@ export default async function WirelessPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="relative h-80 overflow-hidden rounded-3xl shadow-2xl ring-4 ring-white/10 lg:h-96">
-                {/* Glow effect */}
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent-400/20 to-primary-400/20 opacity-75 blur-2xl"></div>
-                <div className="relative h-full">
-                  <Image
-                    src="/images/wireless/Wireless_HVAC_2025_Plain.png"
-                    alt="BAPI Wireless HVAC Sensors"
-                    fill
-                    className="object-contain p-4"
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    priority
-                  />
-                </div>
+              <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
+                <Image
+                  src="/images/wireless/Wireless_HVAC_2025_Plain.png"
+                  alt="BAPI Wireless HVAC Sensors"
+                  width={640}
+                  height={640}
+                  className="h-auto w-full"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
+                  priority
+                  quality={90}
+                />
               </div>
             </div>
           </div>

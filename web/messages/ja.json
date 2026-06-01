@@ -3362,265 +3362,257 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
-      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
-      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+      "title": "WAM™ ワイヤレス資産監視 | BAPI",
+      "description": "BAPIのリアルタイム監視で貴重な資産を保護します。WAM™は24時間365日の資産監視と即座のアラートで、コストのかかる機器故障を回避します。",
+      "keywords": "ワイヤレス資産監視, 温度監視, 湿度監視, 機器監視, 予防保全, コールドチェーン監視"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wam": "WAM™ Wireless Asset Monitoring"
+      "home": "ホーム",
+      "products": "製品",
+      "wam": "WAM™ ワイヤレス資産監視"
     },
     "hero": {
-      "badge": "WAM™ Wireless Asset Monitoring",
-      "title": "Protect your valuable assets with real-time monitoring",
-      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
-      "cta": "Request Demo",
-      "secondaryCta": "How It Works"
+      "badge": "WAM™ - ワイヤレス資産監視",
+      "title": "リアルタイム監視で温度などを監視",
+      "description": "24時間365日の監視と即座のアラートで、コストのかかる機器故障を回避します。BAPIの実績あるワイヤレスソリューションで、どこからでも温度、湿度などを監視できます。",
+      "cta": "デモを依頼",
+      "secondaryCta": "仕組みを見る"
     },
     "features": {
-      "title": "What is WAM?",
-      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "title": "WAMとは？",
+      "description": "ワイヤレス資産監視は、施設の環境条件を完全に可視化する強力なプラットフォームで、コンプライアンスの維持と機器故障の防止を支援します。",
       "multiSensor": {
-        "title": "Multi-Sensor Monitoring",
-        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+        "title": "マルチセンサー監視",
+        "description": "温度、湿度、気圧、照度、ドア接触、水漏れ検知を、統一されたプラットフォームから追跡できます。"
       },
       "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+        "title": "リアルタイムアラート",
+        "description": "センサー値がカスタム閾値を超えた際に、SMSとメールで即座に通知を受信し、迅速な対応を確保します。"
       },
       "dataAnalytics": {
-        "title": "Data Analytics & Compliance",
-        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+        "title": "データ分析とコンプライアンス",
+        "description": "過去の傾向を表示し、包括的なレポートを生成し、コンプライアンス文書と分析のためにデータをエクスポートできます。"
+      }
+    },
+    "costlyLosses": {
+      "title": "コストのかかる損失を回避",
+      "description": "機器故障と環境問題は、数千ドルの在庫損失、コンプライアンス違反、事業中断を引き起こす可能性があります。WAMは、これらのコストのかかる問題が発生する前に防止します。",
+      "preventSpoilage": {
+        "title": "腐敗防止",
+        "description": "数千ドルの生鮮在庫を腐敗させる前に、温度変動を検知します。"
+      },
+      "maintainCompliance": {
+        "title": "コンプライアンス維持",
+        "description": "自動レポートとデータロギングにより、HACCP、FDA、その他の規制要件を満たします。"
+      },
+      "detectWaterDamage": {
+        "title": "水害検知",
+        "description": "重要エリアでの高額な水害とカビの発生を防ぐため、漏水を早期に発見します。"
       }
     },
     "howItWorks": {
-      "badge": "Simple Setup",
-      "title": "How It Works",
-      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "badge": "簡単セットアップ",
+      "title": "仕組み",
+      "subtitle": "簡単セットアップ、強力な保護。WAM™は4つの簡単なステップで資産をクラウドに接続します。",
       "step1": {
-        "title": "Install Sensors",
-        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+        "title": "センサー設置",
+        "description": "重要機器の近くにワイヤレスセンサーを設置。配線は不要です。"
       },
       "step2": {
-        "title": "Connect Gateway",
-        "description": "Gateway receives sensor data and sends to secure cloud."
+        "title": "ゲートウェイ接続",
+        "description": "ゲートウェイがセンサーデータを受信し、セキュアなクラウドに送信します。"
       },
       "step3": {
-        "title": "Access Dashboard",
-        "description": "View real-time data and historical trends from any device."
+        "title": "ダッシュボードアクセス",
+        "description": "任意のデバイスからリアルタイムデータと過去の傾向を表示できます。"
       },
       "step4": {
-        "title": "Receive Alerts",
-        "description": "Get instant notifications when conditions exceed thresholds."
+        "title": "アラート受信",
+        "description": "条件が閾値を超えた際に即座に通知を受け取ります。"
       }
     },
     "alertBanner": {
-      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+      "text": "BAPIの24時間365日資産監視で、停電や機器故障によるコストのかかる損失を回避しましょう。"
     },
     "benefits": {
-      "badge": "Benefits",
-      "title": "Why Choose WAM?",
-      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "badge": "メリット",
+      "title": "WAMを選ぶ理由",
+      "subtitle": "従来の資産監視方法は時間がかかり、エラーが発生しやすく、リアルタイムの洞察を提供できないことがよくあります。しかし、当社の先進的なワイヤレスセンサー技術により、これまでにない資産保護戦略をコントロールできます。当社のソリューションがビジネスを変革する方法をご紹介します：",
       "costSavings": {
-        "title": "Cost Savings",
-        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+        "title": "コスト削減",
+        "description": "損失の防止は収益に直接影響します。資産監視にワイヤレスセンサーを活用することで、損害や完全な損失のリスクを大幅に削減できます。財務的な無駄、保険請求、コストのかかるダウンタイムを最小限に抑えながら、資産の寿命を最大化します。"
       },
       "proactivePrevention": {
-        "title": "Proactive Loss Prevention",
-        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+        "title": "予防的損失防止",
+        "description": "潜在的なリスクがコストのかかる損失に発展する前に特定し、軽減します。当社のワイヤレスセンサーはインテリジェントなアラートと通知を提供し、疑わしい活動、不正アクセス、異常な動作に迅速に対応できます。潜在的な脅威の一歩先を行き、資産を効果的に保護します。"
       },
       "monitorAnywhere": {
-        "title": "Monitor Anywhere",
-        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+        "title": "どこからでも監視",
+        "description": "いつでも、どこからでも重要な資産データに即座にアクセスできます。当社のワイヤレスセンサーにより、資産をリアルタイムで監視し、ステータスと状態に関する最新情報を提供します。常に情報を把握し、自信を持って情報に基づいた決定を下せます。"
       },
       "historicalTrends": {
-        "title": "Historical Trends",
-        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+        "title": "過去の傾向",
+        "description": "詳細なレポートでパターンを分析し、コンプライアンスを証明し、運用を最適化します。"
       },
       "operationalEfficiency": {
-        "title": "Enhanced Operational Efficiency",
-        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+        "title": "運用効率の向上",
+        "description": "資産管理プロセスを合理化し、全体的な運用効率を向上させます。当社のワイヤレスセンサーはデータ収集を自動化し、手動作業を削減してチームの貴重な時間を解放します。在庫管理を簡素化し、サプライチェーンロジスティクスを最適化し、データ駆動型の決定でビジネス運用を最適化します。"
       },
       "scalable": {
-        "title": "Scalable Solutions",
-        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+        "title": "スケーラブルなソリューション",
+        "description": "すべてのビジネスには独自の要件があることを理解しています。当社のワイヤレスセンサーソリューションは、お客様の特定のニーズに合わせてカスタマイズ可能で、資産保護への個別アプローチを確保します。さらに、当社のスケーラブルなアーキテクチャにより、ビジネスの成長に合わせて資産監視システムを拡張し、変化する需要に楽に適応できます。"
       }
     },
     "industries": {
-      "badge": "Applications",
-      "title": "Industries We Serve",
-      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "badge": "用途",
+      "title": "対応業界",
+      "subtitle": "重要な温度管理業界のビジネスから信頼されています",
       "restaurants": {
-        "title": "Restaurants",
-        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "title": "レストラン",
+        "description": "ウォークイン冷蔵庫、冷凍庫、食品調理エリアを監視。HACCPコンプライアンスを確保し、食品腐敗を防止します。",
         "benefits": [
-          "Walk-in cooler monitoring",
-          "Prevent temperature tracking",
-          "HACCP compliance reporting"
+          "ウォークイン冷蔵庫監視",
+          "温度追跡による腐敗防止",
+          "HACCPコンプライアンスレポート"
         ]
       },
       "greenhouses": {
-        "title": "Greenhouses",
-        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "title": "温室",
+        "description": "温室の効率的な温度監視により最適な条件を確保し、貴重な植物を保護します。",
         "benefits": [
-          "Zone temperature control influences plant health",
-          "Monitor door activity for stable greenhouse conditions",
-          "Quickly spot equipment failures to minimize downtime"
+          "ゾーン温度制御が植物の健康に影響",
+          "安定した温室条件のためのドア活動監視",
+          "ダウンタイムを最小限に抑えるための機器故障の迅速な発見"
         ]
       },
       "meatProcessing": {
-        "title": "Meat Processing",
-        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "title": "食肉加工",
+        "description": "加工施設の重要な温度と湿度制御。厳格なFDA/USDA要件を満たします。",
         "benefits": [
-          "Processing room monitoring",
-          "Humidity control tracking",
-          "FDA/USDA compliance logs"
+          "加工室監視",
+          "湿度制御追跡",
+          "FDA/USDAコンプライアンスログ"
         ]
       },
       "hospitalsPharmacies": {
-        "title": "Hospitals and Pharmacies",
-        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "title": "病院と薬局",
+        "description": "監視により患者ケアと医薬品管理の安全性と効率性が向上します。",
         "benefits": [
-          "Enhanced health inspections with IoT data",
-          "IoT solutions for precise temperature control",
-          "Streamlined management for hospitals and pharmacies"
+          "IoTデータによる健康検査の強化",
+          "精密温度制御のためのIoTソリューション",
+          "病院と薬局の合理化された管理"
         ]
       },
       "groceryStores": {
-        "title": "Grocery Stores",
-        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "title": "食料品店",
+        "description": "冷蔵・冷凍食品ケース、デリエリア、バックヤード保管を監視して製品品質を維持します。",
         "benefits": [
-          "Display case monitoring",
-          "Deli and bakery tracking",
-          "Back-of-house storage alerts"
+          "ディスプレイケース監視",
+          "デリとベーカリーの追跡",
+          "バックヤード保管アラート"
         ]
       },
       "convenienceStores": {
-        "title": "Convenience Stores",
-        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "title": "コンビニエンスストア",
+        "description": "冷蔵庫、冷凍庫、ウォークインの集中監視が必要な多店舗チェーンに最適です。",
         "benefits": [
-          "Beverage cooler monitoring",
-          "Ice cream freezer alerts",
-          "Multi-store dashboard"
+          "飲料冷蔵庫監視",
+          "アイスクリーム冷凍庫アラート",
+          "多店舗ダッシュボード"
         ]
-      },
-      "healthcare": "Healthcare & Pharmaceuticals",
-      "foodService": "Food Service & Restaurants",
-      "coldStorage": "Cold Storage & Distribution",
-      "dataCenters": "Data Centers & IT",
-      "manufacturing": "Manufacturing & Industrial",
-      "grocery": "Grocery & Retail",
-      "researchLabs": "Research Labs",
-      "transportation": "Transportation & Logistics"
+      }
     },
     "products": {
-      "badge": "Our Products",
-      "title": "Wireless Products",
-      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "badge": "当社製品",
+      "title": "ワイヤレス製品",
+      "subtitle": "温度、湿度、圧力などのワイヤレスセンサーの完全な範囲",
       "temperature": {
-        "title": "Temperature Sensors",
-        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+        "title": "温度センサー",
+        "description": "冷蔵、冷凍、重要スペースのワイヤレス温度監視"
       },
       "humidity": {
-        "title": "Humidity Sensors",
-        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+        "title": "湿度センサー",
+        "description": "倉庫、データセンター、クリーンルームの相対湿度を監視"
       },
       "pressure": {
-        "title": "Pressure Sensors",
-        "description": "Differential pressure monitoring for filter status and room pressurization"
+        "title": "圧力センサー",
+        "description": "フィルター状態と室内加圧の差圧監視"
       },
-      "viewAll": "View All Wireless Products"
+      "viewAll": "すべてのワイヤレス製品を見る"
+    },
+    "sensorCoverage": {
+      "title": "包括的なセンサーカバレッジ",
+      "subtitle": "ワイヤレスセンサースイートで重要な環境要因をすべて監視。ビジネスにとって最も重要な条件を完全に可視化します。",
+      "temperature": {
+        "title": "温度",
+        "description": "-40°Cから85°Cまでの精密温度監視"
+      },
+      "humidity": {
+        "title": "湿度",
+        "description": "最適な保管条件のための相対湿度追跡"
+      },
+      "barometricPressure": {
+        "title": "気圧",
+        "description": "環境制御のための大気圧監視"
+      },
+      "doorContact": {
+        "title": "ドア接触",
+        "description": "ドアの開閉状態と持続時間アラートを追跡"
+      },
+      "waterLeak": {
+        "title": "水漏れ",
+        "description": "水漏れの検知は、スペースでの損害防止と安全確保に不可欠です。"
+      },
+      "lightLevel": {
+        "title": "照度",
+        "description": "照度センシングにより最適な植物条件とエネルギー効率を確保します。"
+      },
+      "seamlessIntegration": "すべてのセンサーが連携して資産保護を支援します。",
+      "browseSensors": "WAMセンサーを見る"
     },
     "demo": {
-      "badge": "Get Started",
-      "title": "Ready to Get Started?",
-      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "badge": "開始",
+      "title": "始める準備はできましたか？",
+      "subtitle": "WAM™がどのように資産を保護し、コストのかかる故障を防ぐかをお見せします。フォームに記入していただければ、パーソナライズされたデモのスケジュールについてご連絡いたします。",
       "benefits": {
         "consultation": {
-          "title": "Free Consultation",
-          "description": "Talk to our monitoring experts about your specific needs"
+          "title": "無料相談",
+          "description": "お客様の特定のニーズについて監視専門家と話し合い"
         },
         "pricing": {
-          "title": "Custom Pricing",
-          "description": "Flexible plans based on your monitoring requirements"
+          "title": "カスタム価格",
+          "description": "監視要件に基づく柔軟なプラン"
         },
         "implementation": {
-          "title": "Fast Implementation",
-          "description": "Be up and running in days, not weeks"
+          "title": "迅速な実装",
+          "description": "数週間ではなく数日で稼働開始"
         }
       },
       "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone",
-        "company": "Company",
-        "industry": "Industry",
-        "selectIndustry": "Select Industry",
-        "message": "What would you like to monitor?",
-        "messagePlaceholder": "Tell us about your monitoring needs...",
-        "submit": "Request Demo",
-        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "メール",
+        "phone": "電話",
+        "company": "会社",
+        "industry": "業界",
+        "selectIndustry": "業界を選択",
+        "message": "何を監視したいですか？",
+        "messagePlaceholder": "監視ニーズについてお聞かせください...",
+        "submit": "デモを依頼",
+        "privacy": "このフォームを送信することで、当社のプライバシーポリシーと利用規約に同意したものとみなされます。",
         "required": "*"
       }
     },
     "finalCta": {
-      "title": "Have questions about wireless monitoring?",
-      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
-      "contactSupport": "Contact Support",
-      "browseProducts": "Browse Wireless Products"
+      "title": "ワイヤレス監視についてご質問がありますか？",
+      "subtitle": "技術専門家の一人とお話しください。適切なソリューションを見つけるお手伝いをいたします。",
+      "contactSupport": "サポートに連絡",
+      "browseProducts": "ワイヤレス製品を見る"
     },
     "trustBadges": {
-      "madeInUSA": "Made in USA",
-      "iso9001": "ISO 9001 Certified",
-      "experience": "30+ Years Experience"
-    },
-    "costlyLosses": {
-      "title": "Avoid Costly Losses",
-      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
-      "preventSpoilage": {
-        "title": "Prevent Spoilage",
-        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
-      },
-      "maintainCompliance": {
-        "title": "Maintain Compliance",
-        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
-      },
-      "detectWaterDamage": {
-        "title": "Detect Water Damage",
-        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
-      }
-    },
-    "sensorCoverage": {
-      "title": "Comprehensive Sensor Coverage",
-      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
-      "temperature": {
-        "title": "Temperature",
-        "description": "Precision temperature monitoring from -40°F to 185°F"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "description": "Relative humidity tracking for optimal storage conditions"
-      },
-      "barometricPressure": {
-        "title": "Barometric Pressure",
-        "description": "Atmospheric pressure monitoring for environmental control"
-      },
-      "doorContact": {
-        "title": "Door Contact",
-        "description": "Track door open/close status and duration alerts"
-      },
-      "waterLeak": {
-        "title": "Water Leak",
-        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
-      },
-      "lightLevel": {
-        "title": "Light Level",
-        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
-      },
-      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
-      "browseSensors": "Browse WAM Sensors"
+      "madeInUSA": "米国製",
+      "iso9001": "ISO 9001認証",
+      "experience": "30年以上の経験"
     }
   }
 }

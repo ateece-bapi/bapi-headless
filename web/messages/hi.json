@@ -3361,265 +3361,257 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
-      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
-      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+      "title": "WAM™ वायरलेस एसेट मॉनिटरिंग | BAPI",
+      "description": "BAPI के रियल-टाइम मॉनिटरिंग के साथ अपनी मूल्यवान संपत्तियों की सुरक्षा करें। WAM™ महंगी उपकरण विफलताओं से बचने के लिए 24/7 एसेट मॉनिटरिंग और तत्काल अलर्ट प्रदान करता है।",
+      "keywords": "वायरलेस एसेट मॉनिटरिंग, तापमान मॉनिटरिंग, आर्द्रता मॉनिटरिंग, उपकरण मॉनिटरिंग, निवारक रखरखाव, कोल्ड चेन मॉनिटरिंग"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wam": "WAM™ Wireless Asset Monitoring"
+      "home": "होम",
+      "products": "उत्पाद",
+      "wam": "WAM™ वायरलेस एसेट मॉनिटरिंग"
     },
     "hero": {
-      "badge": "WAM™ Wireless Asset Monitoring",
-      "title": "Protect your valuable assets with real-time monitoring",
-      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
-      "cta": "Request Demo",
-      "secondaryCta": "How It Works"
+      "badge": "WAM™ - वायरलेस एसेट मॉनिटरिंग",
+      "title": "रियल-टाइम मॉनिटरिंग के साथ तापमान और अधिक की निगरानी करें",
+      "description": "महंगी उपकरण विफलताओं से बचने के लिए 24/7 मॉनिटरिंग और तत्काल अलर्ट। BAPI के सिद्ध वायरलेस समाधानों के साथ कहीं से भी तापमान, आर्द्रता और अधिक की निगरानी करें।",
+      "cta": "डेमो का अनुरोध करें",
+      "secondaryCta": "यह कैसे काम करता है"
     },
     "features": {
-      "title": "What is WAM?",
-      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "title": "WAM क्या है?",
+      "description": "वायरलेस एसेट मॉनिटरिंग एक शक्तिशाली प्लेटफॉर्म है जो आपको अपनी सुविधा की पर्यावरणीय स्थितियों में पूर्ण दृश्यता प्रदान करता है, जिससे आपको अनुपालन बनाए रखने और उपकरण विफलता को रोकने में मदद मिलती है।",
       "multiSensor": {
-        "title": "Multi-Sensor Monitoring",
-        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+        "title": "मल्टी-सेंसर मॉनिटरिंग",
+        "description": "एक एकीकृत प्लेटफॉर्म से तापमान, आर्द्रता, बैरोमेट्रिक दबाव, प्रकाश स्तर, दरवाजा संपर्क और पानी रिसाव का पता लगाने की ट्रैकिंग करें।"
       },
       "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+        "title": "रियल-टाइम अलर्ट",
+        "description": "जब सेंसर रीडिंग आपकी कस्टम सीमा से अधिक हो जाती है तो SMS और ईमेल के माध्यम से तत्काल सूचनाएं प्राप्त करें, जिससे तुरंत प्रतिक्रिया सुनिश्चित होती है।"
       },
       "dataAnalytics": {
-        "title": "Data Analytics & Compliance",
-        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+        "title": "डेटा एनालिटिक्स और अनुपालन",
+        "description": "ऐतिहासिक रुझान देखें, व्यापक रिपोर्ट तैयार करें, और अनुपालन प्रलेखन और विश्लेषण के लिए डेटा निर्यात करें।"
+      }
+    },
+    "costlyLosses": {
+      "title": "महंगे नुकसान से बचें",
+      "description": "उपकरण विफलताओं और पर्यावरणीय समस्याओं के परिणामस्वरूप हजारों रुपये की इन्वेंट्री हानि, अनुपालन उल्लंघन और व्यावसायिक व्यवधान हो सकते हैं। WAM आपको इन महंगी समस्याओं को होने से पहले रोकने में मदद करता है।",
+      "preventSpoilage": {
+        "title": "खराब होने से रोकें",
+        "description": "हजारों रुपये की खराब होने वाली इन्वेंट्री को खराब करने से पहले तापमान में उतार-चढ़ाव का पता लगाएं।"
+      },
+      "maintainCompliance": {
+        "title": "अनुपालन बनाए रखें",
+        "description": "स्वचालित रिपोर्टिंग और डेटा लॉगिंग आपको HACCP, FDA और अन्य नियामक आवश्यकताओं को पूरा करने में मदद करती है।"
+      },
+      "detectWaterDamage": {
+        "title": "पानी की क्षति का पता लगाएं",
+        "description": "महत्वपूर्ण क्षेत्रों में महंगी पानी की क्षति और मोल्ड की वृद्धि को रोकने के लिए रिसाव को जल्दी पकड़ें।"
       }
     },
     "howItWorks": {
-      "badge": "Simple Setup",
-      "title": "How It Works",
-      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "badge": "सरल सेटअप",
+      "title": "यह कैसे काम करता है",
+      "subtitle": "सरल सेटअप, शक्तिशाली सुरक्षा। WAM™ चार आसान चरणों में आपकी संपत्तियों को क्लाउड से जोड़ता है।",
       "step1": {
-        "title": "Install Sensors",
-        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+        "title": "सेंसर इंस्टॉल करें",
+        "description": "महत्वपूर्ण उपकरणों के पास वायरलेस सेंसर लगाएं। कोई वायरिंग की आवश्यकता नहीं।"
       },
       "step2": {
-        "title": "Connect Gateway",
-        "description": "Gateway receives sensor data and sends to secure cloud."
+        "title": "गेटवे कनेक्ट करें",
+        "description": "गेटवे सेंसर डेटा प्राप्त करता है और सुरक्षित क्लाउड में भेजता है।"
       },
       "step3": {
-        "title": "Access Dashboard",
-        "description": "View real-time data and historical trends from any device."
+        "title": "डैशबोर्ड एक्सेस करें",
+        "description": "किसी भी डिवाइस से रियल-टाइम डेटा और ऐतिहासिक रुझान देखें।"
       },
       "step4": {
-        "title": "Receive Alerts",
-        "description": "Get instant notifications when conditions exceed thresholds."
+        "title": "अलर्ट प्राप्त करें",
+        "description": "जब स्थितियां सीमा से अधिक हो जाती हैं तो तत्काल सूचनाएं प्राप्त करें।"
       }
     },
     "alertBanner": {
-      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+      "text": "BAPI के 24/7 एसेट मॉनिटरिंग के साथ पावर आउटेज या उपकरण विफलता से होने वाले महंगे नुकसान से बचें।"
     },
     "benefits": {
-      "badge": "Benefits",
-      "title": "Why Choose WAM?",
-      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "badge": "लाभ",
+      "title": "WAM क्यों चुनें?",
+      "subtitle": "पारंपरिक एसेट मॉनिटरिंग विधियां समय लेने वाली, त्रुटि-प्रवण हो सकती हैं और अक्सर रियल-टाइम अंतर्दृष्टि प्रदान करने में विफल होती हैं। हालांकि, हमारी उन्नत वायरलेस सेंसर तकनीक के साथ, आप पहले से कहीं अधिक अपनी एसेट सुरक्षा रणनीति को नियंत्रित कर सकते हैं। यहां बताया गया है कि हमारा समाधान आपके व्यवसाय को कैसे बदल सकता है:",
       "costSavings": {
-        "title": "Cost Savings",
-        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+        "title": "लागत बचत",
+        "description": "नुकसान को रोकना सीधे आपकी बॉटम लाइन को प्रभावित करता है। एसेट मॉनिटरिंग के लिए वायरलेस सेंसर का लाभ उठाकर, आप क्षति या पूर्ण हानि के जोखिम को काफी कम कर सकते हैं। वित्तीय बर्बादी, बीमा दावों और महंगे डाउनटाइम को कम करते हुए अपनी संपत्तियों के जीवनकाल को अधिकतम करें।"
       },
       "proactivePrevention": {
-        "title": "Proactive Loss Prevention",
-        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+        "title": "सक्रिय हानि निवारण",
+        "description": "संभावित जोखिमों को महंगे नुकसान में बढ़ने से पहले पहचानें और कम करें। हमारे वायरलेस सेंसर बुद्धिमान अलर्ट और सूचनाएं प्रदान करते हैं, जो आपको किसी भी संदिग्ध गतिविधि, अनधिकृत पहुंच या असामान्य व्यवहार पर तुरंत प्रतिक्रिया करने की शक्ति देते हैं। संभावित खतरों से एक कदम आगे रहें और अपनी संपत्तियों की प्रभावी रूप से सुरक्षा करें।"
       },
       "monitorAnywhere": {
-        "title": "Monitor Anywhere",
-        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+        "title": "कहीं भी निगरानी करें",
+        "description": "कहीं से भी, किसी भी समय महत्वपूर्ण एसेट डेटा तक तत्काल पहुंच प्राप्त करें। हमारे वायरलेस सेंसर आपको अपनी संपत्तियों की रियल-टाइम निगरानी करने में सक्षम बनाते हैं, जो आपको उनकी स्थिति और स्थिति पर अप-टू-द-मिनट जानकारी प्रदान करते हैं। सूचित रहें और आत्मविश्वास के साथ सूचित निर्णय लें।"
       },
       "historicalTrends": {
-        "title": "Historical Trends",
-        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+        "title": "ऐतिहासिक रुझान",
+        "description": "विस्तृत रिपोर्टिंग के साथ पैटर्न का विश्लेषण करें, अनुपालन सिद्ध करें और संचालन को अनुकूलित करें।"
       },
       "operationalEfficiency": {
-        "title": "Enhanced Operational Efficiency",
-        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+        "title": "बेहतर परिचालन दक्षता",
+        "description": "अपनी एसेट प्रबंधन प्रक्रियाओं को सुव्यवस्थित करें और समग्र परिचालन दक्षता में सुधार करें। हमारे वायरलेस सेंसर डेटा संग्रह को स्वचालित करते हैं, मैन्युअल प्रयासों को कम करते हैं और आपकी टीम के लिए मूल्यवान समय मुक्त करते हैं। इन्वेंट्री प्रबंधन को सरल बनाएं, आपूर्ति श्रृंखला लॉजिस्टिक्स को अनुकूलित करें और अपने व्यावसायिक संचालन को अनुकूलित करने के लिए डेटा-संचालित निर्णय लें।"
       },
       "scalable": {
-        "title": "Scalable Solutions",
-        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+        "title": "स्केलेबल समाधान",
+        "description": "हम समझते हैं कि हर व्यवसाय की अनूठी आवश्यकताएं होती हैं। हमारे वायरलेस सेंसर समाधान आपकी विशिष्ट आवश्यकताओं के अनुकूल अनुकूलन योग्य हैं, जो एसेट सुरक्षा के लिए एक अनुकूलित दृष्टिकोण सुनिश्चित करते हैं। इसके अलावा, हमारी स्केलेबल आर्किटेक्चर आपको अपने व्यवसाय के बढ़ने के साथ अपने एसेट मॉनिटरिंग सिस्टम का विस्तार करने की अनुमति देती है, आसानी से आपकी बदलती मांगों के अनुकूल होती है।"
       }
     },
     "industries": {
-      "badge": "Applications",
-      "title": "Industries We Serve",
-      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "badge": "अनुप्रयोग",
+      "title": "हम जिन उद्योगों की सेवा करते हैं",
+      "subtitle": "महत्वपूर्ण तापमान-संवेदनशील उद्योगों में व्यवसायों द्वारा भरोसेमंद",
       "restaurants": {
-        "title": "Restaurants",
-        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "title": "रेस्तरां",
+        "description": "वॉक-इन कूलर, फ्रीजर और फूड प्रेप एरिया की निगरानी करें। HACCP अनुपालन सुनिश्चित करें और खाद्य खराब होने से रोकें।",
         "benefits": [
-          "Walk-in cooler monitoring",
-          "Prevent temperature tracking",
-          "HACCP compliance reporting"
+          "वॉक-इन कूलर मॉनिटरिंग",
+          "तापमान ट्रैकिंग रोकें",
+          "HACCP अनुपालन रिपोर्टिंग"
         ]
       },
       "greenhouses": {
-        "title": "Greenhouses",
-        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "title": "ग्रीनहाउस",
+        "description": "ग्रीनहाउस के लिए कुशल तापमान निगरानी इष्टतम स्थितियों को सुनिश्चित करती है, आपके कीमती पौधों की सुरक्षा करती है।",
         "benefits": [
-          "Zone temperature control influences plant health",
-          "Monitor door activity for stable greenhouse conditions",
-          "Quickly spot equipment failures to minimize downtime"
+          "जोन तापमान नियंत्रण पौधों के स्वास्थ्य को प्रभावित करता है",
+          "स्थिर ग्रीनहाउस स्थितियों के लिए दरवाजे की गतिविधि की निगरानी करें",
+          "डाउनटाइम को कम करने के लिए उपकरण विफलताओं को जल्दी पहचानें"
         ]
       },
       "meatProcessing": {
-        "title": "Meat Processing",
-        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "title": "मांस प्रसंस्करण",
+        "description": "प्रसंस्करण सुविधाओं के लिए महत्वपूर्ण तापमान और आर्द्रता नियंत्रण। सख्त FDA/USDA आवश्यकताओं को पूरा करें।",
         "benefits": [
-          "Processing room monitoring",
-          "Humidity control tracking",
-          "FDA/USDA compliance logs"
+          "प्रसंस्करण कक्ष निगरानी",
+          "आर्द्रता नियंत्रण ट्रैकिंग",
+          "FDA/USDA अनुपालन लॉग"
         ]
       },
       "hospitalsPharmacies": {
-        "title": "Hospitals and Pharmacies",
-        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "title": "अस्पताल और फार्मेसी",
+        "description": "निगरानी रोगी देखभाल और फार्मास्यूटिकल प्रबंधन में सुरक्षा और दक्षता को बढ़ाती है।",
         "benefits": [
-          "Enhanced health inspections with IoT data",
-          "IoT solutions for precise temperature control",
-          "Streamlined management for hospitals and pharmacies"
+          "IoT डेटा के साथ बेहतर स्वास्थ्य निरीक्षण",
+          "सटीक तापमान नियंत्रण के लिए IoT समाधान",
+          "अस्पतालों और फार्मेसियों के लिए सुव्यवस्थित प्रबंधन"
         ]
       },
       "groceryStores": {
-        "title": "Grocery Stores",
-        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "title": "किराना स्टोर",
+        "description": "उत्पाद की गुणवत्ता बनाए रखने के लिए रेफ्रिजरेटेड और फ्रोजन फूड केस, डेली एरिया और बैक ऑफ हाउस स्टोरेज की निगरानी करें।",
         "benefits": [
-          "Display case monitoring",
-          "Deli and bakery tracking",
-          "Back-of-house storage alerts"
+          "डिस्प्ले केस मॉनिटरिंग",
+          "डेली और बेकरी ट्रैकिंग",
+          "बैक-ऑफ-हाउस स्टोरेज अलर्ट"
         ]
       },
       "convenienceStores": {
-        "title": "Convenience Stores",
-        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "title": "सुविधा स्टोर",
+        "description": "कूलर, फ्रीजर और वॉक-इन की केंद्रीकृत निगरानी की आवश्यकता वाली मल्टी-लोकेशन चेन के लिए परफेक्ट।",
         "benefits": [
-          "Beverage cooler monitoring",
-          "Ice cream freezer alerts",
-          "Multi-store dashboard"
+          "बेवरेज कूलर मॉनिटरिंग",
+          "आइसक्रीम फ्रीजर अलर्ट",
+          "मल्टी-स्टोर डैशबोर्ड"
         ]
-      },
-      "healthcare": "Healthcare & Pharmaceuticals",
-      "foodService": "Food Service & Restaurants",
-      "coldStorage": "Cold Storage & Distribution",
-      "dataCenters": "Data Centers & IT",
-      "manufacturing": "Manufacturing & Industrial",
-      "grocery": "Grocery & Retail",
-      "researchLabs": "Research Labs",
-      "transportation": "Transportation & Logistics"
+      }
     },
     "products": {
-      "badge": "Our Products",
-      "title": "Wireless Products",
-      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "badge": "हमारे उत्पाद",
+      "title": "वायरलेस उत्पाद",
+      "subtitle": "तापमान, आर्द्रता, दबाव और अधिक के लिए वायरलेस सेंसर की पूरी श्रृंखला",
       "temperature": {
-        "title": "Temperature Sensors",
-        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+        "title": "तापमान सेंसर",
+        "description": "रेफ्रिजरेशन, फ्रीजर और महत्वपूर्ण स्थानों के लिए वायरलेस तापमान निगरानी"
       },
       "humidity": {
-        "title": "Humidity Sensors",
-        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+        "title": "आर्द्रता सेंसर",
+        "description": "गोदामों, डेटा सेंटर और क्लीन रूम में सापेक्ष आर्द्रता की निगरानी करें"
       },
       "pressure": {
-        "title": "Pressure Sensors",
-        "description": "Differential pressure monitoring for filter status and room pressurization"
+        "title": "दबाव सेंसर",
+        "description": "फिल्टर स्थिति और कमरे के दबाव के लिए अंतर दबाव निगरानी"
       },
-      "viewAll": "View All Wireless Products"
+      "viewAll": "सभी वायरलेस उत्पाद देखें"
+    },
+    "sensorCoverage": {
+      "title": "व्यापक सेंसर कवरेज",
+      "subtitle": "हमारे वायरलेस सेंसर सूट के साथ हर महत्वपूर्ण पर्यावरणीय कारक की निगरानी करें। उन स्थितियों में पूर्ण दृश्यता प्राप्त करें जो आपके व्यवसाय के लिए सबसे महत्वपूर्ण हैं।",
+      "temperature": {
+        "title": "तापमान",
+        "description": "-40°C से 85°C तक सटीक तापमान निगरानी"
+      },
+      "humidity": {
+        "title": "आर्द्रता",
+        "description": "इष्टतम भंडारण स्थितियों के लिए सापेक्ष आर्द्रता ट्रैकिंग"
+      },
+      "barometricPressure": {
+        "title": "बैरोमेट्रिक दबाव",
+        "description": "पर्यावरण नियंत्रण के लिए वायुमंडलीय दबाव निगरानी"
+      },
+      "doorContact": {
+        "title": "दरवाजा संपर्क",
+        "description": "दरवाजे की खुली/बंद स्थिति और अवधि अलर्ट को ट्रैक करें"
+      },
+      "waterLeak": {
+        "title": "पानी रिसाव",
+        "description": "आपके स्थान में क्षति को रोकने और सुरक्षा सुनिश्चित करने के लिए पानी के रिसाव का पता लगाना महत्वपूर्ण है।"
+      },
+      "lightLevel": {
+        "title": "प्रकाश स्तर",
+        "description": "प्रकाश स्तर संवेदन इष्टतम पौधों की स्थिति और ऊर्जा दक्षता सुनिश्चित करता है।"
+      },
+      "seamlessIntegration": "सभी सेंसर आपकी संपत्तियों की सुरक्षा में मदद के लिए निर्बाध रूप से एक साथ काम करते हैं।",
+      "browseSensors": "WAM सेंसर ब्राउज़ करें"
     },
     "demo": {
-      "badge": "Get Started",
-      "title": "Ready to Get Started?",
-      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "badge": "शुरुआत करें",
+      "title": "शुरुआत करने के लिए तैयार हैं?",
+      "subtitle": "हमें दिखाने दें कि WAM™ आपकी संपत्तियों की सुरक्षा कैसे कर सकता है और महंगी विफलताओं को कैसे रोक सकता है। फॉर्म भरें और हम एक व्यक्तिगत डेमो शेड्यूल करने के लिए आपसे संपर्क करेंगे।",
       "benefits": {
         "consultation": {
-          "title": "Free Consultation",
-          "description": "Talk to our monitoring experts about your specific needs"
+          "title": "निःशुल्क परामर्श",
+          "description": "अपनी विशिष्ट आवश्यकताओं के बारे में हमारे निगरानी विशेषज्ञों से बात करें"
         },
         "pricing": {
-          "title": "Custom Pricing",
-          "description": "Flexible plans based on your monitoring requirements"
+          "title": "कस्टम मूल्य निर्धारण",
+          "description": "आपकी निगरानी आवश्यकताओं के आधार पर लचीली योजनाएं"
         },
         "implementation": {
-          "title": "Fast Implementation",
-          "description": "Be up and running in days, not weeks"
+          "title": "तेज़ कार्यान्वयन",
+          "description": "हफ्तों नहीं, दिनों में चालू और चलाएं"
         }
       },
       "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone",
-        "company": "Company",
-        "industry": "Industry",
-        "selectIndustry": "Select Industry",
-        "message": "What would you like to monitor?",
-        "messagePlaceholder": "Tell us about your monitoring needs...",
-        "submit": "Request Demo",
-        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "firstName": "पहला नाम",
+        "lastName": "अंतिम नाम",
+        "email": "ईमेल",
+        "phone": "फोन",
+        "company": "कंपनी",
+        "industry": "उद्योग",
+        "selectIndustry": "उद्योग चुनें",
+        "message": "आप क्या निगरानी करना चाहते हैं?",
+        "messagePlaceholder": "हमें अपनी निगरानी आवश्यकताओं के बारे में बताएं...",
+        "submit": "डेमो का अनुरोध करें",
+        "privacy": "इस फॉर्म को सबमिट करके, आप हमारी गोपनीयता नीति और सेवा की शर्तों से सहमत होते हैं।",
         "required": "*"
       }
     },
     "finalCta": {
-      "title": "Have questions about wireless monitoring?",
-      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
-      "contactSupport": "Contact Support",
-      "browseProducts": "Browse Wireless Products"
+      "title": "वायरलेस निगरानी के बारे में प्रश्न हैं?",
+      "subtitle": "हमारे तकनीकी विशेषज्ञों में से किसी एक से बात करें। हम आपको सही समाधान खोजने में मदद करने के लिए यहां हैं।",
+      "contactSupport": "सहायता से संपर्क करें",
+      "browseProducts": "वायरलेस उत्पाद ब्राउज़ करें"
     },
     "trustBadges": {
-      "madeInUSA": "Made in USA",
-      "iso9001": "ISO 9001 Certified",
-      "experience": "30+ Years Experience"
-    },
-    "costlyLosses": {
-      "title": "Avoid Costly Losses",
-      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
-      "preventSpoilage": {
-        "title": "Prevent Spoilage",
-        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
-      },
-      "maintainCompliance": {
-        "title": "Maintain Compliance",
-        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
-      },
-      "detectWaterDamage": {
-        "title": "Detect Water Damage",
-        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
-      }
-    },
-    "sensorCoverage": {
-      "title": "Comprehensive Sensor Coverage",
-      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
-      "temperature": {
-        "title": "Temperature",
-        "description": "Precision temperature monitoring from -40°F to 185°F"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "description": "Relative humidity tracking for optimal storage conditions"
-      },
-      "barometricPressure": {
-        "title": "Barometric Pressure",
-        "description": "Atmospheric pressure monitoring for environmental control"
-      },
-      "doorContact": {
-        "title": "Door Contact",
-        "description": "Track door open/close status and duration alerts"
-      },
-      "waterLeak": {
-        "title": "Water Leak",
-        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
-      },
-      "lightLevel": {
-        "title": "Light Level",
-        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
-      },
-      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
-      "browseSensors": "Browse WAM Sensors"
+      "madeInUSA": "USA में निर्मित",
+      "iso9001": "ISO 9001 प्रमाणित",
+      "experience": "30+ वर्षों का अनुभव"
     }
   }
 }

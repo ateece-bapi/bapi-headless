@@ -3364,264 +3364,256 @@
   "wamLandingPage": {
     "metadata": {
       "title": "WAM™ Wireless Asset Monitoring | BAPI",
-      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
-      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+      "description": "Schützen Sie Ihre wertvollen Anlagen mit Echtzeitüberwachung von BAPI. WAM™ bietet 24/7 Anlagenüberwachung mit sofortigen Alarmen zur Vermeidung kostspieliger Geräteausfälle.",
+      "keywords": "drahtlose Anlagenüberwachung, Temperaturüberwachung, Feuchtigkeitsüberwachung, Geräteüberwachung, vorbeugende Wartung, Kühlkettenüberwachung"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
+      "home": "Startseite",
+      "products": "Produkte",
       "wam": "WAM™ Wireless Asset Monitoring"
     },
     "hero": {
-      "badge": "WAM™ Wireless Asset Monitoring",
-      "title": "Protect your valuable assets with real-time monitoring",
-      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
-      "cta": "Request Demo",
-      "secondaryCta": "How It Works"
+      "badge": "WAM™ - Wireless Asset Monitoring",
+      "title": "Überwachen Sie Temperatur und mehr mit Echtzeitüberwachung",
+      "description": "24/7 Überwachung mit sofortigen Alarmen zur Vermeidung kostspieliger Geräteausfälle. Überwachen Sie Temperatur, Feuchtigkeit und mehr von überall mit BAPIs bewährten drahtlosen Lösungen.",
+      "cta": "Demo anfordern",
+      "secondaryCta": "Wie es funktioniert"
     },
     "features": {
-      "title": "What is WAM?",
-      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "title": "Was ist WAM?",
+      "description": "Wireless Asset Monitoring ist eine leistungsstarke Plattform, die Ihnen vollständige Transparenz über die Umgebungsbedingungen Ihrer Einrichtung bietet und dabei hilft, Compliance zu gewährleisten und Geräteausfälle zu verhindern.",
       "multiSensor": {
-        "title": "Multi-Sensor Monitoring",
-        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+        "title": "Multi-Sensor-Überwachung",
+        "description": "Verfolgen Sie Temperatur, Feuchtigkeit, Luftdruck, Lichtstärke, Türkontakte und Wasserleckerkennung - alles von einer einheitlichen Plattform aus."
       },
       "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+        "title": "Echtzeit-Alarme",
+        "description": "Erhalten Sie sofortige Benachrichtigungen per SMS und E-Mail, wenn Sensorwerte Ihre benutzerdefinierten Schwellenwerte überschreiten, um eine sofortige Reaktion zu gewährleisten."
       },
       "dataAnalytics": {
-        "title": "Data Analytics & Compliance",
-        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+        "title": "Datenanalyse & Compliance",
+        "description": "Betrachten Sie historische Trends, erstellen Sie umfassende Berichte und exportieren Sie Daten für Compliance-Dokumentation und Analyse."
+      }
+    },
+    "costlyLosses": {
+      "title": "Vermeiden Sie kostspielige Verluste",
+      "description": "Geräteausfälle und Umgebungsprobleme können zu Tausenden von Euro an verlorenem Inventar, Compliance-Verstößen und Betriebsunterbrechungen führen. WAM hilft Ihnen, diese kostspieligen Probleme zu verhindern, bevor sie auftreten.",
+      "preventSpoilage": {
+        "title": "Verderb verhindern",
+        "description": "Erkennen Sie Temperaturschwankungen, bevor sie Tausende von Euro an verderblichem Inventar verderben lassen."
+      },
+      "maintainCompliance": {
+        "title": "Compliance gewährleisten",
+        "description": "Automatisierte Berichterstattung und Datenprotokollierung helfen Ihnen, HACCP-, FDA- und andere regulatorische Anforderungen zu erfüllen."
+      },
+      "detectWaterDamage": {
+        "title": "Wasserschäden erkennen",
+        "description": "Erkennen Sie Lecks frühzeitig, um teure Wasserschäden und Schimmelbildung in kritischen Bereichen zu verhindern."
       }
     },
     "howItWorks": {
-      "badge": "Simple Setup",
-      "title": "How It Works",
-      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "badge": "Einfache Einrichtung",
+      "title": "Wie es funktioniert",
+      "subtitle": "Einfache Einrichtung, leistungsstarker Schutz. WAM™ verbindet Ihre Anlagen in vier einfachen Schritten mit der Cloud.",
       "step1": {
-        "title": "Install Sensors",
-        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+        "title": "Sensoren installieren",
+        "description": "Montieren Sie drahtlose Sensoren in der Nähe kritischer Geräte. Keine Verkabelung erforderlich."
       },
       "step2": {
-        "title": "Connect Gateway",
-        "description": "Gateway receives sensor data and sends to secure cloud."
+        "title": "Gateway verbinden",
+        "description": "Gateway empfängt Sensordaten und sendet sie an die sichere Cloud."
       },
       "step3": {
-        "title": "Access Dashboard",
-        "description": "View real-time data and historical trends from any device."
+        "title": "Dashboard aufrufen",
+        "description": "Betrachten Sie Echtzeitdaten und historische Trends von jedem Gerät aus."
       },
       "step4": {
-        "title": "Receive Alerts",
-        "description": "Get instant notifications when conditions exceed thresholds."
+        "title": "Alarme erhalten",
+        "description": "Erhalten Sie sofortige Benachrichtigungen, wenn Bedingungen Schwellenwerte überschreiten."
       }
     },
     "alertBanner": {
-      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+      "text": "Vermeiden Sie kostspielige Verluste durch Stromausfälle oder Geräteausfälle mit 24/7 Anlagenüberwachung von BAPI."
     },
     "benefits": {
-      "badge": "Benefits",
-      "title": "Why Choose WAM?",
-      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "badge": "Vorteile",
+      "title": "Warum WAM wählen?",
+      "subtitle": "Herkömmliche Anlagenüberwachungsmethoden können zeitaufwändig, fehleranfällig sein und oft keine Echtzeit-Einblicke bieten. Mit unserer fortschrittlichen drahtlosen Sensortechnologie können Sie jedoch Ihre Anlagenschutzstrategie wie nie zuvor kontrollieren. So kann unsere Lösung Ihr Unternehmen transformieren:",
       "costSavings": {
-        "title": "Cost Savings",
-        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+        "title": "Kosteneinsparungen",
+        "description": "Die Verhinderung von Verlusten wirkt sich direkt auf Ihr Ergebnis aus. Durch den Einsatz drahtloser Sensoren für die Anlagenüberwachung können Sie das Risiko von Schäden oder Totalverlusten erheblich reduzieren. Minimieren Sie finanzielle Verschwendung, Versicherungsansprüche und kostspielige Ausfallzeiten und maximieren Sie gleichzeitig die Lebensdauer Ihrer Anlagen."
       },
       "proactivePrevention": {
-        "title": "Proactive Loss Prevention",
-        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+        "title": "Proaktive Verlustprävention",
+        "description": "Identifizieren und mindern Sie potenzielle Risiken, bevor sie zu kostspieligen Verlusten eskalieren. Unsere drahtlosen Sensoren bieten intelligente Alarme und Benachrichtigungen, die es Ihnen ermöglichen, schnell auf verdächtige Aktivitäten, unbefugten Zugang oder abnormales Verhalten zu reagieren. Bleiben Sie einen Schritt voraus bei potenziellen Bedrohungen und schützen Sie Ihre Anlagen effektiv."
       },
       "monitorAnywhere": {
-        "title": "Monitor Anywhere",
-        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+        "title": "Überall überwachen",
+        "description": "Erhalten Sie sofortigen Zugang zu kritischen Anlagendaten von überall und jederzeit. Unsere drahtlosen Sensoren ermöglichen es Ihnen, Ihre Anlagen in Echtzeit zu überwachen und bieten Ihnen aktuelle Informationen über deren Status und Zustand. Bleiben Sie informiert und treffen Sie fundierte Entscheidungen mit Vertrauen."
       },
       "historicalTrends": {
-        "title": "Historical Trends",
-        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+        "title": "Historische Trends",
+        "description": "Analysieren Sie Muster, beweisen Sie Compliance und optimieren Sie Abläufe mit detaillierter Berichterstattung."
       },
       "operationalEfficiency": {
-        "title": "Enhanced Operational Efficiency",
-        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+        "title": "Verbesserte operative Effizienz",
+        "description": "Optimieren Sie Ihre Anlagenverwaltungsprozesse und verbessern Sie die gesamte operative Effizienz. Unsere drahtlosen Sensoren automatisieren die Datenerfassung, reduzieren manuelle Aufwände und schaffen wertvolle Zeit für Ihr Team. Vereinfachen Sie das Bestandsmanagement, optimieren Sie die Lieferkettenlogistik und treffen Sie datengesteuerte Entscheidungen zur Optimierung Ihrer Geschäftsabläufe."
       },
       "scalable": {
-        "title": "Scalable Solutions",
-        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+        "title": "Skalierbare Lösungen",
+        "description": "Wir verstehen, dass jedes Unternehmen einzigartige Anforderungen hat. Unsere drahtlosen Sensorlösungen sind anpassbar an Ihre spezifischen Bedürfnisse und gewährleisten einen maßgeschneiderten Ansatz für den Anlagenschutz. Darüber hinaus ermöglicht unsere skalierbare Architektur die Erweiterung Ihres Anlagenüberwachungssystems mit dem Wachstum Ihres Unternehmens und passt sich mühelos an Ihre sich ändernden Anforderungen an."
       }
     },
     "industries": {
-      "badge": "Applications",
-      "title": "Industries We Serve",
-      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "badge": "Anwendungen",
+      "title": "Branchen, die wir bedienen",
+      "subtitle": "Vertraut von Unternehmen in kritischen temperaturempfindlichen Branchen",
       "restaurants": {
         "title": "Restaurants",
-        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "description": "Überwachen Sie begehbare Kühlräume, Gefrierschränke und Lebensmittelzubereitungsbereiche. Gewährleisten Sie HACCP-Compliance und verhindern Sie Lebensmittelverderb.",
         "benefits": [
-          "Walk-in cooler monitoring",
-          "Prevent temperature tracking",
-          "HACCP compliance reporting"
+          "Überwachung begehbarer Kühlräume",
+          "Temperaturverfolgung verhindern",
+          "HACCP-Compliance-Berichterstattung"
         ]
       },
       "greenhouses": {
-        "title": "Greenhouses",
-        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "title": "Gewächshäuser",
+        "description": "Effiziente Temperaturüberwachung für Gewächshäuser gewährleistet optimale Bedingungen und schützt Ihre wertvollen Pflanzen.",
         "benefits": [
-          "Zone temperature control influences plant health",
-          "Monitor door activity for stable greenhouse conditions",
-          "Quickly spot equipment failures to minimize downtime"
+          "Zonentemperaturkontrolle beeinflusst Pflanzengesundheit",
+          "Überwachen Sie Türaktivitäten für stabile Gewächshausbedingungen",
+          "Erkennen Sie Geräteausfälle schnell, um Ausfallzeiten zu minimieren"
         ]
       },
       "meatProcessing": {
-        "title": "Meat Processing",
-        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "title": "Fleischverarbeitung",
+        "description": "Kritische Temperatur- und Feuchtigkeitskontrolle für Verarbeitungsanlagen. Erfüllen Sie strenge FDA/USDA-Anforderungen.",
         "benefits": [
-          "Processing room monitoring",
-          "Humidity control tracking",
-          "FDA/USDA compliance logs"
+          "Überwachung von Verarbeitungsräumen",
+          "Verfolgung der Feuchtigkeitskontrolle",
+          "FDA/USDA-Compliance-Protokolle"
         ]
       },
       "hospitalsPharmacies": {
-        "title": "Hospitals and Pharmacies",
-        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "title": "Krankenhäuser und Apotheken",
+        "description": "Überwachung steigert Sicherheit und Effizienz in der Patientenversorgung und im Pharmamanagement.",
         "benefits": [
-          "Enhanced health inspections with IoT data",
-          "IoT solutions for precise temperature control",
-          "Streamlined management for hospitals and pharmacies"
+          "Verbesserte Gesundheitsinspektionen mit IoT-Daten",
+          "IoT-Lösungen für präzise Temperaturkontrolle",
+          "Optimiertes Management für Krankenhäuser und Apotheken"
         ]
       },
       "groceryStores": {
-        "title": "Grocery Stores",
-        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "title": "Lebensmittelgeschäfte",
+        "description": "Überwachen Sie gekühlte und gefrorene Lebensmittelvitrinen, Feinkostbereiche und Lagerräume im hinteren Bereich, um die Produktqualität zu erhalten.",
         "benefits": [
-          "Display case monitoring",
-          "Deli and bakery tracking",
-          "Back-of-house storage alerts"
+          "Überwachung von Verkaufsvitrinen",
+          "Verfolgung von Feinkost und Bäckerei",
+          "Alarme für Lagerräume im hinteren Bereich"
         ]
       },
       "convenienceStores": {
-        "title": "Convenience Stores",
-        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "title": "Convenience-Stores",
+        "description": "Perfekt für Multi-Standort-Ketten, die zentrale Überwachung von Kühlern, Gefrierschränken und begehbaren Kühlräumen benötigen.",
         "benefits": [
-          "Beverage cooler monitoring",
-          "Ice cream freezer alerts",
-          "Multi-store dashboard"
+          "Überwachung von Getränkekühlern",
+          "Alarme für Eiscreme-Gefrierschränke",
+          "Multi-Store-Dashboard"
         ]
-      },
-      "healthcare": "Healthcare & Pharmaceuticals",
-      "foodService": "Food Service & Restaurants",
-      "coldStorage": "Cold Storage & Distribution",
-      "dataCenters": "Data Centers & IT",
-      "manufacturing": "Manufacturing & Industrial",
-      "grocery": "Grocery & Retail",
-      "researchLabs": "Research Labs",
-      "transportation": "Transportation & Logistics"
+      }
     },
     "products": {
-      "badge": "Our Products",
-      "title": "Wireless Products",
-      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "badge": "Unsere Produkte",
+      "title": "Drahtlose Produkte",
+      "subtitle": "Komplettes Sortiment drahtloser Sensoren für Temperatur, Feuchtigkeit, Druck und mehr",
       "temperature": {
-        "title": "Temperature Sensors",
-        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+        "title": "Temperatursensoren",
+        "description": "Drahtlose Temperaturüberwachung für Kühlung, Gefrierschränke und kritische Räume"
       },
       "humidity": {
-        "title": "Humidity Sensors",
-        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+        "title": "Feuchtigkeitssensoren",
+        "description": "Überwachen Sie relative Feuchtigkeit in Lagerhäusern, Rechenzentren und Reinräumen"
       },
       "pressure": {
-        "title": "Pressure Sensors",
-        "description": "Differential pressure monitoring for filter status and room pressurization"
+        "title": "Drucksensoren",
+        "description": "Differenzdrucküberwachung für Filterstatus und Raumdruckbeaufschlagung"
       },
-      "viewAll": "View All Wireless Products"
+      "viewAll": "Alle drahtlosen Produkte anzeigen"
+    },
+    "sensorCoverage": {
+      "title": "Umfassende Sensorabdeckung",
+      "subtitle": "Überwachen Sie jeden kritischen Umweltfaktor mit unserer drahtlosen Sensorsuite. Erhalten Sie vollständige Transparenz über die Bedingungen, die für Ihr Unternehmen am wichtigsten sind.",
+      "temperature": {
+        "title": "Temperatur",
+        "description": "Präzise Temperaturüberwachung von -40°C bis 85°C"
+      },
+      "humidity": {
+        "title": "Feuchtigkeit",
+        "description": "Verfolgung der relativen Feuchtigkeit für optimale Lagerbedingungen"
+      },
+      "barometricPressure": {
+        "title": "Luftdruck",
+        "description": "Atmosphärendrucküberwachung für Umweltkontrolle"
+      },
+      "doorContact": {
+        "title": "Türkontakt",
+        "description": "Verfolgen Sie Tür-Öffnen/Schließen-Status und Daueralarmierung"
+      },
+      "waterLeak": {
+        "title": "Wasserleck",
+        "description": "Die Erkennung von Wasserlecks ist entscheidend für die Schadensverhütung und Gewährleistung der Sicherheit in Ihrem Raum."
+      },
+      "lightLevel": {
+        "title": "Lichtstärke",
+        "description": "Lichtpegelmessung gewährleistet optimale Pflanzenbedingungen und Energieeffizienz."
+      },
+      "seamlessIntegration": "Alle Sensoren arbeiten nahtlos zusammen, um Ihre Anlagen zu schützen.",
+      "browseSensors": "WAM-Sensoren durchsuchen"
     },
     "demo": {
-      "badge": "Get Started",
-      "title": "Ready to Get Started?",
-      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "badge": "Erste Schritte",
+      "title": "Bereit anzufangen?",
+      "subtitle": "Lassen Sie uns Ihnen zeigen, wie WAM™ Ihre Anlagen schützen und kostspielige Ausfälle verhindern kann. Füllen Sie das Formular aus und wir kontaktieren Sie, um eine personalisierte Demo zu vereinbaren.",
       "benefits": {
         "consultation": {
-          "title": "Free Consultation",
-          "description": "Talk to our monitoring experts about your specific needs"
+          "title": "Kostenlose Beratung",
+          "description": "Sprechen Sie mit unseren Überwachungsexperten über Ihre spezifischen Bedürfnisse"
         },
         "pricing": {
-          "title": "Custom Pricing",
-          "description": "Flexible plans based on your monitoring requirements"
+          "title": "Individuelle Preisgestaltung",
+          "description": "Flexible Pläne basierend auf Ihren Überwachungsanforderungen"
         },
         "implementation": {
-          "title": "Fast Implementation",
-          "description": "Be up and running in days, not weeks"
+          "title": "Schnelle Implementierung",
+          "description": "Seien Sie in Tagen, nicht Wochen, betriebsbereit"
         }
       },
       "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone",
-        "company": "Company",
-        "industry": "Industry",
-        "selectIndustry": "Select Industry",
-        "message": "What would you like to monitor?",
-        "messagePlaceholder": "Tell us about your monitoring needs...",
-        "submit": "Request Demo",
-        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "company": "Unternehmen",
+        "industry": "Branche",
+        "selectIndustry": "Branche auswählen",
+        "message": "Was möchten Sie überwachen?",
+        "messagePlaceholder": "Erzählen Sie uns von Ihren Überwachungsanforderungen...",
+        "submit": "Demo anfordern",
+        "privacy": "Durch das Absenden dieses Formulars stimmen Sie unserer Datenschutzrichtlinie und den Nutzungsbedingungen zu.",
         "required": "*"
       }
     },
     "finalCta": {
-      "title": "Have questions about wireless monitoring?",
-      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
-      "contactSupport": "Contact Support",
-      "browseProducts": "Browse Wireless Products"
+      "title": "Haben Sie Fragen zur drahtlosen Überwachung?",
+      "subtitle": "Sprechen Sie mit einem unserer technischen Experten. Wir sind hier, um Ihnen bei der Suche nach der richtigen Lösung zu helfen.",
+      "contactSupport": "Support kontaktieren",
+      "browseProducts": "Drahtlose Produkte durchsuchen"
     },
     "trustBadges": {
       "madeInUSA": "Made in USA",
-      "iso9001": "ISO 9001 Certified",
-      "experience": "30+ Years Experience"
-    },
-    "costlyLosses": {
-      "title": "Avoid Costly Losses",
-      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
-      "preventSpoilage": {
-        "title": "Prevent Spoilage",
-        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
-      },
-      "maintainCompliance": {
-        "title": "Maintain Compliance",
-        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
-      },
-      "detectWaterDamage": {
-        "title": "Detect Water Damage",
-        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
-      }
-    },
-    "sensorCoverage": {
-      "title": "Comprehensive Sensor Coverage",
-      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
-      "temperature": {
-        "title": "Temperature",
-        "description": "Precision temperature monitoring from -40°F to 185°F"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "description": "Relative humidity tracking for optimal storage conditions"
-      },
-      "barometricPressure": {
-        "title": "Barometric Pressure",
-        "description": "Atmospheric pressure monitoring for environmental control"
-      },
-      "doorContact": {
-        "title": "Door Contact",
-        "description": "Track door open/close status and duration alerts"
-      },
-      "waterLeak": {
-        "title": "Water Leak",
-        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
-      },
-      "lightLevel": {
-        "title": "Light Level",
-        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
-      },
-      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
-      "browseSensors": "Browse WAM Sensors"
+      "iso9001": "ISO 9001 zertifiziert",
+      "experience": "30+ Jahre Erfahrung"
     }
   }
 }

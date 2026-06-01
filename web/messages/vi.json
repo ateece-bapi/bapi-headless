@@ -3363,265 +3363,257 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
-      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
-      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+      "title": "WAM™ Giám Sát Tài Sản Không Dây | BAPI",
+      "description": "Bảo vệ tài sản có giá trị của bạn với giám sát thời gian thực từ BAPI. WAM™ cung cấp giám sát tài sản 24/7 với cảnh báo tức thì để tránh hỏng hóc thiết bị tốn kém.",
+      "keywords": "giám sát tài sản không dây, giám sát nhiệt độ, giám sát độ ẩm, giám sát thiết bị, bảo trì phòng ngừa, giám sát chuỗi lạnh"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wam": "WAM™ Wireless Asset Monitoring"
+      "home": "Trang chủ",
+      "products": "Sản phẩm",
+      "wam": "WAM™ Giám Sát Tài Sản Không Dây"
     },
     "hero": {
-      "badge": "WAM™ Wireless Asset Monitoring",
-      "title": "Protect your valuable assets with real-time monitoring",
-      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
-      "cta": "Request Demo",
-      "secondaryCta": "How It Works"
+      "badge": "WAM™ - Giám Sát Tài Sản Không Dây",
+      "title": "Giám sát nhiệt độ và nhiều hơn nữa với giám sát thời gian thực",
+      "description": "Giám sát 24/7 với cảnh báo tức thì để tránh hỏng hóc thiết bị tốn kém. Giám sát nhiệt độ, độ ẩm và nhiều hơn nữa từ bất kỳ đâu với các giải pháp không dây đã được chứng minh của BAPI.",
+      "cta": "Yêu cầu Demo",
+      "secondaryCta": "Cách hoạt động"
     },
     "features": {
-      "title": "What is WAM?",
-      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "title": "WAM là gì?",
+      "description": "Giám Sát Tài Sản Không Dây là một nền tảng mạnh mẽ cung cấp cho bạn khả năng hiển thị hoàn toàn các điều kiện môi trường của cơ sở, giúp bạn duy trì tuân thủ và ngăn ngừa hỏng hóc thiết bị.",
       "multiSensor": {
-        "title": "Multi-Sensor Monitoring",
-        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+        "title": "Giám Sát Đa Cảm Biến",
+        "description": "Theo dõi nhiệt độ, độ ẩm, áp suất khí quyển, mức độ ánh sáng, tiếp xúc cửa và phát hiện rò rỉ nước tất cả từ một nền tảng thống nhất."
       },
       "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+        "title": "Cảnh Báo Thời Gian Thực",
+        "description": "Nhận thông báo tức thì qua SMS và email khi các chỉ số cảm biến vượt quá ngưỡng tùy chỉnh của bạn, đảm bảo phản ứng ngay lập tức."
       },
       "dataAnalytics": {
-        "title": "Data Analytics & Compliance",
-        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+        "title": "Phân Tích Dữ Liệu & Tuân Thủ",
+        "description": "Xem xu hướng lịch sử, tạo báo cáo toàn diện và xuất dữ liệu cho tài liệu tuân thủ và phân tích."
+      }
+    },
+    "costlyLosses": {
+      "title": "Tránh Tổn Thất Tốn Kém",
+      "description": "Hỏng hóc thiết bị và các vấn đề môi trường có thể dẫn đến hàng nghìn đô la tổn thất hàng tồn kho, vi phạm tuân thủ và gián đoạn kinh doanh. WAM giúp bạn ngăn ngừa những vấn đề tốn kém này trước khi chúng xảy ra.",
+      "preventSpoilage": {
+        "title": "Ngăn Ngừa Hư Hỏng",
+        "description": "Phát hiện biến động nhiệt độ trước khi chúng làm hỏng hàng nghìn đô la hàng tồn kho dễ hỏng."
+      },
+      "maintainCompliance": {
+        "title": "Duy Trì Tuân Thủ",
+        "description": "Báo cáo tự động và ghi nhật ký dữ liệu giúp bạn đáp ứng các yêu cầu HACCP, FDA và các quy định khác."
+      },
+      "detectWaterDamage": {
+        "title": "Phát Hiện Thiệt Hại Do Nước",
+        "description": "Phát hiện rò rỉ sớm để ngăn ngừa thiệt hại do nước đắt tiền và nấm mốc phát triển trong các khu vực quan trọng."
       }
     },
     "howItWorks": {
-      "badge": "Simple Setup",
-      "title": "How It Works",
-      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "badge": "Thiết Lập Đơn Giản",
+      "title": "Cách Hoạt Động",
+      "subtitle": "Thiết lập đơn giản, bảo vệ mạnh mẽ. WAM™ kết nối tài sản của bạn với đám mây trong bốn bước dễ dàng.",
       "step1": {
-        "title": "Install Sensors",
-        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+        "title": "Lắp Đặt Cảm Biến",
+        "description": "Gắn cảm biến không dây gần thiết bị quan trọng. Không cần dây điện."
       },
       "step2": {
-        "title": "Connect Gateway",
-        "description": "Gateway receives sensor data and sends to secure cloud."
+        "title": "Kết Nối Gateway",
+        "description": "Gateway nhận dữ liệu cảm biến và gửi đến đám mây an toàn."
       },
       "step3": {
-        "title": "Access Dashboard",
-        "description": "View real-time data and historical trends from any device."
+        "title": "Truy Cập Bảng Điều Khiển",
+        "description": "Xem dữ liệu thời gian thực và xu hướng lịch sử từ bất kỳ thiết bị nào."
       },
       "step4": {
-        "title": "Receive Alerts",
-        "description": "Get instant notifications when conditions exceed thresholds."
+        "title": "Nhận Cảnh Báo",
+        "description": "Nhận thông báo tức thì khi điều kiện vượt quá ngưỡng."
       }
     },
     "alertBanner": {
-      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+      "text": "Tránh tổn thất tốn kém từ mất điện hoặc hỏng hóc thiết bị với giám sát tài sản 24/7 từ BAPI."
     },
     "benefits": {
-      "badge": "Benefits",
-      "title": "Why Choose WAM?",
-      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "badge": "Lợi Ích",
+      "title": "Tại Sao Chọn WAM?",
+      "subtitle": "Các phương pháp giám sát tài sản truyền thống có thể tốn thời gian, dễ sai sót và thường không cung cấp thông tin chi tiết thời gian thực. Tuy nhiên, với công nghệ cảm biến không dây tiên tiến của chúng tôi, bạn có thể kiểm soát chiến lược bảo vệ tài sản như chưa từng có. Đây là cách giải pháp của chúng tôi có thể biến đổi doanh nghiệp của bạn:",
       "costSavings": {
-        "title": "Cost Savings",
-        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+        "title": "Tiết Kiệm Chi Phí",
+        "description": "Ngăn ngừa tổn thất tác động trực tiếp đến lợi nhuận của bạn. Bằng cách tận dụng cảm biến không dây để giám sát tài sản, bạn có thể giảm đáng kể rủi ro thiệt hại hoặc mất hoàn toàn. Giảm thiểu lãng phí tài chính, khiếu nại bảo hiểm và thời gian ngừng hoạt động tốn kém trong khi tối đa hóa tuổi thọ tài sản."
       },
       "proactivePrevention": {
-        "title": "Proactive Loss Prevention",
-        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+        "title": "Ngăn Ngừa Tổn Thất Chủ Động",
+        "description": "Xác định và giảm thiểu các rủi ro tiềm ẩn trước khi chúng leo thang thành tổn thất tốn kém. Cảm biến không dây của chúng tôi cung cấp cảnh báo và thông báo thông minh, trao quyền cho bạn phản ứng nhanh chóng với bất kỳ hoạt động đáng ngờ, truy cập trái phép hoặc hành vi bất thường nào. Luôn đi trước một bước so với các mối đe dọa tiềm ẩn và bảo vệ tài sản hiệu quả."
       },
       "monitorAnywhere": {
-        "title": "Monitor Anywhere",
-        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+        "title": "Giám Sát Mọi Nơi",
+        "description": "Truy cập tức thì dữ liệu tài sản quan trọng từ bất kỳ đâu, bất kỳ lúc nào. Cảm biến không dây của chúng tôi cho phép bạn giám sát tài sản theo thời gian thực, cung cấp thông tin cập nhật từng phút về trạng thái và tình trạng của chúng. Luôn được thông báo và đưa ra quyết định sáng suốt với sự tự tin."
       },
       "historicalTrends": {
-        "title": "Historical Trends",
-        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+        "title": "Xu Hướng Lịch Sử",
+        "description": "Phân tích mẫu, chứng minh tuân thủ và tối ưu hóa hoạt động với báo cáo chi tiết."
       },
       "operationalEfficiency": {
-        "title": "Enhanced Operational Efficiency",
-        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+        "title": "Nâng Cao Hiệu Quả Hoạt Động",
+        "description": "Tinh giản quy trình quản lý tài sản và cải thiện hiệu quả hoạt động tổng thể. Cảm biến không dây của chúng tôi tự động hóa thu thập dữ liệu, giảm nỗ lực thủ công và giải phóng thời gian quý báu cho đội ngũ của bạn. Đơn giản hóa quản lý hàng tồn kho, tối ưu hóa logistics chuỗi cung ứng và đưa ra quyết định dựa trên dữ liệu để tối ưu hóa hoạt động kinh doanh."
       },
       "scalable": {
-        "title": "Scalable Solutions",
-        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+        "title": "Giải Pháp Có Thể Mở Rộng",
+        "description": "Chúng tôi hiểu rằng mỗi doanh nghiệp có yêu cầu riêng. Giải pháp cảm biến không dây của chúng tôi có thể tùy chỉnh để phù hợp với nhu cầu cụ thể của bạn, đảm bảo cách tiếp cận phù hợp để bảo vệ tài sản. Hơn nữa, kiến trúc có thể mở rộng của chúng tôi cho phép bạn mở rộng hệ thống giám sát tài sản khi doanh nghiệp phát triển, dễ dàng thích ứng với nhu cầu thay đổi."
       }
     },
     "industries": {
-      "badge": "Applications",
-      "title": "Industries We Serve",
-      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "badge": "Ứng Dụng",
+      "title": "Ngành Nghề Chúng Tôi Phục Vụ",
+      "subtitle": "Được tin tưởng bởi các doanh nghiệp trong các ngành nhạy cảm với nhiệt độ quan trọng",
       "restaurants": {
-        "title": "Restaurants",
-        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "title": "Nhà Hàng",
+        "description": "Giám sát tủ lạnh, tủ đông và khu vực chuẩn bị thực phẩm. Đảm bảo tuân thủ HACCP và ngăn ngừa hư hỏng thực phẩm.",
         "benefits": [
-          "Walk-in cooler monitoring",
-          "Prevent temperature tracking",
-          "HACCP compliance reporting"
+          "Giám sát tủ lạnh walk-in",
+          "Ngăn ngừa theo dõi nhiệt độ",
+          "Báo cáo tuân thủ HACCP"
         ]
       },
       "greenhouses": {
-        "title": "Greenhouses",
-        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "title": "Nhà Kính",
+        "description": "Giám sát nhiệt độ hiệu quả cho nhà kính đảm bảo điều kiện tối ưu, bảo vệ cây trồng quý giá của bạn.",
         "benefits": [
-          "Zone temperature control influences plant health",
-          "Monitor door activity for stable greenhouse conditions",
-          "Quickly spot equipment failures to minimize downtime"
+          "Kiểm soát nhiệt độ theo vùng ảnh hưởng đến sức khỏe cây trồng",
+          "Giám sát hoạt động cửa để duy trì điều kiện nhà kính ổn định",
+          "Nhanh chóng phát hiện hỏng hóc thiết bị để giảm thiểu thời gian ngừng hoạt động"
         ]
       },
       "meatProcessing": {
-        "title": "Meat Processing",
-        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "title": "Chế Biến Thịt",
+        "description": "Kiểm soát nhiệt độ và độ ẩm quan trọng cho cơ sở chế biến. Đáp ứng yêu cầu nghiêm ngặt của FDA/USDA.",
         "benefits": [
-          "Processing room monitoring",
-          "Humidity control tracking",
-          "FDA/USDA compliance logs"
+          "Giám sát phòng chế biến",
+          "Theo dõi kiểm soát độ ẩm",
+          "Nhật ký tuân thủ FDA/USDA"
         ]
       },
       "hospitalsPharmacies": {
-        "title": "Hospitals and Pharmacies",
-        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "title": "Bệnh Viện và Nhà Thuốc",
+        "description": "Giám sát tăng cường an toàn và hiệu quả trong chăm sóc bệnh nhân và quản lý dược phẩm.",
         "benefits": [
-          "Enhanced health inspections with IoT data",
-          "IoT solutions for precise temperature control",
-          "Streamlined management for hospitals and pharmacies"
+          "Nâng cao kiểm tra sức khỏe với dữ liệu IoT",
+          "Giải pháp IoT cho kiểm soát nhiệt độ chính xác",
+          "Quản lý tinh giản cho bệnh viện và nhà thuốc"
         ]
       },
       "groceryStores": {
-        "title": "Grocery Stores",
-        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "title": "Cửa Hàng Tạp Hóa",
+        "description": "Giám sát tủ thực phẩm lạnh và đông lạnh, khu vực deli và kho lưu trữ phía sau để duy trì chất lượng sản phẩm.",
         "benefits": [
-          "Display case monitoring",
-          "Deli and bakery tracking",
-          "Back-of-house storage alerts"
+          "Giám sát tủ trưng bày",
+          "Theo dõi deli và tiệm bánh",
+          "Cảnh báo kho lưu trữ phía sau"
         ]
       },
       "convenienceStores": {
-        "title": "Convenience Stores",
-        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "title": "Cửa Hàng Tiện Lợi",
+        "description": "Hoàn hảo cho chuỗi đa địa điểm cần giám sát tập trung tủ lạnh, tủ đông và walk-in.",
         "benefits": [
-          "Beverage cooler monitoring",
-          "Ice cream freezer alerts",
-          "Multi-store dashboard"
+          "Giám sát tủ lạnh đồ uống",
+          "Cảnh báo tủ đông kem",
+          "Bảng điều khiển đa cửa hàng"
         ]
-      },
-      "healthcare": "Healthcare & Pharmaceuticals",
-      "foodService": "Food Service & Restaurants",
-      "coldStorage": "Cold Storage & Distribution",
-      "dataCenters": "Data Centers & IT",
-      "manufacturing": "Manufacturing & Industrial",
-      "grocery": "Grocery & Retail",
-      "researchLabs": "Research Labs",
-      "transportation": "Transportation & Logistics"
+      }
     },
     "products": {
-      "badge": "Our Products",
-      "title": "Wireless Products",
-      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "badge": "Sản Phẩm Của Chúng Tôi",
+      "title": "Sản Phẩm Không Dây",
+      "subtitle": "Dải sản phẩm hoàn chỉnh cảm biến không dây cho nhiệt độ, độ ẩm, áp suất và nhiều hơn nữa",
       "temperature": {
-        "title": "Temperature Sensors",
-        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+        "title": "Cảm Biến Nhiệt Độ",
+        "description": "Giám sát nhiệt độ không dây cho làm lạnh, tủ đông và không gian quan trọng"
       },
       "humidity": {
-        "title": "Humidity Sensors",
-        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+        "title": "Cảm Biến Độ Ẩm",
+        "description": "Giám sát độ ẩm tương đối trong kho, trung tâm dữ liệu và phòng sạch"
       },
       "pressure": {
-        "title": "Pressure Sensors",
-        "description": "Differential pressure monitoring for filter status and room pressurization"
+        "title": "Cảm Biến Áp Suất",
+        "description": "Giám sát áp suất chênh lệch cho trạng thái bộ lọc và áp suất phòng"
       },
-      "viewAll": "View All Wireless Products"
+      "viewAll": "Xem Tất Cả Sản Phẩm Không Dây"
+    },
+    "sensorCoverage": {
+      "title": "Phạm Vi Cảm Biến Toàn Diện",
+      "subtitle": "Giám sát mọi yếu tố môi trường quan trọng với bộ cảm biến không dây của chúng tôi. Có được khả năng hiển thị hoàn toàn các điều kiện quan trọng nhất đối với doanh nghiệp của bạn.",
+      "temperature": {
+        "title": "Nhiệt Độ",
+        "description": "Giám sát nhiệt độ chính xác từ -40°C đến 85°C"
+      },
+      "humidity": {
+        "title": "Độ Ẩm",
+        "description": "Theo dõi độ ẩm tương đối cho điều kiện lưu trữ tối ưu"
+      },
+      "barometricPressure": {
+        "title": "Áp Suất Khí Quyển",
+        "description": "Giám sát áp suất khí quyển để kiểm soát môi trường"
+      },
+      "doorContact": {
+        "title": "Tiếp Xúc Cửa",
+        "description": "Theo dõi trạng thái mở/đóng cửa và cảnh báo thời gian"
+      },
+      "waterLeak": {
+        "title": "Rò Rỉ Nước",
+        "description": "Phát hiện rò rỉ nước là điều quan trọng để ngăn ngừa thiệt hại và đảm bảo an toàn trong không gian của bạn."
+      },
+      "lightLevel": {
+        "title": "Mức Độ Ánh Sáng",
+        "description": "Cảm biến mức độ ánh sáng đảm bảo điều kiện cây trồng tối ưu và hiệu quả năng lượng."
+      },
+      "seamlessIntegration": "Tất cả cảm biến hoạt động cùng nhau một cách liền mạch để giúp bảo vệ tài sản của bạn.",
+      "browseSensors": "Duyệt Cảm Biến WAM"
     },
     "demo": {
-      "badge": "Get Started",
-      "title": "Ready to Get Started?",
-      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "badge": "Bắt Đầu",
+      "title": "Sẵn Sàng Bắt Đầu?",
+      "subtitle": "Hãy để chúng tôi cho bạn thấy WAM™ có thể bảo vệ tài sản của bạn và ngăn ngừa hỏng hóc tốn kém như thế nào. Điền vào biểu mẫu và chúng tôi sẽ liên hệ với bạn để lên lịch demo cá nhân hóa.",
       "benefits": {
         "consultation": {
-          "title": "Free Consultation",
-          "description": "Talk to our monitoring experts about your specific needs"
+          "title": "Tư Vấn Miễn Phí",
+          "description": "Nói chuyện với các chuyên gia giám sát của chúng tôi về nhu cầu cụ thể của bạn"
         },
         "pricing": {
-          "title": "Custom Pricing",
-          "description": "Flexible plans based on your monitoring requirements"
+          "title": "Định Giá Tùy Chỉnh",
+          "description": "Gói linh hoạt dựa trên yêu cầu giám sát của bạn"
         },
         "implementation": {
-          "title": "Fast Implementation",
-          "description": "Be up and running in days, not weeks"
+          "title": "Triển Khai Nhanh",
+          "description": "Hoạt động trong vài ngày, không phải vài tuần"
         }
       },
       "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
+        "firstName": "Tên",
+        "lastName": "Họ",
         "email": "Email",
-        "phone": "Phone",
-        "company": "Company",
-        "industry": "Industry",
-        "selectIndustry": "Select Industry",
-        "message": "What would you like to monitor?",
-        "messagePlaceholder": "Tell us about your monitoring needs...",
-        "submit": "Request Demo",
-        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "phone": "Điện thoại",
+        "company": "Công ty",
+        "industry": "Ngành nghề",
+        "selectIndustry": "Chọn Ngành nghề",
+        "message": "Bạn muốn giám sát gì?",
+        "messagePlaceholder": "Hãy cho chúng tôi biết về nhu cầu giám sát của bạn...",
+        "submit": "Yêu cầu Demo",
+        "privacy": "Bằng cách gửi biểu mẫu này, bạn đồng ý với chính sách bảo mật và điều khoản dịch vụ của chúng tôi.",
         "required": "*"
       }
     },
     "finalCta": {
-      "title": "Have questions about wireless monitoring?",
-      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
-      "contactSupport": "Contact Support",
-      "browseProducts": "Browse Wireless Products"
+      "title": "Có câu hỏi về giám sát không dây?",
+      "subtitle": "Nói chuyện với một trong những chuyên gia kỹ thuật của chúng tôi. Chúng tôi ở đây để giúp bạn tìm giải pháp phù hợp.",
+      "contactSupport": "Liên Hệ Hỗ Trợ",
+      "browseProducts": "Duyệt Sản Phẩm Không Dây"
     },
     "trustBadges": {
-      "madeInUSA": "Made in USA",
-      "iso9001": "ISO 9001 Certified",
-      "experience": "30+ Years Experience"
-    },
-    "costlyLosses": {
-      "title": "Avoid Costly Losses",
-      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
-      "preventSpoilage": {
-        "title": "Prevent Spoilage",
-        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
-      },
-      "maintainCompliance": {
-        "title": "Maintain Compliance",
-        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
-      },
-      "detectWaterDamage": {
-        "title": "Detect Water Damage",
-        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
-      }
-    },
-    "sensorCoverage": {
-      "title": "Comprehensive Sensor Coverage",
-      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
-      "temperature": {
-        "title": "Temperature",
-        "description": "Precision temperature monitoring from -40°F to 185°F"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "description": "Relative humidity tracking for optimal storage conditions"
-      },
-      "barometricPressure": {
-        "title": "Barometric Pressure",
-        "description": "Atmospheric pressure monitoring for environmental control"
-      },
-      "doorContact": {
-        "title": "Door Contact",
-        "description": "Track door open/close status and duration alerts"
-      },
-      "waterLeak": {
-        "title": "Water Leak",
-        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
-      },
-      "lightLevel": {
-        "title": "Light Level",
-        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
-      },
-      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
-      "browseSensors": "Browse WAM Sensors"
+      "madeInUSA": "Sản xuất tại Mỹ",
+      "iso9001": "Chứng nhận ISO 9001",
+      "experience": "Hơn 30 Năm Kinh Nghiệm"
     }
   }
 }

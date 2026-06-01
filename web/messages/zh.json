@@ -3362,265 +3362,257 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
-      "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
-      "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
+      "title": "WAM™ 无线资产监控 | BAPI",
+      "description": "通过BAPI的实时监控保护您的宝贵资产。WAM™提供24/7资产监控，即时警报避免昂贵的设备故障。",
+      "keywords": "无线资产监控, 温度监控, 湿度监控, 设备监控, 预防性维护, 冷链监控"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
-      "wam": "WAM™ Wireless Asset Monitoring"
+      "home": "首页",
+      "products": "产品",
+      "wam": "WAM™ 无线资产监控"
     },
     "hero": {
-      "badge": "WAM™ Wireless Asset Monitoring",
-      "title": "Protect your valuable assets with real-time monitoring",
-      "description": "24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.",
-      "cta": "Request Demo",
-      "secondaryCta": "How It Works"
+      "badge": "WAM™ - 无线资产监控",
+      "title": "通过实时监控监测温度等参数",
+      "description": "24/7监控，即时警报避免昂贵的设备故障。使用BAPI经过验证的无线解决方案，随时随地监控温度、湿度等参数。",
+      "cta": "申请演示",
+      "secondaryCta": "工作原理"
     },
     "features": {
-      "title": "What is WAM?",
-      "description": "Wireless Asset Monitoring is a powerful platform that gives you complete visibility into your facility's environmental conditions, helping you maintain compliance and prevent equipment failure.",
+      "title": "什么是WAM？",
+      "description": "无线资产监控是一个强大的平台，为您提供设施环境条件的完整可视性，帮助您保持合规性并预防设备故障。",
       "multiSensor": {
-        "title": "Multi-Sensor Monitoring",
-        "description": "Track temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection all from one unified platform."
+        "title": "多传感器监控",
+        "description": "在一个统一平台上跟踪温度、湿度、大气压力、光照水平、门接触和漏水检测。"
       },
       "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Receive instant notifications via SMS and email when sensor readings exceed your custom thresholds, ensuring immediate response."
+        "title": "实时警报",
+        "description": "当传感器读数超过您的自定义阈值时，通过短信和电子邮件接收即时通知，确保立即响应。"
       },
       "dataAnalytics": {
-        "title": "Data Analytics & Compliance",
-        "description": "View historical trends, generate comprehensive reports, and export data for compliance documentation and analysis."
+        "title": "数据分析与合规",
+        "description": "查看历史趋势，生成综合报告，并导出数据用于合规文档和分析。"
+      }
+    },
+    "costlyLosses": {
+      "title": "避免昂贵损失",
+      "description": "设备故障和环境问题可能导致数千美元的库存损失、合规违规和业务中断。WAM帮助您在这些昂贵问题发生之前预防它们。",
+      "preventSpoilage": {
+        "title": "防止变质",
+        "description": "在温度波动损坏价值数千美元的易腐库存之前检测到它们。"
+      },
+      "maintainCompliance": {
+        "title": "保持合规",
+        "description": "自动报告和数据记录帮助您满足HACCP、FDA和其他监管要求。"
+      },
+      "detectWaterDamage": {
+        "title": "检测水损害",
+        "description": "及早发现泄漏，防止关键区域昂贵的水损害和霉菌生长。"
       }
     },
     "howItWorks": {
-      "badge": "Simple Setup",
-      "title": "How It Works",
-      "subtitle": "Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.",
+      "badge": "简单设置",
+      "title": "工作原理",
+      "subtitle": "简单设置，强大保护。WAM™通过四个简单步骤将您的资产连接到云端。",
       "step1": {
-        "title": "Install Sensors",
-        "description": "Mount wireless sensors near critical equipment. No wiring needed."
+        "title": "安装传感器",
+        "description": "在关键设备附近安装无线传感器。无需布线。"
       },
       "step2": {
-        "title": "Connect Gateway",
-        "description": "Gateway receives sensor data and sends to secure cloud."
+        "title": "连接网关",
+        "description": "网关接收传感器数据并发送到安全云端。"
       },
       "step3": {
-        "title": "Access Dashboard",
-        "description": "View real-time data and historical trends from any device."
+        "title": "访问仪表板",
+        "description": "从任何设备查看实时数据和历史趋势。"
       },
       "step4": {
-        "title": "Receive Alerts",
-        "description": "Get instant notifications when conditions exceed thresholds."
+        "title": "接收警报",
+        "description": "当条件超过阈值时获得即时通知。"
       }
     },
     "alertBanner": {
-      "text": "Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI."
+      "text": "通过BAPI的24/7资产监控避免停电或设备故障造成的昂贵损失。"
     },
     "benefits": {
-      "badge": "Benefits",
-      "title": "Why Choose WAM?",
-      "subtitle": "Traditional asset monitoring methods can be time-consuming, error-prone, and often fail to provide real-time insights. However, with our advanced wireless sensor technology, you can take control of your asset protection strategy like never before. Here's how our solution can transform your business:",
+      "badge": "优势",
+      "title": "为什么选择WAM？",
+      "subtitle": "传统的资产监控方法可能耗时、容易出错，并且往往无法提供实时洞察。然而，通过我们先进的无线传感器技术，您可以前所未有地掌控您的资产保护策略。以下是我们的解决方案如何改变您的业务：",
       "costSavings": {
-        "title": "Cost Savings",
-        "description": "Preventing losses directly impacts your bottom line. By leveraging wireless sensors for asset monitoring, you can significantly reduce the risk of damage or total loss. Minimize financial waste, insurance claims, and costly downtime while maximizing the lifespan of your assets."
+        "title": "成本节约",
+        "description": "预防损失直接影响您的底线。通过利用无线传感器进行资产监控，您可以显著降低损坏或完全损失的风险。最大限度地减少财务浪费、保险索赔和昂贵的停机时间，同时最大化资产的使用寿命。"
       },
       "proactivePrevention": {
-        "title": "Proactive Loss Prevention",
-        "description": "Identify and mitigate potential risks before they escalate into costly losses. Our wireless sensors offer intelligent alerts and notifications, empowering you to respond quickly to any suspicious activity, unauthorized access, or abnormal behavior. Stay one step ahead of potential threats and protect your assets effectively."
+        "title": "主动损失预防",
+        "description": "在潜在风险升级为昂贵损失之前识别并缓解它们。我们的无线传感器提供智能警报和通知，使您能够快速响应任何可疑活动、未经授权的访问或异常行为。始终领先于潜在威胁一步，有效保护您的资产。"
       },
       "monitorAnywhere": {
-        "title": "Monitor Anywhere",
-        "description": "Gain instant access to critical asset data from anywhere, at any time. Our wireless sensors enable you to monitor your assets in real-time, providing you with up-to-the-minute information on their status and condition. Stay informed and make informed decisions with confidence."
+        "title": "随时随地监控",
+        "description": "随时随地即时访问关键资产数据。我们的无线传感器使您能够实时监控资产，为您提供其状态和条件的最新信息。保持知情并自信地做出明智决策。"
       },
       "historicalTrends": {
-        "title": "Historical Trends",
-        "description": "Analyze patterns, prove compliance, and optimize operations with detailed reporting."
+        "title": "历史趋势",
+        "description": "通过详细报告分析模式、证明合规性并优化运营。"
       },
       "operationalEfficiency": {
-        "title": "Enhanced Operational Efficiency",
-        "description": "Streamline your asset management processes and improve overall operational efficiency. Our wireless sensors automate data collection, reducing manual efforts and freeing up valuable time for your team. Simplify inventory management, optimize supply chain logistics, and make data-driven decisions to optimize your business operations."
+        "title": "增强运营效率",
+        "description": "简化您的资产管理流程并提高整体运营效率。我们的无线传感器自动化数据收集，减少手动工作并为您的团队释放宝贵时间。简化库存管理，优化供应链物流，并做出数据驱动的决策来优化您的业务运营。"
       },
       "scalable": {
-        "title": "Scalable Solutions",
-        "description": "We understand that every business has unique requirements. Our wireless sensor solutions are customizable to fit your specific needs, ensuring a tailored approach to asset protection. Moreover, our scalable architecture allows you to expand your asset monitoring system as your business grows, effortlessly adapting to your changing demands."
+        "title": "可扩展解决方案",
+        "description": "我们了解每个企业都有独特的要求。我们的无线传感器解决方案可定制以适应您的特定需求，确保为资产保护提供量身定制的方法。此外，我们的可扩展架构允许您随着业务增长扩展资产监控系统，轻松适应您不断变化的需求。"
       }
     },
     "industries": {
-      "badge": "Applications",
-      "title": "Industries We Serve",
-      "subtitle": "Trusted by businesses across critical temperature-sensitive industries",
+      "badge": "应用",
+      "title": "我们服务的行业",
+      "subtitle": "受到关键温度敏感行业企业的信赖",
       "restaurants": {
-        "title": "Restaurants",
-        "description": "Monitor walk-in coolers, freezers, and food prep areas. Ensure HACCP compliance and prevent food spoilage.",
+        "title": "餐厅",
+        "description": "监控步入式冷却器、冷冻柜和食品准备区域。确保HACCP合规并防止食品变质。",
         "benefits": [
-          "Walk-in cooler monitoring",
-          "Prevent temperature tracking",
-          "HACCP compliance reporting"
+          "步入式冷却器监控",
+          "防止温度跟踪",
+          "HACCP合规报告"
         ]
       },
       "greenhouses": {
-        "title": "Greenhouses",
-        "description": "Efficient temperature monitoring for greenhouses ensures optimal conditions, safeguarding your precious plants.",
+        "title": "温室",
+        "description": "温室的高效温度监控确保最佳条件，保护您珍贵的植物。",
         "benefits": [
-          "Zone temperature control influences plant health",
-          "Monitor door activity for stable greenhouse conditions",
-          "Quickly spot equipment failures to minimize downtime"
+          "区域温度控制影响植物健康",
+          "监控门活动以保持稳定的温室条件",
+          "快速发现设备故障以最小化停机时间"
         ]
       },
       "meatProcessing": {
-        "title": "Meat Processing",
-        "description": "Critical temperature and humidity control for processing facilities. Meet strict FDA/USDA requirements.",
+        "title": "肉类加工",
+        "description": "加工设施的关键温度和湿度控制。满足严格的FDA/USDA要求。",
         "benefits": [
-          "Processing room monitoring",
-          "Humidity control tracking",
-          "FDA/USDA compliance logs"
+          "加工室监控",
+          "湿度控制跟踪",
+          "FDA/USDA合规日志"
         ]
       },
       "hospitalsPharmacies": {
-        "title": "Hospitals and Pharmacies",
-        "description": "Monitoring boosts safety and efficiency in patient care and pharmaceutical management.",
+        "title": "医院和药房",
+        "description": "监控提升患者护理和药物管理的安全性和效率。",
         "benefits": [
-          "Enhanced health inspections with IoT data",
-          "IoT solutions for precise temperature control",
-          "Streamlined management for hospitals and pharmacies"
+          "通过IoT数据增强健康检查",
+          "精确温度控制的IoT解决方案",
+          "医院和药房的简化管理"
         ]
       },
       "groceryStores": {
-        "title": "Grocery Stores",
-        "description": "Monitor refrigerated and frozen food cases, deli areas, and back of house storage to maintain product quality.",
+        "title": "杂货店",
+        "description": "监控冷藏和冷冻食品柜、熟食区和后厨储存以保持产品质量。",
         "benefits": [
-          "Display case monitoring",
-          "Deli and bakery tracking",
-          "Back-of-house storage alerts"
+          "展示柜监控",
+          "熟食和烘焙跟踪",
+          "后厨储存警报"
         ]
       },
       "convenienceStores": {
-        "title": "Convenience Stores",
-        "description": "Perfect for multi-location chains needing centralized monitoring of coolers, freezers, and walk-ins.",
+        "title": "便利店",
+        "description": "非常适合需要集中监控冷却器、冷冻柜和步入式设备的多地点连锁店。",
         "benefits": [
-          "Beverage cooler monitoring",
-          "Ice cream freezer alerts",
-          "Multi-store dashboard"
+          "饮料冷却器监控",
+          "冰淇淋冷冻柜警报",
+          "多店仪表板"
         ]
-      },
-      "healthcare": "Healthcare & Pharmaceuticals",
-      "foodService": "Food Service & Restaurants",
-      "coldStorage": "Cold Storage & Distribution",
-      "dataCenters": "Data Centers & IT",
-      "manufacturing": "Manufacturing & Industrial",
-      "grocery": "Grocery & Retail",
-      "researchLabs": "Research Labs",
-      "transportation": "Transportation & Logistics"
+      }
     },
     "products": {
-      "badge": "Our Products",
-      "title": "Wireless Products",
-      "subtitle": "Complete range of wireless sensors for temperature, humidity, pressure, and more",
+      "badge": "我们的产品",
+      "title": "无线产品",
+      "subtitle": "温度、湿度、压力等的完整无线传感器系列",
       "temperature": {
-        "title": "Temperature Sensors",
-        "description": "Wireless temperature monitoring for refrigeration, freezers, and critical spaces"
+        "title": "温度传感器",
+        "description": "用于制冷、冷冻柜和关键空间的无线温度监控"
       },
       "humidity": {
-        "title": "Humidity Sensors",
-        "description": "Monitor relative humidity in warehouses, data centers, and clean rooms"
+        "title": "湿度传感器",
+        "description": "监控仓库、数据中心和洁净室的相对湿度"
       },
       "pressure": {
-        "title": "Pressure Sensors",
-        "description": "Differential pressure monitoring for filter status and room pressurization"
+        "title": "压力传感器",
+        "description": "用于过滤器状态和房间加压的差压监控"
       },
-      "viewAll": "View All Wireless Products"
+      "viewAll": "查看所有无线产品"
+    },
+    "sensorCoverage": {
+      "title": "全面的传感器覆盖",
+      "subtitle": "通过我们的无线传感器套件监控每个关键环境因素。全面了解对您业务最重要的条件。",
+      "temperature": {
+        "title": "温度",
+        "description": "精密温度监控范围从-40°C到85°C"
+      },
+      "humidity": {
+        "title": "湿度",
+        "description": "相对湿度跟踪以获得最佳储存条件"
+      },
+      "barometricPressure": {
+        "title": "大气压力",
+        "description": "用于环境控制的大气压力监控"
+      },
+      "doorContact": {
+        "title": "门接触",
+        "description": "跟踪门开/关状态和持续时间警报"
+      },
+      "waterLeak": {
+        "title": "漏水",
+        "description": "检测漏水对于防止损坏和确保您空间的安全至关重要。"
+      },
+      "lightLevel": {
+        "title": "光照水平",
+        "description": "光照水平感应确保最佳植物条件和能源效率。"
+      },
+      "seamlessIntegration": "所有传感器无缝协作以帮助保护您的资产。",
+      "browseSensors": "浏览WAM传感器"
     },
     "demo": {
-      "badge": "Get Started",
-      "title": "Ready to Get Started?",
-      "subtitle": "Let us show you how WAM™ can protect your assets and prevent costly failures. Fill out the form and we'll contact you to schedule a personalized demo.",
+      "badge": "开始使用",
+      "title": "准备开始了吗？",
+      "subtitle": "让我们向您展示WAM™如何保护您的资产并防止昂贵的故障。填写表格，我们将联系您安排个性化演示。",
       "benefits": {
         "consultation": {
-          "title": "Free Consultation",
-          "description": "Talk to our monitoring experts about your specific needs"
+          "title": "免费咨询",
+          "description": "与我们的监控专家讨论您的具体需求"
         },
         "pricing": {
-          "title": "Custom Pricing",
-          "description": "Flexible plans based on your monitoring requirements"
+          "title": "定制定价",
+          "description": "基于您监控要求的灵活计划"
         },
         "implementation": {
-          "title": "Fast Implementation",
-          "description": "Be up and running in days, not weeks"
+          "title": "快速实施",
+          "description": "几天内启动运行，而非几周"
         }
       },
       "form": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone",
-        "company": "Company",
-        "industry": "Industry",
-        "selectIndustry": "Select Industry",
-        "message": "What would you like to monitor?",
-        "messagePlaceholder": "Tell us about your monitoring needs...",
-        "submit": "Request Demo",
-        "privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "电子邮件",
+        "phone": "电话",
+        "company": "公司",
+        "industry": "行业",
+        "selectIndustry": "选择行业",
+        "message": "您想要监控什么？",
+        "messagePlaceholder": "告诉我们您的监控需求...",
+        "submit": "申请演示",
+        "privacy": "通过提交此表格，您同意我们的隐私政策和服务条款。",
         "required": "*"
       }
     },
     "finalCta": {
-      "title": "Have questions about wireless monitoring?",
-      "subtitle": "Talk to one of our technical experts. We're here to help you find the right solution.",
-      "contactSupport": "Contact Support",
-      "browseProducts": "Browse Wireless Products"
+      "title": "对无线监控有疑问？",
+      "subtitle": "与我们的技术专家之一交谈。我们在这里帮助您找到正确的解决方案。",
+      "contactSupport": "联系支持",
+      "browseProducts": "浏览无线产品"
     },
     "trustBadges": {
-      "madeInUSA": "Made in USA",
-      "iso9001": "ISO 9001 Certified",
-      "experience": "30+ Years Experience"
-    },
-    "costlyLosses": {
-      "title": "Avoid Costly Losses",
-      "description": "Equipment failures and environmental issues can result in thousands of dollars in lost inventory, compliance violations, and business disruption. WAM helps you prevent these costly problems before they occur.",
-      "preventSpoilage": {
-        "title": "Prevent Spoilage",
-        "description": "Detect temperature fluctuations before they spoil thousands of dollars in perishable inventory."
-      },
-      "maintainCompliance": {
-        "title": "Maintain Compliance",
-        "description": "Automated reporting and data logging help you meet HACCP, FDA, and other regulatory requirements."
-      },
-      "detectWaterDamage": {
-        "title": "Detect Water Damage",
-        "description": "Catch leaks early to prevent expensive water damage and mold growth in critical areas."
-      }
-    },
-    "sensorCoverage": {
-      "title": "Comprehensive Sensor Coverage",
-      "subtitle": "Monitor every critical environmental factor with our wireless sensor suite. Get complete visibility into the conditions that matter most to your business.",
-      "temperature": {
-        "title": "Temperature",
-        "description": "Precision temperature monitoring from -40°F to 185°F"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "description": "Relative humidity tracking for optimal storage conditions"
-      },
-      "barometricPressure": {
-        "title": "Barometric Pressure",
-        "description": "Atmospheric pressure monitoring for environmental control"
-      },
-      "doorContact": {
-        "title": "Door Contact",
-        "description": "Track door open/close status and duration alerts"
-      },
-      "waterLeak": {
-        "title": "Water Leak",
-        "description": "Detecting water leaks is vital for preventing damage and ensuring safety in your space."
-      },
-      "lightLevel": {
-        "title": "Light Level",
-        "description": "Light level sensing ensures optimal plant conditions and energy efficiency."
-      },
-      "seamlessIntegration": "All sensors work together seamlessly to help protect your assets.",
-      "browseSensors": "Browse WAM Sensors"
+      "madeInUSA": "美国制造",
+      "iso9001": "ISO 9001认证",
+      "experience": "30+年经验"
     }
   }
 }

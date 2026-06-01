@@ -206,6 +206,10 @@ const Star = createMaterialSymbolIcon('star', 'Star');
 const LocalActivity = createMaterialSymbolIcon('local_activity', 'LocalActivity');
 const Cloud = createMaterialSymbolIcon('cloud', 'Cloud');
 const ShowChart = createMaterialSymbolIcon('show_chart', 'ShowChart');
+const Door = createMaterialSymbolIcon('door_open', 'Door');
+const Percent = createMaterialSymbolIcon('percent', 'Percent');
+const HumidityPercentage = createMaterialSymbolIcon('humidity_percentage', 'HumidityPercentage');
+const WaterDamage = createMaterialSymbolIcon('water_damage', 'WaterDamage');
 
 // Export with lucide-react compatible names
 // Navigation & UI Icons
@@ -400,6 +404,11 @@ export { LocalActivity as ActivityIcon };
 export { Storage as ServerIcon }; // lucide-react variant alias (same as HardDriveIcon)
 export { Cloud as CloudIcon };
 export { ShowChart as LineChartIcon };
+export { Door as DoorOpenIcon };
+export { Percent as PercentIcon };
+export { HumidityPercentage as HumidityPercentageIcon };
+export { Speed as SpeedIcon };
+export { WaterDamage as WaterDamageIcon };
 // Note: FileDownIcon already exported in Content & Media Icons section (line 248)
 
 // ========================================

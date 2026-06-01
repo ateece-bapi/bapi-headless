@@ -27,7 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('metadata.title'),
       description: t('metadata.description'),
       path: 'wireless',
-      keywords: t('metadata.keywords').split(', '),
+      keywords: t('metadata.keywords')
+        .split(',')
+        .map((k) => k.trim())
+        .filter(Boolean),
     },
     locale
   );
@@ -235,7 +238,7 @@ export default async function WirelessPage({ params }: Props) {
                   href="/company/contact-us"
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
-                  Contact Us
+                  {tCommon('contactUs')}
                 </Link>
               </div>
             </div>

@@ -39,7 +39,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('metadata.title'),
       description: t('metadata.description'),
       path: 'wam',
-      keywords: t('metadata.keywords').split(', '),
+      keywords: t('metadata.keywords')
+        .split(',')
+        .map((k) => k.trim())
+        .filter(Boolean),
     },
     locale
   );
@@ -48,7 +51,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function WAMPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'wamLandingPage' });
-  const tCommon = await getTranslations({ locale, namespace: 'common' });
 
   // Industries list for demo form
   const industries = [
@@ -126,7 +128,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="relative">
               <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
                 <Image
-                  src="/images/wam/dashboards/Updated WAM Fam 2 1.png"
+                  src="/images/wam/dashboards/wam-hero-sensors-gateway.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
                   width={640}
                   height={411}

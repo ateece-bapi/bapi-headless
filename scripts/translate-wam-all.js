@@ -82,7 +82,8 @@ async function main() {
   console.log(`🎯 Translating to ${languages.length} languages\n`);
   
   // Translate to each language
-  for (const lang of languages) {
+  for (let i = 0; i < languages.length; i++) {
+    const lang = languages[i];
     try {
       const translatedSection = await translateWamSection(sourceText, lang.name);
       
@@ -98,8 +99,8 @@ async function main() {
       
       console.log(`✅ ${lang.name} (${lang.code}) - Complete`);
       
-      // Rate limiting - wait 1 second between requests
-      if (lang.code !== 'hi') {
+      // Rate limiting - wait 1 second between requests (skip after last language)
+      if (i < languages.length - 1) {
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
     } catch (error) {

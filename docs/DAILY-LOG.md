@@ -2,9 +2,171 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** May 20, 2026  
-**Status:** Phase 1 Complete - Live in Production (12 days post-launch)  
+**Updated:** May 29, 2026  
+**Status:** Phase 1 Complete - Live in Production (25 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## May 29, 2026 — Wireless Landing Page i18n Implementation 🌍📡
+
+**Status:** ✅ COMPLETE - PR merged to main  
+**Branch:** `feat/wireless-page-i18n-implementation` (merged & deleted)  
+**Context:** Implement full internationalization for Wireless landing page across all 11 supported locales  
+**Priority:** 🟢 P2 - Feature enhancement (Phase 1 translation completeness)  
+**Time:** ~4 hours (content extraction + translation automation + UI/UX enhancements)  
+**Approach:** Content extraction from original → Translation automation via Claude API → Component conversion to i18n pattern
+
+### 🎯 SCOPE
+
+**Objectives:**
+- Translate Wireless landing page to all 11 languages (en, de, fr, es, ja, zh, vi, ar, pl, th, hi)
+- Follow established next-intl server component pattern used site-wide
+- Extract exact content from original staging page (no new marketing copy)
+- Add missing sections (Analog/Digital Output Modules, Wireless Receiver settings)
+- Enhance hero section UI/UX with new image
+
+**Critical Discovery:**
+- Initial implementation created NEW marketing copy instead of extracting EXACT text from original
+- User discovered discrepancy after comparing dev server to live staging page
+- Required extracting original content from commit 487c256 and re-translating
+- Two-tier validation needed: 1) translations work, 2) source content matches original
+
+### ✅ SOLUTION
+
+**Content Extraction:**
+```bash
+# Saved original staging page from commit 487c256
+git show 487c256:web/src/app/[locale]/wireless/page.tsx > /tmp/original-wireless.tsx
+```
+
+**Translation Structure Added (en.json):**
+- `wirelessLandingPage.metadata` - SEO metadata (title, description, keywords)
+- `wirelessLandingPage.breadcrumb` - Breadcrumb navigation
+- `wirelessLandingPage.hero` - Hero section with badge, title, description, CTAs
+- `wirelessLandingPage.features` - 6 features (noWiring, longRange, reliable, scalable, cloudConnected, easyIntegration)
+- `wirelessLandingPage.categories` - 4 product categories (roomSensors, nonRoomSensors, receiversModules, accessories)
+- `wirelessLandingPage.specifications` - How It Works (wireless, receiver, outputs)
+- `wirelessLandingPage.analogModules` - 3 analog output modules (resistance, voltage, setpoint)
+- `wirelessLandingPage.digitalModules` - 2 digital output modules (bacnetIP, bacnetModbus)
+- `wirelessLandingPage.products` - 6 wireless sensors with 3 features each
+
+**Component Conversion:**
+```tsx
+// BEFORE (hardcoded):
+export default function WirelessPage() {
+  return <h1>Wireless HVAC Sensors</h1>
+}
+
+// AFTER (i18n pattern):
+export default async function WirelessPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'wirelessLandingPage' });
+  return <h1>{t('hero.title')}</h1>
+}
+```
+
+**Hero Section UI/UX Enhancements:**
+1. **New Image:** Added `Wireless_HVAC_2025_Plain.png` (36.3 MB high-res hero image)
+2. **CTA Visibility:** Improved secondary button contrast (`border-2 border-white bg-white/10 hover:bg-white/20`)
+3. **Glow Effect:** Added gradient background with blur for visual depth
+4. **Spacing:** Increased vertical spacing (`py-20 lg:py-28`, `mb-6`, `mb-10`, `lg:gap-16`)
+5. **Mobile Responsive:** Fixed image height (`h-80 lg:h-96`) with `object-contain p-4` and button layout (`flex-col sm:flex-row`)
+
+**Translation Automation:**
+```javascript
+// scripts/translate-wireless-all.js
+// Claude Sonnet 4 API automation for 10 languages
+// Temperature 0.3 for consistency, 1-second delays between API calls
+// ~190 translation keys per language (~12,687 characters)
+```
+
+**Section Corrections:**
+- Fixed section headings: "Why Choose Wireless?" (not "Benefits of Wireless Sensors")
+- Fixed "How It Works" (not "Technical Specifications")
+- Added Wireless Receiver field-selectable settings (sampleRate, transmitRate, deltaTemperature, deltaHumidity)
+- Added Analog Output Modules section with 3 products
+- Added Digital Output Modules section with 2 products
+- Removed HTML tags from translations (next-intl doesn't support without special config)
+
+### 📁 FILES MODIFIED
+
+**Translation Files (11 files):**
+- `web/messages/en.json` - English base with ~190 new keys
+- `web/messages/{de,fr,es,ja,zh,vi,ar,pl,th,hi}.json` - Automated translations
+
+**Component:**
+- `web/src/app/[locale]/wireless/page.tsx` - Converted to async server component with getTranslations
+
+**Assets:**
+- `web/public/images/wireless/Wireless_HVAC_2025_Plain.png` - New hero image (36.3 MB)
+
+**Automation Scripts:**
+- `scripts/translate-wireless-all.js` - Claude API translation automation
+- `scripts/fix-english-translations.js` - Content extraction utility
+
+**Stats:**
+- 16 files changed: +2,055 insertions, -910 deletions
+- All 10 translations verified via command line
+
+### 🌐 TRANSLATION VERIFICATION
+
+**All 11 Languages Confirmed:**
+| Language | Hero Title | Status |
+|----------|------------|--------|
+| 🇬🇧 English | Wireless HVAC Sensors | ✅ |
+| 🇩🇪 German | Drahtlose HLK-Sensoren | ✅ |
+| 🇫🇷 French | Capteurs HVAC Sans Fil | ✅ |
+| 🇪🇸 Spanish | Sensores HVAC Inalámbricos | ✅ |
+| 🇯🇵 Japanese | ワイヤレスHVACセンサー | ✅ |
+| 🇨🇳 Chinese | 无线暖通传感器 | ✅ |
+| 🇻🇳 Vietnamese | Cảm Biến HVAC Không Dây | ✅ |
+| 🇸🇦 Arabic | أجهزة استشعار التدفئة والتهوية وتكييف الهواء اللاسلكية | ✅ |
+| 🇵🇱 Polish | Bezprzewodowe czujniki HVAC | ✅ |
+| 🇹🇭 Thai | เซ็นเซอร์ HVAC ไร้สาย | ✅ |
+| 🇮🇳 Hindi | वायरलेस HVAC सेंसर | ✅ |
+
+### 🔍 LESSONS LEARNED
+
+**1. Content Extraction > Content Creation**
+- ALWAYS extract exact text from existing pages for translation
+- "Follow what we have done" means use EXISTING content, not create similar content
+- Creating new marketing copy breaks consistency with live site
+- Two-tier validation required: 1) translations work, 2) source content matches original
+- Use `git show COMMIT:path/to/file.tsx` to extract original content
+
+**2. Translation Verification Strategy**
+- Check at least one non-English language (German) before considering complete
+- Use simple jq commands: `jq -r '.wirelessLandingPage.hero.title' messages/de.json`
+- Verify all languages in single command with loop for efficiency
+- Check multiple sections (hero, features, new sections) to confirm complete translation
+
+**3. next-intl HTML Handling**
+- next-intl doesn't support HTML tags in translations without special configuration
+- Avoid `<strong>`, `<em>`, etc. in translation strings
+- Use semantic heading structure (h2, h3) instead of text formatting
+- Keep translations as plain text for maximum compatibility
+
+**4. Translation Automation Best Practices**
+- Claude Sonnet 4 API excellent for translation quality and consistency
+- Use temperature 0.3 for consistent translations across languages
+- Add 1-second delays between API calls to avoid rate limits
+- Sequential translation (not parallel) ensures API stability
+- Save automation scripts for future content updates
+
+**5. Hero Image Optimization**
+- Large hero images (36 MB) require careful sizing constraints
+- Use `object-contain` to prevent cropping important content
+- Add padding (`p-4`) to prevent edge clipping on mobile
+- Fixed height (`h-80 lg:h-96`) prevents layout shift during image load
+- Mobile-first responsive design: vertical stack → horizontal at sm breakpoint
+
+**6. Component Migration to i18n**
+- Follow established async server component pattern site-wide
+- Props type: `{ params: Promise<{ locale: string }> }`
+- Always `await params` before destructuring
+- Use `getTranslations({ locale, namespace })` from 'next-intl/server'
+- Replace ALL hardcoded text with `t('key')` calls for completeness
 
 ---
 

@@ -26,7 +26,7 @@ export default function WirelessCategoryHero({
   translations,
 }: WirelessCategoryHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 border-b-4 border-accent-500">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 

@@ -127,15 +127,6 @@ export default function ProductHero({ product, variation, onConfigureClick }: Pr
 
   return (
     <>
-      {/* Full-width blue hero banner */}
-      <section className="bg-primary-500 py-6 text-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-2xl font-bold leading-tight md:text-3xl lg:text-4xl">
-            {product.name}
-          </h1>
-        </div>
-      </section>
-
       {/* Product details section */}
       <section className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">

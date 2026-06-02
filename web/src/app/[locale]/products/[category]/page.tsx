@@ -255,7 +255,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs - Always shown */}
-      <div className="bg-linear-to-br relative overflow-hidden border-b-4 border-accent-500 from-primary-600 to-primary-800">
+      <div className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         
@@ -275,7 +275,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         </>
       ) : (
         /* Standard Category Header */
-        <div className="bg-linear-to-br relative border-b border-neutral-200 from-primary-700 via-primary-600 to-primary-500">
+        <div className="bg-linear-to-br relative border-b-4 border-accent-500 from-primary-700 via-primary-600 to-primary-500">
           <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
           <div className="relative mx-auto max-w-content px-4 py-8">
             <div className="max-w-3xl">

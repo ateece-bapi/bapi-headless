@@ -616,8 +616,15 @@ export default async function ProductPage({
               {/* Background decoration */}
               <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
               
-              <div className="relative container mx-auto px-4 py-6">
+              <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <Breadcrumbs items={breadcrumbItems} variant="gradient" />
+                
+                {/* Product Title */}
+                <div className="mt-4">
+                  <h1 className="text-4xl font-bold text-white lg:text-5xl">
+                    {product.name || ''}
+                  </h1>
+                </div>
               </div>
             </div>
 

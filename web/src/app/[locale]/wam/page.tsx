@@ -457,7 +457,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/hospitals-pharmacies-wam.png"
+                  src="/images/wam/dashboards/wam_meat_processing.png"
                   alt="Meat processing monitoring"
                   fill
                   className="object-cover"

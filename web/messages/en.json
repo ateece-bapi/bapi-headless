@@ -570,17 +570,17 @@
       "contactMethods": {
         "phone": {
           "title": "Phone",
-          "details": "+1 (800) 735-4800",
+          "details": "+1-608-735-4800",
           "description": "Monday - Friday, 8:00 AM - 5:00 PM CST"
         },
         "email": {
           "title": "Email",
-          "details": "sales@bapihvac.com",
+          "details": "customerservice@bapisensors.com",
           "description": "We typically respond within 24 hours"
         },
         "visit": {
           "title": "Visit Us",
-          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "details": "750 North Royal Avenue, Gays Mills, WI 54631",
           "description": "USA"
         }
       },
@@ -607,6 +607,11 @@
           "title": "Technical Support",
           "email": "bapitechsupport@bapisensors.com",
           "description": "Product support, troubleshooting, and technical assistance"
+        },
+        "orders": {
+          "title": "Place an Order",
+          "email": "orders@bapisensors.com",
+          "description": "Order placement and processing"
         }
       },
       "internationalOffice": {

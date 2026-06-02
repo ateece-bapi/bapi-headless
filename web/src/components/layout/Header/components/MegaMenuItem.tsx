@@ -175,29 +175,50 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       <div className="absolute bottom-0 left-0 top-0 hidden w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent xl:block" />
                     )}
 
-                    {/* Column header with icon — links to category landing page */}
-                    <Link
-                      href={`${item.href}/${column.slug}`}
-                      onClick={onCloseImmediate}
-                      className="group flex items-center gap-2 border-b-2 border-primary-500/20 pb-2 transition-colors duration-200 hover:border-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-                    >
-                      {iconPath ? (
-                        <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
-                          <img
-                            src={iconPath}
-                            alt={`${column.title} icon`}
-                            className="h-5 w-5 object-contain"
-                          />
+                    {/* Column header with icon — clickable for Products, static for Company/Support */}
+                    {item.href?.includes('/products') ? (
+                      <Link
+                        href={`${item.href}/${column.slug}`}
+                        onClick={onCloseImmediate}
+                        className="group flex items-center gap-2 border-b-2 border-primary-500/20 pb-2 transition-colors duration-200 hover:border-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                      >
+                        {iconPath ? (
+                          <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
+                            <img
+                              src={iconPath}
+                              alt={`${column.title} icon`}
+                              className="h-5 w-5 object-contain"
+                            />
+                          </div>
+                        ) : IconComponent ? (
+                          <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
+                            <IconComponent className="h-4 w-4 text-primary-700" />
+                          </div>
+                        ) : null}
+                        <div className="text-xs font-black uppercase tracking-wider text-primary-800 transition-colors duration-200 group-hover:text-primary-600">
+                          {column.title}
                         </div>
-                      ) : IconComponent ? (
-                        <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
-                          <IconComponent className="h-4 w-4 text-primary-700" />
+                      </Link>
+                    ) : (
+                      <div className="flex items-center gap-2 border-b-2 border-primary-500/20 pb-2">
+                        {iconPath ? (
+                          <div className="rounded-md bg-primary-100 p-1.5">
+                            <img
+                              src={iconPath}
+                              alt={`${column.title} icon`}
+                              className="h-5 w-5 object-contain"
+                            />
+                          </div>
+                        ) : IconComponent ? (
+                          <div className="rounded-md bg-primary-100 p-1.5">
+                            <IconComponent className="h-4 w-4 text-primary-700" />
+                          </div>
+                        ) : null}
+                        <div className="text-xs font-black uppercase tracking-wider text-primary-800">
+                          {column.title}
                         </div>
-                      ) : null}
-                      <div className="text-xs font-black uppercase tracking-wider text-primary-800 transition-colors duration-200 group-hover:text-primary-600">
-                        {column.title}
                       </div>
-                    </Link>
+                    )}
                     <ul className="space-y-1.5">
                       {column.links.map((link, linkIndex) => (
                         <li key={`${link.href}-${link.label}-${linkIndex}`}>
@@ -226,27 +247,29 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       ))}
                     </ul>
 
-                    {/* View All Link */}
-                    <Link
-                      href={`${item.href}/${column.slug}`}
-                      onClick={onCloseImmediate}
-                      className="group mt-3 inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all duration-200 hover:border-primary-400 hover:bg-primary-100 hover:text-primary-800 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-                    >
-                      <span>View All {column.title}</span>
-                      <svg
-                        className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    {/* View All Link - Only for Products menu (category pages exist) */}
+                    {item.href?.includes('/products') && (
+                      <Link
+                        href={`${item.href}/${column.slug}`}
+                        onClick={onCloseImmediate}
+                        className="group mt-3 inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all duration-200 hover:border-primary-400 hover:bg-primary-100 hover:text-primary-800 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                         
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </Link>
+                        <span>View All {column.title}</span>
+                        <svg
+                          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                           
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    )}
                   </div>
                 );
               })}

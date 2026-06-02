@@ -634,8 +634,10 @@ describe('ProductHero - Image Gallery Accessibility', () => {
     };
     render(<ProductHero product={noImageProduct} />);
 
-    // Should render product name even without image
-    expect(screen.getByText('Advanced Pressure Sensor')).toBeInTheDocument();
+    // Should still render component structure even without image
+    // ProductGallery handles the no-image fallback internally
+    expect(screen.getByText('Configure Product')).toBeInTheDocument();
+    expect(screen.getByText(/Select your specifications below/)).toBeInTheDocument();
   });
 });
 
@@ -664,13 +666,14 @@ describe('ProductHero - Keyboard Navigation', () => {
 });
 
 describe('ProductHero - Color Contrast', () => {
-  it('product name heading has sufficient contrast', () => {
+  it('description headings have sufficient contrast', () => {
     render(<ProductHero product={mockProduct} />);
 
-    const productName = screen.getByRole('heading', { name: /Advanced Pressure Sensor/ });
-    expect(productName).toBeInTheDocument();
-    expect(productName.tagName).toBe('H1');
-    // H1 typically uses high-contrast text (neutral-900) - verified by jest-axe
+    // Product description contains H2 heading (product name H1 is now in parent page component)
+    const descriptionHeading = screen.getByRole('heading', { name: /Product Overview/ });
+    expect(descriptionHeading).toBeInTheDocument();
+    expect(descriptionHeading.tagName).toBe('H2');
+    // Headings use high-contrast text - verified by jest-axe
   });
 
   it('product information labels are visible', () => {
@@ -714,9 +717,9 @@ describe('ProductPage - Screen Reader Support', () => {
     const sections = container.querySelectorAll('section');
     expect(sections.length).toBeGreaterThan(0);
     
-    // Should have main heading
-    const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toBeInTheDocument();
+    // Should have headings (H2, H3, etc. - H1 is now rendered in parent page component)
+    const headings = screen.getAllByRole('heading');
+    expect(headings.length).toBeGreaterThan(0);
   });
 
   it('form has proper fieldset/legend structure', () => {

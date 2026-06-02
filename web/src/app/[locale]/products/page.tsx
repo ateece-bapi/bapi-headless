@@ -77,7 +77,7 @@ export default async function MainProductPage({
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30"
     >
       {/* Hero Section - Server Rendered for Fast LCP */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="h-150 w-150 absolute right-0 top-0 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -212,7 +212,7 @@ export default async function MainProductPage({
             </div>
 
             <Link
-              href="/company/contact-us"
+              href="/contact"
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('productsPage.cta.button')}

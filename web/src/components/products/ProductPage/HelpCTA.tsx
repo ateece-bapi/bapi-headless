@@ -29,14 +29,14 @@ export default function HelpCTA({ className = '' }: HelpCTAProps) {
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
             <a
-              href="tel:+16507354800"
+              href="tel:+16087354800"
               className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow transition hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
               <PhoneIcon className="h-5 w-5" />
-              Call +1 (650) 735-4800
+              Call +1-608-735-4800
             </a>
             <a
-              href="mailto:info@bapihvac.com"
+              href="mailto:customerservice@bapisensors.com"
               className="inline-flex items-center gap-2 rounded-lg border-2 border-primary-500 bg-white px-6 py-3 font-semibold text-primary-600 shadow-sm transition hover:bg-primary-50 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
               <MailIcon className="h-5 w-5" />

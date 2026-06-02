@@ -353,7 +353,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link
-                href="/company/contact-us"
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-lg"
               >
                 {solution.cta.primary}

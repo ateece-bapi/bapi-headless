@@ -156,7 +156,7 @@ export default async function NewsPage() {
               </div>
 
               <Link
-                href="/company/contact-us"
+                href="/contact"
                 className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 {t('cta.button')}

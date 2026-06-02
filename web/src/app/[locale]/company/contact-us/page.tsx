@@ -90,10 +90,10 @@ export default async function ContactUsPage() {
             const Icon = method.icon;
             const href =
               method.key === 'phone'
-                ? 'tel:+18007354800'
+                ? 'tel:+16087354800'
                 : method.key === 'email'
-                  ? 'mailto:sales@bapihvac.com'
-                  : 'https://maps.google.com/?q=750+N+Royal+Ave+Gays+Mills+WI+54631';
+                  ? 'mailto:customerservice@bapisensors.com'
+                  : 'https://maps.google.com/?q=750+North+Royal+Avenue+Gays+Mills+WI+54631';
             return (
               <a
                 key={method.key}

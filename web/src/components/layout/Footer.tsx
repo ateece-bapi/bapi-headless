@@ -194,16 +194,16 @@ const Footer: React.FC = () => {
               <p className="text-neutral-900">{t('contact.address.street')}</p>
               <p className="text-neutral-900">{t('contact.address.city')}</p>
               <a
-                href="tel:6087354800"
+                href="tel:+16087354800"
                 className="block font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600"
               >
-                (608) 735-4800
+                +1-608-735-4800
               </a>
               <a
-                href="mailto:sales@bapihvac.com"
+                href="mailto:customerservice@bapisensors.com"
                 className="block font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600"
               >
-                sales@bapihvac.com
+                customerservice@bapisensors.com
               </a>
             </address>
           </div>

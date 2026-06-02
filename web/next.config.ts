@@ -57,6 +57,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/company/contact-us',
+        destination: '/en/contact',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/contact-us',
+        destination: '/:locale/contact',
+        permanent: true,
+      },
+      {
         source: '/sign-up',
         destination: '/en/sign-in',
         permanent: false,

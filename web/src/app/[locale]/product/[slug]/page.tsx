@@ -622,7 +622,7 @@ export default async function ProductPage({
                 {/* Product Title */}
                 <div className="mt-4">
                   <h1 className="text-4xl font-bold text-white lg:text-5xl">
-                    {product.name || ''}
+                    {product.name || slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
                   </h1>
                 </div>
               </div>

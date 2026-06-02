@@ -634,8 +634,10 @@ describe('ProductHero - Image Gallery Accessibility', () => {
     };
     render(<ProductHero product={noImageProduct} />);
 
-    // Should still render description content even without image
+    // Should still render component structure even without image
+    // ProductGallery handles the no-image fallback internally
     expect(screen.getByText('Configure Product')).toBeInTheDocument();
+    expect(screen.getByText(/Select your specifications below/)).toBeInTheDocument();
   });
 });
 

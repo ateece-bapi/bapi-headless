@@ -48,12 +48,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/company/contact',
-        destination: '/en/company/contact-us',
+        destination: '/en/contact',
         permanent: true,
       },
       {
         source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/contact',
-        destination: '/:locale/company/contact-us',
+        destination: '/:locale/contact',
         permanent: true,
       },
       {

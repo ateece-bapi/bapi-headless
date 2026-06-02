@@ -423,14 +423,12 @@ export default function ContactPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="mb-1 text-sm font-semibold text-neutral-900">Phone</h3>
-                    <p className="mb-1 text-xs text-neutral-700">Toll Free</p>
                     <a
-                      href="tel:+18005533027"
+                      href="tel:+16087354800"
                       className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                     >
-                      (800) 553-3027
+                      +1-608-735-4800
                     </a>
-                    <p className="mt-2 text-xs text-neutral-700">Fax: (715) 254-0720</p>
                   </div>
                 </div>
               </div>
@@ -444,10 +442,10 @@ export default function ContactPage() {
                   <div className="min-w-0 flex-1">
                     <h3 className="mb-1 text-sm font-semibold text-neutral-900">Email</h3>
                     <a
-                      href="mailto:info@bapihvac.com"
+                      href="mailto:customerservice@bapisensors.com"
                       className="break-all text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                     >
-                      info@bapihvac.com
+                      customerservice@bapisensors.com
                     </a>
                   </div>
                 </div>

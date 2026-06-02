@@ -235,7 +235,7 @@ export default async function WirelessPage({ params }: Props) {
                   {t('hero.cta')}
                 </Link>
                 <Link
-                  href="/company/contact-us"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
                   {tCommon('contactUs')}
@@ -638,7 +638,7 @@ export default async function WirelessPage({ params }: Props) {
               {t('cta.primaryButton')}
             </Link>
             <Link
-              href="/company/contact-us"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-lg border-2 border-white bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20"
             >
               {t('cta.secondaryButton')}

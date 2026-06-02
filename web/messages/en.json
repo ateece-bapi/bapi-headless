@@ -607,6 +607,11 @@
           "title": "Technical Support",
           "email": "bapitechsupport@bapisensors.com",
           "description": "Product support, troubleshooting, and technical assistance"
+        },
+        "orders": {
+          "title": "Place an Order",
+          "email": "orders@bapisensors.com",
+          "description": "Order placement and processing"
         }
       },
       "internationalOffice": {

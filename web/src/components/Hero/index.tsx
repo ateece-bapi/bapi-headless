@@ -52,12 +52,18 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
         {/* Mobile: Solid color background instead of large image */}
         <div className="absolute inset-0 bg-neutral-100 md:hidden" />
 
-        {/* Desktop: Background image */}
-        <div
-          className="hero-bg-image absolute inset-0 hidden md:block"
-          role="img"
-          aria-label={heroImage.alt}
-        ></div>
+        {/* Desktop: Background image - Next.js Image for optimization */}
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            src={heroImage.desktop}
+            alt={heroImage.alt}
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
         {/* Professional overlay for text readability */}
         <div className="bg-linear-to-br absolute inset-0 from-white/80 via-white/75 to-white/70" />
       </div>

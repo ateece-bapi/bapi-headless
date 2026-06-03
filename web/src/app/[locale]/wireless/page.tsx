@@ -357,9 +357,8 @@ export default async function WirelessPage({ params }: Props) {
                   <Link
                     href={`/product/${sensor.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
-                    aria-label={`${tCommon('learnMore')} ${sensor.name}`}
                   >
-                    {tCommon('learnMore')}
+                    {tCommon('viewProduct', { product: sensor.name })}
                   </Link>
                 </div>
               </div>

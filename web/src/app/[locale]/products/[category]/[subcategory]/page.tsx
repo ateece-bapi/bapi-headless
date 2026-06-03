@@ -23,6 +23,10 @@ import {
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
 
+// ISR configuration - revalidate category pages every hour
+// Critical for performance: reduces GraphQL query latency on cached pages
+export const revalidate = 3600;
+
 interface SubcategoryPageProps {
   params: Promise<{
     locale: string;

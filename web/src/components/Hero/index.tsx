@@ -58,7 +58,6 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
             src={heroImage.desktop}
             alt={heroImage.alt}
             fill
-            quality={85}
             sizes="100vw"
             className="object-cover object-center"
           />

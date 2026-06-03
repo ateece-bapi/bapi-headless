@@ -3,7 +3,7 @@
  * Helper functions to fetch pages and posts from WordPress via GraphQL
  */
 
-import { graphqlClient } from './graphql/client';
+import { getGraphQLClient } from './graphql/client';
 import {
   GetPageBySlugDocument,
   GetPagesDocument,
@@ -44,7 +44,9 @@ export interface Post {
  */
 export async function getPageBySlug(slug: string): Promise<Page | null> {
   try {
-    const data = await graphqlClient.request(GetPageBySlugDocument, { slug });
+    // Use cached GET client for ISR/CDN caching
+    const client = getGraphQLClient(['pages', `page-${slug}`], true);
+    const data = await client.request(GetPageBySlugDocument, { slug });
 
     if (!data?.page) {
       return null;
@@ -72,7 +74,9 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
  */
 export async function getPages(first = 100): Promise<Page[]> {
   try {
-    const data = await graphqlClient.request(GetPagesDocument, { first });
+    // Use cached GET client for ISR/CDN caching
+    const client = getGraphQLClient(['pages'], true);
+    const data = await client.request(GetPagesDocument, { first });
 
     if (!data?.pages?.nodes) {
       return [];
@@ -101,7 +105,9 @@ export async function getPosts(
 ): Promise<Post[]> {
   try {
     const { perPage = 20, after } = options;
-    const data = await graphqlClient.request(GetPostsDocument, {
+    // Use cached GET client for ISR/CDN caching
+    const client = getGraphQLClient(['posts'], true);
+    const data = await client.request(GetPostsDocument, {
       first: perPage,
       after: after || null,
     });
@@ -142,7 +148,9 @@ export async function getPosts(
  */
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const data = await graphqlClient.request(GetPostBySlugDocument, { slug });
+    // Use cached GET client for ISR/CDN caching
+    const client = getGraphQLClient(['posts', `post-${slug}`], true);
+    const data = await client.request(GetPostBySlugDocument, { slug });
 
     if (!data?.post) {
       return null;

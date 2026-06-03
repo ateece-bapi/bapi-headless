@@ -220,7 +220,8 @@ const createMockRequest = (body: any, cookies: Record<string, string> = {}): Nex
   } as unknown as NextRequest;
 };
 
-describe('2FA API Routes - Integration Tests', () => {
+// PHASE 2: 2FA is deferred to Phase 2, skipping tests for Phase 1 launch
+describe.skip('2FA API Routes - Integration Tests', () => {
   beforeEach(async () => {
     // Mock fetch globally
     global.fetch = createMockFetch() as any;

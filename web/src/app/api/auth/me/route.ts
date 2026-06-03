@@ -71,13 +71,14 @@ export async function GET(request: NextRequest) {
     // Default to 'end-user' if no valid groups (matches legacy WordPress behavior)
     const finalCustomerGroups = slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
 
+    // NOTE: 2FA will be implemented in Phase 2
+    // Phase 1 uses standard JWT authentication only
     return NextResponse.json({
       user: {
         id: String(viewer.databaseId),
         email: viewer.email,
         displayName: viewer.name,
         username: viewer.username,
-        twoFactorEnabled: viewer.twoFactorEnabled,
         customerGroups: finalCustomerGroups,
         roles,
       },

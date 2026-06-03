@@ -1,7 +1,7 @@
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import Hero from '@/components/Hero';
-import { GlobalPresence } from '@/components/company/GlobalPresence';
+import dynamic from 'next/dynamic';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
@@ -16,6 +16,28 @@ import {
   NewspaperIcon,
   CalendarIcon,
 } from '@/lib/icons';
+
+/**
+ * Lazy load GlobalPresence component to improve initial page load
+ * This component is below the fold and includes heavy map rendering
+ * Deferring it reduces Total Blocking Time (TBT) significantly
+ */
+const GlobalPresence = dynamic(
+  () => import('@/components/company/GlobalPresence').then((mod) => ({ default: mod.GlobalPresence })),
+  {
+    ssr: true, // Keep SSR for SEO
+    loading: () => (
+      <div className="bg-neutral-50 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="animate-pulse space-y-8">
+            <div className="mx-auto h-8 w-64 rounded bg-neutral-200"></div>
+            <div className="mx-auto h-96 rounded-2xl bg-neutral-200"></div>
+          </div>
+        </div>
+      </div>
+    ),
+  }
+);
 
 /**
  * Homepage - Main landing page for BAPI Headless E-Commerce
@@ -36,10 +58,11 @@ import {
  */
 
 /**
- * Force dynamic rendering for homepage to ensure proper locale handling
- * Static generation was caching English version across all locales
+ * ISR (Incremental Static Regeneration) for homepage
+ * Regenerate page every hour to balance performance and fresh content
+ * Replaces force-dynamic to enable static generation benefits + CDN caching
  */
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // 1 hour
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   // Await params and set request locale for next-intl
@@ -91,7 +114,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="relative grid grid-cols-2 gap-6 md:grid-cols-3 lg:gap-8">
               {/* 30+ Years */}
               <div className="group text-center">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
                   <TrendingUpIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
@@ -102,7 +125,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
               {/* Global Reach */}
               <div className="group text-center">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
                   <GlobeIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
@@ -113,7 +136,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
               {/* ISO 9001 */}
               <div className="group text-center">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
                   <ShieldCheckIcon className="h-7 w-7 text-white" />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">

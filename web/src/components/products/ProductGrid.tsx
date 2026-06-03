@@ -271,6 +271,9 @@ function ProductCard({
               fill
               className="object-contain p-3"
               sizes="160px"
+              quality={85}
+              // Prioritize first 6 products in list view
+              {...(positionInGrid < 6 ? { priority: true } : { loading: 'lazy' as const })}
             />
           ) : (
             <div className="flex h-full items-center justify-center text-neutral-400">
@@ -449,7 +452,9 @@ function ProductCard({
               }`}
               sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
               onLoad={() => setImageLoaded(true)}
-              loading="lazy"
+              quality={85}
+              // Prioritize first 8 products (above fold on most screens)
+              {...(positionInGrid < 8 ? { priority: true } : { loading: 'lazy' as const })}
             />
           </>
         ) : (

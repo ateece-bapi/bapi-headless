@@ -84,42 +84,8 @@ export async function POST(request: NextRequest) {
 
     const { authToken, refreshToken, user } = data.login;
 
-    // Check if user has 2FA enabled
-    if (user.twoFactorEnabled) {
-      // Create cryptographically signed temporary token (valid for 5 minutes)
-      const jwtSecret = process.env.JWT_SECRET || process.env.NEXTAUTH_SECRET;
-      
-      if (!jwtSecret) {
-        logger.error('JWT_SECRET not configured');
-        return NextResponse.json(
-          { error: 'Server configuration error', message: 'Authentication service misconfigured' },
-          { status: 500 }
-        );
-      }
-
-      const tempToken = jwt.sign(
-        {
-          userId: String(user.databaseId),
-          username: user.username,
-          authToken,
-          refreshToken,
-        },
-        jwtSecret,
-        { expiresIn: '5m' }
-      );
-
-      logger.debug('2FA required for user', {
-        userId: user.databaseId,
-        username: user.username,
-      });
-
-      return NextResponse.json({
-        success: false,
-        requires2FA: true,
-        tempToken,
-        message: 'Two-factor authentication required',
-      });
-    }
+    // NOTE: 2FA will be implemented in Phase 2
+    // Phase 1 uses standard JWT authentication only
 
     // Enhanced cookie options with BFF pattern security
     const isProd = process.env.NODE_ENV === 'production';

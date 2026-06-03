@@ -36,7 +36,6 @@ export const LOGIN_MUTATION = `
         email
         name
         username
-        twoFactorEnabled
       }
     }
   }
@@ -57,7 +56,6 @@ export const GET_CURRENT_USER_QUERY = `
       email
       name
       username
-      twoFactorEnabled
       customerInformation {
         customerGroup1
         customerGroup2
@@ -95,7 +93,6 @@ export interface LoginResponse {
       email: string;
       name: string;
       username: string;
-      twoFactorEnabled: boolean;
     };
   };
 }
@@ -107,7 +104,6 @@ export interface GetCurrentUserResponse {
     email: string;
     name: string;
     username: string;
-    twoFactorEnabled: boolean;
     customerInformation?: {
       customerGroup1?: string[] | null;
       customerGroup2?: string[] | null;

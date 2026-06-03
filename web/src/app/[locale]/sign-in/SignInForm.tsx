@@ -51,14 +51,9 @@ export function SignInForm({ locale }: SignInFormProps) {
       const data = await response.json();
 
       if (response.ok) {
-        // Check if 2FA is required
-        if (data.requires2FA && data.tempToken) {
-          logger.info('2FA required for user', { username });
-          setTempToken(data.tempToken);
-          setShowTwoFactor(true);
-          return;
-        }
-
+        // NOTE: 2FA will be implemented in Phase 2
+        // Phase 1 uses standard JWT authentication only
+        
         // Standard login (no 2FA)
         showToast('success', t('toast.welcomeBack.title'), t('toast.welcomeBack.message'));
 

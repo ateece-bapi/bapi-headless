@@ -507,7 +507,7 @@ export default async function WirelessPage({ params }: Props) {
                     href={`/products/wireless-sensors/${module.slug}`}
                     className="block w-full rounded-lg bg-primary-600 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-700 hover:shadow-lg"
                   >
-                    {tCommon('learnMore')}
+                    {tCommon('viewProduct', { product: module.name })}
                   </Link>
                 </div>
               </div>
@@ -580,7 +580,7 @@ export default async function WirelessPage({ params }: Props) {
                     href={`/products/wireless-sensors/${module.slug}`}
                     className="block w-full rounded-lg bg-primary-600 px-6 py-3.5 text-center font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-700 hover:shadow-lg"
                   >
-                    {tCommon('learnMore')}
+                    {tCommon('viewProduct', { product: module.name })}
                   </Link>
                 </div>
               </div>

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Hero from '@/components/Hero';
 import dynamic from 'next/dynamic';
 import { getPosts } from '@/lib/wordpress';
-import { locales } from '@/i18n';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getLocaleFromLanguage } from '@/lib/utils/locale';
 import type { LanguageCode } from '@/types/region';

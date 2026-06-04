@@ -50,18 +50,20 @@
       "label": "उत्पाद",
       "temperature": {
         "title": "तापमान",
+        "temperatureSolutions": "तापमान समाधान अवलोकन",
+        "temperatureSolutionsDesc": "सुविधा के लगभग हर क्षेत्र के लिए उच्च गुणवत्ता वाले तापमान सेंसर",
         "roomWallSensors": "कमरा और दीवार सेंसर",
-        "roomWallSensorsDesc": "उच्च-परिशुद्धता तापमान सेंसिंग",
+        "roomWallSensorsDesc": "उच्च-सटीकता तापमान संवेदन",
         "ductSensors": "डक्ट सेंसर",
         "ductSensorsDesc": "डक्ट-माउंटेड ट्रांसमीटर",
-        "immersionWell": "Immersion & Thermowell",
-        "immersionWellDesc": "तरल तापमान मापन",
-        "outdoorSensors": "बाहरी सेंसर",
-        "outdoorSensorsDesc": "मौसम-प्रतिरोधी सेंसिंग",
-        "averaging": "औसत सेंसर",
-        "averagingDesc": "बड़े स्थान तापमान औसत",
+        "immersionWell": "इमर्शन और थर्मोवेल",
+        "immersionWellDesc": "तरल तापमान माप",
+        "outdoorSensors": "आउटडोर सेंसर",
+        "outdoorSensorsDesc": "मौसम-प्रतिरोधी संवेदन",
+        "averaging": "औसतकरण सेंसर",
+        "averagingDesc": "बड़े स्थान का तापमान औसतकरण",
         "remoteProbes": "रिमोट प्रोब",
-        "remoteProbesDesc": "अलग सेंसिंग तत्व प्रोब"
+        "remoteProbesDesc": "अलग संवेदन तत्व प्रोब"
       },
       "humidity": {
         "title": "आर्द्रता",

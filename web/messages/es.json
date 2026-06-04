@@ -456,18 +456,20 @@
       "label": "Productos",
       "temperature": {
         "title": "Temperatura",
-        "roomWallSensors": "Sensores de pared y ambiente",
+        "temperatureSolutions": "Resumen de Soluciones de Temperatura",
+        "temperatureSolutionsDesc": "Sensores de temperatura de alta calidad para prácticamente cualquier área de una instalación",
+        "roomWallSensors": "Sensores de Ambiente y Pared",
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
-        "ductSensors": "Sensores de conducto",
+        "ductSensors": "Sensores de Conducto",
         "ductSensorsDesc": "Transmisores montados en conducto",
-        "immersionWell": "Immersion & Thermowell",
+        "immersionWell": "Inmersión y Vaina Termométrica",
         "immersionWellDesc": "Medición de temperatura de líquidos",
-        "outdoorSensors": "Sensores exteriores",
+        "outdoorSensors": "Sensores Exteriores",
         "outdoorSensorsDesc": "Detección resistente a la intemperie",
-        "averaging": "Sensores de promedios",
-        "averagingDesc": "Promedio de temperatura de espacios grandes",
-        "remoteProbes": "Sondas remotas",
-        "remoteProbesDesc": "Elementos de detección separados"
+        "averaging": "Sensores de Promedio",
+        "averagingDesc": "Promedio de temperatura en espacios grandes",
+        "remoteProbes": "Sondas Remotas",
+        "remoteProbesDesc": "Sondas con elemento sensor separado"
       },
       "humidity": {
         "title": "Humedad",

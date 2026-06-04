@@ -56,6 +56,8 @@
       "label": "Products",
       "temperature": {
         "title": "Temperature",
+        "temperatureSolutions": "Temperature Solutions Overview",
+        "temperatureSolutionsDesc": "High quality temperature sensors for nearly every area of a facility",
         "roomWallSensors": "Room & Wall Sensors",
         "roomWallSensorsDesc": "High-accuracy temperature sensing",
         "ductSensors": "Duct Sensors",

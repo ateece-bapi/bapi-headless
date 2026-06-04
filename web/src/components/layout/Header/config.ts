@@ -33,6 +33,12 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Temperature_Icon.webp',
           links: [
             {
+              label: t('products.temperature.temperatureSolutions'),
+              href: '/temperature',
+              description: t('products.temperature.temperatureSolutionsDesc'),
+              badge: t('badges.new'),
+            },
+            {
               label: t('products.temperature.roomWallSensors'),
               href: '/products/temperature-sensors/temp-room',
               description: t('products.temperature.roomWallSensorsDesc'),

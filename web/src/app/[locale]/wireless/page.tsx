@@ -247,10 +247,10 @@ export default async function WirelessPage({ params }: Props) {
             <div className="relative">
               <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
                 <Image
-                  src="/images/wireless/Wireless_HVAC_2025_Plain.png"
+                  src="/images/wireless/Wireless_HVAC_2025_Plain.webp"
                   alt="BAPI Wireless HVAC Sensors"
-                  width={640}
-                  height={640}
+                  width={2400}
+                  height={1543}
                   className="h-auto w-full"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
                   priority

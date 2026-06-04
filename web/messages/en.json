@@ -3662,5 +3662,104 @@
       "iso9001": "ISO 9001 Certified",
       "experience": "30+ Years Experience"
     }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Temperature Sensors | BAPI",
+      "description": "High quality temperature sensors for nearly every area of a facility. Compatible with all lines of BAS controllers with a wide array of custom outputs.",
+      "keywords": "temperature sensors, HVAC sensors, building automation, room temperature sensors, duct sensors, immersion sensors"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "temperature": "Temperature Sensors"
+    },
+    "hero": {
+      "title": "Temperature Sensors",
+      "description": "High quality temperature sensors for nearly every area of a facility. With a wide array of custom outputs so they are compatible with all lines of BAS controllers.",
+      "cta": "Get Started"
+    },
+    "roomSensors": {
+      "title": "Room Temperature Sensors",
+      "subtitle": "BAPI's patented room sensors are designed to fit any taste. Units such as the paintable Button sensor and the flush Decora Style sensor blend in with any decor, while the versatile BAPI-Stat \"Quantum\" and \"Quantum Prime\" feature large easy-to-read displays and even wipedown capability for operating rooms and clean rooms.",
+      "cta": "Learn More",
+      "bacnetGuardian": {
+        "name": "BAPI-Stat Quantum Series",
+        "feature1": "Wide selection of temperature sensing elements",
+        "feature2": "Sleek, modern enclosure",
+        "feature3": "Optional occupancy override"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Wide selection of temperature sensing elements",
+        "feature2": "Sleek, modern enclosure",
+        "feature3": "Limited lifetime warranty"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Large display",
+        "feature2": "Setpoint adjustment (slider or pushbutton)",
+        "feature3": "Optional fan speed and mode control"
+      },
+      "lowProfile": {
+        "name": "Low Profile Button Sensor",
+        "feature1": "Small, flush sensor mounting",
+        "feature2": "Accurate direct air measurement",
+        "feature3": "Paintable with latex or oil based paint"
+      },
+      "discreteStyle": {
+        "name": "Decora Style Room Unit",
+        "feature1": "Sensor fits inside a Decora Style rocker switch plate",
+        "feature2": "LCD Display",
+        "feature3": "Optional setpoint adjustment"
+      },
+      "wallPlates": {
+        "name": "Wall Plates",
+        "feature1": "Etched Teflon lead wires and foamback insulator",
+        "feature2": "Wide selection of temperature sensing elements",
+        "feature3": "Limited lifetime warranty"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Non-Room Temperature Sensors",
+      "subtitle": "The non-room sensors include not only multiple duct, averaging and immersion units, but also specialty sensors such as clamp and strap units, remote probes, thermobuffers for freezers and coolers, and extreme temperature units.",
+      "cta": "Learn More",
+      "ductSensors": {
+        "name": "Duct Sensors",
+        "feature1": "Series 304 stainless steel probes",
+        "feature2": "Double encapsulated sensors & etched Teflon leads",
+        "feature3": "Limited lifetime warranty"
+      },
+      "averaging": {
+        "name": "Averaging Sensors",
+        "feature1": "Averaging lengths: 8', 12' & 24'",
+        "feature2": "Closed cell foam backing",
+        "feature3": "Double encapsulated sensors & etched Teflon leads"
+      },
+      "immersion": {
+        "name": "Immersion Sensors",
+        "feature1": "Probe lengths: 2\", 4\" & 8\" (Hits standard BAPI thermowell lengths)",
+        "feature2": "Series 304 stainless steel probes",
+        "feature3": "Double encapsulated sensors & etched Teflon leads"
+      },
+      "remoteProbes": {
+        "name": "Remote Probes",
+        "feature1": "Double encapsulated sensor",
+        "feature2": "Plenum or FEP cable",
+        "feature3": "TEP jacketed cable available in 5 color choices"
+      },
+      "tempHumidity": {
+        "name": "Thermobuffer Sensor",
+        "feature1": "Fluid-filled chamber tracks temperature of freezer or cooler contents, not air temperature decreasing false alarms",
+        "feature2": "Easy wall mount or wire shelf hanger",
+        "feature3": "Available in stainless steel or aluminum"
+      },
+      "outsideAir": {
+        "name": "Outside Air Sensors",
+        "feature1": "Quick-response sensor",
+        "feature2": "IP66/NEMA 4 BAPI-Box 2 enclosure style",
+        "feature3": "Well vented sensor guard"
+      }
+    }
   }
 }

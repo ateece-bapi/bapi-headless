@@ -3613,5 +3613,104 @@
       "iso9001": "Certificado ISO 9001",
       "experience": "30+ Años de Experiencia"
     }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Sensores de Temperatura | BAPI",
+      "description": "Sensores de temperatura de alta calidad para casi cualquier área de una instalación. Compatible con todas las líneas de controladores BAS con una amplia gama de salidas personalizadas.",
+      "keywords": "sensores de temperatura, sensores HVAC, automatización de edificios, sensores de temperatura ambiente, sensores de conducto, sensores de inmersión"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos",
+      "temperature": "Sensores de Temperatura"
+    },
+    "hero": {
+      "title": "Sensores de Temperatura",
+      "description": "Sensores de temperatura de alta calidad para casi cualquier área de una instalación. Con una amplia gama de salidas personalizadas para que sean compatibles con todas las líneas de controladores BAS.",
+      "cta": "Comenzar"
+    },
+    "roomSensors": {
+      "title": "Sensores de Temperatura de Ambiente",
+      "subtitle": "Los sensores de ambiente patentados de BAPI están diseñados para adaptarse a cualquier gusto. Unidades como el sensor Button pintable y el sensor Decora Style empotrado se integran con cualquier decoración, mientras que el versátil BAPI-Stat \"Quantum\" y \"Quantum Prime\" cuentan con pantallas grandes y fáciles de leer e incluso capacidad de limpieza para quirófanos y salas limpias.",
+      "cta": "Más Información",
+      "bacnetGuardian": {
+        "name": "Serie BAPI-Stat Quantum",
+        "feature1": "Amplia selección de elementos sensores de temperatura",
+        "feature2": "Carcasa elegante y moderna",
+        "feature3": "Anulación de ocupación opcional"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Amplia selección de elementos sensores de temperatura",
+        "feature2": "Carcasa elegante y moderna",
+        "feature3": "Garantía limitada de por vida"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Pantalla grande",
+        "feature2": "Ajuste de punto de consigna (deslizador o botón pulsador)",
+        "feature3": "Control opcional de velocidad de ventilador y modo"
+      },
+      "lowProfile": {
+        "name": "Sensor Button de Perfil Bajo",
+        "feature1": "Montaje de sensor pequeño y empotrado",
+        "feature2": "Medición directa de aire precisa",
+        "feature3": "Pintable con pintura a base de látex o aceite"
+      },
+      "discreteStyle": {
+        "name": "Unidad de Ambiente Estilo Decora",
+        "feature1": "El sensor encaja dentro de una placa de interruptor basculante estilo Decora",
+        "feature2": "Pantalla LCD",
+        "feature3": "Ajuste de punto de consigna opcional"
+      },
+      "wallPlates": {
+        "name": "Placas de Pared",
+        "feature1": "Cables de plomo Teflon grabados y aislante de respaldo de espuma",
+        "feature2": "Amplia selección de elementos sensores de temperatura",
+        "feature3": "Garantía limitada de por vida"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Sensores de Temperatura No Ambientales",
+      "subtitle": "Los sensores no ambientales incluyen no solo múltiples unidades de conducto, promediado e inmersión, sino también sensores especializados como unidades de abrazadera y correa, sondas remotas, termobúferes para congeladores y refrigeradores, y unidades de temperatura extrema.",
+      "cta": "Más Información",
+      "ductSensors": {
+        "name": "Sensores de Conducto",
+        "feature1": "Sondas de acero inoxidable Serie 304",
+        "feature2": "Sensores doblemente encapsulados y cables Teflon grabados",
+        "feature3": "Garantía limitada de por vida"
+      },
+      "averaging": {
+        "name": "Sensores de Promediado",
+        "feature1": "Longitudes de promediado: 8', 12' y 24'",
+        "feature2": "Respaldo de espuma de celda cerrada",
+        "feature3": "Sensores doblemente encapsulados y cables Teflon grabados"
+      },
+      "immersion": {
+        "name": "Sensores de Inmersión",
+        "feature1": "Longitudes de sonda: 2\", 4\" y 8\" (Coincide con longitudes estándar de termopozos BAPI)",
+        "feature2": "Sondas de acero inoxidable Serie 304",
+        "feature3": "Sensores doblemente encapsulados y cables Teflon grabados"
+      },
+      "remoteProbes": {
+        "name": "Sondas Remotas",
+        "feature1": "Sensor doblemente encapsulado",
+        "feature2": "Cable plenum o FEP",
+        "feature3": "Cable con chaqueta TEP disponible en 5 opciones de color"
+      },
+      "tempHumidity": {
+        "name": "Sensor Termobúfer",
+        "feature1": "Cámara llena de fluido que rastrea la temperatura del contenido del congelador o refrigerador, no la temperatura del aire, reduciendo las falsas alarmas",
+        "feature2": "Fácil montaje en pared o colgador de estante de alambre",
+        "feature3": "Disponible en acero inoxidable o aluminio"
+      },
+      "outsideAir": {
+        "name": "Sensores de Aire Exterior",
+        "feature1": "Sensor de respuesta rápida",
+        "feature2": "Estilo de carcasa IP66/NEMA 4 BAPI-Box 2",
+        "feature3": "Protector de sensor bien ventilado"
+      }
+    }
   }
 }

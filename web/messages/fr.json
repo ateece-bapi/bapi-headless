@@ -3616,5 +3616,104 @@
       "iso9001": "Certifié ISO 9001",
       "experience": "Plus de 30 Ans d'Expérience"
     }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Capteurs de Température | BAPI",
+      "description": "Capteurs de température de haute qualité pour pratiquement toutes les zones d'une installation. Compatibles avec toutes les gammes de contrôleurs BAS avec une large gamme de sorties personnalisées.",
+      "keywords": "capteurs de température, capteurs HVAC, automatisation du bâtiment, capteurs de température ambiante, capteurs de conduits, capteurs à immersion"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits",
+      "temperature": "Capteurs de Température"
+    },
+    "hero": {
+      "title": "Capteurs de Température",
+      "description": "Capteurs de température de haute qualité pour pratiquement toutes les zones d'une installation. Avec une large gamme de sorties personnalisées pour qu'ils soient compatibles avec toutes les gammes de contrôleurs BAS.",
+      "cta": "Commencer"
+    },
+    "roomSensors": {
+      "title": "Capteurs de Température Ambiante",
+      "subtitle": "Les capteurs d'ambiance brevetés de BAPI sont conçus pour s'adapter à tous les goûts. Des unités comme le capteur Button peinturable et le capteur encastré Style Decora se fondent dans n'importe quel décor, tandis que les polyvalents BAPI-Stat \"Quantum\" et \"Quantum Prime\" disposent de grands affichages faciles à lire et même d'une capacité d'essuyage pour les salles d'opération et les salles propres.",
+      "cta": "En Savoir Plus",
+      "bacnetGuardian": {
+        "name": "Série BAPI-Stat Quantum",
+        "feature1": "Large sélection d'éléments de détection de température",
+        "feature2": "Boîtier élégant et moderne",
+        "feature3": "Dérogation d'occupation optionnelle"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Large sélection d'éléments de détection de température",
+        "feature2": "Boîtier élégant et moderne",
+        "feature3": "Garantie à vie limitée"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Grand affichage",
+        "feature2": "Réglage du point de consigne (curseur ou bouton-poussoir)",
+        "feature3": "Contrôle optionnel de la vitesse et du mode de ventilation"
+      },
+      "lowProfile": {
+        "name": "Capteur Button Bas Profil",
+        "feature1": "Montage de capteur petit et encastré",
+        "feature2": "Mesure directe précise de l'air",
+        "feature3": "Peinturable avec peinture au latex ou à base d'huile"
+      },
+      "discreteStyle": {
+        "name": "Unité Ambiante Style Decora",
+        "feature1": "Le capteur s'insère dans une plaque d'interrupteur à bascule Style Decora",
+        "feature2": "Affichage LCD",
+        "feature3": "Réglage optionnel du point de consigne"
+      },
+      "wallPlates": {
+        "name": "Plaques Murales",
+        "feature1": "Fils de connexion en Téflon gravé et isolant à mousse dorsale",
+        "feature2": "Large sélection d'éléments de détection de température",
+        "feature3": "Garantie à vie limitée"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Capteurs de Température Non-Ambiants",
+      "subtitle": "Les capteurs non-ambiants incluent non seulement plusieurs unités de conduits, de moyennage et d'immersion, mais aussi des capteurs spécialisés tels que les unités à pince et à sangle, les sondes déportées, les thermotampons pour congélateurs et refroidisseurs, et les unités à température extrême.",
+      "cta": "En Savoir Plus",
+      "ductSensors": {
+        "name": "Capteurs de Conduits",
+        "feature1": "Sondes en acier inoxydable série 304",
+        "feature2": "Capteurs doublement encapsulés et connexions en Téflon gravé",
+        "feature3": "Garantie à vie limitée"
+      },
+      "averaging": {
+        "name": "Capteurs de Moyennage",
+        "feature1": "Longueurs de moyennage : 8', 12' et 24'",
+        "feature2": "Support en mousse à cellules fermées",
+        "feature3": "Capteurs doublement encapsulés et connexions en Téflon gravé"
+      },
+      "immersion": {
+        "name": "Capteurs à Immersion",
+        "feature1": "Longueurs de sonde : 2\", 4\" et 8\" (Correspond aux longueurs de puits thermométriques BAPI standard)",
+        "feature2": "Sondes en acier inoxydable série 304",
+        "feature3": "Capteurs doublement encapsulés et connexions en Téflon gravé"
+      },
+      "remoteProbes": {
+        "name": "Sondes Déportées",
+        "feature1": "Capteur doublement encapsulé",
+        "feature2": "Câble plenum ou FEP",
+        "feature3": "Câble gainé TEP disponible en 5 choix de couleurs"
+      },
+      "tempHumidity": {
+        "name": "Capteur Thermotampon",
+        "feature1": "Chambre remplie de fluide qui suit la température du contenu du congélateur ou refroidisseur, pas la température de l'air, réduisant les fausses alarmes",
+        "feature2": "Fixation murale facile ou crochet pour étagère filaire",
+        "feature3": "Disponible en acier inoxydable ou aluminium"
+      },
+      "outsideAir": {
+        "name": "Capteurs d'Air Extérieur",
+        "feature1": "Capteur à réponse rapide",
+        "feature2": "Style de boîtier BAPI-Box 2 IP66/NEMA 4",
+        "feature3": "Grille de protection de capteur bien ventilée"
+      }
+    }
   }
 }

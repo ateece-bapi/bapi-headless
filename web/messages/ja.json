@@ -3615,5 +3615,104 @@
       "iso9001": "ISO 9001認証",
       "experience": "30年以上の経験"
     }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "温度センサー | BAPI",
+      "description": "施設のほぼすべてのエリアに対応する高品質温度センサー。幅広いカスタム出力でBASコントローラーのすべてのラインに対応。",
+      "keywords": "温度センサー, HVACセンサー, ビル自動化, 室温センサー, ダクトセンサー, 浸漬センサー"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品",
+      "temperature": "温度センサー"
+    },
+    "hero": {
+      "title": "温度センサー",
+      "description": "施設のほぼすべてのエリアに対応する高品質温度センサー。幅広いカスタム出力により、すべてのBASコントローラーラインと互換性があります。",
+      "cta": "開始する"
+    },
+    "roomSensors": {
+      "title": "室温センサー",
+      "subtitle": "BAPIの特許取得済み室温センサーは、あらゆる好みに合うよう設計されています。塗装可能なButtonセンサーやフラッシュDecora Styleセンサーなどの製品は、どのような内装にも調和し、一方で多機能なBAPI-Stat「Quantum」や「Quantum Prime」は、大型で読み取りやすいディスプレイを特徴とし、手術室やクリーンルーム向けの清拭機能も備えています。",
+      "cta": "詳細を見る",
+      "bacnetGuardian": {
+        "name": "BAPI-Stat Quantumシリーズ",
+        "feature1": "温度検知素子の幅広い選択肢",
+        "feature2": "洗練されたモダンな筐体",
+        "feature3": "オプションの在室オーバーライド機能"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "温度検知素子の幅広い選択肢",
+        "feature2": "洗練されたモダンな筐体",
+        "feature3": "限定生涯保証"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "大型ディスプレイ",
+        "feature2": "設定値調整（スライダーまたはプッシュボタン）",
+        "feature3": "オプションのファン速度とモード制御"
+      },
+      "lowProfile": {
+        "name": "ロープロファイルButtonセンサー",
+        "feature1": "小型フラッシュセンサー取付",
+        "feature2": "正確な直接空気測定",
+        "feature3": "ラテックスまたは油性塗料で塗装可能"
+      },
+      "discreteStyle": {
+        "name": "Decora Style室内ユニット",
+        "feature1": "Decora Styleロッカースイッチプレート内にセンサーを内蔵",
+        "feature2": "LCDディスプレイ",
+        "feature3": "オプションの設定値調整"
+      },
+      "wallPlates": {
+        "name": "ウォールプレート",
+        "feature1": "エッチドテフロンリード線とフォームバック絶縁体",
+        "feature2": "温度検知素子の幅広い選択肢",
+        "feature3": "限定生涯保証"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "非室温センサー",
+      "subtitle": "非室温センサーには、複数のダクト、平均化、浸漬ユニットだけでなく、クランプやストラップユニット、リモートプローブ、冷凍庫・冷蔵庫用サーモバッファー、極限温度ユニットなどの特殊センサーも含まれています。",
+      "cta": "詳細を見る",
+      "ductSensors": {
+        "name": "ダクトセンサー",
+        "feature1": "シリーズ304ステンレススチールプローブ",
+        "feature2": "二重封止センサー&エッチドテフロンリード線",
+        "feature3": "限定生涯保証"
+      },
+      "averaging": {
+        "name": "平均化センサー",
+        "feature1": "平均化長：8'、12'、24'",
+        "feature2": "クローズドセルフォーム裏打ち",
+        "feature3": "二重封止センサー&エッチドテフロンリード線"
+      },
+      "immersion": {
+        "name": "浸漬センサー",
+        "feature1": "プローブ長：2\"、4\"、8\"（標準BAPI保護管長に対応）",
+        "feature2": "シリーズ304ステンレススチールプローブ",
+        "feature3": "二重封止センサー&エッチドテフロンリード線"
+      },
+      "remoteProbes": {
+        "name": "リモートプローブ",
+        "feature1": "二重封止センサー",
+        "feature2": "プレナムまたはFEPケーブル",
+        "feature3": "TEP外装ケーブルは5色から選択可能"
+      },
+      "tempHumidity": {
+        "name": "サーモバッファーセンサー",
+        "feature1": "液体充填チャンバーが冷凍庫または冷蔵庫内容物の温度を追跡し、空気温度ではないため誤報を減少",
+        "feature2": "簡単な壁面取付またはワイヤーシェルフハンガー",
+        "feature3": "ステンレススチールまたはアルミニウムから選択可能"
+      },
+      "outsideAir": {
+        "name": "外気センサー",
+        "feature1": "クイックレスポンスセンサー",
+        "feature2": "IP66/NEMA 4 BAPI-Box 2筐体スタイル",
+        "feature3": "通気性の良いセンサーガード"
+      }
+    }
   }
 }

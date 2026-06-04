@@ -3616,5 +3616,104 @@
       "iso9001": "Chứng nhận ISO 9001",
       "experience": "Hơn 30 Năm Kinh Nghiệm"
     }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Cảm Biến Nhiệt Độ | BAPI",
+      "description": "Cảm biến nhiệt độ chất lượng cao cho hầu hết mọi khu vực trong cơ sở. Tương thích với tất cả các dòng bộ điều khiển BAS với nhiều loại đầu ra tùy chỉnh.",
+      "keywords": "cảm biến nhiệt độ, cảm biến HVAC, tự động hóa tòa nhà, cảm biến nhiệt độ phòng, cảm biến ống dẫn, cảm biến ngâm"
+    },
+    "breadcrumb": {
+      "home": "Trang Chủ",
+      "products": "Sản Phẩm",
+      "temperature": "Cảm Biến Nhiệt Độ"
+    },
+    "hero": {
+      "title": "Cảm Biến Nhiệt Độ",
+      "description": "Cảm biến nhiệt độ chất lượng cao cho hầu hết mọi khu vực trong cơ sở. Với nhiều loại đầu ra tùy chỉnh nên chúng tương thích với tất cả các dòng bộ điều khiển BAS.",
+      "cta": "Bắt Đầu"
+    },
+    "roomSensors": {
+      "title": "Cảm Biến Nhiệt Độ Phòng",
+      "subtitle": "Cảm biến phòng được cấp bằng sáng chế của BAPI được thiết kế để phù hợp với mọi sở thích. Các thiết bị như cảm biến Button có thể sơn và cảm biến kiểu Decora âm tường hòa hợp với mọi trang trí, trong khi BAPI-Stat \"Quantum\" và \"Quantum Prime\" đa năng có màn hình lớn dễ đọc và thậm chí có khả năng lau chùi cho phòng phẫu thuật và phòng sạch.",
+      "cta": "Tìm Hiểu Thêm",
+      "bacnetGuardian": {
+        "name": "Dòng BAPI-Stat Quantum",
+        "feature1": "Lựa chọn rộng rãi các phần tử cảm biến nhiệt độ",
+        "feature2": "Vỏ bọc hiện đại, thanh lịch",
+        "feature3": "Tùy chọn ghi đè tình trạng sử dụng"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Lựa chọn rộng rãi các phần tử cảm biến nhiệt độ",
+        "feature2": "Vỏ bọc hiện đại, thanh lịch",
+        "feature3": "Bảo hành trọn đời có giới hạn"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Màn hình lớn",
+        "feature2": "Điều chỉnh điểm đặt (thanh trượt hoặc nút bấm)",
+        "feature3": "Tùy chọn điều khiển tốc độ quạt và chế độ"
+      },
+      "lowProfile": {
+        "name": "Cảm Biến Button Cấu Hình Thấp",
+        "feature1": "Lắp đặt cảm biến nhỏ, âm tường",
+        "feature2": "Đo không khí trực tiếp chính xác",
+        "feature3": "Có thể sơn bằng sơn latex hoặc sơn gốc dầu"
+      },
+      "discreteStyle": {
+        "name": "Thiết Bị Phòng Kiểu Decora",
+        "feature1": "Cảm biến lắp bên trong mặt công tắc kiểu Decora",
+        "feature2": "Màn Hình LCD",
+        "feature3": "Tùy chọn điều chỉnh điểm đặt"
+      },
+      "wallPlates": {
+        "name": "Tấm Treo Tường",
+        "feature1": "Dây dẫn Teflon khắc axit và cách điện xốp mặt sau",
+        "feature2": "Lựa chọn rộng rãi các phần tử cảm biến nhiệt độ",
+        "feature3": "Bảo hành trọn đời có giới hạn"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Cảm Biến Nhiệt Độ Ngoài Phòng",
+      "subtitle": "Các cảm biến ngoài phòng bao gồm không chỉ nhiều thiết bị ống dẫn, tính trung bình và ngâm, mà còn có các cảm biến chuyên dụng như thiết bị kẹp và dây đai, đầu dò từ xa, thermobuffer cho tủ đông và tủ lạnh, và các thiết bị nhiệt độ cực đoan.",
+      "cta": "Tìm Hiểu Thêm",
+      "ductSensors": {
+        "name": "Cảm Biến Ống Dẫn",
+        "feature1": "Đầu dò thép không gỉ Series 304",
+        "feature2": "Cảm biến đóng gói kép và dây dẫn Teflon khắc axit",
+        "feature3": "Bảo hành trọn đời có giới hạn"
+      },
+      "averaging": {
+        "name": "Cảm Biến Tính Trung Bình",
+        "feature1": "Chiều dài tính trung bình: 8', 12' và 24'",
+        "feature2": "Lớp lót xốp kín",
+        "feature3": "Cảm biến đóng gói kép và dây dẫn Teflon khắc axit"
+      },
+      "immersion": {
+        "name": "Cảm Biến Ngâm",
+        "feature1": "Chiều dài đầu dò: 2\", 4\" và 8\" (Phù hợp với chiều dài thermowell tiêu chuẩn BAPI)",
+        "feature2": "Đầu dò thép không gỉ Series 304",
+        "feature3": "Cảm biến đóng gói kép và dây dẫn Teflon khắc axit"
+      },
+      "remoteProbes": {
+        "name": "Đầu Dò Từ Xa",
+        "feature1": "Cảm biến đóng gói kép",
+        "feature2": "Cáp Plenum hoặc FEP",
+        "feature3": "Cáp bọc TEP có sẵn với 5 lựa chọn màu sắc"
+      },
+      "tempHumidity": {
+        "name": "Cảm Biến Thermobuffer",
+        "feature1": "Buồng chứa chất lỏng theo dõi nhiệt độ nội dung tủ đông hoặc tủ lạnh, không phải nhiệt độ không khí, giảm cảnh báo sai",
+        "feature2": "Dễ dàng treo tường hoặc móc kệ dây",
+        "feature3": "Có sẵn bằng thép không gỉ hoặc nhôm"
+      },
+      "outsideAir": {
+        "name": "Cảm Biến Không Khí Ngoài Trời",
+        "feature1": "Cảm biến phản hồi nhanh",
+        "feature2": "Kiểu vỏ bọc BAPI-Box 2 IP66/NEMA 4",
+        "feature3": "Tấm bảo vệ cảm biến thông gió tốt"
+      }
+    }
   }
 }

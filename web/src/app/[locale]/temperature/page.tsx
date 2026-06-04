@@ -30,7 +30,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TemperaturePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'temperatureLandingPage' });
-  const tCommon = await getTranslations({ locale, namespace: 'common' });
 
   // Room Temperature Sensors - 6 products
   const roomSensors = [
@@ -214,7 +213,7 @@ export default async function TemperaturePage({ params }: Props) {
                   className="h-auto w-full"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
                   priority
-                  quality={90}
+                  quality={85}
                 />
               </div>
             </div>

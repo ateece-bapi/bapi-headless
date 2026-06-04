@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TemperaturePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'temperatureLandingPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
 
   // Room Temperature Sensors - 6 products
   const roomSensors = [
@@ -198,6 +199,12 @@ export default async function TemperaturePage({ params }: Props) {
                   style={{ color: '#08304B' }}
                 >
                   {t('hero.cta')}
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+                >
+                  {tCommon('contactUs')}
                 </Link>
               </div>
             </div>

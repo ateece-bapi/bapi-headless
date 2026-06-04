@@ -245,7 +245,7 @@ export default async function WirelessPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
                 <Image
                   src="/images/wireless/Wireless_HVAC_2025_Plain.png"
                   alt="BAPI Wireless HVAC Sensors"

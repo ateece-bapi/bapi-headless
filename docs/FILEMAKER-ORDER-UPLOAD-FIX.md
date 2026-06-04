@@ -61,11 +61,12 @@
 
 2. **Network Access:**
    - IT whitelisted public IP: `23.87.88.182`
-   - IT created port forward: External `207.190.107.107:22` → Internal `68.65.44.99:22222`
+   - IT created port forward: External `207.190.66.66:22` → Internal `68.65.44.99:22222`
    - Connection confirmed working
+   - **Updated June 3, 2026:** External IP changed from 207.190.107.107 to 207.190.66.66
 
 3. **SFTP Connection Details:**
-   - **Host:** `207.190.107.107`
+   - **Host:** `207.190.66.66`
    - **Port:** `22`
    - **Protocol:** SFTP
    - **Username:** `bapiws`
@@ -83,7 +84,7 @@
 
 **Frequency:** Once per day (recommend morning)  
 **Time Required:** ~5 minutes  
-**Tools:** WinSCP, WordPress WP File Manager
+**Tools:** WinSCP, WordPress W![alt text](<Web Page Temperature-01.png>)P File Manager
 
 **Steps:**
 
@@ -223,7 +224,8 @@ WebStoreOrderID,OrderFileName,SalesTax,CustomerOrderNo,DateOrderEntered,NotesFro
 ### FileMaker Server
 
 **Original IP (Internal):** `68.65.44.99`  
-**External Access IP:** `207.190.107.107`  
+**External Access IP:** `207.190.66.66` *(updated June 3, 2026)*  
+**Previous IP:** ~~207.190.107.107~~ *(deprecated June 2, 2026)*  
 **Port:** `22` (external) → `22222` (internal via port forward)  
 **Protocol:** SFTP (SSH File Transfer Protocol)
 
@@ -268,7 +270,7 @@ WebStoreOrderID,OrderFileName,SalesTax,CustomerOrderNo,DateOrderEntered,NotesFro
 
 3. **Update `.env.local` on staging:**
    ```env
-   BAPI_FTP_HOST_ORDERS=207.190.107.107
+   BAPI_FTP_HOST_ORDERS=207.190.66.66
    BAPI_FTP_USER_ORDERS=bapiws
    BAPI_FTP_PASS_ORDERS=$ub@ruLEGOsho3B0x!
    BAPI_FTP_PORT_ORDERS=22
@@ -313,7 +315,7 @@ WebStoreOrderID,OrderFileName,SalesTax,CustomerOrderNo,DateOrderEntered,NotesFro
 
 3. **Update production `.env.local`:**
    ```env
-   BAPI_FTP_HOST_ORDERS=207.190.107.107
+   BAPI_FTP_HOST_ORDERS=207.190.66.66
    BAPI_FTP_USER_ORDERS=bapiws
    BAPI_FTP_PASS_ORDERS=$ub@ruLEGOsho3B0x!
    BAPI_FTP_PORT_ORDERS=22
@@ -552,5 +554,6 @@ If FTP error still appears, temporarily disable hook:
 ---
 
 **Document maintained by:** Andrew Teece  
-**Last updated:** January 8, 2026  
-**Next review:** After permanent fix deployment
+**Last updated:** June 4, 2026  
+**Last change:** Updated FileMaker server external IP from 207.190.107.107 to 207.190.66.66 (effective June 3, 2026)  
+**Next review:** After network infrastructure changes

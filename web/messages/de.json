@@ -134,18 +134,20 @@
       "label": "Produkte",
       "temperature": {
         "title": "Temperatur",
-        "roomWallSensors": "Raum- und Wandsensoren",
-        "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
+        "temperatureSolutions": "Temperaturlösungen Übersicht",
+        "temperatureSolutionsDesc": "Hochwertige Temperatursensoren für nahezu jeden Bereich einer Anlage",
+        "roomWallSensors": "Raum- & Wandsensoren",
+        "roomWallSensorsDesc": "Hochpräzise Temperaturerfassung",
         "ductSensors": "Kanalsensoren",
-        "ductSensorsDesc": "Kanalgebundene Transmitter",
-        "immersionWell": "Immersion & Thermowell",
+        "ductSensorsDesc": "Kanalmontierte Transmitter",
+        "immersionWell": "Eintauch- & Thermowell",
         "immersionWellDesc": "Flüssigkeitstemperaturmessung",
         "outdoorSensors": "Außensensoren",
-        "outdoorSensorsDesc": "Witterungsbeständige Erfassung",
-        "averaging": "Durchschnittssensoren",
-        "averagingDesc": "Temperaturmittelung über große Räume",
-        "remoteProbes": "Fernfühler",
-        "remoteProbesDesc": "Separate Messfühler-Sonden"
+        "outdoorSensorsDesc": "Wetterbeständige Sensorik",
+        "averaging": "Mittelwertsensoren",
+        "averagingDesc": "Temperaturmittelwertbildung für große Räume",
+        "remoteProbes": "Remote-Sonden",
+        "remoteProbesDesc": "Separate Sensorelement-Sonden"
       },
       "humidity": {
         "title": "Luftfeuchtigkeit",
@@ -3615,6 +3617,105 @@
       "madeInUSA": "Made in USA",
       "iso9001": "ISO 9001 zertifiziert",
       "experience": "30+ Jahre Erfahrung"
+    }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Temperatursensoren | BAPI",
+      "description": "Hochwertige Temperatursensoren für nahezu jeden Bereich einer Anlage. Kompatibel mit allen BAS-Controller-Linien mit einer breiten Palette von benutzerdefinierten Ausgängen.",
+      "keywords": "Temperatursensoren, HVAC-Sensoren, Gebäudeautomation, Raumtemperatursensoren, Kanalsensoren, Tauchsensoren"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "temperature": "Temperatursensoren"
+    },
+    "hero": {
+      "title": "Temperatursensoren",
+      "description": "Hochwertige Temperatursensoren für nahezu jeden Bereich einer Anlage. Mit einer breiten Palette von benutzerdefinierten Ausgängen, sodass sie mit allen BAS-Controller-Linien kompatibel sind.",
+      "cta": "Jetzt starten"
+    },
+    "roomSensors": {
+      "title": "Raumtemperatursensoren",
+      "subtitle": "BAPIs patentierte Raumsensoren sind für jeden Geschmack konzipiert. Geräte wie der überstreichbare Button-Sensor und der bündige Decora Style-Sensor fügen sich in jede Einrichtung ein, während die vielseitigen BAPI-Stat \"Quantum\" und \"Quantum Prime\" große, gut ablesbare Displays und sogar Abwischfähigkeit für Operationssäle und Reinräume bieten.",
+      "cta": "Mehr erfahren",
+      "bacnetGuardian": {
+        "name": "BAPI-Stat Quantum Serie",
+        "feature1": "Breite Auswahl an Temperaturmesselementen",
+        "feature2": "Schlankes, modernes Gehäuse",
+        "feature3": "Optionale Belegungsübersteuerung"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Breite Auswahl an Temperaturmesselementen",
+        "feature2": "Schlankes, modernes Gehäuse",
+        "feature3": "Begrenzte lebenslange Garantie"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Großes Display",
+        "feature2": "Sollwertanpassung (Schieberegler oder Drucktaste)",
+        "feature3": "Optionale Lüftergeschwindigkeits- und Modussteuerung"
+      },
+      "lowProfile": {
+        "name": "Flacher Button-Sensor",
+        "feature1": "Kleine, bündige Sensormontage",
+        "feature2": "Genaue direkte Luftmessung",
+        "feature3": "Überstreichbar mit Latex- oder Ölfarbe"
+      },
+      "discreteStyle": {
+        "name": "Decora Style Raumgerät",
+        "feature1": "Sensor passt in eine Decora Style Wippschalter-Abdeckplatte",
+        "feature2": "LCD-Display",
+        "feature3": "Optionale Sollwertanpassung"
+      },
+      "wallPlates": {
+        "name": "Wandplatten",
+        "feature1": "Geätzte Teflon-Anschlussleitungen und Schaumisolierung",
+        "feature2": "Breite Auswahl an Temperaturmesselementen",
+        "feature3": "Begrenzte lebenslange Garantie"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Nicht-Raum-Temperatursensoren",
+      "subtitle": "Die Nicht-Raum-Sensoren umfassen nicht nur mehrere Kanal-, Mittelwert- und Tauchgeräte, sondern auch Spezialsensoren wie Klemm- und Bandgeräte, Fernfühler, Thermopuffer für Gefrier- und Kühlschränke sowie Extreme-Temperatur-Geräte.",
+      "cta": "Mehr erfahren",
+      "ductSensors": {
+        "name": "Kanalsensoren",
+        "feature1": "Edelstahlsonden Serie 304",
+        "feature2": "Doppelt eingekapselte Sensoren und geätzte Teflon-Leitungen",
+        "feature3": "Begrenzte lebenslange Garantie"
+      },
+      "averaging": {
+        "name": "Mittelwertsensoren",
+        "feature1": "Mittelwertlängen: 8', 12' und 24'",
+        "feature2": "Geschlossenzellige Schaumunterlage",
+        "feature3": "Doppelt eingekapselte Sensoren und geätzte Teflon-Leitungen"
+      },
+      "immersion": {
+        "name": "Tauchsensoren",
+        "feature1": "Sondenlängen: 2\", 4\" und 8\" (Trifft Standard-BAPI-Thermowell-Längen)",
+        "feature2": "Edelstahlsonden Serie 304",
+        "feature3": "Doppelt eingekapselte Sensoren und geätzte Teflon-Leitungen"
+      },
+      "remoteProbes": {
+        "name": "Fernfühler",
+        "feature1": "Doppelt eingekapselter Sensor",
+        "feature2": "Plenum- oder FEP-Kabel",
+        "feature3": "TEP-ummantelte Kabel verfügbar in 5 Farboptionen"
+      },
+      "tempHumidity": {
+        "name": "Thermopuffersensor",
+        "feature1": "Flüssigkeitsgefüllte Kammer verfolgt die Temperatur von Gefrier- oder Kühlinhalten, nicht die Lufttemperatur, wodurch Fehlalarme reduziert werden",
+        "feature2": "Einfache Wandmontage oder Drahtregalhaken",
+        "feature3": "Verfügbar in Edelstahl oder Aluminium"
+      },
+      "outsideAir": {
+        "name": "Außenluftsensoren",
+        "feature1": "Schnellansprechender Sensor",
+        "feature2": "IP66/NEMA 4 BAPI-Box 2 Gehäusestil",
+        "feature3": "Gut belüfteter Sensorschutz"
+      }
     }
   }
 }

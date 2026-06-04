@@ -50,18 +50,20 @@
       "label": "Produkty",
       "temperature": {
         "title": "Temperatura",
-        "roomWallSensors": "Czujniki pokojowe i naścienne",
-        "roomWallSensorsDesc": "Wysokodokładne wykrywanie temperatury",
-        "ductSensors": "Czujniki kanałowe",
+        "temperatureSolutions": "Przegląd Rozwiązań Temperaturowych",
+        "temperatureSolutionsDesc": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu",
+        "roomWallSensors": "Czujniki Pokojowe i Ścienne",
+        "roomWallSensorsDesc": "Wykrywanie temperatury o wysokiej dokładności",
+        "ductSensors": "Czujniki Kanałowe",
         "ductSensorsDesc": "Nadajniki montowane w kanałach",
-        "immersionWell": "Immersion & Thermowell",
+        "immersionWell": "Zanurzeniowe i Tuleje Termometryczne",
         "immersionWellDesc": "Pomiar temperatury cieczy",
-        "outdoorSensors": "Czujniki zewnętrzne",
-        "outdoorSensorsDesc": "Wytrzymałe na warunki atmosferyczne",
-        "averaging": "Czujniki uśredniające",
+        "outdoorSensors": "Czujniki Zewnętrzne",
+        "outdoorSensorsDesc": "Wykrywanie odporne na warunki atmosferyczne",
+        "averaging": "Czujniki Uśredniające",
         "averagingDesc": "Uśrednianie temperatury w dużych przestrzeniach",
-        "remoteProbes": "Sondy zdalne",
-        "remoteProbesDesc": "Oddzielne elementy pomiarowe"
+        "remoteProbes": "Sondy Zdalne",
+        "remoteProbesDesc": "Sondy z oddzielnym elementem czujnikowym"
       },
       "humidity": {
         "title": "Wilgotność",
@@ -3614,6 +3616,105 @@
       "madeInUSA": "Wyprodukowano w USA",
       "iso9001": "Certyfikat ISO 9001",
       "experience": "Ponad 30 Lat Doświadczenia"
+    }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "Czujniki temperatury | BAPI",
+      "description": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu. Kompatybilne ze wszystkimi liniami kontrolerów BAS z szeroką gamą niestandardowych wyjść.",
+      "keywords": "czujniki temperatury, czujniki HVAC, automatyka budynków, czujniki temperatury pomieszczenia, czujniki kanałowe, czujniki zanurzeniowe"
+    },
+    "breadcrumb": {
+      "home": "Główna",
+      "products": "Produkty",
+      "temperature": "Czujniki temperatury"
+    },
+    "hero": {
+      "title": "Czujniki temperatury",
+      "description": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu. Z szeroką gamą niestandardowych wyjść, dzięki czemu są kompatybilne ze wszystkimi liniami kontrolerów BAS.",
+      "cta": "Rozpocznij"
+    },
+    "roomSensors": {
+      "title": "Czujniki temperatury pomieszczenia",
+      "subtitle": "Opatentowane czujniki pomieszczeniowe BAPI zostały zaprojektowane tak, aby pasować do każdego gustu. Jednostki takie jak malowany czujnik Button i wpuszczany czujnik Decora Style wpasowują się w każdy wystrój, podczas gdy wszechstronne BAPI-Stat \"Quantum\" i \"Quantum Prime\" oferują duże, łatwe do odczytu wyświetlacze, a nawet możliwość wycierania dla sal operacyjnych i pomieszczeń czystych.",
+      "cta": "Dowiedz się więcej",
+      "bacnetGuardian": {
+        "name": "Seria BAPI-Stat Quantum",
+        "feature1": "Szeroki wybór elementów pomiarowych temperatury",
+        "feature2": "Elegancka, nowoczesna obudowa",
+        "feature3": "Opcjonalne przesterowanie obecności"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "Szeroki wybór elementów pomiarowych temperatury",
+        "feature2": "Elegancka, nowoczesna obudowa",
+        "feature3": "Ograniczona gwarancja dożywotnia"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Duży wyświetlacz",
+        "feature2": "Regulacja punktu nastawczego (suwak lub przycisk)",
+        "feature3": "Opcjonalna kontrola prędkości wentylatora i trybu"
+      },
+      "lowProfile": {
+        "name": "Czujnik Button o niskim profilu",
+        "feature1": "Mały, wpuszczany montaż czujnika",
+        "feature2": "Dokładny bezpośredni pomiar powietrza",
+        "feature3": "Malowany farbą lateksową lub olejową"
+      },
+      "discreteStyle": {
+        "name": "Jednostka pomieszczeniowa Decora Style",
+        "feature1": "Czujnik pasuje do płytki przełącznika kołyskowego Decora Style",
+        "feature2": "Wyświetlacz LCD",
+        "feature3": "Opcjonalna regulacja punktu nastawczego"
+      },
+      "wallPlates": {
+        "name": "Płyty ścienne",
+        "feature1": "Wytrawione przewody teflonowe i izolator piankowy",
+        "feature2": "Szeroki wybór elementów pomiarowych temperatury",
+        "feature3": "Ograniczona gwarancja dożywotnia"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "Czujniki temperatury pozapomieszczeniowe",
+      "subtitle": "Czujniki pozapomieszczeniowe obejmują nie tylko wiele jednostek kanałowych, uśredniających i zanurzeniowych, ale także czujniki specjalistyczne, takie jak jednostki zaciskowe i pasowe, sondy zdalne, termobufory dla zamrażarek i chłodziarek oraz jednostki do ekstremalnych temperatur.",
+      "cta": "Dowiedz się więcej",
+      "ductSensors": {
+        "name": "Czujniki kanałowe",
+        "feature1": "Sondy ze stali nierdzewnej serii 304",
+        "feature2": "Czujniki podwójnie hermetyzowane i wytrawione przewody teflonowe",
+        "feature3": "Ograniczona gwarancja dożywotnia"
+      },
+      "averaging": {
+        "name": "Czujniki uśredniające",
+        "feature1": "Długości uśredniające: 8', 12' i 24'",
+        "feature2": "Podkład z pianki zamkniętokomórkowej",
+        "feature3": "Czujniki podwójnie hermetyzowane i wytrawione przewody teflonowe"
+      },
+      "immersion": {
+        "name": "Czujniki zanurzeniowe",
+        "feature1": "Długości sondy: 2\", 4\" i 8\" (Dopasowane do standardowych długości tulei termometrycznych BAPI)",
+        "feature2": "Sondy ze stali nierdzewnej serii 304",
+        "feature3": "Czujniki podwójnie hermetyzowane i wytrawione przewody teflonowe"
+      },
+      "remoteProbes": {
+        "name": "Sondy zdalne",
+        "feature1": "Czujnik podwójnie hermetyzowany",
+        "feature2": "Kabel plenum lub FEP",
+        "feature3": "Kabel z płaszczem TEP dostępny w 5 kolorach"
+      },
+      "tempHumidity": {
+        "name": "Czujnik Thermobuffer",
+        "feature1": "Komora wypełniona płynem śledzi temperaturę zawartości zamrażarki lub chłodziarki, a nie temperaturę powietrza, zmniejszając fałszywe alarmy",
+        "feature2": "Łatwy montaż na ścianie lub wieszak na półkę drucianą",
+        "feature3": "Dostępny ze stali nierdzewnej lub aluminium"
+      },
+      "outsideAir": {
+        "name": "Czujniki powietrza zewnętrznego",
+        "feature1": "Czujnik szybkiej reakcji",
+        "feature2": "Obudowa IP66/NEMA 4 BAPI-Box 2",
+        "feature3": "Dobrze wentylowana osłona czujnika"
+      }
     }
   }
 }

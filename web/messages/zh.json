@@ -456,18 +456,20 @@
       "label": "产品",
       "temperature": {
         "title": "温度",
-        "roomWallSensors": "室内和墙壁传感器",
-        "roomWallSensorsDesc": "高精度温度检测",
-        "ductSensors": "管道传感器",
-        "ductSensorsDesc": "管道安装型传感器",
-        "immersionWell": "Immersion & Thermowell",
+        "temperatureSolutions": "温度解决方案概览",
+        "temperatureSolutionsDesc": "适用于设施几乎每个区域的高质量温度传感器",
+        "roomWallSensors": "房间和墙面传感器",
+        "roomWallSensorsDesc": "高精度温度感测",
+        "ductSensors": "风管传感器",
+        "ductSensorsDesc": "风管安装式变送器",
+        "immersionWell": "浸入式和热电偶套管",
         "immersionWellDesc": "液体温度测量",
         "outdoorSensors": "室外传感器",
-        "outdoorSensorsDesc": "防天气型检测",
-        "averaging": "平均值传感器",
-        "averagingDesc": "大范围温度平均检测",
+        "outdoorSensorsDesc": "耐候性感测",
+        "averaging": "平均温度传感器",
+        "averagingDesc": "大空间温度平均",
         "remoteProbes": "远程探头",
-        "remoteProbesDesc": "独立检测元件探头"
+        "remoteProbesDesc": "分离式感测元件探头"
       },
       "humidity": {
         "title": "湿度",
@@ -3614,6 +3616,105 @@
       "madeInUSA": "美国制造",
       "iso9001": "ISO 9001认证",
       "experience": "30+年经验"
+    }
+  },
+  "temperatureLandingPage": {
+    "metadata": {
+      "title": "温度传感器 | BAPI",
+      "description": "适用于设施几乎每个区域的高质量温度传感器。兼容所有系列的BAS控制器，具有广泛的自定义输出选择。",
+      "keywords": "温度传感器, HVAC传感器, 楼宇自动化, 房间温度传感器, 风管传感器, 浸入式传感器"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "temperature": "温度传感器"
+    },
+    "hero": {
+      "title": "温度传感器",
+      "description": "适用于设施几乎每个区域的高质量温度传感器。具有广泛的自定义输出选择，兼容所有系列的BAS控制器。",
+      "cta": "立即开始"
+    },
+    "roomSensors": {
+      "title": "房间温度传感器",
+      "subtitle": "BAPI的专利房间传感器设计适合各种品味。如可涂漆按钮传感器和嵌入式Decora风格传感器等产品能够融入任何装饰风格，而多功能的BAPI-Stat \"Quantum\"和\"Quantum Prime\"具有大型易读显示屏，甚至具备擦拭功能，适用于手术室和洁净室。",
+      "cta": "了解更多",
+      "bacnetGuardian": {
+        "name": "BAPI-Stat Quantum系列",
+        "feature1": "广泛的温度感应元件选择",
+        "feature2": "时尚现代的外壳",
+        "feature3": "可选占用超控功能"
+      },
+      "bacnetSlim": {
+        "name": "BAPI-Stat Quantum Slim",
+        "feature1": "广泛的温度感应元件选择",
+        "feature2": "时尚现代的外壳",
+        "feature3": "有限终身保修"
+      },
+      "bacWall4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "大型显示屏",
+        "feature2": "设定点调节（滑块或按钮）",
+        "feature3": "可选风扇速度和模式控制"
+      },
+      "lowProfile": {
+        "name": "低剖面按钮传感器",
+        "feature1": "小型嵌入式传感器安装",
+        "feature2": "精确的直接空气测量",
+        "feature3": "可用乳胶漆或油性漆涂装"
+      },
+      "discreteStyle": {
+        "name": "Decora风格房间单元",
+        "feature1": "传感器安装在Decora风格跷板开关面板内",
+        "feature2": "LCD显示屏",
+        "feature3": "可选设定点调节"
+      },
+      "wallPlates": {
+        "name": "墙面板",
+        "feature1": "蚀刻Teflon导线和泡沫背衬绝缘体",
+        "feature2": "广泛的温度感应元件选择",
+        "feature3": "有限终身保修"
+      }
+    },
+    "nonRoomSensors": {
+      "title": "非房间温度传感器",
+      "subtitle": "非房间传感器不仅包括多种风管、平均和浸入式产品，还包括专业传感器，如夹式和带式产品、远程探头、冷冻和冷却用缓温器以及极端温度产品。",
+      "cta": "了解更多",
+      "ductSensors": {
+        "name": "风管传感器",
+        "feature1": "304系列不锈钢探头",
+        "feature2": "双重封装传感器和蚀刻Teflon导线",
+        "feature3": "有限终身保修"
+      },
+      "averaging": {
+        "name": "平均传感器",
+        "feature1": "平均长度：8'、12'和24'",
+        "feature2": "闭孔泡沫背衬",
+        "feature3": "双重封装传感器和蚀刻Teflon导线"
+      },
+      "immersion": {
+        "name": "浸入式传感器",
+        "feature1": "探头长度：2\"、4\"和8\"（符合标准BAPI热电偶套管长度）",
+        "feature2": "304系列不锈钢探头",
+        "feature3": "双重封装传感器和蚀刻Teflon导线"
+      },
+      "remoteProbes": {
+        "name": "远程探头",
+        "feature1": "双重封装传感器",
+        "feature2": "静压箱或FEP电缆",
+        "feature3": "TEP护套电缆提供5种颜色选择"
+      },
+      "tempHumidity": {
+        "name": "缓温传感器",
+        "feature1": "充液腔室跟踪冰箱或冷却器内容物温度，而非空气温度，减少误报警",
+        "feature2": "便于壁装或线架悬挂",
+        "feature3": "提供不锈钢或铝材质"
+      },
+      "outsideAir": {
+        "name": "室外空气传感器",
+        "feature1": "快速响应传感器",
+        "feature2": "IP66/NEMA 4 BAPI-Box 2外壳样式",
+        "feature3": "良好通风的传感器防护罩"
+      }
     }
   }
 }

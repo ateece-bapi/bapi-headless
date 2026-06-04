@@ -126,7 +126,7 @@ export default async function WAMPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
                 <Image
                   src="/images/wam/dashboards/wam-hero-sensors-gateway.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"

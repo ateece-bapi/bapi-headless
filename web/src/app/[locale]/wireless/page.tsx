@@ -254,7 +254,7 @@ export default async function WirelessPage({ params }: Props) {
                   className="h-auto w-full"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
                   priority
-                  quality={90}
+                  quality={85}
                 />
               </div>
             </div>

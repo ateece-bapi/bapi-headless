@@ -9,9 +9,11 @@
  * Creates both PNG and WebP versions
  */
 
-const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
+
+// Resolve sharp from web/node_modules since that's where it's installed
+const sharp = require(path.join(__dirname, '../web/node_modules/sharp'));
 
 const inputPath = path.join(__dirname, '../web/public/images/wireless/Wireless_HVAC_2025_Plain.png');
 const outputDir = path.join(__dirname, '../web/public/images/wireless');

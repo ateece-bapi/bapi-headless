@@ -3618,6 +3618,86 @@
       "experience": "Ponad 30 Lat Doświadczenia"
     }
   },
+  "accessoriesLandingPage": {
+    "metadata": {
+      "title": "Akcesoria | BAPI",
+      "description": "BAPI niedawno wprowadziło kompleksową linię akcesoriów dla wyjątkowych produktów i części wspomagających, uzupełniając szeroki wachlarz czujników, akcesoriów i rozwiązań dostępnych dla różnych zastosowań komercyjnych w wielu branżach.",
+      "keywords": "akcesoria HVAC, detektory wycieku wody, alarm monitora drzwi, czujnik poziomu światła, konwerter napięcia, dystrybucja energii, BAPI-Guard"
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "products": "Produkty",
+      "accessories": "Akcesoria"
+    },
+    "hero": {
+      "title": "Akcesoria",
+      "description": "BAPI niedawno wprowadziło kompleksową linię akcesoriów dla wyjątkowych produktów, łącząc niezbędny sprzęt wspomagający i montażowy, który może uprześcić praktycznie każdą instalację różnych czujników i akcesoriów dostępnych dla czujników, ciśnienia i alarmów wymaganych dla praktycznie wszystkich zastosowań i rozwiązań komercyjnych.",
+      "cta": "Rozpocznij",
+      "imageAlt": "Rodzina akcesoriów BAPI"
+    },
+    "specialtySensors": {
+      "title": "Czujniki specjalistyczne",
+      "subtitle": "Linia czujników specjalistycznych BAPI doda do Twojego wyposażenia komercyjnego łatwe w instalacji czujniki, które mogą zapewnić wgląd w czasie rzeczywistym w krytyczne zastosowania.",
+      "waterLeakDetectors": {
+        "name": "Detektory wycieku wody",
+        "feature1": "Element chemiczny lub woda od -10 do 90°C z obudową do montażu ściennego i wyjściami przekaźnika",
+        "feature2": "Regulowane ustawienia czułości i warunków alarmowych",
+        "feature3": "Automatyczne wykrywanie z wczesnym wykrywaniem wycieku wody"
+      },
+      "doorMonitor": {
+        "name": "Alarm monitora drzwi",
+        "feature1": "Do szerokiego zastosowania w drzwiach zimnych i systemach ostrzegawczych zamrażarek",
+        "feature2": "Może monitorować 1 lub 2 drzwi",
+        "feature3": "Samozasilanie do wejścia pomocniczego jak panel cyfrowy"
+      },
+      "outdoorLight": {
+        "name": "Zewnętrzny czujnik poziomu światła",
+        "feature1": "0 do 2000 fc (0 do 21528 lux)",
+        "feature2": "Jednostka wpuszczana o długości 2,5 cala",
+        "feature3": "Wysoka precyzja dla zastosowań oświetlenia ulicznego i sterowania światłem dziennym"
+      }
+    },
+    "accessories": {
+      "title": "Akcesoria",
+      "subtitle": "Nowe akcesoria ulepszają lub są integracjami z czujnikami BAPI. Niezależnie od tego, czy używasz czujników zewnętrznych, montażu, obudowy, akcesoriów okablowania i nie tylko, mamy to, czego potrzebujesz, aby zapewnić, że wszystkie Twoje połączenia przewodowe i instalacje są niezawodne i profesjonalne.",
+      "vc350": {
+        "name": "Napięcie VC350-EZ",
+        "feature1": "Samoidentyfikacja, wolny od cieplny",
+        "feature2": "Działa na wejściu od 0 do 10 Vdc",
+        "feature3": "Izolowany uniwersalny blok zacisków"
+      },
+      "powerDistribution": {
+        "name": "Moduł dystrybucji energii",
+        "feature1": "Transformator wejściowy 24 V",
+        "feature2": "8 izolowanych i przełączanych wyjść 24 Vdc",
+        "feature3": "Montaż wpuszczany"
+      },
+      "bapiGuard": {
+        "name": "BAPI-Guard",
+        "feature1": "Chroni poprzez eliminację uszkodzeń mienia i kradzieży",
+        "feature2": "Opcja aktualizacji dla bieżącej ochrony przed przepięciami",
+        "feature3": "Niskoprofilowy projekt"
+      },
+      "flexibleProbe": {
+        "name": "Elastyczny wspornik sondy",
+        "feature1": "Szybki montaż liniowy czujników 1-przewodowych lub 2-mostków",
+        "feature2": "Uniwersalny projekt modernizacyjny kompatybilny z istniejącymi sondami",
+        "feature3": "Wpuszczany montaż na szynie DIN kompatybilny z bieżącym produktem"
+      },
+      "weatherShade": {
+        "name": "Osłona pogodowa",
+        "feature1": "Ogólny rodzaj użytkowania zewnętrznego lub przenośnego tylko do użytku wewnętrznego",
+        "feature2": "Chroni czujniki zewnętrzne przed wiatrem, słońcem i elementami środowiskowymi",
+        "feature3": "Prosty montaż wpuszczany do instalacji odporności na warunki pogodowe"
+      },
+      "vc2000": {
+        "name": "Konwerter napięcia VC2000",
+        "feature1": "Konwertuje sygnał napięciowy 0-10Vdc",
+        "feature2": "Wyjścia 0-2v do wyboru 24VAC lub 24VDC",
+        "feature3": "Montaż szafkowy lub panelowy; mieści klatkę 3-droga"
+      }
+    }
+  },
   "temperatureLandingPage": {
     "metadata": {
       "title": "Czujniki temperatury | BAPI",

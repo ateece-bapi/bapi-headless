@@ -3618,6 +3618,86 @@
       "experience": "30+年经验"
     }
   },
+  "accessoriesLandingPage": {
+    "metadata": {
+      "title": "配件 | BAPI",
+      "description": "BAPI 最近推出了一套综合性的配件线，用于出色的产品和支持零件，完善了可用于众多行业中各种商业应用的广泛传感器、配件和解决方案。",
+      "keywords": "HVAC 配件、漏水检测器、门监控报警器、光照传感器、电压转换器、配电、BAPI-Guard"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "accessories": "配件"
+    },
+    "hero": {
+      "title": "配件",
+      "description": "BAPI 最近推出了一套综合性的配件线，用于出色的产品，连接重要的支持和安装硬件，这可以简化几乎任何安装各种传感器和配件，可用于几乎所有商业应用和解决方案所需的传感器、压力和警报。",
+      "cta": "开始",
+      "imageAlt": "BAPI 配件系列"
+    },
+    "specialtySensors": {
+      "title": "专业传感器",
+      "subtitle": "BAPI 的专业传感器系列将为您的商业设备增加易于安装的传感器，可以提供有关关键应用的实时见解。",
+      "waterLeakDetectors": {
+        "name": "漏水检测器",
+        "feature1": "带壁挂外壳和继电器输出的化学或 -10 至 90°C 水元素",
+        "feature2": "灵敏度和警报条件的可调设置",
+        "feature3": "自动检测，并可早期检测漏水"
+      },
+      "doorMonitor": {
+        "name": "门监控报警器",
+        "feature1": "用于冷库门和冰箱警告系统的广泛使用",
+        "feature2": "可监控 1 或 2 扇门",
+        "feature3": "自给辅助输入，如数字面板"
+      },
+      "outdoorLight": {
+        "name": "室外光照传感器",
+        "feature1": "0 至 2000 fc（0 至 21528 勒克斯）",
+        "feature2": "2.5 英寸长的嵌入式单元",
+        "feature3": "高精度，用于街灯和日光控制应用"
+      }
+    },
+    "accessories": {
+      "title": "配件",
+      "subtitle": "新配件改进或与 BAPI 传感器集成。无论您是使用室外传感器、安装、外壳、布线配件等，我们都有您需要的产品，以确保您的所有有线通信和安装可靠且专业。",
+      "vc350": {
+        "name": "VC350-EZ 电压",
+        "feature1": "自识别，无热",
+        "feature2": "在 0 至 10 Vdc 输入上运行",
+        "feature3": "隔离的通用端子排"
+      },
+      "powerDistribution": {
+        "name": "配电模块",
+        "feature1": "24 V 输入变压器",
+        "feature2": "8 个隔离和开关的 24 Vdc 输出",
+        "feature3": "嵌入式安装"
+      },
+      "bapiGuard": {
+        "name": "BAPI-Guard",
+        "feature1": "通过消除财产损失和盗窃来保护",
+        "feature2": "当前涌浪保护的升级选项",
+        "feature3": "低调设计"
+      },
+      "flexibleProbe": {
+        "name": "灵活探头支架",
+        "feature1": "1 线或 2 桥传感器的快速线路安装",
+        "feature2": "与现有探头兼容的通用改造设计",
+        "feature3": "与当前产品兼容的 DIN 导轨嵌入式安装"
+      },
+      "weatherShade": {
+        "name": "防气候遮阳罩",
+        "feature1": "仅用于室内使用的室外或便携式使用的一般类型",
+        "feature2": "保护室外传感器免受风、阳光和环境元素的影响",
+        "feature3": "简单的嵌入式安装，用于防气候安装"
+      },
+      "vc2000": {
+        "name": "VC2000 电压转换器",
+        "feature1": "转换 0-10Vdc 电压信号",
+        "feature2": "0-2v 输出以选择 24VAC 或 24VDC",
+        "feature3": "机柜或面板安装；容纳 3 通笼子"
+      }
+    }
+  },
   "temperatureLandingPage": {
     "metadata": {
       "title": "温度传感器 | BAPI",

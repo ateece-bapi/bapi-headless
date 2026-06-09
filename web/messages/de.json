@@ -3619,6 +3619,86 @@
       "experience": "30+ Jahre Erfahrung"
     }
   },
+  "accessoriesLandingPage": {
+    "metadata": {
+      "title": "Zubehör | BAPI",
+      "description": "BAPI hat kürzlich eine umfassende Linie von Zubehör für herausragende Produkte und Ersatzteile eingeführt, die ein breites Spektrum an Sensoren, Zubehör und Lösungen für verschiedene kommerzielle Anwendungen in zahlreichen Branchen ergänzen.",
+      "keywords": "HLK-Zubehör, Wasserleckdetektoren, Türüberwachungsalarm, Lichtpegelsensor, Spannungswandler, Stromverteilung, BAPI-Guard"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "accessories": "Zubehör"
+    },
+    "hero": {
+      "title": "Zubehör",
+      "description": "BAPI hat kürzlich eine umfassende Linie von Zubehör für herausragende Produkte eingeführt, die wesentliche Stütz- und Montagehardware verbindet, die praktisch jede Installation verschiedener Sensoren und Zubehör für die Sensoren, den Druck und die Alarme, die für praktisch alle kommerziellen Anwendungen und Lösungen benötigt werden, vereinfachen kann.",
+      "cta": "Beginnen",
+      "imageAlt": "BAPI Zubehörfamilie"
+    },
+    "specialtySensors": {
+      "title": "Spezialsensoren",
+      "subtitle": "Die Linie von Spezialsensoren von BAPI wird Ihre kommerzielle Ausrüstung mit einfach zu installierenden Sensoren ergänzen, die Echtzeiteinblicke in kritische Anwendungen bieten können.",
+      "waterLeakDetectors": {
+        "name": "Wasserleckdetektoren",
+        "feature1": "Ein chemisches oder -10 bis 90°C Wasserelement mit Wandmontagegehuse und Relaisausgängen",
+        "feature2": "Einstellbare Einstellungen für Empfindlichkeit und Alarmbedingungen",
+        "feature3": "Automatische Erkennung mit früher Wasserleckerkennung"
+      },
+      "doorMonitor": {
+        "name": "Türüberwachungsalarm",
+        "feature1": "Für den umfassenden Einsatz in Kühltüren und Gefrierschrank-Warnsystemen",
+        "feature2": "Kann 1 oder 2 Türen überwachen",
+        "feature3": "Selbstversorgung zum Hilfseingang wie ein digitales Panel"
+      },
+      "outdoorLight": {
+        "name": "Außen-Lichtpegelsensor",
+        "feature1": "0 bis 2000 fc (0 bis 21528 lux)",
+        "feature2": "Einbaueinheit mit 2,5 Zoll Länge",
+        "feature3": "Hohe Präzision für Straßenbeleuchtungs- und Tageslichtsteuerungsanwendungen"
+      }
+    },
+    "accessories": {
+      "title": "Zubehör",
+      "subtitle": "Das neue Zubehör verbessert oder integriert sich mit BAPI-Sensoren. Ob Sie Außensensoren, Montage, Gehäuse, Verkabelungszubehör und mehr verwenden, wir haben, was Sie benötigen, um sicherzustellen, dass alle Ihre verdrahteten Kommunikationen und Installationen zuverlässig und professionell sind.",
+      "vc350": {
+        "name": "VC350-EZ Spannung",
+        "feature1": "Selbstidentifizierung, thermisch frei",
+        "feature2": "Arbeitet mit 0 bis 10 Vdc Eingang",
+        "feature3": "Isolierter universeller Anschlussblock"
+      },
+      "powerDistribution": {
+        "name": "Stromverteilungsmodul",
+        "feature1": "24 V Eingangstransformator",
+        "feature2": "8 isolierte und geschaltete 24 Vdc Ausgänge",
+        "feature3": "Einbaumontage"
+      },
+      "bapiGuard": {
+        "name": "BAPI-Guard",
+        "feature1": "Schützt durch Beseitigung von Sachschäden und Diebstahl",
+        "feature2": "Nachrüstoption für aktuellen Überspannungsschutz",
+        "feature3": "Flaches Design"
+      },
+      "flexibleProbe": {
+        "name": "Flexible Sondenhalterung",
+        "feature1": "Schnelle Leitungsmontage von 1-Draht- oder 2-Brückensensoren",
+        "feature2": "Universelles Nachrüstdesign kompatibel mit vorhandenen Sonden",
+        "feature3": "Einbau-DIN-Schienenmontage kompatibel mit aktuellem Produkt"
+      },
+      "weatherShade": {
+        "name": "Wetterschutz",
+        "feature1": "Eine allgemeine Art von Außen- oder tragbarer Verwendung nur für Innenräume",
+        "feature2": "Schützt Außensensoren vor Wind, Sonne und Umweltelementen",
+        "feature3": "Einfache Einbaumontage für wetterfeste Installation"
+      },
+      "vc2000": {
+        "name": "VC2000 Spannungswandler",
+        "feature1": "Wandelt 0-10Vdc Spannungssignal um",
+        "feature2": "Ausgänge 0-2v zur Auswahl von 24VAC oder 24VDC",
+        "feature3": "Schrank- oder Panelmontage; nimmt 3-Wege-Käfig auf"
+      }
+    }
+  },
   "temperatureLandingPage": {
     "metadata": {
       "title": "Temperatursensoren | BAPI",

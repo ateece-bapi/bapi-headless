@@ -3619,6 +3619,86 @@
       "experience": "Hơn 30 Năm Kinh Nghiệm"
     }
   },
+  "accessoriesLandingPage": {
+    "metadata": {
+      "title": "Phụ kiện | BAPI",
+      "description": "BAPI gần đây đã ra mắt dòng phụ kiện toàn diện cho các sản phẩm nổi bật và các bộ phận hỗ trợ, hoàn thiện một phổ rộng các cảm biến, phụ kiện và giải pháp có sẵn cho các ứng dụng thương mại khác nhau trong nhiều ngành công nghiệp.",
+      "keywords": "phụ kiện HVAC, thiết bị phát hiện rò rỉ nước, cảnh báo giám sát cửa, cảm biến mức ánh sáng, bộ chuyển đổi điện áp, phân phối điện, BAPI-Guard"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm",
+      "accessories": "Phụ kiện"
+    },
+    "hero": {
+      "title": "Phụ kiện",
+      "description": "BAPI gần đây đã ra mắt dòng phụ kiện toàn diện cho các sản phẩm nổi bật, kết nối phần cứng hỗ trợ và lắp đặt thiết yếu có thể đơn giản hóa hầu hết mọi việc lắp đặt các cảm biến và phụ kiện khác nhau có sẵn cho các cảm biến, áp suất và cảnh báo cần thiết cho hầu hết các ứng dụng và giải pháp thương mại.",
+      "cta": "Bắt đầu",
+      "imageAlt": "Dòng phụ kiện BAPI"
+    },
+    "specialtySensors": {
+      "title": "Cảm biến chuyên dụng",
+      "subtitle": "Dòng cảm biến chuyên dụng của BAPI sẽ thêm vào thiết bị thương mại của bạn từ các cảm biến dễ lắp đặt có thể cung cấp thông tin chi tiết theo thời gian thực về các ứng dụng quan trọng.",
+      "waterLeakDetectors": {
+        "name": "Thiết bị phát hiện rò rỉ nước",
+        "feature1": "Một nguyên tố hóa học hoặc nước từ -10 đến 90°C với vỏ gắn tường và đầu ra rơ le",
+        "feature2": "Cài đặt có thể điều chỉnh cho độ nhạy và điều kiện cảnh báo",
+        "feature3": "Phát hiện tự động với phát hiện sớm rò rỉ nước"
+      },
+      "doorMonitor": {
+        "name": "Cảnh báo giám sát cửa",
+        "feature1": "Để sử dụng rộng rãi trong các cửa lạnh và hệ thống cảnh báo tủ đông",
+        "feature2": "Có thể giám sát 1 hoặc 2 cửa",
+        "feature3": "Tự cung cấp điện cho đầu vào phụ như bảng điều khiển kỹ thuật số"
+      },
+      "outdoorLight": {
+        "name": "Cảm biến mức ánh sáng ngoài trời",
+        "feature1": "0 đến 2000 fc (0 đến 21528 lux)",
+        "feature2": "Đơn vị lắp chìm dài 2,5 inch",
+        "feature3": "Độ chính xác cao cho các ứng dụng chiếu sáng đường phố và kiểm soát ánh sáng ban ngày"
+      }
+    },
+    "accessories": {
+      "title": "Phụ kiện",
+      "subtitle": "Các phụ kiện mới cải thiện hoặc là tích hợp với các cảm biến BAPI. Dù bạn đang sử dụng các cảm biến ngoài trời, lắp đặt, vỏ bọc, phụ kiện dây điện và hơn thế nữa, chúng tôi có những gì bạn cần để đảm bảo rằng tất cả các kết nối dây và lắp đặt của bạn đều đáng tin cậy và chuyên nghiệp.",
+      "vc350": {
+        "name": "Điện áp VC350-EZ",
+        "feature1": "Tự nhận diện, không nhiệt",
+        "feature2": "Hoạt động với đầu vào 0 đến 10 Vdc",
+        "feature3": "Khối đầu cuối chung cách ly"
+      },
+      "powerDistribution": {
+        "name": "Mô-đun phân phối điện",
+        "feature1": "Biến áp đầu vào 24 V",
+        "feature2": "8 đầu ra 24 Vdc cách ly và chuyển mạch",
+        "feature3": "Lắp chìm"
+      },
+      "bapiGuard": {
+        "name": "BAPI-Guard",
+        "feature1": "Bảo vệ bằng cách loại bỏ tổn thất tài sản và trộm cắp",
+        "feature2": "Tùy chọn nâng cấp cho bảo vệ chống sắc hiện tại",
+        "feature3": "Thiết kế hồ sơ thấp"
+      },
+      "flexibleProbe": {
+        "name": "Giá đỡ dò dạt linh hoạt",
+        "feature1": "Lắp đặt dây nhanh của các cảm biến 1 dây hoặc 2 cầu nối",
+        "feature2": "Thiết kế nâng cấp phổ quát tương thích với các đầu dò hiện có",
+        "feature3": "Lắp chìm trên ray DIN tương thích với sản phẩm hiện tại"
+      },
+      "weatherShade": {
+        "name": "Mái che thời tiết",
+        "feature1": "Một loại thông thường sử dụng ngoài trời hoặc di động chỉ cho sử dụng trong nhà",
+        "feature2": "Bảo vệ các cảm biến ngoài trời khỏi gió, nắng và các yếu tố môi trường",
+        "feature3": "Lắp chìm đơn giản cho lắp đặt chống thời tiết"
+      },
+      "vc2000": {
+        "name": "Bộ chuyển đổi điện áp VC2000",
+        "feature1": "Chuyển đổi tín hiệu điện áp 0-10Vdc",
+        "feature2": "Đầu ra 0-2v để chọn 24VAC hoặc 24VDC",
+        "feature3": "Lắp tủ hoặc bảng; chứa lồng 3 chiều"
+      }
+    }
+  },
   "temperatureLandingPage": {
     "metadata": {
       "title": "Cảm Biến Nhiệt Độ | BAPI",

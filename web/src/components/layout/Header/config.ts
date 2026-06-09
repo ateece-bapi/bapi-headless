@@ -76,6 +76,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Humidity_Icon.webp',
           links: [
             {
+              label: t('products.humidity.humidityOverview'),
+              href: '/humidity',
+              description: t('products.humidity.humidityOverviewDesc'),
+            },
+            {
               label: t('products.humidity.roomHumidity'),
               href: '/products/humidity-sensors/humidity-room',
               description: t('products.humidity.roomHumidityDesc'),

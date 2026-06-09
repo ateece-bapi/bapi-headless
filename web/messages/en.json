@@ -73,6 +73,8 @@
       },
       "humidity": {
         "title": "Humidity",
+        "humidityOverview": "Humidity Overview",
+        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "Room Humidity",
         "roomHumidityDesc": "Wall-mount RH sensors",
         "ductHumidity": "Duct Humidity",
@@ -3744,6 +3746,64 @@
         "feature1": "Converts 0-10Vdc voltage signal",
         "feature2": "Outputs 0-2v to select 24VAC or 24VDC",
         "feature3": "Cabinet or panel mount; accommodates 3-way cage"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Humidity Sensors | BAPI",
+      "description": "From simple offices to the most challenging of spaces BAPI makes a complete line of high quality humidity or temperature/humidity sensors for room, duct and outside air applications.",
+      "keywords": "humidity sensors, temperature humidity sensors, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, duct humidity, outside air humidity, HVAC humidity monitoring"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "humidity": "Humidity Sensors"
+    },
+    "hero": {
+      "title": "Humidity Sensors",
+      "description": "From simple offices to the most challenging of spaces BAPI makes a complete line of high quality humidity or temperature/humidity sensors for room, duct and outside air applications.",
+      "cta": "Explore Products",
+      "imageAlt": "BAPI Humidity Sensors Family"
+    },
+    "sensors": {
+      "sectionTitle": "Humidity Sensors",
+      "sectionSubtitle": "BAPI uses reliable humidity sensors that allow for a quality relative humidity measurement in all of our room, duct, immersion and outside air humidity units.",
+      "viewAll": "View All Humidity Sensors",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Sleek, modern enclosure",
+        "feature2": "Temperature, humidity and room occupancy status display",
+        "feature3": "Large backlit display for enhanced data visualization"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Large LCD display",
+        "feature2": "Mechanical keypad for password creation and user input",
+        "feature3": "Temperature and humidity outputs adjustable"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (W/NEMA 4X enclosure)",
+        "feature2": "Humidity only or humidity and barometric configuration",
+        "feature3": "2% and 3% RH accuracies"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Single flush sensor mounting",
+        "feature2": "Accurate mount for measurement",
+        "feature3": "Transmits with data as an instant point"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Displays temperature and can measure temperature, humidity and room occupancy status display",
+        "feature2": "Optional slider or pushbutton setpoint adjustment"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Remote sensor or standalone setpoint transmitter",
+        "feature2": "Temperature, humidity and room occupancy status display",
+        "feature3": "Optional occupancy override"
       }
     }
   },

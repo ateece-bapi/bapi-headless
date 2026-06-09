@@ -473,6 +473,8 @@
       },
       "humidity": {
         "title": "湿度",
+        "humidityOverview": "湿度概要",
+        "humidityOverviewDesc": "商業用HVACのための包括的な湿度検出ソリューション",
         "roomHumidity": "室内湿度",
         "roomHumidityDesc": "壁掛け式RHセンサ",
         "ductHumidity": "ダクト湿度",
@@ -3697,6 +3699,65 @@
         "feature1": "0-10Vdc電圧信号を変換します",
         "feature2": "24VACまたは24VDCを選択するための0-2v出力",
         "feature3": "キャビネットまたはパネルマウント; 3ウェイケージに対応"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "湿度センサー | BAPI",
+      "description": "シンプルなオフィスから最も困難な空間まで、BAPIは室内、ダクト、外気用途向けの高品質な湿度または温度/湿度センサーの完全なラインを製造しています。",
+      "keywords": "湿度センサー、温度湿度センサー、BAPI-Stat Quantum、BAPI-Stat Quantum Prime、BAPI-Box 2、ダクト湿度、外気湿度、HVAC湿度監視"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品",
+      "humidity": "湿度センサー"
+    },
+    "hero": {
+      "title": "湿度センサー",
+      "description": "シンプルなオフィスから最も困難な空間まで、BAPIは室内、ダクト、外気用途向けの高品質な湿度または温度/湿度センサーの完全なラインを製造しています。",
+      "cta": "製品を探す",
+      "imageAlt": "BAPI湿度センサーファミリー"
+    },
+    "sensors": {
+      "sectionTitle": "湿度センサー",
+      "sectionSubtitle": "BAPIは、すべての室内、ダクト、浸漬、外気湿度ユニットで高品質な相対湿度測定を可能にする信頼性の高い湿度センサーを使用しています。",
+      "viewAll": "すべての湿度センサーを表示",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "スリムでモダンな筐体",
+        "feature2": "温度、湿度、室内占有状態の表示",
+        "feature3": "データの視覚化を強化する大型バックライト付きディスプレイ"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "大型LCDディスプレイ",
+        "feature2": "パスワード作成とユーザー入力用のメカニカルキーパッド",
+        "feature3": "温度および湿度出力が調整可能"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2（NEMA 4X筐体付き）",
+        "feature2": "湿度のみまたは湿度と気圧構成",
+        "feature3": "2%および3% RH精度"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "単一フラッシュセンサー取り付け",
+        "feature2": "測定用の正確な取り付け",
+        "feature3": "瞬時ポイントとしてデータを送信"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "温度、湿度、室内占有状況を表示",
+        "feature2": "オプションのスライダーまたはプッシュボタンによる設定点調整",
+        "feature3": "読みやすいインターフェースを備えた大型ディスプレイ"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "リモートセンサーまたはスタンドアロン設定点送信機",
+        "feature2": "温度、湿度、室内占有状態の表示",
+        "feature3": "オプションの占有オーバーライド"
       }
     }
   },

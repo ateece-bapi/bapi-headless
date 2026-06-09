@@ -473,6 +473,8 @@
       },
       "humidity": {
         "title": "Humedad",
+        "humidityOverview": "Descripción General de Humedad",
+        "humidityOverviewDesc": "Soluciones integrales de sensores de humedad para HVAC comercial",
         "roomHumidity": "Humedad ambiental",
         "roomHumidityDesc": "Sensores de humedad relativa montados en pared",
         "ductHumidity": "Humedad de conducto",
@@ -3695,6 +3697,65 @@
         "feature1": "Convierte señal de voltaje de 0-10Vdc",
         "feature2": "Salidas de 0-2v para seleccionar 24VAC o 24VDC",
         "feature3": "Montaje en gabinete o panel; acomoda jaula de 3 vías"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Sensores de Humedad | BAPI",
+      "description": "Desde oficinas simples hasta los espacios más desafiantes, BAPI fabrica una línea completa de sensores de humedad o temperatura/humedad de alta calidad para aplicaciones de ambiente, conducto y aire exterior.",
+      "keywords": "sensores de humedad, sensores de temperatura humedad, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, humedad de conducto, humedad de aire exterior, monitoreo de humedad HVAC"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos",
+      "humidity": "Sensores de Humedad"
+    },
+    "hero": {
+      "title": "Sensores de Humedad",
+      "description": "Desde oficinas simples hasta los espacios más desafiantes, BAPI fabrica una línea completa de sensores de humedad o temperatura/humedad de alta calidad para aplicaciones de ambiente, conducto y aire exterior.",
+      "cta": "Explorar Productos",
+      "imageAlt": "Familia de Sensores de Humedad BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Sensores de Humedad",
+      "sectionSubtitle": "BAPI utiliza sensores de humedad confiables que permiten una medición de humedad relativa de calidad en todas nuestras unidades de humedad de ambiente, conducto, inmersión y aire exterior.",
+      "viewAll": "Ver Todos los Sensores de Humedad",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Carcasa elegante y moderna",
+        "feature2": "Visualización de temperatura, humedad y estado de ocupación de ambiente",
+        "feature3": "Pantalla grande retroiluminada para visualización de datos mejorada"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Pantalla LCD grande",
+        "feature2": "Teclado mecánico para creación de contraseñas e ingreso de usuario",
+        "feature3": "Salidas de temperatura y humedad ajustables"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (con gabinete NEMA 4X)",
+        "feature2": "Configuración solo de humedad o humedad y barométrica",
+        "feature3": "Precisiones de 2% y 3% RH"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Montaje de sensor empotrado único",
+        "feature2": "Montaje preciso para medición",
+        "feature3": "Transmite con datos como punto instantáneo"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Muestra temperatura, humedad y estado de ocupación de la sala",
+        "feature2": "Ajuste de punto de consigna opcional con deslizador o botón pulsador",
+        "feature3": "Pantalla grande con interfaz fácil de leer"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Sensor remoto o transmisor de punto de consigna independiente",
+        "feature2": "Visualización de temperatura, humedad y estado de ocupación de ambiente",
+        "feature3": "Anulación de ocupación opcional"
       }
     }
   },

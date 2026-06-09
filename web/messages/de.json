@@ -151,6 +151,8 @@
       },
       "humidity": {
         "title": "Luftfeuchtigkeit",
+        "humidityOverview": "Feuchtigkeitsübersicht",
+        "humidityOverviewDesc": "Umfassende Feuchtigkeitssensorlösungen für gewerbliche HLK",
         "roomHumidity": "Raumluftfeuchtigkeit",
         "roomHumidityDesc": "Wandmontierte Feuchtefühler",
         "ductHumidity": "Kanalfeuchtigkeit",
@@ -3698,6 +3700,65 @@
         "feature1": "Wandelt 0-10Vdc Spannungssignal um",
         "feature2": "Ausgänge 0-2v zur Auswahl von 24VAC oder 24VDC",
         "feature3": "Schrank- oder Panelmontage; nimmt 3-Wege-Käfig auf"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Feuchtesensoren | BAPI",
+      "description": "Von einfachen Büros bis zu den anspruchsvollsten Räumen stellt BAPI eine komplette Linie hochwertiger Feuchte- oder Temperatur-/Feuchtesensoren für Raum-, Kanal- und Außenluftanwendungen her.",
+      "keywords": "Feuchtesensoren, Temperatur-Feuchtesensoren, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, Kanalfeuchte, Außenluftfeuchte, HLK-Feuchteüberwachung"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "humidity": "Feuchtesensoren"
+    },
+    "hero": {
+      "title": "Feuchtesensoren",
+      "description": "Von einfachen Büros bis zu den anspruchsvollsten Räumen stellt BAPI eine komplette Linie hochwertiger Feuchte- oder Temperatur-/Feuchtesensoren für Raum-, Kanal- und Außenluftanwendungen her.",
+      "cta": "Produkte Erkunden",
+      "imageAlt": "BAPI Feuchtesensoren Familie"
+    },
+    "sensors": {
+      "sectionTitle": "Feuchtesensoren",
+      "sectionSubtitle": "BAPI verwendet zuverlässige Feuchtesensoren, die eine qualitativ hochwertige relative Feuchtemessung in all unseren Raum-, Kanal-, Tauch- und Außenluft-Feuchteeinheiten ermöglichen.",
+      "viewAll": "Alle Feuchtesensoren Anzeigen",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Schlankes, modernes Gehäuse",
+        "feature2": "Anzeige von Temperatur, Feuchtigkeit und Raumbelegungsstatus",
+        "feature3": "Großes hintergrundbeleuchtetes Display für verbesserte Datenvisualisierung"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Großes LCD-Display",
+        "feature2": "Mechanische Tastatur für Passworterstellung und Benutzereingabe",
+        "feature3": "Temperatur- und Feuchteausgänge einstellbar"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (mit NEMA 4X Gehäuse)",
+        "feature2": "Nur Feuchte oder Feuchte- und Barometerkonfiguration",
+        "feature3": "2% und 3% rF Genauigkeiten"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Einzelne bündige Sensormontage",
+        "feature2": "Präzise Montage für Messung",
+        "feature3": "Überträgt Daten als Sofortpunkt"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Zeigt Temperatur, Luftfeuchtigkeit und Raumbelegungsstatus an",
+        "feature2": "Optionale Sollwertanpassung per Schieberegler oder Drucktaste",
+        "feature3": "Großes Display mit leicht ablesbarer Oberfläche"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Fernsensor oder eigenständiger Sollwerttransmitter",
+        "feature2": "Anzeige von Temperatur, Feuchtigkeit und Raumbelegungsstatus",
+        "feature3": "Optionale Belegungsübersteuerung"
       }
     }
   },

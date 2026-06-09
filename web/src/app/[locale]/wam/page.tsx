@@ -133,9 +133,9 @@ export default async function WAMPage({ params }: Props) {
                   width={640}
                   height={411}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, 50vw"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
-                  quality={90}
+                  quality={85}
                 />
               </div>
             </div>

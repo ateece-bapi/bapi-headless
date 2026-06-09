@@ -187,7 +187,7 @@ export default async function AccessoriesPage({ params }: Props) {
                   width={2400}
                   height={1543}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, 50vw"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}
                 />

@@ -2,9 +2,231 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 3, 2026  
+**Updated:** June 9, 2026  
 **Status:** Phase 1 Complete - Live in Production (30 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 9, 2026 — FileMaker Order Upload Network Upgrade & Security Remediation 🔒🌐
+
+**Status:** ✅ COMPLETE - Automated uploads working, security incident resolved  
+**Branch:** `main` (documentation-only changes)  
+**Context:** IT deployed new network equipment on June 2nd, changing FileMaker server external IP. Addressed 6-day outage of automated order uploads (June 3-8) and discovered/remediated accidental password exposure in GitHub.  
+**Priority:** 🔴 P0 - Critical production issue + Security incident  
+**Time:** ~4 hours (troubleshooting + configuration + security remediation)  
+**Approach:** Configuration update → VPN setup → Security audit → Documentation sanitization
+
+### 🎯 SCOPE
+
+**Primary Issues:**
+1. ❌ Automated order uploads failing since June 3rd (wrong IP configuration)
+2. 🔴 **Security Incident:** SFTP passwords accidentally committed to public GitHub repository
+3. ⚠️ Orders from June 3-8 not reaching FileMaker for fulfillment (manual backlog)
+4. 🔧 Network equipment upgrade requiring new configuration (IP + port changes)
+
+**Resolution:**
+1. ✅ Updated WordPress `.env.local` with new IP + port configuration
+2. ✅ Configured FortiVPN access for manual uploads
+3. ✅ Set up SSH key authentication (key + password required)
+4. ✅ IT rotated compromised passwords immediately
+5. ✅ Sanitized documentation, created two-file system (public/private)
+6. ✅ Automated uploads restored and validated
+
+### 🔧 IMPLEMENTATION
+
+#### 1. WordPress Configuration Update ✅
+
+**Problem:** WordPress still using old FileMaker server IP from January 2026
+
+**Changes Made:**
+- **File:** `/wp-content/themes/bapi-v4/.env.local` (production server)
+- **IP Updated:** `207.190.107.107` → `207.190.66.66`
+- **Port Updated:** `22` → `22222` (external access)
+- **Method:** Via WordPress WP File Manager (GUI)
+
+**Impact:**
+- ✅ Automated uploads restored (verified with test order)
+- ✅ "successfully FTP'd" messages appearing in WP Admin
+
+#### 2. VPN & SSH Key Setup ✅
+
+**Problem:** Manual upload access needed for troubleshooting and backlog
+
+**Configuration:**
+- **VPN Software:** FortiClient VPN (installed by IT)
+- **Internal Hostname:** `olorders.bapihvac.lan` (172.20.4.126)
+- **Internal Port:** `22` (standard SFTP when on VPN)
+- **Authentication:** SSH key (`bapiws-private.ppk`) + password (both required)
+
+**Testing:**
+```bash
+# Connectivity test
+ping olorders.bapihvac.lan  # ✅ 39-42ms response
+nc -zv 172.20.4.126 22      # ✅ Port open
+ssh bapiws@olorders.bapihvac.lan  # ✅ Authentication successful
+```
+
+**WinSCP Configuration:**
+- Host: `olorders.bapihvac.lan`
+- Port: `22`
+- User: `bapiws`
+- SSH Key: `bapiws-private.ppk` (in Advanced → SSH → Authentication)
+- Password: (two-factor with key)
+
+#### 3. Security Incident Response 🔴 ✅
+
+**Incident:** Passwords accidentally committed to public GitHub repository
+
+**Discovery:**
+- Commits `7e95edd` and `350355f` contained plaintext passwords
+- Both commits pushed to `origin/main` (publicly visible)
+- Affected credentials: `bapiws` and `bapiukws` SFTP accounts
+
+**Immediate Response:**
+1. ✅ Contacted IT (Alexander Arp) to rotate passwords immediately
+2. ✅ Created two-file system:
+   - **Public:** `FILEMAKER-ORDER-UPLOAD-FIX.md` (sanitized, in git)
+   - **Private:** `FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md` (with passwords, gitignored)
+3. ✅ Removed sensitive file from git tracking
+4. ✅ Updated `.gitignore` to prevent future exposure
+5. ✅ Committed security remediation with clear commit message
+
+**Git Operations:**
+```bash
+# Rename to private version
+mv docs/FILEMAKER-ORDER-UPLOAD-FIX.md docs/FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md
+
+# Remove from git tracking
+git rm docs/FILEMAKER-ORDER-UPLOAD-FIX.md
+
+# Create sanitized public version (no passwords/IPs/network topology)
+# ... created with placeholders ...
+
+# Update .gitignore
+echo "docs/*-PRIVATE.md" >> .gitignore
+
+# Commit security fixes
+git commit -m "security: sanitize FileMaker documentation, remove passwords"
+git push origin main
+```
+
+**Commits:**
+- Security fix: `4db2777`
+- Cleanup: `7cceafb`
+
+**Outcome:**
+- ✅ Passwords rotated by IT
+- ✅ Future commits protected (`.gitignore` rules)
+- ✅ Public documentation sanitized (process only, no credentials)
+- ✅ Private documentation maintained locally (full details)
+
+#### 4. Repository Cleanup ✅
+
+**Problem:** 8 untracked items cluttering git status
+
+**Added to `.gitignore`:**
+```
+# Local development
+.ddev/
+.vscode/
+
+# Temporary files
+cookies.txt
+**/cookies.txt
+
+# WordPress
+cms/wp-content/plugins/
+
+# Test outputs
+web/test-output/
+
+# Temporary assets
+web/2026-approved-images/
+
+# Sensitive documentation
+docs/*-PRIVATE.md
+```
+
+**Committed:**
+- ✅ `scripts/populate-customer-groups.sql` (legitimate project file from April 2026)
+
+### 📊 RESULTS
+
+**Before:**
+- ❌ Orders not uploading since June 3rd (6-day outage)
+- 🔴 Passwords exposed on public GitHub
+- 🟡 8 untracked files cluttering repository
+- ⚠️ No VPN access for manual troubleshooting
+
+**After:**
+- ✅ Automated uploads working (verified June 8th)
+- ✅ Passwords rotated, sanitized documentation
+- ✅ Clean repository (proper .gitignore)
+- ✅ VPN + SSH key access configured
+- ✅ Two-file system (public/private) for sensitive docs
+- ✅ Backlog orders handled by IT (June 3-7)
+
+### 🔑 KEY LEARNINGS
+
+1. **Network Infrastructure Changes:**
+   - External access uses custom port forwarding (22222)
+   - Internal VPN access uses standard SFTP port (22)
+   - Always document network architecture changes
+
+2. **Security Best Practices:**
+   - NEVER commit passwords to version control
+   - Use two-file system for sensitive documentation
+   - Implement `.gitignore` rules proactively
+   - Rotate credentials immediately upon exposure
+
+3. **Documentation Strategy:**
+   - Public docs: Process and architecture (no credentials)
+   - Private docs: Full details with passwords/IPs (gitignored)
+   - Use placeholders in public versions
+
+4. **WordPress Configuration:**
+   - `.env.local` files can be edited via WP File Manager (no SSH needed)
+   - Always verify configuration changes with test orders
+   - Check WP Admin order notes for "successfully FTP'd" confirmation
+
+### 📂 FILES MODIFIED
+
+**Documentation:**
+- `docs/FILEMAKER-ORDER-UPLOAD-FIX.md` - Sanitized public version (created)
+- `docs/FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md` - Private version (gitignored)
+- `.gitignore` - Added rules for sensitive files and local dev configs
+
+**WordPress (Production):**
+- `/wp-content/themes/bapi-v4/.env.local` - Updated IP and port
+
+**Scripts:**
+- `scripts/populate-customer-groups.sql` - Added to git (April 2026 script)
+
+### ⏭️ NEXT STEPS
+
+**Pending:**
+- [ ] Wait for IT to send new passwords (via secure channel)
+- [ ] Update `-PRIVATE.md` file with new passwords
+- [ ] Update WordPress production `.env.local` with new password
+- [ ] Test automated uploads with new credentials
+
+**Monitoring:**
+- [ ] Watch for "successfully FTP'd" messages on new orders
+- [ ] Verify FileMaker receives orders (coordinate with IT/CS)
+
+**Future Improvements:**
+- [ ] Consider using environment variable service (AWS Secrets Manager, etc.)
+- [ ] Document password rotation procedures
+- [ ] Set up alerts for order upload failures
+
+### 📈 METRICS
+
+- **Downtime:** 6 days (June 3-8)
+- **Orders Affected:** All orders during June 3-7 (manually processed by IT)
+- **Security Exposure:** 2 commits (passwords rotated same day)
+- **Resolution Time:** ~4 hours (configuration + security remediation)
+- **Git Commits:** 2 (security fix + cleanup)
 
 ---
 

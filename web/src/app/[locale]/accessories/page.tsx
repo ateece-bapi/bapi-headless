@@ -36,7 +36,7 @@ export default async function AccessoriesPage({ params }: Props) {
   const specialtySensors = [
     {
       name: t('specialtySensors.waterLeakDetectors.name'),
-      slug: 'water-leak-detectors',
+      slug: 'water-leak-detector-in-a-bapi-box-2',
       features: [
         t('specialtySensors.waterLeakDetectors.feature1'),
         t('specialtySensors.waterLeakDetectors.feature2'),
@@ -46,7 +46,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('specialtySensors.doorMonitor.name'),
-      slug: 'door-monitor-alarm',
+      slug: 'door-monitor-alarm-dma',
       features: [
         t('specialtySensors.doorMonitor.feature1'),
         t('specialtySensors.doorMonitor.feature2'),
@@ -56,7 +56,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('specialtySensors.outdoorLight.name'),
-      slug: 'outdoor-light-level-sensor',
+      slug: 'outdoor-light-level-sensor-2',
       features: [
         t('specialtySensors.outdoorLight.feature1'),
         t('specialtySensors.outdoorLight.feature2'),
@@ -70,7 +70,7 @@ export default async function AccessoriesPage({ params }: Props) {
   const accessories = [
     {
       name: t('accessories.vc350.name'),
-      slug: 'vc350-ez-voltage',
+      slug: 'alc-vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2',
       features: [
         t('accessories.vc350.feature1'),
         t('accessories.vc350.feature2'),
@@ -80,7 +80,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('accessories.powerDistribution.name'),
-      slug: 'power-distribution-module',
+      slug: 'pdm-power-distribution-module-2',
       features: [
         t('accessories.powerDistribution.feature1'),
         t('accessories.powerDistribution.feature2'),
@@ -90,7 +90,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('accessories.bapiGuard.name'),
-      slug: 'bapi-guard',
+      slug: 'bapi-guard-thermostat-guard-2',
       features: [
         t('accessories.bapiGuard.feature1'),
         t('accessories.bapiGuard.feature2'),
@@ -100,7 +100,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('accessories.flexibleProbe.name'),
-      slug: 'flexible-probe-bracket',
+      slug: 'flexible-probe-brackets-pack-of-50',
       features: [
         t('accessories.flexibleProbe.feature1'),
         t('accessories.flexibleProbe.feature2'),
@@ -110,7 +110,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('accessories.weatherShade.name'),
-      slug: 'weather-shade',
+      slug: 'weather-shade-kit-for-outside-air-sensors',
       features: [
         t('accessories.weatherShade.feature1'),
         t('accessories.weatherShade.feature2'),
@@ -120,7 +120,7 @@ export default async function AccessoriesPage({ params }: Props) {
     },
     {
       name: t('accessories.vc2000.name'),
-      slug: 'vc2000-voltage-converter',
+      slug: 'vc2000-ac-to-dc-voltage-converter-2-amps-2',
       features: [
         t('accessories.vc2000.feature1'),
         t('accessories.vc2000.feature2'),
@@ -246,7 +246,7 @@ export default async function AccessoriesPage({ params }: Props) {
                     ))}
                   </ul>
                   <Link
-                    href={`/products?search=${encodeURIComponent(sensor.name)}`}
+                    href={`/product/${sensor.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
                     {tCommon('learnMore')}
@@ -306,7 +306,7 @@ export default async function AccessoriesPage({ params }: Props) {
                     ))}
                   </ul>
                   <Link
-                    href={`/products?search=${encodeURIComponent(accessory.name)}`}
+                    href={`/product/${accessory.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
                     {tCommon('learnMore')}

@@ -246,7 +246,7 @@ export default async function AccessoriesPage({ params }: Props) {
                     ))}
                   </ul>
                   <Link
-                    href={`/product/${sensor.slug}`}
+                    href={`/products?search=${encodeURIComponent(sensor.name)}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
                     {tCommon('learnMore')}
@@ -306,7 +306,7 @@ export default async function AccessoriesPage({ params }: Props) {
                     ))}
                   </ul>
                   <Link
-                    href={`/product/${accessory.slug}`}
+                    href={`/products?search=${encodeURIComponent(accessory.name)}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
                     {tCommon('learnMore')}

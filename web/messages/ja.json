@@ -473,8 +473,8 @@
       },
       "humidity": {
         "title": "湿度",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "湿度概要",
+        "humidityOverviewDesc": "商業用HVACのための包括的な湿度検出ソリューション",
         "roomHumidity": "室内湿度",
         "roomHumidityDesc": "壁掛け式RHセンサ",
         "ductHumidity": "ダクト湿度",
@@ -3749,7 +3749,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "温度を表示し、温度、湿度、室内占有状態を測定可能",
+        "feature1": "温度、湿度、室内占有状況を表示",
         "feature2": "オプションのスライダーまたはプッシュボタンによる設定点調整",
         "feature3": "読みやすいインターフェースを備えた大型ディスプレイ"
       },

@@ -473,8 +473,8 @@
       },
       "humidity": {
         "title": "湿度",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "湿度概述",
+        "humidityOverviewDesc": "商业暖通空调的综合湿度传感解决方案",
         "roomHumidity": "室内湿度",
         "roomHumidityDesc": "壁挂式湿度传感器",
         "ductHumidity": "管道湿度",
@@ -3749,7 +3749,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "显示温度，并可测量温度、湿度和房间占用状态",
+        "feature1": "显示温度、湿度和房间占用状态",
         "feature2": "可选滑块或按钮设定点调节",
         "feature3": "大型显示屏，具有易于阅读的界面"
       },

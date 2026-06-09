@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t('metadata.description'),
       path: 'humidity',
       keywords: t('metadata.keywords')
-        .split(',')
+        .split(/[,，、،]/)
         .map((k) => k.trim())
         .filter(Boolean),
     },
@@ -225,7 +225,7 @@ export default async function HumidityPage({ params }: Props) {
           {/* View All Link */}
           <div className="mt-12 text-center">
             <Link
-              href="/products/humidity"
+              href="/products/humidity-sensors"
               className="inline-flex items-center gap-2 text-lg font-semibold text-primary-600 transition-colors hover:text-primary-700"
             >
               {t('sensors.viewAll')}

@@ -67,8 +67,8 @@
       },
       "humidity": {
         "title": "Wilgotność",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "Przegląd Wilgotności",
+        "humidityOverviewDesc": "Kompleksowe rozwiązania czujników wilgotności dla komercyjnej wentylacji i klimatyzacji",
         "roomHumidity": "Wilgotność w pomieszczeniu",
         "roomHumidityDesc": "Czujniki RH montowane na ścianie",
         "ductHumidity": "Wilgotność w kanale",
@@ -3749,7 +3749,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "Wyświetla temperaturę i może mierzyć temperaturę, wilgotność i status zajęcia pomieszczenia",
+        "feature1": "Wyświetla temperaturę, wilgotność i status zajętości pomieszczenia",
         "feature2": "Opcjonalna regulacja punktu nastawczego za pomocą suwaka lub przycisku",
         "feature3": "Duży wyświetlacz z łatwym w odczycie interfejsem"
       },

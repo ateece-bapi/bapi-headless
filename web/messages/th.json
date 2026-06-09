@@ -151,8 +151,8 @@
       },
       "humidity": {
         "title": "ความชื้น",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "ภาพรวมความชื้น",
+        "humidityOverviewDesc": "โซลูชันเซ็นเซอร์ความชื้นที่ครอบคลุมสำหรับ HVAC เชิงพาณิชย์",
         "roomHumidity": "ความชื้นในห้อง",
         "roomHumidityDesc": "เซ็นเซอร์ความชื้นติดผนัง",
         "ductHumidity": "ความชื้นในท่อ",
@@ -3749,7 +3749,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "แสดงอุณหภูมิและสามารถวัดอุณหภูมิ ความชื้น และสถานะการใช้งานห้อง",
+        "feature1": "แสดงอุณหภูมิ ความชื้น และสถานะการครอบครองห้อง",
         "feature2": "การปรับจุดตั้งค่าแบบตัวเลื่อนหรือปุ่มกดเพิ่มเติม",
         "feature3": "จอแสดงผลขนาดใหญ่ที่มีอินเทอร์เฟซอ่านง่าย"
       },

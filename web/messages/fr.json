@@ -473,8 +473,8 @@
       },
       "humidity": {
         "title": "Humidité",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "Aperçu de l'Humidité",
+        "humidityOverviewDesc": "Solutions complètes de détection d'humidité pour CVC commercial",
         "roomHumidity": "Humidité ambiante",
         "roomHumidityDesc": "Capteurs d'humidité murale",
         "ductHumidity": "Humidité de gaine",
@@ -3750,7 +3750,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "Affiche la température et peut mesurer la température, l'humidité et l'état d'occupation de la pièce",
+        "feature1": "Affiche la température, l'humidité et l'état d'occupation de la pièce",
         "feature2": "Ajustement du point de consigne optionnel par curseur ou bouton-poussoir",
         "feature3": "Grand affichage avec interface facile à lire"
       },

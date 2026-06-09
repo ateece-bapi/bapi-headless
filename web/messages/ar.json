@@ -473,8 +473,8 @@
       },
       "humidity": {
         "title": "الرطوبة",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "نظرة عامة على الرطوبة",
+        "humidityOverviewDesc": "حلول استشعار رطوبة شاملة لأنظمة التدفئة والتهوية وتكييف الهواء التجارية",
         "roomHumidity": "رطوبة الحجرة",
         "roomHumidityDesc": "استشعارات رطوبة نسبية مركبة على الحائط",
         "ductHumidity": "رطوبة الفتحة",
@@ -3750,7 +3750,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "يعرض درجة الحرارة ويمكنه قياس درجة الحرارة والرطوبة وحالة إشغال الغرفة",
+        "feature1": "يعرض درجة الحرارة والرطوبة وحالة إشغال الغرفة",
         "feature2": "تعديل نقطة التعيين الاختياري بشريط التمرير أو الزر الضاغط",
         "feature3": "شاشة كبيرة مع واجهة سهلة القراءة"
       },

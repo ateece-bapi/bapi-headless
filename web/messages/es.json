@@ -473,8 +473,8 @@
       },
       "humidity": {
         "title": "Humedad",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "Descripción General de Humedad",
+        "humidityOverviewDesc": "Soluciones integrales de sensores de humedad para HVAC comercial",
         "roomHumidity": "Humedad ambiental",
         "roomHumidityDesc": "Sensores de humedad relativa montados en pared",
         "ductHumidity": "Humedad de conducto",
@@ -3747,7 +3747,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "Muestra la temperatura y puede medir temperatura, humedad y estado de ocupación del ambiente",
+        "feature1": "Muestra temperatura, humedad y estado de ocupación de la sala",
         "feature2": "Ajuste de punto de consigna opcional con deslizador o botón pulsador",
         "feature3": "Pantalla grande con interfaz fácil de leer"
       },

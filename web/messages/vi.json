@@ -107,8 +107,8 @@
       },
       "humidity": {
         "title": "Độ ẩm",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "Tổng Quan Độ Ẩm",
+        "humidityOverviewDesc": "Giải pháp cảm biến độ ẩm toàn diện cho HVAC thương mại",
         "roomHumidity": "Độ ẩm phòng",
         "roomHumidityDesc": "Cảm biến độ ẩm gắn tường",
         "ductHumidity": "Độ ẩm ống dẫn",
@@ -3750,7 +3750,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "Hiển thị nhiệt độ và có thể đo nhiệt độ, độ ẩm và trạng thái sử dụng phòng",
+        "feature1": "Hiển thị nhiệt độ, độ ẩm và trạng thái lấp đầy phòng",
         "feature2": "Điều chỉnh điểm đặt tùy chọn bằng thanh trượt hoặc nút bấm",
         "feature3": "Màn hình lớn với giao diện dễ đọc"
       },

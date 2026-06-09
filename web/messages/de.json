@@ -151,8 +151,8 @@
       },
       "humidity": {
         "title": "Luftfeuchtigkeit",
-        "humidityOverview": "Humidity Overview",
-        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
+        "humidityOverview": "Feuchtigkeitsübersicht",
+        "humidityOverviewDesc": "Umfassende Feuchtigkeitssensorlösungen für gewerbliche HLK",
         "roomHumidity": "Raumluftfeuchtigkeit",
         "roomHumidityDesc": "Wandmontierte Feuchtefühler",
         "ductHumidity": "Kanalfeuchtigkeit",
@@ -3750,7 +3750,7 @@
       },
       "bapiStat4": {
         "name": "BAPI-Stat 4",
-        "feature1": "Zeigt Temperatur an und kann Temperatur, Feuchtigkeit und Raumbelegungsstatus messen",
+        "feature1": "Zeigt Temperatur, Luftfeuchtigkeit und Raumbelegungsstatus an",
         "feature2": "Optionale Sollwertanpassung per Schieberegler oder Drucktaste",
         "feature3": "Großes Display mit leicht ablesbarer Oberfläche"
       },

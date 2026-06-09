@@ -191,6 +191,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Accessories_Icon.webp',
           links: [
             {
+              label: t('products.accessories.accessoriesOverview'),
+              href: '/accessories',
+              description: t('products.accessories.accessoriesOverviewDesc'),
+            },
+            {
               label: t('products.accessories.allAccessories'),
               href: '/products/accessories',
               description: t('products.accessories.allAccessoriesDesc'),

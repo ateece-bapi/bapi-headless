@@ -119,6 +119,8 @@
       },
       "accessories": {
         "title": "Accessories",
+        "accessoriesOverview": "Accessories Overview",
+        "accessoriesOverviewDesc": "Mounting hardware, enclosures, cables, and sensor accessories",
         "allAccessories": "All Accessories",
         "allAccessoriesDesc": "Mounting hardware, enclosures, cables, and sensor accessories"
       },
@@ -3663,6 +3665,86 @@
       "madeInUSA": "Made in USA",
       "iso9001": "ISO 9001 Certified",
       "experience": "30+ Years Experience"
+    }
+  },
+  "accessoriesLandingPage": {
+    "metadata": {
+      "title": "Accessories | BAPI",
+      "description": "BAPI's comprehensive line of accessories includes specialty sensors and supporting hardware for commercial HVAC applications. From water leak detectors to voltage converters, we provide reliable solutions for diverse installation needs.",
+      "keywords": "HVAC accessories, water leak detectors, door monitor alarm, light level sensor, voltage converter, power distribution, BAPI-Guard"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "accessories": "Accessories"
+    },
+    "hero": {
+      "title": "Accessories",
+      "description": "BAPI's comprehensive line of accessories connects essential supporting and mounting hardware that simplifies installation of sensors, pressure monitors, and alarms for commercial applications.",
+      "cta": "Get Started",
+      "imageAlt": "BAPI Accessories Family"
+    },
+    "specialtySensors": {
+      "title": "Specialty Sensors",
+      "subtitle": "BAPI's line of specialty sensors will make additions to your commercial equipment from simple-to-install sensors that can provide real-time insights into critical applications.",
+      "waterLeakDetectors": {
+        "name": "Water Leak Detectors",
+        "feature1": "A chemical or -10 to 90°C water element with wall mount enclosure and relay outputs",
+        "feature2": "Adjustable settings for sensitivity and alarm conditions",
+        "feature3": "Auto-sensing with early water leak detection"
+      },
+      "doorMonitor": {
+        "name": "Door Monitor Alarm",
+        "feature1": "For use extensively in cool doors and freezer warning systems",
+        "feature2": "Can monitor 1 or 2 doors",
+        "feature3": "Self feed to the auxiliary input such as a digital panel"
+      },
+      "outdoorLight": {
+        "name": "Outdoor Light Level Sensor",
+        "feature1": "0 to 2000 fc (0 to 21528 lux)",
+        "feature2": "Flush unit at 2.5 inches in length",
+        "feature3": "High precision for street lighting and daylighting control applications"
+      }
+    },
+    "accessories": {
+      "title": "Accessories",
+      "subtitle": "The new accessories enhance or are integrations with BAPI sensors. Whether it is using outdoor sensors, mounting, enclosures, wiring accessories, and more, we have what you need to ensure all of your wired communications and installations are reliable and professional.",
+      "vc350": {
+        "name": "VC350-EZ Voltage",
+        "feature1": "Self-identify, thermal-free",
+        "feature2": "Operates on 0 to 10 Vdc input",
+        "feature3": "Isolated universal terminal block"
+      },
+      "powerDistribution": {
+        "name": "Power Distribution Module",
+        "feature1": "24 V input transformer",
+        "feature2": "8 isolated and switched 24 Vdc outputs",
+        "feature3": "Flush mount"
+      },
+      "bapiGuard": {
+        "name": "BAPI-Guard",
+        "feature1": "Protects by removing damage at property and theft",
+        "feature2": "Retrofit option for current surge protection",
+        "feature3": "Low profile design"
+      },
+      "flexibleProbe": {
+        "name": "Flexible Probe Bracket",
+        "feature1": "Quick line mounting of 1 wire or 2 jumper sensors",
+        "feature2": "Universal retrofit design compatible with existing probes",
+        "feature3": "Flush mount DIN rail mount compatible with current product"
+      },
+      "weatherShade": {
+        "name": "Weather Shade",
+        "feature1": "A general kind of outdoor or portable for indoor use only",
+        "feature2": "Protects outside sensors from wind, sun and environmental elements",
+        "feature3": "Simple flush mount for weatherproof install"
+      },
+      "vc2000": {
+        "name": "VC2000 Voltage Converter",
+        "feature1": "Converts 0-10Vdc voltage signal",
+        "feature2": "Outputs 0-2v to select 24VAC or 24VDC",
+        "feature3": "Cabinet or panel mount; accommodates 3-way cage"
+      }
     }
   },
   "temperatureLandingPage": {

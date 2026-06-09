@@ -165,8 +165,7 @@ export default async function AccessoriesPage({ params }: Props) {
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="#specialty-sensors"
-                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                  style={{ color: '#08304B' }}
+                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
                 >
                   {t('hero.cta')}
                 </Link>

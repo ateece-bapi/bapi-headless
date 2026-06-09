@@ -523,6 +523,8 @@
       },
       "accessories": {
         "title": "配件",
+        "accessoriesOverview": "配件概述",
+        "accessoriesOverviewDesc": "用于 HVAC 应用的专业传感器和支持硬件",
         "allAccessories": "所有配件",
         "allAccessoriesDesc": "安装硬件、外壳、电缆和传感器配件"
       },

@@ -157,6 +157,8 @@
       },
       "accessories": {
         "title": "Phụ kiện",
+        "accessoriesOverview": "Tổng quan phụ kiện",
+        "accessoriesOverviewDesc": "Cảm biến chuyên dụng và phần cứng hỗ trợ cho ứng dụng HVAC",
         "allAccessories": "Tất cả Phụ kiện",
         "allAccessoriesDesc": "Phần cứng lắp đặt, vỏ bọc, cáp và phụ kiện cảm biến"
       },

@@ -523,6 +523,8 @@
       },
       "accessories": {
         "title": "アクセサリー",
+        "accessoriesOverview": "アクセサリー概要",
+        "accessoriesOverviewDesc": "HVACアプリケーション向けの専門センサーとサポートハードウェア",
         "allAccessories": "全アクセサリー",
         "allAccessoriesDesc": "取付金具、筐体、ケーブル、およびセンサーアクセサリー"
       },

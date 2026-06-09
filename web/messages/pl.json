@@ -117,6 +117,8 @@
       },
       "accessories": {
         "title": "Akcesoria",
+        "accessoriesOverview": "Przegląd akcesoriów",
+        "accessoriesOverviewDesc": "Specjalistyczne czujniki i sprzęt wspierający dla aplikacji HVAC",
         "allAccessories": "Wszystkie Akcesoria",
         "allAccessoriesDesc": "Sprzęt montażowy, obudowy, kable i akcesoria do czujników"
       },

@@ -117,6 +117,8 @@
       },
       "accessories": {
         "title": "सहायक उपकरण",
+        "accessoriesOverview": "सहायक उपकरण अवलोकन",
+        "accessoriesOverviewDesc": "HVAC अनुप्रयोगों के लिए विशेष सेंसर और सहायक हार्डवेयर",
         "allAccessories": "सभी सहायक उपकरण",
         "allAccessoriesDesc": "माउंटिंग हार्डवेयर, एनक्लोज़र, केबल्स, और सेंसर सहायक उपकरण"
       },

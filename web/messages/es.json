@@ -521,6 +521,8 @@
       },
       "accessories": {
         "title": "Accesorios",
+        "accessoriesOverview": "Resumen de Accesorios",
+        "accessoriesOverviewDesc": "Sensores especializados y hardware de soporte para aplicaciones HVAC",
         "allAccessories": "Todos los Accesorios",
         "allAccessoriesDesc": "Hardware de montaje, gabinetes, cables y accesorios de sensores"
       },

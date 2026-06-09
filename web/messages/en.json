@@ -3670,7 +3670,7 @@
   "accessoriesLandingPage": {
     "metadata": {
       "title": "Accessories | BAPI",
-      "description": "BAPI recently launched a comprehensive line of accessories to only outstanding products and supporting parts, completing a wide spectrum of both sensors, accessories, and solutions available for diverse commercial applications across numerous industries.",
+      "description": "BAPI's comprehensive line of accessories includes specialty sensors and supporting hardware for commercial HVAC applications. From water leak detectors to voltage converters, we provide reliable solutions for diverse installation needs.",
       "keywords": "HVAC accessories, water leak detectors, door monitor alarm, light level sensor, voltage converter, power distribution, BAPI-Guard"
     },
     "breadcrumb": {
@@ -3680,7 +3680,7 @@
     },
     "hero": {
       "title": "Accessories",
-      "description": "BAPI recently launched a comprehensive line of accessories to only outstanding products, connecting essential, supporting and mounting hardware that, along the way, can simplify just about any installation of diverse sensors and accessories available for the sensors, pressure, and alarms needed for practically all commercial applications and solutions.",
+      "description": "BAPI's comprehensive line of accessories connects essential supporting and mounting hardware that simplifies installation of sensors, pressure monitors, and alarms for commercial applications.",
       "cta": "Get Started",
       "imageAlt": "BAPI Accessories Family"
     },
@@ -3743,7 +3743,7 @@
         "name": "VC2000 Voltage Converter",
         "feature1": "Converts 0-10Vdc voltage signal",
         "feature2": "Outputs 0-2v to select 24VAC or 24VDC",
-        "feature3": "On-fan on-stand cabinet or panel mount; accommodates 3-way cage"
+        "feature3": "Cabinet or panel mount; accommodates 3-way cage"
       }
     }
   },

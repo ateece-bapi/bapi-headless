@@ -523,6 +523,8 @@
       },
       "accessories": {
         "title": "Accessoires",
+        "accessoriesOverview": "Aperçu des Accessoires",
+        "accessoriesOverviewDesc": "Capteurs spécialisés et matériel de support pour applications CVC",
         "allAccessories": "Tous les Accessoires",
         "allAccessoriesDesc": "Matériel de montage, boîtiers, câbles et accessoires de capteurs"
       },

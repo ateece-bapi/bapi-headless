@@ -201,6 +201,8 @@
       },
       "accessories": {
         "title": "Zubehör",
+        "accessoriesOverview": "Zubehör Übersicht",
+        "accessoriesOverviewDesc": "Spezialsensoren und Unterstützungshardware für HLK-Anwendungen",
         "allAccessories": "Gesamtes Zubehör",
         "allAccessoriesDesc": "Montagehardware, Gehäuse, Kabel und Sensorzubehör"
       },

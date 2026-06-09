@@ -214,7 +214,7 @@ export default async function WirelessPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.wireless')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[55%_45%] lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
             <div>
               <div className="mb-6 inline-block rounded-full bg-primary-400/30 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
@@ -245,14 +245,14 @@ export default async function WirelessPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
                   src="/images/wireless/Wireless_HVAC_2025_Plain.webp"
                   alt="BAPI Wireless HVAC Sensors"
                   width={2400}
                   height={1543}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   priority
                   quality={85}
                 />

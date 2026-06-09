@@ -183,7 +183,7 @@ export default async function TemperaturePage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.temperature')}</span>
           </nav>
 
-          <div className="grid items-center gap-8 lg:grid-cols-[55%_45%] lg:gap-10 xl:gap-8 2xl:gap-10">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-8 2xl:gap-10">
             {/* Left Column - Content */}
             <div>
               <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
@@ -211,14 +211,14 @@ export default async function TemperaturePage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
                   src="/images/temperature/room/product_family.png"
                   alt={t('hero.title')}
                   width={640}
                   height={640}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   priority
                   quality={85}
                 />

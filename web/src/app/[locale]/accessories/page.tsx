@@ -153,7 +153,7 @@ export default async function AccessoriesPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.accessories')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[55%_45%] lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
             <div>
               <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
@@ -180,14 +180,14 @@ export default async function AccessoriesPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
                   src="/images/products/families/Accessories_Family_2025_US.webp"
                   alt={t('hero.imageAlt')}
                   width={2400}
                   height={1543}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   priority
                   quality={85}
                 />

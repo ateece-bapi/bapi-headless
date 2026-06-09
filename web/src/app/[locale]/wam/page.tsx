@@ -85,7 +85,7 @@ export default async function WAMPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.wam')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[55%_45%] lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
             <div>
               {/* WAM Logo */}
@@ -126,14 +126,14 @@ export default async function WAMPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg xl:mx-auto xl:max-w-[640px]">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
                   src="/images/wam/dashboards/wam-hero-sensors-gateway.png"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
                   width={640}
                   height={411}
                   className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 45vw, 640px"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   priority
                   quality={90}
                 />

@@ -5,3 +5,20 @@ docs/FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md
 # Sensitive documentation with passwords/network details
 docs/*-PRIVATE.md
 docs/FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md
+
+# Local development
+.ddev/
+.vscode/
+
+# Temporary files
+cookies.txt
+**/cookies.txt
+
+# WordPress
+cms/wp-content/plugins/
+
+# Test outputs
+web/test-output/
+
+# Temporary image assets (review if needed)
+web/2026-approved-images/

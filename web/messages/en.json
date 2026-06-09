@@ -119,6 +119,8 @@
       },
       "accessories": {
         "title": "Accessories",
+        "accessoriesOverview": "Accessories Overview",
+        "accessoriesOverviewDesc": "Mounting hardware, enclosures, cables, and sensor accessories",
         "allAccessories": "All Accessories",
         "allAccessoriesDesc": "Mounting hardware, enclosures, cables, and sensor accessories"
       },

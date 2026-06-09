@@ -473,6 +473,8 @@
       },
       "humidity": {
         "title": "Humidité",
+        "humidityOverview": "Humidity Overview",
+        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "Humidité ambiante",
         "roomHumidityDesc": "Capteurs d'humidité murale",
         "ductHumidity": "Humidité de gaine",
@@ -3698,6 +3700,65 @@
         "feature1": "Convertit le signal de tension 0-10Vdc",
         "feature2": "Sorties 0-2v pour sélectionner 24VAC ou 24VDC",
         "feature3": "Montage en armoire ou panneau ; accueille cage à 3 voies"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Capteurs d'Humidité | BAPI",
+      "description": "Des bureaux simples aux espaces les plus difficiles, BAPI fabrique une gamme complète de capteurs d'humidité ou de température/humidité de haute qualité pour les applications d'ambiance, de conduit et d'air extérieur.",
+      "keywords": "capteurs d'humidité, capteurs de température humidité, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, humidité de conduit, humidité d'air extérieur, surveillance de l'humidité CVC"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits",
+      "humidity": "Capteurs d'Humidité"
+    },
+    "hero": {
+      "title": "Capteurs d'Humidité",
+      "description": "Des bureaux simples aux espaces les plus difficiles, BAPI fabrique une gamme complète de capteurs d'humidité ou de température/humidité de haute qualité pour les applications d'ambiance, de conduit et d'air extérieur.",
+      "cta": "Explorer les Produits",
+      "imageAlt": "Famille de Capteurs d'Humidité BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Capteurs d'Humidité",
+      "sectionSubtitle": "BAPI utilise des capteurs d'humidité fiables qui permettent une mesure d'humidité relative de qualité dans toutes nos unités d'humidité d'ambiance, de conduit, à immersion et d'air extérieur.",
+      "viewAll": "Voir Tous les Capteurs d'Humidité",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Boîtier élégant et moderne",
+        "feature2": "Affichage de température, d'humidité et d'état d'occupation de la pièce",
+        "feature3": "Grand affichage rétroéclairé pour une visualisation améliorée des données"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Grand écran LCD",
+        "feature2": "Clavier mécanique pour la création de mot de passe et la saisie utilisateur",
+        "feature3": "Sorties de température et d'humidité ajustables"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (avec boîtier NEMA 4X)",
+        "feature2": "Configuration humidité uniquement ou humidité et barométrique",
+        "feature3": "Précisions de 2% et 3% HR"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Montage de capteur encastré unique",
+        "feature2": "Montage précis pour la mesure",
+        "feature3": "Transmet avec des données comme point instantané"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Affiche la température et peut mesurer la température, l'humidité et l'état d'occupation de la pièce",
+        "feature2": "Ajustement du point de consigne optionnel par curseur ou bouton-poussoir",
+        "feature3": "Grand affichage avec interface facile à lire"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Capteur distant ou transmetteur de point de consigne autonome",
+        "feature2": "Affichage de température, d'humidité et d'état d'occupation de la pièce",
+        "feature3": "Dérogation d'occupation optionnelle"
       }
     }
   },

@@ -3797,7 +3797,8 @@
       "bapiStat4": {
         "name": "BAPI-Stat 4",
         "feature1": "Displays temperature and can measure temperature, humidity and room occupancy status display",
-        "feature2": "Optional slider or pushbutton setpoint adjustment"
+        "feature2": "Optional slider or pushbutton setpoint adjustment",
+        "feature3": "Large display with easy-to-read interface"
       },
       "deltaStyle": {
         "name": "Delta Style",

@@ -473,6 +473,8 @@
       },
       "humidity": {
         "title": "湿度",
+        "humidityOverview": "Humidity Overview",
+        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "室内湿度",
         "roomHumidityDesc": "壁挂式湿度传感器",
         "ductHumidity": "管道湿度",
@@ -3697,6 +3699,65 @@
         "feature1": "转换 0-10Vdc 电压信号",
         "feature2": "0-2v 输出以选择 24VAC 或 24VDC",
         "feature3": "机柜或面板安装；容纳 3 通笼子"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "湿度传感器 | BAPI",
+      "description": "从简单的办公室到最具挑战性的空间，BAPI 制造了一整套高质量的湿度或温度/湿度传感器，用于房间、管道和室外空气应用。",
+      "keywords": "湿度传感器，温度湿度传感器，BAPI-Stat Quantum，BAPI-Stat Quantum Prime，BAPI-Box 2，管道湿度，室外空气湿度，HVAC 湿度监控"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "humidity": "湿度传感器"
+    },
+    "hero": {
+      "title": "湿度传感器",
+      "description": "从简单的办公室到最具挑战性的空间，BAPI 制造了一整套高质量的湿度或温度/湿度传感器，用于房间、管道和室外空气应用。",
+      "cta": "探索产品",
+      "imageAlt": "BAPI 湿度传感器系列"
+    },
+    "sensors": {
+      "sectionTitle": "湿度传感器",
+      "sectionSubtitle": "BAPI 使用可靠的湿度传感器，在我们所有的房间、管道、浸入式和室外空气湿度单元中实现高质量的相对湿度测量。",
+      "viewAll": "查看所有湿度传感器",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "时尚现代的外壳",
+        "feature2": "温度、湿度和房间占用状态显示",
+        "feature3": "大型背光显示屏，增强数据可视化"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "大型 LCD 显示屏",
+        "feature2": "机械键盘用于创建密码和用户输入",
+        "feature3": "温度和湿度输出可调节"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2（带 NEMA 4X 外壳）",
+        "feature2": "仅湿度或湿度和气压配置",
+        "feature3": "2% 和 3% RH 精度"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "单个嵌入式传感器安装",
+        "feature2": "精确安装以进行测量",
+        "feature3": "以即时点形式传输数据"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "显示温度，并可测量温度、湿度和房间占用状态",
+        "feature2": "可选滑块或按钮设定点调节",
+        "feature3": "大型显示屏，具有易于阅读的界面"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "远程传感器或独立设定点发射器",
+        "feature2": "温度、湿度和房间占用状态显示",
+        "feature3": "可选占用覆盖"
       }
     }
   },

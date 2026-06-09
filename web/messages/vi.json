@@ -107,6 +107,8 @@
       },
       "humidity": {
         "title": "Độ ẩm",
+        "humidityOverview": "Humidity Overview",
+        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "Độ ẩm phòng",
         "roomHumidityDesc": "Cảm biến độ ẩm gắn tường",
         "ductHumidity": "Độ ẩm ống dẫn",
@@ -3698,6 +3700,65 @@
         "feature1": "Chuyển đổi tín hiệu điện áp 0-10Vdc",
         "feature2": "Đầu ra 0-2v để chọn 24VAC hoặc 24VDC",
         "feature3": "Lắp tủ hoặc bảng; chứa lồng 3 chiều"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Cảm Biến Độ Ẩm | BAPI",
+      "description": "Từ các văn phòng đơn giản đến những không gian thách thức nhất, BAPI sản xuất một dòng sản phẩm đầy đủ các cảm biến độ ẩm hoặc nhiệt độ/độ ẩm chất lượng cao cho các ứng dụng trong phòng, ống dẫn và không khí bên ngoài.",
+      "keywords": "cảm biến độ ẩm, cảm biến nhiệt độ độ ẩm, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, độ ẩm ống dẫn, độ ẩm không khí bên ngoài, giám sát độ ẩm HVAC"
+    },
+    "breadcrumb": {
+      "home": "Trang Chủ",
+      "products": "Sản Phẩm",
+      "humidity": "Cảm Biến Độ Ẩm"
+    },
+    "hero": {
+      "title": "Cảm Biến Độ Ẩm",
+      "description": "Từ các văn phòng đơn giản đến những không gian thách thức nhất, BAPI sản xuất một dòng sản phẩm đầy đủ các cảm biến độ ẩm hoặc nhiệt độ/độ ẩm chất lượng cao cho các ứng dụng trong phòng, ống dẫn và không khí bên ngoài.",
+      "cta": "Khám Phá Sản Phẩm",
+      "imageAlt": "Dòng Sản Phẩm Cảm Biến Độ Ẩm BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Cảm Biến Độ Ẩm",
+      "sectionSubtitle": "BAPI sử dụng các cảm biến độ ẩm đáng tin cậy cho phép đo độ ẩm tương đối chất lượng trong tất cả các thiết bị độ ẩm phòng, ống dẫn, ngâm và không khí bên ngoài của chúng tôi.",
+      "viewAll": "Xem Tất Cả Cảm Biến Độ Ẩm",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Vỏ bọc mông mạnh, hiện đại",
+        "feature2": "Hiển thị nhiệt độ, độ ẩm và trạng thái sử dụng phòng",
+        "feature3": "Màn hình lớn có đèn nền để tăng cường trực quan hóa dữ liệu"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Màn hình LCD lớn",
+        "feature2": "Bàn phím cơ học để tạo mật khẩu và nhập liệu người dùng",
+        "feature3": "Đầu ra nhiệt độ và độ ẩm có thể điều chỉnh"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (với vỏ bọc NEMA 4X)",
+        "feature2": "Cấu hình chỉ độ ẩm hoặc độ ẩm và áp suất khí quyển",
+        "feature3": "Độ chính xác 2% và 3% RH"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Lắp đặt cảm biến chôn tường đơn",
+        "feature2": "Lắp đặt chính xác cho đo lường",
+        "feature3": "Truyền dữ liệu dưới dạng điểm tức thời"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Hiển thị nhiệt độ và có thể đo nhiệt độ, độ ẩm và trạng thái sử dụng phòng",
+        "feature2": "Điều chỉnh điểm đặt tùy chọn bằng thanh trượt hoặc nút bấm",
+        "feature3": "Màn hình lớn với giao diện dễ đọc"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Cảm biến từ xa hoặc bộ phát điểm đặt độc lập",
+        "feature2": "Hiển thị nhiệt độ, độ ẩm và trạng thái sử dụng phòng",
+        "feature3": "Ghi đè sử dụng tùy chọn"
       }
     }
   },

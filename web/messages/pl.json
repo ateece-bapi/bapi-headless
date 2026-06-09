@@ -67,6 +67,8 @@
       },
       "humidity": {
         "title": "Wilgotność",
+        "humidityOverview": "Humidity Overview",
+        "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "Wilgotność w pomieszczeniu",
         "roomHumidityDesc": "Czujniki RH montowane na ścianie",
         "ductHumidity": "Wilgotność w kanale",
@@ -3697,6 +3699,65 @@
         "feature1": "Konwertuje sygnał napięciowy 0-10Vdc",
         "feature2": "Wyjścia 0-2v do wyboru 24VAC lub 24VDC",
         "feature3": "Montaż szafkowy lub panelowy; mieści klatkę 3-droga"
+      }
+    }
+  },
+  "humidityLandingPage": {
+    "metadata": {
+      "title": "Czujniki Wilgotności | BAPI",
+      "description": "Od prostych biur po najbardziej wymagające przestrzenie, BAPI produkuje kompletną linię wysokiej jakości czujników wilgotności lub temperatury/wilgotności do zastosowań w pomieszczeniach, kanałach i powietrzu zewnętrznym.",
+      "keywords": "czujniki wilgotności, czujniki temperatury wilgotności, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, wilgotność w kanale, wilgotność powietrza zewnętrznego, monitorowanie wilgotności HVAC"
+    },
+    "breadcrumb": {
+      "home": "Główna",
+      "products": "Produkty",
+      "humidity": "Czujniki Wilgotności"
+    },
+    "hero": {
+      "title": "Czujniki Wilgotności",
+      "description": "Od prostych biur po najbardziej wymagające przestrzenie, BAPI produkuje kompletną linię wysokiej jakości czujników wilgotności lub temperatury/wilgotności do zastosowań w pomieszczeniach, kanałach i powietrzu zewnętrznym.",
+      "cta": "Przeglądaj Produkty",
+      "imageAlt": "Rodzina Czujników Wilgotności BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Czujniki Wilgotności",
+      "sectionSubtitle": "BAPI używa niezawodnych czujników wilgotności, które umożliwiają jakościowy pomiar wilgotności względnej we wszystkich naszych jednostkach wilgotności pomieszczeń, kanałów, zanurzeniowych i powietrza zewnętrznego.",
+      "viewAll": "Zobacz Wszystkie Czujniki Wilgotności",
+      "bapiStatQuantum": {
+        "name": "BAPI-Stat Quantum",
+        "feature1": "Elegancka, nowoczesna obudowa",
+        "feature2": "Wyświetlanie temperatury, wilgotności i statusu zajęcia pomieszczenia",
+        "feature3": "Duży podświetlany wyświetlacz dla lepszej wizualizacji danych"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat Quantum Prime",
+        "feature1": "Duży wyświetlacz LCD",
+        "feature2": "Mechaniczna klawiatura do tworzenia haseł i wprowadzania danych użytkownika",
+        "feature3": "Regulowane wyjścia temperatury i wilgotności"
+      },
+      "outsideAir": {
+        "name": "BAPI-Box 2 Outside Air",
+        "feature1": "BAPI-Box 2 (z obudową NEMA 4X)",
+        "feature2": "Konfiguracja tylko wilgotności lub wilgotności i barometryczna",
+        "feature3": "Dokładności 2% i 3% RH"
+      },
+      "ductCrossover": {
+        "name": "BAPI-Box Crossover Duct Humidity",
+        "feature1": "Pojedynczy montaż czujnika wpuszczanego",
+        "feature2": "Precyzyjny montaż do pomiaru",
+        "feature3": "Transmituje dane jako punkt natychmiastowy"
+      },
+      "bapiStat4": {
+        "name": "BAPI-Stat 4",
+        "feature1": "Wyświetla temperaturę i może mierzyć temperaturę, wilgotność i status zajęcia pomieszczenia",
+        "feature2": "Opcjonalna regulacja punktu nastawczego za pomocą suwaka lub przycisku",
+        "feature3": "Duży wyświetlacz z łatwym w odczycie interfejsem"
+      },
+      "deltaStyle": {
+        "name": "Delta Style",
+        "feature1": "Czujnik zdalny lub samodzielny nadajnik punktu nastawczego",
+        "feature2": "Wyświetlanie temperatury, wilgotności i statusu zajęcia pomieszczenia",
+        "feature3": "Opcjonalne nadpisanie zajęcia"
       }
     }
   },

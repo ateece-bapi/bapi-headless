@@ -42,7 +42,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.bapiStatQuantum.feature2'),
         t('sensors.bapiStatQuantum.feature3'),
       ],
-      image: '/images/humidity/BAPI-Stat-Quantum.png',
+      image: '/images/humidity/Quantum-Humid-SO-Main.png',
     },
     {
       name: t('sensors.quantumPrime.name'),
@@ -52,7 +52,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.quantumPrime.feature2'),
         t('sensors.quantumPrime.feature3'),
       ],
-      image: '/images/humidity/BAPI-Stat-Quantum-Prime.png',
+      image: '/images/humidity/quantum-prime-humidity-banner.png',
     },
     {
       name: t('sensors.outsideAir.name'),
@@ -62,7 +62,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.outsideAir.feature2'),
         t('sensors.outsideAir.feature3'),
       ],
-      image: '/images/humidity/BAPI-Box-2-Outside-Air.png',
+      image: '/images/humidity/Main-Image-300pix9.png',
     },
     {
       name: t('sensors.ductCrossover.name'),
@@ -72,7 +72,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.ductCrossover.feature2'),
         t('sensors.ductCrossover.feature3'),
       ],
-      image: '/images/humidity/BAPI-Box-Crossover-Duct.png',
+      image: '/images/humidity/Duct-Humidity-BBX-2020.png',
     },
     {
       name: t('sensors.bapiStat4.name'),
@@ -82,7 +82,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.bapiStat4.feature2'),
         t('sensors.bapiStat4.feature3'),
       ],
-      image: '/images/humidity/BAPI-Stat-4.png',
+      image: '/images/humidity/BS4-Humidity-BW.png',
     },
     {
       name: t('sensors.deltaStyle.name'),
@@ -92,7 +92,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.deltaStyle.feature2'),
         t('sensors.deltaStyle.feature3'),
       ],
-      image: '/images/humidity/Delta-Style.png',
+      image: '/images/humidity/Delta_Humidity_Display.png',
     },
   ];
 
@@ -119,7 +119,7 @@ export default async function HumidityPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.humidity')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-8 2xl:gap-10">
             {/* Left Column - Content */}
             <div>
               <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
@@ -148,14 +148,15 @@ export default async function HumidityPage({ params }: Props) {
             <div className="relative">
               <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
-                  src="/images/products/families/Humidity_Family_2025_US.webp"
+                  src="/images/humidity/humidity_sensors.png"
                   alt={t('hero.imageAlt')}
-                  width={2400}
-                  height={1543}
-                  className="h-auto w-full"
+                  width={418}
+                  height={287}
+                  className="mx-auto h-auto max-w-full"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}
+                  style={{ maxWidth: '418px' }}
                 />
               </div>
             </div>
@@ -214,7 +215,7 @@ export default async function HumidityPage({ params }: Props) {
                     href={`/product/${sensor.slug}`}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
-                    {tCommon('viewProduct', { product: sensor.name })}
+                    {tCommon('learnMore')}
                   </Link>
                 </div>
               </div>

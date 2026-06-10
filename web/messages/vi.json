@@ -131,6 +131,8 @@
       },
       "airQuality": {
         "title": "Chất Lượng Không Khí",
+        "airQualityOverview": "Tổng quan chất lượng không khí",
+        "airQualityOverviewDesc": "Giải pháp hoàn chỉnh CO₂, VOC, hạt bụi, CO và NO₂",
         "co2": "Cảm Biến CO₂",
         "co2Desc": "Giám sát carbon dioxide",
         "voc": "Cảm Biến VOC",

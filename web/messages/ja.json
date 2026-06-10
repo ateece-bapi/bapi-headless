@@ -497,6 +497,8 @@
       },
       "airQuality": {
         "title": "空気質",
+        "airQualityOverview": "空気質概要",
+        "airQualityOverviewDesc": "完全なCO₂、VOC、粒子状物質、CO、NO₂ソリューション",
         "co2": "CO₂センサー",
         "co2Desc": "二酸化炭素モニタリング",
         "voc": "VOCセンサー",

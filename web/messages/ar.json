@@ -497,6 +497,8 @@
       },
       "airQuality": {
         "title": "جودة الهواء",
+        "airQualityOverview": "نظرة عامة على جودة الهواء",
+        "airQualityOverviewDesc": "حلول كاملة لـ CO₂ و VOC والجسيمات و CO و NO₂",
         "co2": "مستشعرات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
         "voc": "مستشعرات VOC",

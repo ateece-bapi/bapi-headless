@@ -91,6 +91,8 @@
       },
       "airQuality": {
         "title": "वायु गुणवत्ता",
+        "airQualityOverview": "वायु गुणवत्ता अवलोकन",
+        "airQualityOverviewDesc": "पूर्ण CO₂, VOC, कण, CO और NO₂ समाधान",
         "co2": "CO₂ सेंसर",
         "co2Desc": "कार्बन डाइऑक्साइड निगरानी",
         "voc": "VOC सेंसर",

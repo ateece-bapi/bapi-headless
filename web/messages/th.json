@@ -175,6 +175,8 @@
       },
       "airQuality": {
         "title": "คุณภาพอากาศ",
+        "airQualityOverview": "ภาพรวมคุณภาพอากาศ",
+        "airQualityOverviewDesc": "โซลูชันที่สมบูรณ์สำหรับ CO₂, VOC, ฝุ่นละออง, CO และ NO₂",
         "co2": "เซ็นเซอร์ CO₂",
         "co2Desc": "การตรวจวัดก๊าซคาร์บอนไดออกไซด์",
         "voc": "เซ็นเซอร์ VOC",

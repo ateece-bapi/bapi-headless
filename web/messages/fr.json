@@ -497,6 +497,8 @@
       },
       "airQuality": {
         "title": "Qualité de l'Air",
+        "airQualityOverview": "Aperçu de la qualité de l'air",
+        "airQualityOverviewDesc": "Solutions complètes CO₂, VOC, particules, CO et NO₂",
         "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
         "voc": "Capteurs COV",

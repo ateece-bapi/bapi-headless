@@ -143,7 +143,7 @@ export default async function AirQualityPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
@@ -456,6 +456,6 @@ export default async function AirQualityPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

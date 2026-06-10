@@ -497,6 +497,8 @@
       },
       "airQuality": {
         "title": "空气质量",
+        "airQualityOverview": "空气质量概览",
+        "airQualityOverviewDesc": "完整的CO₂、VOC、颗粒物、CO和NO₂解决方案",
         "co2": "CO₂ 传感器",
         "co2Desc": "二氧化碳监测",
         "voc": "VOC 传感器",

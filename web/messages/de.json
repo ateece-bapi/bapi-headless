@@ -175,6 +175,8 @@
       },
       "airQuality": {
         "title": "Luftqualität",
+        "airQualityOverview": "Luftqualitätsübersicht",
+        "airQualityOverviewDesc": "Komplette CO₂-, VOC-, Partikel-, CO- und NO₂-Lösungen",
         "co2": "CO₂ Sensoren",
         "co2Desc": "Kohlendioxid-Überwachung",
         "voc": "VOC Sensoren",

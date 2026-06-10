@@ -91,6 +91,8 @@
       },
       "airQuality": {
         "title": "Jakość Powietrza",
+        "airQualityOverview": "Przegląd jakości powietrza",
+        "airQualityOverviewDesc": "Kompletne rozwiązania CO₂, VOC, pyłów, CO i NO₂",
         "co2": "Czujniki CO₂",
         "co2Desc": "Monitorowanie dwutlenku węgla",
         "voc": "Czujniki VOC",

@@ -3881,58 +3881,58 @@
       "sectionTitle": "Sensores e Interruptores de Presión",
       "sectionSubtitle": "La línea de presión de BAPI establece un nuevo estándar de facilidad de instalación y funcionalidad. La unidad de panel EZ permite montaje en superficie, snaptrack o riel DIN con todos los rangos y salidas configurados a través de un dial y botón en la cara de la unidad. Nuestro Multi-Sensor de Presión de Zona (ZPM) es el más versátil con rangos, salidas, unidades, direccionalidad y tiempo de respuesta, todo configurado rápidamente en el campo sin energía ni herramientas.",
       "zpmBapiBox": {
-        "name": "Sensor de Presión 2PM BAPI-Box",
+        "name": "Sensor de Presión ZPM BAPI-Box",
         "feature1": "Carcasa con clasificación IP66/NEMA 4",
-        "feature2": "Rango y salida seleccionables en campo",
-        "feature3": "Precisión estándar de ±1%"
+        "feature2": "Ahora en modelos Regular (±1.0%FS) y Alta Precisión (±0.25%FS)",
+        "feature3": "Los rangos y salidas se pueden configurar sin encender la unidad"
       },
       "zpmDifferential": {
-        "name": "Sensor de Presión Diferencial 2PM",
-        "feature1": "Rango y salida seleccionables en campo",
-        "feature2": "Precisión de ±0.25%",
-        "feature3": "Capacidad de multi-sensor de presión de zona"
+        "name": "Sensor de Presión Diferencial ZPM",
+        "feature1": "Certificado NIST gratuito incluido",
+        "feature2": "10 rangos de presión seleccionables en campo y 5 salidas seleccionables",
+        "feature3": "Los rangos y salidas se pueden configurar sin encender la unidad"
       },
       "ezDifferential": {
         "name": "Sensor de Presión Diferencial EZ",
-        "feature1": "Rango y salida seleccionables en campo",
-        "feature2": "Instalación y configuración fáciles",
-        "feature3": "Solución económica"
+        "feature1": "10 rangos de presión seleccionables en campo y 3 salidas seleccionables",
+        "feature2": "Certificado NIST gratuito incluido con cada unidad",
+        "feature3": "Montaje Snaptrack, riel DIN o superficie"
       },
       "frpDifferential": {
         "name": "Sensor de Presión Diferencial FRP",
-        "feature1": "Rango fijo establecido de fábrica",
-        "feature2": "Rendimiento confiable",
-        "feature3": "Solución económica"
+        "feature1": "Un tercio de ahorro de costos sobre nuestros modelos seleccionables en campo",
+        "feature2": "LED de cinco colores proporciona indicación",
+        "feature3": "Certificado NIST gratuito incluido con cada unidad"
       },
       "outsidePickup": {
         "name": "Puerto de Captura de Aire Exterior",
-        "feature1": "Monitoreo de presión exterior",
-        "feature2": "Construcción duradera",
-        "feature3": "Diseño resistente a la intemperie"
+        "feature1": "Montaje en techo, pared y vertical",
+        "feature2": "Ayuda a estabilizar las lecturas reduciendo las fluctuaciones por ráfagas de viento",
+        "feature3": "Carcasa resistente a los rayos UV y retardante de llama"
       },
       "roomPickup": {
         "name": "Puertos de Captura de Presión de Sala",
-        "feature1": "Aplicaciones de salas limpias",
-        "feature2": "Múltiples opciones de puerto",
-        "feature3": "Fácil integración con sensores"
+        "feature1": "Económico y fácil de instalar",
+        "feature2": "Acomoda tubería de 1/8\" D.I. a 5/32\" D.I.",
+        "feature3": "Disponible para habitación, pared o baldosa de techo"
       }
     },
     "switches": {
-      "sectionTitle": "Pressure Switches",
+      "sectionTitle": "Interruptores de Presión",
       "sectionSubtitle": "BAPI ofrece dos estilos de Interruptores de Presión Diferencial ajustables en campo para monitoreo de estado de filtros de aire y ventiladores, y comprobación de presión estática y flujo de aire. La unidad BAPI-Box se puede usar en circuitos de seguridad debido a su Lista de Control de Límite UL 353 y tiene siete rangos que cubren presión desde 0.12\" hasta 35\" WC. La unidad Beck económica tiene tres rangos que cubren presiones desde .08\" hasta 4\" WC.",
       "ductSwitch": {
-        "name": "Interruptor de Presión de Conducto",
-        "feature1": "Puntos de ajuste ajustables",
-        "feature2": "Monitoreo de presión de conducto",
-        "feature3": "Operación de conmutación confiable"
+        "name": "Interruptor de presión Beck",
+        "feature1": "Diseñado para monitorear sobrepresión, vacío y presión diferencial de aire u otros gases no combustibles y no agresivos",
+        "feature2": "El dial ajustable en campo le permite seleccionar cualquier valor de disparo dentro de cada rango de presión",
+        "feature3": "Tubería y dos tubos totales incluidos"
       },
       "differentialSwitch": {
-        "name": "Interruptor de Presión Diferencial",
-        "feature1": "Monitoreo de filtros",
-        "feature2": "Banda muerta ajustable",
-        "feature3": "Operación confiable"
+        "name": "Interruptor de presión diferencial",
+        "feature1": "Fácil acceso al punto de ajuste ajustable en campo de 0.1\" a 3.5\" C.A.",
+        "feature2": "Puede usarse para controles de seguridad debido a la certificación UL 353",
+        "feature3": "Contactos de plata de 5 amperios"
       }
     },
-    "viewAll": "View All Pressure Products"
+    "viewAll": "Ver todos los productos de presión"
   }
 }

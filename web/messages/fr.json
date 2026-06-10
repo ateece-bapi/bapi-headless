@@ -3884,58 +3884,58 @@
       "sectionTitle": "Capteurs et Interrupteurs de Pression",
       "sectionSubtitle": "La gamme de pression de BAPI établit une nouvelle norme de facilité d'installation et de fonctionnalité. L'unité de panneau EZ permet un montage en surface, snaptrack ou rail DIN avec toutes les plages et sorties réglées via un cadran et un bouton sur la face de l'unité. Notre Multi-Capteur de Pression de Zone (ZPM) est le plus polyvalent avec des plages, sorties, unités, directionalité et temps de réponse tous rapidement réglés sur le terrain sans alimentation ni outils.",
       "zpmBapiBox": {
-        "name": "Capteur de Pression 2PM BAPI-Box",
+        "name": "Capteur de Pression ZPM BAPI-Box",
         "feature1": "Boîtier classé IP66/NEMA 4",
-        "feature2": "Plage et sortie sélectionnables sur site",
-        "feature3": "Précision standard de ±1%"
+        "feature2": "Maintenant en modèles Régulier (±1.0%FS) et Haute Précision (±0.25%FS)",
+        "feature3": "Les plages et sorties peuvent être réglées sans alimenter l'unité"
       },
       "zpmDifferential": {
-        "name": "Capteur de Pression Différentielle 2PM",
-        "feature1": "Plage et sortie sélectionnables sur site",
-        "feature2": "Précision de ±0,25%",
-        "feature3": "Capacité multi-capteur de pression de zone"
+        "name": "Capteur de Pression Différentielle ZPM",
+        "feature1": "Certificat NIST gratuit inclus",
+        "feature2": "10 plages de pression sélectionnables sur site et 5 sorties sélectionnables",
+        "feature3": "Les plages et sorties peuvent être réglées sans alimenter l'unité"
       },
       "ezDifferential": {
         "name": "Capteur de Pression Différentielle EZ",
-        "feature1": "Plage et sortie sélectionnables sur site",
-        "feature2": "Installation et configuration faciles",
-        "feature3": "Solution économique"
+        "feature1": "10 plages de pression sélectionnables sur site et 3 sorties sélectionnables",
+        "feature2": "Certificat NIST gratuit inclus avec chaque unité",
+        "feature3": "Montage Snaptrack, rail DIN ou surface"
       },
       "frpDifferential": {
         "name": "Capteur de Pression Différentielle FRP",
-        "feature1": "Plage fixe définie en usine",
-        "feature2": "Performances fiables",
-        "feature3": "Solution économique"
+        "feature1": "Un tiers d'économie sur nos modèles sélectionnables sur site",
+        "feature2": "LED cinq couleurs fournit une indication",
+        "feature3": "Certificat NIST gratuit inclus avec chaque unité"
       },
       "outsidePickup": {
         "name": "Port de Prélèvement d'Air Extérieur",
-        "feature1": "Surveillance de la pression extérieure",
-        "feature2": "Construction durable",
-        "feature3": "Conception résistante aux intempéries"
+        "feature1": "Montage sur toit, mur et vertical",
+        "feature2": "Aide à stabiliser les lectures en réduisant les fluctuations des rafales de vent",
+        "feature3": "Boîtier résistant aux UV et ignifuge"
       },
       "roomPickup": {
         "name": "Ports de Prélèvement de Pression de Salle",
-        "feature1": "Applications de salles blanches",
-        "feature2": "Options de ports multiples",
-        "feature3": "Intégration facile avec les capteurs"
+        "feature1": "Économique et facile à installer",
+        "feature2": "Accepte une tubulure de 1/8\" D.I. à 5/32\" D.I.",
+        "feature3": "Disponible pour pièce, mur ou dalle de plafond"
       }
     },
     "switches": {
-      "sectionTitle": "Pressure Switches",
+      "sectionTitle": "Interrupteurs de Pression",
       "sectionSubtitle": "BAPI propose deux styles d'interrupteurs de pression différentielle réglables sur le terrain pour la surveillance de l'état des filtres à air et des ventilateurs, et la vérification de la pression statique et du débit d'air. L'unité BAPI-Box peut être utilisée dans les circuits de sécurité en raison de sa liste de contrôle de limite UL 353 et dispose de sept plages couvrant la pression de 0.12\" à 35\" WC. L'unité Beck économique a trois plages couvrant les pressions de .08\" à 4\" WC.",
       "ductSwitch": {
-        "name": "Interrupteur de Pression de Gaine",
-        "feature1": "Points de consigne réglables",
-        "feature2": "Surveillance de la pression de gaine",
-        "feature3": "Fonctionnement de commutation fiable"
+        "name": "Interrupteur de pression Beck",
+        "feature1": "Conçu pour surveiller la surpression, le vide et la pression différentielle de l'air ou d'autres gaz non combustibles et non agressifs",
+        "feature2": "Le cadran réglable sur site vous permet de sélectionner n'importe quelle valeur de déclenchement dans chaque plage de pression",
+        "feature3": "Tubulure et deux tubes au total inclus"
       },
       "differentialSwitch": {
-        "name": "Interrupteur de Pression Différentielle",
-        "feature1": "Surveillance des filtres",
-        "feature2": "Bande morte réglable",
-        "feature3": "Fonctionnement fiable"
+        "name": "Interrupteur de pression différentielle",
+        "feature1": "Point de consigne réglable sur site facilement accessible de 0.1\" à 3.5\" C.E.",
+        "feature2": "Peut être utilisé pour les contrôles de sécurité grâce à la certification UL 353",
+        "feature3": "Contacts argentés de 5 ampères"
       }
     },
-    "viewAll": "View All Pressure Products"
+    "viewAll": "Voir tous les produits de pression"
   }
 }

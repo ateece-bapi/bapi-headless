@@ -3929,58 +3929,58 @@
     "viewAll": "View All Pressure Products",
     "sensors": {
       "sectionTitle": "Pressure Sensors",
-      "sectionSubtitle": "BAPI's pressure line sets a new standard for ease of installation and functionality. The EZ panel unit allows surface, snaptrack or DIN rail mounting with all the ranges and outputs set via a dial and button on the face of the unit. Our Zone Pressure Multi-Sensor (ZPM)is the most versatile with ranges, outputs, units, directionality and response time all quickly set in the field without power or tools.",
+      "sectionSubtitle": "BAPI's pressure line sets a new standard for ease of installation and functionality. The EZ panel unit allows surface, snaptrack or DIN rail mounting with all the ranges and outputs set via a dial and button on the face of the unit. Our Zone Pressure Multi-Sensor (ZPM) is the most versatile with ranges, outputs, units, directionality and response time all quickly set in the field without power or tools.",
       "zpmBapiBox": {
-        "name": "2PM BAPI-Box Pressure Sensor",
+        "name": "ZPM BAPI-Box Pressure Sensor",
         "feature1": "IP66/NEMA 4 rated enclosure",
-        "feature2": "Field selected range and output",
-        "feature3": "±1% standard accuracy"
+        "feature2": "Now in Regular (±1.0%FS) & High Accuracy (±0.25%FS) Models",
+        "feature3": "Ranges and outputs can be set without powering the unit"
       },
       "zpmDifferential": {
-        "name": "2PM Pressure Sensor",
-        "feature1": "Field selected range and output",
-        "feature2": "±0.25% precision accuracy",
-        "feature3": "Zone pressure multi-sensor capability"
+        "name": "ZPM Pressure Sensor",
+        "feature1": "Free NIST certificate included",
+        "feature2": "10 field selectable pressure ranges and 5 field selectable outputs",
+        "feature3": "Ranges and outputs can be set without powering the unit"
       },
       "ezDifferential": {
         "name": "EZ Pressure Sensor",
-        "feature1": "Field selected range and output",
-        "feature2": "Easy installation and setup",
-        "feature3": "Cost-effective solution"
+        "feature1": "10 field selectable pressure ranges and 3 field selectable outputs",
+        "feature2": "Free NIST certificate included with each unit",
+        "feature3": "Snaptrack, DIN rail or surface mounting"
       },
       "frpDifferential": {
         "name": "FRP Pressure Sensor",
-        "feature1": "Fixed factory set range",
-        "feature2": "Reliable performance",
-        "feature3": "Cost-effective solution"
+        "feature1": "One third cost savings over our field-selectable models",
+        "feature2": "Five-color LED provides indication",
+        "feature3": "Free NIST certificate included with each unit"
       },
       "outsidePickup": {
         "name": "Outside Air Pickup Port",
-        "feature1": "Outdoor pressure monitoring",
-        "feature2": "Durable construction",
-        "feature3": "Weather-resistant design"
+        "feature1": "Rooftop, wall and vertical mount",
+        "feature2": "Helps stabilize readings by reducing fluctuations from wind gusts",
+        "feature3": "Rugged UV-resistant and flame retardant enclosure"
       },
       "roomPickup": {
         "name": "Zone Pressure Pickup Ports",
-        "feature1": "Clean room applications",
-        "feature2": "Multiple port options",
-        "feature3": "Easy integration with sensors"
+        "feature1": "Economical and easy to install",
+        "feature2": "Accommodates 1/8\" I.D. to 5/32\" I.D. tubing",
+        "feature3": "Available for room, wall or ceiling tile"
       }
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
       "sectionSubtitle": "BAPI offers two styles of field-adjustable Differential Pressure Switches for air filter and fan status monitoring, and static pressure and air flow proving. The BAPI-Box unit can be used in safety circuits because of its UL 353 Limit Control Listing and has seven ranges covering pressure from 0.12\" to 35\" WC. The economical Beck unit has three ranges covering pressures from .08\" to 4\" WC.",
       "ductSwitch": {
-        "name": "Deck Pressure Switch",
-        "feature1": "Adjustable set points",
-        "feature2": "Duct pressure monitoring",
-        "feature3": "Reliable switching operation"
+        "name": "Beck Pressure Switch",
+        "feature1": "Designed for monitoring overpressure, vacuum and differential pressure of air or other non-combustible, non-aggressive gases",
+        "feature2": "Field-adjustable dial allows you to select any trip value within each pressure range",
+        "feature3": "Tubing and two total tubes included"
       },
       "differentialSwitch": {
         "name": "Differential Pressure Switch",
-        "feature1": "Filter monitoring",
-        "feature2": "Adjustable dead band",
-        "feature3": "Reliable operation"
+        "feature1": "Easy to access field adjustable setpoint from 0.1\" to 3.5\" W.C.",
+        "feature2": "Can be used for safety controls due to the UL 353 listing",
+        "feature3": "5 Amp silver contacts"
       }
     }
   }

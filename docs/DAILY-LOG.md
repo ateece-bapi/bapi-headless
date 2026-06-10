@@ -2,9 +2,296 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 9, 2026  
+**Updated:** June 10, 2026  
 **Status:** Phase 1 Complete - Live in Production (30 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 10, 2026 — Pressure Sensors & Switches Landing Page 🔧
+
+**Status:** ✅ COMPLETE - Merged to production  
+**Branch:** `feat/pressure-landing-page` → `main` (PR merged)  
+**Context:** Created comprehensive two-section landing page for Pressure category following legacy website layout exactly. Features separate sections for Pressure Sensors (6 products) and Pressure Switches (2 products) with full i18n support.  
+**Priority:** 🟢 P2 - Phase 1 landing page series completion  
+**Time:** ~3 hours (page creation + legacy text matching + translations + review fixes + ZPM corrections)  
+**Approach:** Legacy layout replication → GraphQL validation → Full i18n → Copilot review → Text fidelity verification
+
+### 🎯 SCOPE
+
+**Deliverables:**
+1. ✅ `/pressure` landing page with two-section structure (Sensors + Switches)
+2. ✅ 8 featured products (6 sensors, 2 switches) with legacy-matched feature bullets
+3. ✅ Hero section: "Pressure matters!" title with gradient background
+4. ✅ 10 product images organized in `/sensors/` and `/switches/` folders
+5. ✅ Complete translations for all 11 languages (en, es, fr, de, ar, hi, ja, pl, th, vi, zh)
+6. ✅ Mega-menu "Pressure Overview" integration
+7. ✅ Legacy text preservation: All section descriptions and product features match legacy website exactly
+8. ✅ Product naming correction: ZPM (not 2PM) throughout all files
+9. ✅ All Copilot automated review feedback addressed (12 issues: 2 typos + 10 translation gaps)
+
+**Products Featured:**
+
+**Pressure Sensors (6):**
+- ZPM BAPI-Box Pressure Sensor - IP66/NEMA 4 enclosure, Regular/High Accuracy models
+- ZPM Pressure Sensor - NIST cert, 10 ranges/5 outputs, no-power configuration
+- EZ Pressure Sensor - 10 ranges/3 outputs, Snaptrack/DIN/surface mount
+- FRP Pressure Sensor - 1/3 cost savings, 5-color LED indication
+- Outside Air Pickup Port - Rooftop/wall/vertical mount, wind stabilization
+- Zone Pressure Pickup Ports - Economical, 1/8"-5/32" tubing accommodation
+
+**Pressure Switches (2):**
+- Beck Pressure Switch - Overpressure/vacuum/differential monitoring, field-adjustable dial
+- Differential Pressure Switch - 0.1"-3.5" W.C. setpoint, UL 353 safety listing
+
+### 🔧 IMPLEMENTATION
+
+#### 1. Page Component Creation ✅
+
+**File:** `/web/src/app/[locale]/pressure/page.tsx` (322 lines)
+
+**Two-Section Structure:**
+- **Pressure Sensors section:** 6 products in 3-column responsive grid (`md:grid-cols-2 lg:grid-cols-3`)
+- **Pressure Switches section:** 2 products in 2-column grid (`md:grid-cols-2`)
+- Yellow accent bars on product cards (brand consistency)
+- Each product: 3 feature bullets + "Learn More" button
+- "View All Pressure Products" link at bottom of switches section
+
+**Hero Section:**
+- Legacy branding: "Pressure matters!" title
+- Breadcrumb: Home → Products → Pressure Sensors
+- Description: Field selectability message matching legacy website
+- Hero image: 2022 Pressure sensor family photo (193KB optimized)
+
+**GraphQL Validation:**
+All 8 product slugs verified before implementation:
+- `zpm-standard-accuracy-pressure-sensor-in-a-bapi-box`
+- `zone-pressure-multi-sensor-zpm-differential-pressure-sensor`
+- `ez-differential-pressure-sensor-field-selected-range-and-output`
+- `fixed-range-pressure-frp-differential-pressure-sensor`
+- `alc-outside-pressure-pickup-port`
+- `room-pressure-pickup-ports`
+- `adjustable-pressure-switch`
+- `alc-differential-pressure-switch-2`
+
+**SEO Optimization:**
+```typescript
+// Locale-aware metadata with legacy messaging
+title: t('metadata.title')  // "Pressure Sensors & Switches | BAPI"
+description: t('metadata.description')  // Field selectability focus
+keywords: t('metadata.keywords').split(/[,،、،]/)
+```
+
+#### 2. Images Added ✅
+
+**Location:** `/web/public/images/pressure/`
+
+**Organized Folder Structure:**
+```
+pressure/
+├── sensors/ (8 images)
+│   ├── 2022Pressure_REFLECTION_small-e1650653837224.png (hero)
+│   ├── ZPM_BB(1).png
+│   ├── zpm-pressure-shadow.png
+│   ├── EZ-Main-Image-Blue.png
+│   ├── FRP-Main-2022-1.png
+│   ├── Pressure_Pickup_OA_white.png
+│   └── Room-Ports-1.png
+└── switches/ (2 images)
+    ├── Beck_Pressure_Switch.png
+    └── pressure-switches.png
+```
+
+**Total:** 10 images (1 hero + 6 sensors + 2 switches + 1 ZPM variant)
+
+#### 3. Full Internationalization ✅
+
+**11 Languages with Legacy Text Preservation:**
+
+**English translations (en.json) - `pressureLandingPage` namespace:**
+```json
+{
+  "hero": {
+    "title": "Pressure matters!",  // Legacy branding preserved
+    "description": "BAPI's Pressure sensors have the field selectability..."
+  },
+  "sensors": {
+    "sectionTitle": "Pressure Sensors",
+    "sectionSubtitle": "BAPI's pressure line sets a new standard for ease of installation...",
+    "zpmBapiBox": {
+      "name": "ZPM BAPI-Box Pressure Sensor",
+      "feature1": "IP66/NEMA 4 rated enclosure",
+      "feature2": "Now in Regular (±1.0%FS) & High Accuracy (±0.25%FS) Models",
+      "feature3": "Ranges and outputs can be set without powering the unit"
+    }
+    // ... (6 sensors total with legacy-matched features)
+  },
+  "switches": {
+    "sectionTitle": "Pressure Switches",
+    "sectionSubtitle": "BAPI offers two styles of field-adjustable...",
+    "ductSwitch": {
+      "name": "Beck Pressure Switch",
+      "feature1": "Designed for monitoring overpressure, vacuum and differential pressure...",
+      "feature2": "Field-adjustable dial allows you to select any trip value...",
+      "feature3": "Tubing and two total tubes included"
+    }
+    // ... (2 switches total with legacy-matched features)
+  }
+}
+```
+
+**Translation Coverage:**
+- Spanish (es): "¡La presión importa!"
+- French (fr): "La pression compte!"
+- German (de): "Druck ist wichtig!"
+- Arabic (ar): "الضغط مهم!"
+- Hindi (hi): "दबाव मायने रखता है!"
+- Japanese (ja): "圧力は重要です！"
+- Polish (pl): "Ciśnienie ma znaczenie!"
+- Thai (th): "ความดันสำคัญ!"
+- Vietnamese (vi): "Áp suất quan trọng!"
+- Chinese (zh): "压力很重要！"
+
+#### 4. Legacy Text Fidelity ✅
+
+**Critical Requirement:** Match legacy website text exactly for brand consistency.
+
+**Section Descriptions Matched:**
+- ✅ Hero: "Pressure matters!" with field selectability message
+- ✅ Sensors: EZ panel unit details, Zone Pressure Multi-Sensor (ZPM) versatility
+- ✅ Switches: BAPI-Box UL 353 listing, Beck unit specifications (0.12" to 35" WC ranges)
+
+**Product Feature Bullets Matched:**
+- ✅ All 6 sensor products: Features from legacy layout preserved exactly
+- ✅ Both switch products: Technical specs from legacy layout (UL 353, 5A silver contacts, etc.)
+
+**Example - ZPM BAPI-Box (Legacy → New):**
+- Legacy: "IP66/NEMA 4 rated enclosure"
+- Legacy: "Now in Regular (±1.0%FS) & High Accuracy (±0.25%FS) Models"
+- Legacy: "Ranges and outputs can be set without powering the unit"
+- ✅ All three features matched exactly in new page
+
+#### 5. Copilot PR Review Fixes ✅
+
+**12 Issues Identified and Fixed:**
+
+1. **English typo:** "(ZPM)is" → "(ZPM) is" (missing space)
+2. **German typo:** "Kanaldrücküber wachung" → "Kanaldrucküberwachung" (erroneous space)
+3-12. **Missing translations:** `sectionTitle` and `viewAll` were still in English for 10 languages (ar, de, es, fr, hi, ja, pl, th, vi, zh)
+
+**Resolution Method:**
+- Multi-file string replacement for typos
+- Node.js script for programmatic translation updates
+- All 11 language files verified after fixes
+
+#### 6. Product Naming Correction ✅
+
+**Issue:** Initial implementation used "2PM" instead of "ZPM"  
+**Affected:** All 11 translation files + PR description
+
+**Resolution:**
+```bash
+# sed replacement across 12 files
+sed -i 's/2PM/ZPM/g' web/messages/*.json
+sed -i 's/2PM/ZPM/g' PRESSURE-PR-DESCRIPTION.md
+
+# Verification: grep confirmed no "2PM" references remained
+```
+
+**Files Updated:** 11 translation files + PRESSURE-PR-DESCRIPTION.md
+
+#### 7. Mega-Menu Integration ✅
+
+**File:** `/web/src/components/layout/Header/config.ts`
+
+**Addition:**
+```typescript
+{
+  href: '/pressure',
+  labelKey: 'products.pressure.pressureOverview',
+  descriptionKey: 'products.pressure.pressureOverviewDesc',
+}
+```
+
+**Translations:** All 11 languages include "Pressure Overview" navigation link
+
+### 📊 TESTING & VALIDATION
+
+#### Manual Testing ✅
+- ✅ Page renders at `/pressure` with both sections (sensors + switches)
+- ✅ All 8 product cards display with correct images
+- ✅ Product links navigate to correct slugs (no 404s)
+- ✅ Hero image displays without blur (max-width constraint working)
+- ✅ Mega-menu "Pressure Overview" link functional
+- ✅ Breadcrumb navigation operational
+- ✅ Responsive layout: mobile/tablet/desktop breakpoints working
+- ✅ Two-section structure matches legacy layout exactly
+- ✅ All 11 languages display correctly with localized content
+- ✅ Feature bullets match legacy text exactly
+
+#### Build Validation ✅
+```bash
+pnpm run build
+# ✅ Compiled successfully (9.9s)
+# ✅ No TypeScript errors
+# ✅ No ESLint warnings
+# ✅ All translation keys resolve
+# ✅ Image optimization working
+```
+
+#### GraphQL Verification ✅
+- All 8 product slugs queried via WordPress GraphQL endpoint
+- Products exist in production WordPress database
+- Links verified before hardcoding to prevent 404 errors
+
+### 📈 OUTCOMES
+
+**Production Impact:**
+- ✅ `/pressure` route now live with 8 products
+- ✅ Mega-menu navigation updated (11 languages)
+- ✅ 10 optimized images deployed to CDN
+- ✅ SEO metadata improving discoverability
+
+**Files Changed:**
+- **Created:** `page.tsx` (322 lines), 10 image files, PR description
+- **Modified:** 11 translation files (`en.json` through `zh.json`), mega-menu config
+- **Total:** 25 files changed, 1,674 insertions
+
+**Quality Metrics:**
+- ✅ 100% translation coverage (11 languages)
+- ✅ 100% legacy text fidelity (all features matched)
+- ✅ 0 build errors or warnings
+- ✅ 0 broken product links (GraphQL pre-validated)
+- ✅ Copilot automated review: All 12 issues addressed
+
+### 🎓 LESSONS LEARNED
+
+1. **Legacy Layout Verification Critical:** Always review legacy structure before implementing (two-section requirement only discovered after user correction)
+
+2. **Text Fidelity Non-Negotiable:** Brand consistency requires exact legacy text matching, not generic descriptions
+
+3. **Product Naming Matters:** Technical product families (ZPM vs 2PM) must be verified against actual product documentation
+
+4. **Copilot Review Catches Real Issues:** Automated review found 12 legitimate problems (typos + translation gaps)
+
+5. **Organized Image Folders:** Creating `/sensors/` and `/switches/` subfolders improved maintainability
+
+6. **Feature Bullet Detail:** Legacy layout showed specific technical specs (IP66/NEMA 4, UL 353, 5A contacts) that generic bullets missed
+
+### 🔗 RELATED WORK
+
+- **Similar Pages:** Accessories, Temperature, Humidity, Wireless landing pages (same pattern)
+- **GraphQL Validation:** Reused product slug verification pattern from previous landing pages
+- **Translation Infrastructure:** Leveraged existing `next-intl` setup with 11 language files
+- **Image Optimization:** Followed Next.js Image component best practices from Temperature page
+
+### 📝 DOCUMENTATION
+
+- **PR Description:** `PRESSURE-PR-DESCRIPTION.md` (233 lines) - comprehensive merge documentation
+- **Commit Messages:** 
+  1. Initial implementation with two-section structure
+  2. Legacy text updates and Copilot review fixes
+  3. ZPM naming corrections + feature bullet matching
 
 ---
 

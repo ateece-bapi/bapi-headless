@@ -130,6 +130,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             {
+              label: t('products.airQuality.airQualityOverview'),
+              href: '/air-quality',
+              description: t('products.airQuality.airQualityOverviewDesc'),
+            },
+            {
               label: t('products.airQuality.co2'),
               href: '/products/air-quality-sensors/carbon-dioxide',
               description: t('products.airQuality.co2Desc'),

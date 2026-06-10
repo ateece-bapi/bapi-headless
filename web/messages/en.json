@@ -95,6 +95,8 @@
       },
       "airQuality": {
         "title": "Air Quality",
+        "airQualityOverview": "Air Quality Overview",
+        "airQualityOverviewDesc": "Complete CO₂, VOC, Particulate, CO, and NO₂ solutions",
         "co2": "CO₂ Sensors",
         "co2Desc": "Carbon dioxide monitoring",
         "voc": "VOC Sensors",
@@ -3983,5 +3985,113 @@
         "feature3": "5 Amp silver contacts"
       }
     }
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Air Quality Sensors - CO₂, VOC, Particulate, CO, NO₂ | BAPI",
+      "description": "Complete line of air quality sensors for demand controlled ventilation including CO₂, VOC, Particulate Matter, Carbon Monoxide and Nitrogen Dioxide sensors.",
+      "keywords": "air quality sensors, CO2 sensors, VOC sensors, particulate sensors, carbon monoxide sensors, nitrogen dioxide sensors, indoor air quality, demand controlled ventilation, IAQ monitoring"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "current": "Air Quality Sensors"
+    },
+    "hero": {
+      "title": "Air Quality Sensors",
+      "description": "BAPI makes a full line of air quality sensors for demand controlled ventilation including Volatile Organic Compound (VOC), Carbon Dioxide (CO₂), Particulate Matter, Carbon Monoxide (CO) and Nitrogen Dioxide (NO₂).",
+      "imageAlt": "Air Quality Sensors - CO₂, VOC, Particulate, CO, NO₂",
+      "cta": "Explore Products"
+    },
+    "co2": {
+      "sectionTitle": "CO₂ Sensors",
+      "sectionSubtitle": "BAPI's CO₂ sensor received an AHR Expo Innovation award because of their built-in barometric pressure sensor that continuously compensates the output for accurate readings despite the weather or altitude. Our model is optimized for continuously occupied areas.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Automatic barometric pressure and temperature compensation",
+        "feature2": "Perfect for continuously occupied or periodically unoccupied areas",
+        "feature3": "Local LED indication"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Automatic barometric pressure and temperature compensation",
+        "feature2": "Optional temp/humidity, setpoint, override",
+        "feature3": "Perfect for continuously occupied or periodically unoccupied areas"
+      },
+      "duct": {
+        "name": "BAPI-Box Duct or Rough Service CO₂",
+        "feature1": "Automatic barometric pressure and temperature compensation",
+        "feature2": "Duct aspiration tube or rough service ventilated BAPI-Box",
+        "feature3": "Perfect for continuously occupied or periodically unoccupied areas"
+      }
+    },
+    "voc": {
+      "sectionTitle": "VOC Sensors",
+      "sectionSubtitle": "BAPI's VOC sensors detect Volatile Organic Compounds in indoor air. VOCs are emitted from building materials, cleaning products, and occupant activities. Our sensors help optimize ventilation for improved indoor air quality and energy efficiency.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "Detects a wide range of VOCs including formaldehyde",
+        "feature2": "Perfect for continuously occupied or periodically unoccupied areas",
+        "feature3": "Local LED indication"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "Detects a wide range of VOCs including formaldehyde",
+        "feature2": "Optional temp/humidity, setpoint, override",
+        "feature3": "Perfect for continuously occupied or periodically unoccupied areas"
+      },
+      "duct": {
+        "name": "BAPI-Box Duct or Rough Service VOC",
+        "feature1": "Detects a wide range of VOCs including formaldehyde",
+        "feature2": "Duct aspiration tube or rough service ventilated BAPI-Box",
+        "feature3": "Perfect for continuously occupied or periodically unoccupied areas"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Particulate Sensors",
+      "sectionSubtitle": "BAPI's Particulate sensors help you measure what is coming in your buildings. Particulate Matter (PM) is often referred to as dust, but it is more than the common dust that settles on your flat screen TV. The Environmental Protection Agency (EPA) defines it as a mixture of solid particles and liquid droplets found in the air. Although most particulates are not in the shape of a circle, 'diameter' is often used to describe the size of particulates.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" Particulate Sensor",
+        "feature1": "Laser-based, light scattering particle sensing with 10 year expected lifetime",
+        "feature2": "Field selectable, particulate size and output",
+        "feature3": "Modern style enclosure"
+      },
+      "duct": {
+        "name": "BAPI-Box Duct Particulate Sensor",
+        "feature1": "Rugged IP66-rated enclosure",
+        "feature2": "Field selectable, particulate size and output",
+        "feature3": "Aspiration tube adjusts for vertical or horizontal airflow"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "CO & NO₂ Sensors",
+      "sectionSubtitle": "BAPI's Carbon Monoxide and Nitrogen Dioxide sensors monitor toxic gases in parking garages, mechanical rooms, and other critical spaces. These sensors help ensure safe indoor air quality and compliance with building codes.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" Carbon Monoxide Sensor",
+        "feature1": "Electrochemical CO sensor with 10 year expected lifetime",
+        "feature2": "Perfect for parking garages and mechanical rooms",
+        "feature3": "Local LED indication"
+      },
+      "coDuct": {
+        "name": "CO - Duct and Rough Service Carbon Monoxide Sensor",
+        "feature1": "Electrochemical CO sensor with 10 year expected lifetime",
+        "feature2": "Duct aspiration tube or rough service ventilated BAPI-Box",
+        "feature3": "IP66-rated enclosure for harsh environments"
+      },
+      "no2Duct": {
+        "name": "NO₂ - Duct and Rough Service Nitrogen Dioxide Sensor",
+        "feature1": "Electrochemical NO₂ sensor for toxic gas monitoring",
+        "feature2": "Field programmable for different ranges",
+        "feature3": "Duct aspiration tube or rough service enclosure"
+      },
+      "digitalCombo": {
+        "name": "Digital CO and NO₂ Sensor",
+        "feature1": "Dual electrochemical sensors for CO and NO₂",
+        "feature2": "Digital output for precise monitoring",
+        "feature3": "Ideal for parking garages and mechanical rooms"
+      }
+    },
+    "learnMore": "Learn More",
+    "viewAll": "View All Air Quality Products"
   }
 }

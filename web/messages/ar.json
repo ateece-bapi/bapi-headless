@@ -486,6 +486,8 @@
       },
       "pressure": {
         "title": "الضغط",
+        "pressureOverview": "نظرة عامة على الضغط",
+        "pressureOverviewDesc": "خط كامل من مستشعرات الضغط والمفاتيح لتطبيقات HVAC",
         "differential": "الضغط التفاضلي",
         "differentialDesc": "مراقبة الحجرة والفلتر",
         "static": "Pickup Ports and Probes",
@@ -3860,5 +3862,80 @@
         "feature3": "واقي مستشعر جيد التهوية"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "مستشعرات الضغط | BAPI",
+      "description": "تقدم BAPI خطًا كاملًا من مستشعرات الضغط التفاضلي ومفاتيح الضغط ومنافذ الالتقاط لتطبيقات HVAC بما في ذلك الغرف النظيفة ومراقبة الفلاتر والتحكم في ضغط المنطقة.",
+      "keywords": "مستشعرات الضغط، الضغط التفاضلي، مفاتيح الضغط، مستشعر ZPM، ضغط الغرفة النظيفة، مراقبة الفلاتر، التحكم في ضغط المنطقة، مستشعرات ضغط HVAC"
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "pressure": "مستشعرات الضغط"
+    },
+    "hero": {
+      "title": "مستشعرات الضغط",
+      "description": "تقدم BAPI خطًا كاملًا من مستشعرات الضغط التفاضلي ومفاتيح الضغط ومنافذ الالتقاط لتطبيقات HVAC بما في ذلك الغرف النظيفة ومراقبة الفلاتر والتحكم في ضغط المنطقة.",
+      "cta": "استكشف المنتجات",
+      "imageAlt": "عائلة مستشعرات ومفاتيح الضغط BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "مستشعرات ومفاتيح الضغط",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "مستشعر ضغط 2PM BAPI-Box",
+        "feature1": "حاوية بتصنيف IP66/NEMA 4",
+        "feature2": "نطاق ومخرج قابل للاختيار في الميدان",
+        "feature3": "دقة قياسية ±1%"
+      },
+      "zpmDifferential": {
+        "name": "مستشعر ضغط تفاضلي 2PM",
+        "feature1": "نطاق ومخرج قابل للاختيار في الميدان",
+        "feature2": "دقة ±0.25%",
+        "feature3": "قدرة مستشعر متعدد ضغط المنطقة"
+      },
+      "ezDifferential": {
+        "name": "مستشعر ضغط تفاضلي EZ",
+        "feature1": "نطاق ومخرج قابل للاختيار في الميدان",
+        "feature2": "تركيب وإعداد سهل",
+        "feature3": "حل فعال من حيث التكلفة"
+      },
+      "frpDifferential": {
+        "name": "مستشعر ضغط تفاضلي FRP",
+        "feature1": "نطاق ثابت محدد من المصنع",
+        "feature2": "أداء موثوق",
+        "feature3": "حل فعال من حيث التكلفة"
+      },
+      "outsidePickup": {
+        "name": "منفذ التقاط هواء خارجي",
+        "feature1": "مراقبة الضغط الخارجي",
+        "feature2": "بناء متين",
+        "feature3": "تصميم مقاوم للعوامل الجوية"
+      },
+      "roomPickup": {
+        "name": "منافذ التقاط ضغط الغرفة",
+        "feature1": "تطبيقات الغرف النظيفة",
+        "feature2": "خيارات منافذ متعددة",
+        "feature3": "تكامل سهل مع المستشعرات"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "مفتاح ضغط القناة",
+        "feature1": "نقاط ضبط قابلة للتعديل",
+        "feature2": "مراقبة ضغط القناة",
+        "feature3": "تشغيل تبديل موثوق"
+      },
+      "differentialSwitch": {
+        "name": "مفتاح ضغط تفاضلي",
+        "feature1": "مراقبة الفلاتر",
+        "feature2": "نطاق ميت قابل للتعديل",
+        "feature3": "تشغيل موثوق"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

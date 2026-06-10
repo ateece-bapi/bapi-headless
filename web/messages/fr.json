@@ -486,6 +486,8 @@
       },
       "pressure": {
         "title": "Pression",
+        "pressureOverview": "Aperçu de la Pression",
+        "pressureOverviewDesc": "Gamme complète de capteurs de pression et d'interrupteurs pour applications CVC",
         "differential": "Pression différentielle",
         "differentialDesc": "Surveillance des salles et des filtres",
         "static": "Pickup Ports and Probes",
@@ -3860,5 +3862,80 @@
         "feature3": "Grille de protection de capteur bien ventilée"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Capteurs de Pression | BAPI",
+      "description": "BAPI offre une gamme complète de capteurs de pression différentielle, d'interrupteurs de pression et de ports de prélèvement pour les applications CVC, y compris les salles blanches, la surveillance des filtres et le contrôle de la pression de zone.",
+      "keywords": "capteurs de pression, pression différentielle, interrupteurs de pression, capteur ZPM, pression de salle blanche, surveillance de filtres, contrôle de pression de zone, capteurs de pression CVC"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits",
+      "pressure": "Capteurs de Pression"
+    },
+    "hero": {
+      "title": "Capteurs de Pression",
+      "description": "BAPI offre une gamme complète de capteurs de pression différentielle, d'interrupteurs de pression et de ports de prélèvement pour les applications CVC, y compris les salles blanches, la surveillance des filtres et le contrôle de la pression de zone.",
+      "cta": "Explorer les Produits",
+      "imageAlt": "Famille de Capteurs et Interrupteurs de Pression BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Capteurs et Interrupteurs de Pression",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "Capteur de Pression 2PM BAPI-Box",
+        "feature1": "Boîtier classé IP66/NEMA 4",
+        "feature2": "Plage et sortie sélectionnables sur site",
+        "feature3": "Précision standard de ±1%"
+      },
+      "zpmDifferential": {
+        "name": "Capteur de Pression Différentielle 2PM",
+        "feature1": "Plage et sortie sélectionnables sur site",
+        "feature2": "Précision de ±0,25%",
+        "feature3": "Capacité multi-capteur de pression de zone"
+      },
+      "ezDifferential": {
+        "name": "Capteur de Pression Différentielle EZ",
+        "feature1": "Plage et sortie sélectionnables sur site",
+        "feature2": "Installation et configuration faciles",
+        "feature3": "Solution économique"
+      },
+      "frpDifferential": {
+        "name": "Capteur de Pression Différentielle FRP",
+        "feature1": "Plage fixe définie en usine",
+        "feature2": "Performances fiables",
+        "feature3": "Solution économique"
+      },
+      "outsidePickup": {
+        "name": "Port de Prélèvement d'Air Extérieur",
+        "feature1": "Surveillance de la pression extérieure",
+        "feature2": "Construction durable",
+        "feature3": "Conception résistante aux intempéries"
+      },
+      "roomPickup": {
+        "name": "Ports de Prélèvement de Pression de Salle",
+        "feature1": "Applications de salles blanches",
+        "feature2": "Options de ports multiples",
+        "feature3": "Intégration facile avec les capteurs"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Interrupteur de Pression de Gaine",
+        "feature1": "Points de consigne réglables",
+        "feature2": "Surveillance de la pression de gaine",
+        "feature3": "Fonctionnement de commutation fiable"
+      },
+      "differentialSwitch": {
+        "name": "Interrupteur de Pression Différentielle",
+        "feature1": "Surveillance des filtres",
+        "feature2": "Bande morte réglable",
+        "feature3": "Fonctionnement fiable"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

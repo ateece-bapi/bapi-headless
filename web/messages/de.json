@@ -164,6 +164,8 @@
       },
       "pressure": {
         "title": "Druck",
+        "pressureOverview": "Druckübersicht",
+        "pressureOverviewDesc": "Komplette Linie von Drucksensoren und -schaltern für HLK-Anwendungen",
         "differential": "Differenzdruck",
         "differentialDesc": "Raum- und Filterüberwachung",
         "static": "Pickup Ports and Probes",
@@ -3860,5 +3862,80 @@
         "feature3": "Gut belüfteter Sensorschutz"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Drucksensoren | BAPI",
+      "description": "BAPI bietet eine komplette Linie von Differenzdrucksensoren, Druckschaltern und Druckentnahmeanschlüssen für HLK-Anwendungen einschließlich Reinräumen, Filterüberwachung und Zonendruckkontrolle.",
+      "keywords": "Drucksensoren, Differenzdruck, Druckschalter, ZPM Sensor, Reinraumdruck, Filterüberwachung, Zonendruckkontrolle, HLK-Drucksensoren"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "pressure": "Drucksensoren"
+    },
+    "hero": {
+      "title": "Drucksensoren",
+      "description": "BAPI bietet eine komplette Linie von Differenzdrucksensoren, Druckschaltern und Druckentnahmeanschlüssen für HLK-Anwendungen einschließlich Reinräumen, Filterüberwachung und Zonendruckkontrolle.",
+      "cta": "Produkte Erkunden",
+      "imageAlt": "BAPI Drucksensoren und -schalter Familie"
+    },
+    "sensors": {
+      "sectionTitle": "Drucksensoren & -schalter",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "2PM BAPI-Box Drucksensor",
+        "feature1": "IP66/NEMA 4 klassifiziertes Gehäuse",
+        "feature2": "Feldwählbarer Bereich und Ausgang",
+        "feature3": "±1% Standardgenauigkeit"
+      },
+      "zpmDifferential": {
+        "name": "2PM Differenzdrucksensor",
+        "feature1": "Feldwählbarer Bereich und Ausgang",
+        "feature2": "±0,25% Präzisionsgenauigkeit",
+        "feature3": "Zonendruckmultisensor-Fähigkeit"
+      },
+      "ezDifferential": {
+        "name": "EZ Differenzdrucksensor",
+        "feature1": "Feldwählbarer Bereich und Ausgang",
+        "feature2": "Einfache Installation und Einrichtung",
+        "feature3": "Kostengünstige Lösung"
+      },
+      "frpDifferential": {
+        "name": "FRP Differenzdrucksensor",
+        "feature1": "Fester werksseitig eingestellter Bereich",
+        "feature2": "Zuverlässige Leistung",
+        "feature3": "Kostengünstige Lösung"
+      },
+      "outsidePickup": {
+        "name": "Außenluft-Druckentnahmeanschluss",
+        "feature1": "Außendrucküberwachung",
+        "feature2": "Langlebige Konstruktion",
+        "feature3": "Wetterbeständiges Design"
+      },
+      "roomPickup": {
+        "name": "Raum-Druckentnahmeanschlüsse",
+        "feature1": "Reinraumanwendungen",
+        "feature2": "Mehrere Anschlussoptionen",
+        "feature3": "Einfache Integration mit Sensoren"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Kanal-Druckschalter",
+        "feature1": "Einstellbare Sollwerte",
+        "feature2": "Kanaldrucküber wachung",
+        "feature3": "Zuverlässiger Schaltbetrieb"
+      },
+      "differentialSwitch": {
+        "name": "Differenzdruckschalter",
+        "feature1": "Filterüberwachung",
+        "feature2": "Einstellbares Totband",
+        "feature3": "Zuverlässiger Betrieb"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

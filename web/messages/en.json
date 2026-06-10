@@ -84,6 +84,8 @@
       },
       "pressure": {
         "title": "Pressure",
+        "pressureOverview": "Pressure Overview",
+        "pressureOverviewDesc": "Complete line of pressure sensors and switches for HVAC applications",
         "differential": "Differential Pressure",
         "differentialDesc": "Room & filter monitoring",
         "static": "Pickup Ports and Probes",
@@ -3904,6 +3906,81 @@
         "feature1": "Quick-response sensor",
         "feature2": "IP66/NEMA 4 BAPI-Box 2 enclosure style",
         "feature3": "Well vented sensor guard"
+      }
+    }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Pressure Sensors | BAPI",
+      "description": "BAPI offers a complete line of differential pressure sensors, pressure switches, and pickup ports for HVAC applications including clean rooms, filter monitoring, and zone pressure control.",
+      "keywords": "pressure sensors, differential pressure, pressure switches, ZPM sensor, clean room pressure, filter monitoring, zone pressure control, HVAC pressure sensors"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "pressure": "Pressure Sensors"
+    },
+    "hero": {
+      "title": "Pressure Sensors",
+      "description": "BAPI offers a complete line of differential pressure sensors, pressure switches, and pickup ports for HVAC applications including clean rooms, filter monitoring, and zone pressure control.",
+      "cta": "Explore Products",
+      "imageAlt": "BAPI Pressure Sensors and Switches"
+    },
+    "viewAll": "View All Pressure Products",
+    "sensors": {
+      "sectionTitle": "Pressure Sensors",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "2PM BAPI-Box Pressure Sensor",
+        "feature1": "IP66/NEMA 4 rated enclosure",
+        "feature2": "Field selected range and output",
+        "feature3": "±1% standard accuracy"
+      },
+      "zpmDifferential": {
+        "name": "2PM Pressure Sensor",
+        "feature1": "Field selected range and output",
+        "feature2": "±0.25% precision accuracy",
+        "feature3": "Zone pressure multi-sensor capability"
+      },
+      "ezDifferential": {
+        "name": "EZ Pressure Sensor",
+        "feature1": "Field selected range and output",
+        "feature2": "Easy installation and setup",
+        "feature3": "Cost-effective solution"
+      },
+      "frpDifferential": {
+        "name": "FRP Pressure Sensor",
+        "feature1": "Fixed factory set range",
+        "feature2": "Reliable performance",
+        "feature3": "Cost-effective solution"
+      },
+      "outsidePickup": {
+        "name": "Outside Air Pickup Port",
+        "feature1": "Outdoor pressure monitoring",
+        "feature2": "Durable construction",
+        "feature3": "Weather-resistant design"
+      },
+      "roomPickup": {
+        "name": "Zone Pressure Pickup Ports",
+        "feature1": "Clean room applications",
+        "feature2": "Multiple port options",
+        "feature3": "Easy integration with sensors"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Deck Pressure Switch",
+        "feature1": "Adjustable set points",
+        "feature2": "Duct pressure monitoring",
+        "feature3": "Reliable switching operation"
+      },
+      "differentialSwitch": {
+        "name": "Differential Pressure Switch",
+        "feature1": "Filter monitoring",
+        "feature2": "Adjustable dead band",
+        "feature3": "Reliable operation"
       }
     }
   }

@@ -491,7 +491,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "管道静压变送器",
         "differentialSwitch": "差压开关",
-        "differentialSwitchDesc": "压力触发开关"
+        "differentialSwitchDesc": "压力触发开关",
+        "pressureOverview": "压力传感器概述",
+        "pressureOverviewDesc": "用于HVAC应用的压力传感器和开关完整系列"
       },
       "airQuality": {
         "title": "空气质量",
@@ -3859,5 +3861,80 @@
         "feature3": "良好通风的传感器防护罩"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "压力传感器 | BAPI",
+      "description": "BAPI提供用于HVAC应用的差压传感器、压力开关和压力采集端口完整系列，包括洁净室、过滤器监测和区域压力控制。",
+      "keywords": "压力传感器, 差压, 压力开关, ZPM传感器, 洁净室压力, 过滤器监测, 区域压力控制, HVAC压力传感器"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "pressure": "压力传感器"
+    },
+    "hero": {
+      "title": "压力传感器",
+      "description": "BAPI提供用于HVAC应用的差压传感器、压力开关和压力采集端口完整系列，包括洁净室、过滤器监测和区域压力控制。",
+      "cta": "探索产品",
+      "imageAlt": "BAPI压力传感器和开关系列"
+    },
+    "sensors": {
+      "sectionTitle": "压力传感器和开关",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "2PM BAPI-Box压力传感器",
+        "feature1": "IP66/NEMA 4防护等级外壳",
+        "feature2": "现场可选范围和输出",
+        "feature3": "±1%标准精度"
+      },
+      "zpmDifferential": {
+        "name": "2PM差压传感器",
+        "feature1": "现场可选范围和输出",
+        "feature2": "±0.25%精度",
+        "feature3": "区域压力多传感器能力"
+      },
+      "ezDifferential": {
+        "name": "EZ差压传感器",
+        "feature1": "现场可选范围和输出",
+        "feature2": "安装和设置简便",
+        "feature3": "经济实惠的解决方案"
+      },
+      "frpDifferential": {
+        "name": "FRP差压传感器",
+        "feature1": "工厂设定固定范围",
+        "feature2": "可靠性能",
+        "feature3": "经济实惠的解决方案"
+      },
+      "outsidePickup": {
+        "name": "室外空气采集端口",
+        "feature1": "室外压力监测",
+        "feature2": "耐用结构",
+        "feature3": "防风雨设计"
+      },
+      "roomPickup": {
+        "name": "室内压力采集端口",
+        "feature1": "洁净室应用",
+        "feature2": "多种端口选项",
+        "feature3": "与传感器轻松集成"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "管道压力开关",
+        "feature1": "可调设定点",
+        "feature2": "管道压力监测",
+        "feature3": "可靠的切换操作"
+      },
+      "differentialSwitch": {
+        "name": "差压开关",
+        "feature1": "过滤器监测",
+        "feature2": "可调死区",
+        "feature3": "可靠运行"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

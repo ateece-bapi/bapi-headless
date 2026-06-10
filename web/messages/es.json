@@ -486,6 +486,8 @@
       },
       "pressure": {
         "title": "Presión",
+        "pressureOverview": "Descripción General de Presión",
+        "pressureOverviewDesc": "Línea completa de sensores de presión e interruptores para aplicaciones HVAC",
         "differential": "Presión diferencial",
         "differentialDesc": "Monitoreo de ambiente y filtros",
         "static": "Pickup Ports and Probes",
@@ -3857,5 +3859,80 @@
         "feature3": "Protector de sensor bien ventilado"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Sensores de Presión | BAPI",
+      "description": "BAPI ofrece una línea completa de sensores de presión diferencial, interruptores de presión y puertos de captura para aplicaciones HVAC, incluyendo salas limpias, monitoreo de filtros y control de presión de zona.",
+      "keywords": "sensores de presión, presión diferencial, interruptores de presión, sensor ZPM, presión de sala limpia, monitoreo de filtros, control de presión de zona, sensores de presión HVAC"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos",
+      "pressure": "Sensores de Presión"
+    },
+    "hero": {
+      "title": "Sensores de Presión",
+      "description": "BAPI ofrece una línea completa de sensores de presión diferencial, interruptores de presión y puertos de captura para aplicaciones HVAC, incluyendo salas limpias, monitoreo de filtros y control de presión de zona.",
+      "cta": "Explorar Productos",
+      "imageAlt": "Familia de Sensores e Interruptores de Presión BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Sensores e Interruptores de Presión",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "Sensor de Presión 2PM BAPI-Box",
+        "feature1": "Carcasa con clasificación IP66/NEMA 4",
+        "feature2": "Rango y salida seleccionables en campo",
+        "feature3": "Precisión estándar de ±1%"
+      },
+      "zpmDifferential": {
+        "name": "Sensor de Presión Diferencial 2PM",
+        "feature1": "Rango y salida seleccionables en campo",
+        "feature2": "Precisión de ±0.25%",
+        "feature3": "Capacidad de multi-sensor de presión de zona"
+      },
+      "ezDifferential": {
+        "name": "Sensor de Presión Diferencial EZ",
+        "feature1": "Rango y salida seleccionables en campo",
+        "feature2": "Instalación y configuración fáciles",
+        "feature3": "Solución económica"
+      },
+      "frpDifferential": {
+        "name": "Sensor de Presión Diferencial FRP",
+        "feature1": "Rango fijo establecido de fábrica",
+        "feature2": "Rendimiento confiable",
+        "feature3": "Solución económica"
+      },
+      "outsidePickup": {
+        "name": "Puerto de Captura de Aire Exterior",
+        "feature1": "Monitoreo de presión exterior",
+        "feature2": "Construcción duradera",
+        "feature3": "Diseño resistente a la intemperie"
+      },
+      "roomPickup": {
+        "name": "Puertos de Captura de Presión de Sala",
+        "feature1": "Aplicaciones de salas limpias",
+        "feature2": "Múltiples opciones de puerto",
+        "feature3": "Fácil integración con sensores"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Interruptor de Presión de Conducto",
+        "feature1": "Puntos de ajuste ajustables",
+        "feature2": "Monitoreo de presión de conducto",
+        "feature3": "Operación de conmutación confiable"
+      },
+      "differentialSwitch": {
+        "name": "Interruptor de Presión Diferencial",
+        "feature1": "Monitoreo de filtros",
+        "feature2": "Banda muerta ajustable",
+        "feature3": "Operación confiable"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

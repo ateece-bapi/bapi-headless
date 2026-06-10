@@ -491,7 +491,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "ダクト静圧トランスミッタ",
         "differentialSwitch": "差圧スイッチ",
-        "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング"
+        "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング",
+        "pressureOverview": "圧力概要",
+        "pressureOverviewDesc": "HVAC用途向けの圧力センサーとスイッチの完全ライン"
       },
       "airQuality": {
         "title": "空気質",
@@ -3859,5 +3861,80 @@
         "feature3": "通気性の良いセンサーガード"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "圧力センサー | BAPI",
+      "description": "BAPIは、クリーンルーム、フィルター監視、ゾーン圧力制御を含むHVAC用途向けの差圧センサー、圧力スイッチ、およびピックアップポートの完全なラインを提供します。",
+      "keywords": "圧力センサー、差圧、圧力スイッチ、ZPMセンサー、クリーンルーム圧力、フィルター監視、ゾーン圧力制御、HVAC圧力センサー"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品",
+      "pressure": "圧力センサー"
+    },
+    "hero": {
+      "title": "圧力センサー",
+      "description": "BAPIは、クリーンルーム、フィルター監視、ゾーン圧力制御を含むHVAC用途向けの差圧センサー、圧力スイッチ、およびピックアップポートの完全なラインを提供します。",
+      "cta": "製品を見る",
+      "imageAlt": "BAPI圧力センサーとスイッチファミリー"
+    },
+    "sensors": {
+      "sectionTitle": "圧力センサーとスイッチ",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "2PM BAPI-Box圧力センサー",
+        "feature1": "IP66/NEMA 4定格エンクロージャ",
+        "feature2": "現場選択可能なレンジと出力",
+        "feature3": "±1%標準精度"
+      },
+      "zpmDifferential": {
+        "name": "2PM差圧センサー",
+        "feature1": "現場選択可能なレンジと出力",
+        "feature2": "±0.25%精度",
+        "feature3": "ゾーン圧力マルチセンサー機能"
+      },
+      "ezDifferential": {
+        "name": "EZ差圧センサー",
+        "feature1": "現場選択可能なレンジと出力",
+        "feature2": "簡単な設置とセットアップ",
+        "feature3": "コスト効果的なソリューション"
+      },
+      "frpDifferential": {
+        "name": "FRP差圧センサー",
+        "feature1": "工場設定固定レンジ",
+        "feature2": "信頼性の高い性能",
+        "feature3": "コスト効果的なソリューション"
+      },
+      "outsidePickup": {
+        "name": "外気ピックアップポート",
+        "feature1": "外部圧力監視",
+        "feature2": "耐久性のある構造",
+        "feature3": "耐候性設計"
+      },
+      "roomPickup": {
+        "name": "室内圧力ピックアップポート",
+        "feature1": "クリーンルーム用途",
+        "feature2": "複数のポートオプション",
+        "feature3": "センサーとの簡単な統合"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "ダクト圧力スイッチ",
+        "feature1": "調整可能なセットポイント",
+        "feature2": "ダクト圧力監視",
+        "feature3": "信頼性の高いスイッチング動作"
+      },
+      "differentialSwitch": {
+        "name": "差圧スイッチ",
+        "feature1": "フィルター監視",
+        "feature2": "調整可能なデッドバンド",
+        "feature3": "信頼性の高い動作"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

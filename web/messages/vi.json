@@ -125,7 +125,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "Bộ truyền phát áp suất ống dẫn",
         "differentialSwitch": "Công tắc chênh lệch",
-        "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất"
+        "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất",
+        "pressureOverview": "Tổng Quan Áp Suất",
+        "pressureOverviewDesc": "Dòng sản phẩm đầy đủ cảm biến áp suất và công tắc cho ứng dụng HVAC"
       },
       "airQuality": {
         "title": "Chất Lượng Không Khí",
@@ -3860,5 +3862,80 @@
         "feature3": "Tấm bảo vệ cảm biến thông gió tốt"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Cảm Biến Áp Suất | BAPI",
+      "description": "BAPI cung cấp dòng sản phẩm đầy đủ cảm biến áp suất chênh lệch, công tắc áp suất và cổng nhận áp suất cho các ứng dụng HVAC bao gồm phòng sạch, giám sát bộ lọc và kiểm soát áp suất vùng.",
+      "keywords": "cảm biến áp suất, áp suất chênh lệch, công tắc áp suất, cảm biến ZPM, áp suất phòng sạch, giám sát bộ lọc, kiểm soát áp suất vùng, cảm biến áp suất HVAC"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm",
+      "pressure": "Cảm Biến Áp Suất"
+    },
+    "hero": {
+      "title": "Cảm Biến Áp Suất",
+      "description": "BAPI cung cấp dòng sản phẩm đầy đủ cảm biến áp suất chênh lệch, công tắc áp suất và cổng nhận áp suất cho các ứng dụng HVAC bao gồm phòng sạch, giám sát bộ lọc và kiểm soát áp suất vùng.",
+      "cta": "Khám Phá Sản Phẩm",
+      "imageAlt": "Họ Cảm Biến và Công Tắc Áp Suất BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Cảm Biến và Công Tắc Áp Suất",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "Cảm Biến Áp Suất 2PM BAPI-Box",
+        "feature1": "Vỏ bọc chuẩn IP66/NEMA 4",
+        "feature2": "Phạm vi và đầu ra có thể chọn tại hiện trường",
+        "feature3": "Độ chính xác tiêu chuẩn ±1%"
+      },
+      "zpmDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch 2PM",
+        "feature1": "Phạm vi và đầu ra có thể chọn tại hiện trường",
+        "feature2": "Độ chính xác ±0,25%",
+        "feature3": "Khả năng đa cảm biến áp suất vùng"
+      },
+      "ezDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch EZ",
+        "feature1": "Phạm vi và đầu ra có thể chọn tại hiện trường",
+        "feature2": "Lắp đặt và thiết lập dễ dàng",
+        "feature3": "Giải pháp tiết kiệm chi phí"
+      },
+      "frpDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch FRP",
+        "feature1": "Phạm vi cố định thiết lập tại nhà máy",
+        "feature2": "Hiệu suất đáng tin cậy",
+        "feature3": "Giải pháp tiết kiệm chi phí"
+      },
+      "outsidePickup": {
+        "name": "Cổng Nhận Không Khí Bên Ngoài",
+        "feature1": "Giám sát áp suất bên ngoài",
+        "feature2": "Cấu trúc bền",
+        "feature3": "Thiết kế chống thời tiết"
+      },
+      "roomPickup": {
+        "name": "Cổng Nhận Áp Suất Phòng",
+        "feature1": "Ứng dụng phòng sạch",
+        "feature2": "Nhiều tùy chọn cổng",
+        "feature3": "Tích hợp dễ dàng với cảm biến"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Công Tắc Áp Suất Ống",
+        "feature1": "Điểm đặt có thể điều chỉnh",
+        "feature2": "Giám sát áp suất ống",
+        "feature3": "Hoạt động chuyển mạch đáng tin cậy"
+      },
+      "differentialSwitch": {
+        "name": "Công Tắc Áp Suất Chênh Lệch",
+        "feature1": "Giám sát bộ lọc",
+        "feature2": "Băng chết có thể điều chỉnh",
+        "feature3": "Hoạt động đáng tin cậy"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

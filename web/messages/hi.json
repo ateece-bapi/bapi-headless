@@ -85,7 +85,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "डक्ट स्थिर ट्रांसमीटर",
         "differentialSwitch": "अंतर स्विच",
-        "differentialSwitchDesc": "दबाव-सक्रिय स्विचिंग"
+        "differentialSwitchDesc": "दबाव-सक्रिय स्विचिंग",
+        "pressureOverview": "दबाव अवलोकन",
+        "pressureOverviewDesc": "HVAC अनुप्रयोगों के लिए दबाव सेंसर और स्विच की पूरी लाइन"
       },
       "airQuality": {
         "title": "वायु गुणवत्ता",
@@ -3859,5 +3861,80 @@
         "feature3": "अच्छी तरह हवादार सेंसर गार्ड"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "दबाव सेंसर | BAPI",
+      "description": "BAPI HVAC अनुप्रयोगों के लिए डिफरेंशियल प्रेशर सेंसर, प्रेशर स्विच और पिकअप पोर्ट की पूरी श्रृंखला प्रदान करता है, जिसमें क्लीन रूम, फिल्टर निगरानी और जोन दबाव नियंत्रण शामिल हैं।",
+      "keywords": "दबाव सेंसर, डिफरेंशियल दबाव, दबाव स्विच, ZPM सेंसर, क्लीन रूम दबाव, फिल्टर निगरानी, जोन दबाव नियंत्रण, HVAC दबाव सेंसर"
+    },
+    "breadcrumb": {
+      "home": "होम",
+      "products": "उत्पाद",
+      "pressure": "दबाव सेंसर"
+    },
+    "hero": {
+      "title": "दबाव सेंसर",
+      "description": "BAPI HVAC अनुप्रयोगों के लिए डिफरेंशियल प्रेशर सेंसर, प्रेशर स्विच और पिकअप पोर्ट की पूरी श्रृंखला प्रदान करता है, जिसमें क्लीन रूम, फिल्टर निगरानी और जोन दबाव नियंत्रण शामिल हैं।",
+      "cta": "उत्पाद एक्सप्लोर करें",
+      "imageAlt": "BAPI दबाव सेंसर और स्विच परिवार"
+    },
+    "sensors": {
+      "sectionTitle": "दबाव सेंसर और स्विच",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "2PM BAPI-Box दबाव सेंसर",
+        "feature1": "IP66/NEMA 4 रेटेड एनक्लोजर",
+        "feature2": "फील्ड चयनित रेंज और आउटपुट",
+        "feature3": "±1% मानक सटीकता"
+      },
+      "zpmDifferential": {
+        "name": "2PM डिफरेंशियल प्रेशर सेंसर",
+        "feature1": "फील्ड चयनित रेंज और आउटपुट",
+        "feature2": "±0.25% सटीकता",
+        "feature3": "जोन दबाव मल्टी-सेंसर क्षमता"
+      },
+      "ezDifferential": {
+        "name": "EZ डिफरेंशियल प्रेशर सेंसर",
+        "feature1": "फील्ड चयनित रेंज और आउटपुट",
+        "feature2": "आसान स्थापना और सेटअप",
+        "feature3": "लागत प्रभावी समाधान"
+      },
+      "frpDifferential": {
+        "name": "FRP डिफरेंशियल प्रेशर सेंसर",
+        "feature1": "फैक्ट्री सेट फिक्स्ड रेंज",
+        "feature2": "विश्वसनीय प्रदर्शन",
+        "feature3": "लागत प्रभावी समाधान"
+      },
+      "outsidePickup": {
+        "name": "बाहरी वायु पिकअप पोर्ट",
+        "feature1": "बाहरी दबाव निगरानी",
+        "feature2": "टिकाऊ निर्माण",
+        "feature3": "मौसम प्रतिरोधी डिजाइन"
+      },
+      "roomPickup": {
+        "name": "कक्ष दबाव पिकअप पोर्ट",
+        "feature1": "क्लीन रूम अनुप्रयोग",
+        "feature2": "एकाधिक पोर्ट विकल्प",
+        "feature3": "सेंसर के साथ आसान एकीकरण"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "डक्ट प्रेशर स्विच",
+        "feature1": "समायोज्य सेट पॉइंट",
+        "feature2": "डक्ट दबाव निगरानी",
+        "feature3": "विश्वसनीय स्विचिंग ऑपरेशन"
+      },
+      "differentialSwitch": {
+        "name": "डिफरेंशियल प्रेशर स्विच",
+        "feature1": "फिल्टर निगरानी",
+        "feature2": "समायोज्य डेड बैंड",
+        "feature3": "विश्वसनीय संचालन"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

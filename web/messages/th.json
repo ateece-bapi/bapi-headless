@@ -169,7 +169,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "ตัวส่งสัญญาณความดันในท่อ",
         "differentialSwitch": "สวิตช์ความดันต่างระดับ",
-        "differentialSwitchDesc": "สวิตช์ที่ควบคุมโดยความดัน"
+        "differentialSwitchDesc": "สวิตช์ที่ควบคุมโดยความดัน",
+        "pressureOverview": "ภาพรวมแรงดัน",
+        "pressureOverviewDesc": "ผลิตภัณฑ์เซ็นเซอร์แรงดันและสวิตช์ครบวงจรสำหรับงาน HVAC"
       },
       "airQuality": {
         "title": "คุณภาพอากาศ",
@@ -3859,5 +3861,80 @@
         "feature3": "ตัวป้องกันเซ็นเซอร์ที่ระบายอากาศได้ดี"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "เซ็นเซอร์แรงดัน | BAPI",
+      "description": "BAPI นำเสนอผลิตภัณฑ์เซ็นเซอร์แรงดันเชิงดัน สวิตช์แรงดัน และพอร์ตรับแรงดันครบวงจรสำหรับงาน HVAC รวมถึงห้องสะอาด การตรวจสอบตัวกรอง และการควบคุมแรงดันโซน",
+      "keywords": "เซ็นเซอร์แรงดัน, แรงดันเชิงดัน, สวิตช์แรงดัน, เซ็นเซอร์ ZPM, แรงดันห้องสะอาด, การตรวจสอบตัวกรอง, การควบคุมแรงดันโซน, เซ็นเซอร์แรงดัน HVAC"
+    },
+    "breadcrumb": {
+      "home": "หน้าแรก",
+      "products": "ผลิตภัณฑ์",
+      "pressure": "เซ็นเซอร์แรงดัน"
+    },
+    "hero": {
+      "title": "เซ็นเซอร์แรงดัน",
+      "description": "BAPI นำเสนอผลิตภัณฑ์เซ็นเซอร์แรงดันเชิงดัน สวิตช์แรงดัน และพอร์ตรับแรงดันครบวงจรสำหรับงาน HVAC รวมถึงห้องสะอาด การตรวจสอบตัวกรอง และการควบคุมแรงดันโซน",
+      "cta": "สำรวจผลิตภัณฑ์",
+      "imageAlt": "กลุ่มผลิตภัณฑ์เซ็นเซอร์และสวิตช์แรงดัน BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "เซ็นเซอร์และสวิตช์แรงดัน",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "เซ็นเซอร์แรงดัน 2PM BAPI-Box",
+        "feature1": "ตัวเครื่องระดับ IP66/NEMA 4",
+        "feature2": "ช่วงและเอาต์พุตที่เลือกได้ในสนาม",
+        "feature3": "ความแม่นยำมาตรฐาน ±1%"
+      },
+      "zpmDifferential": {
+        "name": "เซ็นเซอร์แรงดันเชิงดัน 2PM",
+        "feature1": "ช่วงและเอาต์พุตที่เลือกได้ในสนาม",
+        "feature2": "ความแม่นยำ ±0.25%",
+        "feature3": "ความสามารถเซ็นเซอร์หลายตัวแบบแรงดันโซน"
+      },
+      "ezDifferential": {
+        "name": "เซ็นเซอร์แรงดันเชิงดัน EZ",
+        "feature1": "ช่วงและเอาต์พุตที่เลือกได้ในสนาม",
+        "feature2": "ติดตั้งและตั้งค่าง่าย",
+        "feature3": "โซลูชันที่คุ้มค่า"
+      },
+      "frpDifferential": {
+        "name": "เซ็นเซอร์แรงดันเชิงดัน FRP",
+        "feature1": "ช่วงคงที่ที่กำหนดจากโรงงาน",
+        "feature2": "ประสิทธิภาพที่เชื่อถือได้",
+        "feature3": "โซลูชันที่คุ้มค่า"
+      },
+      "outsidePickup": {
+        "name": "พอร์ตรับอากาศภายนอก",
+        "feature1": "ตรวจสอบแรงดันภายนอก",
+        "feature2": "โครงสร้างที่ทนทาน",
+        "feature3": "การออกแบบทนต่อสภาพอากาศ"
+      },
+      "roomPickup": {
+        "name": "พอร์ตรับแรงดันภายในห้อง",
+        "feature1": "การใช้งานในห้องสะอาด",
+        "feature2": "ตัวเลือกพอร์ตหลายแบบ",
+        "feature3": "บูรณาการกับเซ็นเซอร์ได้ง่าย"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "สวิตช์แรงดันท่อ",
+        "feature1": "จุดตั้งค่าที่ปรับได้",
+        "feature2": "ตรวจสอบแรงดันท่อ",
+        "feature3": "การทำงานสวิตช์ที่เชื่อถือได้"
+      },
+      "differentialSwitch": {
+        "name": "สวิตช์แรงดันเชิงดัน",
+        "feature1": "ตรวจสอบตัวกรอง",
+        "feature2": "แบนด์ตายที่ปรับได้",
+        "feature3": "การทำงานที่เชื่อถือได้"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

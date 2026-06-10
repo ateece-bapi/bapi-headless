@@ -85,7 +85,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "Nadajniki ciśnienia statycznego w kanałach",
         "differentialSwitch": "Wyłącznik różnicowy",
-        "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem"
+        "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem",
+        "pressureOverview": "Przegląd Ciśnienia",
+        "pressureOverviewDesc": "Pełna linia czujników ciśnienia i przełączników do zastosowań HVAC"
       },
       "airQuality": {
         "title": "Jakość Powietrza",
@@ -3859,5 +3861,80 @@
         "feature3": "Dobrze wentylowana osłona czujnika"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Czujniki Ciśnienia | BAPI",
+      "description": "BAPI oferuje pełną linię czujników ciśnienia różnicowego, przełączników ciśnienia i portów odbioru dla zastosowań HVAC, w tym pomieszczeń czystych, monitorowania filtrów i kontroli ciśnienia strefy.",
+      "keywords": "czujniki ciśnienia, ciśnienie różnicowe, przełączniki ciśnienia, czujnik ZPM, ciśnienie w pomieszczeniach czystych, monitorowanie filtrów, kontrola ciśnienia strefy, czujniki ciśnienia HVAC"
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "products": "Produkty",
+      "pressure": "Czujniki Ciśnienia"
+    },
+    "hero": {
+      "title": "Czujniki Ciśnienia",
+      "description": "BAPI oferuje pełną linię czujników ciśnienia różnicowego, przełączników ciśnienia i portów odbioru dla zastosowań HVAC, w tym pomieszczeń czystych, monitorowania filtrów i kontroli ciśnienia strefy.",
+      "cta": "Przeglądaj Produkty",
+      "imageAlt": "Rodzina czujników i przełączników ciśnienia BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Czujniki i Przełączniki Ciśnienia",
+      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "zpmBapiBox": {
+        "name": "Czujnik Ciśnienia 2PM BAPI-Box",
+        "feature1": "Obudowa o klasie IP66/NEMA 4",
+        "feature2": "Zakres i wyjście wybierane w terenie",
+        "feature3": "Standardowa dokładność ±1%"
+      },
+      "zpmDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego 2PM",
+        "feature1": "Zakres i wyjście wybierane w terenie",
+        "feature2": "Dokładność ±0,25%",
+        "feature3": "Możliwość wielu czujników ciśnienia strefy"
+      },
+      "ezDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego EZ",
+        "feature1": "Zakres i wyjście wybierane w terenie",
+        "feature2": "Łatwa instalacja i konfiguracja",
+        "feature3": "Ekonomiczne rozwiązanie"
+      },
+      "frpDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego FRP",
+        "feature1": "Stały zakres ustawiony fabrycznie",
+        "feature2": "Niezawodna wydajność",
+        "feature3": "Ekonomiczne rozwiązanie"
+      },
+      "outsidePickup": {
+        "name": "Port Odbioru Powietrza Zewnętrznego",
+        "feature1": "Monitorowanie ciśnienia zewnętrznego",
+        "feature2": "Trwała konstrukcja",
+        "feature3": "Wytrzymały projekt"
+      },
+      "roomPickup": {
+        "name": "Porty Odbioru Ciśnienia Pomieszczenia",
+        "feature1": "Zastosowania w pomieszczeniach czystych",
+        "feature2": "Wiele opcji portów",
+        "feature3": "Łatwa integracja z czujnikami"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Pressure Switches",
+      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "ductSwitch": {
+        "name": "Przełącznik Ciśnienia Kanału",
+        "feature1": "Regulowane punkty nastawy",
+        "feature2": "Monitorowanie ciśnienia w kanale",
+        "feature3": "Niezawodne działanie przełączania"
+      },
+      "differentialSwitch": {
+        "name": "Przełącznik Ciśnienia Różnicowego",
+        "feature1": "Monitorowanie filtrów",
+        "feature2": "Regulowana martwa strefa",
+        "feature3": "Niezawodne działanie"
+      }
+    },
+    "viewAll": "View All Pressure Products"
   }
 }

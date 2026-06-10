@@ -103,6 +103,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
             {
+              label: t('products.pressure.pressureOverview'),
+              href: '/pressure',
+              description: t('products.pressure.pressureOverviewDesc'),
+            },
+            {
               label: t('products.pressure.differential'),
               href: '/products/pressure-sensors/pressure-differential-transmitters',
               description: t('products.pressure.differentialDesc'),

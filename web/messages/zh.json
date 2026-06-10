@@ -491,7 +491,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "管道静压变送器",
         "differentialSwitch": "差压开关",
-        "differentialSwitchDesc": "压力触发开关"
+        "differentialSwitchDesc": "压力触发开关",
+        "pressureOverview": "压力传感器概述",
+        "pressureOverviewDesc": "用于HVAC应用的压力传感器和开关完整系列"
       },
       "airQuality": {
         "title": "空气质量",
@@ -3859,5 +3861,80 @@
         "feature3": "良好通风的传感器防护罩"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "压力传感器 | BAPI",
+      "description": "BAPI的压力传感器具有现场可选性，可轻松安装和目视故障排除，节省时间和金钱。",
+      "keywords": "压力传感器, 差压, 压力开关, ZPM传感器, 洁净室压力, 过滤器监测, 区域压力控制, HVAC压力传感器"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "pressure": "压力传感器"
+    },
+    "hero": {
+      "title": "压力很重要！",
+      "description": "BAPI的压力传感器具有现场可选性，可轻松安装和目视故障排除，节省时间和金钱。",
+      "cta": "探索产品",
+      "imageAlt": "BAPI压力传感器和开关系列"
+    },
+    "sensors": {
+      "sectionTitle": "压力传感器和开关",
+      "sectionSubtitle": "BAPI的压力系列为易于安装和功能性设定了新标准。EZ面板单元允许通过单元表面上的刻度盘和按钮设置所有范围和输出，进行表面、卡轨或DIN导轨安装。我们的区域压力多传感器（ZPM）是最通用的，具有范围、输出、单位、方向性和响应时间，所有这些都可以在现场快速设置，无需电源或工具。",
+      "zpmBapiBox": {
+        "name": "ZPM BAPI-Box压力传感器",
+        "feature1": "IP66/NEMA 4防护等级外壳",
+        "feature2": "现提供常规型(±1.0%FS)和高精度型(±0.25%FS)型号",
+        "feature3": "无需通电即可设置范围和输出"
+      },
+      "zpmDifferential": {
+        "name": "ZPM差压传感器",
+        "feature1": "免费提供NIST证书",
+        "feature2": "10个现场可选压力范围和5个可选输出",
+        "feature3": "无需通电即可设置范围和输出"
+      },
+      "ezDifferential": {
+        "name": "EZ差压传感器",
+        "feature1": "10个现场可选压力范围和3个可选输出",
+        "feature2": "每台设备均附带免费NIST证书",
+        "feature3": "快装轨道、DIN导轨或表面安装"
+      },
+      "frpDifferential": {
+        "name": "FRP差压传感器",
+        "feature1": "与我们的现场可选型号相比节省三分之一成本",
+        "feature2": "五色LED提供指示",
+        "feature3": "每台设备均附带免费NIST证书"
+      },
+      "outsidePickup": {
+        "name": "室外空气采集端口",
+        "feature1": "屋顶、墙壁和垂直安装",
+        "feature2": "通过减少阵风波动来帮助稳定读数",
+        "feature3": "坚固的抗紫外线和阻燃外壳"
+      },
+      "roomPickup": {
+        "name": "室内压力采集端口",
+        "feature1": "经济实惠且易于安装",
+        "feature2": "适用于1/8\"内径至5/32\"内径的管道",
+        "feature3": "适用于房间、墙壁或天花板瓷砖"
+      }
+    },
+    "switches": {
+      "sectionTitle": "压力开关",
+      "sectionSubtitle": "BAPI提供两种可现场调节的差压开关，用于空气过滤器和风扇状态监控，以及静压和气流验证。BAPI-Box单元可用于安全电路，因为其具有UL 353限制控制列表，并具有七个范围，涵盖从0.12\"到35\" WC的压力。经济型Beck单元具有三个范围，涵盖从.08\"到4\" WC的压力。",
+      "ductSwitch": {
+        "name": "Beck压力开关",
+        "feature1": "专为监测空气或其他非易燃、非腐蚀性气体的超压、真空和差压而设计",
+        "feature2": "现场可调拨盘允许您在每个压力范围内选择任何跳闸值",
+        "feature3": "包括管道和总共两根管"
+      },
+      "differentialSwitch": {
+        "name": "差压开关",
+        "feature1": "易于访问从0.1\"到3.5\"水柱的现场可调设定点",
+        "feature2": "由于UL 353认证，可用于安全控制",
+        "feature3": "5安培银触点"
+      }
+    },
+    "viewAll": "查看所有压力产品"
   }
 }

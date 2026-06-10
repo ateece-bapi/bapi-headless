@@ -85,7 +85,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "Nadajniki ciśnienia statycznego w kanałach",
         "differentialSwitch": "Wyłącznik różnicowy",
-        "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem"
+        "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem",
+        "pressureOverview": "Przegląd Ciśnienia",
+        "pressureOverviewDesc": "Pełna linia czujników ciśnienia i przełączników do zastosowań HVAC"
       },
       "airQuality": {
         "title": "Jakość Powietrza",
@@ -3859,5 +3861,80 @@
         "feature3": "Dobrze wentylowana osłona czujnika"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Czujniki Ciśnienia | BAPI",
+      "description": "Czujniki ciśnienia BAPI mają możliwość konfiguracji w terenie, której potrzebujesz do łatwej instalacji i wizualnego rozwiązywania problemów, aby zaoszczędzić czas i pieniądze.",
+      "keywords": "czujniki ciśnienia, ciśnienie różnicowe, przełączniki ciśnienia, czujnik ZPM, ciśnienie w pomieszczeniach czystych, monitorowanie filtrów, kontrola ciśnienia strefy, czujniki ciśnienia HVAC"
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "products": "Produkty",
+      "pressure": "Czujniki Ciśnienia"
+    },
+    "hero": {
+      "title": "Ciśnienie ma znaczenie!",
+      "description": "Czujniki ciśnienia BAPI mają możliwość konfiguracji w terenie, której potrzebujesz do łatwej instalacji i wizualnego rozwiązywania problemów, aby zaoszczędzić czas i pieniądze.",
+      "cta": "Przeglądaj Produkty",
+      "imageAlt": "Rodzina czujników i przełączników ciśnienia BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Czujniki i Przełączniki Ciśnienia",
+      "sectionSubtitle": "Linia ciśnieniowa BAPI ustanawia nowy standard łatwości instalacji i funkcjonalności. Jednostka panelu EZ umożliwia montaż powierzchniowy, snaptrack lub na szynie DIN ze wszystkimi zakresami i wyjściami ustawionymi za pomocą pokrętła i przycisku na przedniej stronie jednostki. Nasz Multi-Sensor Ciśnienia Strefowego (ZPM) jest najbardziej wszechstronny z zakresami, wyjściami, jednostkami, kierunkowością i czasem odpowiedzi, wszystkie szybko ustawiane w terenie bez zasilania lub narzędzi.",
+      "zpmBapiBox": {
+        "name": "Czujnik Ciśnienia ZPM BAPI-Box",
+        "feature1": "Obudowa o klasie IP66/NEMA 4",
+        "feature2": "Teraz w modelach Regular (±1.0%FS) i High Accuracy (±0.25%FS)",
+        "feature3": "Zakresy i wyjścia można ustawić bez zasilania urządzenia"
+      },
+      "zpmDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego ZPM",
+        "feature1": "Bezpłatny certyfikat NIST w zestawie",
+        "feature2": "10 wybieranych w terenie zakresów ciśnienia i 5 wybieralnych wyjść",
+        "feature3": "Zakresy i wyjścia można ustawić bez zasilania urządzenia"
+      },
+      "ezDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego EZ",
+        "feature1": "10 wybieranych w terenie zakresów ciśnienia i 3 wybieralne wyjścia",
+        "feature2": "Bezpłatny certyfikat NIST dołączony do każdej jednostki",
+        "feature3": "Montaż Snaptrack, szyna DIN lub montaż powierzchniowy"
+      },
+      "frpDifferential": {
+        "name": "Czujnik Ciśnienia Różnicowego FRP",
+        "feature1": "Jedna trzecia oszczędności kosztów w porównaniu z naszymi modelami wybieralnymi w terenie",
+        "feature2": "Pięciokolorowa dioda LED zapewnia wskazanie",
+        "feature3": "Bezpłatny certyfikat NIST dołączony do każdej jednostki"
+      },
+      "outsidePickup": {
+        "name": "Port Odbioru Powietrza Zewnętrznego",
+        "feature1": "Montaż na dachu, ścianie i pionowy",
+        "feature2": "Pomaga stabilizować odczyty poprzez zmniejszenie wahań od porywów wiatru",
+        "feature3": "Odporna na promieniowanie UV i ognioodporna obudowa"
+      },
+      "roomPickup": {
+        "name": "Porty Odbioru Ciśnienia Pomieszczenia",
+        "feature1": "Ekonomiczny i łatwy w instalacji",
+        "feature2": "Mieści rurki o średnicy wewnętrznej od 1/8\" do 5/32\"",
+        "feature3": "Dostępny dla pomieszczenia, ściany lub płytek sufitowych"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Przełączniki Ciśnienia",
+      "sectionSubtitle": "BAPI oferuje dwa style regulowanych w terenie przełączników ciśnienia różnicowego do monitorowania stanu filtra powietrza i wentylatora oraz dowodu ciśnienia statycznego i przepływu powietrza. Jednostka BAPI-Box może być używana w obwodach bezpieczeństwa ze względu na jej listę kontroli limitu UL 353 i ma siedem zakresów obejmujących ciśnienie od 0.12\" do 35\" WC. Ekonomiczna jednostka Beck ma trzy zakresy obejmujące ciśnienia od .08\" do 4\" WC.",
+      "ductSwitch": {
+        "name": "Przełącznik ciśnienia Beck",
+        "feature1": "Zaprojektowany do monitorowania nadciśnienia, próżni i ciśnienia różnicowego powietrza lub innych gazów niepalnych i nieagresywnych",
+        "feature2": "Pokrętło regulowane w terenie umożliwia wybór dowolnej wartości wyzwalania w każdym zakresie ciśnienia",
+        "feature3": "Rurka i dwie rurki w komplecie"
+      },
+      "differentialSwitch": {
+        "name": "Przełącznik ciśnienia różnicowego",
+        "feature1": "Łatwy dostęp do regulowanego w terenie punktu nastawczego od 0.1\" do 3.5\" słupa wody",
+        "feature2": "Może być używany w sterowaniach bezpieczeństwa dzięki certyfikatowi UL 353",
+        "feature3": "Srebrne styki 5 amperowe"
+      }
+    },
+    "viewAll": "Zobacz wszystkie produkty ciśnieniowe"
   }
 }

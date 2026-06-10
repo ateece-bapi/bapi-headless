@@ -125,7 +125,9 @@
         "static": "Pickup Ports and Probes",
         "staticDesc": "Bộ truyền phát áp suất ống dẫn",
         "differentialSwitch": "Công tắc chênh lệch",
-        "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất"
+        "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất",
+        "pressureOverview": "Tổng Quan Áp Suất",
+        "pressureOverviewDesc": "Dòng sản phẩm đầy đủ cảm biến áp suất và công tắc cho ứng dụng HVAC"
       },
       "airQuality": {
         "title": "Chất Lượng Không Khí",
@@ -3860,5 +3862,80 @@
         "feature3": "Tấm bảo vệ cảm biến thông gió tốt"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Cảm Biến Áp Suất | BAPI",
+      "description": "Cảm biến áp suất của BAPI có khả năng lựa chọn hiện trường mà bạn cần để cài đặt dễ dàng và khắc phục sự cố trực quan để tiết kiệm thời gian và tiền bạc.",
+      "keywords": "cảm biến áp suất, áp suất chênh lệch, công tắc áp suất, cảm biến ZPM, áp suất phòng sạch, giám sát bộ lọc, kiểm soát áp suất vùng, cảm biến áp suất HVAC"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm",
+      "pressure": "Cảm Biến Áp Suất"
+    },
+    "hero": {
+      "title": "Áp suất quan trọng!",
+      "description": "Cảm biến áp suất của BAPI có khả năng lựa chọn hiện trường mà bạn cần để cài đặt dễ dàng và khắc phục sự cố trực quan để tiết kiệm thời gian và tiền bạc.",
+      "cta": "Khám Phá Sản Phẩm",
+      "imageAlt": "Họ Cảm Biến và Công Tắc Áp Suất BAPI"
+    },
+    "sensors": {
+      "sectionTitle": "Cảm Biến và Công Tắc Áp Suất",
+      "sectionSubtitle": "Dòng áp suất của BAPI đặt ra tiêu chuẩn mới về tính dễ cài đặt và chức năng. Đơn vị bảng điều khiển EZ cho phép lắp đặt bề mặt, snaptrack hoặc lắp đặt ray DIN với tất cả các phạm vi và đầu ra được đặt thông qua một mặt số và nút trên mặt của đơn vị. Multi-Sensor Áp Suất Vùng của chúng tôi (ZPM) là đa năng nhất với phạm vi, đầu ra, đơn vị, hướng và thời gian phản hồi tất cả được đặt nhanh chóng tại hiện trường mà không cần nguồn điện hoặc công cụ.",
+      "zpmBapiBox": {
+        "name": "Cảm Biến Áp Suất ZPM BAPI-Box",
+        "feature1": "Vỏ bọc chuẩn IP66/NEMA 4",
+        "feature2": "Hiện có trong các mô hình Thường (±1.0%FS) và Độ chính xác cao (±0.25%FS)",
+        "feature3": "Phạm vi và đầu ra có thể được thiết lập mà không cần cấp nguồn cho thiết bị"
+      },
+      "zpmDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch ZPM",
+        "feature1": "Chứng chỉ NIST miễn phí đi kèm",
+        "feature2": "10 phạm vi áp suất có thể chọn tại hiện trường và 5 đầu ra có thể chọn",
+        "feature3": "Phạm vi và đầu ra có thể được thiết lập mà không cần cấp nguồn cho thiết bị"
+      },
+      "ezDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch EZ",
+        "feature1": "10 phạm vi áp suất có thể chọn tại hiện trường và 3 đầu ra có thể chọn",
+        "feature2": "Chứng chỉ NIST miễn phí đi kèm với mỗi thiết bị",
+        "feature3": "Lắp đặt Snaptrack, ray DIN hoặc bề mặt"
+      },
+      "frpDifferential": {
+        "name": "Cảm Biến Áp Suất Chênh Lệch FRP",
+        "feature1": "Tiết kiệm một phần ba chi phí so với các mô hình có thể chọn tại hiện trường của chúng tôi",
+        "feature2": "LED năm màu cung cấp chỉ báo",
+        "feature3": "Chứng chỉ NIST miễn phí đi kèm với mỗi thiết bị"
+      },
+      "outsidePickup": {
+        "name": "Cổng Nhận Không Khí Bên Ngoài",
+        "feature1": "Lắp đặt trên mái, tường và dọc",
+        "feature2": "Giúp ổn định các số đọc bằng cách giảm biến động do gió giật",
+        "feature3": "Vỏ bền chống tia UV và chống cháy"
+      },
+      "roomPickup": {
+        "name": "Cổng Nhận Áp Suất Phòng",
+        "feature1": "Kinh tế và dễ lắp đặt",
+        "feature2": "Phù hợp với ống 1/8\" I.D. đến 5/32\" I.D.",
+        "feature3": "Có sẵn cho phòng, tường hoặc gạch trần"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Công Tắc Áp Suất",
+      "sectionSubtitle": "BAPI cung cấp hai kiểu Công Tắc Áp Suất Chênh Lệch có thể điều chỉnh tại hiện trường cho giám sát trạng thái bộ lọc khí và quạt, và chứng minh áp suất tĩnh và lưu lượng khí. Đơn vị BAPI-Box có thể được sử dụng trong các mạch an toàn vì Danh Sách Kiểm Soát Giới Hạn UL 353 của nó và có bảy phạm vi bao phủ áp suất từ 0.12\" đến 35\" WC. Đơn vị Beck tiết kiệm có ba phạm vi bao phủ áp suất từ .08\" đến 4\" WC.",
+      "ductSwitch": {
+        "name": "Công tắc áp suất Beck",
+        "feature1": "Được thiết kế để giám sát áp suất quá mức, chân không và áp suất chênh lệch của không khí hoặc các khí không cháy, không ăn mòn khác",
+        "feature2": "Nút xoay có thể điều chỉnh tại hiện trường cho phép bạn chọn bất kỳ giá trị kích hoạt nào trong mỗi phạm vi áp suất",
+        "feature3": "Ống và tổng cộng hai ống bao gồm"
+      },
+      "differentialSwitch": {
+        "name": "Công tắc áp suất chênh lệch",
+        "feature1": "Dễ dàng truy cập điểm đặt có thể điều chỉnh tại hiện trường từ 0.1\" đến 3.5\" W.C.",
+        "feature2": "Có thể được sử dụng cho các điều khiển an toàn nhờ chứng nhận UL 353",
+        "feature3": "Tiếp điểm bạc 5 Amp"
+      }
+    },
+    "viewAll": "Xem tất cả sản phẩm áp suất"
   }
 }

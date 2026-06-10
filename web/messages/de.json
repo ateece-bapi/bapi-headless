@@ -164,6 +164,8 @@
       },
       "pressure": {
         "title": "Druck",
+        "pressureOverview": "Druckübersicht",
+        "pressureOverviewDesc": "Komplette Linie von Drucksensoren und -schaltern für HLK-Anwendungen",
         "differential": "Differenzdruck",
         "differentialDesc": "Raum- und Filterüberwachung",
         "static": "Pickup Ports and Probes",
@@ -3860,5 +3862,80 @@
         "feature3": "Gut belüfteter Sensorschutz"
       }
     }
+  },
+  "pressureLandingPage": {
+    "metadata": {
+      "title": "Drucksensoren | BAPI",
+      "description": "Die Drucksensoren von BAPI bieten die Feldkonfigurierbarkeit, die Sie für eine einfache Installation und visuelle Fehlersuche benötigen, um Zeit und Geld zu sparen.",
+      "keywords": "Drucksensoren, Differenzdruck, Druckschalter, ZPM Sensor, Reinraumdruck, Filterüberwachung, Zonendruckkontrolle, HLK-Drucksensoren"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "pressure": "Drucksensoren"
+    },
+    "hero": {
+      "title": "Druck ist wichtig!",
+      "description": "Die Drucksensoren von BAPI bieten die Feldkonfigurierbarkeit, die Sie für eine einfache Installation und visuelle Fehlersuche benötigen, um Zeit und Geld zu sparen.",
+      "cta": "Produkte Erkunden",
+      "imageAlt": "BAPI Drucksensoren und -schalter Familie"
+    },
+    "sensors": {
+      "sectionTitle": "Drucksensoren & -schalter",
+      "sectionSubtitle": "Die Drucklinie von BAPI setzt einen neuen Standard für Installationsfreundlichkeit und Funktionalität. Das EZ-Panel-Gerät ermöglicht Oberflächenmontage, Snaptrack- oder DIN-Schienenmontage mit allen Bereichen und Ausgängen, die über ein Zifferblatt und eine Taste auf der Vorderseite des Geräts eingestellt werden. Unser Zonen-Druck-Multi-Sensor (ZPM) ist am vielseitigsten mit Bereichen, Ausgängen, Einheiten, Richtung und Ansprechzeit, die alle schnell im Feld ohne Strom oder Werkzeuge eingestellt werden.",
+      "zpmBapiBox": {
+        "name": "ZPM BAPI-Box Drucksensor",
+        "feature1": "IP66/NEMA 4 klassifiziertes Gehäuse",
+        "feature2": "Jetzt in Regular (±1.0%FS) & High Accuracy (±0.25%FS) Modellen",
+        "feature3": "Bereiche und Ausgänge können ohne Einschalten des Geräts eingestellt werden"
+      },
+      "zpmDifferential": {
+        "name": "ZPM Differenzdrucksensor",
+        "feature1": "Kostenloses NIST-Zertifikat enthalten",
+        "feature2": "10 vor Ort wählbare Druckbereiche und 5 wählbare Ausgänge",
+        "feature3": "Bereiche und Ausgänge können ohne Einschalten des Geräts eingestellt werden"
+      },
+      "ezDifferential": {
+        "name": "EZ Differenzdrucksensor",
+        "feature1": "10 vor Ort wählbare Druckbereiche und 3 wählbare Ausgänge",
+        "feature2": "Kostenloses NIST-Zertifikat bei jeder Einheit enthalten",
+        "feature3": "Snaptrack-, DIN-Schienen- oder Oberflächenmontage"
+      },
+      "frpDifferential": {
+        "name": "FRP Differenzdrucksensor",
+        "feature1": "Ein Drittel Kosteneinsparung gegenüber unseren vor Ort wählbaren Modellen",
+        "feature2": "Fünffarbige LED bietet Anzeige",
+        "feature3": "Kostenloses NIST-Zertifikat bei jeder Einheit enthalten"
+      },
+      "outsidePickup": {
+        "name": "Außenluft-Druckentnahmeanschluss",
+        "feature1": "Dach-, Wand- und Vertikalmontage",
+        "feature2": "Hilft, Messwerte zu stabilisieren, indem Schwankungen durch Windböen reduziert werden",
+        "feature3": "Robustes UV-beständiges und flammhemmendes Gehäuse"
+      },
+      "roomPickup": {
+        "name": "Raum-Druckentnahmeanschlüsse",
+        "feature1": "Wirtschaftlich und einfach zu installieren",
+        "feature2": "Geeignet für Schläuche von 1/8\" I.D. bis 5/32\" I.D.",
+        "feature3": "Verfügbar für Raum, Wand oder Deckenfliese"
+      }
+    },
+    "switches": {
+      "sectionTitle": "Druckschalter",
+      "sectionSubtitle": "BAPI bietet zwei Stile feldeinstellbarer Differenzdruckschalter für Luftfilter- und Lüfterstatusüberwachung sowie statische Druck- und Luftstromnachweis. Das BAPI-Box-Gerät kann in Sicherheitskreisen verwendet werden, da es über die UL 353 Limit Control-Auflistung verfügt und sieben Bereiche hat, die Druck von 0.12\" bis 35\" WC abdecken. Das wirtschaftliche Beck-Gerät hat drei Bereiche, die Drücke von .08\" bis 4\" WC abdecken.",
+      "ductSwitch": {
+        "name": "Beck Druckschalter",
+        "feature1": "Entwickelt zur Überwachung von Überdruck, Vakuum und Differenzdruck von Luft oder anderen nicht brennbaren, nicht aggressiven Gasen",
+        "feature2": "Das vor Ort einstellbare Wählrad ermöglicht die Auswahl eines beliebigen Auslösewerts innerhalb jedes Druckbereichs",
+        "feature3": "Schlauch und insgesamt zwei Rohre enthalten"
+      },
+      "differentialSwitch": {
+        "name": "Differenzdruckschalter",
+        "feature1": "Einfacher Zugang zum vor Ort einstellbaren Sollwert von 0.1\" bis 3.5\" WS",
+        "feature2": "Kann aufgrund der UL 353-Zulassung für Sicherheitssteuerungen verwendet werden",
+        "feature3": "5-Ampere-Silberkontakte"
+      }
+    },
+    "viewAll": "Alle Druckprodukte anzeigen"
   }
 }

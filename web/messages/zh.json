@@ -3936,5 +3936,113 @@
       }
     },
     "viewAll": "查看所有压力产品"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "空气质量传感器 - CO₂、VOC、颗粒物、CO、NO₂ | BAPI",
+      "description": "用于需求控制通风的全系列空气质量传感器,包括CO₂、VOC、颗粒物、一氧化碳和二氧化氮传感器。",
+      "keywords": "空气质量传感器、CO2传感器、VOC传感器、颗粒物传感器、一氧化碳传感器、二氧化氮传感器、室内空气质量、需求控制通风、IAQ监测"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品",
+      "current": "空气质量传感器"
+    },
+    "hero": {
+      "title": "空气质量传感器",
+      "description": "BAPI制造用于需求控制通风的全系列空气质量传感器,包括挥发性有机化合物(VOC)、二氧化碳(CO₂)、颗粒物、一氧化碳(CO)和二氧化氮(NO₂)。",
+      "imageAlt": "空气质量传感器 - CO₂、VOC、颗粒物、CO、NO₂",
+      "cta": "探索产品"
+    },
+    "co2": {
+      "sectionTitle": "CO₂传感器",
+      "sectionSubtitle": "BAPI的CO₂传感器获得了AHR博览会创新奖,因为集成的气压传感器持续补偿输出,无论天气或海拔高度如何都能获得准确的读数。我们的型号针对持续占用的区域进行了优化。",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "自动气压和温度补偿",
+        "feature2": "适用于持续占用或周期性空置的区域",
+        "feature3": "本地LED指示器"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "自动气压和温度补偿",
+        "feature2": "可选:温度/湿度、设定点、覆盖",
+        "feature3": "适用于持续占用或周期性空置的区域"
+      },
+      "duct": {
+        "name": "BAPI-Box 管道或重型 CO₂",
+        "feature1": "自动气压和温度补偿",
+        "feature2": "管道抽吸管或重型通风BAPI-Box",
+        "feature3": "适用于持续占用或周期性空置的区域"
+      }
+    },
+    "voc": {
+      "sectionTitle": "VOC传感器",
+      "sectionSubtitle": "BAPI的VOC传感器检测室内空气中的挥发性有机化合物。VOC从建筑材料、清洁产品和乘客活动中释放出来。我们的传感器有助于优化通风以改善室内空气质量和能源效率。",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "检测包括甲醛在内的广泛VOC",
+        "feature2": "适用于持续占用或周期性空置的区域",
+        "feature3": "本地LED指示器"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "检测包括甲醛在内的广泛VOC",
+        "feature2": "可选:温度/湿度、设定点、覆盖",
+        "feature3": "适用于持续占用或周期性空置的区域"
+      },
+      "duct": {
+        "name": "BAPI-Box 管道或重型 VOC",
+        "feature1": "检测包括甲醛在内的广泛VOC",
+        "feature2": "管道抽吸管或重型通风BAPI-Box",
+        "feature3": "适用于持续占用或周期性空置的区域"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "颗粒物传感器",
+      "sectionSubtitle": "BAPI的颗粒物传感器帮助您测量进入建筑物的物质。颗粒物(PM)通常被称为灰尘,但它不仅仅是沉积在平板电视上的普通灰尘。EPA将其定义为空气中发现的固体颗粒和液滴的混合物。虽然大多数颗粒不是圆形的,'直径'通常用于描述颗粒大小。",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" 颗粒物传感器",
+        "feature1": "光散射激光颗粒物检测,预期寿命10年",
+        "feature2": "现场可选颗粒大小和输出",
+        "feature3": "现代设计外壳"
+      },
+      "duct": {
+        "name": "BAPI-Box 管道颗粒物传感器",
+        "feature1": "IP66级坚固外壳",
+        "feature2": "现场可选颗粒大小和输出",
+        "feature3": "抽吸管适应垂直或水平气流"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "CO和NO₂传感器",
+      "sectionSubtitle": "BAPI的一氧化碳和二氧化氮传感器监测停车场、机房和其他关键空间中的有毒气体。这些传感器有助于确保安全的室内空气质量和建筑规范合规性。",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" 一氧化碳传感器",
+        "feature1": "电化学CO传感器,预期寿命10年",
+        "feature2": "适用于停车场和机房",
+        "feature3": "本地LED指示器"
+      },
+      "coDuct": {
+        "name": "CO - 管道和重型一氧化碳传感器",
+        "feature1": "电化学CO传感器,预期寿命10年",
+        "feature2": "管道抽吸管或重型通风BAPI-Box",
+        "feature3": "IP66级外壳适用于恶劣环境"
+      },
+      "no2Duct": {
+        "name": "NO₂ - 管道和重型二氧化氮传感器",
+        "feature1": "电化学NO₂传感器用于有毒气体监测",
+        "feature2": "现场可编程用于不同范围",
+        "feature3": "管道抽吸管或重型外壳"
+      },
+      "digitalCombo": {
+        "name": "数字CO和NO₂传感器",
+        "feature1": "CO和NO₂双电化学传感器",
+        "feature2": "数字输出用于精确监测",
+        "feature3": "适用于停车场和机房"
+      }
+    },
+    "learnMore": "了解更多",
+    "viewAll": "查看所有空气质量产品"
   }
 }

@@ -3934,5 +3934,113 @@
       }
     },
     "viewAll": "Ver todos los productos de presión"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Sensores de Calidad del Aire - CO₂, VOC, Partículas, CO, NO₂ | BAPI",
+      "description": "Línea completa de sensores de calidad del aire para ventilación controlada por demanda, incluyendo sensores de CO₂, VOC, Material Particulado, Monóxido de Carbono y Dióxido de Nitrógeno.",
+      "keywords": "sensores de calidad del aire, sensores de CO2, sensores de VOC, sensores de partículas, sensores de monóxido de carbono, sensores de dióxido de nitrógeno, calidad del aire interior, ventilación controlada por demanda, monitoreo de IAQ"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos",
+      "current": "Sensores de Calidad del Aire"
+    },
+    "hero": {
+      "title": "Sensores de Calidad del Aire",
+      "description": "BAPI fabrica una línea completa de sensores de calidad del aire para ventilación controlada por demanda, incluyendo Compuestos Orgánicos Volátiles (VOC), Dióxido de Carbono (CO₂), Material Particulado, Monóxido de Carbono (CO) y Dióxido de Nitrógeno (NO₂).",
+      "imageAlt": "Sensores de Calidad del Aire - CO₂, VOC, Partículas, CO, NO₂",
+      "cta": "Explorar Productos"
+    },
+    "co2": {
+      "sectionTitle": "Sensores de CO₂",
+      "sectionSubtitle": "El sensor de CO₂ de BAPI recibió un premio a la innovación AHR Expo debido a su sensor de presión barométrica incorporado que compensa continuamente la salida para lecturas precisas independientemente del clima o la altitud. Nuestro modelo está optimizado para áreas ocupadas continuamente.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Compensación automática de presión barométrica y temperatura",
+        "feature2": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas",
+        "feature3": "Indicación LED local"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Compensación automática de presión barométrica y temperatura",
+        "feature2": "Opcionales: temp/humedad, punto de ajuste, anulación",
+        "feature3": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas"
+      },
+      "duct": {
+        "name": "BAPI-Box Conducto o Servicio Rudo CO₂",
+        "feature1": "Compensación automática de presión barométrica y temperatura",
+        "feature2": "Tubo de aspiración para conducto o BAPI-Box ventilado para servicio rudo",
+        "feature3": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas"
+      }
+    },
+    "voc": {
+      "sectionTitle": "Sensores VOC",
+      "sectionSubtitle": "Los sensores VOC de BAPI detectan Compuestos Orgánicos Volátiles en el aire interior. Los VOC se emiten desde materiales de construcción, productos de limpieza y actividades de los ocupantes. Nuestros sensores ayudan a optimizar la ventilación para mejorar la calidad del aire interior y la eficiencia energética.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "Detecta una amplia gama de VOC incluyendo formaldehído",
+        "feature2": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas",
+        "feature3": "Indicación LED local"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "Detecta una amplia gama de VOC incluyendo formaldehído",
+        "feature2": "Opcionales: temp/humedad, punto de ajuste, anulación",
+        "feature3": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas"
+      },
+      "duct": {
+        "name": "BAPI-Box Conducto o Servicio Rudo VOC",
+        "feature1": "Detecta una amplia gama de VOC incluyendo formaldehído",
+        "feature2": "Tubo de aspiración para conducto o BAPI-Box ventilado para servicio rudo",
+        "feature3": "Perfecto para áreas ocupadas continuamente o periódicamente desocupadas"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Sensores de Partículas",
+      "sectionSubtitle": "Los sensores de partículas de BAPI ayudan a medir lo que ingresa a sus edificios. El Material Particulado (PM) a menudo se denomina polvo, pero es más que el polvo común que se asienta en su televisor de pantalla plana. La Agencia de Protección Ambiental (EPA) lo define como una mezcla de partículas sólidas y gotas líquidas que se encuentran en el aire. Aunque la mayoría de las partículas no tienen forma de círculo, 'diámetro' se usa a menudo para describir el tamaño de las partículas.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" Sensor de Partículas",
+        "feature1": "Detección de partículas por dispersión de luz basada en láser con vida útil esperada de 10 años",
+        "feature2": "Tamaño de partícula y salida seleccionables en campo",
+        "feature3": "Carcasa de estilo moderno"
+      },
+      "duct": {
+        "name": "BAPI-Box Sensor de Partículas para Conducto",
+        "feature1": "Carcasa robusta con clasificación IP66",
+        "feature2": "Tamaño de partícula y salida seleccionables en campo",
+        "feature3": "El tubo de aspiración se ajusta para flujo de aire vertical u horizontal"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "Sensores de CO y NO₂",
+      "sectionSubtitle": "Los sensores de Monóxido de Carbono y Dióxido de Nitrógeno de BAPI monitorean gases tóxicos en estacionamientos, salas de máquinas y otros espacios críticos. Estos sensores ayudan a garantizar una calidad del aire interior segura y el cumplimiento de los códigos de construcción.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" Sensor de Monóxido de Carbono",
+        "feature1": "Sensor de CO electroquímico con vida útil esperada de 10 años",
+        "feature2": "Perfecto para estacionamientos y salas de máquinas",
+        "feature3": "Indicación LED local"
+      },
+      "coDuct": {
+        "name": "CO - Sensor de Monóxido de Carbono para Conducto y Servicio Rudo",
+        "feature1": "Sensor de CO electroquímico con vida útil esperada de 10 años",
+        "feature2": "Tubo de aspiración para conducto o BAPI-Box ventilado para servicio rudo",
+        "feature3": "Carcasa con clasificación IP66 para ambientes difíciles"
+      },
+      "no2Duct": {
+        "name": "NO₂ - Sensor de Dióxido de Nitrógeno para Conducto y Servicio Rudo",
+        "feature1": "Sensor de NO₂ electroquímico para monitoreo de gases tóxicos",
+        "feature2": "Programable en campo para diferentes rangos",
+        "feature3": "Tubo de aspiración para conducto o carcasa para servicio rudo"
+      },
+      "digitalCombo": {
+        "name": "Sensor Digital de CO y NO₂",
+        "feature1": "Sensores electroquímicos duales para CO y NO₂",
+        "feature2": "Salida digital para monitoreo preciso",
+        "feature3": "Ideal para estacionamientos y salas de máquinas"
+      }
+    },
+    "learnMore": "Más información",
+    "viewAll": "Ver todos los productos de calidad del aire"
   }
 }

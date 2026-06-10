@@ -3937,5 +3937,113 @@
       }
     },
     "viewAll": "Alle Druckprodukte anzeigen"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Luftqualitätssensoren - CO₂, VOC, Feinstaub, CO, NO₂ | BAPI",
+      "description": "Vollständige Produktlinie von Luftqualitätssensoren für bedarfsgeführte Lüftung, einschließlich CO₂-, VOC-, Feinstaub-, Kohlenmonoxid- und Stickstoffdioxidsensoren.",
+      "keywords": "Luftqualitätssensoren, CO2-Sensoren, VOC-Sensoren, Feinstaubsensoren, Kohlenmonoxidsensoren, Stickstoffdioxidsensoren, Raumluftqualität, bedarfsgeführte Lüftung, IAQ-Überwachung"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "current": "Luftqualitätssensoren"
+    },
+    "hero": {
+      "title": "Luftqualitätssensoren",
+      "description": "BAPI stellt eine vollständige Produktlinie von Luftqualitätssensoren für bedarfsgeführte Lüftung her, einschließlich flüchtiger organischer Verbindungen (VOC), Kohlendioxid (CO₂), Feinstaub, Kohlenmonoxid (CO) und Stickstoffdioxid (NO₂).",
+      "imageAlt": "Luftqualitätssensoren - CO₂, VOC, Feinstaub, CO, NO₂",
+      "cta": "Produkte erkunden"
+    },
+    "co2": {
+      "sectionTitle": "CO₂-Sensoren",
+      "sectionSubtitle": "BAPIs CO₂-Sensor erhielt einen AHR Expo-Innovationspreis aufgrund seines eingebauten barometrischen Drucksensors, der den Ausgang kontinuierlich kompensiert, um genaue Messwerte unabhängig von Wetter oder Höhenlage zu erzielen. Unser Modell ist für dauerhaft belegte Bereiche optimiert.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Automatische barometrische Druck- und Temperaturkompensation",
+        "feature2": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche",
+        "feature3": "Lokale LED-Anzeige"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Automatische barometrische Druck- und Temperaturkompensation",
+        "feature2": "Optional: Temp/Feuchtigkeit, Sollwert, Außerkraftsetzung",
+        "feature3": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche"
+      },
+      "duct": {
+        "name": "BAPI-Box Kanal oder Robuster Dienst CO₂",
+        "feature1": "Automatische barometrische Druck- und Temperaturkompensation",
+        "feature2": "Kanalansaugrohr oder belüftete BAPI-Box für robusten Dienst",
+        "feature3": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche"
+      }
+    },
+    "voc": {
+      "sectionTitle": "VOC-Sensoren",
+      "sectionSubtitle": "BAPIs VOC-Sensoren erkennen flüchtige organische Verbindungen in der Raumluft. VOCs werden von Baumaterialien, Reinigungsprodukten und Nutzungsaktivitäten freigesetzt. Unsere Sensoren helfen, die Lüftung für verbesserte Raumluftqualität und Energieeffizienz zu optimieren.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "Erkennt eine breite Palette von VOCs einschließlich Formaldehyd",
+        "feature2": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche",
+        "feature3": "Lokale LED-Anzeige"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "Erkennt eine breite Palette von VOCs einschließlich Formaldehyd",
+        "feature2": "Optional: Temp/Feuchtigkeit, Sollwert, Außerkraftsetzung",
+        "feature3": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche"
+      },
+      "duct": {
+        "name": "BAPI-Box Kanal oder Robuster Dienst VOC",
+        "feature1": "Erkennt eine breite Palette von VOCs einschließlich Formaldehyd",
+        "feature2": "Kanalansaugrohr oder belüftete BAPI-Box für robusten Dienst",
+        "feature3": "Perfekt für dauerhaft belegte oder periodisch unbelegte Bereiche"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Feinstaubsensoren",
+      "sectionSubtitle": "BAPIs Feinstaubsensoren helfen Ihnen zu messen, was in Ihre Gebäude gelangt. Feinstaub (PM) wird oft als Staub bezeichnet, aber es ist mehr als der gewöhnliche Staub, der sich auf Ihrem Flachbildfernseher absetzt. Die Umweltschutzbehörde (EPA) definiert ihn als eine Mischung aus festen Partikeln und flüssigen Tröpfchen in der Luft. Obwohl die meisten Partikel nicht kreisförmig sind, wird 'Durchmesser' oft verwendet, um die Größe der Partikel zu beschreiben.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" Feinstaubsensor",
+        "feature1": "Laserbasierte Lichtstreuungs-Partikelerkennung mit 10 Jahren erwarteter Lebensdauer",
+        "feature2": "Vor Ort wählbare Partikelgröße und Ausgang",
+        "feature3": "Modernes Design-Gehäuse"
+      },
+      "duct": {
+        "name": "BAPI-Box Kanal-Feinstaubsensor",
+        "feature1": "Robustes IP66-zertifiziertes Gehäuse",
+        "feature2": "Vor Ort wählbare Partikelgröße und Ausgang",
+        "feature3": "Ansaugrohr passt sich für vertikalen oder horizontalen Luftstrom an"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "CO- und NO₂-Sensoren",
+      "sectionSubtitle": "BAPIs Kohlenmonoxid- und Stickstoffdioxidsensoren überwachen giftige Gase in Parkgaragen, Maschinenräumen und anderen kritischen Bereichen. Diese Sensoren helfen, eine sichere Raumluftqualität und die Einhaltung von Bauvorschriften zu gewährleisten.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" Kohlenmonoxidsensor",
+        "feature1": "Elektrochemischer CO-Sensor mit 10 Jahren erwarteter Lebensdauer",
+        "feature2": "Perfekt für Parkgaragen und Maschinenräume",
+        "feature3": "Lokale LED-Anzeige"
+      },
+      "coDuct": {
+        "name": "CO - Kanal- und Robuster Dienst Kohlenmonoxidsensor",
+        "feature1": "Elektrochemischer CO-Sensor mit 10 Jahren erwarteter Lebensdauer",
+        "feature2": "Kanalansaugrohr oder belüftete BAPI-Box für robusten Dienst",
+        "feature3": "IP66-zertifiziertes Gehäuse für raue Umgebungen"
+      },
+      "no2Duct": {
+        "name": "NO₂ - Kanal- und Robuster Dienst Stickstoffdioxidsensor",
+        "feature1": "Elektrochemischer NO₂-Sensor zur Überwachung giftiger Gase",
+        "feature2": "Vor Ort programmierbar für verschiedene Bereiche",
+        "feature3": "Kanalansaugrohr oder Gehäuse für robusten Dienst"
+      },
+      "digitalCombo": {
+        "name": "Digitaler CO- und NO₂-Sensor",
+        "feature1": "Duale elektrochemische Sensoren für CO und NO₂",
+        "feature2": "Digitaler Ausgang für präzise Überwachung",
+        "feature3": "Ideal für Parkgaragen und Maschinenräume"
+      }
+    },
+    "learnMore": "Mehr erfahren",
+    "viewAll": "Alle Luftqualitätsprodukte anzeigen"
   }
 }

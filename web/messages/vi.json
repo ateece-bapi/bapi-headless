@@ -131,6 +131,8 @@
       },
       "airQuality": {
         "title": "Chất Lượng Không Khí",
+        "airQualityOverview": "Tổng quan chất lượng không khí",
+        "airQualityOverviewDesc": "Giải pháp hoàn chỉnh CO₂, VOC, hạt bụi, CO và NO₂",
         "co2": "Cảm Biến CO₂",
         "co2Desc": "Giám sát carbon dioxide",
         "voc": "Cảm Biến VOC",
@@ -3937,5 +3939,113 @@
       }
     },
     "viewAll": "Xem tất cả sản phẩm áp suất"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Cảm biến chất lượng không khí - CO₂, VOC, Hạt bụi, CO, NO₂ | BAPI",
+      "description": "Dòng cảm biến chất lượng không khí đầy đủ cho thông gió kiểm soát theo nhu cầu bao gồm cảm biến CO₂, VOC, hạt bụi, carbon monoxide và nitrogen dioxide.",
+      "keywords": "cảm biến chất lượng không khí, cảm biến CO2, cảm biến VOC, cảm biến hạt bụi, cảm biến carbon monoxide, cảm biến nitrogen dioxide, chất lượng không khí trong nhà, thông gió kiểm soát theo nhu cầu, giám sát IAQ"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm",
+      "current": "Cảm biến chất lượng không khí"
+    },
+    "hero": {
+      "title": "Cảm biến chất lượng không khí",
+      "description": "BAPI sản xuất dòng cảm biến chất lượng không khí đầy đủ cho thông gió kiểm soát theo nhu cầu bao gồm hợp chất hữu cơ dễ bay hơi (VOC), carbon dioxide (CO₂), hạt bụi, carbon monoxide (CO) và nitrogen dioxide (NO₂).",
+      "imageAlt": "Cảm biến chất lượng không khí - CO₂, VOC, Hạt bụi, CO, NO₂",
+      "cta": "Khám phá sản phẩm"
+    },
+    "co2": {
+      "sectionTitle": "Cảm biến CO₂",
+      "sectionSubtitle": "Cảm biến CO₂ của BAPI đã giành giải thưởng Đổi mới AHR Expo vì cảm biến khí áp tích hợp liên tục bù đắp đầu ra cho các số đọc chính xác bất kể thời tiết hoặc độ cao. Mô hình của chúng tôi được tối ưu hóa cho các khu vực luôn có người.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Bù đắp khí áp và nhiệt độ tự động",
+        "feature2": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống",
+        "feature3": "Đèn báo LED cục bộ"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Bù đắp khí áp và nhiệt độ tự động",
+        "feature2": "Tùy chọn: nhiệt độ/độ ẩm, điểm đặt, ghi đè",
+        "feature3": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống"
+      },
+      "duct": {
+        "name": "BAPI-Box ống dẫn hoặc hạng nặng CO₂",
+        "feature1": "Bù đắp khí áp và nhiệt độ tự động",
+        "feature2": "Ống hút ống dẫn hoặc BAPI-Box thông gió cho hạng nặng",
+        "feature3": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống"
+      }
+    },
+    "voc": {
+      "sectionTitle": "Cảm biến VOC",
+      "sectionSubtitle": "Cảm biến VOC của BAPI phát hiện các hợp chất hữu cơ dễ bay hơi trong không khí trong nhà. VOC được thải ra từ vật liệu xây dựng, sản phẩm làm sạch và hoạt động của người cư trú. Cảm biến của chúng tôi giúp tối ưu hóa thông gió cho chất lượng không khí trong nhà và hiệu quả năng lượng.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "Phát hiện nhiều loại VOC bao gồm formaldehyde",
+        "feature2": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống",
+        "feature3": "Đèn báo LED cục bộ"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "Phát hiện nhiều loại VOC bao gồm formaldehyde",
+        "feature2": "Tùy chọn: nhiệt độ/độ ẩm, điểm đặt, ghi đè",
+        "feature3": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống"
+      },
+      "duct": {
+        "name": "BAPI-Box ống dẫn hoặc hạng nặng VOC",
+        "feature1": "Phát hiện nhiều loại VOC bao gồm formaldehyde",
+        "feature2": "Ống hút ống dẫn hoặc BAPI-Box thông gió cho hạng nặng",
+        "feature3": "Lý tưởng cho các khu vực luôn có người hoặc thỉnh thoảng trống"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Cảm biến hạt bụi",
+      "sectionSubtitle": "Cảm biến hạt bụi của BAPI giúp bạn đo lường những gì đang đi vào tòa nhà của bạn. Hạt bụi (PM) thường được gọi là bụi, nhưng nó nhiều hơn bụi thông thường lắng đọng trên TV màn hình phẳng. EPA định nghĩa nó là hỗn hợp các hạt rắn và giọt chất lỏng được tìm thấy trong không khí. Mặc dù hầu hết các hạt không có hình tròn, 'đường kính' thường được sử dụng để mô tả kích thước hạt.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" cảm biến hạt bụi",
+        "feature1": "Cảm biến hạt bụi laser phân tán ánh sáng với tuổi thọ dự kiến 10 năm",
+        "feature2": "Kích thước hạt và đầu ra có thể chọn tại hiện trường",
+        "feature3": "Vỏ thiết kế hiện đại"
+      },
+      "duct": {
+        "name": "BAPI-Box cảm biến hạt bụi ống dẫn",
+        "feature1": "Vỏ bền chắc được xếp hạng IP66",
+        "feature2": "Kích thước hạt và đầu ra có thể chọn tại hiện trường",
+        "feature3": "Ống hút thích ứng với dòng không khí dọc hoặc ngang"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "Cảm biến CO và NO₂",
+      "sectionSubtitle": "Cảm biến carbon monoxide và nitrogen dioxide của BAPI giám sát khí độc trong bãi đậu xe, phòng máy và các không gian quan trọng khác. Các cảm biến này giúp đảm bảo chất lượng không khí trong nhà an toàn và tuân thủ quy định xây dựng.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" cảm biến carbon monoxide",
+        "feature1": "Cảm biến CO điện hóa với tuổi thọ dự kiến 10 năm",
+        "feature2": "Lý tưởng cho bãi đậu xe và phòng máy",
+        "feature3": "Đèn báo LED cục bộ"
+      },
+      "coDuct": {
+        "name": "CO - cảm biến carbon monoxide ống dẫn và hạng nặng",
+        "feature1": "Cảm biến CO điện hóa với tuổi thọ dự kiến 10 năm",
+        "feature2": "Ống hút ống dẫn hoặc BAPI-Box thông gió cho hạng nặng",
+        "feature3": "Vỏ được xếp hạng IP66 cho môi trường khắc nghiệt"
+      },
+      "no2Duct": {
+        "name": "NO₂ - cảm biến nitrogen dioxide ống dẫn và hạng nặng",
+        "feature1": "Cảm biến NO₂ điện hóa để giám sát khí độc",
+        "feature2": "Có thể lập trình tại hiện trường cho các phạm vi khác nhau",
+        "feature3": "Ống hút ống dẫn hoặc vỏ hạng nặng"
+      },
+      "digitalCombo": {
+        "name": "Cảm biến CO và NO₂ kỹ thuật số",
+        "feature1": "Cảm biến điện hóa kép cho CO và NO₂",
+        "feature2": "Đầu ra kỹ thuật số cho giám sát chính xác",
+        "feature3": "Lý tưởng cho bãi đậu xe và phòng máy"
+      }
+    },
+    "learnMore": "Tìm hiểu thêm",
+    "viewAll": "Xem tất cả sản phẩm chất lượng không khí"
   }
 }

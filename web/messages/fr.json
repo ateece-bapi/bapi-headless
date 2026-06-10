@@ -497,6 +497,8 @@
       },
       "airQuality": {
         "title": "Qualité de l'Air",
+        "airQualityOverview": "Aperçu de la qualité de l'air",
+        "airQualityOverviewDesc": "Solutions complètes CO₂, VOC, particules, CO et NO₂",
         "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
         "voc": "Capteurs COV",
@@ -3937,5 +3939,113 @@
       }
     },
     "viewAll": "Voir tous les produits de pression"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Capteurs de Qualité de l'Air - CO₂, COV, Particules, CO, NO₂ | BAPI",
+      "description": "Gamme complète de capteurs de qualité de l'air pour la ventilation contrôlée à la demande, incluant les capteurs de CO₂, COV, Particules, Monoxyde de Carbone et Dioxyde d'Azote.",
+      "keywords": "capteurs de qualité de l'air, capteurs de CO2, capteurs de COV, capteurs de particules, capteurs de monoxyde de carbone, capteurs de dioxyde d'azote, qualité de l'air intérieur, ventilation contrôlée à la demande, surveillance IAQ"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits",
+      "current": "Capteurs de Qualité de l'Air"
+    },
+    "hero": {
+      "title": "Capteurs de Qualité de l'Air",
+      "description": "BAPI fabrique une gamme complète de capteurs de qualité de l'air pour la ventilation contrôlée à la demande, incluant les Composés Organiques Volatils (COV), le Dioxyde de Carbone (CO₂), les Particules, le Monoxyde de Carbone (CO) et le Dioxyde d'Azote (NO₂).",
+      "imageAlt": "Capteurs de Qualité de l'Air - CO₂, COV, Particules, CO, NO₂",
+      "cta": "Explorer les Produits"
+    },
+    "co2": {
+      "sectionTitle": "Capteurs de CO₂",
+      "sectionSubtitle": "Le capteur de CO₂ de BAPI a reçu un prix d'innovation AHR Expo grâce à son capteur de pression barométrique intégré qui compense en permanence la sortie pour des lectures précises malgré la météo ou l'altitude. Notre modèle est optimisé pour les zones continuellement occupées.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Compensation automatique de la pression barométrique et de la température",
+        "feature2": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées",
+        "feature3": "Indication LED locale"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Compensation automatique de la pression barométrique et de la température",
+        "feature2": "Options temp/humidité, point de consigne, dérogation",
+        "feature3": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées"
+      },
+      "duct": {
+        "name": "BAPI-Box Conduit ou Service Intensif CO₂",
+        "feature1": "Compensation automatique de la pression barométrique et de la température",
+        "feature2": "Tube d'aspiration pour conduit ou BAPI-Box ventilé pour service intensif",
+        "feature3": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées"
+      }
+    },
+    "voc": {
+      "sectionTitle": "Capteurs de COV",
+      "sectionSubtitle": "Les capteurs de COV de BAPI détectent les Composés Organiques Volatils dans l'air intérieur. Les COV sont émis par les matériaux de construction, les produits de nettoyage et les activités des occupants. Nos capteurs aident à optimiser la ventilation pour améliorer la qualité de l'air intérieur et l'efficacité énergétique.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" COV",
+        "feature1": "Détecte une large gamme de COV, y compris le formaldéhyde",
+        "feature2": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées",
+        "feature3": "Indication LED locale"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" COV",
+        "feature1": "Détecte une large gamme de COV, y compris le formaldéhyde",
+        "feature2": "Options temp/humidité, point de consigne, dérogation",
+        "feature3": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées"
+      },
+      "duct": {
+        "name": "BAPI-Box Conduit ou Service Intensif COV",
+        "feature1": "Détecte une large gamme de COV, y compris le formaldéhyde",
+        "feature2": "Tube d'aspiration pour conduit ou BAPI-Box ventilé pour service intensif",
+        "feature3": "Parfait pour les zones continuellement occupées ou périodiquement inoccupées"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Capteurs de Particules",
+      "sectionSubtitle": "Les capteurs de particules de BAPI vous aident à mesurer ce qui entre dans vos bâtiments. Les Particules (PM) sont souvent appelées poussière, mais c'est plus que la poussière commune qui se dépose sur votre téléviseur à écran plat. L'Agence de Protection de l'Environnement (EPA) les définit comme un mélange de particules solides et de gouttelettes liquides présentes dans l'air. Bien que la plupart des particules ne soient pas de forme circulaire, le 'diamètre' est souvent utilisé pour décrire la taille des particules.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" Capteur de Particules",
+        "feature1": "Détection de particules par diffusion de lumière laser avec une durée de vie prévue de 10 ans",
+        "feature2": "Taille de particule et sortie sélectionnables sur site",
+        "feature3": "Boîtier de style moderne"
+      },
+      "duct": {
+        "name": "BAPI-Box Capteur de Particules pour Conduit",
+        "feature1": "Boîtier robuste certifié IP66",
+        "feature2": "Taille de particule et sortie sélectionnables sur site",
+        "feature3": "Le tube d'aspiration s'ajuste pour un flux d'air vertical ou horizontal"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "Capteurs de CO et NO₂",
+      "sectionSubtitle": "Les capteurs de Monoxyde de Carbone et de Dioxyde d'Azote de BAPI surveillent les gaz toxiques dans les parkings, les salles mécaniques et autres espaces critiques. Ces capteurs aident à garantir une qualité de l'air intérieur sûre et la conformité aux codes du bâtiment.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" Capteur de Monoxyde de Carbone",
+        "feature1": "Capteur de CO électrochimique avec une durée de vie prévue de 10 ans",
+        "feature2": "Parfait pour les parkings et les salles mécaniques",
+        "feature3": "Indication LED locale"
+      },
+      "coDuct": {
+        "name": "CO - Capteur de Monoxyde de Carbone pour Conduit et Service Intensif",
+        "feature1": "Capteur de CO électrochimique avec une durée de vie prévue de 10 ans",
+        "feature2": "Tube d'aspiration pour conduit ou BAPI-Box ventilé pour service intensif",
+        "feature3": "Boîtier certifié IP66 pour environnements difficiles"
+      },
+      "no2Duct": {
+        "name": "NO₂ - Capteur de Dioxyde d'Azote pour Conduit et Service Intensif",
+        "feature1": "Capteur de NO₂ électrochimique pour la surveillance des gaz toxiques",
+        "feature2": "Programmable sur site pour différentes plages",
+        "feature3": "Tube d'aspiration pour conduit ou boîtier pour service intensif"
+      },
+      "digitalCombo": {
+        "name": "Capteur Numérique de CO et NO₂",
+        "feature1": "Capteurs électrochimiques doubles pour CO et NO₂",
+        "feature2": "Sortie numérique pour une surveillance précise",
+        "feature3": "Idéal pour les parkings et les salles mécaniques"
+      }
+    },
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tous les produits de qualité de l'air"
   }
 }

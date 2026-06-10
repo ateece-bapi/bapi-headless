@@ -1,126 +1,208 @@
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { Metadata } from 'next';
-import {
-  ArrowRightIcon,
-  WindIcon,
-  LeafIcon,
-  HeartIcon,
-  BuildingIcon,
-  UsersIcon,
-  TrendingUpIcon,
-  ChevronRightIcon,
-} from '@/lib/icons';
+import { getTranslations } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/metadata';
+import { ChevronRightIcon, CheckCircleIcon } from '@/lib/icons';
 
-export const metadata: Metadata = {
-  title: 'Air Quality Sensors - CO₂, VOC & IAQ | BAPI',
-  description:
-    'Indoor air quality sensors for CO₂, VOC, and IAQ monitoring. Improve occupant health, meet ventilation standards, and optimize HVAC efficiency.',
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function AirQualityPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'airQualityLandingPage' });
+
+  return generatePageMetadata(
+    {
+      title: t('metadata.title'),
+      description: t('metadata.description'),
+      path: 'air-quality',
+      keywords: t('metadata.keywords')
+        .split(/[,،、،]/)
+        .map((k) => k.trim())
+        .filter(Boolean),
+    },
+    locale
+  );
+}
+
+export default async function AirQualityPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'airQualityLandingPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+
+  // CO2 Sensors
+  const co2Products = [
+    {
+      name: t('co2.quantum.name'),
+      slug: 'co2-24-7-bapi-stat-quantum-carbon-dioxide-sensor-constant-occupancy',
+      features: [t('co2.quantum.feature1'), t('co2.quantum.feature2'), t('co2.quantum.feature3')],
+      image: '/images/air/co2/Quantum-CO2-Main.png',
+    },
+    {
+      name: t('co2.quantumPrime.name'),
+      slug: 'co2-24-7-bapi-stat-quantum-prime-co2-temp-and-humidity-sensor-constant-occupancy',
+      features: [
+        t('co2.quantumPrime.feature1'),
+        t('co2.quantumPrime.feature2'),
+        t('co2.quantumPrime.feature3'),
+      ],
+      image: '/images/air/co2/Quantum-Prime-CO2-Main.png',
+    },
+    {
+      name: t('co2.duct.name'),
+      slug: 'co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy',
+      features: [t('co2.duct.feature1'), t('co2.duct.feature2'), t('co2.duct.feature3')],
+      image: '/images/air/co2/CO2-Duct.png',
+    },
+  ];
+
+  // VOC Sensors
+  const vocProducts = [
+    {
+      name: t('voc.quantum.name'),
+      slug: 'voc-bapi-stat-quantum-voc-sensor',
+      features: [t('voc.quantum.feature1'), t('voc.quantum.feature2'), t('voc.quantum.feature3')],
+      image: '/images/air/voc/Quantum-VOC-Main.png',
+    },
+    {
+      name: t('voc.quantumPrime.name'),
+      slug: 'voc-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor',
+      features: [
+        t('voc.quantumPrime.feature1'),
+        t('voc.quantumPrime.feature2'),
+        t('voc.quantumPrime.feature3'),
+      ],
+      image: '/images/air/voc/Quantum-Prime-VOC-Main-25.png',
+    },
+    {
+      name: t('voc.duct.name'),
+      slug: 'voc-duct-or-rough-service-voc-sensor',
+      features: [t('voc.duct.feature1'), t('voc.duct.feature2'), t('voc.duct.feature3')],
+      image: '/images/air/voc/VOC-Duct.png',
+    },
+  ];
+
+  // Particulate Sensors
+  const particulateProducts = [
+    {
+      name: t('particulate.quantum.name'),
+      slug: 'particulate-sensor-bapi-stat-quantum-enclosure',
+      features: [
+        t('particulate.quantum.feature1'),
+        t('particulate.quantum.feature2'),
+        t('particulate.quantum.feature3'),
+      ],
+      image: '/images/air/particulate/Particulate_Quantum.png',
+    },
+    {
+      name: t('particulate.duct.name'),
+      slug: 'particulate-sensor-duct',
+      features: [
+        t('particulate.duct.feature1'),
+        t('particulate.duct.feature2'),
+        t('particulate.duct.feature3'),
+      ],
+      image: '/images/air/particulate/Particulate_Duct.png',
+    },
+  ];
+
+  // CO & NO2 Sensors
+  const coNo2Products = [
+    {
+      name: t('coNo2.coQuantum.name'),
+      slug: 'carbon-monoxide-room',
+      features: [
+        t('coNo2.coQuantum.feature1'),
+        t('coNo2.coQuantum.feature2'),
+        t('coNo2.coQuantum.feature3'),
+      ],
+      image: '/images/air/no2/CO_Quantum.png',
+    },
+    {
+      name: t('coNo2.coDuct.name'),
+      slug: 'co-duct-and-rough-service-carbon-monoxide-sensor',
+      features: [
+        t('coNo2.coDuct.feature1'),
+        t('coNo2.coDuct.feature2'),
+        t('coNo2.coDuct.feature3'),
+      ],
+      image: '/images/air/no2/CO-Duct.png',
+    },
+    {
+      name: t('coNo2.no2Duct.name'),
+      slug: 'no2-duct-and-rough-service-nitrogen-dioxide-sensor',
+      features: [
+        t('coNo2.no2Duct.feature1'),
+        t('coNo2.no2Duct.feature2'),
+        t('coNo2.no2Duct.feature3'),
+      ],
+      image: '/images/air/no2/NO2-programmable.png',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32 border-b-4 border-accent-500">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="flex items-center gap-2 text-sm text-primary-100"
+            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
-              Products
+              {t('breadcrumb.products')}
             </Link>
             <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">Air Quality Sensors</span>
+            <span className="font-medium text-white">{t('breadcrumb.current')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-8 2xl:gap-10">
+            {/* Left Column - Content */}
             <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
-                <WindIcon className="h-4 w-4" />
-                <span>Indoor Air Quality</span>
-              </div>
-
-              <h1 className="mb-6 text-balance text-4xl font-bold sm:text-5xl lg:text-6xl">
-                Breathe Better with
-                <span className="mt-2 block text-accent-500">Smart Ventilation</span>
+              <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
+                {t('hero.title')}
               </h1>
-              <p className="mb-8 max-w-2xl text-xl text-primary-50 lg:text-2xl">
-                BAPI air quality sensors monitor CO₂, VOCs, and IAQ to optimize ventilation, improve
-                occupant health, and reduce energy costs.
+              <p className="mb-6 text-lg leading-relaxed text-primary-50 drop-shadow-md lg:text-xl xl:mb-5">
+                {t('hero.description')}
               </p>
-
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
-                  href="/products?category=air-quality"
-                  className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
+                  href="#co2-sensors"
+                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
                 >
-                  Browse Air Quality Sensors
-                  <ArrowRightIcon className="h-5 w-5" />
+                  {t('hero.cta')}
                 </Link>
                 <Link
-                  href="/request-quote"
-                  className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
                 >
-                  Request Quote
+                  {tCommon('contactUs')}
                 </Link>
-              </div>
-
-              {/* Stats */}
-              <div className="mt-12 grid grid-cols-3 gap-6 border-t border-white/20 pt-12">
-                <div className="group relative cursor-default">
-                  <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
-                  <div className="relative p-4 text-center">
-                    <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      ±50 ppm
-                    </div>
-                    <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      CO₂ Accuracy
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative cursor-default">
-                  <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
-                  <div className="relative p-4 text-center">
-                    <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      ASHRAE
-                    </div>
-                    <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      Compliant
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative cursor-default">
-                  <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
-                  <div className="relative p-4 text-center">
-                    <div className="mb-2 text-3xl font-bold text-accent-500 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
-                      30%
-                    </div>
-                    <div className="text-sm font-medium text-primary-100 lg:text-base">
-                      Energy Savings
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
+            {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="group/image relative aspect-square overflow-hidden rounded-2xl bg-white p-8 shadow-2xl">
+              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
-                  src="/images/products/families/AirQuality_Family_2025_US.webp"
-                  alt="BAPI air quality sensors family"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain transition-transform duration-700 group-hover/image:scale-105"
+                  src="/images/air/co2/1-air-quality-sensors.png"
+                  alt={t('hero.imageAlt')}
+                  width={600}
+                  height={400}
+                  className="mx-auto h-auto max-w-full"
+                  sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
+                  quality={85}
+                  style={{ maxWidth: '600px' }}
                 />
               </div>
             </div>
@@ -128,234 +210,248 @@ export default function AirQualityPage() {
         </div>
       </section>
 
-      {/* Air Quality Sensor Types */}
-      <section className="bg-neutral-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      {/* CO2 Sensors Section */}
+      <section id="co2-sensors" className="bg-neutral-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Air Quality Monitoring Solutions
+            <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+              {t('co2.sectionTitle')}
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
-              Comprehensive sensing for healthier, more efficient buildings
+            <p className="mx-auto max-w-4xl text-lg text-neutral-600">
+              {t('co2.sectionSubtitle')}
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: WindIcon,
-                title: 'CO₂ Sensors',
-                description:
-                  'Carbon dioxide monitoring for demand-controlled ventilation and occupancy-based HVAC.',
-                features: [
-                  '±50 ppm accuracy',
-                  'NDIR technology',
-                  'Auto-calibration',
-                  '0-2000 ppm range',
-                ],
-                link: '/products?category=co2-sensors',
-              },
-              {
-                icon: LeafIcon,
-                title: 'VOC Sensors',
-                description:
-                  'Volatile Organic Compound detection for air quality and contamination monitoring.',
-                features: [
-                  'ppb sensitivity',
-                  'Wide chemical range',
-                  'Fast response',
-                  'Long lifespan',
-                ],
-                link: '/products?category=voc-sensors',
-              },
-              {
-                icon: HeartIcon,
-                title: 'IAQ Sensors',
-                description:
-                  'Combined indoor air quality sensors measuring multiple parameters simultaneously.',
-                features: [
-                  'Multi-gas detection',
-                  'Composite index',
-                  'BACnet/Modbus',
-                  'LCD display options',
-                ],
-                link: '/products?category=iaq-sensors',
-              },
-            ].map((sensor, idx) => (
+            {co2Products.map((product) => (
               <div
-                key={idx}
-                className="group relative rounded-xl bg-white p-8 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                key={product.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all hover:shadow-xl"
               >
-                <div className="bg-linear-to-br mb-6 flex h-16 w-16 items-center justify-center rounded-xl from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
-                  <sensor.icon className="h-8 w-8 text-white" />
+                {/* Product Image */}
+                <div className="relative h-64 bg-neutral-50 p-16">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
 
-                <h3 className="mb-3 text-2xl font-bold text-neutral-900">{sensor.title}</h3>
-                <p className="mb-6 text-neutral-700">{sensor.description}</p>
+                {/* Yellow Accent Bar */}
+                <div className="h-1 w-full bg-accent-500" aria-hidden="true" />
 
-                <ul className="mb-8 space-y-3">
-                  {sensor.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-neutral-700">
-                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-600">
-                        ✓
-                      </span>
-                      <span className="leading-relaxed">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={sensor.link}
-                  className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
-                >
-                  View Products
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
-
-                <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
+                  <h3 className="mb-8 text-xl font-bold text-primary-600">{product.name}</h3>
+                  <ul className="mb-12 flex-1 space-y-4 text-base text-neutral-700">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircleIcon
+                          className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                          aria-hidden="true"
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/product/${product.slug}`}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  >
+                    {tCommon('learnMore')}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      {/* VOC Sensors Section */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Why Monitor Indoor Air Quality?
+            <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+              {t('voc.sectionTitle')}
             </h2>
+            <p className="mx-auto max-w-4xl text-lg text-neutral-600">
+              {t('voc.sectionSubtitle')}
+            </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: UsersIcon,
-                title: 'Occupant Health & Productivity',
-                description:
-                  'Better air quality improves cognitive performance and reduces sick building syndrome',
-              },
-              {
-                icon: TrendingUpIcon,
-                title: 'Energy Savings',
-                description:
-                  'Demand-controlled ventilation reduces over-ventilation and HVAC costs by 20-30%',
-              },
-              {
-                icon: BuildingIcon,
-                title: 'Code Compliance',
-                description: 'Meet ASHRAE 62.1, LEED, and WELL Building Standard requirements',
-              },
-              {
-                icon: WindIcon,
-                title: 'Optimized Ventilation',
-                description: 'Adjust fresh air based on actual occupancy and contamination levels',
-              },
-              {
-                icon: HeartIcon,
-                title: 'Post-Pandemic Confidence',
-                description:
-                  'Demonstrate commitment to indoor air quality for occupants and visitors',
-              },
-              {
-                icon: LeafIcon,
-                title: 'Sustainability',
-                description:
-                  'Reduce carbon footprint while maintaining healthy indoor environments',
-              },
-            ].map((benefit, idx) => (
-              <div key={idx} className="flex gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500">
-                  <benefit.icon className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                  <p className="text-neutral-700">{benefit.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Applications */}
-      <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              Critical Applications
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: 'Commercial Offices',
-                description: 'Conference rooms, open offices, cubicles',
-              },
-              {
-                title: 'Educational Facilities',
-                description: 'Classrooms, lecture halls, gymnasiums',
-              },
-              {
-                title: 'Healthcare',
-                description: 'Patient rooms, waiting areas, labs',
-              },
-              {
-                title: 'Hospitality',
-                description: 'Hotel rooms, ballrooms, restaurants',
-              },
-              {
-                title: 'Retail',
-                description: 'Shopping centers, stores, showrooms',
-              },
-              {
-                title: 'Residential',
-                description: 'Apartments, condos, multi-family',
-              },
-              {
-                title: 'Parking Garages',
-                description: 'Underground and enclosed parking',
-              },
-              {
-                title: 'Industrial',
-                description: 'Manufacturing, warehouses, facilities',
-              },
-            ].map((app, idx) => (
+            {vocProducts.map((product) => (
               <div
-                key={idx}
-                className="rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
+                key={product.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all hover:shadow-xl"
               >
-                <h3 className="mb-2 text-lg font-bold text-neutral-900">{app.title}</h3>
-                <p className="text-sm text-neutral-700">{app.description}</p>
+                {/* Product Image */}
+                <div className="relative h-64 bg-neutral-50 p-16">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+
+                {/* Yellow Accent Bar */}
+                <div className="h-1 w-full bg-accent-500" aria-hidden="true" />
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
+                  <h3 className="mb-8 text-xl font-bold text-primary-600">{product.name}</h3>
+                  <ul className="mb-12 flex-1 space-y-4 text-base text-neutral-700">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircleIcon
+                          className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                          aria-hidden="true"
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/product/${product.slug}`}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  >
+                    {tCommon('learnMore')}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-24">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-3xl font-bold lg:text-4xl">Improve Your Indoor Air Quality</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">
-            Explore our air quality sensors or contact our team for application guidance
-          </p>
+      {/* Particulate Sensors Section */}
+      <section className="bg-neutral-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+              {t('particulate.sectionTitle')}
+            </h2>
+            <p className="mx-auto max-w-4xl text-lg text-neutral-600">
+              {t('particulate.sectionSubtitle')}
+            </p>
+          </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid gap-8 md:grid-cols-2">
+            {particulateProducts.map((product) => (
+              <div
+                key={product.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all hover:shadow-xl"
+              >
+                {/* Product Image */}
+                <div className="relative h-64 bg-neutral-50 p-16">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+
+                {/* Yellow Accent Bar */}
+                <div className="h-1 w-full bg-accent-500" aria-hidden="true" />
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
+                  <h3 className="mb-8 text-xl font-bold text-primary-600">{product.name}</h3>
+                  <ul className="mb-12 flex-1 space-y-4 text-base text-neutral-700">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircleIcon
+                          className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                          aria-hidden="true"
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/product/${product.slug}`}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  >
+                    {tCommon('learnMore')}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CO & NO2 Sensors Section */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+              {t('coNo2.sectionTitle')}
+            </h2>
+            <p className="mx-auto max-w-4xl text-lg text-neutral-600">
+              {t('coNo2.sectionSubtitle')}
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {coNo2Products.map((product) => (
+              <div
+                key={product.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-all hover:shadow-xl"
+              >
+                {/* Product Image */}
+                <div className="relative h-64 bg-neutral-50 p-16">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+
+                {/* Yellow Accent Bar */}
+                <div className="h-1 w-full bg-accent-500" aria-hidden="true" />
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
+                  <h3 className="mb-8 text-xl font-bold text-primary-600">{product.name}</h3>
+                  <ul className="mb-12 flex-1 space-y-4 text-base text-neutral-700">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircleIcon
+                          className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600"
+                          aria-hidden="true"
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/product/${product.slug}`}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  >
+                    {tCommon('learnMore')}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View All Link */}
+          <div className="mt-12 text-center">
             <Link
-              href="/products?category=air-quality"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
+              href="/products/air-quality-sensors"
+              className="inline-flex items-center gap-2 text-lg font-semibold text-primary-600 hover:text-primary-700"
             >
-              Browse Air Quality Sensors
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur transition-all duration-300 hover:bg-white/20"
-            >
-              Contact Sales Team
+              {t('viewAll')}
+              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
             </Link>
           </div>
         </div>

@@ -91,6 +91,8 @@
       },
       "airQuality": {
         "title": "Jakość Powietrza",
+        "airQualityOverview": "Przegląd jakości powietrza",
+        "airQualityOverviewDesc": "Kompletne rozwiązania CO₂, VOC, pyłów, CO i NO₂",
         "co2": "Czujniki CO₂",
         "co2Desc": "Monitorowanie dwutlenku węgla",
         "voc": "Czujniki VOC",
@@ -3936,5 +3938,113 @@
       }
     },
     "viewAll": "Zobacz wszystkie produkty ciśnieniowe"
+  },
+  "airQualityLandingPage": {
+    "metadata": {
+      "title": "Czujniki jakości powietrza - CO₂, VOC, pyły, CO, NO₂ | BAPI",
+      "description": "Pełna linia czujników jakości powietrza do wentylacji sterowanej zapotrzebowaniem, w tym czujniki CO₂, VOC, pyłów, tlenku węgla i dwutlenku azotu.",
+      "keywords": "czujniki jakości powietrza, czujniki CO2, czujniki VOC, czujniki pyłów, czujniki tlenku węgla, czujniki dwutlenku azotu, jakość powietrza wewnętrznego, wentylacja sterowana zapotrzebowaniem, monitoring IAQ"
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "products": "Produkty",
+      "current": "Czujniki jakości powietrza"
+    },
+    "hero": {
+      "title": "Czujniki jakości powietrza",
+      "description": "BAPI produkuje pełną linię czujników jakości powietrza do wentylacji sterowanej zapotrzebowaniem, w tym lotne związki organiczne (VOC), dwutlenek węgla (CO₂), pyły, tlenek węgla (CO) i dwutlenek azotu (NO₂).",
+      "imageAlt": "Czujniki jakości powietrza - CO₂, VOC, pyły, CO, NO₂",
+      "cta": "Przeglądaj produkty"
+    },
+    "co2": {
+      "sectionTitle": "Czujniki CO₂",
+      "sectionSubtitle": "Czujnik CO₂ BAPI zdobył nagrodę innowacji AHR Expo, ponieważ zintegrowany czujnik barometryczny stale kompensuje wyjście dla dokładnych odczytów niezależnie od pogody lub wysokości. Nasz model jest zoptymalizowany pod kątem stale zajętych obszarów.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" CO₂",
+        "feature1": "Automatyczna kompensacja barometryczna i temperaturowa",
+        "feature2": "Idealny dla stale zajętych lub okresowo pustych obszarów",
+        "feature3": "Lokalny wskaźnik LED"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" CO₂",
+        "feature1": "Automatyczna kompensacja barometryczna i temperaturowa",
+        "feature2": "Opcjonalnie: temperatura/wilgotność, punkt nastawczy, nadpisanie",
+        "feature3": "Idealny dla stale zajętych lub okresowo pustych obszarów"
+      },
+      "duct": {
+        "name": "BAPI-Box kanałowy lub wzmocniony CO₂",
+        "feature1": "Automatyczna kompensacja barometryczna i temperaturowa",
+        "feature2": "Rura aspiracyjna kanałowa lub wentylowany BAPI-Box do zastosowań wzmocnionych",
+        "feature3": "Idealny dla stale zajętych lub okresowo pustych obszarów"
+      }
+    },
+    "voc": {
+      "sectionTitle": "Czujniki VOC",
+      "sectionSubtitle": "Czujniki VOC BAPI wykrywają lotne związki organiczne w powietrzu wewnętrznym. VOC są emitowane z materiałów budowlanych, środków czyszczących i działalności pasażerów. Nasze czujniki pomagają optymalizować wentylację dla jakości powietrza wewnętrznego i efektywności energetycznej.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" VOC",
+        "feature1": "Wykrywa szeroki zakres VOC, w tym formaldehyd",
+        "feature2": "Idealny dla stale zajętych lub okresowo pustych obszarów",
+        "feature3": "Lokalny wskaźnik LED"
+      },
+      "quantumPrime": {
+        "name": "BAPI-Stat \"Quantum Prime\" VOC",
+        "feature1": "Wykrywa szeroki zakres VOC, w tym formaldehyd",
+        "feature2": "Opcjonalnie: temperatura/wilgotność, punkt nastawczy, nadpisanie",
+        "feature3": "Idealny dla stale zajętych lub okresowo pustych obszarów"
+      },
+      "duct": {
+        "name": "BAPI-Box kanałowy lub wzmocniony VOC",
+        "feature1": "Wykrywa szeroki zakres VOC, w tym formaldehyd",
+        "feature2": "Rura aspiracyjna kanałowa lub wentylowany BAPI-Box do zastosowań wzmocnionych",
+        "feature3": "Idealny dla stale zajętych lub okresowo pustych obszarów"
+      }
+    },
+    "particulate": {
+      "sectionTitle": "Czujniki pyłów",
+      "sectionSubtitle": "Czujniki pyłów BAPI pomagają mierzyć, co wchodzi do budynków. Pyły (PM) są często określane jako kurz, ale to więcej niż zwykły kurz, który osadza się na telewizorze płaskim. EPA definiuje je jako mieszaninę stałych cząstek i kropel cieczy znajdujących się w powietrzu. Chociaż większość cząstek nie ma kształtu koła, 'średnica' jest powszechnie używana do opisania rozmiaru cząstek.",
+      "quantum": {
+        "name": "BAPI-Stat \"Quantum\" czujnik pyłów",
+        "feature1": "Laserowe wykrywanie pyłów metodą rozpraszania światła z 10-letnim przewidywanym okresem eksploatacji",
+        "feature2": "Rozmiar cząstek i wyjście wybieralne w terenie",
+        "feature3": "Obudowa w nowoczesnym designie"
+      },
+      "duct": {
+        "name": "BAPI-Box czujnik pyłów kanałowy",
+        "feature1": "Wzmocniona obudowa o klasie IP66",
+        "feature2": "Rozmiar cząstek i wyjście wybieralne w terenie",
+        "feature3": "Rura aspiracyjna dostosowuje się do pionowego lub poziomego przepływu powietrza"
+      }
+    },
+    "coNo2": {
+      "sectionTitle": "Czujniki CO i NO₂",
+      "sectionSubtitle": "Czujniki tlenku węgla i dwutlenku azotu BAPI monitorują toksyczne gazy w garażach parkingowych, maszynowniach i innych krytycznych przestrzeniach. Te czujniki pomagają zapewnić bezpieczną jakość powietrza wewnętrznego i zgodność z przepisami budowlanymi.",
+      "coQuantum": {
+        "name": "BAPI-Stat \"Quantum\" czujnik tlenku węgla",
+        "feature1": "Elektrochemiczny czujnik CO z 10-letnim przewidywanym okresem eksploatacji",
+        "feature2": "Idealny dla garaży parkingowych i maszynowni",
+        "feature3": "Lokalny wskaźnik LED"
+      },
+      "coDuct": {
+        "name": "CO - czujnik tlenku węgla kanałowy i wzmocniony",
+        "feature1": "Elektrochemiczny czujnik CO z 10-letnim przewidywanym okresem eksploatacji",
+        "feature2": "Rura aspiracyjna kanałowa lub wentylowany BAPI-Box do zastosowań wzmocnionych",
+        "feature3": "Obudowa o klasie IP66 do trudnych warunków"
+      },
+      "no2Duct": {
+        "name": "NO₂ - czujnik dwutlenku azotu kanałowy i wzmocniony",
+        "feature1": "Elektrochemiczny czujnik NO₂ do monitorowania toksycznego gazu",
+        "feature2": "Programowalny w terenie dla różnych zakresów",
+        "feature3": "Rura aspiracyjna kanałowa lub obudowa wzmocniona"
+      },
+      "digitalCombo": {
+        "name": "Cyfrowy czujnik CO i NO₂",
+        "feature1": "Podwójne czujniki elektrochemiczne dla CO i NO₂",
+        "feature2": "Wyjście cyfrowe dla precyzyjnego monitorowania",
+        "feature3": "Idealny dla garaży parkingowych i maszynowni"
+      }
+    },
+    "learnMore": "Dowiedz się więcej",
+    "viewAll": "Zobacz wszystkie produkty jakości powietrza"
   }
 }

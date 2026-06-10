@@ -3863,7 +3863,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "Sensores de Presión | BAPI",
-      "description": "BAPI ofrece una línea completa de sensores de presión diferencial, interruptores de presión y puertos de captura para aplicaciones HVAC, incluyendo salas limpias, monitoreo de filtros y control de presión de zona.",
+      "description": "Los sensores de presión de BAPI tienen la selectabilidad de campo que necesita para una instalación fácil y resolución de problemas a simple vista para ahorrar tiempo y dinero.",
       "keywords": "sensores de presión, presión diferencial, interruptores de presión, sensor ZPM, presión de sala limpia, monitoreo de filtros, control de presión de zona, sensores de presión HVAC"
     },
     "breadcrumb": {
@@ -3872,14 +3872,14 @@
       "pressure": "Sensores de Presión"
     },
     "hero": {
-      "title": "Sensores de Presión",
-      "description": "BAPI ofrece una línea completa de sensores de presión diferencial, interruptores de presión y puertos de captura para aplicaciones HVAC, incluyendo salas limpias, monitoreo de filtros y control de presión de zona.",
+      "title": "¡La presión importa!",
+      "description": "Los sensores de presión de BAPI tienen la selectabilidad de campo que necesita para una instalación fácil y resolución de problemas a simple vista para ahorrar tiempo y dinero.",
       "cta": "Explorar Productos",
       "imageAlt": "Familia de Sensores e Interruptores de Presión BAPI"
     },
     "sensors": {
       "sectionTitle": "Sensores e Interruptores de Presión",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "La línea de presión de BAPI establece un nuevo estándar de facilidad de instalación y funcionalidad. La unidad de panel EZ permite montaje en superficie, snaptrack o riel DIN con todos los rangos y salidas configurados a través de un dial y botón en la cara de la unidad. Nuestro Multi-Sensor de Presión de Zona (ZPM) es el más versátil con rangos, salidas, unidades, direccionalidad y tiempo de respuesta, todo configurado rápidamente en el campo sin energía ni herramientas.",
       "zpmBapiBox": {
         "name": "Sensor de Presión 2PM BAPI-Box",
         "feature1": "Carcasa con clasificación IP66/NEMA 4",
@@ -3919,7 +3919,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPI ofrece dos estilos de Interruptores de Presión Diferencial ajustables en campo para monitoreo de estado de filtros de aire y ventiladores, y comprobación de presión estática y flujo de aire. La unidad BAPI-Box se puede usar en circuitos de seguridad debido a su Lista de Control de Límite UL 353 y tiene siete rangos que cubren presión desde 0.12\" hasta 35\" WC. La unidad Beck económica tiene tres rangos que cubren presiones desde .08\" hasta 4\" WC.",
       "ductSwitch": {
         "name": "Interruptor de Presión de Conducto",
         "feature1": "Puntos de ajuste ajustables",

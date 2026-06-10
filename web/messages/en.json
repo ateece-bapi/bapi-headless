@@ -3912,7 +3912,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "Pressure Sensors | BAPI",
-      "description": "BAPI offers a complete line of differential pressure sensors, pressure switches, and pickup ports for HVAC applications including clean rooms, filter monitoring, and zone pressure control.",
+      "description": "BAPI's Pressure sensors have the field selectability you need for easy installation and line-of-sight trouble shooting to save time and money.",
       "keywords": "pressure sensors, differential pressure, pressure switches, ZPM sensor, clean room pressure, filter monitoring, zone pressure control, HVAC pressure sensors"
     },
     "breadcrumb": {
@@ -3921,15 +3921,15 @@
       "pressure": "Pressure Sensors"
     },
     "hero": {
-      "title": "Pressure Sensors",
-      "description": "BAPI offers a complete line of differential pressure sensors, pressure switches, and pickup ports for HVAC applications including clean rooms, filter monitoring, and zone pressure control.",
+      "title": "Pressure matters!",
+      "description": "BAPI's Pressure sensors have the field selectability you need for easy installation and line-of-sight trouble shooting to save time and money.",
       "cta": "Explore Products",
       "imageAlt": "BAPI Pressure Sensors and Switches"
     },
     "viewAll": "View All Pressure Products",
     "sensors": {
       "sectionTitle": "Pressure Sensors",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "BAPI's pressure line sets a new standard for ease of installation and functionality. The EZ panel unit allows surface, snaptrack or DIN rail mounting with all the ranges and outputs set via a dial and button on the face of the unit. Our Zone Pressure Multi-Sensor (ZPM)is the most versatile with ranges, outputs, units, directionality and response time all quickly set in the field without power or tools.",
       "zpmBapiBox": {
         "name": "2PM BAPI-Box Pressure Sensor",
         "feature1": "IP66/NEMA 4 rated enclosure",
@@ -3969,7 +3969,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPI offers two styles of field-adjustable Differential Pressure Switches for air filter and fan status monitoring, and static pressure and air flow proving. The BAPI-Box unit can be used in safety circuits because of its UL 353 Limit Control Listing and has seven ranges covering pressure from 0.12\" to 35\" WC. The economical Beck unit has three ranges covering pressures from .08\" to 4\" WC.",
       "ductSwitch": {
         "name": "Deck Pressure Switch",
         "feature1": "Adjustable set points",

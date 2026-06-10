@@ -3866,7 +3866,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "Cảm Biến Áp Suất | BAPI",
-      "description": "BAPI cung cấp dòng sản phẩm đầy đủ cảm biến áp suất chênh lệch, công tắc áp suất và cổng nhận áp suất cho các ứng dụng HVAC bao gồm phòng sạch, giám sát bộ lọc và kiểm soát áp suất vùng.",
+      "description": "Cảm biến áp suất của BAPI có khả năng lựa chọn hiện trường mà bạn cần để cài đặt dễ dàng và khắc phục sự cố trực quan để tiết kiệm thời gian và tiền bạc.",
       "keywords": "cảm biến áp suất, áp suất chênh lệch, công tắc áp suất, cảm biến ZPM, áp suất phòng sạch, giám sát bộ lọc, kiểm soát áp suất vùng, cảm biến áp suất HVAC"
     },
     "breadcrumb": {
@@ -3875,14 +3875,14 @@
       "pressure": "Cảm Biến Áp Suất"
     },
     "hero": {
-      "title": "Cảm Biến Áp Suất",
-      "description": "BAPI cung cấp dòng sản phẩm đầy đủ cảm biến áp suất chênh lệch, công tắc áp suất và cổng nhận áp suất cho các ứng dụng HVAC bao gồm phòng sạch, giám sát bộ lọc và kiểm soát áp suất vùng.",
+      "title": "Áp suất quan trọng!",
+      "description": "Cảm biến áp suất của BAPI có khả năng lựa chọn hiện trường mà bạn cần để cài đặt dễ dàng và khắc phục sự cố trực quan để tiết kiệm thời gian và tiền bạc.",
       "cta": "Khám Phá Sản Phẩm",
       "imageAlt": "Họ Cảm Biến và Công Tắc Áp Suất BAPI"
     },
     "sensors": {
       "sectionTitle": "Cảm Biến và Công Tắc Áp Suất",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "Dòng áp suất của BAPI đặt ra tiêu chuẩn mới về tính dễ cài đặt và chức năng. Đơn vị bảng điều khiển EZ cho phép lắp đặt bề mặt, snaptrack hoặc lắp đặt ray DIN với tất cả các phạm vi và đầu ra được đặt thông qua một mặt số và nút trên mặt của đơn vị. Multi-Sensor Áp Suất Vùng của chúng tôi (ZPM) là đa năng nhất với phạm vi, đầu ra, đơn vị, hướng và thời gian phản hồi tất cả được đặt nhanh chóng tại hiện trường mà không cần nguồn điện hoặc công cụ.",
       "zpmBapiBox": {
         "name": "Cảm Biến Áp Suất 2PM BAPI-Box",
         "feature1": "Vỏ bọc chuẩn IP66/NEMA 4",
@@ -3922,7 +3922,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPI cung cấp hai kiểu Công Tắc Áp Suất Chênh Lệch có thể điều chỉnh tại hiện trường cho giám sát trạng thái bộ lọc khí và quạt, và chứng minh áp suất tĩnh và lưu lượng khí. Đơn vị BAPI-Box có thể được sử dụng trong các mạch an toàn vì Danh Sách Kiểm Soát Giới Hạn UL 353 của nó và có bảy phạm vi bao phủ áp suất từ 0.12\" đến 35\" WC. Đơn vị Beck tiết kiệm có ba phạm vi bao phủ áp suất từ .08\" đến 4\" WC.",
       "ductSwitch": {
         "name": "Công Tắc Áp Suất Ống",
         "feature1": "Điểm đặt có thể điều chỉnh",

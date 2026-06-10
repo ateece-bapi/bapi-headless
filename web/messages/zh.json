@@ -3865,7 +3865,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "压力传感器 | BAPI",
-      "description": "BAPI提供用于HVAC应用的差压传感器、压力开关和压力采集端口完整系列，包括洁净室、过滤器监测和区域压力控制。",
+      "description": "BAPI的压力传感器具有现场可选性，可轻松安装和目视故障排除，节省时间和金钱。",
       "keywords": "压力传感器, 差压, 压力开关, ZPM传感器, 洁净室压力, 过滤器监测, 区域压力控制, HVAC压力传感器"
     },
     "breadcrumb": {
@@ -3874,14 +3874,14 @@
       "pressure": "压力传感器"
     },
     "hero": {
-      "title": "压力传感器",
-      "description": "BAPI提供用于HVAC应用的差压传感器、压力开关和压力采集端口完整系列，包括洁净室、过滤器监测和区域压力控制。",
+      "title": "压力很重要！",
+      "description": "BAPI的压力传感器具有现场可选性，可轻松安装和目视故障排除，节省时间和金钱。",
       "cta": "探索产品",
       "imageAlt": "BAPI压力传感器和开关系列"
     },
     "sensors": {
       "sectionTitle": "压力传感器和开关",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "BAPI的压力系列为易于安装和功能性设定了新标准。EZ面板单元允许通过单元表面上的刻度盘和按钮设置所有范围和输出，进行表面、卡轨或DIN导轨安装。我们的区域压力多传感器（ZPM）是最通用的，具有范围、输出、单位、方向性和响应时间，所有这些都可以在现场快速设置，无需电源或工具。",
       "zpmBapiBox": {
         "name": "2PM BAPI-Box压力传感器",
         "feature1": "IP66/NEMA 4防护等级外壳",
@@ -3921,7 +3921,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPI提供两种可现场调节的差压开关，用于空气过滤器和风扇状态监控，以及静压和气流验证。BAPI-Box单元可用于安全电路，因为其具有UL 353限制控制列表，并具有七个范围，涵盖从0.12\"到35\" WC的压力。经济型Beck单元具有三个范围，涵盖从.08\"到4\" WC的压力。",
       "ductSwitch": {
         "name": "管道压力开关",
         "feature1": "可调设定点",

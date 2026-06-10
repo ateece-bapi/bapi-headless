@@ -3865,7 +3865,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "圧力センサー | BAPI",
-      "description": "BAPIは、クリーンルーム、フィルター監視、ゾーン圧力制御を含むHVAC用途向けの差圧センサー、圧力スイッチ、およびピックアップポートの完全なラインを提供します。",
+      "description": "BAPIの圧力センサーは、簡単な設置と目視によるトラブルシューティングで時間とコストを節約するために必要なフィールド選択性を備えています。",
       "keywords": "圧力センサー、差圧、圧力スイッチ、ZPMセンサー、クリーンルーム圧力、フィルター監視、ゾーン圧力制御、HVAC圧力センサー"
     },
     "breadcrumb": {
@@ -3874,14 +3874,14 @@
       "pressure": "圧力センサー"
     },
     "hero": {
-      "title": "圧力センサー",
-      "description": "BAPIは、クリーンルーム、フィルター監視、ゾーン圧力制御を含むHVAC用途向けの差圧センサー、圧力スイッチ、およびピックアップポートの完全なラインを提供します。",
+      "title": "圧力は重要です！",
+      "description": "BAPIの圧力センサーは、簡単な設置と目視によるトラブルシューティングで時間とコストを節約するために必要なフィールド選択性を備えています。",
       "cta": "製品を見る",
       "imageAlt": "BAPI圧力センサーとスイッチファミリー"
     },
     "sensors": {
       "sectionTitle": "圧力センサーとスイッチ",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "BAPIの圧力ラインは、設置の容易さと機能性の新しい基準を設定します。EZパネルユニットは、ユニットの前面にあるダイヤルとボタンですべての範囲と出力を設定して、表面、スナップトラック、またはDINレール取り付けを可能にします。当社のゾーン圧力マルチセンサー（ZPM）は、電源やツールなしで現場で迅速に設定できる範囲、出力、単位、方向性、応答時間を備えた最も汎用性の高いものです。",
       "zpmBapiBox": {
         "name": "2PM BAPI-Box圧力センサー",
         "feature1": "IP66/NEMA 4定格エンクロージャ",
@@ -3921,7 +3921,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPIは、エアフィルターとファンのステータス監視、および静圧と気流の証明のために、フィールド調整可能な差圧スイッチの2つのスタイルを提供しています。BAPI-Boxユニットは、UL 353リミットコントロールリストのため安全回路で使用でき、0.12\"から35\" WCまでの圧力をカバーする7つの範囲があります。経済的なBeckユニットには、.08\"から4\" WCまでの圧力をカバーする3つの範囲があります。",
       "ductSwitch": {
         "name": "ダクト圧力スイッチ",
         "feature1": "調整可能なセットポイント",

@@ -3866,7 +3866,7 @@
   "pressureLandingPage": {
     "metadata": {
       "title": "Capteurs de Pression | BAPI",
-      "description": "BAPI offre une gamme complète de capteurs de pression différentielle, d'interrupteurs de pression et de ports de prélèvement pour les applications CVC, y compris les salles blanches, la surveillance des filtres et le contrôle de la pression de zone.",
+      "description": "Les capteurs de pression de BAPI ont la sélectivité de terrain dont vous avez besoin pour une installation facile et un dépannage visuel pour gagner du temps et de l'argent.",
       "keywords": "capteurs de pression, pression différentielle, interrupteurs de pression, capteur ZPM, pression de salle blanche, surveillance de filtres, contrôle de pression de zone, capteurs de pression CVC"
     },
     "breadcrumb": {
@@ -3875,14 +3875,14 @@
       "pressure": "Capteurs de Pression"
     },
     "hero": {
-      "title": "Capteurs de Pression",
-      "description": "BAPI offre une gamme complète de capteurs de pression différentielle, d'interrupteurs de pression et de ports de prélèvement pour les applications CVC, y compris les salles blanches, la surveillance des filtres et le contrôle de la pression de zone.",
+      "title": "La pression compte!",
+      "description": "Les capteurs de pression de BAPI ont la sélectivité de terrain dont vous avez besoin pour une installation facile et un dépannage visuel pour gagner du temps et de l'argent.",
       "cta": "Explorer les Produits",
       "imageAlt": "Famille de Capteurs et Interrupteurs de Pression BAPI"
     },
     "sensors": {
       "sectionTitle": "Capteurs et Interrupteurs de Pression",
-      "sectionSubtitle": "Precision differential pressure sensors and pickup ports for clean rooms, zone pressure control, and filter monitoring applications.",
+      "sectionSubtitle": "La gamme de pression de BAPI établit une nouvelle norme de facilité d'installation et de fonctionnalité. L'unité de panneau EZ permet un montage en surface, snaptrack ou rail DIN avec toutes les plages et sorties réglées via un cadran et un bouton sur la face de l'unité. Notre Multi-Capteur de Pression de Zone (ZPM) est le plus polyvalent avec des plages, sorties, unités, directionalité et temps de réponse tous rapidement réglés sur le terrain sans alimentation ni outils.",
       "zpmBapiBox": {
         "name": "Capteur de Pression 2PM BAPI-Box",
         "feature1": "Boîtier classé IP66/NEMA 4",
@@ -3922,7 +3922,7 @@
     },
     "switches": {
       "sectionTitle": "Pressure Switches",
-      "sectionSubtitle": "Reliable pressure-activated switching for duct monitoring, filter status indication, and airflow control applications.",
+      "sectionSubtitle": "BAPI propose deux styles d'interrupteurs de pression différentielle réglables sur le terrain pour la surveillance de l'état des filtres à air et des ventilateurs, et la vérification de la pression statique et du débit d'air. L'unité BAPI-Box peut être utilisée dans les circuits de sécurité en raison de sa liste de contrôle de limite UL 353 et dispose de sept plages couvrant la pression de 0.12\" à 35\" WC. L'unité Beck économique a trois plages couvrant les pressions de .08\" à 4\" WC.",
       "ductSwitch": {
         "name": "Interrupteur de Pression de Gaine",
         "feature1": "Points de consigne réglables",

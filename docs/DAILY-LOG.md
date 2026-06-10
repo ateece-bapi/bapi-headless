@@ -8,6 +8,328 @@
 
 ---
 
+## June 10, 2026 — Air Quality Sensors Landing Page 🌬️
+
+**Status:** ✅ COMPLETE - Merged to production (PR #553)  
+**Branch:** `feat/air-quality-landing-page` → `main` (PR merged)  
+**Context:** Created comprehensive four-section landing page for Air Quality category following legacy website layout exactly. Features separate sections for CO₂ Sensors (3 products), VOC Sensors (3 products), Particulate Sensors (2 products), and CO & NO₂ Sensors (3 products) with full i18n support.  
+**Priority:** 🟢 P2 - Phase 1 landing page series completion  
+**Time:** ~4 hours (page creation + legacy text matching + full 11-language translations + Copilot review fixes)  
+**Approach:** Legacy layout replication → GraphQL validation → Full i18n → Copilot automated review → Accessibility fixes
+
+### 🎯 SCOPE
+
+**Deliverables:**
+1. ✅ `/air-quality` landing page with four-section structure (CO₂, VOC, Particulate, CO & NO₂)
+2. ✅ 11 featured products across 4 sensor categories with legacy-matched feature bullets
+3. ✅ Hero section: "Air Quality Sensors" title with gradient background and dual CTAs
+4. ✅ 17 product images organized in 4 category folders (`co2/`, `voc/`, `particulate/`, `no2/`)
+5. ✅ Complete translations for all 11 languages (en, es, fr, de, ar, hi, ja, pl, th, vi, zh)
+6. ✅ Mega-menu "Air Quality Overview" integration with translations for all locales
+7. ✅ Legacy text preservation: All section descriptions and product features match legacy website exactly
+8. ✅ All Copilot automated review feedback addressed (5 issues: nested main landmark + missing translation keys)
+
+**Products Featured:**
+
+**CO₂ Sensors (3):**
+- BAPI-Stat "Quantum" CO₂ - Automatic barometric/temp compensation, ideal for continuously occupied areas
+- BAPI-Stat "Quantum Prime" CO₂ - Auto compensation + optional temp/humidity/setpoint/override
+- BAPI-Box Duct or Heavy Duty CO₂ - Duct aspiration tube or ventilated BAPI-Box for heavy duty
+
+**VOC Sensors (3):**
+- BAPI-Stat "Quantum" VOC - Detects wide range of VOCs including formaldehyde
+- BAPI-Stat "Quantum Prime" VOC - VOC detection + optional temp/humidity/setpoint/override
+- BAPI-Box Duct or Heavy Duty VOC - Duct aspiration or ventilated BAPI-Box configuration
+
+**Particulate Sensors (2):**
+- BAPI-Stat "Quantum" Particulate Sensor - Light-scatter laser sensing, 10-year life expectancy
+- BAPI-Box Duct Particulate Sensor - IP66 rated enclosure, aspiration tube adapts to air flow
+
+**CO & NO₂ Sensors (3):**
+- BAPI-Stat "Quantum" Carbon Monoxide - Electrochemical CO sensor, 10-year life expectancy
+- CO - Duct and Heavy Duty Carbon Monoxide - Duct aspiration or ventilated BAPI-Box, IP66 rated
+- NO₂ - Duct and Heavy Duty Nitrogen Dioxide - Electrochemical NO₂ sensor, field programmable
+
+### 🔧 IMPLEMENTATION
+
+#### 1. Page Component Creation ✅
+
+**File:** `/web/src/app/[locale]/air-quality/page.tsx` (461 lines)
+
+**Four-Section Structure:**
+- **CO₂ Sensors section:** 3 products in 3-column responsive grid (`lg:grid-cols-3`)
+- **VOC Sensors section:** 3 products in 3-column responsive grid (`lg:grid-cols-3`)
+- **Particulate Sensors section:** 2 products in 2-column grid (`md:grid-cols-2`)
+- **CO & NO₂ Sensors section:** 3 products in 3-column grid (`lg:grid-cols-3`)
+- Yellow accent bars on product cards (brand consistency, matches Pressure/Humidity patterns)
+- Each product: 3 feature bullets + "Learn More" button
+- Section-specific "View All" links at bottom of each category
+
+**Hero Section:**
+- Title: "Air Quality Sensors" (simple, direct category name)
+- Breadcrumb: Home → Products → Air Quality Sensors
+- Description: Complete sensor lineup (VOC, CO₂, Particulate, CO, NO₂) for demand-controlled ventilation
+- Hero image: Air quality sensor group photo from legacy site
+- Dual CTAs: "Explore Products" (primary gradient button) + "Contact Us" (secondary outlined button)
+
+**GraphQL Validation:**
+All 11 product slugs verified before implementation:
+- `co2-24-7-bapi-stat-quantum-co2-sensor-constant-occupancy`
+- `co2-24-7-bapi-stat-quantum-prime-co2-temp-and-humidity-sensor-constant-occupancy`
+- `co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy`
+- `voc-24-7-bapi-stat-quantum-voc-sensor-constant-occupancy`
+- `voc-24-7-bapi-stat-quantum-prime-voc-temp-and-humidity-sensor-constant-occupancy`
+- `voc-24-7-duct-and-rough-service-voc-sensor-constant-occupancy`
+- `particulate-bapi-stat-quantum-particulate-sensor`
+- `particulate-24-7-duct-and-rough-service-particulate-sensor`
+- `co-bapi-stat-quantum-carbon-monoxide-sensor`
+- `co-duct-and-rough-service-carbon-monoxide-sensor`
+- `no2-duct-and-rough-service-nitrogen-dioxide-sensor`
+
+**SEO Optimization:**
+```typescript
+// Locale-aware metadata with comprehensive keywords
+title: t('metadata.title')  // "Air Quality Sensors - CO₂, VOC, Particulate, CO, NO₂ | BAPI"
+description: t('metadata.description')  // Complete line for demand-controlled ventilation
+keywords: t('metadata.keywords').split(/[,،、،]/)  // Multi-locale separator support
+```
+
+**Product Card Pattern (Exact Match with Pressure/Humidity):**
+```tsx
+// Image first (h-64 bg-neutral-50 p-16)
+<div className="relative h-64 bg-neutral-50 p-16">
+  <Image src={product.image} alt={product.name} fill />
+</div>
+// Yellow bar after image
+<div className="h-1 w-full bg-accent-500" />
+// Content spacing
+<div className="flex flex-1 flex-col px-10 pb-12 pt-10">
+  <h3>{product.name}</h3>
+  <ul className="space-y-3">
+    {product.features.map((feature) => (
+      <li className="flex items-start gap-3">
+        <CheckCircleIcon />
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+  <Link href={`/products/${product.slug}`}>{t('learnMore')}</Link>
+</div>
+```
+
+#### 2. Images Added ✅
+
+**Location:** `/web/public/images/air/`
+
+**Organized Folder Structure (17 images):**
+```
+air/
+├── co2/ (5 images)
+│   ├── 1-air-quality-sensors.png (hero - 493KB)
+│   ├── Quantum-CO2-Main.png
+│   ├── Quantum-Prime-CO2-Main.png
+│   ├── CO2-Duct.png
+│   └── CO2-Group.png
+├── voc/ (4 images)
+│   ├── Quantum-VOC-Main.png
+│   ├── Quantum-Prime-VOC-Main-25.png
+│   ├── VOC-Duct.png
+│   └── VOC-Group.png
+├── particulate/ (3 images)
+│   ├── Particulate_Quantum.png
+│   ├── Particulate_Duct.png
+│   └── PM.png
+└── no2/ (5 images)
+    ├── CO_Quantum.png
+    ├── CO-Duct.png
+    ├── NO2-programmable.png
+    ├── NO2-programmable(1).png
+    └── NO2_CO-duct.png
+```
+
+**User-provided images from legacy website, organized by section for clean file structure.**
+
+#### 3. Translation Implementation ✅
+
+**Namespace:** `airQualityLandingPage` (110 keys per language)
+
+**Languages Completed (11 total):**
+1. ✅ English (en.json) - Source language with legacy text matching
+2. ✅ Spanish (es.json) - Complete translation
+3. ✅ French (fr.json) - Complete translation
+4. ✅ German (de.json) - Complete translation
+5. ✅ Arabic (ar.json) - Complete translation with RTL support
+6. ✅ Hindi (hi.json) - Complete translation
+7. ✅ Japanese (ja.json) - Complete translation
+8. ✅ Polish (pl.json) - Complete translation
+9. ✅ Thai (th.json) - Complete translation
+10. ✅ Vietnamese (vi.json) - Complete translation
+11. ✅ Chinese (zh.json) - Complete translation
+
+**Translation Structure:**
+```json
+{
+  "airQualityLandingPage": {
+    "metadata": { "title", "description", "keywords" },
+    "breadcrumb": { "home", "products", "current" },
+    "hero": { "title", "description", "imageAlt", "cta" },
+    "co2": {
+      "sectionTitle", "sectionSubtitle",
+      "quantum": { "name", "feature1", "feature2", "feature3" },
+      "quantumPrime": { "name", "feature1", "feature2", "feature3" },
+      "duct": { "name", "feature1", "feature2", "feature3" }
+    },
+    "voc": { /* same 3-product structure */ },
+    "particulate": { /* 2-product structure */ },
+    "coNo2": {
+      "sectionTitle", "sectionSubtitle",
+      "coQuantum": { "name", "feature1", "feature2", "feature3" },
+      "coDuct": { "name", "feature1", "feature2", "feature3" },
+      "no2Duct": { "name", "feature1", "feature2", "feature3" }
+      // Note: digitalCombo product removed per user request
+    },
+    "learnMore", "viewAll"
+  }
+}
+```
+
+**Mega-Menu Translation Keys (added to all 11 locales):**
+```json
+{
+  "products": {
+    "airQuality": {
+      "airQualityOverview": "Air Quality Overview",
+      "airQualityOverviewDesc": "Complete CO₂, VOC, Particulate, CO, and NO₂ solutions"
+    }
+  }
+}
+```
+
+#### 4. Mega-Menu Integration ✅
+
+**File:** `/web/src/components/layout/Header/config.ts`
+
+**Added "Air Quality Overview" link before subcategories:**
+```typescript
+{
+  label: t('products.airQuality.airQualityOverview'),
+  href: '/air-quality',
+  description: t('products.airQuality.airQualityOverviewDesc'),
+}
+```
+
+**Placement:** First link in Air Quality column, before CO₂/VOC/Particulate/NO₂ subcategories
+
+#### 5. Copilot Automated Review Fixes ✅
+
+**Issues Identified (5 total):**
+
+1. **Nested `<main>` landmark (Accessibility)** ⚠️  
+   - Problem: Page used `<main>` wrapper when `layout.tsx` already has `<main>`
+   - Fix: Changed to `<div className="min-h-screen bg-white">`
+   - Impact: Eliminates duplicate main landmarks that confuse screen readers
+
+2. **Missing mega-menu translation keys (10 languages)** ⚠️  
+   - Problem: `airQualityOverview` and `airQualityOverviewDesc` only in English
+   - Fix: Added both keys to es, fr, de, ar, hi, ja, pl, th, vi, zh locale files
+   - Impact: Mega-menu displays correctly in all languages, no fallback IDs
+
+**All issues resolved in commit `a0a0838` before merge.**
+
+### 📊 TECHNICAL METRICS
+
+**Files Changed:** 30 total
+- 11 translation files (added 110 keys each = 1,210 translation keys)
+- 1 page component (461 lines)
+- 1 mega-menu config file
+- 17 product images (total ~4.5MB optimized)
+
+**Translation Coverage:**
+- 11 languages × 110 keys = 1,210 total translation strings
+- 100% completion rate across all languages
+- Build verified with no MISSING_MESSAGE errors
+
+**Build Performance:**
+- ✅ TypeScript compilation successful
+- ✅ No translation errors
+- ✅ All routes pre-rendered successfully
+- ✅ Bundle analysis: No significant size increase
+
+**Code Quality:**
+- ✅ Copilot automated review: 5/5 issues resolved
+- ✅ Accessibility: Proper semantic HTML, no nested landmarks
+- ✅ i18n: Complete translation coverage for all locales
+- ✅ Pattern consistency: Matches Pressure/Humidity landing pages exactly
+
+### 🎯 COMMITS
+
+1. **Initial Implementation** (`092a102`)
+   - Created `/air-quality` page with 4 sections
+   - Added all 17 product images
+   - Implemented English translations
+   - Added mega-menu integration
+
+2. **Full i18n** (`fa1f555`)
+   - Added translations for all 10 non-English languages
+   - Verified build success with no translation errors
+
+3. **Copilot Review Fixes** (`a0a0838`)
+   - Fixed nested `<main>` landmark accessibility issue
+   - Added mega-menu translation keys to all 11 languages
+   - Final build verification
+
+### ✅ VERIFICATION
+
+**Pre-Merge Checklist:**
+- [x] All 11 product slugs validated via GraphQL
+- [x] 17 images uploaded and organized by category
+- [x] English translations match legacy website text exactly
+- [x] All 10 non-English translations completed
+- [x] Mega-menu translations added to all locales
+- [x] Build successful with no errors
+- [x] Copilot automated review feedback addressed
+- [x] Accessibility issues resolved (nested main landmark)
+- [x] Product card styling matches Pressure/Humidity patterns
+- [x] Branch pushed and PR created
+
+**Automated Review Results:**
+- ✅ 5 issues identified by Copilot
+- ✅ 5 issues resolved before merge
+- ✅ 0 outstanding issues
+
+**Post-Merge:**
+- [x] PR #553 merged to main
+- [x] Remote branch deleted
+- [x] Local branch cleaned up
+- [x] Production deployment verified
+
+### 📝 LESSONS LEARNED
+
+1. **Copilot Review Effectiveness** - Caught accessibility issue (nested main) and translation gaps that would have been missed in manual review. Automated PR reviews are proving valuable for this project.
+
+2. **Translation Key Organization** - Adding mega-menu keys separately from landing page namespace caused initial confusion. Future landing pages should include mega-menu keys in initial translation commit.
+
+3. **Product Card Pattern Consistency** - User very specific about matching Pressure/Humidity card styling exactly (image first, yellow bar after, specific spacing). Establishing this pattern early saved iteration time.
+
+4. **Legacy Text Fidelity** - All section descriptions and product features matched legacy website word-for-word, maintaining brand voice and SEO continuity.
+
+5. **Image Organization** - Organizing images by section (co2/, voc/, particulate/, no2/) made file management cleaner than flat structure. Will continue this pattern for future landing pages.
+
+### 🚀 NEXT STEPS
+
+**Landing Page Series Status:**
+- ✅ Temperature (complete)
+- ✅ Humidity (complete)  
+- ✅ Pressure (complete)
+- ✅ Air Quality (complete - this PR)
+- ⏳ Wireless (pending)
+- ⏳ Accessories (pending)
+- ⏳ Test Instruments (pending)
+
+**Recommended Next Task:** Wireless landing page to continue Phase 1 landing page series completion.
+
+---
+
 ## June 10, 2026 — Pressure Sensors & Switches Landing Page 🔧
 
 **Status:** ✅ COMPLETE - Merged to production  

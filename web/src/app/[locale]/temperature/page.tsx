@@ -213,7 +213,7 @@ export default async function TemperaturePage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-square">
                 <Image
-                  src="/images/temperature/room/product_family.png"
+                  src="/images/temperature/hero/Temperature_Family_2025_US_Plain.png"
                   alt={t('hero.title')}
                   fill
                   className="object-contain"

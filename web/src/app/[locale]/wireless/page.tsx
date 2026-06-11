@@ -247,7 +247,7 @@ export default async function WirelessPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-[16/10]">
                 <Image
-                  src="/images/wireless/Wireless_HVAC_2025_Plain.webp"
+                  src="/images/wireless/hero/BAPI_BLE_Wireless_HVAC_2025.png"
                   alt="BAPI Wireless HVAC Sensors"
                   fill
                   className="object-contain"

@@ -172,7 +172,7 @@ export default async function PressurePage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-square">
                 <Image
-                  src="/images/pressure/sensors/2022Pressure_REFLECTION_small-e1650653837224.png"
+                  src="/images/pressure/hero/Pressure_Family_2025_US_Plain.png"
                   alt={t('hero.imageAlt')}
                   fill
                   className="object-contain"

@@ -148,7 +148,7 @@ export default async function HumidityPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-[418/287]">
                 <Image
-                  src="/images/humidity/humidity_sensors.png"
+                  src="/images/humidity/hero/Humidity_Family_2025_NoStand_International_Plain.png"
                   alt={t('hero.imageAlt')}
                   fill
                   className="object-contain"

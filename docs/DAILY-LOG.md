@@ -50,14 +50,19 @@
 - `/web/src/app/[locale]/air-quality/page.tsx`
 
 **Designer Note:**
-- Elly will review which images have reflections that don't work with the BAPI blue background
-- Images requiring replacement will be provided as PNG versions with transparent backgrounds
-- Current images work best when they already have reflections/shadows removed
+- ✅ Elly provided new reflection-free images for all hero sections
+- All 5 landing pages now using new images from `/hero/` folders:
+  - Temperature: `Temperature_Family_2025_US_Plain.png`
+  - Humidity: `Humidity_Family_2025_NoStand_International_Plain.png`
+  - Pressure: `Pressure_Family_2025_US_Plain.png`
+  - Air Quality: `AirQuality_Family_2025_US_Plain.png`
+  - Wireless: `BAPI_BLE_Wireless_HVAC_2025.png`
+- Images display perfectly on BAPI blue gradient backgrounds without white reflections
 
-**Next Steps:**
-- [ ] Elly to identify images with problematic reflections
-- [ ] Provide replacement images with transparent backgrounds (no reflections)
-- [ ] Update image files once replacements are ready
+**Completed Tasks:**
+- [x] All 8 landing pages updated to remove white background containers
+- [x] 5 pages updated with new reflection-free hero images
+- [x] Accessories, Test Instruments, and Sensors pages ready for image replacements when available
 
 ---
 

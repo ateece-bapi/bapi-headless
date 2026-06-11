@@ -194,7 +194,7 @@ export default async function AirQualityPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-[3/2]">
                 <Image
-                  src="/images/air/co2/1-air-quality-sensors.png"
+                  src="/images/air/hero/AirQuality_Family_2025_US_Plain.png"
                   alt={t('hero.imageAlt')}
                   fill
                   className="mx-auto h-auto max-w-full"

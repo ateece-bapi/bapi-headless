@@ -51,18 +51,19 @@
 
 **Designer Note:**
 - ✅ Elly provided new reflection-free images for all hero sections
-- All 5 landing pages now using new images from `/hero/` folders:
+- All 7 landing pages now using new images from `/hero/` folders:
   - Temperature: `Temperature_Family_2025_US_Plain.png`
   - Humidity: `Humidity_Family_2025_NoStand_International_Plain.png`
   - Pressure: `Pressure_Family_2025_US_Plain.png`
-  - Air Quality: `AirQuality_Family_2025_US_Plain.png`
+  - Air Quality: `2022AirQuality_PLAIN.png`
   - Wireless: `BAPI_BLE_Wireless_HVAC_2025.png`
+  - Accessories: `2022Accessories3_PLAIN.png`
 - Images display perfectly on BAPI blue gradient backgrounds without white reflections
 
 **Completed Tasks:**
 - [x] All 8 landing pages updated to remove white background containers
-- [x] 5 pages updated with new reflection-free hero images
-- [x] Accessories, Test Instruments, and Sensors pages ready for image replacements when available
+- [x] 6 pages updated with new reflection-free hero images
+- [x] Test Instruments and Sensors pages ready for image replacements when available
 
 ---
 

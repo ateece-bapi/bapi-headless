@@ -182,7 +182,7 @@ export default async function AccessoriesPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-[16/10]">
                 <Image
-                  src="/images/products/families/Accessories_Family_2025_US.webp"
+                  src="/images/accessories/hero/2022Accessories3_PLAIN.png"
                   alt={t('hero.imageAlt')}
                   fill
                   className="object-contain"

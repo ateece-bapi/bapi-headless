@@ -194,10 +194,10 @@ export default async function AirQualityPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-[3/2]">
                 <Image
-                  src="/images/air/hero/AirQuality_Family_2025_US_Plain.png"
+                  src="/images/air/hero/2022AirQuality_PLAIN.png"
                   alt={t('hero.imageAlt')}
                   fill
-                  className="mx-auto h-auto max-w-full"
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}

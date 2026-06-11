@@ -111,7 +111,7 @@ export default function TestInstrumentsPage() {
             </div>
 
             <div className="relative">
-              <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl bg-white p-8 shadow-2xl">
+              <div className="group/image relative aspect-[16/10]">
                 <Image
                   src="/images/products/families/Blu-Test_Family_2025_US.webp"
                   alt="Blu-Test HVAC diagnostic tools family"

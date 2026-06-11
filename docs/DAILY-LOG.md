@@ -2,9 +2,62 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 10, 2026  
-**Status:** Phase 1 Complete - Live in Production (30 days post-launch)  
+**Updated:** June 11, 2026  
+**Status:** Phase 1 Complete - Live in Production (31 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 11, 2026 — Product Family Image Display Fix 🖼️
+
+**Status:** ✅ COMPLETE  
+**Context:** Elly (Graphics Designer) requested removal of white background boxes from product family images on landing pages. Images should display directly on colored backgrounds without white containers, matching the style shown in her Accessories example.  
+**Priority:** 🟢 Visual Polish - Designer feedback implementation  
+**Time:** ~15 minutes  
+**Approach:** Remove white background containers → Allow transparent display on colored backgrounds
+
+### 🎯 CHANGES
+
+**Visual Improvements:**
+1. ✅ **Accessories Page** (`/accessories`) - Removed white box container from product family image
+2. ✅ **Test Instruments Page** (`/test-instruments`) - Removed white box container from Blu-Test family image
+3. ✅ **Sensors Page** (`/sensors`) - Removed white box container from full family image
+4. ✅ **Wireless Page** (`/wireless`) - Removed white box container from wireless product family image
+5. ✅ **Temperature Page** (`/temperature`) - Removed white box container from room temperature family image
+6. ✅ **Humidity Page** (`/humidity`) - Removed white box container from humidity sensors image
+7. ✅ **Pressure Page** (`/pressure`) - Removed white box container from pressure sensors family image
+8. ✅ **Air Quality Page** (`/air-quality`) - Removed white box container from air quality sensors image
+
+**Technical Details:**
+- Removed `bg-white p-8 shadow-lg/shadow-2xl rounded-2xl` wrapper classes from all hero images
+- Changed from fixed width/height to responsive aspect ratios:
+  - `aspect-[16/10]` for Accessories, Test Instruments, Sensors, Wireless
+  - `aspect-square` for Temperature and Pressure
+  - `aspect-[418/287]` for Humidity
+  - `aspect-[3/2]` for Air Quality
+- Updated Image component from `width/height` props to `fill` with `object-contain`
+- Preserved hover animations (`group-hover/image:scale-105`) where applicable
+- Images now display transparently on gradient backgrounds
+
+**Files Modified:**
+- `/web/src/app/[locale]/accessories/page.tsx`
+- `/web/src/app/[locale]/test-instruments/page.tsx`
+- `/web/src/app/[locale]/sensors/page.tsx`
+- `/web/src/app/[locale]/wireless/page.tsx`
+- `/web/src/app/[locale]/temperature/page.tsx`
+- `/web/src/app/[locale]/humidity/page.tsx`
+- `/web/src/app/[locale]/pressure/page.tsx`
+- `/web/src/app/[locale]/air-quality/page.tsx`
+
+**Designer Note:**
+- Elly will review which images have reflections that don't work with the BAPI blue background
+- Images requiring replacement will be provided as PNG versions with transparent backgrounds
+- Current images work best when they already have reflections/shadows removed
+
+**Next Steps:**
+- [ ] Elly to identify images with problematic reflections
+- [ ] Provide replacement images with transparent backgrounds (no reflections)
+- [ ] Update image files once replacements are ready
 
 ---
 

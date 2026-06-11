@@ -180,13 +180,12 @@ export default async function AccessoriesPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative aspect-[16/10]">
                 <Image
                   src="/images/products/families/Accessories_Family_2025_US.webp"
                   alt={t('hero.imageAlt')}
-                  width={2400}
-                  height={1543}
-                  className="h-auto w-full"
+                  fill
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}

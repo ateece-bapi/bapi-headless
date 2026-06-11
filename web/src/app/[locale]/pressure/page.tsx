@@ -170,13 +170,12 @@ export default async function PressurePage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative aspect-square">
                 <Image
                   src="/images/pressure/sensors/2022Pressure_REFLECTION_small-e1650653837224.png"
                   alt={t('hero.imageAlt')}
-                  width={640}
-                  height={640}
-                  className="mx-auto h-auto max-w-full"
+                  fill
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}

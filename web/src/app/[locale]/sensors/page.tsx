@@ -107,7 +107,7 @@ export default function SensorsPage() {
             </div>
 
             <div className="relative">
-              <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl bg-white p-8 shadow-2xl">
+              <div className="group/image relative aspect-[16/10]">
                 <Image
                   src="/images/products/families/BAPI_Full_Family_withWireless_11Kpix_2025_US.webp"
                   alt="BAPI complete sensor family with wireless monitoring"

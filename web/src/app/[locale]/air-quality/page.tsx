@@ -192,12 +192,11 @@ export default async function AirQualityPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative aspect-[3/2]">
                 <Image
                   src="/images/air/co2/1-air-quality-sensors.png"
                   alt={t('hero.imageAlt')}
-                  width={600}
-                  height={400}
+                  fill
                   className="mx-auto h-auto max-w-full"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority

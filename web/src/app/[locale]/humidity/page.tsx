@@ -146,17 +146,15 @@ export default async function HumidityPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative aspect-[418/287]">
                 <Image
                   src="/images/humidity/humidity_sensors.png"
                   alt={t('hero.imageAlt')}
-                  width={418}
-                  height={287}
-                  className="mx-auto h-auto max-w-full"
+                  fill
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}
-                  style={{ maxWidth: '418px' }}
                 />
               </div>
             </div>

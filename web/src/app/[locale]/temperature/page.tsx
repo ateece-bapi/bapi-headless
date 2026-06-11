@@ -211,13 +211,12 @@ export default async function TemperaturePage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative aspect-square">
                 <Image
                   src="/images/temperature/room/product_family.png"
                   alt={t('hero.title')}
-                  width={640}
-                  height={640}
-                  className="h-auto w-full"
+                  fill
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}

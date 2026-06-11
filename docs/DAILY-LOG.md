@@ -36,31 +36,34 @@
 - ✅ Wireless: Updated to `BAPI_BLE_Wireless_HVAC_2025.png`
 - ✅ Accessories: Updated to `2022Accessories3_PLAIN.png`
 
-**Phase 3: XL Screen Height Optimization (All 8 pages)**
-Problem: Hero sections were too tall on XL screens (1280px+), especially with square aspect ratio images.
+**Phase 3: Hero Section Standardization (All 8 pages)**
+Problem: Inconsistent hero section heights and excessive vertical space caused by mixed aspect ratios and equal top/bottom padding.
 
-Solution: Added responsive max-height constraints:
-- **Mobile → LG screens**: Full aspect ratio maintained (400px max on LG, 350px max on MD)
-- **XL screens (1280px+)**: `max-h-[350px]` on most images
-- **XL screens (1280px+)**: `max-h-[300px]` on wider aspect ratio images (16:10, 3:2)
+Solution: Standardized hero sections for visual consistency:
 
-Pages optimized:
-- Temperature: `aspect-square max-h-[400px] xl:max-h-[350px]`
-- Humidity: `aspect-[418/287] max-h-[350px] xl:max-h-[300px]`
-- Pressure: `aspect-square max-h-[400px] xl:max-h-[350px]`
-- Air Quality: `aspect-[3/2] max-h-[350px] xl:max-h-[300px]`
-- Wireless: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
-- Accessories: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
-- Test Instruments: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
-- Sensors: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
+1. **Fixed Hero Image Heights** (replaced aspect-ratio constraints):
+   - Mobile/Tablet: `h-[450px]`
+   - Desktop (lg): `h-[500px]`
+   - XL screens: `h-[480px]`
+   - All images use `object-contain` to scale naturally without distortion
+
+2. **Asymmetric Padding** (reduced bottom padding by ~50%):
+   - **Before**: `py-8 md:py-10 lg:py-12 xl:py-8 2xl:py-6`
+   - **After**: `pt-8 pb-4 md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3`
+   - Top padding: Maintained for breathing room from header
+   - Bottom padding: Reduced to eliminate excessive blue space
+
+3. **Updated Pressure Page Title**:
+   - Changed: `"Pressure matters!"` → `"Pressure Sensors"`
+   - Updated in `web/messages/en.json`
 
 **Technical Details:**
 - Removed `bg-white p-8 shadow-lg/shadow-2xl rounded-2xl` wrapper classes from all hero images
-- Changed from fixed width/height to responsive aspect ratios with max-height constraints
+- Replaced aspect-ratio constraints (`aspect-square`, `aspect-[16/10]`, etc.) with fixed heights
 - Updated Image component from `width/height` props to `fill` with `object-contain`
 - Preserved hover animations (`group-hover/image:scale-105`) where applicable
 - Images now display transparently on gradient backgrounds
-- Hero sections maintain existing padding reduction on XL screens (`xl:py-10 2xl:py-8`)
+- Hero sections are now 30-40% more compact vertically
 
 **Files Modified:**
 - `/web/src/app/[locale]/accessories/page.tsx`

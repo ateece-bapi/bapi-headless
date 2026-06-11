@@ -114,7 +114,7 @@ export default function ProductComparison({
                       {/* Product Image */}
                       <div className="relative mb-3 aspect-square overflow-hidden rounded-lg bg-neutral-50">
                         <Image
-                          src={product.image?.sourceUrl || '/images/placeholder.webp'}
+                          src={product.image?.sourceUrl || '/images/placeholder.png'}
                           alt={product.image?.altText || product.name || 'Product'}
                           fill
                           className="object-contain"

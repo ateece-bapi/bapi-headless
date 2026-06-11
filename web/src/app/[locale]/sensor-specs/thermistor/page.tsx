@@ -330,7 +330,7 @@ export default function ThermistorOverviewPage() {
           </h2>
           <div className="bg-white rounded-lg border-2 border-neutral-200 p-6 flex justify-center">
             <img
-              src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Thermistor_output_chart.webp"
+              src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Thermistor_output_chart.png"
               alt={t('outputCurve.imageAlt')}
               className="max-w-full h-auto"
             />

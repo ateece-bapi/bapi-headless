@@ -213,7 +213,7 @@ export default async function TemperaturePage({ params }: Props) {
             <div className="relative">
               <div className="relative h-[450px] lg:h-[500px] xl:h-[480px]">
                 <Image
-                  src="/images/temperature/hero/Temperature_Family_2025_US_Plain.png"
+                  src="/images/temperature/hero/Temperature_Family_2025_US_Plain.webp"
                   alt={t('hero.title')}
                   fill
                   className="object-contain"

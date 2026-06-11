@@ -194,7 +194,7 @@ export default async function AirQualityPage({ params }: Props) {
             <div className="relative">
               <div className="relative h-[450px] lg:h-[500px] xl:h-[480px]">
                 <Image
-                  src="/images/air/hero/2022AirQuality_PLAIN.png"
+                  src="/images/air/hero/2022AirQuality_PLAIN.webp"
                   alt={t('hero.imageAlt')}
                   fill
                   className="object-contain"

@@ -172,7 +172,7 @@ export default async function PressurePage({ params }: Props) {
             <div className="relative">
               <div className="relative h-[450px] lg:h-[500px] xl:h-[480px]">
                 <Image
-                  src="/images/pressure/hero/Pressure_Family_2025_US_Plain.png"
+                  src="/images/pressure/hero/Pressure_Family_2025_US_Plain.webp"
                   alt={t('hero.imageAlt')}
                   fill
                   className="object-contain"

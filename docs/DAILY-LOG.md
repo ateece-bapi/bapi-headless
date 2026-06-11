@@ -13,12 +13,12 @@
 **Status:** ✅ COMPLETE  
 **Context:** Elly (Graphics Designer) requested removal of white background boxes from product family images on landing pages. Images should display directly on colored backgrounds without white containers, matching the style shown in her Accessories example.  
 **Priority:** 🟢 Visual Polish - Designer feedback implementation  
-**Time:** ~15 minutes  
-**Approach:** Remove white background containers → Allow transparent display on colored backgrounds
+**Time:** ~1.5 hours (initial fixes + hero image updates + XL screen optimization)  
+**Approach:** Remove white background containers → Allow transparent display on colored backgrounds → Add new reflection-free images → Optimize hero heights for XL screens
 
 ### 🎯 CHANGES
 
-**Visual Improvements:**
+**Phase 1: White Background Removal (8 pages)**
 1. ✅ **Accessories Page** (`/accessories`) - Removed white box container from product family image
 2. ✅ **Test Instruments Page** (`/test-instruments`) - Removed white box container from Blu-Test family image
 3. ✅ **Sensors Page** (`/sensors`) - Removed white box container from full family image
@@ -28,16 +28,39 @@
 7. ✅ **Pressure Page** (`/pressure`) - Removed white box container from pressure sensors family image
 8. ✅ **Air Quality Page** (`/air-quality`) - Removed white box container from air quality sensors image
 
+**Phase 2: Reflection-Free Images (6 pages updated)**
+- ✅ Temperature: Updated to `Temperature_Family_2025_US_Plain.png`
+- ✅ Humidity: Updated to `Humidity_Family_2025_NoStand_International_Plain.png`
+- ✅ Pressure: Updated to `Pressure_Family_2025_US_Plain.png`
+- ✅ Air Quality: Updated to `2022AirQuality_PLAIN.png` (replaced previous version)
+- ✅ Wireless: Updated to `BAPI_BLE_Wireless_HVAC_2025.png`
+- ✅ Accessories: Updated to `2022Accessories3_PLAIN.png`
+
+**Phase 3: XL Screen Height Optimization (All 8 pages)**
+Problem: Hero sections were too tall on XL screens (1280px+), especially with square aspect ratio images.
+
+Solution: Added responsive max-height constraints:
+- **Mobile → LG screens**: Full aspect ratio maintained (400px max on LG, 350px max on MD)
+- **XL screens (1280px+)**: `max-h-[350px]` on most images
+- **XL screens (1280px+)**: `max-h-[300px]` on wider aspect ratio images (16:10, 3:2)
+
+Pages optimized:
+- Temperature: `aspect-square max-h-[400px] xl:max-h-[350px]`
+- Humidity: `aspect-[418/287] max-h-[350px] xl:max-h-[300px]`
+- Pressure: `aspect-square max-h-[400px] xl:max-h-[350px]`
+- Air Quality: `aspect-[3/2] max-h-[350px] xl:max-h-[300px]`
+- Wireless: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
+- Accessories: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
+- Test Instruments: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
+- Sensors: `aspect-[16/10] max-h-[350px] xl:max-h-[300px]`
+
 **Technical Details:**
 - Removed `bg-white p-8 shadow-lg/shadow-2xl rounded-2xl` wrapper classes from all hero images
-- Changed from fixed width/height to responsive aspect ratios:
-  - `aspect-[16/10]` for Accessories, Test Instruments, Sensors, Wireless
-  - `aspect-square` for Temperature and Pressure
-  - `aspect-[418/287]` for Humidity
-  - `aspect-[3/2]` for Air Quality
+- Changed from fixed width/height to responsive aspect ratios with max-height constraints
 - Updated Image component from `width/height` props to `fill` with `object-contain`
 - Preserved hover animations (`group-hover/image:scale-105`) where applicable
 - Images now display transparently on gradient backgrounds
+- Hero sections maintain existing padding reduction on XL screens (`xl:py-10 2xl:py-8`)
 
 **Files Modified:**
 - `/web/src/app/[locale]/accessories/page.tsx`

@@ -118,16 +118,16 @@ const mockProduct = {
   shortDescription: 'High-precision pressure sensor for HVAC applications',
   description: '<h2>Product Overview</h2><p>Advanced sensor with superior accuracy.</p>',
   image: {
-    sourceUrl: '/images/product-hero.jpg',
+    sourceUrl: '/images/product-hero.webp',
     altText: 'Advanced Pressure Sensor - Front View',
   },
   gallery: [
     {
-      sourceUrl: '/images/gallery-1.jpg',
+      sourceUrl: '/images/gallery-1.webp',
       altText: 'Sensor - Side View',
     },
     {
-      sourceUrl: '/images/gallery-2.jpg',
+      sourceUrl: '/images/gallery-2.webp',
       altText: 'Sensor - Installation',
     },
   ],

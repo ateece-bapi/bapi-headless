@@ -42,7 +42,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.zpmBapiBox.feature2'),
         t('sensors.zpmBapiBox.feature3'),
       ],
-      image: '/images/pressure/sensors/ZPM_BB(1).png',
+      image: '/images/pressure/sensors/ZPM_BB(1).webp',
     },
     {
       name: t('sensors.zpmDifferential.name'),
@@ -52,7 +52,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.zpmDifferential.feature2'),
         t('sensors.zpmDifferential.feature3'),
       ],
-      image: '/images/pressure/sensors/zpm-pressure-shadow.png',
+      image: '/images/pressure/sensors/zpm-pressure-shadow.webp',
     },
     {
       name: t('sensors.ezDifferential.name'),
@@ -62,7 +62,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.ezDifferential.feature2'),
         t('sensors.ezDifferential.feature3'),
       ],
-      image: '/images/pressure/sensors/EZ-Main-Image-Blue.png',
+      image: '/images/pressure/sensors/EZ-Main-Image-Blue.webp',
     },
     {
       name: t('sensors.frpDifferential.name'),
@@ -72,7 +72,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.frpDifferential.feature2'),
         t('sensors.frpDifferential.feature3'),
       ],
-      image: '/images/pressure/sensors/FRP-Main-2022-1.png',
+      image: '/images/pressure/sensors/FRP-Main-2022-1.webp',
     },
     {
       name: t('sensors.outsidePickup.name'),
@@ -82,7 +82,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.outsidePickup.feature2'),
         t('sensors.outsidePickup.feature3'),
       ],
-      image: '/images/pressure/sensors/Pressure_Pickup_OA_white.png',
+      image: '/images/pressure/sensors/Pressure_Pickup_OA_white.webp',
     },
     {
       name: t('sensors.roomPickup.name'),
@@ -92,7 +92,7 @@ export default async function PressurePage({ params }: Props) {
         t('sensors.roomPickup.feature2'),
         t('sensors.roomPickup.feature3'),
       ],
-      image: '/images/pressure/sensors/Room-Ports-1.png',
+      image: '/images/pressure/sensors/Room-Ports-1.webp',
     },
   ];
 
@@ -106,7 +106,7 @@ export default async function PressurePage({ params }: Props) {
         t('switches.ductSwitch.feature2'),
         t('switches.ductSwitch.feature3'),
       ],
-      image: '/images/pressure/switches/Beck_Pressure_Switch.png',
+      image: '/images/pressure/switches/Beck_Pressure_Switch.webp',
     },
     {
       name: t('switches.differentialSwitch.name'),
@@ -116,7 +116,7 @@ export default async function PressurePage({ params }: Props) {
         t('switches.differentialSwitch.feature2'),
         t('switches.differentialSwitch.feature3'),
       ],
-      image: '/images/pressure/switches/pressure-switches.png',
+      image: '/images/pressure/switches/pressure-switches.webp',
     },
   ];
 

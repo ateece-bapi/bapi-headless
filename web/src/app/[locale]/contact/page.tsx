@@ -35,7 +35,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'mholder@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/matt-holder.png',
+    photo: '/images/team/matt-holder.webp',
   },
   {
     name: 'Steve Lindquist',
@@ -43,7 +43,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'slindquist@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/steve-lindquist.png',
+    photo: '/images/team/steve-lindquist.webp',
   },
   {
     name: 'Todd Vanden Heuvel',
@@ -51,7 +51,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'tvandenheuvel@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/todd-vanden-heuvel.png',
+    photo: '/images/team/todd-vanden-heuvel.webp',
   },
   {
     name: 'Mitchell Ogorman',
@@ -59,7 +59,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'mogorman@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/mitchell-ogorman.png',
+    photo: '/images/team/mitchell-ogorman.webp',
   },
   {
     name: 'Jennifer Sanford',
@@ -67,7 +67,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'jsanford@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/jennifer-sanford.png',
+    photo: '/images/team/jennifer-sanford.webp',
   },
   {
     name: 'Jon Greenwald',
@@ -75,7 +75,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'jgreenwald@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/jon-greenwald.png',
+    photo: '/images/team/jon-greenwald.webp',
     video: 'https://www.youtube.com/embed/iBeUe3OGrk4',
   },
   {
@@ -84,7 +84,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'bthaldorf@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/brian-thaldorf.png',
+    photo: '/images/team/brian-thaldorf.webp',
   },
   {
     name: 'Reggie Saucke',
@@ -92,7 +92,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'rsaucke@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/reggie-saucke.png',
+    photo: '/images/team/reggie-saucke.webp',
   },
   {
     name: 'Jacob Benson',
@@ -100,7 +100,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'jbenson@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/jacob-benson.png',
+    photo: '/images/team/jacob-benson.webp',
   },
 ];
 
@@ -111,7 +111,7 @@ const ukTeam: SalesRep[] = [
     region: 'UK & Western Europe',
     email: 'mmoss@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/mike-moss.png',
+    photo: '/images/team/mike-moss.webp',
   },
 ];
 
@@ -122,7 +122,7 @@ const europeTeam: SalesRep[] = [
     region: 'Central & Eastern Europe',
     email: 'jzurawski@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/jan-zurawski.png',
+    photo: '/images/team/jan-zurawski.webp',
     video: 'https://www.youtube.com/embed/O5jwFOFAO0A',
   },
 ];
@@ -134,7 +134,7 @@ const middleEastTeam: SalesRep[] = [
     region: 'Middle East & India',
     email: 'mkalabhai@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/murtaza-kalabhai.png',
+    photo: '/images/team/murtaza-kalabhai.webp',
   },
 ];
 
@@ -145,7 +145,7 @@ const indiaTeam: SalesRep[] = [
     region: 'India',
     email: 'sharad@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/sharad-thakur.png',
+    photo: '/images/team/sharad-thakur.webp',
   },
   {
     name: 'Shyam Krishnareddygari',
@@ -153,7 +153,7 @@ const indiaTeam: SalesRep[] = [
     region: 'India',
     email: 'shyam@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/shyam-krishnareddygari.png',
+    photo: '/images/team/shyam-krishnareddygari.webp',
   },
 ];
 
@@ -164,7 +164,7 @@ const southAmericaTeam: SalesRep[] = [
     region: 'Africa, South America, Middle East, India, Scandinavia',
     email: 'jshields@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/john-shields.png',
+    photo: '/images/team/john-shields.webp',
   },
 ];
 
@@ -175,7 +175,7 @@ const africaTeam: SalesRep[] = [
     region: 'Africa, South America, Middle East, India, Scandinavia',
     email: 'jshields@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/john-shields.png',
+    photo: '/images/team/john-shields.webp',
   },
 ];
 
@@ -186,7 +186,7 @@ const asiaTeam: SalesRep[] = [
     region: 'Asia',
     email: 'twilder@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/tim-wilder.png',
+    photo: '/images/team/tim-wilder.webp',
   },
 ];
 
@@ -197,7 +197,7 @@ const australiaTeam: SalesRep[] = [
     region: 'Australia & New Zealand',
     email: 'abrooks@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/andy-brooks.png',
+    photo: '/images/team/andy-brooks.webp',
   },
 ];
 
@@ -208,7 +208,7 @@ const technicalTeam: SalesRep[] = [
     region: 'Technical Support',
     email: 'jhillebrand@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/jonathan-hillebrand.png',
+    photo: '/images/team/jonathan-hillebrand.webp',
   },
   {
     name: 'Don Clark',
@@ -216,7 +216,7 @@ const technicalTeam: SalesRep[] = [
     region: 'Technical Support',
     email: 'dclark@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/donald-clark.png',
+    photo: '/images/team/donald-clark.webp',
   },
 ];
 

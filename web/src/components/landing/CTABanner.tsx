@@ -26,7 +26,7 @@ interface CTABannerProps {
  *   description="Get peace of mind before you place an order. BAPI's easy-to-use app lets you verify sensor distances..."
  *   buttonText="Learn More"
  *   buttonHref="/wireless-site-verification"
- *   imageSrc="/images/wireless/site-verification.jpg"
+ *   imageSrc="/images/wireless/site-verification.webp"
  *   imageAlt="Wireless signal verification app"
  *   variant="blue"
  * />

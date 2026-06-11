@@ -94,7 +94,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.outsideAir.feature2'),
         t('products.outsideAir.feature3'),
       ],
-      image: '/images/wireless/Image (Outside Air Sensor).png',
+      image: '/images/wireless/Image (Outside Air Sensor).webp',
     },
     {
       name: t('products.quantum.name'),
@@ -104,7 +104,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.quantum.feature2'),
         t('products.quantum.feature3'),
       ],
-      image: '/images/wireless/Image (BAPI-Stat Quantum).png',
+      image: '/images/wireless/Image (BAPI-Stat Quantum).webp',
     },
     {
       name: t('products.duct.name'),
@@ -114,7 +114,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.duct.feature2'),
         t('products.duct.feature3'),
       ],
-      image: '/images/wireless/Image (Duct Sensor).png',
+      image: '/images/wireless/Image (Duct Sensor).webp',
     },
     {
       name: t('products.quantumSlim.name'),
@@ -124,7 +124,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.quantumSlim.feature2'),
         t('products.quantumSlim.feature3'),
       ],
-      image: '/images/wireless/Image (BAPI-Stat Quantum Slim).png',
+      image: '/images/wireless/Image (BAPI-Stat Quantum Slim).webp',
     },
     {
       name: t('products.immersion.name'),
@@ -134,7 +134,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.immersion.feature2'),
         t('products.immersion.feature3'),
       ],
-      image: '/images/wireless/Image (Immersion Temperature).png',
+      image: '/images/wireless/Image (Immersion Temperature).webp',
     },
     {
       name: t('products.thermobuffer.name'),
@@ -144,7 +144,7 @@ export default async function WirelessPage({ params }: Props) {
         t('products.thermobuffer.feature2'),
         t('products.thermobuffer.feature3'),
       ],
-      image: '/images/wireless/Image (Thermobuffer Sensor).png',
+      image: '/images/wireless/Image (Thermobuffer Sensor).webp',
     },
   ];
 
@@ -155,21 +155,21 @@ export default async function WirelessPage({ params }: Props) {
       name: t('analogModules.resistance.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
       description: t('analogModules.resistance.description'),
-      image: '/images/wireless/modules/resistance.png',
+      image: '/images/wireless/modules/resistance.webp',
     },
     {
       id: 'voltage-output',
       name: t('analogModules.voltage.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
       description: t('analogModules.voltage.description'),
-      image: '/images/wireless/modules/voltage.png',
+      image: '/images/wireless/modules/voltage.webp',
     },
     {
       id: 'setpoint-output',
       name: t('analogModules.setpoint.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
       description: t('analogModules.setpoint.description'),
-      image: '/images/wireless/modules/setpoint.png',
+      image: '/images/wireless/modules/setpoint.webp',
     },
   ];
 
@@ -180,14 +180,14 @@ export default async function WirelessPage({ params }: Props) {
       name: t('digitalModules.bacnetIP.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
       description: t('digitalModules.bacnetIP.description'),
-      image: '/images/wireless/modules/bacnet-ip.png',
+      image: '/images/wireless/modules/bacnet-ip.webp',
     },
     {
       id: 'bacnet-modbus',
       name: t('digitalModules.bacnetModbus.name'),
       slug: 'wireless-output-modules-bluetooth-wireless',
       description: t('digitalModules.bacnetModbus.description'),
-      image: '/images/wireless/modules/bacnet-modbus.png',
+      image: '/images/wireless/modules/bacnet-modbus.webp',
     },
   ];
 
@@ -292,7 +292,7 @@ export default async function WirelessPage({ params }: Props) {
           <div className="mb-16">
             <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border-2 border-primary-200 bg-white shadow-xl">
               <Image
-                src="/images/wireless/Image (Wireless Integration Diagram).png"
+                src="/images/wireless/Image (Wireless Integration Diagram).webp"
                 alt="BAPI Wireless Solution Integration"
                 width={1248}
                 height={896}
@@ -380,7 +380,7 @@ export default async function WirelessPage({ params }: Props) {
             <div className="relative">
               <div className="relative aspect-square overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
-                  src="/images/wireless/Image (Wireless Receiver).png"
+                  src="/images/wireless/Image (Wireless Receiver).webp"
                   alt="BAPI Wireless Receiver"
                   fill
                   className="object-contain"
@@ -463,7 +463,7 @@ export default async function WirelessPage({ params }: Props) {
                 <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
                 <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
                   <Image
-                    src="/images/wireless/1-wireless-receiver-dom-modules.png"
+                    src="/images/wireless/1-wireless-receiver-dom-modules.webp"
                     alt="Wireless Receiver and Analog Output Modules"
                     width={700}
                     height={350}
@@ -536,7 +536,7 @@ export default async function WirelessPage({ params }: Props) {
                 <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 opacity-20 blur-2xl"></div>
                 <div className="relative overflow-hidden rounded-xl bg-white p-6 shadow-xl">
                   <Image
-                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    src="/images/wireless/wireless-receiver-with-output-modules.webp"
                     alt="Wireless Receiver with Digital Output Modules"
                     width={700}
                     height={350}
@@ -611,7 +611,7 @@ export default async function WirelessPage({ params }: Props) {
             {/* Right Column - Image */}
             <div className="relative">
               <Image
-                src="/images/wireless/Image (BAPI Wireless App).png"
+                src="/images/wireless/Image (BAPI Wireless App).webp"
                 alt="BAPI Wireless App"
                 width={800}
                 height={600}

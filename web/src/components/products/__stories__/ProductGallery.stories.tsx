@@ -61,19 +61,19 @@ type Story = StoryObj<typeof meta>;
 // Mock images for stories - using local PNG images from /public/products
 const mockImages: GalleryImage[] = [
   {
-    sourceUrl: '/products/temp_sensors.png',
+    sourceUrl: '/products/temp_sensors.webp',
     altText: 'Temperature Sensors - front view',
   },
   {
-    sourceUrl: '/products/humidity_sensors.png',
+    sourceUrl: '/products/humidity_sensors.webp',
     altText: 'Humidity Sensors - side view',
   },
   {
-    sourceUrl: '/products/pressure_sensors.png',
+    sourceUrl: '/products/pressure_sensors.webp',
     altText: 'Pressure Sensors - detail view',
   },
   {
-    sourceUrl: '/products/wireless_sensors.png',
+    sourceUrl: '/products/wireless_sensors.webp',
     altText: 'Wireless Sensors - installation',
   },
 ];
@@ -129,11 +129,11 @@ export const ManyImages: Story = {
     images: [
       ...mockImages,
       {
-        sourceUrl: '/products/air_quality_sensors.png',
+        sourceUrl: '/products/air_quality_sensors.webp',
         altText: 'Air Quality Sensors',
       },
       {
-        sourceUrl: '/products/test_products.png',
+        sourceUrl: '/products/test_products.webp',
         altText: 'Test Instruments',
       },
     ],
@@ -168,11 +168,11 @@ export const PortraitImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.png',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'Portrait orientation - view 1',
       },
       {
-        sourceUrl: '/products/humidity_sensors.png',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'Portrait orientation - view 2',
       },
     ],
@@ -190,11 +190,11 @@ export const LandscapeImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/pressure_sensors.png',
+        sourceUrl: '/products/pressure_sensors.webp',
         altText: 'Landscape orientation - view 1',
       },
       {
-        sourceUrl: '/products/wireless_sensors.png',
+        sourceUrl: '/products/wireless_sensors.webp',
         altText: 'Landscape orientation - view 2',
       },
     ],
@@ -225,11 +225,11 @@ export const HighResolution: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.png',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'High resolution image 1',
       },
       {
-        sourceUrl: '/products/humidity_sensors.png',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'High resolution image 2',
       },
     ],
@@ -247,15 +247,15 @@ export const MixedAspectRatios: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.png',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'Square image',
       },
       {
-        sourceUrl: '/products/humidity_sensors.png',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'Portrait image',
       },
       {
-        sourceUrl: '/products/wireless_sensors.png',
+        sourceUrl: '/products/wireless_sensors.webp',
         altText: 'Landscape image',
       },
     ],

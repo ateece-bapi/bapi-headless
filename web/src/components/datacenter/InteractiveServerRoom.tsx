@@ -60,15 +60,15 @@ export function InteractiveServerRoom() {
       title: 'Water Leak & Refrigerant Leak Detector',
       description:
         'The Water Leak Detector with Rope Sensor detects water along its entire length and is perfect for monitoring leaks around the base of liquid cooled racks or in the underfloor area of server rooms with raised floors.\n\nThe Refrigerant Leak Detector Protects staff by detecting leaks from the CRAC units in the server room or AHUs inside the building.',
-      image: '/images/datacenter/Server_Room_2026_7-scaled.png',
+      image: '/images/datacenter/Server_Room_2026_7-scaled.webp',
       productImages: [
         {
           label: 'Refrigerant Leak Detector',
-          image: '/images/datacenter/refrigerant-leak-detector.png',
+          image: '/images/datacenter/refrigerant-leak-detector.webp',
         },
         {
           label: 'Water Leak Detector with Rope Sensor',
-          image: '/images/datacenter/1-WaterLeak_Rope_Reverse 1.png',
+          image: '/images/datacenter/1-WaterLeak_Rope_Reverse 1.webp',
         },
       ],
       features: [],
@@ -77,7 +77,7 @@ export function InteractiveServerRoom() {
       title: 'Server Rack, Room, Plenum & Duct Pressure',
       description:
         'The small EZ Pressure Sensor fits inside or outside the rack for verifying pressure drop and air flow across the rack. The rugged ZPM BAPI-Box Pressure Sensor features an IP66 enclosure with pressure status LEDs for "line of sight" troubleshooting. Both units are field selectable and available with pickup ports for room, wall and ceiling.',
-      image: '/images/datacenter/Server_Room_2026_5-scaled.png',
+      image: '/images/datacenter/Server_Room_2026_5-scaled.webp',
       productImages: undefined,
       features: [],
     },
@@ -85,7 +85,7 @@ export function InteractiveServerRoom() {
       title: 'Aisle Temperature & Humidity',
       description:
         'The Pendant Sensor hangs from the ceiling for accurate and unobtrusive hot and cold aisle monitoring.\n\nThe BAPI-Stat "Quantum Prime" room sensor features temperature and humidity setpoint adjustment, occupancy override and wipedown cleaning.',
-      image: '/images/datacenter/Server_Room_2026_4-scaled.png',
+      image: '/images/datacenter/Server_Room_2026_4-scaled.webp',
       productImages: undefined,
       features: [],
     },
@@ -109,7 +109,7 @@ export function InteractiveServerRoom() {
             {/* Main Image */}
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-primary-200 bg-white shadow-xl">
               <Image
-                src="/images/datacenter/Server_Room_2026_1_edit-01-scaled.png"
+                src="/images/datacenter/Server_Room_2026_1_edit-01-scaled.webp"
                 alt="Interactive Server Room Diagram"
                 fill
                 className="object-contain"

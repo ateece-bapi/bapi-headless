@@ -91,7 +91,7 @@ export default function WirelessCategoryHero({
 
               {/* Uncomment when image is uploaded:
               <Image
-                src="/images/wireless/hero-sensor.jpg"
+                src="/images/wireless/hero-sensor.webp"
                 alt="BAPI Bluetooth Wireless Sensors"
                 fill
                 className="object-cover"

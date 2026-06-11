@@ -15,7 +15,7 @@ import ImageModal from '@/components/ui/ImageModal';
 
 describe('ImageModal - Accessibility Tests', () => {
   const defaultProps = {
-    src: 'https://example.com/product.jpg',
+    src: 'https://example.com/product.webp',
     alt: 'Temperature Sensor Model TS-101 with digital display',
     onClose: vi.fn(),
   };

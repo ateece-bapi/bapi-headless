@@ -91,7 +91,7 @@ export default async function WAMPage({ params }: Props) {
               {/* WAM Logo */}
               <div className="mb-6 xl:mb-5">
                 <Image
-                  src="/images/wam/dashboards/wam-logo.png"
+                  src="/images/wam/dashboards/wam-logo.webp"
                   alt="WAM Logo"
                   width={120}
                   height={60}
@@ -128,7 +128,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="relative">
               <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
                 <Image
-                  src="/images/wam/dashboards/wam-hero-sensors-gateway.png"
+                  src="/images/wam/dashboards/wam-hero-sensors-gateway.webp"
                   alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
                   width={640}
                   height={411}
@@ -207,7 +207,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="order-2 lg:order-1">
               <div className="overflow-hidden rounded-2xl shadow-xl">
                 <Image
-                  src="/images/wam/dashboards/wam-real-time-visibility.png"
+                  src="/images/wam/dashboards/wam-real-time-visibility.webp"
                   alt="Store employee using tablet to monitor refrigeration"
                   width={692}
                   height={577}
@@ -399,7 +399,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/restaurants-wam.png"
+                  src="/images/wam/dashboards/restaurants-wam.webp"
                   alt="Restaurant monitoring"
                   fill
                   className="object-cover"
@@ -428,7 +428,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/greenhouses-wam.png"
+                  src="/images/wam/dashboards/greenhouses-wam.webp"
                   alt="Greenhouse monitoring"
                   fill
                   className="object-cover"
@@ -457,7 +457,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/wam_meat_processing.png"
+                  src="/images/wam/dashboards/wam_meat_processing.webp"
                   alt="Meat processing monitoring"
                   fill
                   className="object-cover"
@@ -486,7 +486,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/hospitals-pharmacies-wam.png"
+                  src="/images/wam/dashboards/hospitals-pharmacies-wam.webp"
                   alt="Hospital and pharmacy monitoring"
                   fill
                   className="object-cover"
@@ -515,7 +515,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/grocery-stores-wam.png"
+                  src="/images/wam/dashboards/grocery-stores-wam.webp"
                   alt="Grocery store monitoring"
                   fill
                   className="object-cover"
@@ -544,7 +544,7 @@ export default async function WAMPage({ params }: Props) {
             <div className="group overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src="/images/wam/dashboards/convenience-stores-wam.png"
+                  src="/images/wam/dashboards/convenience-stores-wam.webp"
                   alt="Convenience store monitoring"
                   fill
                   className="object-cover"

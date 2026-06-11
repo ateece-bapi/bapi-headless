@@ -37,7 +37,7 @@ const mockProductDefault: NonNullable<GetProductBySlugQuery['product']> = {
     __typename: 'MediaItem',
     id: 'cG9zdDo1Njc4',
     sourceUrl:
-      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.webp',
     altText: 'BAPI Temperature Sensor',
     mediaDetails: {
       __typename: 'MediaDetails',

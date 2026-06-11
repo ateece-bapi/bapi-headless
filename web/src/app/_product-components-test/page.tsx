@@ -13,22 +13,22 @@ import {
 const sampleImages: GalleryImage[] = [
   {
     sourceUrl:
-      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_ZLDS-700x700.jpg',
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_ZLDS-700x700.webp',
     altText: 'Building Automation Sensor - Main View',
   },
   {
     sourceUrl:
-      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_Multisensor-700x700.jpg',
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_Multisensor-700x700.webp',
     altText: 'Building Automation Sensor - Side View',
   },
   {
     sourceUrl:
-      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_I-O-Controller-700x700.jpg',
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_I-O-Controller-700x700.webp',
     altText: 'Building Automation Sensor - Detail View',
   },
   {
     sourceUrl:
-      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_Current-Sensor-700x700.jpg',
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/10/BA_Current-Sensor-700x700.webp',
     altText: 'Building Automation Sensor - Installation',
   },
 ];

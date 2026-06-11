@@ -72,7 +72,7 @@ describe('getProductBySlug', () => {
         // missing __typename
         price: '$19.99',
         // image uses alternative keys sometimes returned by WP
-        image: { source_url: 'https://example.test/img.png', alt_text: 'Alt Text' },
+        image: { source_url: 'https://example.test/img.webp', alt_text: 'Alt Text' },
         // galleryImages is null in some responses
         galleryImages: null,
         // variations missing nodes
@@ -107,7 +107,7 @@ describe('getProductBySlug', () => {
     expect(p.__typename).toBeDefined();
     // image should be normalized to have sourceUrl and altText
     expect(p.image).toBeDefined();
-    expect(p.image?.sourceUrl).toBe('https://example.test/img.png');
+    expect(p.image?.sourceUrl).toBe('https://example.test/img.webp');
     expect(p.image?.altText).toBe('Alt Text');
     // galleryImages.nodes should be an array
     expect(Array.isArray(p.galleryImages?.nodes)).toBe(true);
@@ -147,7 +147,7 @@ describe('getProductBySlug', () => {
                 ],
               },
               // variation image may use WP naming
-              image: { source_url: 'https://example.test/var-a.png', alt_text: 'Variant A' },
+              image: { source_url: 'https://example.test/var-a.webp', alt_text: 'Variant A' },
             },
           ],
         },
@@ -191,7 +191,7 @@ describe('getProductBySlug', () => {
     expect((v as any).attributes.nodes[0].value).toBe('M');
     // variation image should be normalized to have sourceUrl and altText
     expect((v as any).image).toBeDefined();
-    expect((v as any).image.sourceUrl).toBe('https://example.test/var-a.png');
+    expect((v as any).image.sourceUrl).toBe('https://example.test/var-a.webp');
     expect((v as any).image.altText).toBe('Variant A');
 
     spy.mockRestore();

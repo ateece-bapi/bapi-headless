@@ -56,7 +56,7 @@ const mockCartItem: CartItem = {
   numericPrice: 149.0,
   quantity: 2,
   image: {
-    sourceUrl: 'https://example.com/product.jpg',
+    sourceUrl: 'https://example.com/product.webp',
     altText: 'Temperature Sensor',
   },
   partNumber: 'TS-101-BLU',
@@ -77,7 +77,7 @@ const mockCartItemWithVariation: CartItem = {
     voltage: '110V',
   },
   image: {
-    sourceUrl: 'https://example.com/humidity.jpg',
+    sourceUrl: 'https://example.com/humidity.webp',
     altText: 'Humidity Sensor',
   },
 };

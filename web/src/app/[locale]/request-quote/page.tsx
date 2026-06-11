@@ -371,7 +371,7 @@ export default function RequestQuotePage() {
                     id="file-upload"
                     type="file"
                     multiple
-                    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.webp"
                     onChange={handleFileChange}
                     className="hidden"
                   />

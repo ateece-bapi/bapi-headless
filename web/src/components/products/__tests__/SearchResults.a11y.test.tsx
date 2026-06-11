@@ -89,7 +89,7 @@ const mockProduct = {
   type: 'SIMPLE' as const,
   shortDescription: 'High-precision temperature sensor for HVAC applications',
   image: {
-    sourceUrl: '/images/products/ts-100.jpg',
+    sourceUrl: '/images/products/ts-100.webp',
     altText: 'Temperature Sensor TS-100',
   },
   price: '$99.00',
@@ -188,7 +188,7 @@ const mockSearchResults = [
     price: '$99.00',
     shortDescription: 'High-precision temperature sensor',
     image: {
-      sourceUrl: '/images/products/ts-100.jpg',
+      sourceUrl: '/images/products/ts-100.webp',
       altText: 'Temperature Sensor TS-100',
     },
     productCategories: {
@@ -205,7 +205,7 @@ const mockSearchResults = [
     price: '$89.00',
     shortDescription: 'Accurate humidity monitoring',
     image: {
-      sourceUrl: '/images/products/hs-100.jpg',
+      sourceUrl: '/images/products/hs-100.webp',
       altText: 'Humidity Sensor HS-100',
     },
     productCategories: {

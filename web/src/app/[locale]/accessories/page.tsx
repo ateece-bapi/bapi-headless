@@ -42,7 +42,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('specialtySensors.waterLeakDetectors.feature2'),
         t('specialtySensors.waterLeakDetectors.feature3'),
       ],
-      image: '/images/accessories/specialty/1-water-leak-sensors.png',
+      image: '/images/accessories/specialty/1-water-leak-sensors.webp',
     },
     {
       name: t('specialtySensors.doorMonitor.name'),
@@ -52,7 +52,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('specialtySensors.doorMonitor.feature2'),
         t('specialtySensors.doorMonitor.feature3'),
       ],
-      image: '/images/accessories/specialty/DMA_LEDs.png',
+      image: '/images/accessories/specialty/DMA_LEDs.webp',
     },
     {
       name: t('specialtySensors.outdoorLight.name'),
@@ -62,7 +62,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('specialtySensors.outdoorLight.feature2'),
         t('specialtySensors.outdoorLight.feature3'),
       ],
-      image: '/images/accessories/specialty/Light-Level-Sensor.png',
+      image: '/images/accessories/specialty/Light-Level-Sensor.webp',
     },
   ];
 
@@ -76,7 +76,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.vc350.feature2'),
         t('accessories.vc350.feature3'),
       ],
-      image: '/images/accessories/accessories/VC_350A_EZ-Blue.png',
+      image: '/images/accessories/accessories/VC_350A_EZ-Blue.webp',
     },
     {
       name: t('accessories.powerDistribution.name'),
@@ -86,7 +86,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.powerDistribution.feature2'),
         t('accessories.powerDistribution.feature3'),
       ],
-      image: '/images/accessories/accessories/PDM.png',
+      image: '/images/accessories/accessories/PDM.webp',
     },
     {
       name: t('accessories.bapiGuard.name'),
@@ -96,7 +96,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.bapiGuard.feature2'),
         t('accessories.bapiGuard.feature3'),
       ],
-      image: '/images/accessories/accessories/BAPI-Guard-1.png',
+      image: '/images/accessories/accessories/BAPI-Guard-1.webp',
     },
     {
       name: t('accessories.flexibleProbe.name'),
@@ -106,7 +106,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.flexibleProbe.feature2'),
         t('accessories.flexibleProbe.feature3'),
       ],
-      image: '/images/accessories/accessories/FPB_Front.png',
+      image: '/images/accessories/accessories/FPB_Front.webp',
     },
     {
       name: t('accessories.weatherShade.name'),
@@ -116,7 +116,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.weatherShade.feature2'),
         t('accessories.weatherShade.feature3'),
       ],
-      image: '/images/accessories/accessories/Weather_Shade-2.png',
+      image: '/images/accessories/accessories/Weather_Shade-2.webp',
     },
     {
       name: t('accessories.vc2000.name'),
@@ -126,7 +126,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.vc2000.feature2'),
         t('accessories.vc2000.feature3'),
       ],
-      image: '/images/accessories/accessories/VC2000-Main.png',
+      image: '/images/accessories/accessories/VC2000-Main.webp',
     },
   ];
 

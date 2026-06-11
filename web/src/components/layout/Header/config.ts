@@ -414,7 +414,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('resources.featured.description'),
         cta: t('resources.featured.cta'),
         href: '/resources',
-        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.webp',
       },
     },
   },
@@ -475,7 +475,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('support.featured.description'),
         cta: t('support.featured.cta'),
         href: '/contact',
-        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.webp',
       },
     },
   },
@@ -545,7 +545,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('company.featured.description'),
         cta: t('company.featured.cta'),
         href: '/contact',
-        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
+        logo: '/images/logos/bapi_logo_Sensor Solutions_1993.webp',
       },
     },
   },
@@ -553,7 +553,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
 
 export const HEADER_CONFIG = {
   logo: {
-    src: '/images/logos/bapi_logo_Sensor Solutions_1993.png',
+    src: '/images/logos/bapi_logo_Sensor Solutions_1993.webp',
     alt: 'BAPI - Sensor Solutions Since 1993',
     width: 400,
     height: 280,

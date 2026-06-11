@@ -20,7 +20,7 @@ type Story = StoryObj<typeof ImageModal>;
 export const Default: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/sample-product.jpg';
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/sample-product.webp';
     const alt = 'Sample Product Image';
 
     return (
@@ -43,7 +43,7 @@ export const Default: Story = {
 export const Landscape: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/landscape-product.jpg';
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/landscape-product.webp';
     const alt = 'Landscape Product Image';
 
     return (
@@ -66,7 +66,7 @@ export const Landscape: Story = {
 export const Portrait: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/portrait-product.jpg';
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/portrait-product.webp';
     const alt = 'Portrait Product Image';
 
     return (

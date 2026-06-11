@@ -357,7 +357,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                 {/* Product Image */}
                 <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
                   <Image
-                    src="/images/wireless/wireless-receiver-with-output-modules.png"
+                    src="/images/wireless/wireless-receiver-with-output-modules.webp"
                     alt="Receiver and Output Modules"
                     fill
                     className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"

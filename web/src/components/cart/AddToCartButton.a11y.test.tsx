@@ -27,7 +27,7 @@ const mockProduct: Omit<CartItem, 'quantity'> = {
   price: '149.00',
   numericPrice: 149.00,
   image: {
-    sourceUrl: 'https://example.com/product.jpg',
+    sourceUrl: 'https://example.com/product.webp',
     altText: 'Temperature Sensor',
   },
 };

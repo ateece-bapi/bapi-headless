@@ -17,7 +17,7 @@ const mockProduct = {
   partNumber: 'TS-101-SS',
   price: '$149.00',
   image: {
-    sourceUrl: 'https://example.com/product.jpg',
+    sourceUrl: 'https://example.com/product.webp',
     altText: 'Temperature Sensor TS-101 with digital display',
   },
   shortDescription: 'High-accuracy temperature sensor with digital display for building automation systems.',
@@ -82,7 +82,7 @@ describe('ProductCard Accessibility', () => {
     it('falls back to product name when alt text missing', () => {
       const productWithoutAlt = {
         ...mockProduct,
-        image: { sourceUrl: 'https://example.com/product.jpg', altText: null },
+        image: { sourceUrl: 'https://example.com/product.webp', altText: null },
       };
       render(<ProductCard product={productWithoutAlt} locale="en" index={0} />);
       const image = screen.getByAltText('Temperature Sensor TS-101');

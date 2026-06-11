@@ -43,7 +43,7 @@ describe('CartItems Component', () => {
           stockStatus: 'IN_STOCK',
           stockQuantity: 50,
           image: {
-            sourceUrl: 'https://example.com/image1.jpg',
+            sourceUrl: 'https://example.com/image1.webp',
             altText: 'Test Product 1 Image',
           },
         },
@@ -92,7 +92,7 @@ describe('CartItems Component', () => {
       render(<CartItems {...defaultProps} />);
       const images = screen.getAllByAltText('Test Product 1 Image');
       expect(images[0]).toBeInTheDocument();
-      expect(images[0]).toHaveAttribute('src', 'https://example.com/image1.jpg');
+      expect(images[0]).toHaveAttribute('src', 'https://example.com/image1.webp');
     });
 
     it('renders "No Image" placeholder when image not available', () => {
@@ -186,7 +186,7 @@ describe('CartItems Component', () => {
               price: '$19.99',
               stockStatus: 'IN_STOCK',
               image: {
-                sourceUrl: 'https://example.com/variation.jpg',
+                sourceUrl: 'https://example.com/variation.webp',
                 altText: 'Variation Image',
               },
             },
@@ -196,7 +196,7 @@ describe('CartItems Component', () => {
 
       render(<CartItems {...defaultProps} items={itemWithVariation} />);
       const images = screen.getAllByAltText('Variation Image');
-      expect(images[0]).toHaveAttribute('src', 'https://example.com/variation.jpg');
+      expect(images[0]).toHaveAttribute('src', 'https://example.com/variation.webp');
     });
 
     it('uses variation price when available', () => {

@@ -26,7 +26,7 @@ interface ProductHighlightProps {
  * <ProductHighlight
  *   title="Wireless Receiver"
  *   description="The Wireless Receiver collects data from one or more wireless sensors..."
- *   imageSrc="/images/wireless/receiver.png"
+ *   imageSrc="/images/wireless/receiver.webp"
  *   imageAlt="BAPI Wireless Receiver"
  *   features={[
  *     "Sample Rate/Interval",

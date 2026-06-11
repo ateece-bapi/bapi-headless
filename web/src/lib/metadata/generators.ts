@@ -80,7 +80,7 @@ export const SITE_CONFIG: SiteMetadataConfig = {
   defaultTitle: 'BAPI | Precision Sensor Solutions for Building Automation',
   defaultDescription:
     'Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide for healthcare, data centers, and critical infrastructure.',
-  defaultImage: '/og-default.jpg',
+  defaultImage: '/og-default.webp',
   twitterHandle: '@bapi',
   locale: 'en_US',
   localeAlternates: ['en-US', 'es-ES'],

@@ -100,7 +100,7 @@ export default function DataCenterPage() {
             <div className="relative">
               <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl bg-white p-2 shadow-2xl">
                 <Image
-                  src="/images/datacenter/Server_Room_2026_1-scaled.png"
+                  src="/images/datacenter/Server_Room_2026_1-scaled.webp"
                   alt="Data center server room with environmental monitoring"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -291,49 +291,49 @@ export default function DataCenterPage() {
                 title: 'Water Leak Detector',
                 description:
                   'Detect water leaks early with cable length up to 100 feet. Ideal for under raised floors.',
-                image: '/images/datacenter/1-WaterLeak_Rope_Reverse 1.png',
+                image: '/images/datacenter/1-WaterLeak_Rope_Reverse 1.webp',
                 link: '/products',
               },
               {
                 title: 'Zone Pressure Monitor',
                 description:
                   'Precise differential pressure monitoring for cleanrooms and containment areas.',
-                image: '/images/datacenter/ZPM_BB.png',
+                image: '/images/datacenter/ZPM_BB.webp',
                 link: '/products',
               },
               {
                 title: 'EZ Pressure',
                 description:
                   'Fits inside or outside the rack to measure air flow across the rack.',
-                image: '/images/datacenter/ez-pressure-1.png',
+                image: '/images/datacenter/ez-pressure-1.webp',
                 link: '/products',
               },
               {
                 title: 'Pendant Temp & Humidity',
                 description:
                   'Precise temperature and humidity monitoring for critical server room environments.',
-                image: '/images/datacenter/Pendant_Sensor_BB.png',
+                image: '/images/datacenter/Pendant_Sensor_BB.webp',
                 link: '/products',
               },
               {
                 title: 'Refrigerant Leak Detector',
                 description:
                   'Early detection of refrigerant leaks from HVAC and cooling systems ensures safety.',
-                image: '/images/datacenter/refrigerant-leak-detector.png',
+                image: '/images/datacenter/refrigerant-leak-detector.webp',
                 link: '/products',
               },
               {
                 title: 'Remote Sensor',
                 description:
                   'Extend monitoring capability to remote locations with flexible sensor placement.',
-                image: '/images/datacenter/1-Remote_Sensor_Gray_BBX_Flip 1.png',
+                image: '/images/datacenter/1-Remote_Sensor_Gray_BBX_Flip 1.webp',
                 link: '/products',
               },
               {
                 title: 'Low Profile Pressure',
                 description:
                   'Low-profile pressure sensors for differential pressure monitoring in containment systems.',
-                image: '/images/datacenter/low-profile-pressure-pickup.png',
+                image: '/images/datacenter/low-profile-pressure-pickup.webp',
                 link: '/products',
               },
             ].map((product) => (

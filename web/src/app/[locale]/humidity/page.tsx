@@ -42,7 +42,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.bapiStatQuantum.feature2'),
         t('sensors.bapiStatQuantum.feature3'),
       ],
-      image: '/images/humidity/Quantum-Humid-SO-Main.png',
+      image: '/images/humidity/Quantum-Humid-SO-Main.webp',
     },
     {
       name: t('sensors.quantumPrime.name'),
@@ -52,7 +52,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.quantumPrime.feature2'),
         t('sensors.quantumPrime.feature3'),
       ],
-      image: '/images/humidity/quantum-prime-humidity-banner.png',
+      image: '/images/humidity/quantum-prime-humidity-banner.webp',
     },
     {
       name: t('sensors.outsideAir.name'),
@@ -62,7 +62,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.outsideAir.feature2'),
         t('sensors.outsideAir.feature3'),
       ],
-      image: '/images/humidity/Main-Image-300pix9.png',
+      image: '/images/humidity/Main-Image-300pix9.webp',
     },
     {
       name: t('sensors.ductCrossover.name'),
@@ -72,7 +72,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.ductCrossover.feature2'),
         t('sensors.ductCrossover.feature3'),
       ],
-      image: '/images/humidity/Duct-Humidity-BBX-2020.png',
+      image: '/images/humidity/Duct-Humidity-BBX-2020.webp',
     },
     {
       name: t('sensors.bapiStat4.name'),
@@ -82,7 +82,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.bapiStat4.feature2'),
         t('sensors.bapiStat4.feature3'),
       ],
-      image: '/images/humidity/BS4-Humidity-BW.png',
+      image: '/images/humidity/BS4-Humidity-BW.webp',
     },
     {
       name: t('sensors.deltaStyle.name'),
@@ -92,7 +92,7 @@ export default async function HumidityPage({ params }: Props) {
         t('sensors.deltaStyle.feature2'),
         t('sensors.deltaStyle.feature3'),
       ],
-      image: '/images/humidity/Delta_Humidity_Display.png',
+      image: '/images/humidity/Delta_Humidity_Display.webp',
     },
   ];
 

@@ -70,7 +70,7 @@ describe('Order Details API - Integration Tests', () => {
             total: '99.98',
             subtotal: '99.98',
             image: {
-              src: 'https://example.com/image.jpg',
+              src: 'https://example.com/image.webp',
             },
           },
           {
@@ -159,7 +159,7 @@ describe('Order Details API - Integration Tests', () => {
         name: 'Temperature Sensor',
         quantity: 2,
         price: '$99.98',
-        image: 'https://example.com/image.jpg',
+        image: 'https://example.com/image.webp',
       });
       expect(data.order.items[1]).toMatchObject({
         id: '2',
@@ -180,7 +180,7 @@ describe('Order Details API - Integration Tests', () => {
         product: {
           id: 12345,
           name: 'Temperature Sensor',
-          image: 'https://example.com/image.jpg',
+          image: 'https://example.com/image.webp',
         },
       });
 

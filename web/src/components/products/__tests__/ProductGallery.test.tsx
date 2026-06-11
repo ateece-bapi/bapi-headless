@@ -33,9 +33,9 @@ vi.mock('next/image', () => ({
 
 describe('ProductGallery Component', () => {
   const mockImages: GalleryImage[] = [
-    { sourceUrl: '/image1.jpg', altText: 'Product image 1' },
-    { sourceUrl: '/image2.jpg', altText: 'Product image 2' },
-    { sourceUrl: '/image3.jpg', altText: 'Product image 3' },
+    { sourceUrl: '/image1.webp', altText: 'Product image 1' },
+    { sourceUrl: '/image2.webp', altText: 'Product image 2' },
+    { sourceUrl: '/image3.webp', altText: 'Product image 3' },
   ];
 
   const productName = 'Test Product';
@@ -81,7 +81,7 @@ describe('ProductGallery Component', () => {
     });
 
     it('falls back to productName when altText is null', () => {
-      const imagesWithoutAlt = [{ sourceUrl: '/image1.jpg', altText: null }];
+      const imagesWithoutAlt = [{ sourceUrl: '/image1.webp', altText: null }];
       render(<ProductGallery images={imagesWithoutAlt} productName={productName} />);
       expect(screen.getByAltText(productName)).toBeInTheDocument();
     });
@@ -426,7 +426,7 @@ describe('ProductGallery Component', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const mainImage = screen.getAllByAltText('Product image 1')[0];
       // Main image uses regular img tag, not Next.js Image, so no data-sizes attribute
-      expect(mainImage).toHaveAttribute('src', '/image1.jpg');
+      expect(mainImage).toHaveAttribute('src', '/image1.webp');
     });
 
     it('sets appropriate image sizes for thumbnails', () => {
@@ -460,8 +460,8 @@ describe('ProductGallery Component', () => {
 
     it('handles images without altText', () => {
       const imagesNoAlt: GalleryImage[] = [
-        { sourceUrl: '/image1.jpg', altText: null },
-        { sourceUrl: '/image2.jpg', altText: null },
+        { sourceUrl: '/image1.webp', altText: null },
+        { sourceUrl: '/image2.webp', altText: null },
       ];
       render(<ProductGallery images={imagesNoAlt} productName={productName} />);
       expect(screen.getByAltText(productName)).toBeInTheDocument();
@@ -490,12 +490,12 @@ describe('ProductGallery Component', () => {
       {
         id: 'var1',
         name: 'Variation 1',
-        image: { sourceUrl: '/var1.jpg', altText: 'Variation 1 image' },
+        image: { sourceUrl: '/var1.webp', altText: 'Variation 1 image' },
       },
       {
         id: 'var2',
         name: 'Variation 2',
-        image: { sourceUrl: '/var2.jpg', altText: 'Variation 2 image' },
+        image: { sourceUrl: '/var2.webp', altText: 'Variation 2 image' },
       },
     ];
 
@@ -517,7 +517,7 @@ describe('ProductGallery Component', () => {
           images={mockImages}
           productName={productName}
           variations={mockVariations}
-          variation={{ id: 'var1', image: { sourceUrl: '/var1.jpg', altText: 'Variation 1 image' } }}
+          variation={{ id: 'var1', image: { sourceUrl: '/var1.webp', altText: 'Variation 1 image' } }}
         />
       );
 
@@ -542,7 +542,7 @@ describe('ProductGallery Component', () => {
           images={mockImages}
           productName={productName}
           variations={mockVariations}
-          variation={{ id: 'var3', image: { sourceUrl: '/nonexistent.jpg', altText: 'Unknown' } }}
+          variation={{ id: 'var3', image: { sourceUrl: '/nonexistent.webp', altText: 'Unknown' } }}
         />
       );
 

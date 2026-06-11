@@ -21,7 +21,7 @@ export const WirelessReceiver: Story = {
     title: 'Wireless Receiver',
     description:
       "The Wireless Receiver collects data from one or more wireless sensors and distributes it to output modules for seamless BMS integration. With field-selectable settings, you can customize performance to maximize battery life while ensuring your BMS gets the data it needs.",
-    imageSrc: '/images/wireless/Image (Wireless Receiver).png',
+    imageSrc: '/images/wireless/Image (Wireless Receiver).webp',
     imageAlt: 'BAPI Wireless Receiver',
     featuresHeading: 'Field Selectable Settings:',
     features: [
@@ -44,7 +44,7 @@ export const ImageLeft: Story = {
     title: 'BACnet IP Module',
     description:
       'Converts wireless sensor data for integration into the BMS ethernet communication network. Quick and easy web-based configuration. Surface, 2.75 snaptrack or 35mm DIN rail mountable.',
-    imageSrc: '/images/wireless/modules/bacnet-ip.png',
+    imageSrc: '/images/wireless/modules/bacnet-ip.webp',
     imageAlt: 'BAPI BACnet IP Module',
     features: [
       'Web-based configuration',
@@ -65,7 +65,7 @@ export const NoFeatures: Story = {
     title: 'Wireless Temperature Sensor',
     description:
       'High-accuracy temperature monitoring for HVAC applications. Easy installation with no wiring required. Long battery life ensures years of reliable operation.',
-    imageSrc: '/images/wireless/Image (BAPI-Stat Quantum).png',
+    imageSrc: '/images/wireless/Image (BAPI-Stat Quantum).webp',
     imageAlt: 'BAPI Wireless Temperature Sensor',
     learnMoreHref: '/products/wireless-temperature-sensor',
     imagePosition: 'right',
@@ -80,7 +80,7 @@ export const NoCTA: Story = {
     title: 'Output Modules',
     description:
       'Convert wireless sensor data into signals compatible with your building automation system. Choose from analog outputs (voltage, resistance) or digital protocols (BACnet, Modbus).',
-    imageSrc: '/images/wireless/Image (Wireless Integration Diagram).png',
+    imageSrc: '/images/wireless/Image (Wireless Integration Diagram).webp',
     imageAlt: 'BAPI Output Modules',
     features: [
       'Voltage Output (0-5V, 0-10V)',

@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-4 lg:col-span-2">
             <Link href="/" className="mb-2 inline-block">
               <Image
-                src="/images/logos/bapi_logo_Sensor Solutions_1993.png"
+                src="/images/logos/bapi_logo_Sensor Solutions_1993.webp"
                 alt="BAPI - Sensor Solutions Since 1993"
                 width={200}
                 height={140}
@@ -267,7 +267,7 @@ const Footer: React.FC = () => {
                   className="h-10 w-auto transition-transform duration-300 hover:scale-110"
                 />
                 <Image
-                  src="/images/logos/fcc-logo-blue-2020-large.png"
+                  src="/images/logos/fcc-logo-blue-2020-large.webp"
                   alt="FCC Certified"
                   width={50}
                   height={40}

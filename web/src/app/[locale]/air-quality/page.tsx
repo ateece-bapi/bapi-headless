@@ -38,7 +38,7 @@ export default async function AirQualityPage({ params }: Props) {
       name: t('co2.quantum.name'),
       slug: 'co2-24-7-bapi-stat-quantum-carbon-dioxide-sensor-constant-occupancy',
       features: [t('co2.quantum.feature1'), t('co2.quantum.feature2'), t('co2.quantum.feature3')],
-      image: '/images/air/co2/Quantum-CO2-Main.png',
+      image: '/images/air/co2/Quantum-CO2-Main.webp',
     },
     {
       name: t('co2.quantumPrime.name'),
@@ -48,13 +48,13 @@ export default async function AirQualityPage({ params }: Props) {
         t('co2.quantumPrime.feature2'),
         t('co2.quantumPrime.feature3'),
       ],
-      image: '/images/air/co2/Quantum-Prime-CO2-Main.png',
+      image: '/images/air/co2/Quantum-Prime-CO2-Main.webp',
     },
     {
       name: t('co2.duct.name'),
       slug: 'co2-24-7-duct-and-rough-service-carbon-dioxide-sensor-constant-occupancy',
       features: [t('co2.duct.feature1'), t('co2.duct.feature2'), t('co2.duct.feature3')],
-      image: '/images/air/co2/CO2-Duct.png',
+      image: '/images/air/co2/CO2-Duct.webp',
     },
   ];
 
@@ -64,7 +64,7 @@ export default async function AirQualityPage({ params }: Props) {
       name: t('voc.quantum.name'),
       slug: 'voc-bapi-stat-quantum-voc-sensor',
       features: [t('voc.quantum.feature1'), t('voc.quantum.feature2'), t('voc.quantum.feature3')],
-      image: '/images/air/voc/Quantum-VOC-Main.png',
+      image: '/images/air/voc/Quantum-VOC-Main.webp',
     },
     {
       name: t('voc.quantumPrime.name'),
@@ -74,13 +74,13 @@ export default async function AirQualityPage({ params }: Props) {
         t('voc.quantumPrime.feature2'),
         t('voc.quantumPrime.feature3'),
       ],
-      image: '/images/air/voc/Quantum-Prime-VOC-Main-25.png',
+      image: '/images/air/voc/Quantum-Prime-VOC-Main-25.webp',
     },
     {
       name: t('voc.duct.name'),
       slug: 'voc-duct-or-rough-service-voc-sensor',
       features: [t('voc.duct.feature1'), t('voc.duct.feature2'), t('voc.duct.feature3')],
-      image: '/images/air/voc/VOC-Duct.png',
+      image: '/images/air/voc/VOC-Duct.webp',
     },
   ];
 
@@ -94,7 +94,7 @@ export default async function AirQualityPage({ params }: Props) {
         t('particulate.quantum.feature2'),
         t('particulate.quantum.feature3'),
       ],
-      image: '/images/air/particulate/Particulate_Quantum.png',
+      image: '/images/air/particulate/Particulate_Quantum.webp',
     },
     {
       name: t('particulate.duct.name'),
@@ -104,7 +104,7 @@ export default async function AirQualityPage({ params }: Props) {
         t('particulate.duct.feature2'),
         t('particulate.duct.feature3'),
       ],
-      image: '/images/air/particulate/Particulate_Duct.png',
+      image: '/images/air/particulate/Particulate_Duct.webp',
     },
   ];
 
@@ -118,7 +118,7 @@ export default async function AirQualityPage({ params }: Props) {
         t('coNo2.coQuantum.feature2'),
         t('coNo2.coQuantum.feature3'),
       ],
-      image: '/images/air/no2/CO_Quantum.png',
+      image: '/images/air/no2/CO_Quantum.webp',
     },
     {
       name: t('coNo2.coDuct.name'),
@@ -128,7 +128,7 @@ export default async function AirQualityPage({ params }: Props) {
         t('coNo2.coDuct.feature2'),
         t('coNo2.coDuct.feature3'),
       ],
-      image: '/images/air/no2/CO-Duct.png',
+      image: '/images/air/no2/CO-Duct.webp',
     },
     {
       name: t('coNo2.no2Duct.name'),
@@ -138,7 +138,7 @@ export default async function AirQualityPage({ params }: Props) {
         t('coNo2.no2Duct.feature2'),
         t('coNo2.no2Duct.feature3'),
       ],
-      image: '/images/air/no2/NO2-programmable.png',
+      image: '/images/air/no2/NO2-programmable.webp',
     },
   ];
 

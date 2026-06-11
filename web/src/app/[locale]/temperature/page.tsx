@@ -42,7 +42,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.bacnetGuardian.feature2'),
         t('roomSensors.bacnetGuardian.feature3'),
       ],
-      image: '/images/temperature/room/Quantum-Temp-Main.png',
+      image: '/images/temperature/room/Quantum-Temp-Main.webp',
     },
     {
       name: t('roomSensors.bacnetSlim.name'),
@@ -52,7 +52,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.bacnetSlim.feature2'),
         t('roomSensors.bacnetSlim.feature3'),
       ],
-      image: '/images/temperature/room/Quantum-Slim-temp.png',
+      image: '/images/temperature/room/Quantum-Slim-temp.webp',
     },
     {
       name: t('roomSensors.bacWall4.name'),
@@ -62,7 +62,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.bacWall4.feature2'),
         t('roomSensors.bacWall4.feature3'),
       ],
-      image: '/images/temperature/room/BAPIStat4MB.png',
+      image: '/images/temperature/room/BAPIStat4MB.webp',
     },
     {
       name: t('roomSensors.lowProfile.name'),
@@ -72,7 +72,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.lowProfile.feature2'),
         t('roomSensors.lowProfile.feature3'),
       ],
-      image: '/images/temperature/room/button_sensors.png',
+      image: '/images/temperature/room/button_sensors.webp',
     },
     {
       name: t('roomSensors.discreteStyle.name'),
@@ -82,7 +82,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.discreteStyle.feature2'),
         t('roomSensors.discreteStyle.feature3'),
       ],
-      image: '/images/temperature/room/Decora-1.png',
+      image: '/images/temperature/room/Decora-1.webp',
     },
     {
       name: t('roomSensors.wallPlates.name'),
@@ -92,7 +92,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('roomSensors.wallPlates.feature2'),
         t('roomSensors.wallPlates.feature3'),
       ],
-      image: '/images/temperature/room/WallPlate-O2.png',
+      image: '/images/temperature/room/WallPlate-O2.webp',
     },
   ];
 
@@ -106,7 +106,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.ductSensors.feature2'),
         t('nonRoomSensors.ductSensors.feature3'),
       ],
-      image: '/images/temperature/nonroom/Duct_Trans_BBX_2020.png',
+      image: '/images/temperature/nonroom/Duct_Trans_BBX_2020.webp',
     },
     {
       name: t('nonRoomSensors.averaging.name'),
@@ -116,7 +116,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.averaging.feature2'),
         t('nonRoomSensors.averaging.feature3'),
       ],
-      image: '/images/temperature/nonroom/Duct_Avg_BBX.png',
+      image: '/images/temperature/nonroom/Duct_Avg_BBX.webp',
     },
     {
       name: t('nonRoomSensors.immersion.name'),
@@ -126,7 +126,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.immersion.feature2'),
         t('nonRoomSensors.immersion.feature3'),
       ],
-      image: '/images/temperature/nonroom/Immersion_BBX_2020.png',
+      image: '/images/temperature/nonroom/Immersion_BBX_2020.webp',
     },
     {
       name: t('nonRoomSensors.remoteProbes.name'),
@@ -136,7 +136,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.remoteProbes.feature2'),
         t('nonRoomSensors.remoteProbes.feature3'),
       ],
-      image: '/images/temperature/nonroom/Remote_Probe_Trans_BBX.png',
+      image: '/images/temperature/nonroom/Remote_Probe_Trans_BBX.webp',
     },
     {
       name: t('nonRoomSensors.tempHumidity.name'),
@@ -146,7 +146,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.tempHumidity.feature2'),
         t('nonRoomSensors.tempHumidity.feature3'),
       ],
-      image: '/images/temperature/nonroom/Thermobuffer_1inch_BB2_Blue.png',
+      image: '/images/temperature/nonroom/Thermobuffer_1inch_BB2_Blue.webp',
     },
     {
       name: t('nonRoomSensors.outsideAir.name'),
@@ -156,7 +156,7 @@ export default async function TemperaturePage({ params }: Props) {
         t('nonRoomSensors.outsideAir.feature2'),
         t('nonRoomSensors.outsideAir.feature3'),
       ],
-      image: '/images/temperature/nonroom/Outside_Air_Temp_BB_300pix.png',
+      image: '/images/temperature/nonroom/Outside_Air_Temp_BB_300pix.webp',
     },
   ];
 

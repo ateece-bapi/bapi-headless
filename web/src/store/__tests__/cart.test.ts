@@ -35,7 +35,7 @@ describe('Cart Store - State Management Tests', () => {
     price: '$49.99',
     numericPrice: 49.99,
     image: {
-      sourceUrl: 'https://example.com/image.jpg',
+      sourceUrl: 'https://example.com/image.webp',
       altText: 'Temperature Sensor',
     },
   };
@@ -48,7 +48,7 @@ describe('Cart Store - State Management Tests', () => {
     price: '$59.99',
     numericPrice: 59.99,
     image: {
-      sourceUrl: 'https://example.com/image2.jpg',
+      sourceUrl: 'https://example.com/image2.webp',
       altText: 'Humidity Sensor',
     },
   };

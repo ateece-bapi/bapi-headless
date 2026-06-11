@@ -91,7 +91,7 @@ const singleItemCart = {
             name: 'BA/T10K-O-BB Room Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.webp',
               altText: 'BA/T10K-O-BB Room Temperature Sensor',
             },
           },
@@ -120,7 +120,7 @@ const multipleItemsCart = {
             name: 'BA/T10K-O-BB Room Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.webp',
               altText: 'BA/T10K-O-BB Room Temperature Sensor',
             },
           },
@@ -136,7 +136,7 @@ const multipleItemsCart = {
             name: 'BA/H-WD-O Wall Mount Humidity Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.webp',
               altText: 'BA/H-WD-O Wall Mount Humidity Sensor',
             },
           },
@@ -152,7 +152,7 @@ const multipleItemsCart = {
             name: 'BA/10K-3-O-D Duct Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K-3-O-D_Duct_Temp_Sensor__13794.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K-3-O-D_Duct_Temp_Sensor__13794.webp',
               altText: 'BA/10K-3-O-D Duct Temperature Sensor',
             },
           },
@@ -181,7 +181,7 @@ const withDiscountCart = {
             name: 'BA/T10K-O-BB Room Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.webp',
               altText: 'BA/T10K-O-BB Room Temperature Sensor',
             },
           },
@@ -222,7 +222,7 @@ const manyItemsCart = {
             name: 'BA/T10K-O-BB Room Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.webp',
               altText: 'BA/T10K-O-BB Room Temperature Sensor',
             },
           },
@@ -238,7 +238,7 @@ const manyItemsCart = {
             name: 'BA/H-WD-O Wall Mount Humidity Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.webp',
               altText: 'BA/H-WD-O Wall Mount Humidity Sensor',
             },
           },
@@ -254,7 +254,7 @@ const manyItemsCart = {
             name: 'BA/10K-3-O-D Duct Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K-3-O-D_Duct_Temp_Sensor__13794.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K-3-O-D_Duct_Temp_Sensor__13794.webp',
               altText: 'BA/10K-3-O-D Duct Temperature Sensor',
             },
           },
@@ -282,7 +282,7 @@ const manyItemsCart = {
             name: 'BA/P-WD-O Pressure Transducer',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_P-WD-O_Pressure_Transducer__52381.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_P-WD-O_Pressure_Transducer__52381.webp',
               altText: 'BA/P-WD-O Pressure Transducer',
             },
           },
@@ -298,7 +298,7 @@ const manyItemsCart = {
             name: 'BA/RH-WD-O Humidity Sensor with Display',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_RH-WD-O_Humidity_Sensor__92847.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_RH-WD-O_Humidity_Sensor__92847.webp',
               altText: 'BA/RH-WD-O Humidity Sensor with Display',
             },
           },
@@ -351,7 +351,7 @@ const withVariationCart = {
             name: 'BA/T10K-O-BB Room Temperature Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_T-O-BB_Wall_Mount_Temp_Sensors__79839.webp',
               altText: 'BA/T10K-O-BB Room Temperature Sensor',
             },
           },
@@ -367,7 +367,7 @@ const withVariationCart = {
             name: 'BA/10K Configurable Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K_Configurable_Sensor__78234.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_10K_Configurable_Sensor__78234.webp',
               altText: 'BA/10K Configurable Sensor',
             },
           },
@@ -401,7 +401,7 @@ const earlyCheckoutCart = {
             name: 'BA/H-WD-O Wall Mount Humidity Sensor',
             image: {
               sourceUrl:
-                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.jpg',
+                'https://bapihvac.com/wp-content/uploads/2018/08/BA_H-WD-O_Wall_Mount_Humidity_Sensor__48280.webp',
               altText: 'BA/H-WD-O Wall Mount Humidity Sensor',
             },
           },

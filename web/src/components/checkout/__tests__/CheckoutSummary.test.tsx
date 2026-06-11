@@ -30,7 +30,7 @@ const mockCartWithItems = {
           node: {
             name: 'Test Product 1',
             image: {
-              sourceUrl: '/test-image-1.jpg',
+              sourceUrl: '/test-image-1.webp',
               altText: 'Test Product 1 Image',
             },
           },
@@ -45,7 +45,7 @@ const mockCartWithItems = {
           node: {
             name: 'Test Product 2',
             image: {
-              sourceUrl: '/test-image-2.jpg',
+              sourceUrl: '/test-image-2.webp',
               altText: 'Test Product 2 Image',
             },
           },
@@ -185,7 +185,7 @@ describe('CheckoutSummary', () => {
                 node: {
                   name: 'Size: Large, Color: Blue',
                   image: {
-                    sourceUrl: '/variation-image.jpg',
+                    sourceUrl: '/variation-image.webp',
                     altText: 'Variation Image',
                   },
                 },
@@ -214,7 +214,7 @@ describe('CheckoutSummary', () => {
                 node: {
                   name: 'Variable Product',
                   image: {
-                    sourceUrl: '/product-image.jpg',
+                    sourceUrl: '/product-image.webp',
                     altText: 'Product Image',
                   },
                 },
@@ -223,7 +223,7 @@ describe('CheckoutSummary', () => {
                 node: {
                   name: 'Variation',
                   image: {
-                    sourceUrl: '/variation-image.jpg',
+                    sourceUrl: '/variation-image.webp',
                     altText: 'Variation Image',
                   },
                 },

@@ -16,7 +16,7 @@ const baseProduct: ProductForClient = {
   slug: 'test-product',
   price: '$9.99',
   stockStatus: 'IN_STOCK',
-  image: { sourceUrl: 'https://example.test/img.png', altText: 'Main' },
+  image: { sourceUrl: 'https://example.test/img.webp', altText: 'Main' },
   gallery: [],
   variations: [
     {
@@ -27,7 +27,7 @@ const baseProduct: ProductForClient = {
       stockStatus: 'IN_STOCK',
       stockQuantity: 10,
       attributes: { size: 'M', color: 'Red' },
-      image: { sourceUrl: 'https://example.test/var-a.png', altText: 'Variant A' },
+      image: { sourceUrl: 'https://example.test/var-a.webp', altText: 'Variant A' },
     },
     {
       id: 'var-2',
@@ -37,7 +37,7 @@ const baseProduct: ProductForClient = {
       stockStatus: 'IN_STOCK',
       stockQuantity: 5,
       attributes: { size: 'L', color: 'Blue' },
-      image: { sourceUrl: 'https://example.test/var-b.png', altText: 'Variant B' },
+      image: { sourceUrl: 'https://example.test/var-b.webp', altText: 'Variant B' },
     },
     {
       id: 'var-3',
@@ -47,7 +47,7 @@ const baseProduct: ProductForClient = {
       stockStatus: 'IN_STOCK',
       stockQuantity: 8,
       attributes: { size: 'M', color: 'Blue' },
-      image: { sourceUrl: 'https://example.test/var-c.png', altText: 'Variant C' },
+      image: { sourceUrl: 'https://example.test/var-c.webp', altText: 'Variant C' },
     },
     {
       id: 'var-4',
@@ -57,7 +57,7 @@ const baseProduct: ProductForClient = {
       stockStatus: 'IN_STOCK',
       stockQuantity: 3,
       attributes: { size: 'L', color: 'Red' },
-      image: { sourceUrl: 'https://example.test/var-d.png', altText: 'Variant D' },
+      image: { sourceUrl: 'https://example.test/var-d.webp', altText: 'Variant D' },
     },
   ],
   attributes: [

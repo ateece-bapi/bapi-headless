@@ -11,7 +11,7 @@ export const metadata = {
     url: 'https://yourdomain.com/products-test',
     images: [
       {
-        url: 'https://yourdomain.com/og-default.jpg',
+        url: 'https://yourdomain.com/og-default.webp',
         width: 1200,
         height: 630,
         alt: 'BAPI - Building Automation Products',
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Products Test | BAPI',
     description: 'Test page for viewing building automation products and their stock status.',
-    images: ['https://yourdomain.com/og-default.jpg'],
+    images: ['https://yourdomain.com/og-default.webp'],
   },
   alternates: {
     canonical: '/products-test',

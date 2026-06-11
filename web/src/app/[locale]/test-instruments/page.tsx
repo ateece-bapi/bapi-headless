@@ -22,13 +22,13 @@ export default function TestInstrumentsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-32 border-b-4 border-accent-500">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 pt-12 pb-6 text-white lg:pt-16 lg:pb-10 border-b-4 border-accent-500">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="flex items-center gap-2 text-sm text-primary-100"
+            className="flex items-center gap-2 text-sm text-primary-100 mb-4 md:mb-6"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
@@ -42,7 +42,7 @@ export default function TestInstrumentsPage() {
             <span className="font-medium text-white">Test Instruments</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
                 <SmartphoneIcon className="h-4 w-4" />
@@ -111,7 +111,7 @@ export default function TestInstrumentsPage() {
             </div>
 
             <div className="relative">
-              <div className="group/image relative aspect-[16/10] overflow-hidden rounded-2xl bg-white p-8 shadow-2xl">
+              <div className="group/image relative h-[450px] lg:h-[500px] xl:h-[480px]">
                 <Image
                   src="/images/products/families/Blu-Test_Family_2025_US.webp"
                   alt="Blu-Test HVAC diagnostic tools family"

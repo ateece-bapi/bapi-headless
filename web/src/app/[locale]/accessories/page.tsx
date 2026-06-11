@@ -133,13 +133,13 @@ export default async function AccessoriesPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 pt-8 pb-4 text-white md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
+            className="mb-4 flex items-center gap-2 text-sm text-primary-100 md:mb-6"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
@@ -153,7 +153,7 @@ export default async function AccessoriesPage({ params }: Props) {
             <span className="font-medium text-white">{t('breadcrumb.accessories')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-6">
             {/* Left Column - Content */}
             <div>
               <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
@@ -180,13 +180,12 @@ export default async function AccessoriesPage({ params }: Props) {
 
             {/* Right Column - Hero Image */}
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
+              <div className="relative h-[450px] lg:h-[500px] xl:h-[480px]">
                 <Image
-                  src="/images/products/families/Accessories_Family_2025_US.webp"
+                  src="/images/accessories/hero/2022Accessories3_PLAIN.png"
                   alt={t('hero.imageAlt')}
-                  width={2400}
-                  height={1543}
-                  className="h-auto w-full"
+                  fill
+                  className="object-contain"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
                   priority
                   quality={85}

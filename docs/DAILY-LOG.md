@@ -2,9 +2,94 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 10, 2026  
-**Status:** Phase 1 Complete - Live in Production (30 days post-launch)  
+**Updated:** June 11, 2026  
+**Status:** Phase 1 Complete - Live in Production (31 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 11, 2026 — Product Family Image Display Fix 🖼️
+
+**Status:** ✅ COMPLETE  
+**Context:** Elly (Graphics Designer) requested removal of white background boxes from product family images on landing pages. Images should display directly on colored backgrounds without white containers, matching the style shown in her Accessories example.  
+**Priority:** 🟢 Visual Polish - Designer feedback implementation  
+**Time:** ~1.5 hours (initial fixes + hero image updates + XL screen optimization)  
+**Approach:** Remove white background containers → Allow transparent display on colored backgrounds → Add new reflection-free images → Optimize hero heights for XL screens
+
+### 🎯 CHANGES
+
+**Phase 1: White Background Removal (8 pages)**
+1. ✅ **Accessories Page** (`/accessories`) - Removed white box container from product family image
+2. ✅ **Test Instruments Page** (`/test-instruments`) - Removed white box container from Blu-Test family image
+3. ✅ **Sensors Page** (`/sensors`) - Removed white box container from full family image
+4. ✅ **Wireless Page** (`/wireless`) - Removed white box container from wireless product family image
+5. ✅ **Temperature Page** (`/temperature`) - Removed white box container from room temperature family image
+6. ✅ **Humidity Page** (`/humidity`) - Removed white box container from humidity sensors image
+7. ✅ **Pressure Page** (`/pressure`) - Removed white box container from pressure sensors family image
+8. ✅ **Air Quality Page** (`/air-quality`) - Removed white box container from air quality sensors image
+
+**Phase 2: Reflection-Free Images (6 pages updated)**
+- ✅ Temperature: Updated to `Temperature_Family_2025_US_Plain.png`
+- ✅ Humidity: Updated to `Humidity_Family_2025_NoStand_International_Plain.png`
+- ✅ Pressure: Updated to `Pressure_Family_2025_US_Plain.png`
+- ✅ Air Quality: Updated to `2022AirQuality_PLAIN.png` (replaced previous version)
+- ✅ Wireless: Updated to `BAPI_BLE_Wireless_HVAC_2025.png`
+- ✅ Accessories: Updated to `2022Accessories3_PLAIN.png`
+
+**Phase 3: Hero Section Standardization (All 8 pages)**
+Problem: Inconsistent hero section heights and excessive vertical space caused by mixed aspect ratios and equal top/bottom padding.
+
+Solution: Standardized hero sections for visual consistency:
+
+1. **Fixed Hero Image Heights** (replaced aspect-ratio constraints):
+   - Mobile/Tablet: `h-[450px]`
+   - Desktop (lg): `h-[500px]`
+   - XL screens: `h-[480px]`
+   - All images use `object-contain` to scale naturally without distortion
+
+2. **Asymmetric Padding** (reduced bottom padding by ~50%):
+   - **Before**: `py-8 md:py-10 lg:py-12 xl:py-8 2xl:py-6`
+   - **After**: `pt-8 pb-4 md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3`
+   - Top padding: Maintained for breathing room from header
+   - Bottom padding: Reduced to eliminate excessive blue space
+
+3. **Updated Pressure Page Title**:
+   - Changed: `"Pressure matters!"` → `"Pressure Sensors"`
+   - Updated in `web/messages/en.json`
+
+**Technical Details:**
+- Removed `bg-white p-8 shadow-lg/shadow-2xl rounded-2xl` wrapper classes from all hero images
+- Replaced aspect-ratio constraints (`aspect-square`, `aspect-[16/10]`, etc.) with fixed heights
+- Updated Image component from `width/height` props to `fill` with `object-contain`
+- Preserved hover animations (`group-hover/image:scale-105`) where applicable
+- Images now display transparently on gradient backgrounds
+- Hero sections are now 30-40% more compact vertically
+
+**Files Modified:**
+- `/web/src/app/[locale]/accessories/page.tsx`
+- `/web/src/app/[locale]/test-instruments/page.tsx`
+- `/web/src/app/[locale]/sensors/page.tsx`
+- `/web/src/app/[locale]/wireless/page.tsx`
+- `/web/src/app/[locale]/temperature/page.tsx`
+- `/web/src/app/[locale]/humidity/page.tsx`
+- `/web/src/app/[locale]/pressure/page.tsx`
+- `/web/src/app/[locale]/air-quality/page.tsx`
+
+**Designer Note:**
+- ✅ Elly provided new reflection-free images for all hero sections
+- All 7 landing pages now using new images from `/hero/` folders:
+  - Temperature: `Temperature_Family_2025_US_Plain.png`
+  - Humidity: `Humidity_Family_2025_NoStand_International_Plain.png`
+  - Pressure: `Pressure_Family_2025_US_Plain.png`
+  - Air Quality: `2022AirQuality_PLAIN.png`
+  - Wireless: `BAPI_BLE_Wireless_HVAC_2025.png`
+  - Accessories: `2022Accessories3_PLAIN.png`
+- Images display perfectly on BAPI blue gradient backgrounds without white reflections
+
+**Completed Tasks:**
+- [x] All 8 landing pages updated to remove white background containers
+- [x] 6 pages updated with new reflection-free hero images
+- [x] Test Instruments and Sensors pages ready for image replacements when available
 
 ---
 

@@ -226,7 +226,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${solution.title} Solutions | BAPI`,
+    title: `${solution.title} Solutions`,
     description: solution.hero.description,
   };
 }

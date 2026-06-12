@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { PackageIcon, FileTextIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'RMA Request | BAPI',
+  title: 'RMA Request',
   description:
     'Request a Return Merchandise Authorization (RMA) for BAPI products. Fast processing and support for returns and repairs.',
 };

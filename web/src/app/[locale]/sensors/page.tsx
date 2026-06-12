@@ -14,7 +14,7 @@ import {
 } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Temperature, Humidity & Pressure Sensors | BAPI',
+  title: 'Temperature, Humidity & Pressure Sensors',
   description:
     'Industry-leading HVAC sensors for building automation. Precise temperature, humidity, and pressure monitoring for commercial, industrial, and institutional applications.',
 };

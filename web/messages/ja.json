@@ -313,10 +313,10 @@
       "follow": "フォローする"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "プレミアムソリューション",
+      "title": "WAM™ ワイヤレス資産監視",
+      "description": "24時間365日のリモート監視と即座のアラート。企業レベルのワイヤレス温度・環境監視で重要な資産を保護。",
+      "cta": "WAMを探索"
     }
   },
   "region": {
@@ -993,7 +993,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "チェックアウト | BAPI",
+      "title": "チェックアウト",
       "description": "注文を完了する"
     },
     "header": {
@@ -1242,7 +1242,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "キャリア | BAPI",
+        "title": "キャリア",
         "description": "BAPI チームに参加し、建物自動化技術の未来を形作るお手伝いをしましょう。"
       },
       "breadcrumb": {
@@ -1342,7 +1342,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "ミッション＆バリュー | BAPI",
+        "title": "ミッション＆バリュー",
         "description": "BAPIのミッション、ビジョン、そしてコア バリューについて学びます。これらが精密センサーソリューションへのコミットメントを後押しします。"
       },
       "breadcrumb": {
@@ -1469,7 +1469,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "お問い合わせ | BAPI",
+        "title": "お問い合わせ",
         "description": "BAPI のサポート、営業問い合わせ、または技術支援に連絡してください。"
       },
       "breadcrumb": {
@@ -1561,7 +1561,7 @@
     },
     "news": {
       "metadata": {
-        "title": "ニュース | BAPI",
+        "title": "ニュース",
         "description": "BAPIからの最新のニュース、お知らせ、更新情報をご覧ください。"
       },
       "breadcrumb": {
@@ -1658,7 +1658,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "サポートに連絡 | BAPI",
+      "title": "サポートに連絡",
       "description": "BAPIビルディングオートメーション製品の専門的な技術サポートを受けられます。電話、メール、現場支援が利用可能です。"
     },
     "hero": {
@@ -1686,7 +1686,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "保証情報 | BAPI",
+      "title": "保証情報",
       "description": "BAPIはビルディングオートメーション製品に業界最高水準の5年保証を提供します。保証範囲とサポートについて詳しくご覧ください。"
     },
     "hero": {
@@ -1719,7 +1719,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "返品とRMA | BAPI",
+      "title": "返品とRMA",
       "description": "BAPI製品の返品認証をリクエストします。返品と修理の迅速な処理と専門的なサポートを提供します。"
     },
     "hero": {
@@ -1785,7 +1785,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "クロスリファレンスツール | BAPI",
+      "title": "クロスリファレンスツール",
       "description": "競合他社製品にBAPI同等品を見つけます。ビル自動化センサー用クロスリファレンスツール。",
       "keywords": "クロスリファレンス, 競合他社比較, BAPI同等品, Honeywell代替品, Johnson Controls代替品, Siemens代替品, センサークロスリファレンス, ビル自動化互換性, 製品置き換え"
     },
@@ -1822,7 +1822,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "製品データシート | BAPI",
+      "title": "製品データシート",
       "description": "すべてのBAPIビル自動化製品の詳細な技術データシートをダウンロード。",
       "keywords": "製品データシート, 技術仕様, センサーデータシート, BAPI仕様, 温度センサー仕様, 湿度センサー仕様, 圧力センサー仕様, 空気質センサーデータシート, ワイヤレスセンサー仕様, コントローラーデータシート, PDFダウンロード"
     },
@@ -1961,7 +1961,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "製品セレクターツール | BAPI",
+      "title": "製品セレクターツール",
       "description": "アプリケーションに最適なBAPIセンサーを見つけてください。いくつかの質問に答えて製品の推奨を受け取ります。"
     },
     "hero": {
@@ -2453,7 +2453,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "BAPIセンサー概要・仕様 | BAPI",
+      "title": "BAPIセンサー概要・仕様",
       "description": "ビルディングオートメーションシステムにおける温度、湿度、圧力監視用BAPIセンサー仕様の完全概要。"
     },
     "hero": {
@@ -2504,7 +2504,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "技術アプリケーションノート | BAPI",
+      "title": "技術アプリケーションノート",
       "description": "センサー設置、ベストプラクティス、トラブルシューティングガイド、HVACアプリケーションの業界インサイトを網羅した包括的な技術アプリケーションノートライブラリをご覧ください。"
     },
     "hero": {
@@ -3078,7 +3078,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "ワイヤレスHVACセンサー | BAPI",
+      "title": "ワイヤレスHVACセンサー",
       "description": "商業ビル向けの費用対効果が高く信頼性のあるワイヤレス温度・湿度監視システム。新しい配線工事なしで既存のBMSとシームレスに統合できます。",
       "keywords": "ワイヤレスセンサー, HVACセンサー, ビル自動化, 温度監視, 湿度センサー"
     },
@@ -3373,7 +3373,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ ワイヤレス資産監視 | BAPI",
+      "title": "WAM™ ワイヤレス資産監視",
       "description": "BAPIのリアルタイム監視で貴重な資産を保護します。WAM™は24時間365日の資産監視と即座のアラートで、コストのかかる機器故障を回避します。",
       "keywords": "ワイヤレス資産監視, 温度監視, 湿度監視, 機器監視, 予防保全, コールドチェーン監視"
     },
@@ -3628,7 +3628,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "アクセサリー | BAPI",
+      "title": "アクセサリー",
       "description": "BAPIは最近、優れた製品とサポート部品のための包括的なアクセサリーラインを立ち上げ、多数の業界におけるさまざまな商業用途に利用可能なセンサー、アクセサリー、ソリューションの幅広いスペクトルを完成させました。",
       "keywords": "HVACアクセサリー、水漏れ検出器、ドアモニターアラーム、光レベルセンサー、電圧コンバーター、配電、BAPI-Guard"
     },
@@ -3708,7 +3708,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "湿度センサー | BAPI",
+      "title": "湿度センサー",
       "description": "シンプルなオフィスから最も困難な空間まで、BAPIは室内、ダクト、外気用途向けの高品質な湿度または温度/湿度センサーの完全なラインを製造しています。",
       "keywords": "湿度センサー、温度湿度センサー、BAPI-Stat Quantum、BAPI-Stat Quantum Prime、BAPI-Box 2、ダクト湿度、外気湿度、HVAC湿度監視"
     },
@@ -3767,7 +3767,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "温度センサー | BAPI",
+      "title": "温度センサー",
       "description": "施設のほぼすべてのエリアに対応する高品質温度センサー。幅広いカスタム出力でBASコントローラーのすべてのラインに対応。",
       "keywords": "温度センサー, HVACセンサー, ビル自動化, 室温センサー, ダクトセンサー, 浸漬センサー"
     },
@@ -3866,7 +3866,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "圧力センサー | BAPI",
+      "title": "圧力センサー",
       "description": "BAPIの圧力センサーは、簡単な設置と目視によるトラブルシューティングで時間とコストを節約するために必要なフィールド選択性を備えています。",
       "keywords": "圧力センサー、差圧、圧力スイッチ、ZPMセンサー、クリーンルーム圧力、フィルター監視、ゾーン圧力制御、HVAC圧力センサー"
     },
@@ -3941,7 +3941,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "空気質センサー - CO₂、VOC、粒子状物質、CO、NO₂ | BAPI",
+      "title": "空気質センサー - CO₂、VOC、粒子状物質、CO、NO₂",
       "description": "CO₂、VOC、粒子状物質、一酸化炭素、二酸化窒素センサーを含むデマンド制御換気のための完全な空気質センサーラインナップ。",
       "keywords": "空気質センサー、CO2センサー、VOCセンサー、粒子状物質センサー、一酸化炭素センサー、二酸化窒素センサー、室内空気質、デマンド制御換気、IAQ監視"
     },

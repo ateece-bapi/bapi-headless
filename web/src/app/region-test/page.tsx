@@ -2,7 +2,7 @@ import React from 'react';
 import RegionDemoCard from '@/components/examples/RegionDemoCard';
 
 export const metadata = {
-  title: 'Region & Localization Demo | BAPI',
+  title: 'Region & Localization Demo',
   description:
     'Demonstration of region-aware pricing, currency conversion, and localization features',
 };

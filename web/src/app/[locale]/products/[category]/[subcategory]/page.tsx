@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
       : categoryData.name;
 
     return {
-      title: `${pageTitle} | BAPI`,
+      title: pageTitle,
       description:
         categoryData.description ||
         `Browse ${pageTitle} from BAPI - Building Automation Products Inc.`,

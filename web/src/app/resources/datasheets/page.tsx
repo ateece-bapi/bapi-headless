@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Product Datasheets | BAPI',
+  title: 'Product Datasheets',
   description: 'Download detailed technical datasheets for all BAPI building automation products.',
 };
 

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import MeasurementDemo from '@/components/examples/MeasurementDemo';
 
 export const metadata: Metadata = {
-  title: 'Measurement Unit Conversion Demo | BAPI',
+  title: 'Measurement Unit Conversion Demo',
   description:
     'Demonstration of region-aware measurement unit conversion for product specifications.',
 };

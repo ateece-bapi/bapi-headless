@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { RadioIcon, SignalIcon, MapPinIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Wireless Site Verification | BAPI',
+  title: 'Wireless Site Verification',
   description:
     'Verify your wireless sensor deployment with BAPI site verification tool. Ensure optimal signal strength and coverage.',
 };

@@ -243,7 +243,7 @@
   "companyPages": {
     "about": {
       "metadata": {
-        "title": "About BAPI | BAPI",
+        "title": "About BAPI",
         "description": "Learn about BAPI's 30+ year history manufacturing precision sensor solutions for building automation systems worldwide."
       },
       "breadcrumb": {
@@ -338,7 +338,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "Careers | BAPI",
+        "title": "Careers",
         "description": "Join the BAPI team and help us shape the future of building automation technology."
       },
       "breadcrumb": {
@@ -438,7 +438,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Mission & Values | BAPI",
+        "title": "Mission & Values",
         "description": "Learn about BAPI's mission, vision, and core values that drive our commitment to precision sensor solutions."
       },
       "breadcrumb": {
@@ -491,7 +491,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "Why BAPI | BAPI",
+        "title": "Why BAPI",
         "description": "Discover what sets BAPI apart in the building automation industry and why engineers trust our precision sensor solutions."
       },
       "breadcrumb": {
@@ -565,7 +565,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "Contact Us | BAPI",
+        "title": "Contact Us",
         "description": "Get in touch with BAPI for support, sales inquiries, or technical assistance."
       },
       "breadcrumb": {
@@ -663,7 +663,7 @@
     },
     "news": {
       "metadata": {
-        "title": "News | BAPI",
+        "title": "News",
         "description": "Stay updated with the latest news, announcements, and updates from BAPI."
       },
       "breadcrumb": {
@@ -1907,7 +1907,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "Checkout | BAPI",
+      "title": "Checkout",
       "description": "Complete your order"
     },
     "header": {
@@ -2128,7 +2128,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "Contact Support | BAPI",
+      "title": "Contact Support",
       "description": "Get expert technical support for BAPI building automation products. Phone, email, and on-site assistance available."
     },
     "hero": {
@@ -2156,7 +2156,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "Warranty Information | BAPI",
+      "title": "Warranty Information",
       "description": "BAPI offers industry-leading 5-year warranty on building automation products. Learn about our warranty coverage and support."
     },
     "hero": {
@@ -2189,7 +2189,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "Returns & RMA | BAPI",
+      "title": "Returns & RMA",
       "description": "Request a Return Merchandise Authorization for BAPI products. Fast processing and expert support for returns and repairs."
     },
     "hero": {
@@ -2255,7 +2255,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "Cross Reference Tool | BAPI",
+      "title": "Cross Reference Tool",
       "description": "Find BAPI equivalents for competitor products. Cross-reference tool for building automation sensors.",
       "keywords": "cross reference, competitor comparison, BAPI equivalents, Honeywell alternative, Johnson Controls alternative, Siemens alternative, sensor cross reference, building automation compatibility, product replacement"
     },
@@ -2292,7 +2292,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Product Instructions & Manuals | BAPI",
+      "title": "Product Instructions & Manuals",
       "description": "Download installation instructions, operation manuals, and technical drawings for BAPI building automation products.",
       "keywords": "product instructions, installation manuals, operation manuals, technical drawings, sensor instructions, BAPI manuals, temperature sensor installation, humidity sensor manual, pressure sensor installation, air quality sensor instructions, wireless sensor manual, controller installation, PDF downloads"
     },
@@ -2465,7 +2465,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "Product Selector Tool | BAPI",
+      "title": "Product Selector Tool",
       "description": "Find the perfect BAPI sensor for your application. Answer a few questions to get product recommendations."
     },
     "hero": {
@@ -2500,7 +2500,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "BAPI Sensors Overview & Specifications | BAPI",
+      "title": "BAPI Sensors Overview & Specifications",
       "description": "Complete overview of BAPI sensor specifications for temperature, humidity, and pressure monitoring in building automation systems."
     },
     "hero": {
@@ -2551,7 +2551,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "Technical Application Notes | BAPI",
+      "title": "Technical Application Notes",
       "description": "Explore our comprehensive library of technical application notes covering sensor installation, best practices, troubleshooting guides, and industry insights for HVAC applications."
     },
     "hero": {
@@ -3125,7 +3125,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Wireless HVAC Sensors | BAPI",
+      "title": "Wireless HVAC Sensors",
       "description": "Cost-effective, reliable wireless temperature and humidity monitoring for commercial buildings. Seamlessly integrate with your existing BMS without running new wires.",
       "keywords": "wireless sensors, HVAC sensors, building automation, temperature monitoring, humidity sensors"
     },
@@ -3420,7 +3420,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
+      "title": "WAM™ Wireless Asset Monitoring",
       "description": "Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.",
       "keywords": "wireless asset monitoring, temperature monitoring, humidity monitoring, equipment monitoring, preventive maintenance, cold chain monitoring"
     },
@@ -3675,7 +3675,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "Accessories | BAPI",
+      "title": "Accessories",
       "description": "BAPI's comprehensive line of accessories includes specialty sensors and supporting hardware for commercial HVAC applications. From water leak detectors to voltage converters, we provide reliable solutions for diverse installation needs.",
       "keywords": "HVAC accessories, water leak detectors, door monitor alarm, light level sensor, voltage converter, power distribution, BAPI-Guard"
     },
@@ -3755,7 +3755,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "Humidity Sensors | BAPI",
+      "title": "Humidity Sensors",
       "description": "From simple offices to the most challenging of spaces BAPI makes a complete line of high quality humidity or temperature/humidity sensors for room, duct and outside air applications.",
       "keywords": "humidity sensors, temperature humidity sensors, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, duct humidity, outside air humidity, HVAC humidity monitoring"
     },
@@ -3814,7 +3814,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "Temperature Sensors | BAPI",
+      "title": "Temperature Sensors",
       "description": "High quality temperature sensors for nearly every area of a facility. Compatible with all lines of BAS controllers with a wide array of custom outputs.",
       "keywords": "temperature sensors, HVAC sensors, building automation, room temperature sensors, duct sensors, immersion sensors"
     },
@@ -3913,7 +3913,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "Pressure Sensors | BAPI",
+      "title": "Pressure Sensors",
       "description": "BAPI's Pressure sensors have the field selectability you need for easy installation and line-of-sight trouble shooting to save time and money.",
       "keywords": "pressure sensors, differential pressure, pressure switches, ZPM sensor, clean room pressure, filter monitoring, zone pressure control, HVAC pressure sensors"
     },
@@ -3988,7 +3988,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "Air Quality Sensors - CO₂, VOC, Particulate, CO, NO₂ | BAPI",
+      "title": "Air Quality Sensors - CO₂, VOC, Particulate, CO, NO₂",
       "description": "Complete line of air quality sensors for demand controlled ventilation including CO₂, VOC, Particulate Matter, Carbon Monoxide and Nitrogen Dioxide sensors.",
       "keywords": "air quality sensors, CO2 sensors, VOC sensors, particulate sensors, carbon monoxide sensors, nitrogen dioxide sensors, indoor air quality, demand controlled ventilation, IAQ monitoring"
     },

@@ -61,7 +61,7 @@ export async function generateMetadata({
     }
 
     return {
-      title: `${categoryData.name} | BAPI`,
+      title: categoryData.name,
       description:
         categoryData.description ||
         t('categoryPage.meta.descriptionTemplate', { name: categoryData.name || '' }),

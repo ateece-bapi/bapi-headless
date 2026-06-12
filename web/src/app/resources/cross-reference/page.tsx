@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { RefreshCwIcon, SearchIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Cross Reference Tool | BAPI',
+  title: 'Cross Reference Tool',
   description:
     'Find BAPI equivalents for competitor products. Cross-reference tool for building automation sensors.',
 };

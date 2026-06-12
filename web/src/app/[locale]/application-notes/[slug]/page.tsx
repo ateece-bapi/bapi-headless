@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!note) {
     return {
-      title: 'Application Note Not Found | BAPI',
+      title: 'Application Note Not Found',
     };
   }
 
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const noteTitle = note.title || 'Application Note';
 
   return {
-    title: `${noteTitle} | Application Notes | BAPI`,
+    title: `${noteTitle} | Application Notes`,
     description: excerpt || 'Technical application note from BAPI',
     openGraph: {
       title: noteTitle,

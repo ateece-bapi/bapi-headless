@@ -313,10 +313,10 @@
       "follow": "关注我们"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "高级解决方案",
+      "title": "WAM™ 无线资产监控",
+      "description": "24/7 远程监控，即时警报。使用企业级无线温度和环境监控保护您的关键资产。",
+      "cta": "了解 WAM"
     }
   },
   "region": {
@@ -993,7 +993,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "结帐 | BAPI",
+      "title": "结帐",
       "description": "完成您的订单"
     },
     "header": {
@@ -1242,7 +1242,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "使命与价值观 | BAPI",
+        "title": "使命与价值观",
         "description": "了解 BAPI 的使命、愿景和核心价值观,这些都驱动着我们对精密传感器解决方案的承诺。"
       },
       "breadcrumb": {
@@ -1295,7 +1295,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "联系我们 | BAPI",
+        "title": "联系我们",
         "description": "与BAPI联系以获取支持、销售查询或技术协助。"
       },
       "breadcrumb": {
@@ -1387,7 +1387,7 @@
     },
     "news": {
       "metadata": {
-        "title": "新闻 | BAPI",
+        "title": "新闻",
         "description": "随时了解BAPI的最新新闻、公告和更新信息。"
       },
       "breadcrumb": {
@@ -1415,7 +1415,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "职业 | BAPI",
+        "title": "职业",
         "description": "加入BAPI团队,帮助我们塑造建筑自动化技术的未来。"
       },
       "breadcrumb": {
@@ -1515,7 +1515,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "为什么选择BAPI | BAPI",
+        "title": "为什么选择BAPI",
         "description": "了解是什么让BAPI在建筑自动化行业脱颖而出,以及为什么工程师们信赖我们的精密传感器解决方案。"
       },
       "breadcrumb": {
@@ -1658,7 +1658,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "联系支持 | BAPI",
+      "title": "联系支持",
       "description": "获取BAPI楼宇自动化产品的专家技术支持。提供电话、电子邮件和现场协助。"
     },
     "hero": {
@@ -1686,7 +1686,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "保修信息 | BAPI",
+      "title": "保修信息",
       "description": "BAPI为楼宇自动化产品提供行业领先的5年保修。了解我们的保修范围和支持。"
     },
     "hero": {
@@ -1719,7 +1719,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "退货与RMA | BAPI",
+      "title": "退货与RMA",
       "description": "请求BAPI产品的退货授权。快速处理和专家支持，用于退货和维修。"
     },
     "hero": {
@@ -1785,7 +1785,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "交叉参考工具 | BAPI",
+      "title": "交叉参考工具",
       "description": "查找竞争产品的BAPI等效产品。楼宇自动化传感器交叉参考工具。",
       "keywords": "交叉参考, 竞争对手比较, BAPI等效产品, Honeywell替代品, Johnson Controls替代品, Siemens替代品, 传感器交叉参考, 楼宇自动化兼容性, 产品替换"
     },
@@ -1822,7 +1822,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "产品数据表 | BAPI",
+      "title": "产品数据表",
       "description": "下载所有BAPI楼宇自动化产品的详细技术数据表。",
       "keywords": "产品数据表, 技术规格, 传感器数据表, BAPI规格, 温度传感器规格, 湿度传感器规格, 压力传感器规格, 空气质量传感器数据表, 无线传感器规格, 控制器数据表, PDF下载"
     },
@@ -1961,7 +1961,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "产品选择工具 | BAPI",
+      "title": "产品选择工具",
       "description": "为您的应用找到完美的BAPI传感器。回答几个问题以获得产品推荐。"
     },
     "hero": {
@@ -2453,7 +2453,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "BAPI 传感器概览与规格 | BAPI",
+      "title": "BAPI 传感器概览与规格",
       "description": "楼宇自动化系统中温度、湿度和压力监测用 BAPI 传感器规格的完整概览。"
     },
     "hero": {
@@ -2504,7 +2504,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "技术应用指南 | BAPI",
+      "title": "技术应用指南",
       "description": "探索我们全面的技术应用指南库，涵盖传感器安装、最佳实践、故障排除指南以及HVAC应用的行业见解。"
     },
     "hero": {
@@ -3078,7 +3078,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "无线暖通传感器 | BAPI",
+      "title": "无线暖通传感器",
       "description": "经济高效、可靠的商业建筑无线温湿度监测解决方案。无需布线即可与现有楼宇管理系统无缝集成。",
       "keywords": "无线传感器, 暖通传感器, 楼宇自动化, 温度监测, 湿度传感器"
     },
@@ -3373,7 +3373,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ 无线资产监控 | BAPI",
+      "title": "WAM™ 无线资产监控",
       "description": "通过BAPI的实时监控保护您的宝贵资产。WAM™提供24/7资产监控，即时警报避免昂贵的设备故障。",
       "keywords": "无线资产监控, 温度监控, 湿度监控, 设备监控, 预防性维护, 冷链监控"
     },
@@ -3628,7 +3628,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "配件 | BAPI",
+      "title": "配件",
       "description": "BAPI 最近推出了一套综合性的配件线，用于出色的产品和支持零件，完善了可用于众多行业中各种商业应用的广泛传感器、配件和解决方案。",
       "keywords": "HVAC 配件、漏水检测器、门监控报警器、光照传感器、电压转换器、配电、BAPI-Guard"
     },
@@ -3708,7 +3708,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "湿度传感器 | BAPI",
+      "title": "湿度传感器",
       "description": "从简单的办公室到最具挑战性的空间，BAPI 制造了一整套高质量的湿度或温度/湿度传感器，用于房间、管道和室外空气应用。",
       "keywords": "湿度传感器，温度湿度传感器，BAPI-Stat Quantum，BAPI-Stat Quantum Prime，BAPI-Box 2，管道湿度，室外空气湿度，HVAC 湿度监控"
     },
@@ -3767,7 +3767,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "温度传感器 | BAPI",
+      "title": "温度传感器",
       "description": "适用于设施几乎每个区域的高质量温度传感器。兼容所有系列的BAS控制器，具有广泛的自定义输出选择。",
       "keywords": "温度传感器, HVAC传感器, 楼宇自动化, 房间温度传感器, 风管传感器, 浸入式传感器"
     },
@@ -3866,7 +3866,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "压力传感器 | BAPI",
+      "title": "压力传感器",
       "description": "BAPI的压力传感器具有现场可选性，可轻松安装和目视故障排除，节省时间和金钱。",
       "keywords": "压力传感器, 差压, 压力开关, ZPM传感器, 洁净室压力, 过滤器监测, 区域压力控制, HVAC压力传感器"
     },
@@ -3941,7 +3941,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "空气质量传感器 - CO₂、VOC、颗粒物、CO、NO₂ | BAPI",
+      "title": "空气质量传感器 - CO₂、VOC、颗粒物、CO、NO₂",
       "description": "用于需求控制通风的全系列空气质量传感器,包括CO₂、VOC、颗粒物、一氧化碳和二氧化氮传感器。",
       "keywords": "空气质量传感器、CO2传感器、VOC传感器、颗粒物传感器、一氧化碳传感器、二氧化氮传感器、室内空气质量、需求控制通风、IAQ监测"
     },

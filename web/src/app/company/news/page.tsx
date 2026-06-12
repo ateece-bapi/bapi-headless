@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { NewspaperIcon, CalendarIcon, TrendingUpIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'News & Updates | BAPI',
+  title: 'News & Updates',
   description: 'Latest news, product announcements, and company updates from BAPI.',
 };
 

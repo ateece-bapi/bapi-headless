@@ -18,7 +18,7 @@ import {
 import { InteractiveServerRoom } from '@/components/datacenter/InteractiveServerRoom';
 
 export const metadata: Metadata = {
-  title: 'Data Center Monitoring Solutions | BAPI',
+  title: 'Data Center Monitoring Solutions',
   description:
     'Comprehensive environmental monitoring for data centers. Temperature, humidity, pressure, and leak detection sensors to protect critical infrastructure and maintain uptime.',
   keywords:

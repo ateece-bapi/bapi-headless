@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AlertTriangleIcon, FileTextIcon, ClockIcon, SearchIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Service Bulletins | BAPI',
+  title: 'Service Bulletins',
   description:
     'View important service bulletins and technical updates for BAPI building automation products.',
 };

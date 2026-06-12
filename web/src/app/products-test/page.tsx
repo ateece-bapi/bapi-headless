@@ -2,10 +2,10 @@ import { getProducts } from '@/lib/graphql';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql';
 import { generateCollectionPageSchema } from '@/lib/metadata';
 export const metadata = {
-  title: 'Products Test | BAPI',
+  title: 'Products Test',
   description: 'Test page for viewing building automation products and their stock status.',
   openGraph: {
-    title: 'Products Test | BAPI',
+    title: 'Products Test',
     description: 'Test page for viewing building automation products and their stock status.',
     type: 'website',
     url: 'https://yourdomain.com/products-test',
@@ -20,7 +20,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Products Test | BAPI',
+    title: 'Products Test',
     description: 'Test page for viewing building automation products and their stock status.',
     images: ['https://yourdomain.com/og-default.webp'],
   },
@@ -33,7 +33,7 @@ import Image from 'next/image';
 export default async function ProductsTestPage() {
   // --- JSON-LD Structured Data ---
   const jsonLd = generateCollectionPageSchema({
-    title: 'Products Test | BAPI',
+    title: 'Products Test',
     description: 'Test page for viewing building automation products and their stock status.',
     url: 'https://yourdomain.com/products-test',
   });

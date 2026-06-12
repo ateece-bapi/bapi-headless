@@ -475,10 +475,10 @@
       "follow": "Folgen Sie uns"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "Premium-Lösung",
+      "title": "WAM™ Drahtlose Anlagenüberwachung",
+      "description": "24/7 Fernüberwachung mit sofortigen Alarmen. Schützen Sie Ihre kritischen Anlagen mit drahtloser Temperatur- und Umgebungsüberwachung auf Unternehmensniveau.",
+      "cta": "WAM erkunden"
     }
   },
   "productPage": {
@@ -914,7 +914,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "Kasse | BAPI",
+      "title": "Kasse",
       "description": "Schließen Sie Ihre Bestellung ab"
     },
     "header": {
@@ -1163,7 +1163,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "Karriere | BAPI",
+        "title": "Karriere",
         "description": "Werden Sie Teil des BAPI-Teams und helfen Sie uns, die Zukunft der Gebäudeautomationstechnologie zu gestalten."
       },
       "breadcrumb": {
@@ -1263,7 +1263,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Mission & Values | BAPI",
+        "title": "Mission & Values",
         "description": "Erfahren Sie mehr über die Mission, Vision und Kernwerte von BAPI, die unser Engagement für Präzisionssensorlösungen antreiben."
       },
       "breadcrumb": {
@@ -1316,7 +1316,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "Warum BAPI | BAPI",
+        "title": "Warum BAPI",
         "description": "Entdecken Sie, was BAPI in der Gebäudeautomationsbranche auszeichnet und warum Ingenieure unsere präzisen Sensorlösungen vertrauen."
       },
       "breadcrumb": {
@@ -1390,7 +1390,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "Kontaktieren Sie uns | BAPI",
+        "title": "Kontaktieren Sie uns",
         "description": "Nehmen Sie Kontakt mit BAPI auf, wenn Sie Unterstützung, Vertriebsanfragen oder technische Hilfe benötigen."
       },
       "breadcrumb": {
@@ -1482,7 +1482,7 @@
     },
     "news": {
       "metadata": {
-        "title": "Nachrichten | BAPI",
+        "title": "Nachrichten",
         "description": "Bleiben Sie mit den neuesten Nachrichten, Ankündigungen und Updates von BAPI auf dem Laufenden."
       },
       "breadcrumb": {
@@ -1579,7 +1579,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "Support kontaktieren | BAPI",
+      "title": "Support kontaktieren",
       "description": "Erhalten Sie fachkundigen technischen Support für BAPI-Gebäudeautomationsprodukte. Telefon-, E-Mail- und Vor-Ort-Unterstützung verfügbar."
     },
     "hero": {
@@ -1607,7 +1607,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "Garantieinformationen | BAPI",
+      "title": "Garantieinformationen",
       "description": "BAPI bietet eine branchenführende 5-Jahres-Garantie auf Gebäudeautomationsprodukte. Erfahren Sie mehr über unseren Garantieumfang und Support."
     },
     "hero": {
@@ -1640,7 +1640,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "Rücksendungen & RMA | BAPI",
+      "title": "Rücksendungen & RMA",
       "description": "Fordern Sie eine Rückgabegenehmigung für BAPI-Produkte an. Schnelle Bearbeitung und fachkundiger Support für Rücksendungen und Reparaturen."
     },
     "hero": {
@@ -1706,7 +1706,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "Querverweisungstool | BAPI",
+      "title": "Querverweisungstool",
       "description": "Finden Sie BAPI-Äquivalente für Konkurrenzprodukte. Querverweisungstool für Gebäudeautomatisierungssensoren.",
       "keywords": "Querverweisung, Konkurrenzvergleich, BAPI-Äquivalente, Honeywell-Alternative, Johnson Controls-Alternative, Siemens-Alternative, Sensor-Querverweisung, Gebäudeautomatisierungskompatibilität, Produktersatz"
     },
@@ -1743,7 +1743,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Produktdatenblätter | BAPI",
+      "title": "Produktdatenblätter",
       "description": "Laden Sie detaillierte technische Datenblätter für alle BAPI-Gebäudeautomatisierungsprodukte herunter.",
       "keywords": "Produktdatenblätter, technische Spezifikationen, Sensor-Datenblätter, BAPI-Spezifikationen, Temperatursensor-Spezifikationen, Feuchtigkeitssensor-Spezifikationen, Drucksensor-Spezifikationen, Luftqualitätssensor-Datenblätter, Funksensor-Spezifikationen, Controller-Datenblätter, PDF-Downloads"
     },
@@ -1882,7 +1882,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "Produktauswahl-Tool | BAPI",
+      "title": "Produktauswahl-Tool",
       "description": "Finden Sie den perfekten BAPI-Sensor für Ihre Anwendung. Beantworten Sie ein paar Fragen, um Produktempfehlungen zu erhalten."
     },
     "hero": {
@@ -2454,7 +2454,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "BAPI Sensoren Übersicht & Spezifikationen | BAPI",
+      "title": "BAPI Sensoren Übersicht & Spezifikationen",
       "description": "Vollständige Übersicht der BAPI Sensorspezifikationen für Temperatur-, Feuchtigkeits- und Drucküberwachung in Gebäudeautomationssystemen."
     },
     "hero": {
@@ -2505,7 +2505,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "Technische Anwendungshinweise | BAPI",
+      "title": "Technische Anwendungshinweise",
       "description": "Entdecken Sie unsere umfassende Bibliothek technischer Anwendungshinweise zu Sensorinstallation, bewährten Verfahren, Fehlerbehebungsanleitungen und Brancheneinblicken für HLK-Anwendungen."
     },
     "hero": {
@@ -3079,7 +3079,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Drahtlose HLK-Sensoren | BAPI",
+      "title": "Drahtlose HLK-Sensoren",
       "description": "Kostengünstige, zuverlässige drahtlose Temperatur- und Feuchtigkeitsüberwachung für Gewerbegebäude. Nahtlose Integration in Ihr bestehendes Gebäudemanagementsystem ohne neue Verkabelung.",
       "keywords": "drahtlose Sensoren, HLK-Sensoren, Gebäudeautomation, Temperaturüberwachung, Feuchtigkeitssensoren"
     },
@@ -3374,7 +3374,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Wireless Asset Monitoring | BAPI",
+      "title": "WAM™ Wireless Asset Monitoring",
       "description": "Schützen Sie Ihre wertvollen Anlagen mit Echtzeitüberwachung von BAPI. WAM™ bietet 24/7 Anlagenüberwachung mit sofortigen Alarmen zur Vermeidung kostspieliger Geräteausfälle.",
       "keywords": "drahtlose Anlagenüberwachung, Temperaturüberwachung, Feuchtigkeitsüberwachung, Geräteüberwachung, vorbeugende Wartung, Kühlkettenüberwachung"
     },
@@ -3629,7 +3629,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "Zubehör | BAPI",
+      "title": "Zubehör",
       "description": "BAPI hat kürzlich eine umfassende Linie von Zubehör für herausragende Produkte und Ersatzteile eingeführt, die ein breites Spektrum an Sensoren, Zubehör und Lösungen für verschiedene kommerzielle Anwendungen in zahlreichen Branchen ergänzen.",
       "keywords": "HLK-Zubehör, Wasserleckdetektoren, Türüberwachungsalarm, Lichtpegelsensor, Spannungswandler, Stromverteilung, BAPI-Guard"
     },
@@ -3709,7 +3709,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "Feuchtesensoren | BAPI",
+      "title": "Feuchtesensoren",
       "description": "Von einfachen Büros bis zu den anspruchsvollsten Räumen stellt BAPI eine komplette Linie hochwertiger Feuchte- oder Temperatur-/Feuchtesensoren für Raum-, Kanal- und Außenluftanwendungen her.",
       "keywords": "Feuchtesensoren, Temperatur-Feuchtesensoren, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, Kanalfeuchte, Außenluftfeuchte, HLK-Feuchteüberwachung"
     },
@@ -3768,7 +3768,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "Temperatursensoren | BAPI",
+      "title": "Temperatursensoren",
       "description": "Hochwertige Temperatursensoren für nahezu jeden Bereich einer Anlage. Kompatibel mit allen BAS-Controller-Linien mit einer breiten Palette von benutzerdefinierten Ausgängen.",
       "keywords": "Temperatursensoren, HVAC-Sensoren, Gebäudeautomation, Raumtemperatursensoren, Kanalsensoren, Tauchsensoren"
     },
@@ -3867,7 +3867,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "Drucksensoren | BAPI",
+      "title": "Drucksensoren",
       "description": "Die Drucksensoren von BAPI bieten die Feldkonfigurierbarkeit, die Sie für eine einfache Installation und visuelle Fehlersuche benötigen, um Zeit und Geld zu sparen.",
       "keywords": "Drucksensoren, Differenzdruck, Druckschalter, ZPM Sensor, Reinraumdruck, Filterüberwachung, Zonendruckkontrolle, HLK-Drucksensoren"
     },
@@ -3942,7 +3942,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "Luftqualitätssensoren - CO₂, VOC, Feinstaub, CO, NO₂ | BAPI",
+      "title": "Luftqualitätssensoren - CO₂, VOC, Feinstaub, CO, NO₂",
       "description": "Vollständige Produktlinie von Luftqualitätssensoren für bedarfsgeführte Lüftung, einschließlich CO₂-, VOC-, Feinstaub-, Kohlenmonoxid- und Stickstoffdioxidsensoren.",
       "keywords": "Luftqualitätssensoren, CO2-Sensoren, VOC-Sensoren, Feinstaubsensoren, Kohlenmonoxidsensoren, Stickstoffdioxidsensoren, Raumluftqualität, bedarfsgeführte Lüftung, IAQ-Überwachung"
     },

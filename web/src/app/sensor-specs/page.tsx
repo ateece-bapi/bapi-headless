@@ -4,7 +4,7 @@ import { ThermometerIcon, DropletIcon, WindIcon, GaugeIcon, SearchIcon, Download
 import { TemperatureSensorTable } from '@/components/sensors/TemperatureSensorTable';
 
 export const metadata: Metadata = {
-  title: 'BAPI Sensors Overview & Specifications | BAPI',
+  title: 'BAPI Sensors Overview & Specifications',
   description:
     'Complete overview of BAPI sensor specifications for temperature, humidity, pressure, and air quality monitoring.',
 };

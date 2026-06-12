@@ -4,7 +4,7 @@ import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon,
 import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
-  title: 'Company | BAPI',
+  title: 'Company',
   description:
     'Learn about BAPI - Building Automation Products Inc. Leading manufacturer of building automation sensors and controls since 1984.',
 };

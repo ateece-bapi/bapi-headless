@@ -313,10 +313,10 @@
       "follow": "Suivez-nous"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "Solution Premium",
+      "title": "WAM™ Surveillance des Actifs Sans Fil",
+      "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs critiques avec une surveillance sans fil de température et d'environnement de niveau entreprise.",
+      "cta": "Explorer WAM"
     }
   },
   "region": {
@@ -993,7 +993,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "Paiement | BAPI",
+      "title": "Paiement",
       "description": "Complétez votre commande"
     },
     "header": {
@@ -1242,7 +1242,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "Carrières | BAPI",
+        "title": "Carrières",
         "description": "Rejoignez l'équipe BAPI et aidez-nous à façonner l'avenir de la technologie d'automatisation des bâtiments."
       },
       "breadcrumb": {
@@ -1342,7 +1342,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Mission et Valeurs | BAPI",
+        "title": "Mission et Valeurs",
         "description": "Découvrez la mission, la vision et les valeurs fondamentales de BAPI qui guident notre engagement envers des solutions de capteurs de précision."
       },
       "breadcrumb": {
@@ -1395,7 +1395,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "Pourquoi BAPI | BAPI",
+        "title": "Pourquoi BAPI",
         "description": "Découvrez ce qui distingue BAPI dans l'industrie de l'automatisation des bâtiments et pourquoi les ingénieurs font confiance à nos solutions de capteurs de précision."
       },
       "breadcrumb": {
@@ -1469,7 +1469,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "Contactez-nous | BAPI",
+        "title": "Contactez-nous",
         "description": "Contactez BAPI pour obtenir de l'assistance, des demandes de vente ou de l'aide technique."
       },
       "breadcrumb": {
@@ -1561,7 +1561,7 @@
     },
     "news": {
       "metadata": {
-        "title": "Nouvelles | BAPI",
+        "title": "Nouvelles",
         "description": "Restez informé des dernières nouvelles, annonces et mises à jour de BAPI."
       },
       "breadcrumb": {
@@ -1658,7 +1658,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "Contacter le Support | BAPI",
+      "title": "Contacter le Support",
       "description": "Obtenez un support technique expert pour les produits d'automatisation des bâtiments BAPI. Assistance téléphonique, par e-mail et sur site disponible."
     },
     "hero": {
@@ -1686,7 +1686,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "Informations sur la Garantie | BAPI",
+      "title": "Informations sur la Garantie",
       "description": "BAPI offre une garantie de 5 ans de premier plan dans l'industrie sur les produits d'automatisation des bâtiments. En savoir plus sur notre couverture de garantie et notre support."
     },
     "hero": {
@@ -1719,7 +1719,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "Retours & RMA | BAPI",
+      "title": "Retours & RMA",
       "description": "Demandez une autorisation de retour de marchandise pour les produits BAPI. Traitement rapide et support expert pour les retours et réparations."
     },
     "hero": {
@@ -1785,7 +1785,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "Outil de Références Croisées | BAPI",
+      "title": "Outil de Références Croisées",
       "description": "Trouvez les équivalents BAPI pour les produits concurrents. Outil de références croisées pour capteurs d'automatisation des bâtiments.",
       "keywords": "références croisées, comparaison concurrents, équivalents BAPI, alternative Honeywell, alternative Johnson Controls, alternative Siemens, références croisées capteurs, compatibilité automatisation bâtiment, remplacement produit"
     },
@@ -1822,7 +1822,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Fiches Techniques des Produits | BAPI",
+      "title": "Fiches Techniques des Produits",
       "description": "Téléchargez les fiches techniques détaillées pour tous les produits d'automatisation des bâtiments BAPI.",
       "keywords": "fiches techniques produits, spécifications techniques, fiches techniques capteurs, spécifications BAPI, spécifications capteur température, spécifications capteur humidité, spécifications capteur pression, fiches techniques capteurs qualité air, spécifications capteurs sans fil, fiches techniques contrôleurs, téléchargements PDF"
     },
@@ -1961,7 +1961,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "Outil de Sélection de Produits | BAPI",
+      "title": "Outil de Sélection de Produits",
       "description": "Trouvez le capteur BAPI parfait pour votre application. Répondez à quelques questions pour obtenir des recommandations de produits."
     },
     "hero": {
@@ -2454,7 +2454,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "Aperçu et spécifications des capteurs BAPI | BAPI",
+      "title": "Aperçu et spécifications des capteurs BAPI",
       "description": "Aperçu complet des spécifications des capteurs BAPI pour la surveillance de la température, de l'humidité et de la pression dans les systèmes d'automatisation du bâtiment."
     },
     "hero": {
@@ -2505,7 +2505,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "Notes d'Application Techniques | BAPI",
+      "title": "Notes d'Application Techniques",
       "description": "Explorez notre bibliothèque complète de notes d'application techniques couvrant l'installation de capteurs, les meilleures pratiques, les guides de dépannage et les perspectives industrielles pour les applications CVC."
     },
     "hero": {
@@ -3079,7 +3079,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Capteurs HVAC Sans Fil | BAPI",
+      "title": "Capteurs HVAC Sans Fil",
       "description": "Surveillance sans fil économique et fiable de la température et de l'humidité pour les bâtiments commerciaux. Intégration transparente avec votre GTC existant sans tirer de nouveaux câbles.",
       "keywords": "capteurs sans fil, capteurs HVAC, automatisation du bâtiment, surveillance température, capteurs humidité"
     },
@@ -3374,7 +3374,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Surveillance Sans Fil d'Actifs | BAPI",
+      "title": "WAM™ Surveillance Sans Fil d'Actifs",
       "description": "Protégez vos actifs précieux avec la surveillance en temps réel de BAPI. WAM™ fournit une surveillance d'actifs 24h/7j avec des alertes instantanées pour éviter les pannes d'équipement coûteuses.",
       "keywords": "surveillance sans fil d'actifs, surveillance de température, surveillance d'humidité, surveillance d'équipement, maintenance préventive, surveillance de chaîne du froid"
     },
@@ -3629,7 +3629,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "Accessoires | BAPI",
+      "title": "Accessoires",
       "description": "BAPI a récemment lancé une gamme complète d'accessoires pour des produits exceptionnels et des pièces de support, complétant un large éventail de capteurs, d'accessoires et de solutions disponibles pour diverses applications commerciales dans de nombreuses industries.",
       "keywords": "accessoires CVC, détecteurs de fuites d'eau, alarme de surveillance de porte, capteur de niveau de lumière, convertisseur de tension, distribution d'énergie, BAPI-Guard"
     },
@@ -3709,7 +3709,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "Capteurs d'Humidité | BAPI",
+      "title": "Capteurs d'Humidité",
       "description": "Des bureaux simples aux espaces les plus difficiles, BAPI fabrique une gamme complète de capteurs d'humidité ou de température/humidité de haute qualité pour les applications d'ambiance, de conduit et d'air extérieur.",
       "keywords": "capteurs d'humidité, capteurs de température humidité, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, humidité de conduit, humidité d'air extérieur, surveillance de l'humidité CVC"
     },
@@ -3768,7 +3768,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "Capteurs de Température | BAPI",
+      "title": "Capteurs de Température",
       "description": "Capteurs de température de haute qualité pour pratiquement toutes les zones d'une installation. Compatibles avec toutes les gammes de contrôleurs BAS avec une large gamme de sorties personnalisées.",
       "keywords": "capteurs de température, capteurs HVAC, automatisation du bâtiment, capteurs de température ambiante, capteurs de conduits, capteurs à immersion"
     },
@@ -3867,7 +3867,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "Capteurs de Pression | BAPI",
+      "title": "Capteurs de Pression",
       "description": "Les capteurs de pression de BAPI ont la sélectivité de terrain dont vous avez besoin pour une installation facile et un dépannage visuel pour gagner du temps et de l'argent.",
       "keywords": "capteurs de pression, pression différentielle, interrupteurs de pression, capteur ZPM, pression de salle blanche, surveillance de filtres, contrôle de pression de zone, capteurs de pression CVC"
     },
@@ -3942,7 +3942,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "Capteurs de Qualité de l'Air - CO₂, COV, Particules, CO, NO₂ | BAPI",
+      "title": "Capteurs de Qualité de l'Air - CO₂, COV, Particules, CO, NO₂",
       "description": "Gamme complète de capteurs de qualité de l'air pour la ventilation contrôlée à la demande, incluant les capteurs de CO₂, COV, Particules, Monoxyde de Carbone et Dioxyde d'Azote.",
       "keywords": "capteurs de qualité de l'air, capteurs de CO2, capteurs de COV, capteurs de particules, capteurs de monoxyde de carbone, capteurs de dioxyde d'azote, qualité de l'air intérieur, ventilation contrôlée à la demande, surveillance IAQ"
     },

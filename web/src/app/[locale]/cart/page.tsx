@@ -17,7 +17,7 @@ import CartPageClient from '@/components/cart/CartPage/CartPageClient';
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
   return {
-    title: `${t('cartPage.meta.title')} | BAPI`,
+    title: t('cartPage.meta.title'),
     description: t('cartPage.meta.description'),
   };
 }

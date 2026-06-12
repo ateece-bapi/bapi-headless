@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: OrderConfirmationPageProps): 
   const { orderId } = await params;
 
   return {
-    title: `Order Confirmation #${orderId} | BAPI`,
+    title: `Order Confirmation #${orderId}`,
     description: 'Your order has been successfully placed. Thank you for your purchase!',
     robots: 'noindex, nofollow', // Don't index order confirmation pages
   };

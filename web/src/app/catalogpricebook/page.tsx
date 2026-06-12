@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DownloadIcon, FileTextIcon, PrinterIcon, MailIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Catalog & Price Book | BAPI',
+  title: 'Catalog & Price Book',
   description:
     'Download the latest BAPI product catalog and price book for building automation sensors and controls.',
 };

@@ -238,7 +238,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   }, []);
 
   // Get image URL (use variation image if selected)
-  const imageUrl = displayImage?.sourceUrl || '/images/placeholder.webp';
+  const imageUrl = displayImage?.sourceUrl || '/images/placeholder.svg';
   const imageAlt = displayImage?.altText || supportedProduct?.name || 'Product image';
 
   // Prepare cart item data

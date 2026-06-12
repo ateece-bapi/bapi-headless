@@ -362,7 +362,7 @@ export default function SemiconductorOverviewPage() {
           </h2>
           <div className="bg-white rounded-lg border-2 border-neutral-200 p-6 flex justify-center">
             <img
-              src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Semiconductor_Output_Table.webp"
+              src={`${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graphql', '') || 'https://bapiheadlessstaging.kinsta.cloud'}/wp-content/uploads/Semiconductor_Output_Table.png`}
               alt={t('outputCurve.alt')}
               className="max-w-full h-auto"
             />

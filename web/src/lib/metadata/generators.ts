@@ -164,12 +164,13 @@ export function generateProductMetadata(
   } Engineered for building automation systems, HVAC control, and critical facility monitoring.`;
 
   // Title: Include part number if available for technical searches
+  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
   const titleSuffix = product.partNumber
     ? ` (${product.partNumber})`
     : product.sku
       ? ` (${product.sku})`
       : '';
-  const title = `${product.name}${titleSuffix} | BAPI`;
+  const title = `${product.name}${titleSuffix}`;
 
   // Keywords: Combine product categories with site keywords
   const categoryKeywords = product.categories?.map((cat) => cat.name).filter(Boolean) || [];
@@ -268,7 +269,8 @@ export function generateCategoryMetadata(
     stripHtml(category.description, 155) ||
     `Browse ${category.name} products from ${SITE_CONFIG.organizationName}. Precision-engineered sensors and controllers for building automation, HVAC systems, and critical facility monitoring.`;
 
-  const title = `${category.name} | ${SITE_CONFIG.siteName} Products`;
+  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
+  const title = `${category.name} Products`;
   const image = category.image?.sourceUrl || SITE_CONFIG.defaultImage;
   const imageAlt = category.image?.altText || `${category.name} - ${SITE_CONFIG.siteName}`;
 
@@ -328,7 +330,8 @@ export function generateCategoryMetadata(
  * @returns Complete Next.js Metadata object
  */
 export function generatePageMetadata(page: PageMetadataInput, locale: string = 'en'): Metadata {
-  const title = `${page.title} | ${SITE_CONFIG.siteName}`;
+  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
+  const title = page.title;
   const image = page.image || SITE_CONFIG.defaultImage;
   const type: 'website' | 'article' = page.type || 'website';
 

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { FileTextIcon, ClockIcon, CheckCircleIcon, MailIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Request a Quote | BAPI',
+  title: 'Request a Quote',
   description:
     'Request a custom quote for BAPI building automation products. Get pricing for your project requirements.',
 };

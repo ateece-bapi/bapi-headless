@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { WindIcon, DropletIcon, GaugeIcon, AlertCircleIcon, TrendingUpIcon, CheckCircleIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Air Quality Sensors | BAPI',
+  title: 'Air Quality Sensors',
   description:
     'BAPI air quality sensors for CO₂, VOC, and particulate matter monitoring in commercial buildings.',
 };

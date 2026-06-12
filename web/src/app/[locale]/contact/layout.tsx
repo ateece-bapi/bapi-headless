@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Sales Team | BAPI',
+  title: 'Contact Us - Sales Team',
   description:
     "Get in touch with BAPI's expert sales team. Find your regional representative for building automation sensors and controls.",
   keywords:

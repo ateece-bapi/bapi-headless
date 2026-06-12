@@ -13,7 +13,7 @@ import {
 } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Support | BAPI',
+  title: 'Support',
   description:
     'Get expert technical support for BAPI building automation products. Access resources, contact our team, and find solutions.',
 };

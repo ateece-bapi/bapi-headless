@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { TargetIcon, HeartIcon, UsersIcon, LightbulbIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Mission & Values | BAPI',
+  title: 'Mission & Values',
   description:
     'Learn about BAPI mission, vision, and core values guiding our commitment to building automation excellence.',
 };

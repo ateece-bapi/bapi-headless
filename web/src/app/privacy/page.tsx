@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { FileTextIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | BAPI',
+  title: 'Privacy Policy',
   description: 'BAPI privacy policy - how we collect, use, and protect your personal information.',
 };
 

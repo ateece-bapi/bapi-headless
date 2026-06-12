@@ -954,7 +954,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "Thanh toán | BAPI",
+      "title": "Thanh toán",
       "description": "Hoàn tất đơn hàng của bạn"
     },
     "header": {
@@ -1203,7 +1203,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "Nghề nghiệp | BAPI",
+        "title": "Nghề nghiệp",
         "description": "Hãy gia nhập đội ngũ BAPI và giúp chúng tôi định hình tương lai của công nghệ tự động hóa tòa nhà."
       },
       "breadcrumb": {
@@ -1303,7 +1303,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Sứ mệnh & Giá trị | BAPI",
+        "title": "Sứ mệnh & Giá trị",
         "description": "Tìm hiểu về sứ mệnh, tầm nhìn và các giá trị cốt lõi của BAPI thúc đẩy cam kết của chúng tôi đối với các giải pháp cảm biến chính xác."
       },
       "breadcrumb": {
@@ -1356,7 +1356,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "Liên hệ với chúng tôi | BAPI",
+        "title": "Liên hệ với chúng tôi",
         "description": "Liên hệ với BAPI để được hỗ trợ, tư vấn bán hàng hoặc hỗ trợ kỹ thuật."
       },
       "breadcrumb": {
@@ -1448,7 +1448,7 @@
     },
     "news": {
       "metadata": {
-        "title": "Tin tức | BAPI",
+        "title": "Tin tức",
         "description": "Cập nhật thường xuyên với những tin tức mới nhất, thông báo và cập nhật từ BAPI."
       },
       "breadcrumb": {
@@ -1476,7 +1476,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "Tại sao BAPI | BAPI",
+        "title": "Tại sao BAPI",
         "description": "Khám phá những điều làm BAPI nổi bật trong ngành tự động hóa công trình và lý do tại sao các kỹ sư tin tưởng vào các giải pháp cảm biến chính xác của chúng tôi."
       },
       "breadcrumb": {
@@ -1619,7 +1619,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "Liên Hệ Hỗ Trợ | BAPI",
+      "title": "Liên Hệ Hỗ Trợ",
       "description": "Nhận hỗ trợ kỹ thuật chuyên môn cho các sản phẩm tự động hóa tòa nhà BAPI. Hỗ trợ qua điện thoại, email và tại chỗ."
     },
     "hero": {
@@ -1647,7 +1647,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "Thông Tin Bảo Hành | BAPI",
+      "title": "Thông Tin Bảo Hành",
       "description": "BAPI cung cấp bảo hành 5 năm hàng đầu trong ngành cho các sản phẩm tự động hóa tòa nhà. Tìm hiểu về phạm vi bảo hành và hỗ trợ của chúng tôi."
     },
     "hero": {
@@ -1680,7 +1680,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "Trả Hàng & RMA | BAPI",
+      "title": "Trả Hàng & RMA",
       "description": "Yêu cầu Ủy Quyền Trả Hàng cho các sản phẩm BAPI. Xử lý nhanh chóng và hỗ trợ chuyên môn cho việc trả hàng và sửa chữa."
     },
     "hero": {
@@ -1746,7 +1746,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "Công Cụ Tham Chiếu Chéo | BAPI",
+      "title": "Công Cụ Tham Chiếu Chéo",
       "description": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh. Công cụ tham chiếu chéo cho cảm biến tự động hóa tòa nhà.",
       "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI, thay thế Honeywell, thay thế Johnson Controls, thay thế Siemens, tham chiếu chéo cảm biến, khả năng tương thích tự động hóa tòa nhà, thay thế sản phẩm"
     },
@@ -1783,7 +1783,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Tờ Dữ Liệu Sản Phẩm | BAPI",
+      "title": "Tờ Dữ Liệu Sản Phẩm",
       "description": "Tầi xuống tờ dữ liệu kỹ thuật chi tiết cho tất cả các sản phẩm tự động hóa tòa nhà BAPI.",
       "keywords": "tờ dữ liệu sản phẩm, thông số kỹ thuật, tờ dữ liệu cảm biến, thông số BAPI, thông số cảm biến nhiệt độ, thông số cảm biến độ ẩm, thông số cảm biến áp suất, tờ dữ liệu cảm biến chất lượng không khí, thông số cảm biến không dây, tờ dữ liệu bộ điều khiển, tải PDF"
     },
@@ -1922,7 +1922,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "Công Cụ Chọn Sản Phẩm | BAPI",
+      "title": "Công Cụ Chọn Sản Phẩm",
       "description": "Tìm cảm biến BAPI hoàn hảo cho ứng dụng của bạn. Trả lời một vài câu hỏi để nhận đề xuất sản phẩm."
     },
     "hero": {
@@ -2454,7 +2454,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "Tổng quan & Thông số kỹ thuật Cảm biến BAPI | BAPI",
+      "title": "Tổng quan & Thông số kỹ thuật Cảm biến BAPI",
       "description": "Tổng quan đầy đủ về thông số kỹ thuật cảm biến BAPI cho giám sát nhiệt độ, độ ẩm và áp suất trong hệ thống tự động hóa tòa nhà."
     },
     "hero": {
@@ -2505,7 +2505,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "Ghi Chú Ứng Dụng Kỹ Thuật | BAPI",
+      "title": "Ghi Chú Ứng Dụng Kỹ Thuật",
       "description": "Khám phá thư viện toàn diện các ghi chú ứng dụng kỹ thuật của chúng tôi bao gồm lắp đặt cảm biến, phương pháp hay nhất, hướng dẫn khắc phục sự cố, và thông tin chuyên sâu về ngành cho các ứng dụng HVAC."
     },
     "hero": {
@@ -3079,7 +3079,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Cảm Biến HVAC Không Dây | BAPI",
+      "title": "Cảm Biến HVAC Không Dây",
       "description": "Giám sát nhiệt độ và độ ẩm không dây hiệu quả về chi phí, đáng tin cậy cho các tòa nhà thương mại. Tích hợp liền mạch với hệ thống BMS hiện có mà không cần chạy dây mới.",
       "keywords": "cảm biến không dây, cảm biến HVAC, tự động hóa tòa nhà, giám sát nhiệt độ, cảm biến độ ẩm"
     },
@@ -3374,7 +3374,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Giám Sát Tài Sản Không Dây | BAPI",
+      "title": "WAM™ Giám Sát Tài Sản Không Dây",
       "description": "Bảo vệ tài sản có giá trị của bạn với giám sát thời gian thực từ BAPI. WAM™ cung cấp giám sát tài sản 24/7 với cảnh báo tức thì để tránh hỏng hóc thiết bị tốn kém.",
       "keywords": "giám sát tài sản không dây, giám sát nhiệt độ, giám sát độ ẩm, giám sát thiết bị, bảo trì phòng ngừa, giám sát chuỗi lạnh"
     },
@@ -3629,7 +3629,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "Phụ kiện | BAPI",
+      "title": "Phụ kiện",
       "description": "BAPI gần đây đã ra mắt dòng phụ kiện toàn diện cho các sản phẩm nổi bật và các bộ phận hỗ trợ, hoàn thiện một phổ rộng các cảm biến, phụ kiện và giải pháp có sẵn cho các ứng dụng thương mại khác nhau trong nhiều ngành công nghiệp.",
       "keywords": "phụ kiện HVAC, thiết bị phát hiện rò rỉ nước, cảnh báo giám sát cửa, cảm biến mức ánh sáng, bộ chuyển đổi điện áp, phân phối điện, BAPI-Guard"
     },
@@ -3709,7 +3709,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "Cảm Biến Độ Ẩm | BAPI",
+      "title": "Cảm Biến Độ Ẩm",
       "description": "Từ các văn phòng đơn giản đến những không gian thách thức nhất, BAPI sản xuất một dòng sản phẩm đầy đủ các cảm biến độ ẩm hoặc nhiệt độ/độ ẩm chất lượng cao cho các ứng dụng trong phòng, ống dẫn và không khí bên ngoài.",
       "keywords": "cảm biến độ ẩm, cảm biến nhiệt độ độ ẩm, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, độ ẩm ống dẫn, độ ẩm không khí bên ngoài, giám sát độ ẩm HVAC"
     },
@@ -3768,7 +3768,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "Cảm Biến Nhiệt Độ | BAPI",
+      "title": "Cảm Biến Nhiệt Độ",
       "description": "Cảm biến nhiệt độ chất lượng cao cho hầu hết mọi khu vực trong cơ sở. Tương thích với tất cả các dòng bộ điều khiển BAS với nhiều loại đầu ra tùy chỉnh.",
       "keywords": "cảm biến nhiệt độ, cảm biến HVAC, tự động hóa tòa nhà, cảm biến nhiệt độ phòng, cảm biến ống dẫn, cảm biến ngâm"
     },
@@ -3867,7 +3867,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "Cảm Biến Áp Suất | BAPI",
+      "title": "Cảm Biến Áp Suất",
       "description": "Cảm biến áp suất của BAPI có khả năng lựa chọn hiện trường mà bạn cần để cài đặt dễ dàng và khắc phục sự cố trực quan để tiết kiệm thời gian và tiền bạc.",
       "keywords": "cảm biến áp suất, áp suất chênh lệch, công tắc áp suất, cảm biến ZPM, áp suất phòng sạch, giám sát bộ lọc, kiểm soát áp suất vùng, cảm biến áp suất HVAC"
     },
@@ -3942,7 +3942,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "Cảm biến chất lượng không khí - CO₂, VOC, Hạt bụi, CO, NO₂ | BAPI",
+      "title": "Cảm biến chất lượng không khí - CO₂, VOC, Hạt bụi, CO, NO₂",
       "description": "Dòng cảm biến chất lượng không khí đầy đủ cho thông gió kiểm soát theo nhu cầu bao gồm cảm biến CO₂, VOC, hạt bụi, carbon monoxide và nitrogen dioxide.",
       "keywords": "cảm biến chất lượng không khí, cảm biến CO2, cảm biến VOC, cảm biến hạt bụi, cảm biến carbon monoxide, cảm biến nitrogen dioxide, chất lượng không khí trong nhà, thông gió kiểm soát theo nhu cầu, giám sát IAQ"
     },

@@ -13,7 +13,7 @@ import {
 } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Blu-Test™ HVAC Diagnostic Tools | BAPI',
+  title: 'Blu-Test™ HVAC Diagnostic Tools',
   description:
     'Professional Bluetooth test instruments for HVAC technicians. Verify sensor accuracy, diagnose issues, and commission systems with the Blu-Test app.',
 };

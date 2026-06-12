@@ -1444,7 +1444,7 @@
   },
   "checkoutPage": {
     "meta": {
-      "title": "Kasa | BAPI",
+      "title": "Kasa",
       "description": "Zakończ swoje zamówienie"
     },
     "header": {
@@ -1693,7 +1693,7 @@
     },
     "careers": {
       "metadata": {
-        "title": "Kariera | BAPI",
+        "title": "Kariera",
         "description": "Dołącz do zespołu BAPI i pomóż nam kształtować przyszłość technologii automatyki budynków."
       },
       "breadcrumb": {
@@ -1793,7 +1793,7 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Misja i wartości | BAPI",
+        "title": "Misja i wartości",
         "description": "Dowiedz się więcej o misji, wizji i kluczowych wartościach BAPI, które napędzają nasze zaangażowanie w precyzyjne rozwiązania z zakresu czujników."
       },
       "breadcrumb": {
@@ -1846,7 +1846,7 @@
     },
     "whyBapi": {
       "metadata": {
-        "title": "Dlaczego BAPI | BAPI",
+        "title": "Dlaczego BAPI",
         "description": "Odkryj, co wyróżnia BAPI w branży automatyki budynkowej i dlaczego inżynierowie ufają naszym precyzyjnym rozwiązaniom sensorycznym."
       },
       "breadcrumb": {
@@ -1920,7 +1920,7 @@
     },
     "contact": {
       "metadata": {
-        "title": "Skontaktuj się z nami | BAPI",
+        "title": "Skontaktuj się z nami",
         "description": "Skontaktuj się z BAPI w celu uzyskania wsparcia, zapytań sprzedażowych lub pomocy technicznej."
       },
       "breadcrumb": {
@@ -2012,7 +2012,7 @@
     },
     "news": {
       "metadata": {
-        "title": "Wiadomości | BAPI",
+        "title": "Wiadomości",
         "description": "Bądź na bieżąco z najnowszymi wiadomościami, ogłoszeniami i aktualizacjami od BAPI."
       },
       "breadcrumb": {
@@ -2109,7 +2109,7 @@
   },
   "contactSupportPage": {
     "metadata": {
-      "title": "Kontakt z pomocą techniczną | BAPI",
+      "title": "Kontakt z pomocą techniczną",
       "description": "Uzyskaj eksperckie wsparcie techniczne dla produktów automatyki budynkowej BAPI. Dostępne wsparcie telefoniczne, e-mailowe i pomoc na miejscu."
     },
     "hero": {
@@ -2137,7 +2137,7 @@
   },
   "warrantyPage": {
     "metadata": {
-      "title": "Informacje o gwarancji | BAPI",
+      "title": "Informacje o gwarancji",
       "description": "BAPI oferuje wiodącą w branży 5-letnią gwarancję na produkty automatyki budynkowej. Dowiedz się o naszym zakresie gwarancji i wsparciu."
     },
     "hero": {
@@ -2170,7 +2170,7 @@
   },
   "returnsPage": {
     "metadata": {
-      "title": "Zwroty i RMA | BAPI",
+      "title": "Zwroty i RMA",
       "description": "Zgłoś upoważnienie do zwrotu towaru dla produktów BAPI. Szybkie przetwarzanie i eksperckie wsparcie dla zwrotów i napraw."
     },
     "hero": {
@@ -2236,7 +2236,7 @@
   },
   "crossReferencePage": {
     "metadata": {
-      "title": "Narzędzie Odniesieniowe | BAPI",
+      "title": "Narzędzie Odniesieniowe",
       "description": "Znajdź odpowiedniki BAPI dla produktów konkurencji. Narzędzie odniesieniowe dla czujników automatyki budynkowej.",
       "keywords": "odniesienia krzyżowe, porównanie konkurencji, odpowiedniki BAPI, alternatywa Honeywell, alternatywa Johnson Controls, alternatywa Siemens, odniesienia krzyżowe czujników, kompatybilność automatyki budynkowej, zastępowanie produktów"
     },
@@ -2273,7 +2273,7 @@
   },
   "datasheetsPage": {
     "metadata": {
-      "title": "Karty Danych Produktów | BAPI",
+      "title": "Karty Danych Produktów",
       "description": "Pobierz szczegółowe karty danych technicznych dla wszystkich produktów automatyki budynkowej BAPI.",
       "keywords": "karty danych produktów, specyfikacje techniczne, karty danych czujników, specyfikacje BAPI, specyfikacje czujników temperatury, specyfikacje czujników wilgotności, specyfikacje czujników ciśnienia, karty danych czujników jakości powietrza, specyfikacje czujników bezprzewodowych, karty danych sterowników, pobieranie PDF"
     },
@@ -2412,7 +2412,7 @@
   },
   "selectorPage": {
     "metadata": {
-      "title": "Narzędzie Wyboru Produktu | BAPI",
+      "title": "Narzędzie Wyboru Produktu",
       "description": "Znajdź idealny czujnik BAPI do swojej aplikacji. Odpowiedz na kilka pytań, aby otrzymać rekomendacje produktów."
     },
     "hero": {
@@ -2453,7 +2453,7 @@
   },
   "sensorSpecsPage": {
     "metadata": {
-      "title": "Przegląd i Specyfikacje Czujników BAPI | BAPI",
+      "title": "Przegląd i Specyfikacje Czujników BAPI",
       "description": "Kompletny przegląd specyfikacji czujników BAPI do monitorowania temperatury, wilgotności i ciśnienia w systemach automatyki budynkowej."
     },
     "hero": {
@@ -2504,7 +2504,7 @@
   },
   "applicationNotesPage": {
     "metadata": {
-      "title": "Notatki Techniczne Aplikacji | BAPI",
+      "title": "Notatki Techniczne Aplikacji",
       "description": "Poznaj naszą obszerną bibliotekę notatek technicznych aplikacji obejmujących instalację czujników, najlepsze praktyki, przewodniki rozwiązywania problemów i spostrzeżenia branżowe dla zastosowań HVAC."
     },
     "hero": {
@@ -3078,7 +3078,7 @@
   },
   "wirelessLandingPage": {
     "metadata": {
-      "title": "Bezprzewodowe czujniki HVAC | BAPI",
+      "title": "Bezprzewodowe czujniki HVAC",
       "description": "Ekonomiczne, niezawodne bezprzewodowe monitorowanie temperatury i wilgotności w budynkach komercyjnych. Bezproblemowa integracja z istniejącym BMS bez prowadzenia nowych przewodów.",
       "keywords": "czujniki bezprzewodowe, czujniki HVAC, automatyka budynkowa, monitorowanie temperatury, czujniki wilgotności"
     },
@@ -3373,7 +3373,7 @@
   },
   "wamLandingPage": {
     "metadata": {
-      "title": "WAM™ Bezprzewodowe Monitorowanie Zasobów | BAPI",
+      "title": "WAM™ Bezprzewodowe Monitorowanie Zasobów",
       "description": "Chroń swoje cenne zasoby dzięki monitorowaniu w czasie rzeczywistym od BAPI. WAM™ zapewnia całodobowe monitorowanie zasobów z natychmiastowymi alertami, aby uniknąć kosztownych awarii sprzętu.",
       "keywords": "bezprzewodowe monitorowanie zasobów, monitorowanie temperatury, monitorowanie wilgotności, monitorowanie sprzętu, konserwacja zapobiegawcza, monitorowanie łańcucha chłodniczego"
     },
@@ -3628,7 +3628,7 @@
   },
   "accessoriesLandingPage": {
     "metadata": {
-      "title": "Akcesoria | BAPI",
+      "title": "Akcesoria",
       "description": "BAPI niedawno wprowadziło kompleksową linię akcesoriów dla wyjątkowych produktów i części wspomagających, uzupełniając szeroki wachlarz czujników, akcesoriów i rozwiązań dostępnych dla różnych zastosowań komercyjnych w wielu branżach.",
       "keywords": "akcesoria HVAC, detektory wycieku wody, alarm monitora drzwi, czujnik poziomu światła, konwerter napięcia, dystrybucja energii, BAPI-Guard"
     },
@@ -3708,7 +3708,7 @@
   },
   "humidityLandingPage": {
     "metadata": {
-      "title": "Czujniki Wilgotności | BAPI",
+      "title": "Czujniki Wilgotności",
       "description": "Od prostych biur po najbardziej wymagające przestrzenie, BAPI produkuje kompletną linię wysokiej jakości czujników wilgotności lub temperatury/wilgotności do zastosowań w pomieszczeniach, kanałach i powietrzu zewnętrznym.",
       "keywords": "czujniki wilgotności, czujniki temperatury wilgotności, BAPI-Stat Quantum, BAPI-Stat Quantum Prime, BAPI-Box 2, wilgotność w kanale, wilgotność powietrza zewnętrznego, monitorowanie wilgotności HVAC"
     },
@@ -3767,7 +3767,7 @@
   },
   "temperatureLandingPage": {
     "metadata": {
-      "title": "Czujniki temperatury | BAPI",
+      "title": "Czujniki temperatury",
       "description": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu. Kompatybilne ze wszystkimi liniami kontrolerów BAS z szeroką gamą niestandardowych wyjść.",
       "keywords": "czujniki temperatury, czujniki HVAC, automatyka budynków, czujniki temperatury pomieszczenia, czujniki kanałowe, czujniki zanurzeniowe"
     },
@@ -3866,7 +3866,7 @@
   },
   "pressureLandingPage": {
     "metadata": {
-      "title": "Czujniki Ciśnienia | BAPI",
+      "title": "Czujniki Ciśnienia",
       "description": "Czujniki ciśnienia BAPI mają możliwość konfiguracji w terenie, której potrzebujesz do łatwej instalacji i wizualnego rozwiązywania problemów, aby zaoszczędzić czas i pieniądze.",
       "keywords": "czujniki ciśnienia, ciśnienie różnicowe, przełączniki ciśnienia, czujnik ZPM, ciśnienie w pomieszczeniach czystych, monitorowanie filtrów, kontrola ciśnienia strefy, czujniki ciśnienia HVAC"
     },
@@ -3941,7 +3941,7 @@
   },
   "airQualityLandingPage": {
     "metadata": {
-      "title": "Czujniki jakości powietrza - CO₂, VOC, pyły, CO, NO₂ | BAPI",
+      "title": "Czujniki jakości powietrza - CO₂, VOC, pyły, CO, NO₂",
       "description": "Pełna linia czujników jakości powietrza do wentylacji sterowanej zapotrzebowaniem, w tym czujniki CO₂, VOC, pyłów, tlenku węgla i dwutlenku azotu.",
       "keywords": "czujniki jakości powietrza, czujniki CO2, czujniki VOC, czujniki pyłów, czujniki tlenku węgla, czujniki dwutlenku azotu, jakość powietrza wewnętrznego, wentylacja sterowana zapotrzebowaniem, monitoring IAQ"
     },

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { SearchIcon, CheckCircleIcon, ArrowRightIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Product Selector Tool | BAPI',
+  title: 'Product Selector Tool',
   description:
     'Find the perfect BAPI sensor for your application. Answer a few questions to get product recommendations.',
 };

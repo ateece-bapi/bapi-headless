@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!data) {
     return {
-      title: 'Application Not Found | BAPI',
+      title: 'Application Not Found',
     };
   }
 

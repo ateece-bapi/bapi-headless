@@ -18,7 +18,7 @@ import {
 } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'WAM™ Wireless Asset Monitoring | BAPI',
+  title: 'WAM™ Wireless Asset Monitoring',
   description:
     'Protect your valuable assets with real-time monitoring from BAPI. WAM™ provides 24/7 asset monitoring with instant alerts to avoid costly equipment failures.',
   keywords:

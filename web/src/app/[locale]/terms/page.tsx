@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { FileTextIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | BAPI',
+  title: 'Terms & Conditions',
   description: 'BAPI terms and conditions of use for our website and services.',
 };
 

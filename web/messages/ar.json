@@ -313,10 +313,10 @@
       "follow": "تابعنا"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "حل متميز",
+      "title": "WAM™ مراقبة الأصول اللاسلكية",
+      "description": "مراقبة عن بُعد على مدار الساعة طوال أيام الأسبوع مع تنبيهات فورية. احم أصولك الحرجة بمراقبة لاسلكية احترافية لدرجة الحرارة والبيئة.",
+      "cta": "استكشف WAM"
     }
   },
   "region": {

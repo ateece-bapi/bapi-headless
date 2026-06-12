@@ -313,10 +313,10 @@
       "follow": "フォローする"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "プレミアムソリューション",
+      "title": "WAM™ ワイヤレス資産監視",
+      "description": "24時65日のリモート監視と即座のアラート。企業レベルのワイヤレス温度・環境監視で重要な資産を保護。",
+      "cta": "WAMを探索"
     }
   },
   "region": {

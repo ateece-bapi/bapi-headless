@@ -313,10 +313,10 @@
       "follow": "Suivez-nous"
     },
     "featured": {
-      "badge": "Premium Solution",
-      "title": "WAM™ Wireless Asset Monitoring",
-      "description": "24/7 remote monitoring with instant alerts. Protect your critical assets with enterprise-grade wireless temperature and environmental monitoring.",
-      "cta": "Explore WAM"
+      "badge": "Solution Premium",
+      "title": "WAM™ Surveillance des Actifs Sans Fil",
+      "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs critiques avec une surveillance sans fil de température et d'environnement de niveau entreprise.",
+      "cta": "Explorer WAM"
     }
   },
   "region": {

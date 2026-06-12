@@ -2,9 +2,111 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 11, 2026  
-**Status:** Phase 1 Complete - Live in Production (31 days post-launch)  
+**Updated:** June 12, 2026  
+**Status:** Phase 1 Complete - Live in Production (32 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 12, 2026 — WebP Sed Corrections (Code Quality) 🔧
+
+**Status:** ✅ COMPLETE & MERGED  
+**Context:** Copilot automated PR review identified 11 issues from overly-aggressive sed replacements during WebP conversion. Fixed file upload accepts, missing placeholder assets, and hardcoded staging URLs.  
+**Priority:** 🟡 MEDIUM - Code quality and production readiness  
+**Time:** ~45 minutes (2 review rounds + asset creation + testing)  
+**Approach:** Address Copilot feedback systematically → Create missing assets → Fix environment-dependent URLs
+
+### 🎯 CHANGES
+
+**Round 1: File Upload & Placeholder Fixes (6 issues)**
+- ✅ **request-quote/page.tsx** - Restored `.png` to file upload accept list
+  - **Problem:** sed removed `.png` from `accept` attribute
+  - **Impact:** Users couldn't upload PNG screenshots/drawings
+  - **Fix:** Changed `accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.webp"` → added `.png` back
+
+**Round 2: Missing Assets & Environment URLs (5 issues)**
+- ✅ **Created public/images/placeholder.svg** - Product image fallback
+  - **Source:** Copied from `public/images/team/placeholder.svg`
+  - **Used by:** QuickViewModal, ProductComparison components
+  - **Fix:** Changed `.png` → `.svg` in fallback references
+
+- ✅ **Created public/og-default.png** - Open Graph default image
+  - **Source:** BAPI Sensor Solutions logo (127KB)
+  - **Used by:** `src/lib/metadata/generators.ts`
+  - **Fix:** Changed `og-default.jpg` → `og-default.png`
+
+- ✅ **thermistor/page.tsx** - Fixed hardcoded staging WordPress URL
+  - **Problem:** sed changed remote WordPress URL to `.webp`
+  - **Impact:** Thermistor output chart wouldn't load in production
+  - **Fix:** Derive from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` env var:
+    ```typescript
+    src={`${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graphql', '') || 'https://bapiheadlessstaging.kinsta.cloud'}/wp-content/uploads/Thermistor_output_chart.png`}
+    ```
+
+- ✅ **semiconductor/page.tsx** - Fixed hardcoded staging WordPress URL
+  - **Problem:** Same as thermistor page
+  - **Impact:** Semiconductor output table wouldn't load in production
+  - **Fix:** Same environment-aware pattern as thermistor
+
+### 🐛 ISSUES IDENTIFIED BY COPILOT
+
+**Issue 1: File Upload Accept List**
+- **File:** `src/app/[locale]/request-quote/page.tsx`
+- **Cause:** sed replaced `.png` in HTML attribute, removing PNG upload support
+- **Impact:** Users need to upload PNG files (screenshots, drawings)
+- **Solution:** Restored `.png` to accept list alongside `.webp`
+
+**Issue 2-3: Non-Existent Placeholder**
+- **Files:** `QuickViewModal.tsx`, `ProductComparison.tsx`
+- **Cause:** sed changed `placeholder.png` → `placeholder.webp`, but file doesn't exist
+- **Impact:** Products without images would show broken fallback
+- **Solution:** Use `placeholder.svg` (already exists in team folder) and copy to `/images/`
+
+**Issue 4: Non-Existent OG Default**
+- **File:** `src/lib/metadata/generators.ts`
+- **Cause:** sed changed `og-default.jpg` → `og-default.webp`, but file doesn't exist
+- **Impact:** Pages without custom OG images would use broken fallback
+- **Solution:** Created `og-default.png` from BAPI logo, updated reference
+
+**Issue 5-6: Hardcoded Staging URLs**
+- **Files:** `thermistor/page.tsx`, `semiconductor/page.tsx`
+- **Cause:** WordPress-hosted images referenced with hardcoded staging domain
+- **Impact:** Images wouldn't load in production environment
+- **Solution:** Derive WordPress base URL from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` with staging fallback
+
+### 📊 IMPACT
+
+**Code Quality:**
+- ✅ All Copilot PR review feedback addressed (11 issues across 2 rounds)
+- ✅ Environment-agnostic WordPress URL pattern established
+- ✅ Missing assets created to prevent runtime failures
+
+**Files Changed:**
+- **Modified:** 6 TypeScript files
+- **Created:** 2 new asset files (placeholder.svg, og-default.png)
+
+**Branch:** `fix/webp-sed-corrections`  
+**Commits:** 2 commits (Round 1: 6 fixes, Round 2: 5 fixes)  
+**Merged:** June 12, 2026
+
+### 📝 LESSONS LEARNED
+
+**Bulk Replacement Pitfalls:**
+1. ⚠️ sed is too aggressive for codebase-wide changes
+2. ⚠️ HTML attributes need special handling (don't replace file extensions in `accept=`)
+3. ⚠️ Remote URLs shouldn't be modified (WordPress/CDN hosted images)
+4. ⚠️ Always verify replacement context, not just the pattern match
+
+**Best Practices for Future:**
+1. ✅ Use TypeScript language service for refactoring (find-and-replace with regex)
+2. ✅ Test all affected pages after bulk changes
+3. ✅ Copilot PR reviews are valuable - caught real production bugs
+4. ✅ Create environment-aware patterns for external resources (don't hardcode staging URLs)
+
+**Value of Automated PR Reviews:**
+- Copilot review caught 11 real issues that would have caused production failures
+- Issues ranged from user functionality (file uploads) to SEO (OG images) to environment bugs (staging URLs)
+- Clean rollback point via branch + PR workflow prevented direct main corruption
 
 ---
 

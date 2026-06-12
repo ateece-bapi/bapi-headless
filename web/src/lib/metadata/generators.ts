@@ -164,13 +164,14 @@ export function generateProductMetadata(
   } Engineered for building automation systems, HVAC control, and critical facility monitoring.`;
 
   // Title: Include part number if available for technical searches
-  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
+  // Note: Layout template adds " | BAPI" automatically to document title, but OG/Twitter need it explicitly
   const titleSuffix = product.partNumber
     ? ` (${product.partNumber})`
     : product.sku
       ? ` (${product.sku})`
       : '';
   const title = `${product.name}${titleSuffix}`;
+  const brandedTitle = `${title} | BAPI`; // For OpenGraph/Twitter
 
   // Keywords: Combine product categories with site keywords
   const categoryKeywords = product.categories?.map((cat) => cat.name).filter(Boolean) || [];
@@ -185,7 +186,7 @@ export function generateProductMetadata(
     keywords: keywords.join(', '),
     openGraph: {
       type: 'website', // Use 'website' for product pages (Next.js doesn't support 'product' type)
-      title,
+      title: brandedTitle,
       description: aiDescription.slice(0, 160),
       url: getAbsoluteUrl(`${locale}/${canonicalUrl}`),
       siteName: SITE_CONFIG.siteName,
@@ -217,7 +218,7 @@ export function generateProductMetadata(
       card: 'summary_large_image',
       site: SITE_CONFIG.twitterHandle,
       creator: SITE_CONFIG.twitterHandle,
-      title,
+      title: brandedTitle,
       description: description,
       images: [primaryImage.startsWith('http') ? primaryImage : getAbsoluteUrl(primaryImage)],
     },
@@ -269,8 +270,9 @@ export function generateCategoryMetadata(
     stripHtml(category.description, 155) ||
     `Browse ${category.name} products from ${SITE_CONFIG.organizationName}. Precision-engineered sensors and controllers for building automation, HVAC systems, and critical facility monitoring.`;
 
-  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
+  // Note: Layout template adds " | BAPI" automatically to document title, but OG/Twitter need it explicitly
   const title = `${category.name} Products`;
+  const brandedTitle = `${title} | BAPI`; // For OpenGraph/Twitter
   const image = category.image?.sourceUrl || SITE_CONFIG.defaultImage;
   const imageAlt = category.image?.altText || `${category.name} - ${SITE_CONFIG.siteName}`;
 
@@ -284,7 +286,7 @@ export function generateCategoryMetadata(
     description: aiDescription.slice(0, 160),
     openGraph: {
       type: 'website',
-      title,
+      title: brandedTitle,
       description: aiDescription.slice(0, 160),
       url: getAbsoluteUrl(`${locale}/${canonicalUrl}`),
       siteName: SITE_CONFIG.siteName,
@@ -301,7 +303,7 @@ export function generateCategoryMetadata(
     twitter: {
       card: 'summary_large_image',
       site: SITE_CONFIG.twitterHandle,
-      title,
+      title: brandedTitle,
       description: description,
       images: [image.startsWith('http') ? image : getAbsoluteUrl(image)],
     },
@@ -330,8 +332,9 @@ export function generateCategoryMetadata(
  * @returns Complete Next.js Metadata object
  */
 export function generatePageMetadata(page: PageMetadataInput, locale: string = 'en'): Metadata {
-  // Note: Layout template adds " | BAPI" automatically, so don't duplicate it here
+  // Note: Layout template adds " | BAPI" automatically to document title, but OG/Twitter need it explicitly
   const title = page.title;
+  const brandedTitle = `${title} | BAPI`; // For OpenGraph/Twitter
   const image = page.image || SITE_CONFIG.defaultImage;
   const type: 'website' | 'article' = page.type || 'website';
 
@@ -341,7 +344,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
     keywords: page.keywords?.join(', '),
     openGraph: {
       type,
-      title,
+      title: brandedTitle,
       description: page.description,
       url: getAbsoluteUrl(`${locale}/${page.path}`),
       siteName: SITE_CONFIG.siteName,
@@ -363,7 +366,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
     twitter: {
       card: 'summary_large_image',
       site: SITE_CONFIG.twitterHandle,
-      title,
+      title: brandedTitle,
       description: page.description,
       images: [image.startsWith('http') ? image : getAbsoluteUrl(image)],
     },

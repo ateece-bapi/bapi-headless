@@ -2,9 +2,123 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 12, 2026  
-**Status:** Phase 1 Complete - Live in Production (32 days post-launch)  
+**Updated:** June 15, 2026  
+**Status:** Phase 1 Complete - Live in Production (35 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 12, 2026 — SEO/i18n Metadata Cleanup (Page Titles & Translations) 🌍
+
+**Status:** ✅ COMPLETE & MERGED  
+**Context:** Fixed duplicate "| BAPI" suffixes in page titles and localized WAM™ promotional banner across all 10 supported languages. Copilot PR review identified missing social share card branding and Japanese translation error.  
+**Priority:** 🟡 MEDIUM - SEO optimization and internationalization  
+**Time:** ~1 hour (fixes + translations + PR review response)  
+**Approach:** Centralize title template behavior → Remove duplicate suffixes → Translate promotional content → Fix OpenGraph/Twitter metadata
+
+### 🎯 CHANGES
+
+**Issue 1: Page Title Duplication**
+- ✅ **Problem:** Browser tabs showing triple "| BAPI" duplication (e.g., "Wireless HVAC Sensors | BAPI | BAPI | BAPI")
+- ✅ **Root Cause:** Multiple layers adding "| BAPI" suffix:
+  - Layout template: `template: '%s | BAPI'`
+  - Metadata generators: Adding "| BAPI" to titles
+  - Individual pages: Hardcoding "| BAPI" in metadata
+  - Translation files: Including "| BAPI" in title strings
+- ✅ **Solution:**
+  - Removed "| BAPI" from metadata generator functions (`generateProductMetadata`, `generatePageMetadata`, `generateCategoryMetadata`)
+  - Removed hardcoded "| BAPI" from 40+ individual page metadata exports
+  - Removed "| BAPI" from all 11 translation files using batch replacement
+  - Layout template now handles suffix automatically for all pages
+
+**Issue 2: WAM Banner Translation**
+- ✅ **Problem:** WAM™ Wireless Asset Monitoring promotional banner in footer hardcoded in English across all language files
+- ✅ **Solution:** Translated `footer.featured` namespace (badge, title, description, cta) to all 10 supported languages:
+  - **Spanish (es):** Solución Premium, Monitoreo Inalámbrico de Activos
+  - **French (fr):** Solution Premium, Surveillance des Actifs Sans Fil
+  - **German (de):** Premium-Lösung, Drahtlose Anlagenüberwachung
+  - **Arabic (ar):** حل متميز, مراقبة الأصول اللاسلكية
+  - **Chinese (zh):** 高级解决方案, 无线资产监控
+  - **Japanese (ja):** プレミアムソリューション, ワイヤレス資産監視
+  - **Hindi (hi):** प्रीमियम समाधान, वायरलेस संपत्ति निगरानी
+  - **Polish (pl):** Rozwiązanie Premium, Bezprzewodowe Monitorowanie Zasobów
+  - **Thai (th):** โซลูชั่นพรีเมี่ยม, การตรวจสอบทรัพย์สินไร้สาย
+  - **Vietnamese (vi):** Giải pháp Cao cấp, Giám sát Tài sản Không dây
+
+**Copilot PR Review Feedback (4 Issues):**
+- ✅ **Issue 1-3: OpenGraph/Twitter Missing Branding**
+  - **Problem:** Social share cards (Facebook, Twitter, LinkedIn) missing "| BAPI" branding
+  - **Cause:** Layout `title.template` only affects browser document title, not OG/Twitter metadata
+  - **Solution:** Added `brandedTitle` variable to all three metadata generators:
+    - `generateProductMetadata()` - Product pages
+    - `generateCategoryMetadata()` - Category pages
+    - `generatePageMetadata()` - Static pages
+  - **Result:** Browser title uses layout template, social cards use explicit branding
+
+- ✅ **Issue 4: Japanese Translation Typo**
+  - **Problem:** "24時65日" (24 hours 65 days - nonsensical)
+  - **Solution:** Changed to "24時間365日" (24 hours 365 days - correct Japanese for "24/7")
+
+### 📊 IMPACT
+
+**SEO Improvements:**
+- ✅ Cleaner, more professional page titles in search results
+- ✅ Consistent "| BAPI" branding across all pages (no duplication)
+- ✅ Proper social share card branding for Facebook, Twitter, LinkedIn previews
+
+**Internationalization:**
+- ✅ Better global customer experience with localized promotional content
+- ✅ All 10 supported languages now have properly translated WAM banner
+- ✅ Fixed Japanese translation error for 24/7 support messaging
+
+**Files Changed:**
+- **Modified:** 49 files total
+  - 3 metadata generator functions
+  - 40+ page TypeScript files
+  - 11 translation JSON files (en, es, fr, de, ar, zh, ja, hi, pl, th, vi)
+
+**Branch:** `chore/cleanup`  
+**Commits:** 3 commits (initial fixes, WAM translations, Copilot review fixes)  
+**Merged:** June 12, 2026
+
+### 🐛 ISSUES IDENTIFIED BY COPILOT
+
+**OpenGraph/Twitter Metadata Pattern:**
+```typescript
+// Before: Missing BAPI branding on social cards
+const title = `${product.name}${titleSuffix}`;
+return {
+  title, // Layout template adds " | BAPI" to document title
+  openGraph: { title }, // ❌ Missing branding on social cards
+  twitter: { title }, // ❌ Missing branding on social cards
+};
+
+// After: Separate branded title for social metadata
+const title = `${product.name}${titleSuffix}`;
+const brandedTitle = `${title} | BAPI`; // For OpenGraph/Twitter
+return {
+  title, // Layout template handles document title
+  openGraph: { title: brandedTitle }, // ✅ Branding preserved
+  twitter: { title: brandedTitle }, // ✅ Branding preserved
+};
+```
+
+### 📝 LESSONS LEARNED
+
+**Metadata Architecture:**
+1. ✅ Next.js layout `title.template` only applies to document `<title>`, not OpenGraph/Twitter
+2. ✅ Social share metadata requires explicit branding in generator functions
+3. ✅ Single source of truth for title structure prevents duplication
+
+**Translation Workflow:**
+1. ✅ Translation file changes require dev server restart (not hot-reloadable)
+2. ✅ Native speakers or professional review needed for accuracy (caught Japanese typo)
+3. ✅ Batch replacements with `sed` work well for removing duplicate strings across files
+
+**Value of Automated PR Reviews:**
+- Copilot review caught 4 real issues that would have caused inconsistent branding
+- Social share card branding critical for professional appearance when shared on social media
+- Japanese translation error would have confused 日本語 speakers
 
 ---
 
@@ -74,7 +188,7 @@
 - **Impact:** Images wouldn't load in production environment
 - **Solution:** Derive WordPress base URL from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` with staging fallback
 
-### 📊 IMPACT
+### 📊 IMPACT 
 
 **Code Quality:**
 - ✅ All Copilot PR review feedback addressed (11 issues across 2 rounds)

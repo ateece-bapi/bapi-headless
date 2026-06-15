@@ -39740,6 +39740,11 @@ export type GetPostBySlugQueryVariables = Exact<{
 
 export type GetPostBySlugQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, title?: string | null | undefined, content?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null | undefined, avatar?: { __typename?: 'Avatar', url?: string | null | undefined } | null | undefined } } | null | undefined, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<{ __typename?: 'Category', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, tags?: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined } | null | undefined };
 
+export type GetPostCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPostCategoriesQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', id: string, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
+
 export type GetProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
@@ -41174,6 +41179,18 @@ export const GetPostBySlugDocument = gql`
         sourceUrl
         altText
       }
+    }
+  }
+}
+    `;
+export const GetPostCategoriesDocument = gql`
+    query GetPostCategories {
+  categories(where: {hideEmpty: true}) {
+    nodes {
+      id
+      name
+      slug
+      count
     }
   }
 }
@@ -42730,6 +42747,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetPostBySlug(variables: GetPostBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPostBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPostBySlugQuery>({ document: GetPostBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPostBySlug', 'query', variables);
+    },
+    GetPostCategories(variables?: GetPostCategoriesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPostCategoriesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPostCategoriesQuery>({ document: GetPostCategoriesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPostCategories', 'query', variables);
     },
     GetProducts(variables?: GetProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductsQuery>({ document: GetProductsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProducts', 'query', variables);

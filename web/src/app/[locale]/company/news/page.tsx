@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { getPosts } from '@/lib/wordpress';
+import { getPosts, getPostCategories } from '@/lib/wordpress';
 import { Link } from '@/lib/navigation';
-import { NewspaperIcon, CalendarIcon, ArrowRightIcon, TrendingUpIcon } from '@/lib/icons';
-import Image from 'next/image';
+import { NewspaperIcon, ArrowRightIcon, TrendingUpIcon } from '@/lib/icons';
 import { locales } from '@/i18n';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import NewsFilters from '@/components/news/NewsFilters';
+import NewsListClient from '@/components/news/NewsListClient';
 
 // Generate static params for all locales - ensures each locale is built separately
 export function generateStaticParams() {
@@ -26,7 +27,8 @@ export const revalidate = 900;
 
 export default async function NewsPage() {
   const t = await getTranslations('companyPages.news');
-  const posts = await getPosts({ perPage: 20 });
+  const posts = await getPosts({ perPage: 50 }); // Increased for better filtering
+  const categories = await getPostCategories();
 
   const breadcrumbItems = [
     { label: t('breadcrumb.home'), href: '/' },
@@ -67,77 +69,15 @@ export default async function NewsPage() {
 
       {/* News Grid */}
       <section className="relative mx-auto -mt-8 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-        {posts.length === 0 ? (
-          <div className="rounded-2xl bg-white p-12 text-center shadow-xl">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-              <NewspaperIcon className="h-8 w-8 text-gray-400" />
-            </div>
-            <h2 className="mb-2 text-2xl font-bold text-gray-900">{t('empty.title')}</h2>
-            <p className="text-lg text-gray-600">{t('empty.description')}</p>
-          </div>
-        ) : (
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, index) => (
-              <article
-                key={post.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {/* Featured Image */}
-                {post.featuredImage && (
-                  <div className="bg-linear-to-br relative h-56 overflow-hidden from-gray-100 to-gray-200">
-                    <img
-                      src={post.featuredImage}
-                      alt={post.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    {/* Overlay gradient */}
-                    <div className="bg-linear-to-t absolute inset-0 from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </div>
-                )}
+        {/* Filters */}
+        <NewsFilters categories={categories} />
 
-                {/* Content */}
-                <div className="flex flex-1 flex-col p-6">
-                  {/* Date Badge */}
-                  <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
-                    <CalendarIcon className="h-4 w-4 text-primary-500" />
-                    <time dateTime={post.date}>
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-                    <Link href={`/news/${post.slug}`} className="hover:underline">
-                      {post.title}
-                    </Link>
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="mb-4 line-clamp-3 flex-1 leading-relaxed text-gray-600">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Read More Link */}
-                  <Link
-                    href={`/news/${post.slug}`}
-                    className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3"
-                  >
-                    <span>{t('readMore')}</span>
-                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                  </Link>
-                </div>
-
-                {/* Decorative corner element */}
-                <div className="bg-linear-to-br absolute right-0 top-0 h-20 w-20 rounded-bl-full from-primary-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </article>
-            ))}
-          </div>
-        )}
+        {/* News Grid with Client-side Filtering */}
+        <NewsListClient 
+          initialPosts={posts} 
+          t={t}
+          locale={locales[0]} 
+        />
 
         {/* Additional CTA - if there are posts */}
         {posts.length > 0 && (

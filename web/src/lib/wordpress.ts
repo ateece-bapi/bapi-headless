@@ -9,6 +9,7 @@ import {
   GetPagesDocument,
   GetPostsDocument,
   GetPostBySlugDocument,
+  GetPostCategoriesDocument,
 } from './graphql/generated';
 import logger from './logger';
 
@@ -185,5 +186,31 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   } catch (error) {
     logger.warn('WordPress post fetch failed', { slug, error });
     return null;
+  }
+}
+
+/**
+ * Fetch WordPress post categories
+ */
+export async function getPostCategories(): Promise<
+  { id: string; name: string; slug: string; count: number }[]
+> {
+  try {
+    const client = getGraphQLClient(['categories'], true);
+    const data = await client.request(GetPostCategoriesDocument);
+
+    if (!data?.categories?.nodes) {
+      return [];
+    }
+
+    return data.categories.nodes.map((cat: any) => ({
+      id: cat.id || '',
+      name: cat.name || '',
+      slug: cat.slug || '',
+      count: cat.count || 0,
+    }));
+  } catch (error) {
+    logger.warn('WordPress categories fetch failed', { error });
+    return [];
   }
 }

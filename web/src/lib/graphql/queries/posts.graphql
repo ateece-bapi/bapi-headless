@@ -70,3 +70,15 @@ query GetPostBySlug($slug: ID!) {
     }
   }
 }
+
+# Get all post categories for filtering
+query GetPostCategories {
+  categories(where: { hideEmpty: true }) {
+    nodes {
+      id
+      name
+      slug
+      count
+    }
+  }
+}

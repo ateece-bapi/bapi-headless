@@ -13,6 +13,7 @@ import {
 } from '@/lib/icons';
 import { calculateReadTime, formatReadTime, getCategoryColor } from '@/lib/utils/readTime';
 import { useNewsStore } from '@/store/news';
+import { stripHtml } from '@/lib/sanitize';
 
 interface Post {
   id: string;
@@ -39,14 +40,52 @@ interface Post {
 
 interface NewsListClientProps {
   initialPosts: Post[];
-  t: any;
+  initialPageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
+  translations: {
+    readMore: string;
+    emptyTitle: string;
+    emptyDescription: string;
+    noResults: string;
+    adjustFilters: string;
+  };
   locale: string;
 }
 
-export default function NewsListClient({ initialPosts, t, locale }: NewsListClientProps) {
+export default function NewsListClient({ initialPosts, initialPageInfo, translations, locale }: NewsListClientProps) {
   const { filters } = useNewsStore();
   const [posts, setPosts] = useState<Post[]>(initialPosts);
+  const [pageInfo, setPageInfo] = useState(initialPageInfo);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const fetchMorePosts = async () => {
+    if (!pageInfo.hasNextPage || isLoadingMore) return;
+
+    setIsLoadingMore(true);
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          perPage: 12,
+          after: pageInfo.endCursor,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to fetch posts');
+
+      const data = await response.json();
+      setPosts((prev) => [...prev, ...data.posts]);
+      setPageInfo(data.pageInfo);
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  };
 
   // Filter posts client-side for now (can be moved to server-side GraphQL later)
   const filteredPosts = posts.filter((post) => {
@@ -80,50 +119,57 @@ export default function NewsListClient({ initialPosts, t, locale }: NewsListClie
           <NewspaperIcon className="h-8 w-8 text-gray-400" />
         </div>
         <h2 className="mb-2 text-2xl font-bold text-gray-900">
-          {filters.category || filters.searchQuery ? 'No results found' : t('empty.title')}
+          {filters.category || filters.searchQuery ? translations.noResults : translations.emptyTitle}
         </h2>
         <p className="text-lg text-gray-600">
           {filters.category || filters.searchQuery
-            ? 'Try adjusting your filters or search terms'
-            : t('empty.description')}
+            ? translations.adjustFilters
+            : translations.emptyDescription}
         </p>
       </div>
     );
   }
 
   return (
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {filteredPosts.map((post, index) => (
-        <article
-          key={post.id}
-          className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl"
-          style={{ animationDelay: `${index * 50}ms` }}
-        >
+    <>
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {filteredPosts.map((post, index) => {
+          const articleHref = `/company/news/${post.slug}`;
+          
+          return (
+            <Link
+              key={post.id}
+              href={articleHref}
+              className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:shadow-2xl"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
           {/* Featured Image */}
           {post.featuredImage && (
-            <div className="bg-linear-to-br relative h-56 overflow-hidden from-gray-100 to-gray-200">
-              <Image
-                src={post.featuredImage}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                priority={index < 3}
-              />
-              {/* Overlay gradient */}
-              <div className="bg-linear-to-t absolute inset-0 from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </div>
+            <>
+              <div className="relative h-40 overflow-hidden bg-neutral-50">
+                <Image
+                  src={post.featuredImage}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  priority={index < 3}
+                />
+              </div>
+              {/* BAPI Yellow Accent Bar */}
+              <div className="h-1 w-full bg-accent-500" />
+            </>
           )}
 
           {/* Content */}
-          <div className="flex flex-1 flex-col p-6">
+          <div className="flex flex-1 flex-col px-10 pb-12 pt-10">
             {/* Category Badges */}
             {post.categories && post.categories.length > 0 && (
-              <div className="mb-3 flex flex-wrap gap-2">
+              <div className="mb-4 flex flex-wrap gap-2">
                 {post.categories.slice(0, 2).map((category) => (
                   <span
                     key={category.slug}
-                    className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold ${getCategoryColor(category.name)}`}
+                    className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold ${getCategoryColor(category.name)}`}
                   >
                     {category.name}
                   </span>
@@ -132,7 +178,7 @@ export default function NewsListClient({ initialPosts, t, locale }: NewsListClie
             )}
 
             {/* Meta Info: Date, Author, Read Time */}
-            <div className="mb-3 flex flex-wrap items-center gap-3 text-sm text-gray-500">
+            <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
               {/* Date */}
               <div className="flex items-center gap-1.5">
                 <CalendarIcon className="h-4 w-4 text-primary-500" />
@@ -165,24 +211,22 @@ export default function NewsListClient({ initialPosts, t, locale }: NewsListClie
             </div>
 
             {/* Title */}
-            <h2 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-              <Link href={`/news/${post.slug}`} className="hover:underline">
-                {post.title}
-              </Link>
+            <h2 className="mb-4 line-clamp-2 text-xl font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
+              {post.title}
             </h2>
 
             {/* Excerpt */}
-            <p className="mb-4 line-clamp-3 flex-1 leading-relaxed text-gray-600">
-              {post.excerpt}
+            <p className="mb-6 line-clamp-3 flex-1 leading-relaxed text-neutral-700">
+              {stripHtml(post.excerpt)}
             </p>
 
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mb-4 flex flex-wrap gap-2">
+              <div className="mb-6 flex flex-wrap gap-2">
                 {post.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag.slug}
-                    className="inline-flex items-center gap-1 rounded-md bg-neutral-100 px-2 py-1 text-xs text-neutral-700 transition-colors hover:bg-neutral-200"
+                    className="inline-flex items-center gap-1 rounded-md bg-neutral-100 px-2.5 py-1 text-xs text-neutral-700 transition-colors hover:bg-neutral-200"
                   >
                     <TagIcon className="h-3 w-3" />
                     {tag.name}
@@ -192,20 +236,42 @@ export default function NewsListClient({ initialPosts, t, locale }: NewsListClie
             )}
 
             {/* Read More Link */}
-            <Link
-              href={`/news/${post.slug}`}
-              className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3"
-            >
-              <span>{t('readMore')}</span>
+            <div className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3 hover:text-primary-700">
+              <span>{translations.readMore}</span>
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-            </Link>
+            </div>
           </div>
-
-          {/* Decorative corner element */}
-          <div className="bg-linear-to-br absolute right-0 top-0 h-20 w-20 rounded-bl-full from-primary-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        </article>
-      ))}
+        </Link>
+        );
+      })}
     </div>
+
+    {/* Load More Button */}
+    {pageInfo.hasNextPage && !filters.category && !filters.searchQuery && (
+      <div className="mt-12 text-center">
+        <button
+          onClick={fetchMorePosts}
+          disabled={isLoadingMore}
+          className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isLoadingMore ? (
+            <>
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              Loading...
+            </>
+          ) : (
+            <>
+              <ArrowRightIcon className="h-5 w-5 rotate-90" />
+              Load More Articles
+            </>
+          )}
+        </button>
+        <p className="mt-3 text-sm text-neutral-500">
+          Showing {posts.length} articles
+        </p>
+      </div>
+    )}
+  </>
   );
 }
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SearchIcon, CloseIcon, TuneIcon } from '@/lib/icons';
+import { SearchIcon, XIcon, SlidersHorizontalIcon } from '@/lib/icons';
 import { useNewsStore } from '@/store/news';
 
 interface NewsFiltersProps {
@@ -20,6 +20,8 @@ export default function NewsFilters({ categories, onFilterChange }: NewsFiltersP
 
   // Sync URL params with store on mount
   useEffect(() => {
+    if (!searchParams) return;
+    
     const categoryParam = searchParams.get('category');
     const searchParam = searchParams.get('q');
     
@@ -46,7 +48,7 @@ export default function NewsFilters({ categories, onFilterChange }: NewsFiltersP
   }, [localSearch, filters.searchQuery, setSearchQuery, onFilterChange]);
 
   const updateURLParams = (params: Record<string, string | null>) => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    const current = new URLSearchParams(searchParams ? Array.from(searchParams.entries()) : []);
 
     Object.entries(params).forEach(([key, value]) => {
       if (value === null || value === '') {
@@ -85,7 +87,7 @@ export default function NewsFilters({ categories, onFilterChange }: NewsFiltersP
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <TuneIcon className="h-5 w-5 text-primary-500" />
+          <SlidersHorizontalIcon className="h-5 w-5 text-primary-500" />
           <h2 className="text-lg font-semibold text-neutral-900">Filter News</h2>
           {activeFilterCount > 0 && (
             <span className="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-xs font-bold text-white">
@@ -100,7 +102,7 @@ export default function NewsFilters({ categories, onFilterChange }: NewsFiltersP
             className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-600 transition-colors hover:text-primary-600"
             aria-label="Clear all filters"
           >
-            <CloseIcon className="h-4 w-4" />
+            <XIcon className="h-4 w-4" />
             Clear all
           </button>
         )}
@@ -133,7 +135,7 @@ export default function NewsFilters({ categories, onFilterChange }: NewsFiltersP
               className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 transition-colors hover:text-neutral-600"
               aria-label="Clear search"
             >
-              <CloseIcon className="h-5 w-5" />
+              <XIcon className="h-5 w-5" />
             </button>
           )}
         </div>

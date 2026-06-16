@@ -97,7 +97,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   };
 
   // Fetch latest 3 news posts
-  const posts = await getPosts({ perPage: 3 });
+  const { posts } = await getPosts({ perPage: 3 });
   return (
     <>
       {/* Hero Section - Simplified with ONE primary CTA */}

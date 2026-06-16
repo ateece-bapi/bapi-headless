@@ -209,7 +209,7 @@ const nextConfig: NextConfig = {
         destination: '/:locale/contact',
         permanent: true,
       },
-      // Company news article slugs - redirect to main news page
+      // Company news - add locale prefix and preserve slug
       {
         source: '/company/news',
         destination: '/en/company/news',
@@ -217,13 +217,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/company/news/:slug+',
-        destination: '/en/company/news',
-        permanent: false,
-      },
-      {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/news/:slug+',
-        destination: '/:locale/company/news',
-        permanent: false,
+        destination: '/en/company/news/:slug+',  // ✅ PRESERVE THE SLUG
+        permanent: true,
       },
     ];
   },

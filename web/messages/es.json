@@ -1578,6 +1578,8 @@
       },
       "dateLabel": "Publicado",
       "readMore": "Leer más",
+      "noResults": "No se encontraron resultados",
+      "adjustFilters": "Intente ajustar sus filtros o términos de búsqueda",
       "cta": {
         "badge": "Manténgase Conectado",
         "title": "No Se Pierda Ninguna Actualización",

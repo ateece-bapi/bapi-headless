@@ -2,6 +2,21 @@ import { NextResponse } from 'next/server';
 import { getPosts } from '@/lib/wordpress';
 import { stripHtml } from '@/lib/sanitize';
 
+// Escape CDATA content by splitting ]]> sequences
+function escapeCDATA(content: string): string {
+  return content.replace(/]]>/g, ']]]]><![CDATA[>');
+}
+
+// Escape XML entities
+function escapeXML(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 export async function GET() {
   try {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
@@ -27,15 +42,15 @@ export async function GET() {
 ${posts
   .map(
     (post) => `    <item>
-      <title><![CDATA[${post.title}]]></title>
+      <title><![CDATA[${escapeCDATA(post.title)}]]></title>
       <link>${siteUrl}/en/company/news/${post.slug}</link>
       <guid isPermaLink="true">${siteUrl}/en/company/news/${post.slug}</guid>
-      <description><![CDATA[${stripHtml(post.excerpt)}]]></description>
-      <content:encoded><![CDATA[${post.content}]]></content:encoded>
+      <description><![CDATA[${escapeCDATA(stripHtml(post.excerpt))}]]></description>
+      <content:encoded><![CDATA[${escapeCDATA(post.content)}]]></content:encoded>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <dc:creator>${post.author?.name || 'BAPI'}</dc:creator>
-${post.categories?.map((cat) => `      <category>${cat.name}</category>`).join('\n') || ''}
-${post.featuredImage ? `      <enclosure url="${post.featuredImage}" type="image/jpeg"/>` : ''}
+      <dc:creator>${escapeXML(post.author?.name || 'BAPI')}</dc:creator>
+${post.categories?.map((cat) => `      <category>${escapeXML(cat.name)}</category>`).join('\n') || ''}
+${post.featuredImage ? `      <enclosure url="${escapeXML(post.featuredImage)}" type="image/jpeg"/>` : ''}
     </item>`
   )
   .join('\n')}
@@ -44,7 +59,7 @@ ${post.featuredImage ? `      <enclosure url="${post.featuredImage}" type="image
 
     return new NextResponse(rss, {
       headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
+        'Content-Type': 'application/rss+xml; charset=utf-8',
         'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
       },
     });

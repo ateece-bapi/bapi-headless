@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { CalendarIcon, UserIcon, ClockIcon, TagIcon, ArrowLeftIcon } from '@/lib/icons';
 import { Link } from '@/lib/navigation';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
-import { calculateReadTime, formatReadTime, getCategoryColor } from '@/lib/utils/readTime';
-import { sanitizeWordPressContent } from '@/lib/sanitize';
+import { calculateReadTime, formatReadTime } from '@/lib/utils/readTime';
+import { sanitizeWordPressContent, stripHtml } from '@/lib/sanitize';
 import ShareButton from '@/components/news/ShareButton';
 
 interface NewsPostPageProps {
@@ -33,13 +33,13 @@ export async function generateMetadata({ params }: NewsPostPageProps): Promise<M
 
   return {
     title: post.title,
-    description: post.excerpt,
+    description: stripHtml(post.excerpt),
     alternates: {
       canonical: articleUrl,
     },
     openGraph: {
       title: `${post.title} | BAPI`,
-      description: post.excerpt,
+      description: stripHtml(post.excerpt),
       type: 'article',
       url: articleUrl,
       publishedTime: post.date,
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: NewsPostPageProps): Promise<M
     twitter: {
       card: 'summary_large_image',
       title: `${post.title} | BAPI`,
-      description: post.excerpt,
+      description: stripHtml(post.excerpt),
       images: [ogImage],
       creator: '@BAPIProducts',
       site: '@BAPIProducts',
@@ -87,7 +87,7 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: post.title,
-    description: post.excerpt,
+    description: stripHtml(post.excerpt),
     image: post.featuredImage || `${process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com'}/og-default.png`,
     datePublished: post.date,
     dateModified: post.modified,
@@ -261,8 +261,8 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
                 <div className="relative flex items-center gap-3">
                   <ShareButton
                     title={post.title}
-                    excerpt={post.excerpt}
-                    url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com'}/en/company/news/${slug}`}
+                    excerpt={stripHtml(post.excerpt)}
+                    url={articleUrl}
                   />
                 </div>
               </div>

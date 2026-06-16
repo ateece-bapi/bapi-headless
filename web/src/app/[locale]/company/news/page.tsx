@@ -13,7 +13,12 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations('companyPages.news.metadata');
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
 
@@ -29,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `${t('title')} | BAPI`,
       description: t('description'),
       type: 'website',
-      url: `${siteUrl}/en/company/news`,
+      url: `${siteUrl}/${locale}/company/news`,
       siteName: 'BAPI',
     },
     twitter: {
@@ -86,8 +91,8 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
     readMore: t('readMore'),
     emptyTitle: t('empty.title'),
     emptyDescription: t('empty.description'),
-    noResults: 'No results found',
-    adjustFilters: 'Try adjusting your filters or search terms',
+    noResults: t('noResults'),
+    adjustFilters: t('adjustFilters'),
   };
 
   const breadcrumbItems = [

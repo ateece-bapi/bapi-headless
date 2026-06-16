@@ -682,6 +682,8 @@
       },
       "dateLabel": "Published",
       "readMore": "Read more",
+      "noResults": "No results found",
+      "adjustFilters": "Try adjusting your filters or search terms",
       "cta": {
         "badge": "Stay Connected",
         "title": "Never Miss an Update",

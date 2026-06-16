@@ -43,12 +43,6 @@ export function sanitizeWordPressContent(html: string | null | undefined): strin
     }
   });
   
-  // Clean up any double spaces created by removals
-  cleaned = cleaned.replace(/\s+/g, ' ');
-  
-  // Clean up space before closing tags
-  cleaned = cleaned.replace(/\s+>/g, '>');
-  
   return cleaned;
 }
 

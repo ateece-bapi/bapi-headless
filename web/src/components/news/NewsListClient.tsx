@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import {
@@ -90,8 +90,8 @@ export default function NewsListClient({ initialPosts, initialPageInfo, translat
   // Filter posts client-side for now (can be moved to server-side GraphQL later)
   const filteredPosts = posts.filter((post) => {
     // Category filter
-    if (filters.category && post.categories) {
-      if (!post.categories.some((cat) => cat.slug === filters.category)) {
+    if (filters.category) {
+      if (!post.categories || !post.categories.some((cat) => cat.slug === filters.category)) {
         return false;
       }
     }

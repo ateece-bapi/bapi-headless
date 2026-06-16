@@ -1501,6 +1501,8 @@
       },
       "dateLabel": "Veröffentlicht",
       "readMore": "Mehr lesen",
+      "noResults": "Keine Ergebnisse gefunden",
+      "adjustFilters": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen",
       "cta": {
         "badge": "Bleiben Sie in Kontakt",
         "title": "Verpassen Sie keine Updates",

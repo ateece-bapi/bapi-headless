@@ -9,6 +9,7 @@ import {
   GetPagesDocument,
   GetPostsDocument,
   GetPostBySlugDocument,
+  GetPostCategoriesDocument,
 } from './graphql/generated';
 import logger from './logger';
 
@@ -100,9 +101,17 @@ export async function getPages(first = 100): Promise<Page[]> {
 /**
  * Fetch WordPress posts
  */
+export interface PostsResult {
+  posts: Post[];
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
+}
+
 export async function getPosts(
   options: { perPage?: number; after?: string } = {}
-): Promise<Post[]> {
+): Promise<PostsResult> {
   try {
     const { perPage = 20, after } = options;
     // Use cached GET client for ISR/CDN caching
@@ -113,33 +122,45 @@ export async function getPosts(
     });
 
     if (!data?.posts?.nodes) {
-      return [];
+      return {
+        posts: [],
+        pageInfo: { hasNextPage: false, endCursor: null },
+      };
     }
 
-    return data.posts.nodes.map((post: any) => ({
-      id: post.id,
-      title: post.title || '',
-      content: post.content || '',
-      excerpt: post.excerpt || '',
-      slug: post.slug || '',
-      date: post.date || '',
-      modified: post.modified || '',
-      author: post.author?.node
-        ? {
-            name: post.author.node.name || '',
-          }
-        : undefined,
-      categories: post.categories?.nodes?.map((cat: any) => ({
-        name: cat.name || '',
-        slug: cat.slug || '',
+    return {
+      posts: data.posts.nodes.map((post: any) => ({
+        id: post.id,
+        title: post.title || '',
+        content: post.content || '',
+        excerpt: post.excerpt || '',
+        slug: post.slug || '',
+        date: post.date || '',
+        modified: post.modified || '',
+        author: post.author?.node
+          ? {
+              name: post.author.node.name || '',
+            }
+          : undefined,
+        categories: post.categories?.nodes?.map((cat: any) => ({
+          name: cat.name || '',
+          slug: cat.slug || '',
+        })),
+        featuredImage: post.featuredImage?.node?.sourceUrl,
       })),
-      featuredImage: post.featuredImage?.node?.sourceUrl,
-    }));
+      pageInfo: {
+        hasNextPage: data.posts.pageInfo?.hasNextPage || false,
+        endCursor: data.posts.pageInfo?.endCursor || null,
+      },
+    };
   } catch (error) {
     // Use warn instead of error during build time - WordPress backend might be unavailable
     // Returning empty array is acceptable fallback behavior
     logger.warn('WordPress unavailable, returning empty posts array', { error });
-    return [];
+    return {
+      posts: [],
+      pageInfo: { hasNextPage: false, endCursor: null },
+    };
   }
 }
 
@@ -185,5 +206,31 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   } catch (error) {
     logger.warn('WordPress post fetch failed', { slug, error });
     return null;
+  }
+}
+
+/**
+ * Fetch WordPress post categories
+ */
+export async function getPostCategories(): Promise<
+  { id: string; name: string; slug: string; count: number }[]
+> {
+  try {
+    const client = getGraphQLClient(['categories'], true);
+    const data = await client.request(GetPostCategoriesDocument);
+
+    if (!data?.categories?.nodes) {
+      return [];
+    }
+
+    return data.categories.nodes.map((cat: any) => ({
+      id: cat.id || '',
+      name: cat.name || '',
+      slug: cat.slug || '',
+      count: cat.count || 0,
+    }));
+  } catch (error) {
+    logger.warn('WordPress categories fetch failed', { error });
+    return [];
   }
 }

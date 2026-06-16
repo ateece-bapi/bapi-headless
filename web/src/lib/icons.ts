@@ -191,6 +191,7 @@ const Headphones = createMaterialSymbolIcon('headphones', 'Headphones');
 
 // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
 const Newspaper = createMaterialSymbolIcon('newspaper', 'Newspaper');
+const RssFeed = createMaterialSymbolIcon('rss_feed', 'RssFeed');
 
 // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
 const SignalCellular4Bar = createMaterialSymbolIcon('signal_cellular_4_bar', 'SignalCellular4Bar');
@@ -387,6 +388,7 @@ export { Headphones as HeadphonesIcon };
 
 // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
 export { Newspaper as NewspaperIcon };
+export { RssFeed as RssIcon };
 
 // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
 export { SignalCellular4Bar as SignalIcon };

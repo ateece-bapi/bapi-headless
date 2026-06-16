@@ -1580,6 +1580,8 @@
       },
       "dateLabel": "Publié",
       "readMore": "Lire la suite",
+      "noResults": "Aucun résultat trouvé",
+      "adjustFilters": "Essayez d'ajuster vos filtres ou termes de recherche",
       "cta": {
         "badge": "Restez connecté",
         "title": "Ne manquez jamais une mise à jour",

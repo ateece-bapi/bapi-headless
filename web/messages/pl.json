@@ -2031,6 +2031,8 @@
       },
       "dateLabel": "Opublikowano",
       "readMore": "Czytaj więcej",
+      "noResults": "Nie znaleziono wyników",
+      "adjustFilters": "Spróbuj dostosować filtry lub wyszukiwane hasła",
       "cta": {
         "badge": "Pozostań w kontakcie",
         "title": "Nie przegap żadnej aktualizacji",

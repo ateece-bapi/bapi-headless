@@ -1467,6 +1467,8 @@
       },
       "dateLabel": "Được đăng",
       "readMore": "Đọc thêm",
+      "noResults": "Không tìm thấy kết quả",
+      "adjustFilters": "Thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm của bạn",
       "cta": {
         "badge": "Luôn Kết Nối",
         "title": "Không Bao Giờ Bỏ Lỡ Cập Nhật",

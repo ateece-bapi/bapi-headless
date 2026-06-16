@@ -1406,6 +1406,8 @@
       },
       "dateLabel": "发布日期",
       "readMore": "阅读更多",
+      "noResults": "未找到结果",
+      "adjustFilters": "尝试调整您的筛选条件或搜索词",
       "cta": {
         "badge": "保持联系",
         "title": "别错过任何更新",

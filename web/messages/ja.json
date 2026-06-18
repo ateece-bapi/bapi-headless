@@ -4051,228 +4051,228 @@
   },
   "bluTestLandingPage": {
     "metadata": {
-      "title": "Blu-Test™ Precision HVAC Test & Measurement",
-      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
-      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+      "title": "Blu-Test™ 精密HVAC試験・測定",
+      "description": "HVAC試験用のプロフェッショナルグレードの試験・測定プローブ。iOS及びAndroid用Blu-Viewアプリによる精密測定。",
+      "keywords": "HVAC試験プローブ, 温度測定, Blu-Viewアプリ, 精密プローブ, 試験機器, HVAC試験, ビル自動化試験"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
+      "home": "ホーム",
+      "products": "製品",
       "bluTest": "Blu-Test™"
     },
     "hero": {
-      "title": "Precision HVAC Probes You Can Trust.",
-      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
-      "cta": "Explore Probes",
-      "secondaryCta": "Download Blu-View App"
+      "title": "信頼できる精密HVACプローブ。",
+      "description": "HVAC及び冷凍システム全体で厳しい精度要件に対応する試験プローブのスイート。Blu-Viewアプリとシームレスに統合し、精密測定と簡単なデータロギングを実現します。",
+      "cta": "プローブを見る",
+      "secondaryCta": "Blu-Viewアプリをダウンロード"
     },
     "keyFeatures": {
       "precision": {
-        "title": "Precision Measurement",
-        "description": "Highly accurate sensors for temperature, humidity, pressure, dew point, and light level measurements. Ideal for HVAC commissioning and verification."
+        "title": "精密測定",
+        "description": "温度、湿度、圧力、露点、照度測定用の高精度センサー。HVACコミッショニングと検証に最適です。"
       },
       "dataLogging": {
-        "title": "Onboard Data Logging",
-        "description": "Store measurement data directly on the probes with built-in storage. Download logs anytime using the Blü-Test app for comprehensive analysis."
+        "title": "オンボードデータロギング",
+        "description": "内蔵ストレージで測定データをプローブに直接保存。Blü-Testアプリを使用していつでもログをダウンロードして包括的な分析が可能です。"
       },
       "integration": {
-        "title": "Smart Device Integration",
-        "description": "Connect via Bluetooth to view live data on your smartphone or tablet. The Blü-Test app provides real-time monitoring and easy device management."
+        "title": "スマートデバイス統合",
+        "description": "Bluetooth経由で接続し、スマートフォンやタブレットでリアルタイムデータを表示。Blü-Testアプリはリアルタイムモニタリングと簡単なデバイス管理を提供します。"
       }
     },
     "accuracy": {
-      "title": "Why Accurate Reference Devices Matter",
-      "subtitle": "In commercial HVAC, precision isn't optional—it's essential. Inaccurate measurements lead to misdiagnosed problems, wasted time, and costly callbacks. Blü-Test probes give you confidence in every reading.",
+      "title": "正確な基準デバイスが重要な理由",
+      "subtitle": "商業用HVACでは、精度はオプションではなく不可欠です。不正確な測定は誤診断、時間の無駄、高コストのコールバックにつながります。Blü-Testプローブはすべての測定値に自信を与えます。",
       "temperature": {
-        "title": "Temperature Accuracy",
-        "description": "±0.18°F accuracy ensures precise system diagnostics and optimal equipment performance. Detect temperature differentials that indicate failing components before they cause system failure."
+        "title": "温度精度",
+        "description": "±0.18°Fの精度により、正確なシステム診断と最適な機器性能を保証します。システム故障を引き起こす前に、故障コンポーネントを示す温度差を検出します。"
       },
       "humidity": {
-        "title": "Humidity & Dew Point",
-        "description": "±1% RH accuracy prevents condensation issues, mold growth, and comfort complaints. Validate that HVAC systems maintain proper indoor air quality and meet building code requirements."
+        "title": "湿度と露点",
+        "description": "±1% RHの精度により、結露問題、カビの発生、快適性の苦情を防止します。HVACシステムが適切な室内空気質を維持し、建築基準の要件を満たしていることを検証します。"
       },
       "pressure": {
-        "title": "Differential Pressure",
-        "description": "±0.25% accuracy reveals duct leakage, filter loading, and airflow restrictions. Optimize system efficiency and identify problems before they impact energy costs or occupant comfort."
+        "title": "差圧",
+        "description": "±0.25%の精度により、ダクト漏れ、フィルター負荷、気流制限を明らかにします。システム効率を最適化し、エネルギーコストや居住者の快適性に影響を与える前に問題を特定します。"
       },
       "airflow": {
-        "title": "K-Factor Airflow",
-        "description": "Accurate K-Factor measurements enable precise airflow calculations for system balancing, commissioning, and performance verification. Ensure proper ventilation rates and energy efficient operation."
+        "title": "K係数気流",
+        "description": "正確なK係数測定により、システムバランシング、コミッショニング、性能検証のための精密な気流計算が可能になります。適切な換気率とエネルギー効率的な運用を確保します。"
       },
       "calibration": {
-        "title": "NIST-Traceable Calibration",
-        "description": "Every probe includes a Certificate of Accuracy traceable to NIST standards. Document compliance for critical facilities, defend your work with certified data, and maintain professional credibility."
+        "title": "NISTトレーサブル校正",
+        "description": "すべてのプローブにはNIST規格にトレーサブルな精度証明書が含まれています。重要施設のコンプライアンスを文書化し、認定データで作業を擁護し、専門的信頼性を維持します。"
       },
       "appIntegration": {
-        "title": "Blü-View App Integration",
-        "description": "Check signal strength for all of your sensors to ensure a strong connection. View live readings, log data, generate reports, and compare readings against wireless sensors right from the app."
+        "title": "Blü-Viewアプリ統合",
+        "description": "すべてのセンサーの信号強度を確認して、強力な接続を保証します。アプリから直接、ライブ測定値の表示、データのログ記録、レポートの生成、ワイヤレスセンサーとの測定値の比較が可能です。"
       },
       "baseline": {
-        "title": "The Baseline of Truth",
-        "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
+        "title": "真実のベースライン",
+        "description": "高精度の基準デバイスを使用することで、既存のビルセンサーを自信を持って検証し、複雑なシステム問題を診断し、最小限の推測で規制コンプライアンスを確保できます。"
       }
     },
     "bluetooth": {
-      "title": "The Bluetooth of Truth",
-      "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
-      "feature1": "Real-time wireless data transmission to your smartphone or tablet",
-      "feature2": "Automatic timestamp and location logging for complete documentation",
-      "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
+      "title": "真実のBluetooth",
+      "description": "ワイヤレス接続により、測定値を書き留める必要がなくなります。Blu-Viewアプリは、タイムスタンプ付きで測定値を自動的にログ記録し、転記エラーを排除し、専門的なレポートを生成します。",
+      "feature1": "スマートフォンまたはタブレットへのリアルタイムワイヤレスデータ転送",
+      "feature2": "完全な文書化のための自動タイムスタンプと場所のログ記録",
+      "feature3": "簡単な共有とアーカイブのためのPDF、Excel、またはクラウドストレージへのエクスポート"
     },
     "bluView": {
-      "title": "Blü-View App",
-      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
+      "title": "Blü-Viewアプリ",
+      "subtitle": "Blü-Viewアプリにより、完全な制御が指先で可能になります。ライブデータの表示、ログのダウンロード、ファームウェアの更新、1つのインターフェースから複数のデバイスの管理が可能です。",
       "feature1": {
-        "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
+        "title": "リアルタイムモニタリング",
+        "description": "接続されたすべてのプローブからのライブセンサーデータを表示。直感的なディスプレイで温度、湿度、圧力などをリアルタイムで監視します。"
       },
       "feature2": {
-        "title": "Download Logs",
-        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+        "title": "ログのダウンロード",
+        "description": "オンボードデバイスメモリから保存された測定ログにアクセス。分析、レポート作成、コンプライアンス文書化のためにデータをエクスポートします。"
       },
       "feature3": {
-        "title": "Device Management",
-        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+        "title": "デバイス管理",
+        "description": "複数のプローブの管理、バッテリーレベルの確認、ファームウェアの更新、校正リマインダーの受信を、すべて1つの中央ダッシュボードから実行します。"
       },
-      "downloadApp": "Download the App",
-      "learnMore": "Learn More"
+      "downloadApp": "アプリをダウンロード",
+      "learnMore": "詳細はこちら"
     },
     "testProbes": {
-      "title": "The Blü-Test Suite",
-      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
+      "title": "Blü-Testスイート",
+      "subtitle": "インテリジェントでNIST認定されたプローブの包括的なファミリー。すべてにオンボードデータロガー、ハンドルに内蔵されたLCDディスプレイ、シームレスなBluetooth接続が搭載されています。",
       "tempProbe95": {
-        "name": "9.5\" Temperature Probe",
-        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
-        "feature1": "Extended length for deep measurements",
-        "feature2": "10K Type II thermistor",
-        "feature3": "Rugged stainless steel construction"
+        "name": "9.5インチ温度プローブ",
+        "description": "ダクトや大型エアハンドラー内部の深い位置での温度測定のための延長リーチ。",
+        "feature1": "深い測定のための延長長",
+        "feature2": "10K Type IIサーミスタ",
+        "feature3": "堅牢なステンレススチール構造"
       },
       "tempProbe6": {
-        "name": "6\" Temperature Probe",
-        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
-        "feature1": "Compact design for general use",
-        "feature2": "Fast response time",
-        "feature3": "10K Type II thermistor"
+        "name": "6インチ温度プローブ",
+        "description": "汎用HVAC温度検証に最適な、汎用性の高い標準長プローブ。",
+        "feature1": "一般使用のためのコンパクト設計",
+        "feature2": "高速応答時間",
+        "feature3": "10K Type IIサーミスタ"
       },
       "piercingProbe": {
-        "name": "4\" Piercing Temperature Probe",
-        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
-        "feature1": "Penetrates insulation and ductwork",
-        "feature2": "Sharp tip for easy insertion",
-        "feature3": "Ideal for hard-to-reach locations"
+        "name": "4インチ穿刺温度プローブ",
+        "description": "断熱材を貫通したり表面温度をチェックしたりするための堅牢な穿刺先端。",
+        "feature1": "断熱材とダクトを貫通",
+        "feature2": "簡単に挿入できる鋭い先端",
+        "feature3": "手の届きにくい場所に最適"
       },
       "remoteTemp": {
-        "name": "Remote Temperature Probe",
-        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
-        "feature1": "Separable probe on cable",
-        "feature2": "Flexible positioning",
-        "feature3": "Extended reach capability"
+        "name": "リモート温度プローブ",
+        "description": "手の届きにくい場所やハンドルを持たずに連続監視するための柔軟な有線プローブ。",
+        "feature1": "ケーブル上の分離可能なプローブ",
+        "feature2": "柔軟な位置決め",
+        "feature3": "延長リーチ機能"
       },
       "tempHumid": {
-        "name": "8\" Temperature & Humidity Probe",
-        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
-        "feature1": "Dual measurement capability",
-        "feature2": "Accurate RH sensing",
-        "feature3": "Combined temp/humidity readings"
+        "name": "8インチ温度・湿度プローブ",
+        "description": "正確な乾球温度、%RH、露点計算のための複合センサー。",
+        "feature1": "デュアル測定機能",
+        "feature2": "正確なRH検知",
+        "feature3": "温度/湿度の複合測定値"
       },
       "standardPress": {
-        "name": "Standard Range Pressure Probe",
-        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
-        "feature1": "Measures duct and room pressure",
-        "feature2": "±1\" WC to ±10\" WC ranges",
-        "feature3": "High accuracy differential pressure"
+        "name": "標準レンジ圧力プローブ",
+        "description": "標準的な商業用HVACシステム用の信頼性の高い差圧測定(-5～+5インチ水柱)。",
+        "feature1": "ダクトと室内圧力を測定",
+        "feature2": "±1インチ水柱～±10インチ水柱の範囲",
+        "feature3": "高精度差圧"
       },
       "lowPress": {
-        "name": "Low Range Pressure Probe",
-        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
-        "feature1": "Ultra-sensitive pressure measurement",
-        "feature2": "±0.1\" WC to ±0.5\" WC ranges",
-        "feature3": "Perfect for clean room and lab applications"
+        "name": "低レンジ圧力プローブ",
+        "description": "クリーンルームや研究室環境用の高精度差圧測定(-1～+1インチ水柱)。",
+        "feature1": "超高感度圧力測定",
+        "feature2": "±0.1インチ水柱～±0.5インチ水柱の範囲",
+        "feature3": "クリーンルームと研究室アプリケーションに最適"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
-      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
+      "title": "技術仕様",
+      "subtitle": "精密のために設計され、厳しい商業環境に耐えるように構築されています。",
       "table": {
-        "general": "General",
-        "measurement": "Measurement Range",
-        "accuracy": "Accuracy",
-        "environmental": "Environmental & Certifications"
+        "general": "一般",
+        "measurement": "測定範囲",
+        "accuracy": "精度",
+        "environmental": "環境及び認証"
       },
       "general": {
         "power": {
-          "label": "Power",
-          "value": "3.7V, 2,600 mAh Rechargeable Battery"
+          "label": "電源",
+          "value": "3.7V、2,600 mAh充電式バッテリー"
         },
         "charging": {
-          "label": "Charging",
-          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
+          "label": "充電",
+          "value": "標準USB充電器、1.5A以上、Micro-USBケーブル付属"
         },
         "communication": {
-          "label": "Communication",
-          "value": "Bluetooth LE, Class 2 v4.2"
+          "label": "通信",
+          "value": "Bluetooth LE、クラス2 v4.2"
         },
         "dataLogging": {
-          "label": "Data Logging",
-          "value": "10 second intervals"
+          "label": "データロギング",
+          "value": "10秒間隔"
         }
       },
       "measurement": {
         "temperature": {
-          "label": "Temperature",
-          "value": "-40 to 185°F (-40 to 85°C)"
+          "label": "温度",
+          "value": "-40～185°F(-40～85°C)"
         },
         "rh": {
           "label": "%RH",
-          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
+          "value": "5～95%非結露 @ -40～158°F(-40～70°C)"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "差圧(低)",
+          "value": "-1～+1インチ水柱(-250～+250パスカル)@ -4～158°F(-20～70°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "差圧(標準)",
+          "value": "-5～+5インチ水柱(-1,250～+1,250パスカル)@ -4～158°F(-20～70°C)"
         }
       },
       "accuracy": {
         "tempOnly": {
-          "label": "Temperature Only Probes",
-          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+          "label": "温度のみプローブ",
+          "value": "±0.18°F(-13～167°F)、(±0.1°C(-25～75°C))"
         },
         "tempHumid": {
-          "label": "Temp/Humidity Probes",
-          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+          "label": "温度/湿度プローブ",
+          "value": "温度:±0.36°F @ 77°F(±0.2°C @ 25°C)|%RH:±1%RH @ 77°F(25°C)、10～85%RH"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+          "label": "差圧(低)",
+          "value": "±0.25% FS スパン、-1～+1インチ水柱(-250～+250 Pa)@ 77°F(25°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
+          "label": "差圧(標準)",
+          "value": "±0.25% FS スパン、-5～+5インチ水柱(-1,250～+1,250 Pa)@ 77°F(25°C)"
         }
       },
       "environmental": {
         "operatingRange": {
-          "label": "Operating Range",
-          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
+          "label": "動作範囲",
+          "value": "本体:-22～158°F(-30～70°C)|温度プローブ:-40～185°F(-40～85°C)|%RHプローブ:5～95%非結露 @ -40～158°F(-40～70°C)|圧力プローブ:-4～158°F(-20～70°C)"
         },
         "burstPressure": {
-          "label": "Burst Pressure",
-          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+          "label": "破裂圧力",
+          "value": "低レンジ:415インチ水柱(103 kPa)|標準レンジ:500インチ水柱(124 kPa)"
         },
         "agencyApprovals": {
-          "label": "Agency Approvals",
-          "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
+          "label": "機関承認",
+          "value": "CE EN 61326-1:2013 EMC、RoHS、NSF、FCC ID: 2AA9B04"
         }
       }
     },
     "cta": {
-      "title": "Ready to Upgrade Your HVAC Testing?",
-      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
-      "contactSales": "Contact Sales",
-      "viewProducts": "View All Probes"
+      "title": "HVAC試験をアップグレードする準備はできていますか?",
+      "subtitle": "当社の試験・測定スペシャリストが、お客様のアプリケーションに適したプローブの選択をお手伝いします。専門的なアドバイスと競争力のある価格を提供します。",
+      "contactSales": "営業担当に問い合わせる",
+      "viewProducts": "すべてのプローブを見る"
     }
   }
 }

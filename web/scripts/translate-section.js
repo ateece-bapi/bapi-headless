@@ -33,7 +33,7 @@ config({ path: path.join(__dirname, '..', '.env') });
 // Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MESSAGES_DIR = path.join(__dirname, '..', 'messages');
-const MODEL = 'claude-sonnet-4-20250514'; // Current model (April 2026)
+const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-5'; // Override with ANTHROPIC_MODEL env var
 
 // Target languages (excluding English source)
 const LANGUAGES = [
@@ -123,7 +123,7 @@ Translate to ${targetLanguage.name}:`;
 
   const message = await client.messages.create({
     model: MODEL,
-    max_tokens: 4096,
+    max_tokens: Number(process.env.ANTHROPIC_MAX_TOKENS ?? 16000),
     messages: [
       {
         role: 'user',

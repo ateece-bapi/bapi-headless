@@ -4049,4 +4049,143 @@
     "learnMore": "詳細を見る",
     "viewAll": "すべての空気質製品を表示"
   }
+,
+  "bluTestLandingPage": {
+    "metadata": {
+      "title": "Blu-Test™ Precision HVAC Test & Measurement",
+      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
+      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "bluTest": "Blu-Test™"
+    },
+    "hero": {
+      "title": "Precision HVAC Probes You Can Trust",
+      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
+      "cta": "Explore Test Probes"
+    },
+    "bluView": {
+      "badge": "Blu-View App",
+      "title": "The Blü-Test Suite",
+      "subtitle": "Professional test and measurement made simple. Download the free Blu-View app to unlock the full potential of your test probes with precision measurement, data logging, and cloud sync.",
+      "features": {
+        "precision": {
+          "title": "Precision Measurement",
+          "description": "Laboratory-grade accuracy for demanding HVAC applications. Track temperature with 0.1°F resolution."
+        },
+        "dataLogging": {
+          "title": "Data Logging",
+          "description": "Automated data collection with timestamps. Export CSV reports for documentation and compliance."
+        },
+        "calibration": {
+          "title": "Calibration Offsets",
+          "description": "Field-adjustable offsets to maintain accuracy. Set custom calibration points for reference devices."
+        },
+        "cloudSync": {
+          "title": "Cloud Sync",
+          "description": "Sync measurements across devices. Access your data from anywhere with secure cloud backup."
+        }
+      },
+      "downloadIOS": "Download on App Store",
+      "downloadAndroid": "Get it on Google Play"
+    },
+    "testProbes": {
+      "title": "Test & Measurement Probes",
+      "subtitle": "The same high-quality sensors BAPI has made for 30 years, now in rugged test probe form factors. Choose the perfect probe for your application.",
+      "btTemperature": {
+        "name": "BT Temperature Probe",
+        "feature1": "1 meter shielded cable",
+        "feature2": "Rugged stainless steel probe",
+        "feature3": "10K Type II thermistor"
+      },
+      "tTemperature": {
+        "name": "T Temperature Probe",
+        "feature1": "Compact design for tight spaces",
+        "feature2": "Fast response time",
+        "feature3": "10K Type II or Type III thermistor"
+      },
+      "pFolding": {
+        "name": "P Folding Temperature Probe",
+        "feature1": "Folds for easy storage and transport",
+        "feature2": "Rugged construction for field use",
+        "feature3": "7 inch stainless steel probe"
+      },
+      "kSurfacePipe": {
+        "name": "K Surface/Pipe Probe",
+        "feature1": "Spring-loaded contact for surface and pipe temperature",
+        "feature2": "Type K thermocouple for wide temperature range",
+        "feature3": "Magnetic attachment for hands-free operation"
+      },
+      "immersion": {
+        "name": "BT Immersed K Temperature Probe",
+        "feature1": "8 inch stainless steel immersion probe",
+        "feature2": "Type K thermocouple (-40°F to 400°F)",
+        "feature3": "Ideal for liquid temperature measurement"
+      },
+      "lowTemp": {
+        "name": "Low Temp Pocket Probe",
+        "feature1": "Compact pocket-sized design",
+        "feature2": "Optimized for freezer and refrigeration",
+        "feature3": "Fast response with reduced thermal mass"
+      },
+      "wireless": {
+        "name": "Wireless Temperature Probe",
+        "feature1": "Bluetooth wireless connectivity",
+        "feature2": "Real-time monitoring via Blu-View app",
+        "feature3": "Rechargeable lithium battery"
+      }
+    },
+    "specifications": {
+      "title": "Technical Specifications",
+      "general": {
+        "title": "General",
+        "range": {
+          "label": "Temperature Range",
+          "value": "-40°F to 185°F (-40°C to 85°C)"
+        },
+        "accuracy": {
+          "label": "Accuracy",
+          "value": "±0.2°F (±0.1°C) at 77°F (25°C)"
+        },
+        "resolution": {
+          "label": "Resolution",
+          "value": "0.1°F (0.1°C)"
+        }
+      },
+      "measurement": {
+        "title": "Measurement Range",
+        "range": {
+          "label": "Operating Range",
+          "value": "-40°F to 185°F standard, extended range available"
+        },
+        "accuracy": {
+          "label": "Measurement Accuracy",
+          "value": "±0.2°F across full range with calibration"
+        },
+        "response": {
+          "label": "Response Time",
+          "value": "Less than 5 seconds in air, 1 second in liquid"
+        }
+      },
+      "environmental": {
+        "title": "Environmental & Certifications",
+        "certifications": {
+          "label": "Certifications",
+          "value": "ISO 17025 calibrated, NIST traceable"
+        },
+        "warranty": {
+          "label": "Warranty",
+          "value": "Limited lifetime warranty"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Upgrade Your HVAC Testing?",
+      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
+      "contactSales": "Contact Sales",
+      "viewProducts": "View All Probes"
+    }
+  }
 }

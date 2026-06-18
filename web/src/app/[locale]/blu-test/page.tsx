@@ -5,7 +5,6 @@ import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 import {
   BarChart3Icon,
-  CheckCircleIcon,
   ChevronRightIcon,
   DownloadIcon,
   GaugeIcon,
@@ -139,14 +138,14 @@ export default async function BluTestPage({ params }: Props) {
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
-              Products
+              {t('breadcrumb.products')}
             </Link>
             <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">Blu-Test</span>
+            <span className="font-medium text-white">{t('breadcrumb.bluTest')}</span>
           </nav>
 
           <div className="grid lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
@@ -169,8 +168,6 @@ export default async function BluTestPage({ params }: Props) {
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
                   {t('hero.secondaryCta')}
                 </Link>
@@ -181,7 +178,7 @@ export default async function BluTestPage({ params }: Props) {
             <div className="relative hidden lg:block">
               <div className="absolute bottom-[-100px] left-0 right-0 top-4">
                 <Image
-                  src="/images/blu-test/hero/2021BluTestAngle_PLAIN (1).png"
+                  src="/images/blu-test/hero/2021BluTestAngle_PLAIN.png"
                   alt="Blu-Test Probe Collection"
                   fill
                   className="object-contain object-bottom"
@@ -292,7 +289,7 @@ export default async function BluTestPage({ params }: Props) {
       </section>
 
       {/* Blu-View App Section */}
-      <section className="bg-neutral-50 py-16 lg:py-20">
+      <section id="blu-view-app" className="bg-neutral-50 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left - Features */}
@@ -349,14 +346,14 @@ export default async function BluTestPage({ params }: Props) {
               {/* Buttons */}
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
-                  href="#"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-400 focus:outline-none focus:ring-4 focus:ring-accent-500/50"
                 >
                   <DownloadIcon className="h-5 w-5" />
                   {t('bluView.downloadApp')}
                 </Link>
                 <Link
-                  href="#"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                 >
                   {t('bluView.learnMore')}

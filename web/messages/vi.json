@@ -4052,228 +4052,228 @@
   },
   "bluTestLandingPage": {
     "metadata": {
-      "title": "Blu-Test™ Precision HVAC Test & Measurement",
-      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
-      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+      "title": "Blu-Test™ Thiết Bị Kiểm Tra & Đo Lường HVAC Chính Xác",
+      "description": "Đầu dò kiểm tra và đo lường cấp chuyên nghiệp cho kiểm tra HVAC. Đo lường chính xác với Ứng dụng Blu-View cho iOS và Android.",
+      "keywords": "đầu dò kiểm tra HVAC, đo nhiệt độ, ứng dụng Blu-View, đầu dò chính xác, thiết bị kiểm tra, kiểm tra HVAC, kiểm tra tự động hóa tòa nhà"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
+      "home": "Trang Chủ",
+      "products": "Sản Phẩm",
       "bluTest": "Blu-Test™"
     },
     "hero": {
-      "title": "Precision HVAC Probes You Can Trust.",
-      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
-      "cta": "Explore Probes",
-      "secondaryCta": "Download Blu-View App"
+      "title": "Đầu Dò HVAC Chính Xác Đáng Tin Cậy.",
+      "description": "Bộ đầu dò kiểm tra cho các yêu cầu độ chính xác cao trên hệ thống HVAC và làm lạnh. Tích hợp liền mạch với Ứng dụng Blu-View để đo lường chính xác và ghi dữ liệu dễ dàng.",
+      "cta": "Khám Phá Đầu Dò",
+      "secondaryCta": "Tải Ứng Dụng Blu-View"
     },
     "keyFeatures": {
       "precision": {
-        "title": "Precision Measurement",
-        "description": "Highly accurate sensors for temperature, humidity, pressure, dew point, and light level measurements. Ideal for HVAC commissioning and verification."
+        "title": "Đo Lường Chính Xác",
+        "description": "Cảm biến có độ chính xác cao cho các phép đo nhiệt độ, độ ẩm, áp suất, điểm sương và cường độ ánh sáng. Lý tưởng cho nghiệm thu và xác minh HVAC."
       },
       "dataLogging": {
-        "title": "Onboard Data Logging",
-        "description": "Store measurement data directly on the probes with built-in storage. Download logs anytime using the Blü-Test app for comprehensive analysis."
+        "title": "Ghi Dữ Liệu Tích Hợp",
+        "description": "Lưu trữ dữ liệu đo lường trực tiếp trên đầu dò với bộ nhớ tích hợp. Tải xuống nhật ký bất kỳ lúc nào bằng ứng dụng Blü-Test để phân tích toàn diện."
       },
       "integration": {
-        "title": "Smart Device Integration",
-        "description": "Connect via Bluetooth to view live data on your smartphone or tablet. The Blü-Test app provides real-time monitoring and easy device management."
+        "title": "Tích Hợp Thiết Bị Thông Minh",
+        "description": "Kết nối qua Bluetooth để xem dữ liệu trực tiếp trên điện thoại thông minh hoặc máy tính bảng. Ứng dụng Blü-Test cung cấp giám sát thời gian thực và quản lý thiết bị dễ dàng."
       }
     },
     "accuracy": {
-      "title": "Why Accurate Reference Devices Matter",
-      "subtitle": "In commercial HVAC, precision isn't optional—it's essential. Inaccurate measurements lead to misdiagnosed problems, wasted time, and costly callbacks. Blü-Test probes give you confidence in every reading.",
+      "title": "Tại Sao Thiết Bị Tham Chiếu Chính Xác Quan Trọng",
+      "subtitle": "Trong HVAC thương mại, độ chính xác không phải là tùy chọn—mà là điều thiết yếu. Đo lường không chính xác dẫn đến chẩn đoán sai vấn đề, lãng phí thời gian và tốn kém chi phí khắc phục. Đầu dò Blü-Test mang đến sự tự tin cho mọi số đo.",
       "temperature": {
-        "title": "Temperature Accuracy",
-        "description": "±0.18°F accuracy ensures precise system diagnostics and optimal equipment performance. Detect temperature differentials that indicate failing components before they cause system failure."
+        "title": "Độ Chính Xác Nhiệt Độ",
+        "description": "Độ chính xác ±0.18°F đảm bảo chẩn đoán hệ thống chính xác và hiệu suất thiết bị tối ưu. Phát hiện chênh lệch nhiệt độ cho thấy các thành phần bị lỗi trước khi chúng gây ra sự cố hệ thống."
       },
       "humidity": {
-        "title": "Humidity & Dew Point",
-        "description": "±1% RH accuracy prevents condensation issues, mold growth, and comfort complaints. Validate that HVAC systems maintain proper indoor air quality and meet building code requirements."
+        "title": "Độ Ẩm & Điểm Sương",
+        "description": "Độ chính xác ±1% RH ngăn ngừa vấn đề ngưng tụ, nấm mốc và khiếu nại về sự thoải mái. Xác thực rằng hệ thống HVAC duy trì chất lượng không khí trong nhà phù hợp và đáp ứng các yêu cầu quy chuẩn xây dựng."
       },
       "pressure": {
-        "title": "Differential Pressure",
-        "description": "±0.25% accuracy reveals duct leakage, filter loading, and airflow restrictions. Optimize system efficiency and identify problems before they impact energy costs or occupant comfort."
+        "title": "Chênh Áp",
+        "description": "Độ chính xác ±0.25% phát hiện rò rỉ ống dẫn, tải lọc và hạn chế luồng khí. Tối ưu hóa hiệu suất hệ thống và xác định vấn đề trước khi chúng ảnh hưởng đến chi phí năng lượng hoặc sự thoải mái của người sử dụng."
       },
       "airflow": {
-        "title": "K-Factor Airflow",
-        "description": "Accurate K-Factor measurements enable precise airflow calculations for system balancing, commissioning, and performance verification. Ensure proper ventilation rates and energy efficient operation."
+        "title": "Lưu Lượng Khí K-Factor",
+        "description": "Đo lường K-Factor chính xác cho phép tính toán lưu lượng khí chính xác để cân bằng hệ thống, nghiệm thu và xác minh hiệu suất. Đảm bảo tốc độ thông gió phù hợp và vận hành tiết kiệm năng lượng."
       },
       "calibration": {
-        "title": "NIST-Traceable Calibration",
-        "description": "Every probe includes a Certificate of Accuracy traceable to NIST standards. Document compliance for critical facilities, defend your work with certified data, and maintain professional credibility."
+        "title": "Hiệu Chuẩn Truy Xuất NIST",
+        "description": "Mỗi đầu dò đi kèm Giấy Chứng Nhận Độ Chính Xác có thể truy xuất theo tiêu chuẩn NIST. Ghi chép tuân thủ cho các cơ sở quan trọng, bảo vệ công việc của bạn bằng dữ liệu được chứng nhận và duy trì uy tín chuyên nghiệp."
       },
       "appIntegration": {
-        "title": "Blü-View App Integration",
-        "description": "Check signal strength for all of your sensors to ensure a strong connection. View live readings, log data, generate reports, and compare readings against wireless sensors right from the app."
+        "title": "Tích Hợp Ứng Dụng Blü-View",
+        "description": "Kiểm tra cường độ tín hiệu cho tất cả cảm biến của bạn để đảm bảo kết nối mạnh. Xem số đo trực tiếp, ghi dữ liệu, tạo báo cáo và so sánh số đo với cảm biến không dây ngay từ ứng dụng."
       },
       "baseline": {
-        "title": "The Baseline of Truth",
-        "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
+        "title": "Chuẩn Mực Của Sự Thật",
+        "description": "Sử dụng thiết bị tham chiếu có độ chính xác cao cho phép bạn tự tin xác thực các cảm biến tòa nhà hiện có, chẩn đoán các vấn đề hệ thống phức tạp và đảm bảo tuân thủ quy định với mức độ đoán nhận tối thiểu."
       }
     },
     "bluetooth": {
-      "title": "The Bluetooth of Truth",
-      "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
-      "feature1": "Real-time wireless data transmission to your smartphone or tablet",
-      "feature2": "Automatic timestamp and location logging for complete documentation",
-      "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
+      "title": "Bluetooth Của Sự Thật",
+      "description": "Kết nối không dây có nghĩa là không cần ghi chép số đo nữa. Ứng dụng Blu-View tự động ghi các phép đo với dấu thời gian, loại bỏ lỗi phiên âm và tạo báo cáo chuyên nghiệp.",
+      "feature1": "Truyền dữ liệu không dây thời gian thực đến điện thoại thông minh hoặc máy tính bảng của bạn",
+      "feature2": "Tự động ghi dấu thời gian và vị trí để tài liệu hóa hoàn chỉnh",
+      "feature3": "Xuất sang PDF, Excel hoặc lưu trữ đám mây để dễ dàng chia sẻ và lưu trữ"
     },
     "bluView": {
-      "title": "Blü-View App",
-      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
+      "title": "Ứng Dụng Blü-View",
+      "subtitle": "Ứng dụng Blü-View đặt toàn bộ quyền kiểm soát trong tầm tay bạn. Xem dữ liệu trực tiếp, tải xuống nhật ký, cập nhật firmware và quản lý nhiều thiết bị từ một giao diện.",
       "feature1": {
-        "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
+        "title": "Giám Sát Thời Gian Thực",
+        "description": "Xem dữ liệu cảm biến trực tiếp từ tất cả các đầu dò được kết nối. Giám sát nhiệt độ, độ ẩm, áp suất và nhiều hơn nữa trong thời gian thực với màn hình trực quan."
       },
       "feature2": {
-        "title": "Download Logs",
-        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+        "title": "Tải Xuống Nhật Ký",
+        "description": "Truy cập nhật ký đo lường được lưu trữ từ bộ nhớ thiết bị tích hợp. Xuất dữ liệu để phân tích, báo cáo và tài liệu tuân thủ."
       },
       "feature3": {
-        "title": "Device Management",
-        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+        "title": "Quản Lý Thiết Bị",
+        "description": "Quản lý nhiều đầu dò, kiểm tra mức pin, cập nhật firmware và nhận nhắc nhở hiệu chuẩn tất cả từ một bảng điều khiển trung tâm."
       },
-      "downloadApp": "Download the App",
-      "learnMore": "Learn More"
+      "downloadApp": "Tải Ứng Dụng",
+      "learnMore": "Tìm Hiểu Thêm"
     },
     "testProbes": {
-      "title": "The Blü-Test Suite",
-      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
+      "title": "Bộ Sản Phẩm Blü-Test",
+      "subtitle": "Dòng sản phẩm toàn diện các đầu dò thông minh, được chứng nhận NIST. Tất cả đều có bộ ghi dữ liệu tích hợp, màn hình LCD tích hợp trên tay cầm và kết nối Bluetooth liền mạch.",
       "tempProbe95": {
-        "name": "9.5\" Temperature Probe",
-        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
-        "feature1": "Extended length for deep measurements",
-        "feature2": "10K Type II thermistor",
-        "feature3": "Rugged stainless steel construction"
+        "name": "Đầu Dò Nhiệt Độ 9.5\"",
+        "description": "Tầm với mở rộng để đo nhiệt độ sâu bên trong ống dẫn hoặc hộp xử lý không khí lớn.",
+        "feature1": "Chiều dài mở rộng cho các phép đo sâu",
+        "feature2": "Nhiệt trở 10K Type II",
+        "feature3": "Kết cấu thép không gỉ chắc chắn"
       },
       "tempProbe6": {
-        "name": "6\" Temperature Probe",
-        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
-        "feature1": "Compact design for general use",
-        "feature2": "Fast response time",
-        "feature3": "10K Type II thermistor"
+        "name": "Đầu Dò Nhiệt Độ 6\"",
+        "description": "Đầu dò chiều dài tiêu chuẩn linh hoạt, lý tưởng cho xác thực nhiệt độ HVAC mục đích chung.",
+        "feature1": "Thiết kế nhỏ gọn cho sử dụng chung",
+        "feature2": "Thời gian phản hồi nhanh",
+        "feature3": "Nhiệt trở 10K Type II"
       },
       "piercingProbe": {
-        "name": "4\" Piercing Temperature Probe",
-        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
-        "feature1": "Penetrates insulation and ductwork",
-        "feature2": "Sharp tip for easy insertion",
-        "feature3": "Ideal for hard-to-reach locations"
+        "name": "Đầu Dò Nhiệt Độ Xuyên 4\"",
+        "description": "Đầu xuyên chắc chắn để xuyên qua cách nhiệt hoặc kiểm tra nhiệt độ bề mặt.",
+        "feature1": "Xuyên qua cách nhiệt và ống gió",
+        "feature2": "Đầu nhọn để dễ dàng chèn vào",
+        "feature3": "Lý tưởng cho các vị trí khó tiếp cận"
       },
       "remoteTemp": {
-        "name": "Remote Temperature Probe",
-        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
-        "feature1": "Separable probe on cable",
-        "feature2": "Flexible positioning",
-        "feature3": "Extended reach capability"
+        "name": "Đầu Dò Nhiệt Độ Từ Xa",
+        "description": "Đầu dò có dây linh hoạt cho các khu vực khó tiếp cận hoặc giám sát liên tục mà không cần cầm tay cầm.",
+        "feature1": "Đầu dò có thể tách rời trên dây cáp",
+        "feature2": "Định vị linh hoạt",
+        "feature3": "Khả năng tầm với mở rộng"
       },
       "tempHumid": {
-        "name": "8\" Temperature & Humidity Probe",
-        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
-        "feature1": "Dual measurement capability",
-        "feature2": "Accurate RH sensing",
-        "feature3": "Combined temp/humidity readings"
+        "name": "Đầu Dò Nhiệt Độ & Độ Ẩm 8\"",
+        "description": "Cảm biến kết hợp cho nhiệt độ nhiệt kế khô chính xác, %RH và tính toán điểm sương.",
+        "feature1": "Khả năng đo kép",
+        "feature2": "Cảm biến RH chính xác",
+        "feature3": "Số đo nhiệt độ/độ ẩm kết hợp"
       },
       "standardPress": {
-        "name": "Standard Range Pressure Probe",
-        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
-        "feature1": "Measures duct and room pressure",
-        "feature2": "±1\" WC to ±10\" WC ranges",
-        "feature3": "High accuracy differential pressure"
+        "name": "Đầu Dò Áp Suất Dải Tiêu Chuẩn",
+        "description": "Đo chênh áp đáng tin cậy (-5 đến +5\" WC) cho các hệ thống HVAC thương mại tiêu chuẩn.",
+        "feature1": "Đo áp suất ống dẫn và phòng",
+        "feature2": "Dải từ ±1\" WC đến ±10\" WC",
+        "feature3": "Chênh áp độ chính xác cao"
       },
       "lowPress": {
-        "name": "Low Range Pressure Probe",
-        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
-        "feature1": "Ultra-sensitive pressure measurement",
-        "feature2": "±0.1\" WC to ±0.5\" WC ranges",
-        "feature3": "Perfect for clean room and lab applications"
+        "name": "Đầu Dò Áp Suất Dải Thấp",
+        "description": "Đo chênh áp độ chính xác cao (-1 đến +1\" WC) cho phòng sạch nhạy cảm hoặc môi trường phòng thí nghiệm.",
+        "feature1": "Đo áp suất cực nhạy",
+        "feature2": "Dải từ ±0.1\" WC đến ±0.5\" WC",
+        "feature3": "Hoàn hảo cho ứng dụng phòng sạch và phòng thí nghiệm"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
-      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
+      "title": "Thông Số Kỹ Thuật",
+      "subtitle": "Được thiết kế cho độ chính xác và được chế tạo để chịu đựng môi trường thương mại khắc nghiệt.",
       "table": {
-        "general": "General",
-        "measurement": "Measurement Range",
-        "accuracy": "Accuracy",
-        "environmental": "Environmental & Certifications"
+        "general": "Chung",
+        "measurement": "Phạm Vi Đo",
+        "accuracy": "Độ Chính Xác",
+        "environmental": "Môi Trường & Chứng Nhận"
       },
       "general": {
         "power": {
-          "label": "Power",
-          "value": "3.7V, 2,600 mAh Rechargeable Battery"
+          "label": "Nguồn Điện",
+          "value": "Pin Sạc 3.7V, 2,600 mAh"
         },
         "charging": {
-          "label": "Charging",
-          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
+          "label": "Sạc",
+          "value": "Bộ Sạc USB Tiêu Chuẩn, 1.5A hoặc lớn hơn, Cáp Micro-USB đi kèm"
         },
         "communication": {
-          "label": "Communication",
+          "label": "Truyền Thông",
           "value": "Bluetooth LE, Class 2 v4.2"
         },
         "dataLogging": {
-          "label": "Data Logging",
-          "value": "10 second intervals"
+          "label": "Ghi Dữ Liệu",
+          "value": "Khoảng thời gian 10 giây"
         }
       },
       "measurement": {
         "temperature": {
-          "label": "Temperature",
-          "value": "-40 to 185°F (-40 to 85°C)"
+          "label": "Nhiệt Độ",
+          "value": "-40 đến 185°F (-40 đến 85°C)"
         },
         "rh": {
           "label": "%RH",
-          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
+          "value": "5 đến 95% Không ngưng tụ @ -40 đến 158°F (-40 đến 70°C)"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "Chênh Áp (Thấp)",
+          "value": "-1 đến +1\" WC (-250 đến +250 Pascal) @ -4 đến 158°F (-20 đến 70°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "Chênh Áp (Tiêu Chuẩn)",
+          "value": "-5 đến +5\" WC (-1,250 đến +1,250 Pascal) @ -4 đến 158°F (-20 đến 70°C)"
         }
       },
       "accuracy": {
         "tempOnly": {
-          "label": "Temperature Only Probes",
-          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+          "label": "Đầu Dò Chỉ Nhiệt Độ",
+          "value": "±0.18°F từ -13 đến 167°F (±0.1°C từ -25 đến 75°C)"
         },
         "tempHumid": {
-          "label": "Temp/Humidity Probes",
-          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+          "label": "Đầu Dò Nhiệt Độ/Độ Ẩm",
+          "value": "Nhiệt Độ: ±0.36°F @ 77°F (±0.2°C tại 25°C) | %RH: ±1%RH @ 77°F (25°C) từ 10 đến 85%RH"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+          "label": "Chênh Áp (Thấp)",
+          "value": "±0.25% của Khoảng FS, -1 đến +1\" WC (-250 đến +250 Pa) @ 77°F (25°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
+          "label": "Chênh Áp (Tiêu Chuẩn)",
+          "value": "±0.25% của Khoảng FS, -5 đến +5\" WC (-1,250 đến +1,250 Pa) @ 77°F (25°C)"
         }
       },
       "environmental": {
         "operatingRange": {
-          "label": "Operating Range",
-          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
+          "label": "Phạm Vi Hoạt Động",
+          "value": "Thân: -22 đến 158°F (-30 đến 70°C) | Đầu Dò Nhiệt Độ: -40 đến 185°F (-40 đến 85°C) | Đầu Dò %RH: 5 đến 95% Không ngưng tụ @ -40 đến 158°F (-40 đến 70°C) | Đầu Dò Áp Suất: -4 đến 158°F (-20 đến 70°C)"
         },
         "burstPressure": {
-          "label": "Burst Pressure",
-          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+          "label": "Áp Suất Vỡ",
+          "value": "Dải Thấp: 415\" WC (103 kPa) | Dải Tiêu Chuẩn: 500\" WC (124 kPa)"
         },
         "agencyApprovals": {
-          "label": "Agency Approvals",
+          "label": "Phê Duyệt Cơ Quan",
           "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
         }
       }
     },
     "cta": {
-      "title": "Ready to Upgrade Your HVAC Testing?",
-      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
-      "contactSales": "Contact Sales",
-      "viewProducts": "View All Probes"
+      "title": "Sẵn Sàng Nâng Cấp Kiểm Tra HVAC Của Bạn?",
+      "subtitle": "Các chuyên gia kiểm tra và đo lường của chúng tôi sẵn sàng giúp bạn chọn đầu dò phù hợp cho ứng dụng của bạn. Nhận tư vấn chuyên gia và giá cạnh tranh.",
+      "contactSales": "Liên Hệ Bộ Phận Bán Hàng",
+      "viewProducts": "Xem Tất Cả Đầu Dò"
     }
   }
 }

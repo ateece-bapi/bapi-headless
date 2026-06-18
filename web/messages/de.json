@@ -4052,228 +4052,228 @@
   },
   "bluTestLandingPage": {
     "metadata": {
-      "title": "Blu-Test™ Precision HVAC Test & Measurement",
-      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
-      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+      "title": "Blu-Test™ Präzisions-HLK-Test & Messung",
+      "description": "Professionelle Test- und Messsonden für HLK-Tests. Präzisionsmessung mit der Blu-View App für iOS und Android.",
+      "keywords": "HLK-Testsonden, Temperaturmessung, Blu-View App, Präzisionssonden, Testgeräte, HLK-Tests, Gebäudeautomationstests"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
+      "home": "Startseite",
+      "products": "Produkte",
       "bluTest": "Blu-Test™"
     },
     "hero": {
-      "title": "Precision HVAC Probes You Can Trust.",
-      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
-      "cta": "Explore Probes",
-      "secondaryCta": "Download Blu-View App"
+      "title": "Präzisions-HLK-Sonden, denen Sie vertrauen können.",
+      "description": "Eine Reihe von Testsonden für anspruchsvolle Genauigkeitsanforderungen in HLK- und Kältesystemen. Nahtlose Integration mit der Blu-View App für präzise Messungen und einfache Datenprotokollierung.",
+      "cta": "Sonden erkunden",
+      "secondaryCta": "Blu-View App herunterladen"
     },
     "keyFeatures": {
       "precision": {
-        "title": "Precision Measurement",
-        "description": "Highly accurate sensors for temperature, humidity, pressure, dew point, and light level measurements. Ideal for HVAC commissioning and verification."
+        "title": "Präzisionsmessung",
+        "description": "Hochgenaue Sensoren für Temperatur-, Feuchtigkeits-, Druck-, Taupunkt- und Lichtpegelmessungen. Ideal für HLK-Inbetriebnahme und Verifizierung."
       },
       "dataLogging": {
-        "title": "Onboard Data Logging",
-        "description": "Store measurement data directly on the probes with built-in storage. Download logs anytime using the Blü-Test app for comprehensive analysis."
+        "title": "Integrierte Datenprotokollierung",
+        "description": "Speichern Sie Messdaten direkt auf den Sonden mit integriertem Speicher. Laden Sie Protokolle jederzeit mit der Blü-Test App für umfassende Analysen herunter."
       },
       "integration": {
-        "title": "Smart Device Integration",
-        "description": "Connect via Bluetooth to view live data on your smartphone or tablet. The Blü-Test app provides real-time monitoring and easy device management."
+        "title": "Smart-Device-Integration",
+        "description": "Verbinden Sie sich per Bluetooth, um Live-Daten auf Ihrem Smartphone oder Tablet anzuzeigen. Die Blü-Test App bietet Echtzeitüberwachung und einfaches Gerätemanagement."
       }
     },
     "accuracy": {
-      "title": "Why Accurate Reference Devices Matter",
-      "subtitle": "In commercial HVAC, precision isn't optional—it's essential. Inaccurate measurements lead to misdiagnosed problems, wasted time, and costly callbacks. Blü-Test probes give you confidence in every reading.",
+      "title": "Warum genaue Referenzgeräte wichtig sind",
+      "subtitle": "In der gewerblichen HLK ist Präzision nicht optional – sie ist unverzichtbar. Ungenaue Messungen führen zu Fehldiagnosen, Zeitverschwendung und kostspieligen Rückrufen. Blü-Test Sonden geben Ihnen Vertrauen in jede Messung.",
       "temperature": {
-        "title": "Temperature Accuracy",
-        "description": "±0.18°F accuracy ensures precise system diagnostics and optimal equipment performance. Detect temperature differentials that indicate failing components before they cause system failure."
+        "title": "Temperaturgenauigkeit",
+        "description": "±0,18°F Genauigkeit gewährleistet präzise Systemdiagnosen und optimale Geräteleistung. Erkennen Sie Temperaturdifferenzen, die auf fehlerhafte Komponenten hinweisen, bevor sie einen Systemausfall verursachen."
       },
       "humidity": {
-        "title": "Humidity & Dew Point",
-        "description": "±1% RH accuracy prevents condensation issues, mold growth, and comfort complaints. Validate that HVAC systems maintain proper indoor air quality and meet building code requirements."
+        "title": "Feuchtigkeit & Taupunkt",
+        "description": "±1% RH Genauigkeit verhindert Kondensationsprobleme, Schimmelbildung und Komfortbeschwerden. Validieren Sie, dass HLK-Systeme die richtige Raumluftqualität aufrechterhalten und Bauvorschriften erfüllen."
       },
       "pressure": {
-        "title": "Differential Pressure",
-        "description": "±0.25% accuracy reveals duct leakage, filter loading, and airflow restrictions. Optimize system efficiency and identify problems before they impact energy costs or occupant comfort."
+        "title": "Differenzdruck",
+        "description": "±0,25% Genauigkeit deckt Kanalleckagen, Filterbeladung und Luftstromeinschränkungen auf. Optimieren Sie die Systemeffizienz und identifizieren Sie Probleme, bevor sie Energiekosten oder Nutzerkomfort beeinträchtigen."
       },
       "airflow": {
-        "title": "K-Factor Airflow",
-        "description": "Accurate K-Factor measurements enable precise airflow calculations for system balancing, commissioning, and performance verification. Ensure proper ventilation rates and energy efficient operation."
+        "title": "K-Faktor-Luftstrom",
+        "description": "Genaue K-Faktor-Messungen ermöglichen präzise Luftstromberechnungen für Systemabgleich, Inbetriebnahme und Leistungsverifizierung. Gewährleisten Sie korrekte Belüftungsraten und energieeffizienten Betrieb."
       },
       "calibration": {
-        "title": "NIST-Traceable Calibration",
-        "description": "Every probe includes a Certificate of Accuracy traceable to NIST standards. Document compliance for critical facilities, defend your work with certified data, and maintain professional credibility."
+        "title": "NIST-rückverfolgbare Kalibrierung",
+        "description": "Jede Sonde enthält ein Genauigkeitszertifikat, das auf NIST-Standards rückverfolgbar ist. Dokumentieren Sie die Einhaltung für kritische Einrichtungen, verteidigen Sie Ihre Arbeit mit zertifizierten Daten und wahren Sie professionelle Glaubwürdigkeit."
       },
       "appIntegration": {
         "title": "Blü-View App Integration",
-        "description": "Check signal strength for all of your sensors to ensure a strong connection. View live readings, log data, generate reports, and compare readings against wireless sensors right from the app."
+        "description": "Überprüfen Sie die Signalstärke für alle Ihre Sensoren, um eine starke Verbindung sicherzustellen. Zeigen Sie Live-Messwerte an, protokollieren Sie Daten, erstellen Sie Berichte und vergleichen Sie Messwerte mit drahtlosen Sensoren direkt aus der App."
       },
       "baseline": {
-        "title": "The Baseline of Truth",
-        "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
+        "title": "Die Basis der Wahrheit",
+        "description": "Die Verwendung eines hochgenauen Referenzgeräts ermöglicht es Ihnen, vorhandene Gebäudesensoren sicher zu validieren, komplexe systemische Probleme zu diagnostizieren und die Einhaltung gesetzlicher Vorschriften mit minimalem Rätselraten sicherzustellen."
       }
     },
     "bluetooth": {
-      "title": "The Bluetooth of Truth",
-      "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
-      "feature1": "Real-time wireless data transmission to your smartphone or tablet",
-      "feature2": "Automatic timestamp and location logging for complete documentation",
-      "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
+      "title": "Das Bluetooth der Wahrheit",
+      "description": "Drahtlose Konnektivität bedeutet, dass Sie keine Messwerte mehr notieren müssen. Die Blu-View App protokolliert Messungen automatisch mit Zeitstempeln, eliminiert Übertragungsfehler und erstellt professionelle Berichte.",
+      "feature1": "Drahtlose Echtzeit-Datenübertragung an Ihr Smartphone oder Tablet",
+      "feature2": "Automatische Zeitstempel- und Standortprotokollierung für vollständige Dokumentation",
+      "feature3": "Export in PDF, Excel oder Cloud-Speicher für einfaches Teilen und Archivieren"
     },
     "bluView": {
       "title": "Blü-View App",
-      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
+      "subtitle": "Die Blü-View App gibt Ihnen die vollständige Kontrolle auf Knopfdruck. Zeigen Sie Live-Daten an, laden Sie Protokolle herunter, aktualisieren Sie die Firmware und verwalten Sie mehrere Geräte über eine Benutzeroberfläche.",
       "feature1": {
-        "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
+        "title": "Echtzeitüberwachung",
+        "description": "Zeigen Sie Live-Sensordaten von allen verbundenen Sonden an. Überwachen Sie Temperatur, Feuchtigkeit, Druck und mehr in Echtzeit mit intuitiven Anzeigen."
       },
       "feature2": {
-        "title": "Download Logs",
-        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+        "title": "Protokolle herunterladen",
+        "description": "Greifen Sie auf gespeicherte Messprotokolle aus dem integrierten Gerätespeicher zu. Exportieren Sie Daten für Analysen, Berichte und Konformitätsdokumentation."
       },
       "feature3": {
-        "title": "Device Management",
-        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+        "title": "Geräteverwaltung",
+        "description": "Verwalten Sie mehrere Sonden, überprüfen Sie Batteriestände, aktualisieren Sie die Firmware und erhalten Sie Kalibrierungserinnerungen von einem zentralen Dashboard aus."
       },
-      "downloadApp": "Download the App",
-      "learnMore": "Learn More"
+      "downloadApp": "App herunterladen",
+      "learnMore": "Mehr erfahren"
     },
     "testProbes": {
-      "title": "The Blü-Test Suite",
-      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
+      "title": "Die Blü-Test Suite",
+      "subtitle": "Eine umfassende Familie intelligenter, NIST-zertifizierter Sonden. Alle verfügen über einen integrierten Datenlogger, ein eingebautes LCD-Display am Griff und nahtlose Bluetooth-Konnektivität.",
       "tempProbe95": {
-        "name": "9.5\" Temperature Probe",
-        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
-        "feature1": "Extended length for deep measurements",
-        "feature2": "10K Type II thermistor",
-        "feature3": "Rugged stainless steel construction"
+        "name": "9,5\" Temperatursonde",
+        "description": "Erweiterte Reichweite für Temperaturmessungen tief in Kanälen oder großen Luftbehandlungsgeräten.",
+        "feature1": "Verlängerte Länge für tiefe Messungen",
+        "feature2": "10K Typ II Thermistor",
+        "feature3": "Robuste Edelstahlkonstruktion"
       },
       "tempProbe6": {
-        "name": "6\" Temperature Probe",
-        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
-        "feature1": "Compact design for general use",
-        "feature2": "Fast response time",
-        "feature3": "10K Type II thermistor"
+        "name": "6\" Temperatursonde",
+        "description": "Vielseitige Sonde mit Standardlänge, ideal für allgemeine HLK-Temperaturvalidierung.",
+        "feature1": "Kompaktes Design für allgemeine Nutzung",
+        "feature2": "Schnelle Reaktionszeit",
+        "feature3": "10K Typ II Thermistor"
       },
       "piercingProbe": {
-        "name": "4\" Piercing Temperature Probe",
-        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
-        "feature1": "Penetrates insulation and ductwork",
-        "feature2": "Sharp tip for easy insertion",
-        "feature3": "Ideal for hard-to-reach locations"
+        "name": "4\" Durchstoß-Temperatursonde",
+        "description": "Robuste Durchstoßspitze zum Durchdringen von Isolierung oder zur Überprüfung von Oberflächentemperaturen.",
+        "feature1": "Durchdringt Isolierung und Kanalwände",
+        "feature2": "Scharfe Spitze für einfaches Einführen",
+        "feature3": "Ideal für schwer zugängliche Stellen"
       },
       "remoteTemp": {
-        "name": "Remote Temperature Probe",
-        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
-        "feature1": "Separable probe on cable",
-        "feature2": "Flexible positioning",
-        "feature3": "Extended reach capability"
+        "name": "Fern-Temperatursonde",
+        "description": "Flexible verkabelte Sonde für schwer zugängliche Bereiche oder kontinuierliche Überwachung ohne Halten des Griffs.",
+        "feature1": "Trennbare Sonde am Kabel",
+        "feature2": "Flexible Positionierung",
+        "feature3": "Erweiterte Reichweite"
       },
       "tempHumid": {
-        "name": "8\" Temperature & Humidity Probe",
-        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
-        "feature1": "Dual measurement capability",
-        "feature2": "Accurate RH sensing",
-        "feature3": "Combined temp/humidity readings"
+        "name": "8\" Temperatur- & Feuchtigkeitssonde",
+        "description": "Kombinierter Sensor für genaue Trockentemperatur, %RH und Taupunktberechnungen.",
+        "feature1": "Duale Messfähigkeit",
+        "feature2": "Genaue RH-Erfassung",
+        "feature3": "Kombinierte Temperatur-/Feuchtigkeitsmessungen"
       },
       "standardPress": {
-        "name": "Standard Range Pressure Probe",
-        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
-        "feature1": "Measures duct and room pressure",
-        "feature2": "±1\" WC to ±10\" WC ranges",
-        "feature3": "High accuracy differential pressure"
+        "name": "Standardbereich-Drucksonde",
+        "description": "Zuverlässige Differenzdruckmessung (-5 bis +5\" WC) für Standard-Gewerbe-HLK-Systeme.",
+        "feature1": "Misst Kanal- und Raumdruck",
+        "feature2": "±1\" WC bis ±10\" WC Bereiche",
+        "feature3": "Hohe Genauigkeit beim Differenzdruck"
       },
       "lowPress": {
-        "name": "Low Range Pressure Probe",
-        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
-        "feature1": "Ultra-sensitive pressure measurement",
-        "feature2": "±0.1\" WC to ±0.5\" WC ranges",
-        "feature3": "Perfect for clean room and lab applications"
+        "name": "Niedrigbereich-Drucksonde",
+        "description": "Hochpräzise Differenzdruckmessung (-1 bis +1\" WC) für empfindliche Reinräume oder Laborumgebungen.",
+        "feature1": "Ultrasensitive Druckmessung",
+        "feature2": "±0,1\" WC bis ±0,5\" WC Bereiche",
+        "feature3": "Perfekt für Reinraum- und Laboranwendungen"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
-      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
+      "title": "Technische Spezifikationen",
+      "subtitle": "Entwickelt für Präzision und gebaut, um anspruchsvollen gewerblichen Umgebungen standzuhalten.",
       "table": {
-        "general": "General",
-        "measurement": "Measurement Range",
-        "accuracy": "Accuracy",
-        "environmental": "Environmental & Certifications"
+        "general": "Allgemein",
+        "measurement": "Messbereich",
+        "accuracy": "Genauigkeit",
+        "environmental": "Umgebung & Zertifizierungen"
       },
       "general": {
         "power": {
-          "label": "Power",
-          "value": "3.7V, 2,600 mAh Rechargeable Battery"
+          "label": "Stromversorgung",
+          "value": "3,7V, 2.600 mAh wiederaufladbare Batterie"
         },
         "charging": {
-          "label": "Charging",
-          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
+          "label": "Aufladung",
+          "value": "Standard-USB-Ladegerät, 1,5A oder höher, Micro-USB-Kabel im Lieferumfang"
         },
         "communication": {
-          "label": "Communication",
-          "value": "Bluetooth LE, Class 2 v4.2"
+          "label": "Kommunikation",
+          "value": "Bluetooth LE, Klasse 2 v4.2"
         },
         "dataLogging": {
-          "label": "Data Logging",
-          "value": "10 second intervals"
+          "label": "Datenprotokollierung",
+          "value": "10-Sekunden-Intervalle"
         }
       },
       "measurement": {
         "temperature": {
-          "label": "Temperature",
-          "value": "-40 to 185°F (-40 to 85°C)"
+          "label": "Temperatur",
+          "value": "-40 bis 185°F (-40 bis 85°C)"
         },
         "rh": {
           "label": "%RH",
-          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
+          "value": "5 bis 95% nicht kondensierend @ -40 bis 158°F (-40 bis 70°C)"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "Diff. Druck (Niedrig)",
+          "value": "-1 bis +1\" WC (-250 bis +250 Pascal) @ -4 bis 158°F (-20 bis 70°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "Diff. Druck (Std)",
+          "value": "-5 bis +5\" WC (-1.250 bis +1.250 Pascal) @ -4 bis 158°F (-20 bis 70°C)"
         }
       },
       "accuracy": {
         "tempOnly": {
-          "label": "Temperature Only Probes",
-          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+          "label": "Nur-Temperatur-Sonden",
+          "value": "±0,18°F von -13 bis 167°F (±0,1°C von -25 bis 75°C)"
         },
         "tempHumid": {
-          "label": "Temp/Humidity Probes",
-          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+          "label": "Temperatur-/Feuchtigkeitssonden",
+          "value": "Temp: ±0,36°F @ 77°F (±0,2°C bei 25°C) | %RH: ±1%RH @ 77°F (25°C) von 10 bis 85%RH"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+          "label": "Diff. Druck (Niedrig)",
+          "value": "±0,25% vom FS-Bereich, -1 bis +1\" WC (-250 bis +250 Pa) @ 77°F (25°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
+          "label": "Diff. Druck (Std)",
+          "value": "±0,25% vom FS-Bereich, -5 bis +5\" WC (-1.250 bis +1.250 Pa) @ 77°F (25°C)"
         }
       },
       "environmental": {
         "operatingRange": {
-          "label": "Operating Range",
-          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
+          "label": "Betriebsbereich",
+          "value": "Gehäuse: -22 bis 158°F (-30 bis 70°C) | Temp-Sonden: -40 bis 185°F (-40 bis 85°C) | %RH-Sonde: 5 bis 95% nicht kondensierend @ -40 bis 158°F (-40 bis 70°C) | Drucksonde: -4 bis 158°F (-20 bis 70°C)"
         },
         "burstPressure": {
-          "label": "Burst Pressure",
-          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+          "label": "Berstdruck",
+          "value": "Niedrigbereich: 415\" WC (103 kPa) | Standardbereich: 500\" WC (124 kPa)"
         },
         "agencyApprovals": {
-          "label": "Agency Approvals",
+          "label": "Behördenzulassungen",
           "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
         }
       }
     },
     "cta": {
-      "title": "Ready to Upgrade Your HVAC Testing?",
-      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
-      "contactSales": "Contact Sales",
-      "viewProducts": "View All Probes"
+      "title": "Bereit, Ihre HLK-Tests zu verbessern?",
+      "subtitle": "Unsere Test- und Messspezialisten helfen Ihnen gerne bei der Auswahl der richtigen Sonden für Ihre Anwendungen. Erhalten Sie fachkundige Beratung und wettbewerbsfähige Preise.",
+      "contactSales": "Vertrieb kontaktieren",
+      "viewProducts": "Alle Sonden anzeigen"
     }
   }
 }

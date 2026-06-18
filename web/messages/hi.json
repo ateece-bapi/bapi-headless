@@ -4051,228 +4051,228 @@
   },
   "bluTestLandingPage": {
     "metadata": {
-      "title": "Blu-Test™ Precision HVAC Test & Measurement",
-      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
-      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+      "title": "Blu-Test™ सटीक HVAC परीक्षण और माप",
+      "description": "HVAC परीक्षण के लिए व्यावसायिक-ग्रेड परीक्षण और माप प्रोब। iOS और Android के लिए Blu-View ऐप के साथ सटीक माप।",
+      "keywords": "HVAC परीक्षण प्रोब, तापमान माप, Blu-View ऐप, सटीक प्रोब, परीक्षण उपकरण, HVAC परीक्षण, भवन स्वचालन परीक्षण"
     },
     "breadcrumb": {
-      "home": "Home",
-      "products": "Products",
+      "home": "होम",
+      "products": "उत्पाद",
       "bluTest": "Blu-Test™"
     },
     "hero": {
-      "title": "Precision HVAC Probes You Can Trust.",
-      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
-      "cta": "Explore Probes",
-      "secondaryCta": "Download Blu-View App"
+      "title": "सटीक HVAC प्रोब जिन पर आप भरोसा कर सकते हैं।",
+      "description": "HVAC और रेफ्रिजरेशन सिस्टम में मांग वाली सटीकता आवश्यकताओं के लिए परीक्षण प्रोब का एक समूह। सटीक माप और आसान डेटा लॉगिंग के लिए Blu-View ऐप के साथ निर्बाध रूप से एकीकृत करें।",
+      "cta": "प्रोब देखें",
+      "secondaryCta": "Blu-View ऐप डाउनलोड करें"
     },
     "keyFeatures": {
       "precision": {
-        "title": "Precision Measurement",
-        "description": "Highly accurate sensors for temperature, humidity, pressure, dew point, and light level measurements. Ideal for HVAC commissioning and verification."
+        "title": "सटीक माप",
+        "description": "तापमान, आर्द्रता, दबाव, ओस बिंदु और प्रकाश स्तर माप के लिए अत्यधिक सटीक सेंसर। HVAC कमीशनिंग और सत्यापन के लिए आदर्श।"
       },
       "dataLogging": {
-        "title": "Onboard Data Logging",
-        "description": "Store measurement data directly on the probes with built-in storage. Download logs anytime using the Blü-Test app for comprehensive analysis."
+        "title": "ऑनबोर्ड डेटा लॉगिंग",
+        "description": "बिल्ट-इन स्टोरेज के साथ प्रोब पर सीधे माप डेटा संग्रहीत करें। व्यापक विश्लेषण के लिए Blü-Test ऐप का उपयोग करके किसी भी समय लॉग डाउनलोड करें।"
       },
       "integration": {
-        "title": "Smart Device Integration",
-        "description": "Connect via Bluetooth to view live data on your smartphone or tablet. The Blü-Test app provides real-time monitoring and easy device management."
+        "title": "स्मार्ट डिवाइस एकीकरण",
+        "description": "अपने स्मार्टफोन या टैबलेट पर लाइव डेटा देखने के लिए Bluetooth के माध्यम से कनेक्ट करें। Blü-Test ऐप रीयल-टाइम निगरानी और आसान डिवाइस प्रबंधन प्रदान करता है।"
       }
     },
     "accuracy": {
-      "title": "Why Accurate Reference Devices Matter",
-      "subtitle": "In commercial HVAC, precision isn't optional—it's essential. Inaccurate measurements lead to misdiagnosed problems, wasted time, and costly callbacks. Blü-Test probes give you confidence in every reading.",
+      "title": "सटीक संदर्भ उपकरण क्यों महत्वपूर्ण हैं",
+      "subtitle": "वाणिज्यिक HVAC में, सटीकता वैकल्पिक नहीं है—यह आवश्यक है। गलत माप से गलत निदान, समय की बर्बादी और महंगे कॉलबैक होते हैं। Blü-Test प्रोब आपको हर रीडिंग में विश्वास देते हैं।",
       "temperature": {
-        "title": "Temperature Accuracy",
-        "description": "±0.18°F accuracy ensures precise system diagnostics and optimal equipment performance. Detect temperature differentials that indicate failing components before they cause system failure."
+        "title": "तापमान सटीकता",
+        "description": "±0.18°F सटीकता सटीक सिस्टम डायग्नोस्टिक्स और इष्टतम उपकरण प्रदर्शन सुनिश्चित करती है। विफल हो रहे घटकों को इंगित करने वाले तापमान अंतर का पता लगाएं, इससे पहले कि वे सिस्टम विफलता का कारण बनें।"
       },
       "humidity": {
-        "title": "Humidity & Dew Point",
-        "description": "±1% RH accuracy prevents condensation issues, mold growth, and comfort complaints. Validate that HVAC systems maintain proper indoor air quality and meet building code requirements."
+        "title": "आर्द्रता और ओस बिंदु",
+        "description": "±1% RH सटीकता संघनन समस्याओं, मोल्ड वृद्धि और आराम की शिकायतों को रोकती है। सत्यापित करें कि HVAC सिस्टम उचित इनडोर वायु गुणवत्ता बनाए रखता है और भवन कोड आवश्यकताओं को पूरा करता है।"
       },
       "pressure": {
-        "title": "Differential Pressure",
-        "description": "±0.25% accuracy reveals duct leakage, filter loading, and airflow restrictions. Optimize system efficiency and identify problems before they impact energy costs or occupant comfort."
+        "title": "विभेदक दबाव",
+        "description": "±0.25% सटीकता डक्ट रिसाव, फ़िल्टर लोडिंग और वायुप्रवाह प्रतिबंधों को प्रकट करती है। सिस्टम दक्षता को अनुकूलित करें और ऊर्जा लागत या निवासियों के आराम को प्रभावित करने से पहले समस्याओं की पहचान करें।"
       },
       "airflow": {
-        "title": "K-Factor Airflow",
-        "description": "Accurate K-Factor measurements enable precise airflow calculations for system balancing, commissioning, and performance verification. Ensure proper ventilation rates and energy efficient operation."
+        "title": "K-Factor वायुप्रवाह",
+        "description": "सटीक K-Factor माप सिस्टम संतुलन, कमीशनिंग और प्रदर्शन सत्यापन के लिए सटीक वायुप्रवाह गणना सक्षम करता है। उचित वेंटिलेशन दर और ऊर्जा कुशल संचालन सुनिश्चित करें।"
       },
       "calibration": {
-        "title": "NIST-Traceable Calibration",
-        "description": "Every probe includes a Certificate of Accuracy traceable to NIST standards. Document compliance for critical facilities, defend your work with certified data, and maintain professional credibility."
+        "title": "NIST-ट्रेसेबल कैलिब्रेशन",
+        "description": "प्रत्येक प्रोब में NIST मानकों के लिए ट्रेसेबल सटीकता का प्रमाणपत्र शामिल है। महत्वपूर्ण सुविधाओं के लिए अनुपालन का दस्तावेज़ीकरण करें, प्रमाणित डेटा के साथ अपने काम का बचाव करें, और पेशेवर विश्वसनीयता बनाए रखें।"
       },
       "appIntegration": {
-        "title": "Blü-View App Integration",
-        "description": "Check signal strength for all of your sensors to ensure a strong connection. View live readings, log data, generate reports, and compare readings against wireless sensors right from the app."
+        "title": "Blü-View ऐप एकीकरण",
+        "description": "मजबूत कनेक्शन सुनिश्चित करने के लिए अपने सभी सेंसर के लिए सिग्नल ताकत की जाँच करें। लाइव रीडिंग देखें, डेटा लॉग करें, रिपोर्ट तैयार करें, और सीधे ऐप से वायरलेस सेंसर के खिलाफ रीडिंग की तुलना करें।"
       },
       "baseline": {
-        "title": "The Baseline of Truth",
-        "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
+        "title": "सत्य की आधार रेखा",
+        "description": "एक अत्यधिक सटीक संदर्भ उपकरण का उपयोग करने से आप आत्मविश्वास से मौजूदा भवन सेंसर को मान्य कर सकते हैं, जटिल प्रणालीगत समस्याओं का निदान कर सकते हैं, और न्यूनतम अनुमान के साथ नियामक अनुपालन सुनिश्चित कर सकते हैं।"
       }
     },
     "bluetooth": {
-      "title": "The Bluetooth of Truth",
-      "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
-      "feature1": "Real-time wireless data transmission to your smartphone or tablet",
-      "feature2": "Automatic timestamp and location logging for complete documentation",
-      "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
+      "title": "सत्य का Bluetooth",
+      "description": "वायरलेस कनेक्टिविटी का मतलब है अब रीडिंग लिखने की आवश्यकता नहीं। Blu-View ऐप स्वचालित रूप से टाइमस्टैम्प के साथ माप लॉग करता है, प्रतिलेखन त्रुटियों को समाप्त करता है, और पेशेवर रिपोर्ट तैयार करता है।",
+      "feature1": "आपके स्मार्टफोन या टैबलेट पर रीयल-टाइम वायरलेस डेटा ट्रांसमिशन",
+      "feature2": "पूर्ण दस्तावेज़ीकरण के लिए स्वचालित टाइमस्टैम्प और स्थान लॉगिंग",
+      "feature3": "आसान साझाकरण और संग्रहण के लिए PDF, Excel, या क्लाउड स्टोरेज में निर्यात करें"
     },
     "bluView": {
-      "title": "Blü-View App",
-      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
+      "title": "Blü-View ऐप",
+      "subtitle": "Blü-View ऐप आपकी उंगलियों पर पूर्ण नियंत्रण रखता है। लाइव डेटा देखें, लॉग डाउनलोड करें, फर्मवेयर अपडेट करें, और एक इंटरफ़ेस से कई उपकरणों को प्रबंधित करें।",
       "feature1": {
-        "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
+        "title": "रीयल-टाइम निगरानी",
+        "description": "सभी कनेक्टेड प्रोब से लाइव सेंसर डेटा देखें। सहज प्रदर्शन के साथ तापमान, आर्द्रता, दबाव और अधिक को रीयल-टाइम में मॉनिटर करें।"
       },
       "feature2": {
-        "title": "Download Logs",
-        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+        "title": "लॉग डाउनलोड करें",
+        "description": "ऑनबोर्ड डिवाइस मेमोरी से संग्रहीत माप लॉग तक पहुंचें। विश्लेषण, रिपोर्टिंग और अनुपालन दस्तावेज़ीकरण के लिए डेटा निर्यात करें।"
       },
       "feature3": {
-        "title": "Device Management",
-        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+        "title": "डिवाइस प्रबंधन",
+        "description": "कई प्रोब प्रबंधित करें, बैटरी स्तर की जाँच करें, फर्मवेयर अपडेट करें, और एक केंद्रीय डैशबोर्ड से कैलिब्रेशन रिमाइंडर प्राप्त करें।"
       },
-      "downloadApp": "Download the App",
-      "learnMore": "Learn More"
+      "downloadApp": "ऐप डाउनलोड करें",
+      "learnMore": "और जानें"
     },
     "testProbes": {
-      "title": "The Blü-Test Suite",
-      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
+      "title": "Blü-Test सुइट",
+      "subtitle": "बुद्धिमान, NIST-प्रमाणित प्रोब का एक व्यापक परिवार। सभी में एक ऑनबोर्ड डेटा लॉगर, हैंडल पर एक बिल्ट-इन LCD डिस्प्ले, और निर्बाध Bluetooth कनेक्टिविटी है।",
       "tempProbe95": {
-        "name": "9.5\" Temperature Probe",
-        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
-        "feature1": "Extended length for deep measurements",
-        "feature2": "10K Type II thermistor",
-        "feature3": "Rugged stainless steel construction"
+        "name": "9.5\" तापमान प्रोब",
+        "description": "डक्ट या बड़े एयर हैंडलर के भीतर गहराई में तापमान मापने के लिए विस्तारित पहुंच।",
+        "feature1": "गहरे माप के लिए विस्तारित लंबाई",
+        "feature2": "10K Type II थर्मिस्टर",
+        "feature3": "मजबूत स्टेनलेस स्टील निर्माण"
       },
       "tempProbe6": {
-        "name": "6\" Temperature Probe",
-        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
-        "feature1": "Compact design for general use",
-        "feature2": "Fast response time",
-        "feature3": "10K Type II thermistor"
+        "name": "6\" तापमान प्रोब",
+        "description": "सामान्य प्रयोजन HVAC तापमान सत्यापन के लिए बहुमुखी, मानक लंबाई प्रोब।",
+        "feature1": "सामान्य उपयोग के लिए कॉम्पैक्ट डिज़ाइन",
+        "feature2": "तेज़ प्रतिक्रिया समय",
+        "feature3": "10K Type II थर्मिस्टर"
       },
       "piercingProbe": {
-        "name": "4\" Piercing Temperature Probe",
-        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
-        "feature1": "Penetrates insulation and ductwork",
-        "feature2": "Sharp tip for easy insertion",
-        "feature3": "Ideal for hard-to-reach locations"
+        "name": "4\" छेदने वाला तापमान प्रोब",
+        "description": "इंसुलेशन को भेदने या सतह के तापमान की जाँच करने के लिए मजबूत छेदने वाली टिप।",
+        "feature1": "इंसुलेशन और डक्टवर्क को भेदता है",
+        "feature2": "आसान सम्मिलन के लिए तेज़ टिप",
+        "feature3": "कठिन-पहुंच वाले स्थानों के लिए आदर्श"
       },
       "remoteTemp": {
-        "name": "Remote Temperature Probe",
-        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
-        "feature1": "Separable probe on cable",
-        "feature2": "Flexible positioning",
-        "feature3": "Extended reach capability"
+        "name": "रिमोट तापमान प्रोब",
+        "description": "कठिन-पहुंच वाले क्षेत्रों या हैंडल को पकड़े बिना निरंतर निगरानी के लिए लचीला वायर्ड प्रोब।",
+        "feature1": "केबल पर अलग करने योग्य प्रोब",
+        "feature2": "लचीली स्थिति",
+        "feature3": "विस्तारित पहुंच क्षमता"
       },
       "tempHumid": {
-        "name": "8\" Temperature & Humidity Probe",
-        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
-        "feature1": "Dual measurement capability",
-        "feature2": "Accurate RH sensing",
-        "feature3": "Combined temp/humidity readings"
+        "name": "8\" तापमान और आर्द्रता प्रोब",
+        "description": "सटीक ड्राई बल्ब तापमान, %RH, और ओस बिंदु गणना के लिए संयुक्त सेंसर।",
+        "feature1": "दोहरी माप क्षमता",
+        "feature2": "सटीक RH सेंसिंग",
+        "feature3": "संयुक्त तापमान/आर्द्रता रीडिंग"
       },
       "standardPress": {
-        "name": "Standard Range Pressure Probe",
-        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
-        "feature1": "Measures duct and room pressure",
-        "feature2": "±1\" WC to ±10\" WC ranges",
-        "feature3": "High accuracy differential pressure"
+        "name": "मानक रेंज दबाव प्रोब",
+        "description": "मानक वाणिज्यिक HVAC सिस्टम के लिए विश्वसनीय विभेदक दबाव माप (-5 से +5\" WC)।",
+        "feature1": "डक्ट और कमरे के दबाव को मापता है",
+        "feature2": "±1\" WC से ±10\" WC रेंज",
+        "feature3": "उच्च सटीकता विभेदक दबाव"
       },
       "lowPress": {
-        "name": "Low Range Pressure Probe",
-        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
-        "feature1": "Ultra-sensitive pressure measurement",
-        "feature2": "±0.1\" WC to ±0.5\" WC ranges",
-        "feature3": "Perfect for clean room and lab applications"
+        "name": "निम्न रेंज दबाव प्रोब",
+        "description": "संवेदनशील क्लीनरूम या लैब वातावरण के लिए उच्च-सटीकता विभेदक दबाव माप (-1 से +1\" WC)।",
+        "feature1": "अल्ट्रा-संवेदनशील दबाव माप",
+        "feature2": "±0.1\" WC से ±0.5\" WC रेंज",
+        "feature3": "क्लीन रूम और लैब अनुप्रयोगों के लिए बिल्कुल सही"
       }
     },
     "specifications": {
-      "title": "Technical Specifications",
-      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
+      "title": "तकनीकी विनिर्देश",
+      "subtitle": "सटीकता के लिए इंजीनियर और कठोर वाणिज्यिक वातावरण का सामना करने के लिए निर्मित।",
       "table": {
-        "general": "General",
-        "measurement": "Measurement Range",
-        "accuracy": "Accuracy",
-        "environmental": "Environmental & Certifications"
+        "general": "सामान्य",
+        "measurement": "माप रेंज",
+        "accuracy": "सटीकता",
+        "environmental": "पर्यावरण और प्रमाणन"
       },
       "general": {
         "power": {
-          "label": "Power",
-          "value": "3.7V, 2,600 mAh Rechargeable Battery"
+          "label": "पावर",
+          "value": "3.7V, 2,600 mAh रिचार्जेबल बैटरी"
         },
         "charging": {
-          "label": "Charging",
-          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
+          "label": "चार्जिंग",
+          "value": "मानक USB चार्जर, 1.5A या अधिक, Micro-USB केबल शामिल"
         },
         "communication": {
-          "label": "Communication",
+          "label": "संचार",
           "value": "Bluetooth LE, Class 2 v4.2"
         },
         "dataLogging": {
-          "label": "Data Logging",
-          "value": "10 second intervals"
+          "label": "डेटा लॉगिंग",
+          "value": "10 सेकंड के अंतराल"
         }
       },
       "measurement": {
         "temperature": {
-          "label": "Temperature",
-          "value": "-40 to 185°F (-40 to 85°C)"
+          "label": "तापमान",
+          "value": "-40 से 185°F (-40 से 85°C)"
         },
         "rh": {
           "label": "%RH",
-          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
+          "value": "5 से 95% गैर-संघनित @ -40 से 158°F (-40 से 70°C)"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "विभेदक दबाव (निम्न)",
+          "value": "-1 से +1\" WC (-250 से +250 Pascal) @ -4 से 158°F (-20 से 70°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+          "label": "विभेदक दबाव (मानक)",
+          "value": "-5 से +5\" WC (-1,250 से +1,250 Pascal) @ -4 से 158°F (-20 से 70°C)"
         }
       },
       "accuracy": {
         "tempOnly": {
-          "label": "Temperature Only Probes",
-          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+          "label": "केवल तापमान प्रोब",
+          "value": "±0.18°F -13 से 167°F (±0.1°C -25 से 75°C)"
         },
         "tempHumid": {
-          "label": "Temp/Humidity Probes",
-          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+          "label": "तापमान/आर्द्रता प्रोब",
+          "value": "तापमान: ±0.36°F @ 77°F (±0.2°C 25°C पर) | %RH: ±1%RH @ 77°F (25°C) 10 से 85%RH"
         },
         "diffLow": {
-          "label": "Diff. Pressure (Low)",
-          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+          "label": "विभेदक दबाव (निम्न)",
+          "value": "±0.25% FS स्पान का, -1 से +1\" WC (-250 से +250 Pa) @ 77°F (25°C)"
         },
         "diffStd": {
-          "label": "Diff. Pressure (Std)",
-          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
+          "label": "विभेदक दबाव (मानक)",
+          "value": "±0.25% FS स्पान का, -5 से +5\" WC (-1,250 से +1,250 Pa) @ 77°F (25°C)"
         }
       },
       "environmental": {
         "operatingRange": {
-          "label": "Operating Range",
-          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
+          "label": "ऑपरेटिंग रेंज",
+          "value": "बॉडी: -22 से 158°F (-30 से 70°C) | तापमान प्रोब: -40 से 185°F (-40 से 85°C) | %RH प्रोब: 5 से 95% गैर-संघनित @ -40 से 158°F (-40 से 70°C) | दबाव प्रोब: -4 से 158°F (-20 से 70°C)"
         },
         "burstPressure": {
-          "label": "Burst Pressure",
-          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+          "label": "बर्स्ट दबाव",
+          "value": "निम्न रेंज: 415\" WC (103 kPa) | मानक रेंज: 500\" WC (124 kPa)"
         },
         "agencyApprovals": {
-          "label": "Agency Approvals",
+          "label": "एजेंसी अनुमोदन",
           "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
         }
       }
     },
     "cta": {
-      "title": "Ready to Upgrade Your HVAC Testing?",
-      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
-      "contactSales": "Contact Sales",
-      "viewProducts": "View All Probes"
+      "title": "अपने HVAC परीक्षण को अपग्रेड करने के लिए तैयार हैं?",
+      "subtitle": "हमारे परीक्षण और माप विशेषज्ञ आपके अनुप्रयोगों के लिए सही प्रोब चुनने में आपकी मदद करने के लिए तैयार हैं। विशेषज्ञ सलाह और प्रतिस्पर्धी मूल्य प्राप्त करें।",
+      "contactSales": "बिक्री से संपर्क करें",
+      "viewProducts": "सभी प्रोब देखें"
     }
   }
 }

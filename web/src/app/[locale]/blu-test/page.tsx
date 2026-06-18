@@ -128,14 +128,14 @@ export default async function BluTestPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section - Blue gradient with image */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
+      {/* Hero Section - Blue gradient with image bleeding below */}
+      <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav
-            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
+            className="flex items-center gap-2 pt-8 text-sm text-primary-100 md:pt-10"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
@@ -149,9 +149,9 @@ export default async function BluTestPage({ params }: Props) {
             <span className="font-medium text-white">Blu-Test</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
+          <div className="grid lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
             {/* Left Column - Content */}
-            <div>
+            <div className="flex flex-col justify-center py-12 md:py-16 lg:py-20">
               <h1 className="mb-5 text-4xl font-bold leading-tight text-accent-500 lg:text-5xl xl:mb-4 xl:text-6xl">
                 {t('hero.title')}
               </h1>
@@ -169,21 +169,23 @@ export default async function BluTestPage({ params }: Props) {
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {t('hero.secondaryCta')}
                 </Link>
               </div>
             </div>
 
-            {/* Right Column - Hero Image (no white box) */}
-            <div className="relative">
-              <div className="relative h-[400px] lg:h-[500px]">
+            {/* Right Column - Hero Image bleeding below hero */}
+            <div className="relative hidden lg:block">
+              <div className="absolute bottom-[-100px] left-0 right-0 top-4">
                 <Image
                   src="/images/blu-test/hero/2021BluTestAngle_PLAIN (1).png"
-                  alt="Blu-Test Probe"
+                  alt="Blu-Test Probe Collection"
                   fill
-                  className="object-contain"
-                  sizes="(max-width: 1023px) 600px, 700px"
+                  className="object-contain object-bottom"
+                  sizes="700px"
                   priority
                 />
               </div>
@@ -193,7 +195,7 @@ export default async function BluTestPage({ params }: Props) {
       </section>
 
       {/* Key Features - 2 Column Layout with Product Image */}
-      <section className="bg-neutral-100 py-16 lg:py-20">
+      <section className="relative z-10 bg-neutral-100 pb-16 pt-28 lg:pb-20 lg:pt-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Left Column - Feature Cards */}
@@ -232,15 +234,15 @@ export default async function BluTestPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Right Column - Product Image */}
-            <div className="relative">
-              <div className="relative h-[400px] lg:h-[550px]">
+            {/* Right Column - Phone showcasing the app */}
+            <div className="flex items-center justify-center">
+              <div className="relative h-[560px] w-[300px] lg:h-[640px] lg:w-[340px]">
                 <Image
-                  src="/images/blu-test/hero/2021BluTestAngle_PLAIN (1).png"
-                  alt="Blu-Test Probes Collection"
+                  src="/images/blu-test/hero/Hero_mobilePhone.png"
+                  alt="Blu-View App showing live probe data"
                   fill
-                  className="object-contain"
-                  sizes="(max-width: 1023px) 600px, 700px"
+                  className="object-contain mix-blend-multiply"
+                  sizes="340px"
                 />
               </div>
             </div>

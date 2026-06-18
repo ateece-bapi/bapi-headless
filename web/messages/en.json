@@ -4167,69 +4167,71 @@
       "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
     },
     "bluView": {
-      "badge": "Blu-View App",
       "title": "Blü-View App",
-      "subtitle": "Professional test and measurement made simple. Download the free Blu-View app to unlock the full potential of your test probes with precision measurement, data logging, and cloud sync.",
+      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
       "feature1": {
-        "title": "Networked Logs",
-        "description": "Save measurement logs to the cloud. Access from any device, anywhere."
+        "title": "Real-Time Monitoring",
+        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
       },
       "feature2": {
-        "title": "Integrated with Your Workflow",
-        "description": "Export to Excel, PDF, or share directly from the app."
+        "title": "Download Logs",
+        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
       },
       "feature3": {
-        "title": "Offset Calibration",
-        "description": "Field-adjustable offsets to maintain accuracy. Set custom calibration points."
+        "title": "Device Management",
+        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
       },
-      "feature4": {
-        "title": "Easy Pairing",
-        "description": "Bluetooth pairing in seconds. No complex setup or configuration required."
-      },
-      "downloadIOS": "Download on App Store",
-      "downloadAndroid": "Get it on Google Play"
+      "downloadApp": "Download the App",
+      "learnMore": "Learn More"
     },
     "testProbes": {
       "title": "The Blü-Test Suite",
-      "subtitle": "A comprehensive portfolio of probe styles and HVAC measurements. Each probe features wireless Bluetooth connectivity and works seamlessly with the Blu-View mobile app.",
+      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
       "tempProbe95": {
         "name": "9.5\" Temperature Probe",
+        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
         "feature1": "Extended length for deep measurements",
         "feature2": "10K Type II thermistor",
         "feature3": "Rugged stainless steel construction"
       },
       "tempProbe6": {
         "name": "6\" Temperature Probe",
+        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
         "feature1": "Compact design for general use",
         "feature2": "Fast response time",
         "feature3": "10K Type II thermistor"
       },
       "piercingProbe": {
-        "name": "4\" Piercing Probe",
+        "name": "4\" Piercing Temperature Probe",
+        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
         "feature1": "Penetrates insulation and ductwork",
         "feature2": "Sharp tip for easy insertion",
         "feature3": "Ideal for hard-to-reach locations"
       },
       "remoteTemp": {
         "name": "Remote Temperature Probe",
+        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
         "feature1": "Separable probe on cable",
         "feature2": "Flexible positioning",
         "feature3": "Extended reach capability"
       },
       "tempHumid": {
         "name": "8\" Temperature & Humidity Probe",
+        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
         "feature1": "Dual measurement capability",
         "feature2": "Accurate RH sensing",
         "feature3": "Combined temp/humidity readings"
       },
       "standardPress": {
         "name": "Standard Range Pressure Probe",
+        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
         "feature1": "Measures duct and room pressure",
         "feature2": "±1\" WC to ±10\" WC ranges",
         "feature3": "High accuracy differential pressure"
       },
       "lowPress": {
         "name": "Low Range Pressure Probe",
+        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
         "feature1": "Ultra-sensitive pressure measurement",
         "feature2": "±0.1\" WC to ±0.5\" WC ranges",
         "feature3": "Perfect for clean room and lab applications"
@@ -4237,49 +4239,79 @@
     },
     "specifications": {
       "title": "Technical Specifications",
+      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
       "table": {
-        "header1": "Specification",
-        "header2": "Value",
         "general": "General",
         "measurement": "Measurement Range",
+        "accuracy": "Accuracy",
         "environmental": "Environmental & Certifications"
       },
       "general": {
-        "range": {
-          "label": "Temperature Range",
-          "value": "-40°F to 185°F (-40°C to 85°C)"
+        "power": {
+          "label": "Power",
+          "value": "3.7V, 2,600 mAh Rechargeable Battery"
         },
-        "accuracy": {
-          "label": "Accuracy",
-          "value": "±0.2°F (±0.1°C) at 77°F (25°C)"
+        "charging": {
+          "label": "Charging",
+          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
         },
-        "resolution": {
-          "label": "Resolution",
-          "value": "0.1°F (0.1°C)"
+        "communication": {
+          "label": "Communication",
+          "value": "Bluetooth LE, Class 2 v4.2"
+        },
+        "dataLogging": {
+          "label": "Data Logging",
+          "value": "10 second intervals"
         }
       },
       "measurement": {
-        "range": {
-          "label": "Operating Range",
-          "value": "-40°F to 185°F standard, extended range available"
+        "temperature": {
+          "label": "Temperature",
+          "value": "-40 to 185°F (-40 to 85°C)"
         },
-        "accuracy": {
-          "label": "Measurement Accuracy",
-          "value": "±0.2°F across full range with calibration"
+        "rh": {
+          "label": "%RH",
+          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
         },
-        "response": {
-          "label": "Response Time",
-          "value": "Less than 5 seconds in air, 1 second in liquid"
+        "diffLow": {
+          "label": "Diff. Pressure (Low)",
+          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+        },
+        "diffStd": {
+          "label": "Diff. Pressure (Std)",
+          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+        }
+      },
+      "accuracy": {
+        "tempOnly": {
+          "label": "Temperature Only Probes",
+          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+        },
+        "tempHumid": {
+          "label": "Temp/Humidity Probes",
+          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+        },
+        "diffLow": {
+          "label": "Diff. Pressure (Low)",
+          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+        },
+        "diffStd": {
+          "label": "Diff. Pressure (Std)",
+          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
         }
       },
       "environmental": {
-        "certifications": {
-          "label": "Certifications",
-          "value": "ISO 17025 calibrated, NIST traceable"
+        "operatingRange": {
+          "label": "Operating Range",
+          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
         },
-        "warranty": {
-          "label": "Warranty",
-          "value": "Limited lifetime warranty"
+        "burstPressure": {
+          "label": "Burst Pressure",
+          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+        },
+        "agencyApprovals": {
+          "label": "Agency Approvals",
+          "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
         }
       }
     },

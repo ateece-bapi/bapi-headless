@@ -4095,5 +4095,231 @@
     },
     "learnMore": "Learn More",
     "viewAll": "View All Air Quality Products"
+  },
+  "bluTestLandingPage": {
+    "metadata": {
+      "title": "Blu-Test™ Precision HVAC Test & Measurement",
+      "description": "Professional-grade test and measurement probes for HVAC testing. Precision measurement with the Blu-View App for iOS and Android.",
+      "keywords": "HVAC test probes, temperature measurement, Blu-View app, precision probes, test equipment, HVAC testing, building automation testing"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "bluTest": "Blu-Test™"
+    },
+    "hero": {
+      "title": "Precision HVAC Probes You Can Trust.",
+      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
+      "cta": "Explore Probes",
+      "secondaryCta": "Download Blu-View App"
+    },
+    "keyFeatures": {
+      "precision": {
+        "title": "Precision Measurement",
+        "description": "Highly accurate sensors for temperature, humidity, pressure, dew point, and light level measurements. Ideal for HVAC commissioning and verification."
+      },
+      "dataLogging": {
+        "title": "Onboard Data Logging",
+        "description": "Store measurement data directly on the probes with built-in storage. Download logs anytime using the Blü-Test app for comprehensive analysis."
+      },
+      "integration": {
+        "title": "Smart Device Integration",
+        "description": "Connect via Bluetooth to view live data on your smartphone or tablet. The Blü-Test app provides real-time monitoring and easy device management."
+      }
+    },
+    "accuracy": {
+      "title": "Why Accurate Reference Devices Matter",
+      "subtitle": "In commercial HVAC, precision isn't optional—it's essential. Inaccurate measurements lead to misdiagnosed problems, wasted time, and costly callbacks. Blü-Test probes give you confidence in every reading.",
+      "temperature": {
+        "title": "Temperature Accuracy",
+        "description": "±0.18°F accuracy ensures precise system diagnostics and optimal equipment performance. Detect temperature differentials that indicate failing components before they cause system failure."
+      },
+      "humidity": {
+        "title": "Humidity & Dew Point",
+        "description": "±1% RH accuracy prevents condensation issues, mold growth, and comfort complaints. Validate that HVAC systems maintain proper indoor air quality and meet building code requirements."
+      },
+      "pressure": {
+        "title": "Differential Pressure",
+        "description": "±0.25% accuracy reveals duct leakage, filter loading, and airflow restrictions. Optimize system efficiency and identify problems before they impact energy costs or occupant comfort."
+      },
+      "airflow": {
+        "title": "K-Factor Airflow",
+        "description": "Accurate K-Factor measurements enable precise airflow calculations for system balancing, commissioning, and performance verification. Ensure proper ventilation rates and energy efficient operation."
+      },
+      "calibration": {
+        "title": "NIST-Traceable Calibration",
+        "description": "Every probe includes a Certificate of Accuracy traceable to NIST standards. Document compliance for critical facilities, defend your work with certified data, and maintain professional credibility."
+      },
+      "appIntegration": {
+        "title": "Blü-View App Integration",
+        "description": "Check signal strength for all of your sensors to ensure a strong connection. View live readings, log data, generate reports, and compare readings against wireless sensors right from the app."
+      },
+      "baseline": {
+        "title": "The Baseline of Truth",
+        "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
+      }
+    },
+    "bluetooth": {
+      "title": "The Bluetooth of Truth",
+      "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
+      "feature1": "Real-time wireless data transmission to your smartphone or tablet",
+      "feature2": "Automatic timestamp and location logging for complete documentation",
+      "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
+    },
+    "bluView": {
+      "title": "Blü-View App",
+      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
+      "feature1": {
+        "title": "Real-Time Monitoring",
+        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
+      },
+      "feature2": {
+        "title": "Download Logs",
+        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+      },
+      "feature3": {
+        "title": "Device Management",
+        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+      },
+      "downloadApp": "Download the App",
+      "learnMore": "Learn More"
+    },
+    "testProbes": {
+      "title": "The Blü-Test Suite",
+      "subtitle": "A comprehensive family of intelligent, NIST-certified probes. All feature an onboard data logger, a built-in LCD display on the handle, and seamless Bluetooth connectivity.",
+      "tempProbe95": {
+        "name": "9.5\" Temperature Probe",
+        "description": "Extended reach for measuring temperature deep within ducts or large air handlers.",
+        "feature1": "Extended length for deep measurements",
+        "feature2": "10K Type II thermistor",
+        "feature3": "Rugged stainless steel construction"
+      },
+      "tempProbe6": {
+        "name": "6\" Temperature Probe",
+        "description": "Versatile, standard length probe ideal for general purpose HVAC temperature validation.",
+        "feature1": "Compact design for general use",
+        "feature2": "Fast response time",
+        "feature3": "10K Type II thermistor"
+      },
+      "piercingProbe": {
+        "name": "4\" Piercing Temperature Probe",
+        "description": "Rugged piercing tip for penetrating insulation or checking surface temperatures.",
+        "feature1": "Penetrates insulation and ductwork",
+        "feature2": "Sharp tip for easy insertion",
+        "feature3": "Ideal for hard-to-reach locations"
+      },
+      "remoteTemp": {
+        "name": "Remote Temperature Probe",
+        "description": "Flexible wired probe for hard-to-reach areas or continuous monitoring without holding the handle.",
+        "feature1": "Separable probe on cable",
+        "feature2": "Flexible positioning",
+        "feature3": "Extended reach capability"
+      },
+      "tempHumid": {
+        "name": "8\" Temperature & Humidity Probe",
+        "description": "Combined sensor for accurate dry bulb temperature, %RH, and dew point calculations.",
+        "feature1": "Dual measurement capability",
+        "feature2": "Accurate RH sensing",
+        "feature3": "Combined temp/humidity readings"
+      },
+      "standardPress": {
+        "name": "Standard Range Pressure Probe",
+        "description": "Reliable differential pressure measurement (-5 to +5\" WC) for standard commercial HVAC systems.",
+        "feature1": "Measures duct and room pressure",
+        "feature2": "±1\" WC to ±10\" WC ranges",
+        "feature3": "High accuracy differential pressure"
+      },
+      "lowPress": {
+        "name": "Low Range Pressure Probe",
+        "description": "High-precision differential pressure measurement (-1 to +1\" WC) for sensitive cleanrooms or lab environments.",
+        "feature1": "Ultra-sensitive pressure measurement",
+        "feature2": "±0.1\" WC to ±0.5\" WC ranges",
+        "feature3": "Perfect for clean room and lab applications"
+      }
+    },
+    "specifications": {
+      "title": "Technical Specifications",
+      "subtitle": "Engineered for precision and built to withstand rigorous commercial environments.",
+      "table": {
+        "general": "General",
+        "measurement": "Measurement Range",
+        "accuracy": "Accuracy",
+        "environmental": "Environmental & Certifications"
+      },
+      "general": {
+        "power": {
+          "label": "Power",
+          "value": "3.7V, 2,600 mAh Rechargeable Battery"
+        },
+        "charging": {
+          "label": "Charging",
+          "value": "Standard USB Charger, 1.5A or greater, Micro-USB cable included"
+        },
+        "communication": {
+          "label": "Communication",
+          "value": "Bluetooth LE, Class 2 v4.2"
+        },
+        "dataLogging": {
+          "label": "Data Logging",
+          "value": "10 second intervals"
+        }
+      },
+      "measurement": {
+        "temperature": {
+          "label": "Temperature",
+          "value": "-40 to 185°F (-40 to 85°C)"
+        },
+        "rh": {
+          "label": "%RH",
+          "value": "5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C)"
+        },
+        "diffLow": {
+          "label": "Diff. Pressure (Low)",
+          "value": "-1 to +1\" WC (-250 to +250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+        },
+        "diffStd": {
+          "label": "Diff. Pressure (Std)",
+          "value": "-5 to +5\" WC (-1,250 to +1,250 Pascal) @ -4 to 158°F (-20 to 70°C)"
+        }
+      },
+      "accuracy": {
+        "tempOnly": {
+          "label": "Temperature Only Probes",
+          "value": "±0.18°F from -13 to 167°F (±0.1°C from -25 to 75°C)"
+        },
+        "tempHumid": {
+          "label": "Temp/Humidity Probes",
+          "value": "Temp: ±0.36°F @ 77°F (±0.2°C at 25°C) | %RH: ±1%RH @ 77°F (25°C) from 10 to 85%RH"
+        },
+        "diffLow": {
+          "label": "Diff. Pressure (Low)",
+          "value": "±0.25% of FS Span, -1 to +1\" WC (-250 to +250 Pa) @ 77°F (25°C)"
+        },
+        "diffStd": {
+          "label": "Diff. Pressure (Std)",
+          "value": "±0.25% of FS Span, -5 to +5\" WC (-1,250 to +1,250 Pa) @ 77°F (25°C)"
+        }
+      },
+      "environmental": {
+        "operatingRange": {
+          "label": "Operating Range",
+          "value": "Body: -22 to 158°F (-30 to 70°C) | Temp Probes: -40 to 185°F (-40 to 85°C) | %RH Probe: 5 to 95% Non-condensing @ -40 to 158°F (-40 to 70°C) | Pressure Probe: -4 to 158°F (-20 to 70°C)"
+        },
+        "burstPressure": {
+          "label": "Burst Pressure",
+          "value": "Low Range: 415\" WC (103 kPa) | Standard Range: 500\" WC (124 kPa)"
+        },
+        "agencyApprovals": {
+          "label": "Agency Approvals",
+          "value": "CE EN 61326-1:2013 EMC, RoHS, NSF, FCC ID: 2AA9B04"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Upgrade Your HVAC Testing?",
+      "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
+      "contactSales": "Contact Sales",
+      "viewProducts": "View All Probes"
+    }
   }
 }

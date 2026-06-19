@@ -2,9 +2,101 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 15, 2026  
-**Status:** Phase 1 Complete - Live in Production (35 days post-launch)  
+**Updated:** June 19, 2026  
+**Status:** Phase 1 Complete - Live in Production (39 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 19, 2026 — Automated Test Coverage Sprint (P5–P10) 🧪
+
+**Status:** ✅ COMPLETE & MERGED (2 PRs)  
+**Context:** Systematic test gap audit followed by full implementation sprint across API routes, components, middleware, and utility lib. Started from 1,571 passing tests; finished at 1,693.  
+**Priority:** 🔴 HIGH - Test coverage and regression safety for post-launch maintenance  
+**Time:** ~1 full day across 2 sessions  
+**Approach:** Audit untested files → prioritize by risk → branch per batch → address all Copilot PR review feedback before merge
+
+### 🎯 PR #563 — test/quotes-favorites-middleware (P5–P8)
+
+**Branch:** `test/quotes-favorites-middleware` → merged to main
+
+**P5: `/api/quotes` tests (22 tests)**
+- POST/GET auth guard (401), field validation (6 required fields), file persistence with `"status": "pending"`, email dispatch (sales + customer), user isolation, newest-first sort, 500 error handling
+- Established `fs`/`fs/promises` mock pattern with `default:` key for CJS interop
+
+**P6: i18n test fixture cleanup**
+- Added `common` namespace (27 keys) and ~20 missing `productPage.configurator`/`productPage.summary` keys to `web/src/test/i18n-test-utils.tsx`
+- Eliminated all `IntlError: MISSING_MESSAGE` noise from test output
+
+**P7: `/api/favorites` + `FavoriteButton` component (25 + 23 = 48 tests)**
+- Favorites API: GET/POST/DELETE with auth, 409 duplicate detection, per-user isolation, 404 not-found
+- FavoriteButton: optimistic toggle, rollback on failure, redirect to `/{locale}/sign-in` when unauthenticated, `aria-pressed`, size variants, disabled during in-flight request
+
+**P8: `middleware.ts` tests (45 tests)**
+- Auth gating for protected/admin routes with `?redirect=` param
+- Legacy `/categories/*` → `/products/*` 301 redirects
+- Short slug redirects (`temperature` → `temperature-sensors`, etc.)
+- Subcategory slug redirects
+- CDN Cache-Control header application on public routes
+- Added `@root` alias to `vitest.config.ts` and `tsconfig.json` to enable imports of root-level files in `src/` tests
+
+**Bug fixed during P8:** `LOCALE_PRODUCTS_REGEX` and siblings in `middleware.ts` used `(en|de|...|hi/)` where the slash only applied to the last alternative `hi/`. Cache-Control headers were never set on localized routes like `/en/products/...`. Fixed to `^/(?:(?:LOCALE_PATTERN)/)?section(?:/|$)` — also added `(?:/|$)` boundary to prevent false matches on `/products-test`.
+
+**Copilot PR Review — 5 issues, all resolved:**
+- `tsconfig.json`: Added `"@root/*": ["./*"]` path mapping for TS resolution (not just Vitest)
+- `middleware.ts`: Added `(?:/|$)` segment boundary to all 4 CDN cache regexes
+- `FavoriteButton.test.tsx`: Changed `let resolve:` to `let resolve!:` (definite assignment) + resolved with real `new Response(...)` instead of type-cast
+
+---
+
+### 🎯 PR #564 — test/api-routes-cart-chat (cart, chat, detect-region, posts)
+
+**Branch:** `test/api-routes-cart-chat` → merged to main
+
+**Cart API (29 tests — `GET /api/cart`, `POST /api/cart/add`, `DELETE /api/cart/remove`, `PATCH /api/cart/update`, `DELETE /api/cart/clear`)**
+- Session cookie variants (`woo-session` vs `woocommerce-session`)
+- Zod validation, 401 guards, `quantity: 0` allowed (removes item)
+- `woo-cart-key` cookie set only when `cartItem.key` returned
+- CartService mock pattern established for future cart tests
+
+**Chat API (30 tests)**
+- `/api/chat/feedback`: 400 missing fields, 400 invalid value enum, 200 with/without comment, 500
+- `/api/chat/analytics`: 401/403 admin guards, `metrics`/`recent`/`negative-feedback` views, 400 invalid view, custom limit param
+- `/api/chat/handoff`: POST validation + email regex, file persistence with `status: "pending"`, dir creation, email notification; GET admin guards, newest-first sort
+  - Key learning: route uses `import { promises as fs } from 'fs'` so the mock must target `fs.promises` on the `'fs'` module, not `'fs/promises'`
+
+**Detect-Region (11 tests)**
+- All region/language mappings: US→us/en, DE→eu/de, FR→eu/fr, GB→uk/en, AE→mena/ar, PL→pl/pl
+- Unknown country falls back to us/en (with original country code preserved)
+- City from `x-vercel-ip-city` header, timestamp in response
+
+**Posts (7 tests)**
+- Default perPage=12, custom, cursor pagination, clamp to 100
+- Documented: `perPage: 0` is treated as 12 (not 1) because `Number(0) || 12` evaluates 0 as falsy — test reflects actual behavior
+
+**Copilot PR Review — 2 issues, both resolved:**
+- `chat-handoff.test.ts`: Swapped `it.each` tuple to `[field, body]` order so `%s` in test title shows field name (`name`/`email`/`topic`/`message`) instead of serialized body object
+- `detect-region.test.ts`: Corrected header comment — `detected: false` is only returned from the error catch path, not from normal unknown/missing country fallback
+
+### 📊 IMPACT
+
+**Test Count:**
+- Before: 1,571 tests (57 files)
+- After: 1,693 tests (64 files)
+- New tests: +122 across 11 new files
+
+**Coverage Added:**
+- All 5 cart API routes (previously zero coverage)
+- All 4 chat sub-routes (previously zero coverage)
+- `/api/detect-region`, `/api/posts` (previously zero coverage)
+- `middleware.ts` auth gating + redirect + cache logic (previously zero coverage)
+- Favorites API + FavoriteButton component
+- Quotes API
+
+**Infrastructure improvements:**
+- `@root` Vitest + TypeScript alias for testing files outside `src/`
+- `fs.promises` CJS mock pattern documented for future file-persistence routes
+- `i18n-test-utils.tsx` fixture now covers all active translation namespaces
 
 ---
 

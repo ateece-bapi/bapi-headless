@@ -101,11 +101,11 @@ describe('POST /api/chat/handoff', () => {
   });
 
   it.each([
-    [{ ...VALID_BODY, name: undefined }, 'name'],
-    [{ ...VALID_BODY, email: undefined }, 'email'],
-    [{ ...VALID_BODY, topic: undefined }, 'topic'],
-    [{ ...VALID_BODY, message: undefined }, 'message'],
-  ] as const)('returns 400 when %s field is missing', async (body) => {
+    ['name', { ...VALID_BODY, name: undefined }],
+    ['email', { ...VALID_BODY, email: undefined }],
+    ['topic', { ...VALID_BODY, topic: undefined }],
+    ['message', { ...VALID_BODY, message: undefined }],
+  ] as const)('returns 400 when %s field is missing', async (_field, body) => {
     const req = makePost(body);
     const res = await POST(req);
     expect(res.status).toBe(400);

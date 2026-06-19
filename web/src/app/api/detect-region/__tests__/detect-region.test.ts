@@ -8,7 +8,8 @@
  * - Includes city from x-vercel-ip-city header
  * - Maps EU countries to 'eu' region
  * - Maps language-specific countries (DE→de, FR→fr, AR→ar, PL→pl)
- * - Returns detected: true on success, detected: false on fallback
+ * - Returns detected: true on success (even for unknown/missing country fallback)
+ * - Returns detected: false only in the catch/error path
  */
 
 import { describe, it, expect, vi } from 'vitest';

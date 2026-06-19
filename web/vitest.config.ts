@@ -6,6 +6,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      // Allow tests in src/ to import root-level files (e.g. middleware.ts)
+      '@root': path.resolve(__dirname),
     },
   },
   test: {

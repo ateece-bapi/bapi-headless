@@ -23,10 +23,10 @@ const LOCALE_HOMEPAGE_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/?$`);
 // Created once at startup (not on every request) for performance
 // Pattern: ^/(?:(?:locale)/)?section — uses non-capturing outer group + inner alternation
 // so the trailing slash is required after any locale, matching /en/products/... and /products/...
-const LOCALE_PRODUCTS_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?products`);
-const LOCALE_COMPANY_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?company`);
-const LOCALE_SUPPORT_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?support`);
-const LOCALE_RESOURCES_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?resources`);
+const LOCALE_PRODUCTS_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?products(?:/|$)`);
+const LOCALE_COMPANY_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?company(?:/|$)`);
+const LOCALE_SUPPORT_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?support(?:/|$)`);
+const LOCALE_RESOURCES_REGEX = new RegExp(`^/(?:(?:${LOCALE_PATTERN})/)?resources(?:/|$)`);
 
 // Protected routes that require authentication
 const protectedRoutes = [

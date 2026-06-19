@@ -340,7 +340,8 @@ describe('FavoriteButton', () => {
   it('is disabled while loading (click in flight)', async () => {
     mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
     // Never resolves so we can inspect mid-flight state
-    let resolve: (v: Response) => void;
+    // eslint-disable-next-line prefer-const
+    let resolve!: (v: Response) => void;
     const pending = new Promise<Response>((res) => { resolve = res; });
     mockFetch
       .mockReturnValueOnce(mockFetchResponse({ favorites: [] }))
@@ -353,8 +354,8 @@ describe('FavoriteButton', () => {
     // Immediately after click, button should be disabled
     expect(screen.getByRole('button')).toBeDisabled();
 
-    // Cleanup
-    resolve!(mockFetchResponse({ success: true, favorite: {} }) as unknown as Response);
+    // Cleanup: resolve with a proper Response so the in-flight POST settles
+    resolve(new Response(JSON.stringify({ success: true, favorite: {} }), { status: 200 }));
   });
 
   // ── Size prop ──────────────────────────────────────────────────────────────

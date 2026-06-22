@@ -35,10 +35,12 @@ function makeJsonResponse(body: unknown, status = 200): Response {
 // ─── Setup ───────────────────────────────────────────────────────────────────
 
 let fetchSpy: ReturnType<typeof vi.spyOn<typeof globalThis, 'fetch'>>;
+let locationDescriptor: PropertyDescriptor | undefined;
 
 beforeEach(() => {
   vi.clearAllMocks();
   fetchSpy = vi.spyOn(global, 'fetch');
+  locationDescriptor = Object.getOwnPropertyDescriptor(window, 'location');
   Object.defineProperty(window, 'location', {
     configurable: true,
     writable: true,
@@ -48,6 +50,9 @@ beforeEach(() => {
 
 afterEach(() => {
   fetchSpy.mockRestore();
+  if (locationDescriptor) {
+    Object.defineProperty(window, 'location', locationDescriptor);
+  }
 });
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────

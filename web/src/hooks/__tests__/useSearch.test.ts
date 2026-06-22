@@ -11,11 +11,11 @@
  * - Successful search → results populated
  * - API error → results cleared
  * - Network error → results cleared
- * - AbortController: rapid typing cancels previous request
+ * - AbortController: rapid typing aborts in-flight request
+ * - Unmount: aborts any pending in-flight request
  * - handleSelect → navigates to /product/{slug}, clears state
  * - handleViewAll → navigates to /search?q=..., clears state
  * - clear() → resets all state
- * - Cleanup on unmount: aborts pending requests
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -56,6 +56,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  vi.clearAllTimers();
   fetchSpy.mockRestore();
   vi.useRealTimers();
 });
@@ -253,5 +254,50 @@ describe('useSearch – clear', () => {
     expect(result.current.results).toEqual([]);
     expect(result.current.isOpen).toBe(false);
     expect(result.current.isLoading).toBe(false);
+  });
+});
+
+describe('useSearch – AbortController', () => {
+  it('aborts in-flight request when a new search fires', async () => {
+    let firstSignal!: AbortSignal;
+    fetchSpy.mockImplementation((_url, init) => {
+      if (!firstSignal) {
+        firstSignal = (init as RequestInit).signal as AbortSignal;
+        // Keep first request hanging so it stays in-flight
+        return new Promise<Response>(() => {});
+      }
+      return Promise.resolve(makeSearchResponse(MOCK_PRODUCTS));
+    });
+
+    const { result } = renderHook(() => useSearch({ debounceMs: 100 }));
+
+    // First search fires
+    act(() => { result.current.handleQueryChange('se'); });
+    await act(() => vi.advanceTimersByTimeAsync(150));
+    expect(firstSignal.aborted).toBe(false);
+
+    // Second search fires → first should be aborted
+    act(() => { result.current.handleQueryChange('sensor'); });
+    await act(() => vi.advanceTimersByTimeAsync(150));
+    expect(firstSignal.aborted).toBe(true);
+  });
+});
+
+describe('useSearch – unmount cleanup', () => {
+  it('aborts pending in-flight request on unmount', async () => {
+    let capturedSignal!: AbortSignal;
+    fetchSpy.mockImplementation((_url, init) => {
+      capturedSignal = (init as RequestInit).signal as AbortSignal;
+      return new Promise<Response>(() => {}); // never resolves
+    });
+
+    const { result, unmount } = renderHook(() => useSearch({ debounceMs: 100 }));
+
+    act(() => { result.current.handleQueryChange('sensor'); });
+    await act(() => vi.advanceTimersByTimeAsync(150));
+    expect(capturedSignal.aborted).toBe(false);
+
+    unmount();
+    expect(capturedSignal.aborted).toBe(true);
   });
 });

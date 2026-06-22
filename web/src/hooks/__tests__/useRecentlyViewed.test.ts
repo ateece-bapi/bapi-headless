@@ -6,7 +6,7 @@
  * Covers:
  * - Initializes empty when localStorage is empty
  * - Loads existing items from localStorage on mount
- * - addToRecentlyViewed: appends, deduplicates (moves to front), enforces max 5
+ * - addToRecentlyViewed: prepends to front, deduplicates (moves to front), enforces max 5
  * - clearRecentlyViewed: resets to []
  * - Syncs to localStorage on change
  * - Handles corrupt localStorage gracefully (clears bad data)

@@ -2,9 +2,130 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 19, 2026  
-**Status:** Phase 1 Complete - Live in Production (39 days post-launch)  
+**Updated:** June 22, 2026  
+**Status:** Phase 1 Complete - Live in Production (42 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 22, 2026 — Automated Test Coverage Sprint (Hooks + Lib Utils) 🧪
+
+**Status:** ✅ COMPLETE & MERGED (2 PRs: #565, #566)  
+**Context:** Continued systematic test coverage work started June 19. Added hook tests (PR #565) and Tier 1 lib utility tests (PR #566). Each PR addressed all Copilot review feedback before merge.  
+**Priority:** 🔴 HIGH - Test coverage and regression safety  
+**Time:** ~1 day across 2 sessions  
+**Approach:** Audit untested hooks and lib files → prioritize by risk/complexity → branch per batch → address all Copilot PR review feedback before merge
+
+---
+
+### 🎯 PR #565 — test/hooks (useAuth, useSearch, useRecentlyViewed, useProductComparison, useUserProfile)
+
+**Branch:** `test/hooks` → merged to main
+
+**useAuth (15 tests)**
+- `useAuth()` hook: initial loading state, 200 response → user + isSignedIn, 401/403 → isSignedIn false, network error graceful fallback, no state update after unmount
+- `signIn()`: success, request body passthrough, server error message, fallback error, network failure, window.location.reload called on success
+- `signOut()`: POSTs to /api/auth/logout, sets window.location.href to `/`
+- Key pattern: `vi.spyOn(global, 'fetch')` used instead of MSW because Node.js `fetch()` with a relative URL (e.g. `/api/auth/me`) throws `TypeError: Invalid URL` before MSW can intercept. Spy intercepts at the JS call level before URL parsing.
+
+**useSearch (18 tests)**
+- Initial state, minChars guard (no fetch below threshold, results cleared), debounce timing (no fetch before delay, fires after, resets on rapid typing), fetch success/error/network, request body passthrough, API error → cleared, handleSelect navigation, handleViewAll (encodes query, no-op below minChars), clear() reset
+- AbortController: rapid typing aborts the in-flight request (captures signal from first fetch, verifies `.aborted` after second fires)
+- Unmount cleanup: signal is aborted when hook unmounts with pending request
+- Mocks `@/lib/navigation` (`useRouter`) to capture `router.push` calls
+- `vi.useFakeTimers()` + `vi.advanceTimersByTimeAsync()` for debounce control
+
+**useRecentlyViewed (11 tests)**
+- Init empty / from localStorage / corrupt JSON (graceful, no throw), addToRecentlyViewed (prepends to front, deduplicates by moving to front, enforces max 5 FIFO), clearRecentlyViewed, localStorage sync after add/remove/clear
+
+**useProductComparison (17 tests)**
+- Init empty / from localStorage / corrupt JSON, add (normal, no-op duplicate, no-op at max 3), remove, clear, isInComparison, canAddMore, localStorage persistence after all mutations
+
+**useUserProfile (6 tests)**
+- Not loaded, signed out, mock data enabled + found (isMockData true), mock data enabled + not found (falls through to real path), mock data disabled (getMockUserData never called)
+- Mocks `@/hooks/useAuth` and `@/lib/mock-user-data`
+
+**Copilot PR Review — 4 issues, all resolved:**
+- `useSearch`: Added `vi.clearAllTimers()` before `vi.useRealTimers()` in `afterEach` to prevent pending timers leaking into subsequent tests
+- `useSearch`: Added actual AbortController + unmount cleanup tests (header claimed coverage that didn't exist)
+- `useAuth`: Save + restore `window.location` `PropertyDescriptor` in `afterEach` to avoid polluting other test files in shared worker scope
+- `useRecentlyViewed`: Fixed header comment `"appends"` → `"prepends"` to match `[product, ...filtered]` implementation
+
+---
+
+### 🎯 PR #566 — test/lib-utils (sanitize, sanitizeDescription, auth/roles, categoryTranslations)
+
+**Branch:** `test/lib-utils` → merged to main
+
+**auth/roles.ts (54 tests)**
+- `isAdmin`: administrator ✓, shop_manager ✓, customer/subscriber/editor ✗, no roles/null/undefined ✗, multi-role with admin ✓
+- `isCustomer`, `hasRole` (match, no-match, empty list, null/undefined, no-roles property)
+- `isAuthenticated` (any role → true, empty/null → false)
+- `getPrimaryRole` (single, multi, empty, null/undefined → null)
+- `hasPermission` × 4 permissions (`view_admin`, `manage_orders`, `manage_products`, `view_analytics`) × administrator/shop_manager ✓ vs customer/subscriber ✗ + null/no-roles ✗
+
+**sanitize.ts (29 tests)**
+- `sanitizeWordPressContent`: null/undefined/empty → `''`, class/style/id removal, bare presentational attrs (width, align), img max-width injection, img src/alt preservation, structure preservation (p, h2, ul/li, plain text)
+- `stripHtml`: null/undefined/empty → `''`, single/multiple/nested/self-closing/attributed tags, img (empty output), text between tags, plain text unchanged, HTML entities preserved, malformed/unterminated tags don't throw
+
+**sanitizeDescription.ts (48 tests)**
+- XSS event handlers: onclick, onerror, onload, onmouseover, single-quoted, unquoted, and multiple handlers on same element — all stripped, valid tag attributes preserved
+- Dangerous tags: script (content removed), style, iframe, video-container div
+- URL validation on links: http/https/relative/fragment/mailto/tel → allowed; `javascript:`, `data:`, `vbscript:` → stripped (content kept as plain text)
+- Encoded bypass prevention: HTML entity (`&#106;avascript:`) and percent-encoded (`%6a%61vascript:`) schemes both blocked
+- URL validation on images: valid https preserved, `javascript:`/`data:` src → img removed entirely
+- Attribute stripping: style, class (non-iframe), data-*, color, face, wp- id prefixes
+- Bullet → list transformation: •, ● characters in `<p>` → `<ul><li>`, regular paragraphs unchanged
+- CTA class injection: "Learn More"/"Download" links get `class="cta-button"`, image-wrapping links get `target="_blank"`, regular links unchanged
+- Empty `<p>` removal, structure preservation (h2, strong/em, ol)
+- `sanitizeDescription` alias: asserts `sanitizeDescription === sanitizeWordPressContent` (function identity)
+
+**categoryTranslations.ts (27 tests)**
+- `getCategoryTranslationKey`: all 8 main categories exact match, lowercase variants, case-insensitive (UPPER), unknown → null, empty → null, all map values are camelCase strings
+- `getSubcategoryTranslationKey`: Room/Non-Room/Bluetooth/WAM exact + lowercase + case-insensitive
+- `hasCategoryTranslation`/`hasSubcategoryTranslation`: known/lowercase/mixed-case → true, unknown/empty → false
+- `getSupportedCategoryNames`/`getSupportedSubcategoryNames`: returns array, contains all expected names, length matches map key count
+
+**Copilot PR Review — 4 issues, all resolved:**
+- `roles.test.ts`: Fixed import path `../../auth/roles` → `../roles` (convention match)
+- `sanitizeDescription.ts` (production code): Added `decodeURIComponent()` to `normalizeUrlForValidation()` — this was a **real security gap**: `%6a%61vascript:alert(1)` was treated as a relative URL and would have passed through. Fixed + regression test added.
+- `sanitizeDescription.test.ts`: Changed alias test from output equality to `toBe(sanitizeWordPressContent)` (function identity assertion)
+- `sanitize.test.ts`: Replaced incorrect malformed-tag assertion with a `not.toThrow()` test + comment documenting actual `<[^>]*>` behavior
+
+---
+
+### 📊 IMPACT
+
+**Test Count:**
+- Before (June 19 end): 1,693 tests (64 files)
+- After PR #565 (hooks): 1,760 tests (69 files) — +67 tests
+- After PR #566 (lib utils): 1,918 tests (72 files) — +158 tests (includes security fix in sanitizeDescription.ts)
+- **Net today: +225 tests, +8 files**
+
+**Coverage Added:**
+- All 5 client-side hooks (`useAuth`, `useSearch`, `useRecentlyViewed`, `useProductComparison`, `useUserProfile`)
+- WordPress HTML sanitizers (`sanitize.ts`, `sanitizeDescription.ts`) — security-critical
+- RBAC authorization helpers (`auth/roles.ts`) — authorization-critical
+- i18n category/subcategory translation mapping
+
+**Security fix (PR #566):**
+- `sanitizeDescription.ts` `normalizeUrlForValidation()` now calls `decodeURIComponent()` before scheme validation — previously a percent-encoded `javascript:` bypass (`%6a%61vascript:`) would pass through as a relative URL
+
+**Key patterns established:**
+- `vi.spyOn(global, 'fetch')` pattern for hooks that call relative URLs (bypasses Node.js URL parsing before MSW intercepts)
+- `vi.useFakeTimers()` + `vi.clearAllTimers()` + `vi.useRealTimers()` lifecycle for debounce-heavy hooks
+- `window.location` `PropertyDescriptor` save/restore pattern for auth tests that stub `reload`/`href`
+
+---
+
+### 🔜 NEXT: Tier 2 Testing
+
+| Target | Type | Est. Tests |
+|--------|------|-----------|
+| `lib/utils/readTime.ts` | Pure functions (calculateReadTime, formatReadTime, getCategoryColor) | ~20 |
+| `lib/utils/regionLanguageMapping.ts` | Pure lookup functions | ~10 |
+| `lib/utils/image.ts` | Pure URL/dimension helpers | ~25 |
+| `app/api/cart/add,remove,update,clear` | Route handler tests (mock CartService) | ~48 |
 
 ---
 

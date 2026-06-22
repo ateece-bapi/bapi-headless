@@ -13,7 +13,8 @@
  *
  * - stripHtml: null/undefined/empty → ''
  * - Strips all tags, preserves text content
- * - Handles nested tags, self-closing tags, malformed tags
+ * - Handles nested tags, self-closing tags, tags with attributes
+ * - Handles malformed/unterminated tags
  */
 
 import { describe, it, expect } from 'vitest';
@@ -177,6 +178,13 @@ describe('stripHtml', () => {
 
     it('preserves HTML entities in text', () => {
       expect(stripHtml('<p>&amp; &lt; &gt;</p>')).toBe('&amp; &lt; &gt;');
+    });
+
+    it('handles malformed/unterminated tags without throwing', () => {
+      // Closed tag is stripped; unterminated tag (no closing >) is left as-is
+      // because the regex <[^>]*> only matches complete <...> pairs
+      expect(stripHtml('<p>text</p>')).toBe('text');
+      expect(() => stripHtml('before<b after')).not.toThrow();
     });
   });
 });

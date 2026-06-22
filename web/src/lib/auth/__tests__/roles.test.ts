@@ -21,7 +21,7 @@ import {
   getPrimaryRole,
   hasPermission,
   type User,
-} from '../../auth/roles';
+} from '../roles';
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
 

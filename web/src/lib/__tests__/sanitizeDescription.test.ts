@@ -7,7 +7,7 @@
  * SECURITY focus:
  * - Event handlers (onclick, onerror, etc.) must be stripped
  * - javascript: / data: / vbscript: URLs must be blocked
- * - Encoded scheme bypasses (javascript&#58;, %6a%61...) must be blocked
+ * - Encoded scheme bypasses (javascript&#58;, %6a%61vascript:) must be blocked
  * - script/style/iframe tags must be removed
  *
  * Content transformation:
@@ -160,6 +160,12 @@ describe('sanitizeWordPressContent – XSS: URL validation on links', () => {
 
   it('blocks encoded javascript: bypass (&#106;avascript:)', () => {
     const result = sanitizeWordPressContent('<a href="&#106;avascript:alert(1)">x</a>');
+    expect(result).not.toContain('javascript:');
+    expect(result).not.toContain('alert');
+  });
+
+  it('blocks percent-encoded javascript: bypass (%6a%61vascript:)', () => {
+    const result = sanitizeWordPressContent('<a href="%6a%61vascript:alert(1)">x</a>');
     expect(result).not.toContain('javascript:');
     expect(result).not.toContain('alert');
   });
@@ -318,8 +324,7 @@ describe('sanitizeWordPressContent – structure preservation', () => {
 // ─── sanitizeDescription alias ────────────────────────────────────────────────
 
 describe('sanitizeDescription (alias)', () => {
-  it('is the same function as sanitizeWordPressContent', () => {
-    const input = '<p style="color:red">Hello<script>bad()</script></p>';
-    expect(sanitizeDescription(input)).toBe(sanitizeWordPressContent(input));
+  it('is the exact same function reference as sanitizeWordPressContent', () => {
+    expect(sanitizeDescription).toBe(sanitizeWordPressContent);
   });
 });

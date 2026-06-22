@@ -46,10 +46,18 @@ function decodeHtmlEntities(value: string): string {
  * Normalize URL input to match how browsers interpret obfuscated schemes.
  * - trims outer whitespace
  * - decodes HTML entities
+ * - percent-decodes sequences (e.g. %6a%61 → ja) so encoded schemes are caught
  * - strips ASCII control chars and whitespace
  */
 function normalizeUrlForValidation(url: string): string {
-  return decodeHtmlEntities(url.trim())
+  let decoded = decodeHtmlEntities(url.trim());
+  // Percent-decode to catch bypasses like %6a%61vascript:
+  try {
+    decoded = decodeURIComponent(decoded);
+  } catch {
+    // Invalid percent-encoding — keep as-is
+  }
+  return decoded
     .replace(/[\u0000-\u001F\u007F\s]+/g, '')
     .toLowerCase();
 }

@@ -1,0 +1,31 @@
+ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Tax status,In stock?,Stock,Backorders allowed?,Sold individually?,Regular price,Categories,Tags,Shipping class,Images,Download limit,Download expiry days,Parent,Grouped products,Upsells,Cross-sells,External URL,Button text,Position
+,simple,BA/BP185X285,Backplate 18.5x28.5in,1,0,visible,,,taxable,1,,,0,465,ETA,,,,,,,,,,0
+,simple,BA/BP6X185,Backplate 6x18.5in,1,0,visible,,,taxable,1,,,0,370,ETA,,,,,,,,,,0
+,simple,BA/BLR,Link Router Bracket,1,0,visible,,,taxable,1,,,0,65,ETA,,,,,,,,,,0
+,simple,BA/CMBP,Controller Mounting Bracket,1,0,visible,,,taxable,1,,,0,60,ETA,,,,,,,,,,0
+,simple,BA/CMBP2,Controller Mounting Bracket CMBP2,1,0,visible,,,taxable,1,,,0,250,ETA,,,,,,,,,,0
+,simple,BA/TRK06,TRK 6",1,0,visible,,,taxable,1,,,0,18,ETA,,,,,,,,,,0
+,simple,BA/PS17,PS17 Board,1,0,visible,,,taxable,1,,,0,620,ETA,,,,,,,,,,0
+,simple,BA/PS17CB,PS17CB,1,0,visible,,,taxable,1,,,0,725,ETA,,,,,,,,,,0
+,simple,BA/PS19RF,PS19RF,1,0,visible,,,taxable,1,,,0,385,ETA,,,,,,,,,,0
+,simple,BA/PWR-CORD-36",Cord Power 36",1,0,visible,,,taxable,1,,,0,40,ETA,,,,,,,,,,0
+,simple,BA/PDM-3-B,PDM 3 Circuit/Breaker,1,0,visible,,,taxable,1,,,0,450,ETA,,,,,,,,,,0
+,simple,BA/PDM-3-F,PDM 3 Circuit/Fuse,1,0,visible,,,taxable,1,,,0,290,ETA,,,,,,,,,,0
+,simple,BA/PDM-5-B,PDM 5 Circuit/Breaker,1,0,visible,,,taxable,1,,,0,650,ETA,,,,,,,,,,0
+,simple,BA/PDM-5-F,PDM 5 Circuit/Fuse,1,0,visible,,,taxable,1,,,0,390,ETA,,,,,,,,,,0
+,simple,BA/LVTM,LVTM - Line Voltage Transformer Module,1,0,visible,,,taxable,1,,,0,330,ETA,,,,,,,,,,0
+,simple,BA/LVTM-TB,LVTM-TB,1,0,visible,,,taxable,1,,,0,180,ETA,,,,,,,,,,0
+,simple,BA/TB4,TB4,1,0,visible,,,taxable,1,,,0,160,ETA,,,,,,,,,,0
+,simple,BA/TS24,TS24 24VAC Transient Suppressor,1,0,visible,,,taxable,1,,,0,25,ETA,,,,,,,,,,0
+,simple,BA/TUCOM2,TUCOM2,1,0,visible,,,taxable,1,,,0,52,ETA,,,,,,,,,,0
+,simple,BA/TB18-TRK,TB18-TRK TB18 W/ 2in. Snap Track,1,0,visible,,,taxable,1,,,0,105,ETA,,,,,,,,,,0
+,simple,BA/TB18C2-TRK,TB18-C2-TRK,1,0,visible,,,taxable,1,,,0,150,ETA,,,,,,,,,,0
+,simple,BA/TB18R,TB18R,1,0,visible,,,taxable,1,,,0,100,ETA,,,,,,,,,,0
+,simple,BA/BPCX,BPCX,1,0,visible,,,taxable,1,,,0,60,ETA,,,,,,,,,,0
+,simple,BA/DS5R,DS5R,1,0,visible,,,taxable,1,,,0,200,ETA,,,,,,,,,,0
+,simple,OUT64A,OUT64A ALC ETA,1,0,visible,,,taxable,1,,,0,155,ETA,,,,,,,,,,0
+,simple,ACC-RLY-S4QR,SQ4-R Sequencer Rotating iWorx,1,0,visible,,,taxable,1,,,0,330,ETA,,,,,,,,,,0
+,simple,BA/COMBLK-TRK,Communication Block W/ 4in. Snap Track,1,0,visible,,,taxable,1,,,0,105,ETA,,,,,,,,,,0
+,simple,BA/BP2-TRK,BP2-TRK,1,0,visible,,,taxable,1,,,0,60,ETA,,,,,,,,,,0
+,simple,BA/BP4-TRK,BP4-TRK BP4 W/ 4in. Snap Track,1,0,visible,,,taxable,1,,,0,75,ETA,,,,,,,,,,0
+,simple,BA/BP8-TRK,BP8-TRK BP8 W/ 8in. Snap Track,1,0,visible,,,taxable,1,,,0,110,ETA,,,,,,,,,,0

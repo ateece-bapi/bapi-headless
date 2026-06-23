@@ -2,9 +2,76 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 22, 2026  
+**Updated:** June 23, 2026  
 **Status:** Phase 1 Complete - Live in Production (42 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 23, 2026 — ETA Line Price Update + Datasheet Upload (Legacy Site) 🏭
+
+**Status:** ✅ COMPLETE — Live on www.bapihvac.com  
+**Context:** Bulk price update and revised datasheet upload for the ETA product line on the legacy WordPress/WooCommerce site (bapihvac.com). All work done via WP-CLI over SSH — no manual WP-Admin editing required.  
+**Priority:** 🔴 HIGH — Customer-facing pricing and document accuracy  
+**Time:** ~1 day  
+**Servers:** prod-2025.bapihvac.com (104.248.14.80) | stage-2025.bapihvac.com (138.197.74.68) | SpinupWP managed
+
+---
+
+### 🎯 Price Update — 73 Products Updated
+
+**Script:** `scripts/update-eta-prices-legacy.sh`  
+**Source:** Internal price update PDF (ETA line — updated list prices)  
+**Approach:** SKU-based lookup via `wp db query` SQL (more reliable than `wp post list --meta_value` for SKUs containing `/`)
+
+**Results:**
+- ✅ 73 products updated (`_regular_price` + `_price` meta)
+- ⚠️ 26 SKUs not found in WooCommerce DB (never migrated from legacy system)
+- 🔁 Tested on staging first (138.197.74.68) before production run
+
+**Key fixes during development:**
+- WP-CLI `--path=~/files` failed due to SpinupWP global config expanding paths; used absolute paths
+- `wp post list --meta_value` unreliable with `/` in SKU values → switched to `wp db query` SQL
+- `BA/SRBPTRK` in PDF stored as `BA/SRBP-TRK` in DB — fixed in script
+- Production WP path: `/sites/www.bapihvac.com/files` | Staging: `/sites/stage.bapihvac.com/files`
+
+**26 SKUs missing from WooCommerce** (never migrated — confirmed via SQL, not drafts):  
+`BA/BP185X285`, `BA/BP6X185`, `BA/BLR`, `BA/CMBP`, `BA/CMBP2`, `BA/TRK06`, `BA/PS17`, `BA/PS17CB`, `BA/PS19RF`, `BA/PWR-CORD-36"`, `BA/PDM-3-B/F`, `BA/PDM-5-B/F`, `BA/LVTM`, `BA/LVTM-TB`, `BA/TB4`, `BA/TS24`, `BA/TUCOM2`, `BA/TB18-TRK`, `BA/TB18C2-TRK`, `BA/TB18R`, `BA/BPCX`, `BA/DS5R`, `OUT64A`, `ACC-RLY-S4QR`  
+→ CSV import file generated: `scripts/eta-missing-products-import.csv` (30 products ready to import via WooCommerce Products → Import)
+
+---
+
+### 🎯 Datasheet Upload — 35 PDFs Attached to ~70+ Products
+
+**Script:** `scripts/attach-eta-datasheets.sh`  
+**Source:** 36 PDF files (ETA revised datasheets) uploaded via SCP from `C:\Users\andrewteece\Documents\Datasheets\`  
+**Storage:** ACF `product_documents` repeater field (heading: "Datasheet for Submittal")  
+**Upload path:** `~/eta-datasheets/` on server → `wp media import` → ACF meta update
+
+**ACF repeater structure:**
+```
+product_documents = N
+product_documents_{n}_document_heading = "Datasheet for Submittal"
+product_documents_{n}_document_file_repeater = 1
+product_documents_{n}_document_file_repeater_0_document_file = {attachment_id}
+```
+
+**Results:**
+- ✅ 53 datasheets newly attached
+- ✅ 14 already present (correctly skipped — no duplicates created)
+- ⚠️ 27 WARNs — same missing SKUs as price update
+
+**Post-run fixes:**
+- PDFs were **revised versions** of existing datasheets — 14 SKIP products had old file content at same path → ran `cp ~/eta-datasheets/*.pdf /sites/www.bapihvac.com/files/wp-content/uploads/` to overwrite in place
+- 4 products got duplicate rows (`BA/3324VC`, `BA/TUCOM`, `BA/COMSRG`, `BA/MXV`) — removed extra rows via `wp post meta update`
+- Several products are **variable products** — `product_documents` live on parent post, not variation SKU posts (e.g. FOX parent = post 50128, variations 139218/139219)
+- SpinupWP **Purge Page Cache** cleared nginx cache; Cloudflare CDN purge needed separately for PDF files via dash.cloudflare.com → Custom Purge
+
+**Key learnings:**
+- `wp media import` reuses existing attachment if same filename already in DB (returns old ID without re-importing)
+- To update file content in place: `cp new.pdf /wp-content/uploads/new.pdf` — keeps attachment ID, URL, and all ACF references intact
+- WP-Admin file size shown for attachments comes from `_wp_attachment_metadata` (DB) — stale after `cp` overwrite but doesn't affect actual downloads
+- Variable products store shared documents on parent post, not on variation posts — SKU lookup hits variation, must find parent via `post_parent`
 
 ---
 

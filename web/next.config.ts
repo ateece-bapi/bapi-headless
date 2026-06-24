@@ -220,6 +220,13 @@ const nextConfig: NextConfig = {
         destination: '/en/company/news/:slug+',  // ✅ PRESERVE THE SLUG
         permanent: true,
       },
+      // QR code compatibility - legacy product URLs without locale prefix
+      // Required for printed QR codes (e.g., Current Switch) that link to /product/:slug
+      {
+        source: '/product/:slug',
+        destination: '/en/product/:slug',
+        permanent: true,
+      },
     ];
   },
   

@@ -223,8 +223,8 @@ const nextConfig: NextConfig = {
       // QR code compatibility - legacy product URLs without locale prefix
       // Required for printed QR codes (e.g., Current Switch) that link to /product/:slug
       {
-        source: '/product/:slug+',
-        destination: '/en/product/:slug+',
+        source: '/product/:slug',
+        destination: '/en/product/:slug',
         permanent: true,
       },
     ];

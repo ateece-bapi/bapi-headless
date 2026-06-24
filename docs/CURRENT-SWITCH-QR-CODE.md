@@ -36,7 +36,7 @@ The QR code URL (`/product/current-switch/`) **will continue to work** after the
 The headless site uses `localePrefix: 'always'`, meaning all product pages are served at `/en/product/:slug`. A permanent redirect has been added to `web/next.config.ts`:
 
 ```
-/product/:slug  →  /en/product/:slug  (301 permanent)
+/product/current-switch/  →  /en/product/current-switch/  (308 permanent)
 ```
 
 This means the printed QR code never needs to be reprinted — the redirect handles it transparently.

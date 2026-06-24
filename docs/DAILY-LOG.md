@@ -2,9 +2,50 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 23, 2026  
+**Updated:** June 24, 2026  
 **Status:** Phase 1 Complete - Live in Production (42 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 24, 2026 — Current Switch QR Code (Legacy Site + Headless Redirect) 🔗
+
+**Status:** ✅ COMPLETE — Merged (PR #567)  
+**Context:** Manufacturing needed a QR code linking to the Current Switch product page to print on production representative models. Page is a WordPress draft (not yet publicly visible) — QR code URL is correct for when the product is released. Also added a headless site redirect so the printed QR code remains valid after migration.  
+**Priority:** 🟡 MEDIUM — Pre-production hardware requirement  
+**Time:** ~1 hour
+
+---
+
+### 🎯 QR Code Generation
+
+**File:** `current-switch-qr.svg` (repo root)  
+**Target URL:** `https://www.bapihvac.com/product/current-switch/`  
+**Error correction:** High (H) — recommended for printed QR codes  
+**Tool:** `qrcode` npm package → SVG output (open in Adobe Illustrator → Save As `.ai` for vendor)
+
+**WordPress setup (legacy site):**
+- Product created as **Draft** under Accessories category
+- Preview URL: `https://www.bapihvac.com/?post_type=product&p=422911&preview=true`
+- Live URL (once published): `https://www.bapihvac.com/product/current-switch/`
+- QR code will 404 until product is published for sale — expected and intentional
+
+---
+
+### 🎯 Headless Site Redirect (next.config.ts)
+
+Headless site uses `localePrefix: 'always'` — product pages are served at `/en/product/:slug`. Without a redirect, the printed QR code would 404 after migration.
+
+Added permanent redirect to `web/next.config.ts`:
+```
+/product/:slug  →  /en/product/:slug  (308 permanent)
+```
+
+**PR #567 review feedback addressed:**
+- Changed `:slug+` (multi-segment) to `:slug` (single segment) — matches actual `/[locale]/product/[slug]` route structure
+- Corrected docs: Next.js `permanent: true` issues 308, not 301
+
+**Key learning:** Next.js `redirects()` with `permanent: true` returns HTTP 308, not 301.
 
 ---
 

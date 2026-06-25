@@ -20,8 +20,16 @@ export function useMegaMenu() {
     const mq = window.matchMedia('(hover: none), (pointer: coarse)');
     setIsTouch(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+    // Feature-detect addEventListener — not available in Safari < 14
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mq as any).addListener(handler);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return () => (mq as any).removeListener(handler);
+    }
   }, []);
 
   /**

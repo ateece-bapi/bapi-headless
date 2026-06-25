@@ -32,12 +32,14 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   onToggle,
   onCloseImmediate,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = `mega-menu-${index}`;
 
-  // Close on outside click
-  useOutsideClick(panelRef, onCloseImmediate, isOpen);
+  // Close on outside click — use containerRef (wraps trigger + panel) so tapping
+  // the trigger is not treated as "outside", preventing the double-toggle on touch.
+  useOutsideClick(containerRef, onCloseImmediate, isOpen);
 
   // If no mega menu, render simple link
   if (!item.megaMenu) {
@@ -65,7 +67,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   };
 
   return (
-    <div>
+    <div ref={containerRef}>
       {/* Trigger Button: Use <Link> when href exists, <button> otherwise */}
       {item.href ? (
         <Link

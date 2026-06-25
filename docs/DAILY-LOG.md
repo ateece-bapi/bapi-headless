@@ -8,6 +8,13 @@
 
 ---
 
+## June 25, 2026 — Automated Test Coverage Sprint (lib-utils-3 + Tier 2/3 Lib Utils) 🧪
+
+**Status:** ✅ COMPLETE & MERGED (4 PRs: #568, #569, #570, #571)  
+**PR #571 — test/lib-utils-3:** icsGenerator (30), applicationCategories (36), schema/generators (47), metadata/generators (57) = 170 new tests. One fix during authoring: RFC 5545 line-folding splits long DESCRIPTION values across `\r\n ` continuations — added `unfold()` helper in ICS test. Two Copilot review issues caught and fixed: (1) `forEach` chained two `expect()` calls with `&&` — silenced length assertion since `expect()` returns `void`; (2) filename test was a false positive because `baseShow.title` slugified to the same string as `baseShow.id`. Suite: 2,129 → 2,299 (84 files).
+
+---
+
 ## June 25, 2026 — Automated Test Coverage Sprint (Tier 2 + Tier 3 Lib Utils) 🧪
 
 **Status:** ✅ COMPLETE & MERGED (3 PRs: #568, #569, #570)  

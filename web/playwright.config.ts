@@ -69,7 +69,7 @@ export default defineConfig({
     // ── Auth setup (runs once, generates playwright/.auth/user.json) ────────
     {
       name: 'setup',
-      testMatch: /tests\/e2e\/setup\/.*\.setup\.ts/,
+      testMatch: /setup\/.*\.setup\.ts/,
       use: { ...devices['Desktop Chrome'] },
     },
 
@@ -78,7 +78,7 @@ export default defineConfig({
     // cookie/localStorage context so tests start already authenticated.
     {
       name: 'authenticated',
-      testMatch: /tests\/e2e\/.*\.auth\.spec\.ts/,
+      testMatch: /.*\.auth\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/user.json',

@@ -20,24 +20,11 @@
  */
 
 import { test, expect } from './fixtures/auth';
-import { type Page } from '@playwright/test';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { CheckoutPage, TEST_SHIPPING_ADDRESS } from './pages/CheckoutPage';
 import { buildRoute, routes } from './helpers/routes';
 import { waitForFullPageLoad } from './helpers/test-utils';
-
-// ---------------------------------------------------------------------------
-// Shared helpers
-// ---------------------------------------------------------------------------
-
-/** Navigate to a product and add it to the cart. Returns the product URL. */
-async function addFirstProductToCart(page: Page): Promise<string> {
-  const product = new ProductPage(page as any);
-  const productUrl = await product.gotoFirstProduct();
-  await product.addToCart();
-  return productUrl;
-}
 
 // ---------------------------------------------------------------------------
 // Add to Cart
@@ -195,7 +182,7 @@ test.describe('Checkout Flow', () => {
     await expect(checkout.placeOrderButton).toBeVisible();
   });
 
-  test('Place Order calls the payment API (mocked — no real order created)', async ({ page }) => {
+  test('Place Order navigates to order confirmation (PayPal path — no real order)', async ({ page }) => {
     const cart = new CartPage(page);
     await cart.goto();
     await cart.proceedToCheckout();
@@ -203,14 +190,11 @@ test.describe('Checkout Flow', () => {
     const checkout = new CheckoutPage(page);
     await checkout.fillShipping(TEST_SHIPPING_ADDRESS);
     await checkout.continueToPayment();
-    await checkout.continueToReview();
+    await checkout.continueToReview();     // selects PayPal, advances to step 3
 
-    // Mock the API and click Place Order
-    const intercepted = await checkout.interceptAndPlaceOrder();
-
-    // The route intercept proves the frontend fired the correct request
-    // (body may be empty if the app uses a non-Stripe path; that is acceptable)
-    expect(page.url()).not.toMatch(/sign-in|login/);
+    // placeOrder() intercepts Stripe API (no-op for PayPal) and awaits redirect
+    const confirmUrl = await checkout.placeOrder();
+    expect(confirmUrl).toMatch(/\/order-confirmation\//);
   });
 });
 

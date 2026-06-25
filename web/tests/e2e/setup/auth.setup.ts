@@ -14,12 +14,13 @@
  *   pnpm test:e2e:auth
  */
 
+import fs from 'fs';
 import path from 'path';
 import { test as setup, expect } from '@playwright/test';
 import { buildRoute } from '../helpers/routes';
 
-/** Path to the persisted auth state file — imported by playwright.config.ts */
-export const AUTH_STATE_PATH = path.join(
+/** Path to the persisted auth state file — referenced by playwright.config.ts storageState */
+const AUTH_STATE_PATH = path.join(
   __dirname,
   '../../../playwright/.auth/user.json'
 );
@@ -59,7 +60,7 @@ setup('authenticate as E2E test user', async ({ page }) => {
   const authCookie = cookies.find((c) => c.name === 'auth_token');
   expect(authCookie, 'auth_token cookie must be present after login').toBeTruthy();
 
-  // ── Persist full browser state (cookies + localStorage) ─────────────────
-  // Tests that use storageState: AUTH_STATE_PATH will start with this context
+  // ── Persist full browser state (cookies + localStorage) ─────────────────  // Ensure the target directory exists (fresh checkout / CI won't have it)
+  fs.mkdirSync(path.dirname(AUTH_STATE_PATH), { recursive: true });  // Tests that use storageState: AUTH_STATE_PATH will start with this context
   await page.context().storageState({ path: AUTH_STATE_PATH });
 });

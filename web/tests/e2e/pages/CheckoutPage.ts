@@ -133,46 +133,81 @@ export class CheckoutPage {
       .waitFor({ state: 'visible', timeout: 15000 });
   }
 
+  /**
+   * Selects PayPal as the payment method and advances to the Review step.
+   *
+   * PayPal is the only payment method that doesn't require Stripe Elements, so
+   * it's the right choice for E2E tests.  Selecting it reveals a "Continue"
+   * button inside the PayPal panel that calls onNext() directly.
+   */
   async continueToReview(): Promise<void> {
-    await this.continueButton.click();
+    // Click the PayPal method card to select it
+    const paypalMethod = this.page.getByRole('button', { name: /paypal/i }).first();
+    await expect(paypalMethod).toBeVisible({ timeout: 10000 });
+    await paypalMethod.click();
+
+    // PayPal panel reveals its own Continue/Next CTA after method selection
+    const paypalContinue = this.page
+      .getByRole('button', { name: /continue|next/i })
+      .filter({ hasNot: this.page.getByRole('button', { name: /back/i }) })
+      .first();
+    await expect(paypalContinue).toBeVisible({ timeout: 10000 });
+    await paypalContinue.click();
+
     await expect(this.placeOrderButton).toBeVisible({ timeout: 15000 });
   }
 
   /**
-   * Intercepts the place-order API call, clicks "Place Order", and asserts the
-   * intercept was hit.  Does NOT create a real WooCommerce order.
+   * Clicks "Place Order" and waits for the order-confirmation redirect.
    *
-   * @returns The intercepted request body for further assertions
+   * When PayPal is the selected method, the app skips the /api/payment/confirm
+   * call entirely and redirects directly to /order-confirmation/{mockId} after
+   * a short mock delay — no route interception needed.
+   *
+   * For Stripe paths (paymentIntentId present), the real /api/payment/confirm
+   * call is intercepted and a conformant mock response is returned so the app
+   * can redirect without hitting WooCommerce.
+   *
+   * Returns the order-confirmation URL the app navigated to.
    */
-  async interceptAndPlaceOrder(): Promise<Record<string, unknown>> {
-    let interceptedBody: Record<string, unknown> = {};
-
+  async placeOrder(): Promise<string> {
+    // Intercept Stripe confirm (only fires when a paymentIntentId was set)
     await this.page.route('**/api/payment/confirm**', async (route) => {
-      const body = route.request().postDataJSON() as Record<string, unknown>;
-      interceptedBody = body;
-      // Return a mock successful order confirmation
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
+        // Shape must match what CheckoutPageClient reads:
+        // result.order.id → used for redirect URL
+        // result.clearCart → signals client to clear Zustand cart
         body: JSON.stringify({
           success: true,
-          orderId: 'E2E-TEST-ORDER',
-          message: 'Order placed successfully (E2E mock)',
+          clearCart: true,
+          order: {
+            id: 'E2E-TEST-9999',
+            orderNumber: 'E2E-TEST-9999',
+            status: 'pending',
+            total: '0.00',
+            currency: 'USD',
+            paymentMethod: 'stripe',
+            transactionId: null,
+          },
         }),
       });
     });
 
-    // Also handle mock order endpoint (non-Stripe path)
-    await this.page.route('**/api/orders**', async (route) => {
-      interceptedBody = { mockOrder: true };
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ success: true, orderId: 'E2E-TEST-ORDER' }),
-      });
-    });
-
     await this.placeOrderButton.click();
-    return interceptedBody;
+
+    // Wait for navigation to /order-confirmation/ (both PayPal mock and Stripe paths)
+    await this.page.waitForURL(/\/order-confirmation\//, { timeout: 20000 });
+    return this.page.url();
+  }
+
+  /**
+   * @deprecated Use placeOrder() instead.
+   * Kept for backwards compatibility with older call sites.
+   */
+  async interceptAndPlaceOrder(): Promise<Record<string, unknown>> {
+    await this.placeOrder();
+    return {};
   }
 }

@@ -8,6 +8,37 @@
 
 ---
 
+## June 26, 2026 — Playwright E2E Smoke Suite 🎭
+
+**Status:** ✅ PR #572 OPEN — test/playwright-smoke  
+**Scope:** Critical-path smoke test suite for deploy gating. 17 tests across 6 groups, tagged `@smoke`, Chromium-only.  
+**Result:** 14 passed, 3 gracefully skipped (optional UI), 0 failed. EXIT:0.
+
+### Test Groups
+| Group | Tests | Technique |
+|-------|-------|-----------|
+| Homepage | title, nav, logo | `getByRole('heading')`, `getByRole('link')` |
+| Products | landing, category/subcategory drill-down, product detail | 3-level loop with `.filter({ visible: true })` |
+| Search | search bar accepts input | multi-selector fallback |
+| Cart | empty cart page | direct route |
+| Authentication | sign-in page, protected-route redirect | locale-prefixed routes |
+| Localisation | locale prefix in all URLs | `routes` helper |
+| Static pages | trade shows, 404 | direct route + title check |
+
+### Key Engineering Decisions
+- **`filter({ visible: true })`** — products landing tab-nav links are `overflow: hidden` clipped; this bypasses them in favor of visible category cards
+- **3-level drill-down loop** — URL hierarchy is `/en/products` → `/en/products/{cat}` → `/en/products/{cat}/{sub}` → `/en/product/{slug}`; needed 3 levels not 2
+- **Soft SKU assertion** — `partNumber` is sparsely populated (~20 of 608 products); test uses `isVisible()` check before asserting
+- **Graceful skips** — optional UI (search overlay, locale switcher) uses `isVisible()` guard and `test.skip()` to avoid flaky failures
+
+### New Scripts
+```json
+"test:e2e:smoke": "playwright test --grep @smoke --project=chromium",
+"test:e2e:smoke:staging": "PLAYWRIGHT_BASE_URL=$STAGING_URL playwright test --grep @smoke --project=chromium"
+```
+
+---
+
 ## June 25, 2026 — Automated Test Coverage Sprint (lib-utils-3 + Tier 2/3 Lib Utils) 🧪
 
 **Status:** ✅ COMPLETE & MERGED (4 PRs: #568, #569, #570, #571)  

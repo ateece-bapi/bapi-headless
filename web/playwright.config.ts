@@ -66,6 +66,26 @@ export default defineConfig({
 
   // Configure projects for major browsers
   projects: [
+    // ── Auth setup (runs once, generates playwright/.auth/user.json) ────────
+    {
+      name: 'setup',
+      testMatch: /tests\/e2e\/setup\/.*\.setup\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    // ── Authenticated tests (depend on setup, use saved session) ────────────
+    // Matches any *.auth.spec.ts file. The storageState injects the logged-in
+    // cookie/localStorage context so tests start already authenticated.
+    {
+      name: 'authenticated',
+      testMatch: /tests\/e2e\/.*\.auth\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+    },
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

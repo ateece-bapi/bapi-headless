@@ -21,6 +21,7 @@
     "test:e2e:chromium": "playwright test --project=chromium",
     "test:e2e:smoke": "playwright test --grep @smoke --project=chromium",
     "test:e2e:smoke:staging": "cross-env-shell \"PLAYWRIGHT_BASE_URL=$STAGING_URL playwright test --grep @smoke --project=chromium\"",
+    "test:e2e:auth": "playwright test --project=setup --project=authenticated",
     "test:e2e:report": "playwright show-report",
     "test:storybook": "test-storybook",
     "test:storybook:ci": "concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'pnpm run build-storybook --quiet && npx http-server storybook-static --port 6006 --silent' 'wait-on tcp:127.0.0.1:6006 && pnpm run test:storybook'",

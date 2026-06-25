@@ -16,7 +16,7 @@ import {
   getSuggestedLanguage,
   getLanguageSuggestionMessage,
 } from '../utils/regionLanguageMapping';
-import type { RegionCode } from '@/types/region';
+import type { RegionCode, LanguageCode } from '@/types/region';
 
 // ─── REGION_LANGUAGE_MAP ──────────────────────────────────────────────────────
 
@@ -41,7 +41,7 @@ describe('REGION_LANGUAGE_MAP', () => {
 // ─── getSuggestedLanguage ─────────────────────────────────────────────────────
 
 describe('getSuggestedLanguage', () => {
-  const cases: Array<[RegionCode, string]> = [
+  const cases: Array<[RegionCode, LanguageCode]> = [
     ['us', 'en'],
     ['uk', 'en'],
     ['eu', 'en'],

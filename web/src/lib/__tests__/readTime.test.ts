@@ -6,7 +6,7 @@
  * Covers:
  * - calculateReadTime: empty/falsy → 1, word counting, 200 WPM default,
  *   custom WPM, HTML tag stripping, minimum 1 minute, rounding up
- * - formatReadTime: singular/plural phrasing
+ * - formatReadTime: returns '${minutes} min read' (no pluralization)
  * - getCategoryColor: all known BAPI categories, unknown → default
  */
 

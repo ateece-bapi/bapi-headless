@@ -12,6 +12,8 @@ interface MegaMenuItemProps {
   item: MegaMenuItem;
   index: number;
   isOpen: boolean;
+  /** True when the device is a touch/coarse-pointer device (no hover capability). */
+  isTouch: boolean;
   onOpenWithIntent: () => void;
   onCloseWithGrace: () => void;
   onCancelTimers: () => void;
@@ -23,18 +25,21 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   item,
   index,
   isOpen,
+  isTouch,
   onOpenWithIntent,
   onCloseWithGrace,
   onCancelTimers,
   onToggle,
   onCloseImmediate,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = `mega-menu-${index}`;
 
-  // Close on outside click
-  useOutsideClick(panelRef, onCloseImmediate, isOpen);
+  // Close on outside click — use containerRef (wraps trigger + panel) so tapping
+  // the trigger is not treated as "outside", preventing the double-toggle on touch.
+  useOutsideClick(containerRef, onCloseImmediate, isOpen);
 
   // If no mega menu, render simple link
   if (!item.megaMenu) {
@@ -62,7 +67,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   };
 
   return (
-    <div>
+    <div ref={containerRef}>
       {/* Trigger Button: Use <Link> when href exists, <button> otherwise */}
       {item.href ? (
         <Link
@@ -71,10 +76,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           aria-haspopup="true"
           aria-expanded={isOpen}
           aria-controls={panelId}
-          onMouseEnter={onOpenWithIntent}
-          onMouseLeave={onCloseWithGrace}
-          onFocus={onOpenWithIntent}
-          onBlur={onCloseWithGrace}
+          onMouseEnter={isTouch ? undefined : onOpenWithIntent}
+          onMouseLeave={isTouch ? undefined : onCloseWithGrace}
+          onFocus={isTouch ? undefined : onOpenWithIntent}
+          onBlur={isTouch ? undefined : onCloseWithGrace}
+          onClick={isTouch ? (e) => { e.preventDefault(); onToggle(); } : undefined}
           onKeyDown={handleKeyDown}
           tabIndex={0}
           className={clsx(
@@ -106,10 +112,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           aria-haspopup="true"
           aria-expanded={isOpen}
           aria-controls={panelId}
-          onMouseEnter={onOpenWithIntent}
-          onMouseLeave={onCloseWithGrace}
-          onFocus={onOpenWithIntent}
-          onBlur={onCloseWithGrace}
+          onMouseEnter={isTouch ? undefined : onOpenWithIntent}
+          onMouseLeave={isTouch ? undefined : onCloseWithGrace}
+          onFocus={isTouch ? undefined : onOpenWithIntent}
+          onBlur={isTouch ? undefined : onCloseWithGrace}
           onClick={onToggle}
           onKeyDown={handleKeyDown}
           className={clsx(
@@ -142,8 +148,8 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         ref={panelRef}
         role="region"
         aria-label={`${item.label} menu`}
-        onMouseEnter={onCancelTimers}
-        onMouseLeave={onCloseWithGrace}
+        onMouseEnter={isTouch ? undefined : onCancelTimers}
+        onMouseLeave={isTouch ? undefined : onCloseWithGrace}
         className={clsx(
           'absolute left-0 right-0 top-full z-popover mt-2',
           'max-h-[calc(100vh-18rem)] overflow-y-auto rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
@@ -167,7 +173,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                 return (
                   <div
                     key={column.title}
-                    className="animate-in fade-in slide-in-from-left-4 relative space-y-3 duration-300"
+                    className="animate-in fade-in slide-in-from-left-4 relative flex flex-col gap-3 duration-300"
                     style={{ animationDelay: `${colIndex * 75}ms` }}
                   >
                     {/* Column divider (except first column) */}
@@ -219,7 +225,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                         </div>
                       </div>
                     )}
-                    <ul className="space-y-1.5">
+                    <ul className="flex-1 space-y-1.5">
                       {column.links.map((link, linkIndex) => (
                         <li key={`${link.href}-${link.label}-${linkIndex}`}>
                           <Link
@@ -252,7 +258,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       <Link
                         href={`${item.href}/${column.slug}`}
                         onClick={onCloseImmediate}
-                        className="group mt-3 inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all duration-200 hover:border-primary-400 hover:bg-primary-100 hover:text-primary-800 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                        className="group inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all duration-200 hover:border-primary-400 hover:bg-primary-100 hover:text-primary-800 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                       >
                         <span>View All {column.title}</span>
                         <svg

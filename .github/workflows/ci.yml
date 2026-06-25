@@ -100,3 +100,146 @@ jobs:
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: pnpm run build
+
+  # ── E2E smoke suite ────────────────────────────────────────────────────────
+  # Runs on every PR and push. Targets the staging site so no local server is
+  # required. Non-blocking (continue-on-error) because staging failures should
+  # not block unrelated PRs — this is a canary, not a merge gate.
+  # Skips gracefully when STAGING_URL secret is not configured.
+  e2e-smoke:
+    name: "E2E: smoke suite (Chromium, @smoke)"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
+          restore-keys: |
+            playwright-chromium-${{ runner.os }}-
+
+      - name: Install Playwright Chromium (cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+
+      - name: Run smoke suite
+        env:
+          CI: true
+          STAGING_URL: ${{ secrets.STAGING_URL }}
+        run: |
+          if [ -z "$STAGING_URL" ]; then
+            echo "STAGING_URL secret not configured — skipping smoke suite"
+            exit 0
+          fi
+          PLAYWRIGHT_BASE_URL="$STAGING_URL" pnpm exec playwright test \
+            --grep @smoke \
+            --project=chromium
+
+      - name: Upload Playwright smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-smoke-${{ github.run_id }}
+          path: web/playwright-report/
+          retention-days: 7
+
+  # ── E2E authenticated B2B CUJ ─────────────────────────────────────────────
+  # Runs only on push to main (post-merge). Tests the full authenticated
+  # order journey against staging. Requires E2E_USERNAME, E2E_PASSWORD, and
+  # STAGING_URL secrets. Skips gracefully when any of these are missing.
+  # Non-blocking: a failed CUJ after merge opens a bug, does not revert.
+  e2e-auth:
+    name: "E2E: B2B auth CUJ (Chromium, main only)"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    if: ${{ github.ref == 'refs/heads/main' }}
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
+          restore-keys: |
+            playwright-chromium-${{ runner.os }}-
+
+      - name: Install Playwright Chromium (cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+
+      - name: Run B2B auth CUJ
+        env:
+          CI: true
+          STAGING_URL: ${{ secrets.STAGING_URL }}
+          E2E_USERNAME: ${{ secrets.E2E_USERNAME }}
+          E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
+        run: |
+          if [ -z "$STAGING_URL" ] || [ -z "$E2E_USERNAME" ] || [ -z "$E2E_PASSWORD" ]; then
+            echo "STAGING_URL / E2E_USERNAME / E2E_PASSWORD not fully configured — skipping auth CUJ"
+            exit 0
+          fi
+          PLAYWRIGHT_BASE_URL="$STAGING_URL" pnpm run test:e2e:auth
+
+      - name: Upload Playwright auth report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-auth-${{ github.run_id }}
+          path: web/playwright-report/
+          retention-days: 7

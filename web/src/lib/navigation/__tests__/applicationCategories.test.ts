@@ -240,6 +240,9 @@ describe('getApplicationBreadcrumbs', () => {
 
   it('breadcrumb names are non-empty strings', () => {
     const crumbs = getApplicationBreadcrumbs('wireless-remote', 'wireless-pressure');
-    crumbs.forEach((c) => expect(typeof c.name).toBe('string') && expect(c.name.length).toBeGreaterThan(0));
+    crumbs.forEach((c) => {
+      expect(typeof c.name).toBe('string');
+      expect(c.name.length).toBeGreaterThan(0);
+    });
   });
 });

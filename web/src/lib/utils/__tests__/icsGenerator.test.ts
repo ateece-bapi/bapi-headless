@@ -236,11 +236,14 @@ describe('downloadICS', () => {
     expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:mock-url');
   });
 
-  it('sets correct .ics download filename on the anchor element', () => {
+  it('sets correct .ics download filename derived from title (not id)', () => {
+    // Use a title whose slug differs from baseShow.id to prove the filename
+    // comes from title, not from id or a hard-coded value.
+    const show: TradeShow = { ...baseShow, title: 'AHR Expo Chicago 2027' };
     const appendSpy = vi.spyOn(document.body, 'appendChild');
-    downloadICS(baseShow);
+    downloadICS(show);
     const link = appendSpy.mock.calls[0][0] as HTMLAnchorElement;
-    expect(link.download).toBe('test-show-2026.ics');
+    expect(link.download).toBe('ahr-expo-chicago-2027.ics');
     appendSpy.mockRestore();
   });
 

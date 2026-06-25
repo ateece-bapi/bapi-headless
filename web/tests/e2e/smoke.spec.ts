@@ -99,10 +99,8 @@ test.describe('Products @smoke', () => {
     let productHref: string | null = null;
 
     for (let level = 0; level < 3; level++) {
-      // Check for visible individual product links
-      const productLinks = page
-        .locator('a[href*="/product/"]')
-        .filter({ visible: true });
+      // :visible filters out overflow-hidden tab-nav elements, leaving only rendered cards
+      const productLinks = page.locator('a[href*="/product/"]:visible');
       if ((await productLinks.count()) > 0) {
         productHref = await productLinks.first().getAttribute('href');
         break;
@@ -110,8 +108,7 @@ test.describe('Products @smoke', () => {
 
       // Drill deeper via the first VISIBLE catalog link (category card / subcategory card)
       const deeperLink = page
-        .locator('a[href*="/products/"], a[href*="/categories/"]')
-        .filter({ visible: true })
+        .locator('a[href*="/products/"]:visible, a[href*="/categories/"]:visible')
         .first();
       const href = await deeperLink.getAttribute('href').catch(() => null);
       if (!href) break;
@@ -256,10 +253,9 @@ test.describe('Authentication @smoke', () => {
 
   test('protected route redirects unauthenticated user to sign-in @smoke', async ({ page }) => {
     await page.goto(buildRoute('/account'));
-    await waitForFullPageLoad(page);
-    // Should end up at sign-in (redirect) or on the account page (if session persists from env)
-    const url = page.url();
-    expect(url).toMatch(/sign-in|login|account/);
+    // Wait for the middleware redirect to settle — must land on sign-in or login
+    await page.waitForURL(/sign-in|login/, { timeout: 15000 });
+    expect(page.url()).toMatch(/sign-in|login/);
   });
 });
 
@@ -268,10 +264,13 @@ test.describe('Authentication @smoke', () => {
 // ---------------------------------------------------------------------------
 test.describe('Localisation @smoke', () => {
   test('locale prefix is present in all route URLs @smoke', async ({ page }) => {
-    await page.goto(routes.home());
-    await waitForFullPageLoad(page);
-    // URL must contain the locale prefix (e.g. /en or /de)
-    expect(page.url()).toMatch(new RegExp(`/${DEFAULT_LOCALE}(/|$)`));
+    // Verify locale prefix on a representative sample of key routes
+    const localeRe = new RegExp(`/${DEFAULT_LOCALE}(/|$)`);
+    for (const url of [routes.home(), routes.products(), routes.cart()]) {
+      await page.goto(url);
+      await waitForFullPageLoad(page);
+      expect(page.url(), `Expected locale prefix on ${url}`).toMatch(localeRe);
+    }
   });
 
   test('switching locale navigates to new locale URL @smoke', async ({ page }, testInfo) => {
@@ -306,8 +305,9 @@ test.describe('Localisation @smoke', () => {
     }
 
     await safeClick(deOption);
-    await waitAfterNavigation(page, { expectedUrl: /\/de\// });
-    expect(page.url()).toContain('/de/');
+    // Use optional trailing slash to handle both /de and /de/ (Next.js trailingSlash config)
+    await waitAfterNavigation(page, { expectedUrl: /\/de(\/|$)/ });
+    expect(page.url()).toMatch(/\/de(\/|$)/);
   });
 });
 

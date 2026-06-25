@@ -10,8 +10,8 @@
 
 ## June 25, 2026 — Automated Test Coverage Sprint (Tier 2 + Tier 3 Lib Utils) 🧪
 
-**Status:** ✅ COMPLETE & MERGED (3 PRs: #568, #569, #570\*)  
-**Context:** Continued systematic test coverage. Tier 2 lib utils (PRs #568, #569) + discovered cart sub-routes already fully covered by existing cart.test.ts. Zero Copilot review comments on PR #569 — cleanest PR in the sprint.  
+**Status:** ✅ COMPLETE & MERGED (3 PRs: #568, #569, #570)  
+**Context:** Continued systematic test coverage. Tier 2 lib utils (PRs #568, #569) + discovered cart sub-routes already fully covered by existing cart.test.ts. Zero Copilot review comments on PR #569 — cleanest PR in the sprint. PR #570 addressed a touch-device UX bug in the mega menu reported by Andy Brooks (Regional BDM, China/SE Asia/Oceania).  
 **Priority:** 🔴 HIGH — Test coverage and regression safety  
 **Time:** ~1 day  
 **Net today:** +211 tests (+95 PR#568, +116 PR#569), suite 1,918 → 2,129 (79 files)
@@ -57,6 +57,33 @@
 **productVideos.ts (13 tests)**
 - `getProductVideos`: SKU lookup, all video properties, productId fallback when SKU not found, SKU priority over productId (both match → SKU wins), unknown SKU + ID → `[]`, null/undefined/no-args → `[]`; `hasProductVideos`: true/false for all scenarios
 - Mocking pattern: `vi.mock('@/data/product-videos.json', () => ({ default: {...} }))` for JSON module mocks
+
+---
+
+### 🎯 PR #570 — fix/mega-menu-touch-interaction (MegaMenuItem touch UX)
+
+**Branch:** `fix/mega-menu-touch-interaction` → merged to main  
+**Reported by:** Andy Brooks, Regional BDM — China, Southeast Asia & Oceania  
+**Subject:** Desktop mega menu does not behave correctly on touch-screen laptops and tablets
+
+**Issue 1 — Menu stuck / unreliable toggle on touch devices**  
+The menu was entirely hover-driven (`onMouseEnter`/`onMouseLeave`). On touch devices a tap fires a one-shot synthetic `mouseenter` which opens the menu, but `mouseleave` never re-fires for the same element — so subsequent taps couldn't reliably reopen the menu after closing it. The Products link also had no `onClick` handler, so touch had no way to close-then-reopen without switching to another item first.
+
+**Fix:**
+- Added `isTouch` state to `useMegaMenu` using capability-based media query `(hover: none), (pointer: coarse)` — correctly identifies touch-screen laptops and tablets regardless of screen width, as Andy recommended. Reactive to device changes (e.g. external mouse plugged in); SSR-safe (initialises `false`).
+- On touch devices: hover handlers suppressed on trigger and panel; `<Link>` trigger gains `onClick` that calls `e.preventDefault()` + `onToggle()` — tap once to open, tap again to close, tap again to open reliably. `<button>` trigger (non-href items) already had `onClick={onToggle}`, hover handlers cleared only.
+- Added `containerRef` wrapping both trigger and panel, passed to `useOutsideClick` instead of `panelRef` — prevents the race where `touchstart` from `useOutsideClick` closed the menu before `onClick` could toggle, causing a stuck-open state.
+- Safari < 14 compat: `addEventListener` feature-detected; falls back to deprecated `addListener`/`removeListener`.
+
+**Issue 2 — "View All" buttons not vertically aligned across columns**  
+Columns with fewer product links had their "View All" button floating mid-column instead of pinned to the bottom, making the panel look unbalanced.
+
+**Fix:** Column containers changed from `space-y-3` to `flex flex-col gap-3`; product link `<ul>` gains `flex-1` so it grows to fill available space; `mt-3` removed from "View All" link. All buttons now sit consistently at the bottom of every column.
+
+**Copilot PR Review — 3 issues, all resolved:**
+- `useMegaMenu.ts`: Added Safari < 14 fallback for `MediaQueryList.addEventListener`
+- `MegaMenuItem.tsx`: Fixed `useOutsideClick` / `onClick` race via `containerRef`
+- `Navigation.a11y.test.tsx`: Added `isTouch={false}` to all 18 `MegaMenuItemComponent` render calls (sed batch insert)
 
 ---
 

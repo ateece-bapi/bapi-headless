@@ -8,9 +8,40 @@
 
 ---
 
+## June 25, 2026 — E2E Auth Fixture, Page Object Models & B2B CUJ 🔐
+
+**Status:** ✅ PR #573 MERGED — test/e2e-auth-fixture  
+**Scope:** Senior-level E2E infrastructure: authenticated test fixture, 3 Page Object Models, 11-test B2B order-journey CUJ spec. Copilot review caught 7 issues (all fixed before merge).
+
+### What Was Built
+| Artifact | Purpose |
+|----------|---------|
+| `tests/e2e/setup/auth.setup.ts` | One-time login setup; persists browser state (cookies + localStorage) to `playwright/.auth/user.json` |
+| `tests/e2e/fixtures/auth.ts` | Central `test`/`expect` export for `*.auth.spec.ts` files; `AUTH_STATE_PATH` defined independently to avoid import side-effects |
+| `tests/e2e/pages/ProductPage.ts` | POM: 3-level `:visible` category drill-down, `addToCart()`, `assertLoaded()` |
+| `tests/e2e/pages/CartPage.ts` | POM: `goto()`, `proceedToCheckout()`, `assertNotEmpty()`, `isEmpty()`, `lineItemCount()` |
+| `tests/e2e/pages/CheckoutPage.ts` | POM: `fillShipping()`, `continueToPayment()`, `continueToReview()` (PayPal-based), `placeOrder()` with Stripe mock |
+| `tests/e2e/b2b-order-journey.auth.spec.ts` | 11 tests: Add to Cart (2), Cart Page (3), Checkout Flow (5), Auth Guard (2) |
+
+### Copilot Review Issues Caught & Fixed
+1. **testMatch regexes wrong** — `/tests\/e2e\/setup\/.*\.setup\.ts/` doesn't match because Playwright resolves testMatch relative to `testDir`, not the project root. Fixed to `/setup\/.*\.setup\.ts/`
+2. **Circular import side-effect** — `fixtures/auth.ts` importing `auth.setup.ts` would register the `setup()` test inside the authenticated project. Fixed by defining `AUTH_STATE_PATH` independently.
+3. **Missing `mkdir` in CI** — `storageState({ path })` fails on fresh checkout when `playwright/.auth/` doesn't exist. Fixed with `fs.mkdirSync(path.dirname(AUTH_STATE_PATH), { recursive: true })`.
+4. **`continueToReview()` used generic Continue button** — Payment step (Step 2) has no generic Continue; PayPal reveals its own CTA only after selection. Fixed to explicitly click PayPal first.
+5. **Wrong Stripe mock response shape** — Original used `{ success, orderId }` but app reads `result.order.id`. Fixed to `{ success, clearCart, order: { id, orderNumber, status, total, currency, paymentMethod, transactionId } }`.
+6. **Unused `addFirstProductToCart` helper** — Removed from spec.
+7. **Unused `type Page` import** — Removed.
+
+### New Scripts
+```json
+"test:e2e:auth": "playwright test --project=setup --project=authenticated"
+```
+
+---
+
 ## June 26, 2026 — Playwright E2E Smoke Suite 🎭
 
-**Status:** ✅ PR #572 OPEN — test/playwright-smoke  
+**Status:** ✅ PR #572 MERGED — test/playwright-smoke  
 **Scope:** Critical-path smoke test suite for deploy gating. 17 tests across 6 groups, tagged `@smoke`, Chromium-only.  
 **Result:** 14 passed, 3 gracefully skipped (optional UI), 0 failed. EXIT:0.
 

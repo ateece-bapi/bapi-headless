@@ -110,6 +110,7 @@ jobs:
     name: "E2E: smoke suite (Chromium, @smoke)"
     runs-on: ubuntu-latest
     continue-on-error: true
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: web
@@ -171,6 +172,7 @@ jobs:
           name: playwright-smoke-${{ github.run_id }}
           path: web/playwright-report/
           retention-days: 7
+          if-no-files-found: ignore
 
   # ── E2E authenticated B2B CUJ ─────────────────────────────────────────────
   # Runs only on push to main (post-merge). Tests the full authenticated
@@ -181,6 +183,7 @@ jobs:
     name: "E2E: B2B auth CUJ (Chromium, main only)"
     runs-on: ubuntu-latest
     continue-on-error: true
+    timeout-minutes: 20
     if: ${{ github.ref == 'refs/heads/main' }}
     defaults:
       run:
@@ -243,3 +246,4 @@ jobs:
           name: playwright-auth-${{ github.run_id }}
           path: web/playwright-report/
           retention-days: 7
+          if-no-files-found: ignore

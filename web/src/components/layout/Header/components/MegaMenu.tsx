@@ -26,6 +26,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
           item={item}
           index={index}
           isOpen={menu.isOpen(index)}
+          isTouch={menu.isTouch}
           onOpenWithIntent={() => menu.openWithIntent(index)}
           onCloseWithGrace={menu.closeWithGrace}
           onCancelTimers={menu.cancelTimers}

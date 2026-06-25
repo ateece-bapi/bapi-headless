@@ -11,6 +11,20 @@ export function useMegaMenu() {
   const hoverTimerRef = useRef<number | null>(null);
 
   /**
+   * Detect touch/coarse-pointer devices using capability-based media query.
+   * Uses (hover: none) or (pointer: coarse) so that touch-screen laptops and
+   * tablets are detected regardless of screen width.
+   */
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none), (pointer: coarse)');
+    setIsTouch(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  /**
    * Open menu with intent delay (80ms)
    * Prevents accidental opens when mouse quickly passes through
    */
@@ -106,6 +120,7 @@ export function useMegaMenu() {
   return {
     openIndex,
     isOpen: (index: number) => openIndex === index,
+    isTouch,
     openWithIntent,
     closeWithGrace,
     cancelTimers,

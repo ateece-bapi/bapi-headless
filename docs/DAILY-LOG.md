@@ -2,9 +2,98 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 24, 2026  
-**Status:** Phase 1 Complete - Live in Production (42 days post-launch)  
+**Updated:** June 25, 2026  
+**Status:** Phase 1 Complete - Live in Production (46 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## June 25, 2026 — Automated Test Coverage Sprint (Tier 2 + Tier 3 Lib Utils) 🧪
+
+**Status:** ✅ COMPLETE & MERGED (3 PRs: #568, #569, #570\*)  
+**Context:** Continued systematic test coverage. Tier 2 lib utils (PRs #568, #569) + discovered cart sub-routes already fully covered by existing cart.test.ts. Zero Copilot review comments on PR #569 — cleanest PR in the sprint.  
+**Priority:** 🔴 HIGH — Test coverage and regression safety  
+**Time:** ~1 day  
+**Net today:** +211 tests (+95 PR#568, +116 PR#569), suite 1,918 → 2,129 (79 files)
+
+---
+
+### 🎯 PR #568 — test/lib-utils-2 (readTime, regionLanguageMapping, image)
+
+**Branch:** `test/lib-utils-2` → merged to main
+
+**readTime.ts (31 tests)**
+- `calculateReadTime`: falsy/empty → 1, word counting at default 200 WPM (100/200/201/400/1000/2000 words), HTML tag stripping before count, custom WPM, minimum 1 guarantee; `formatReadTime`: `"N min read"` format (no pluralization — comment fix applied in review); `getCategoryColor`: all 5 Tailwind class branches (product/announcement→yellow, news/industry→blue, technical/case-study→gray, event/webinar→green, unknown/empty→default)
+
+**regionLanguageMapping.ts (18 tests)**
+- `REGION_LANGUAGE_MAP`: all 5 region→language pairs (us/uk/eu→en, pl→pl, mena→ar), key count; `getSuggestedLanguage`: all 5 RegionCodes; `getLanguageSuggestionMessage`: standard `"Switch to X?"` for us/uk/eu/pl, distinct `"Switch to X for this region?"` for mena, language name interpolation
+
+**image.ts (46 tests)**
+- `getImageDimensions`: dash/underscore/URL patterns, large dims, no-pattern→null; `optimizeImageUrl`: always adds format=webp, w/h/quality optional params, relative/invalid→as-is, pre-existing query params preserved; `isExternalImage`: http/https→true, relative/root/protocol-relative→false; `getOptimizedImagePath`: jpg/jpeg/png→webp (case-insensitive), .webp unchanged, unrecognized extension unchanged; `getImageProps`: quality/loading/sizes per type, priority flag; `generatePlaceholder`: data URI format, non-empty payload, dimension-sensitive; `IMAGE_SIZES` spot-checks
+
+**Copilot PR Review — 3 issues, all resolved:**
+- `readTime.test.ts`: Removed "singular/plural phrasing" from `formatReadTime` header comment (function has no pluralization)
+- `regionLanguageMapping.test.ts`: Added `LanguageCode` to type import
+- `regionLanguageMapping.test.ts`: Changed test tuple from `Array<[RegionCode, string]>` to `Array<[RegionCode, LanguageCode]>` for compile-time safety
+
+---
+
+### 🎯 PR #569 — test/cart-routes (wordpress-content, attributeDetection, productAttributeTranslations, productVideos)
+
+**Branch:** `test/cart-routes` → merged to main  
+**Note:** Branch was named for intended cart sub-route work, but audit revealed those are already fully covered in `cart/__tests__/cart.test.ts` (29 tests). Pivoted to the next highest-value untested pure-function files.  
+**Copilot Review:** 0 comments — first PR in the sprint with no feedback needed.
+
+**wordpress-content.ts (34 tests)**
+- `stripShortcodes`: falsy/empty, vc_/et_pb_/fusion_/elementor/generic pattern removal, content preservation, whitespace collapsing; `extractCleanText`: HTML tag stripping, shortcode stripping, entity decoding (`&nbsp;`, `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#039;`), whitespace collapse + trim; `hasVisualComposerContent`: true/false detection; `cleanWordPressContent`: strips on VC content, pass-through for plain HTML/text
+- Key behavior documented: tags stripped to empty string (not space) — `<h2>Title</h2><p>Body</p>` → `"TitleBody"` after extraction
+
+**attributeDetection.ts (42 tests)**
+- `detectAttributeType`: color-swatch (name/label contains "color"), binary-toggle (yes/no, display/no-display, included/not-included, with.../without..., case-insensitive), radio-group (2–4 short options), dropdown (5+ options, 0 options, long option text); `isPositiveOption`: all 8 positive values + all negative values including edge cases; `getColorHex`: all named BAPI colors (BAPI Blue #166fb9, BAPI Yellow #FFC843), case-insensitivity, trim, partial match (e.g. "Gloss White" → #FFFFFF), unknown→#9CA3AF default
+
+**productAttributeTranslations.ts (27 tests)**
+- `getAttributeTranslationKey`: exact matches across temperature/humidity/general namespaces, all-caps variants (DISPLAY, HUMIDITY APPLICATION, etc.), case-insensitive fallback, **unknown label returns original string** (not null — important difference from categoryTranslations); `hasAttributeTranslation`: uses `key !== label` identity check; `getSupportedAttributeLabels`: array type, expected keys, non-zero count
+
+**productVideos.ts (13 tests)**
+- `getProductVideos`: SKU lookup, all video properties, productId fallback when SKU not found, SKU priority over productId (both match → SKU wins), unknown SKU + ID → `[]`, null/undefined/no-args → `[]`; `hasProductVideos`: true/false for all scenarios
+- Mocking pattern: `vi.mock('@/data/product-videos.json', () => ({ default: {...} }))` for JSON module mocks
+
+---
+
+### 📊 IMPACT
+
+**Test Count:**
+- Before (June 22 end): 1,918 tests (72 files)
+- After PR #568 (Tier 2 utils): 2,013 tests (75 files) — +95 tests
+- After PR #569 (Tier 3 lib utils): 2,129 tests (79 files) — +116 tests
+- **Net today: +211 tests, +7 files**
+
+**Coverage Added:**
+- WordPress content/shortcode cleaners
+- Attribute UI-type detection (B2B variation configurator)
+- Product attribute i18n translation mapping
+- Product video SKU/ID lookup
+- Read time calculation + category badge colors
+- Region→language suggestion mapping
+- Image URL/path optimization helpers
+
+**Key patterns established:**
+- JSON module mock: `vi.mock('@/data/file.json', () => ({ default: {...} }))` for data-file imports
+- Unicode arrows (`→`) in comments break esbuild — use ASCII `->` in test file JSDoc
+- `extractCleanText` strips tags to empty string, not spaces — document actual behavior in tests rather than idealized behavior
+
+---
+
+### 🔜 NEXT: Remaining Untested Lib Files
+
+Remaining high-value untested files (pure functions / low mock complexity):
+
+| Target | Type | Est. Tests |
+|--------|------|-----------|
+| `lib/utils/icsGenerator.ts` | iCalendar .ics generation (183 lines) | ~20 |
+| `lib/navigation/applicationCategories.ts` | Application category data/lookup (340 lines) | ~15 |
+| `lib/schema/generators.ts` | JSON-LD structured data generators (177 lines) | ~20 |
+| `lib/metadata/generators.ts` | Next.js metadata generators | ~15 |
 
 ---
 

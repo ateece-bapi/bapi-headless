@@ -582,6 +582,10 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
     }
   }
   
+  if (productCount === 0) {
+    throw new Error('No products found after navigating through categories — cannot add to cart');
+  }
+  
   const productIndex = forceDifferent ? Math.min(1, productCount - 1) : 0;
   const productHref = await productLinks.nth(productIndex).getAttribute('href');
   

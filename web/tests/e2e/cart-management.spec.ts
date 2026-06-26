@@ -570,11 +570,11 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
   let productCount = await productLinks.count();
   
   if (productCount === 0) {
-    const categoryLink = page.locator('a[href*="/products/"]:visible').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
       await waitAfterNavigation(page);
-      productLinks = page.locator('a[href*="/product/"]');
+      productLinks = page.locator('a[href*="/product/"]:visible');
       productCount = await productLinks.count();
     }
   }

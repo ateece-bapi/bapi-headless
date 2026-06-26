@@ -489,7 +489,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   
   // If no products, navigate to first category
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/products/"]:visible');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {
@@ -498,7 +498,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
         await waitAfterNavigation(page);
         
-        productLinks = page.locator('a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]:visible');
         productCount = await productLinks.count();
       }
     }
@@ -506,7 +506,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   
   // Still no products? Try navigating through subcategories
   if (productCount === 0) {
-    const subcategoryLinks = page.locator('main a[href*="/products/"], article a[href*="/products/"]');
+    const subcategoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const subCount = await subcategoryLinks.count();
     
     if (subCount > 0) {
@@ -515,7 +515,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
         await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
         await waitAfterNavigation(page);
         
-        productLinks = page.locator('a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]:visible');
         productCount = await productLinks.count();
       }
     }

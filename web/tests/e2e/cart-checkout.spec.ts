@@ -372,7 +372,7 @@ async function addProductToCart(page: Page) {
   
   // If no products on main page, navigate into categories to find products
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/products/"]:visible');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {
@@ -384,15 +384,15 @@ async function addProductToCart(page: Page) {
         // Wait for either product links or subcategory links to appear
         try {
           await Promise.race([
-            page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 5000 }),
-            page.locator('a[href*="/products/"]').first().waitFor({ state: 'attached', timeout: 5000 }),
+            page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 5000 }),
+            page.locator('main').locator('a[href*="/products/"]:visible').first().waitFor({ state: 'visible', timeout: 5000 }),
           ]);
         } catch {
           // Neither found, wait a bit more for React
           await waitAfterNavigation(page);
         }
         
-        productLinks = page.locator('a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]:visible');
         productCount = await productLinks.count();
       }
     }
@@ -401,7 +401,7 @@ async function addProductToCart(page: Page) {
   // If still no products, try navigating to first subcategory (up to 3 times)
   let attempts = 0;
   while (productCount === 0 && attempts < 3) {
-    const subcategoryLinks = page.locator('a[href*="/products/"]');
+    const subcategoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const subCount = await subcategoryLinks.count();
     
     if (subCount === 0) break;
@@ -413,13 +413,13 @@ async function addProductToCart(page: Page) {
       
       // Wait for product links to appear
       try {
-        await page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 8000 });
+        await page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 8000 });
       } catch {
         // Products not found, wait a bit
         await waitAfterNavigation(page);
       }
       
-      productLinks = page.locator('a[href*="/product/"]');
+      productLinks = page.locator('a[href*="/product/"]:visible');
       productCount = await productLinks.count();
     }
     attempts++;

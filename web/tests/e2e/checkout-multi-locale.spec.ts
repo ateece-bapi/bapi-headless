@@ -326,7 +326,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
   
   // Navigate through categories if needed
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/products/"]:visible');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {
@@ -335,7 +335,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
         await waitAfterNavigation(page);
         
-        productLinks = page.locator('a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]:visible');
         productCount = await productLinks.count();
       }
     }

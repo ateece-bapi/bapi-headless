@@ -8,6 +8,39 @@
 
 ---
 
+## June 26, 2026 — E2E Tests Wired Into CI Pipeline 🚀
+
+**Status:** ✅ PR #574 MERGED — ci/e2e-in-pipeline  
+**Scope:** Re-enabled Playwright E2E in CI by adding two focused jobs to `ci.yml`, solving the prior ~1.5 hour runtime that caused E2E to be commented out. 3 rounds of Copilot review (8 comments total), all resolved before merge.
+
+### Two New CI Jobs
+
+| Job | Trigger | Timeout | Secrets required |
+|-----|---------|---------|-----------------|
+| `e2e-smoke` | Every PR + push | 15 min | `STAGING_URL` |
+| `e2e-auth` | Push to `main` only | 20 min | `STAGING_URL`, `E2E_USERNAME`, `E2E_PASSWORD` |
+
+Both jobs: Chromium only · `continue-on-error: true` · browser binary cached by `pnpm-lock.yaml` hash · entire job skipped (no runner allocated) when secrets are absent · Playwright report uploaded as 7-day artifact.
+
+### Key Engineering Decisions
+- **Target staging, not localhost** — `PLAYWRIGHT_BASE_URL=$STAGING_URL` avoids booting a Next.js dev server in CI (root cause of 90-min runtime)
+- **`webServer` conditional in `playwright.config.ts`** — set to `undefined` when `PLAYWRIGHT_BASE_URL` is set so local dev runs still work normally
+- **Job-level `if` on secrets** — `if: ${{ secrets.STAGING_URL != '' }}` means no runner is allocated at all when unconfigured, not just a skipped step
+- **Issue creation on auth failure** — `github-script@v7` step opens a labeled `bug` issue with run URL + commit SHA when the B2B CUJ fails post-merge
+
+### Copilot Review Rounds
+- **Round 1** (6 comments): `webServer` starts dev server even when targeting staging; missing job timeouts; `if-no-files-found` missing on artifact uploads
+- **Round 2** (3 comments): Whole job runs checkout/install even when secrets absent → moved to job-level `if`; "opens a bug" comment was misleading → added actual issue-creation step
+- **Round 3** (2 comments): Comment said "remote host" but check is just env-var presence → fixed wording; `github-script@v6` inconsistent → bumped to `@v7`
+
+### Secrets to Add in GitHub → Settings → Secrets → Actions
+Until added, both jobs silently skip (no CI impact):
+- `STAGING_URL` — base URL of the staging site
+- `E2E_USERNAME` — test account username (auth CUJ only)
+- `E2E_PASSWORD` — test account password (auth CUJ only)
+
+---
+
 ## June 25, 2026 — E2E Auth Fixture, Page Object Models & B2B CUJ 🔐
 
 **Status:** ✅ PR #573 MERGED — test/e2e-auth-fixture  

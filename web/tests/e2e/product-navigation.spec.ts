@@ -22,7 +22,7 @@ test.describe('Category Navigation', () => {
     await waitAfterNavigation(page);
     
     // Should show categories or category links
-    const categoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     // Should have at least one category
@@ -34,22 +34,24 @@ test.describe('Category Navigation', () => {
     await waitAfterNavigation(page);
     
     // Find first category link
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     await expect(categoryLink).toBeVisible({ timeout: 3000 });
     
     const categoryHref = await categoryLink.getAttribute('href');
     expect(categoryHref).toBeTruthy();
     
-    // Navigate to category
-    await safeClick(categoryLink);
-    await waitAfterNavigation(page);
+    // Navigate to category directly (more stable than clicking)
+    if (categoryHref) {
+      await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
+      await waitAfterNavigation(page);
+    }
     
-    // Should be on category page
-    await expect(page).toHaveURL(/\/categories?\/|\/ category\//);
+    // Should be on a /products/ category page
+    await expect(page).toHaveURL(/\/products\//);
     
     // Should show products or subcategories
-    const productLinks = page.locator('a[href*="/product/"]');
-    const subCategoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
+    const productLinks = page.locator('a[href*="/product/"]:visible');
+    const subCategoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     
     const productsCount = await productLinks.count();
     const subCategoriesCount = await subCategoryLinks.count();
@@ -63,10 +65,13 @@ test.describe('Category Navigation', () => {
     await waitAfterNavigation(page);
     
     // Navigate to category
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     await expect(categoryLink).toBeVisible({ timeout: 3000 });
-    await safeClick(categoryLink);
-    await waitAfterNavigation(page);
+    const catHref = await categoryLink.getAttribute('href');
+    if (catHref) {
+      await page.goto(catHref, { waitUntil: 'commit', timeout: 60000 });
+      await waitAfterNavigation(page);
+    }
     
     // Look for breadcrumb navigation
     const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has-text("Home"), ol:has(a[href*="/"]):has(li)').first();
@@ -85,25 +90,30 @@ test.describe('Category Navigation', () => {
     await waitAfterNavigation(page);
     
     // Navigate to first category
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
-      await safeClick(categoryLink);
-      await waitAfterNavigation(page);
+      const catHref2 = await categoryLink.getAttribute('href');
+      if (catHref2) {
+        await page.goto(catHref2, { waitUntil: 'commit', timeout: 60000 });
+        await waitAfterNavigation(page);
+      }
       
       // Look for subcategories
-      const subCategoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+      const subCategoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
       
       if (await subCategoryLink.isVisible({ timeout: 2000 })) {
         const subCategoryHref = await subCategoryLink.getAttribute('href');
         expect(subCategoryHref).toBeTruthy();
         
-        // Navigate to subcategory
-        await safeClick(subCategoryLink);
-        await waitAfterNavigation(page);
+        // Navigate to subcategory directly
+        if (subCategoryHref) {
+          await page.goto(subCategoryHref, { waitUntil: 'commit', timeout: 60000 });
+          await waitAfterNavigation(page);
+        }
         
-        // Should be on subcategory page
-        await expect(page).toHaveURL(/\/categories?\/|\/category\//);
+        // Should be on a /products/ page
+        await expect(page).toHaveURL(/\/products\//);
         
         // Breadcrumb should show hierarchy (Home > Category > Subcategory)
         const breadcrumbItems = page.locator('nav[aria-label*="breadcrumb" i] a, [role="navigation"] a');
@@ -371,11 +381,14 @@ test.describe('Breadcrumb Navigation', () => {
     await waitAfterNavigation(page);
     
     // Navigate to category
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
-      await safeClick(categoryLink);
-      await waitAfterNavigation(page);
+      const catHref3 = await categoryLink.getAttribute('href');
+      if (catHref3) {
+        await page.goto(catHref3, { waitUntil: 'commit', timeout: 60000 });
+        await waitAfterNavigation(page);
+      }
       
       // Find breadcrumb
       const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has(a[href*="/"])').first();
@@ -435,7 +448,7 @@ test.describe('Mobile Product Navigation', () => {
     await waitAfterNavigation(page);
     
     // Categories should be visible on mobile
-    const categoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     expect(categoryCount).toBeGreaterThan(0);
@@ -547,13 +560,16 @@ async function findProductUrl(page: Page): Promise<string | null> {
   
   // Navigate through categories if needed
   if (productCount === 0) {
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
-      await safeClick(categoryLink);
-      await waitAfterNavigation(page);
+      const catHref = await categoryLink.getAttribute('href');
+      if (catHref) {
+        await page.goto(catHref, { waitUntil: 'commit', timeout: 60000 });
+        await waitAfterNavigation(page);
+      }
       
-      productLinks = page.locator('a[href*="/product/"]');
+      productLinks = page.locator('a[href*="/product/"]:visible');
       productCount = await productLinks.count();
     }
   }

@@ -572,11 +572,18 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
   if (productCount === 0) {
     const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     if (await categoryLink.isVisible({ timeout: 3000 })) {
-      await safeClick(categoryLink);
-      await waitAfterNavigation(page);
-      productLinks = page.locator('a[href*="/product/"]:visible');
-      productCount = await productLinks.count();
+      const categoryHref = await categoryLink.getAttribute('href');
+      if (categoryHref) {
+        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
+        await waitAfterNavigation(page);
+        productLinks = page.locator('a[href*="/product/"]:visible');
+        productCount = await productLinks.count();
+      }
     }
+  }
+  
+  if (productCount === 0) {
+    throw new Error('No products found after navigating through categories — cannot add to cart');
   }
   
   const productIndex = forceDifferent ? Math.min(1, productCount - 1) : 0;

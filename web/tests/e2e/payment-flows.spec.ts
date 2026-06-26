@@ -526,11 +526,15 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
     throw new Error('No products found after navigating through categories');
   }
   
-  // Try to add products to cart (try first 3 products)
+  // Snapshot all product hrefs BEFORE navigating away (locator becomes stale after page change)
+  const productHrefs: string[] = [];
   for (let i = 0; i < Math.min(productCount, 3); i++) {
-    const productHref = await productLinks.nth(i).getAttribute('href');
-    if (!productHref) continue;
-    
+    const href = await productLinks.nth(i).getAttribute('href');
+    if (href) productHrefs.push(href);
+  }
+  
+  // Try to add products to cart using the snapshotted hrefs
+  for (const productHref of productHrefs) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
     

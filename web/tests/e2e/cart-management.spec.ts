@@ -566,15 +566,15 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
   await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
   await waitAfterNavigation(page);
   
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   if (productCount === 0) {
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
       await waitAfterNavigation(page);
-      productLinks = page.locator('a[href*="/product/"]');
+      productLinks = page.locator('a[href*="/product/"]:visible');
       productCount = await productLinks.count();
     }
   }

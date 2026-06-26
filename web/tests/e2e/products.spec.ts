@@ -32,19 +32,19 @@ import {
 async function navigateToAnyProduct(page: any): Promise<void> {
   // Wait for either category links OR product links to appear
   await Promise.race([
-    page.locator('a[href*="/categories/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
-    page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 10000 })
+    page.locator('a[href*="/products/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
+    page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 })
   ]).catch(() => {
     // If neither appears, continue anyway and let the assertions catch it
   });
 
   // Try to find a direct product link on the products page
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   // If no products on main page, navigate into categories to find products
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {
@@ -54,7 +54,7 @@ async function navigateToAnyProduct(page: any): Promise<void> {
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
         await waitAfterNavigation(page);
         
-        productLinks = page.locator('a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]:visible');
         productCount = await productLinks.count();
       }
     }
@@ -63,7 +63,7 @@ async function navigateToAnyProduct(page: any): Promise<void> {
   // If still no products, try navigating to first subcategory (up to 3 attempts)
   let attempts = 0;
   while (productCount === 0 && attempts < 3) {
-    const subcategoryLinks = page.locator('a[href*="/products/"]');
+    const subcategoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
     const subCount = await subcategoryLinks.count();
     
     if (subCount === 0) break;
@@ -74,7 +74,7 @@ async function navigateToAnyProduct(page: any): Promise<void> {
       await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
       await waitAfterNavigation(page);
       
-      productLinks = page.locator('a[href*="/product/"]');
+      productLinks = page.locator('a[href*="/product/"]:visible');
       productCount = await productLinks.count();
     }
     attempts++;
@@ -101,7 +101,7 @@ test.describe('Product Pages', () => {
       
       // Wait for first category card to be visible and stable
       const firstCategoryCard = page
-        .locator('a[href*="/categories/"]')
+        .locator('a[href*="/products/"]:visible')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
       await waitForStableElement(firstCategoryCard);
@@ -113,9 +113,9 @@ test.describe('Product Pages', () => {
       const heading = page.getByRole('heading', { name: /products/i, level: 1 });
       await expect(heading).toBeVisible();
       
-      // On /products we expect category cards that link to /categories/{slug}
+      // On /products we expect category cards that link to /products/{slug}
       const categoryLinks = page
-        .locator('a[href*="/categories/"]')
+        .locator('a[href*="/products/"]:visible')
         .filter({ has: page.getByRole('heading', { level: 2 }) });
       const count = await categoryLinks.count();
       
@@ -126,7 +126,7 @@ test.describe('Product Pages', () => {
     test('should navigate from landing to category page', async ({ page }) => {
       // Click the first category card/link on the products landing page
       const firstCategory = page
-        .locator('a[href*="/categories/"]')
+        .locator('a[href*="/products/"]:visible')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
 

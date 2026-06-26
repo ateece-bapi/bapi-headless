@@ -321,12 +321,12 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
   let productAdded = false;
   
   // Look for product links
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   // Navigate through categories if needed
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryLinks = page.locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {

@@ -475,8 +475,8 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   
   // Wait for content to load
   await Promise.race([
-    page.locator('a[href*="/categories/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
-    page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
+    page.locator('a[href*="/products/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
+    page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
   ]).catch(() => {
     // Continue anyway
   });
@@ -484,12 +484,12 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   let productAdded = false;
   
   // Try to find direct product links first
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   // If no products, navigate to first category
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryLinks = page.locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {

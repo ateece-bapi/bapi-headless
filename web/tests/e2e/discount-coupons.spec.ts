@@ -481,11 +481,11 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
   
   // Find and add product
   let productAdded = false;
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   if (productCount === 0) {
-    const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    const categoryLink = page.locator('a[href*="/products/"]:visible').first();
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       const categoryHref = await categoryLink.getAttribute('href');
       if (categoryHref) {

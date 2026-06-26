@@ -360,19 +360,19 @@ async function addProductToCart(page: Page) {
   
   // Wait for either category links OR product links to appear
   await Promise.race([
-    page.locator('a[href*="/categories/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
-    page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 10000 })
+    page.locator('a[href*="/products/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
+    page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 })
   ]).catch(() => {
     // If neither appears, continue anyway and let the assertions catch it
   });
 
   // Try to find a direct product link on the products page
-  let productLinks = page.locator('a[href*="/product/"]');
+  let productLinks = page.locator('a[href*="/product/"]:visible');
   let productCount = await productLinks.count();
   
   // If no products on main page, navigate into categories to find products
   if (productCount === 0) {
-    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryLinks = page.locator('a[href*="/products/"]:visible');
     const categoryCount = await categoryLinks.count();
     
     if (categoryCount > 0) {

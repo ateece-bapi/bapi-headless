@@ -8,9 +8,23 @@
 
 ---
 
-## June 26, 2026 — E2E Tests Wired Into CI Pipeline 🚀
+## June 26, 2026 — E2E Tests Wired Into CI Pipeline + Secrets Configured 🚀
 
-**Status:** ✅ PR #574 MERGED — ci/e2e-in-pipeline  
+**Status:** ✅ PR #574 MERGED — ci/e2e-in-pipeline | ✅ PR #575 MERGED — ci/use-existing-secrets  
+**E2E CI: FULLY LIVE** — all secrets configured, both jobs active on next push.
+
+### Secrets Added to GitHub Actions
+| Secret | Source |
+|--------|--------|
+| `PREVIEW_INTEGRATION_URL` | Already existed (reused from preview integration workflow — PR #575) |
+| `E2E_USERNAME` | `e2e.ci` — new dedicated CI test account created via WP-CLI on staging (user ID 16352) |
+| `E2E_PASSWORD` | Set at creation time, stored only in GitHub Secrets |
+
+### CI Test Account
+- **Username:** `e2e.ci` · **Email:** `e2e.ci@bapihvac.com` · **Role:** `customer`
+- Created via WP-CLI on Kinsta staging (`wp user create`) — WordPress admin UI incorrectly reported "already exists" (email conflict in UI cache); WP-CLI confirmed no such user existed and created it cleanly
+
+
 **Scope:** Re-enabled Playwright E2E in CI by adding two focused jobs to `ci.yml`, solving the prior ~1.5 hour runtime that caused E2E to be commented out. 3 rounds of Copilot review (8 comments total), all resolved before merge.
 
 ### Two New CI Jobs

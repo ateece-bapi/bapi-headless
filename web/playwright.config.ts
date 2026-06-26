@@ -124,11 +124,16 @@ export default defineConfig({
     },
   ],
 
-  // Run local dev server before starting the tests
-  webServer: {
-    command: 'pnpm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+  // Run local dev server before starting the tests.
+  // Skipped whenever PLAYWRIGHT_BASE_URL is set — the tests will hit that
+  // URL directly (staging, preview, or any other external host) and no
+  // local server is needed.
+  webServer: process.env.PLAYWRIGHT_BASE_URL
+    ? undefined
+    : {
+        command: 'pnpm run dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: !process.env.CI,
+        timeout: 120 * 1000,
+      },
 });

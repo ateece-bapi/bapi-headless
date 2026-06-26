@@ -105,13 +105,12 @@ jobs:
   # Runs on every PR and push. Targets the staging site so no local server is
   # required. Non-blocking (continue-on-error) because staging failures should
   # not block unrelated PRs — this is a canary, not a merge gate.
-  # Entire job is skipped (no runner allocated) when PREVIEW_INTEGRATION_URL is unset.
+  # Skips gracefully (exit 0) when PREVIEW_INTEGRATION_URL secret is unset.
   e2e-smoke:
     name: "E2E: smoke suite (Chromium, @smoke)"
     runs-on: ubuntu-latest
     continue-on-error: true
     timeout-minutes: 15
-    if: ${{ secrets.PREVIEW_INTEGRATION_URL != '' }}
     defaults:
       run:
         working-directory: web
@@ -158,6 +157,10 @@ jobs:
           CI: true
           PLAYWRIGHT_BASE_URL: ${{ secrets.PREVIEW_INTEGRATION_URL }}
         run: |
+          if [ -z "$PLAYWRIGHT_BASE_URL" ]; then
+            echo "PREVIEW_INTEGRATION_URL not configured — skipping smoke suite"
+            exit 0
+          fi
           pnpm exec playwright test \
             --grep @smoke \
             --project=chromium
@@ -174,14 +177,14 @@ jobs:
   # ── E2E authenticated B2B CUJ ─────────────────────────────────────────────
   # Runs only on push to main (post-merge). Tests the full authenticated
   # order journey against staging. Requires PREVIEW_INTEGRATION_URL,
-  # E2E_USERNAME, and E2E_PASSWORD secrets. Entire job is skipped (no runner
-  # allocated) when any of those secrets are absent. On failure, opens a GitHub issue.
+  # E2E_USERNAME, and E2E_PASSWORD secrets. Skips gracefully when any are
+  # absent. On failure, opens a GitHub issue.
   e2e-auth:
     name: "E2E: B2B auth CUJ (Chromium, main only)"
     runs-on: ubuntu-latest
     continue-on-error: true
     timeout-minutes: 20
-    if: ${{ github.ref == 'refs/heads/main' && secrets.PREVIEW_INTEGRATION_URL != '' && secrets.E2E_USERNAME != '' && secrets.E2E_PASSWORD != '' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     defaults:
       run:
         working-directory: web
@@ -229,7 +232,12 @@ jobs:
           PLAYWRIGHT_BASE_URL: ${{ secrets.PREVIEW_INTEGRATION_URL }}
           E2E_USERNAME: ${{ secrets.E2E_USERNAME }}
           E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
-        run: pnpm run test:e2e:auth
+        run: |
+          if [ -z "$PLAYWRIGHT_BASE_URL" ] || [ -z "$E2E_USERNAME" ] || [ -z "$E2E_PASSWORD" ]; then
+            echo "Required secrets not fully configured — skipping auth CUJ"
+            exit 0
+          fi
+          pnpm run test:e2e:auth
 
       - name: Open GitHub issue on CUJ failure
         if: ${{ failure() }}

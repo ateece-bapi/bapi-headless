@@ -125,8 +125,9 @@ export default defineConfig({
   ],
 
   // Run local dev server before starting the tests.
-  // Skip when PLAYWRIGHT_BASE_URL points at a remote host (staging / preview)
-  // so CI jobs that target staging don't waste time booting a dev server.
+  // Skipped whenever PLAYWRIGHT_BASE_URL is set — the tests will hit that
+  // URL directly (staging, preview, or any other external host) and no
+  // local server is needed.
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {

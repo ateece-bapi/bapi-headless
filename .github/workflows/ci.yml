@@ -233,7 +233,7 @@ jobs:
 
       - name: Open GitHub issue on CUJ failure
         if: ${{ failure() }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

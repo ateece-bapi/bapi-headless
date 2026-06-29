@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
 import { safeClick, waitForStableElement, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
+import { addProductToCart } from './helpers/cart-utils';
 
 /**
  * Discount Codes & Coupons E2E Tests (Phase D)
@@ -475,56 +476,8 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
   await page.reload({ waitUntil: 'commit' });
   await waitAfterNavigation(page);
   
-  // Navigate to products
-  await page.goto(routes.products(locale), { waitUntil: 'commit', timeout: 60000 });
-  await waitAfterNavigation(page);
-  
-  // Find and add product
-  let productAdded = false;
-  let productLinks = page.locator('a[href*="/product/"]:visible');
-  let productCount = await productLinks.count();
-  
-  if (productCount === 0) {
-    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
-    if (await categoryLink.isVisible({ timeout: 3000 })) {
-      const categoryHref = await categoryLink.getAttribute('href');
-      if (categoryHref) {
-        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        productLinks = page.locator('a[href*="/product/"]:visible');
-        productCount = await productLinks.count();
-      }
-    }
-  }
-  
-  for (let i = 0; i < Math.min(productCount, 3); i++) {
-    const productHref = await productLinks.nth(i).getAttribute('href');
-    if (!productHref) continue;
-    
-    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await waitAfterNavigation(page);
-    
-    const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier/i });
-    const buttonVisible = await addToCartButton.first().isVisible({ timeout: 2000 }).catch(() => false);
-    
-    if (buttonVisible) {
-      await safeClick(addToCartButton.first());
-      
-      // Wait for success toast
-      const toast = page.locator('[role="alert"], [role="status"]');
-      const toastAppeared = await toast.first().waitFor({ state: 'visible', timeout: 3000 }).then(() => true).catch(() => false);
-      
-      if (toastAppeared) {
-        await waitForToastToDismiss(page);
-        productAdded = true;
-        break;
-      }
-    }
-  }
-  
-  if (!productAdded) {
-    throw new Error(`Could not add product to cart in locale: ${locale}`);
-  }
+  // Navigate to products in locale, drill down through categories, and add a product to cart
+  await addProductToCart(page, { locale });
   
   // Navigate to checkout
   await page.goto(routes.checkout(locale), { waitUntil: 'commit', timeout: 60000 });

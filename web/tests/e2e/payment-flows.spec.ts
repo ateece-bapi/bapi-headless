@@ -3,6 +3,7 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
 import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
+import { addProductToCart } from './helpers/cart-utils';
 
 /**
  * Payment Flow E2E Tests (Phase A)
@@ -468,99 +469,9 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   await page.evaluate(() => localStorage.clear());
   await page.reload({ waitUntil: 'commit' });
   await waitForPageReady(page);
-  
-  // Navigate to products page
-  await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-  await waitAfterNavigation(page);
-  
-  // Wait for content to load
-  await Promise.race([
-    page.locator('a[href*="/products/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
-    page.locator('a[href*="/product/"]:visible').first().waitFor({ state: 'visible', timeout: 10000 }),
-  ]).catch(() => {
-    // Continue anyway
-  });
-  
-  let productAdded = false;
-  
-  // Try to find direct product links first
-  let productLinks = page.locator('a[href*="/product/"]:visible');
-  let productCount = await productLinks.count();
-  
-  // If no products, navigate to first category
-  if (productCount === 0) {
-    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
-    const categoryCount = await categoryLinks.count();
-    
-    if (categoryCount > 0) {
-      const categoryHref = await categoryLinks.first().getAttribute('href');
-      if (categoryHref) {
-        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        
-        productLinks = page.locator('a[href*="/product/"]:visible');
-        productCount = await productLinks.count();
-      }
-    }
-  }
-  
-  // Still no products? Try navigating through subcategories
-  if (productCount === 0) {
-    const subcategoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
-    const subCount = await subcategoryLinks.count();
-    
-    if (subCount > 0) {
-      const subHref = await subcategoryLinks.first().getAttribute('href');
-      if (subHref) {
-        await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        
-        productLinks = page.locator('a[href*="/product/"]:visible');
-        productCount = await productLinks.count();
-      }
-    }
-  }
-  
-  // Must have at least one product by now
-  if (productCount === 0) {
-    throw new Error('No products found after navigating through categories');
-  }
-  
-  // Snapshot all product hrefs BEFORE navigating away (locator becomes stale after page change)
-  const productHrefs: string[] = [];
-  for (let i = 0; i < Math.min(productCount, 3); i++) {
-    const href = await productLinks.nth(i).getAttribute('href');
-    if (href) productHrefs.push(href);
-  }
-  
-  // Try to add products to cart using the snapshotted hrefs
-  for (const productHref of productHrefs) {
-    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await waitAfterNavigation(page);
-    
-    // Check for Add to Cart button
-    const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-    const buttonVisible = await addToCartButton.isVisible({ timeout: 2000 }).catch(() => false);
-    
-    if (buttonVisible) {
-      await safeClick(addToCartButton);
-      await waitForPageReady(page);
-      
-      // Check if toast appeared (indicating success)
-      const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /added to cart/i });
-      const toastAppeared = await toast.isVisible({ timeout: 3000 }).catch(() => false);
-      
-      if (toastAppeared) {
-        await waitForToastToDismiss(page);
-        productAdded = true;
-        break;
-      }
-    }
-  }
-  
-  if (!productAdded) {
-    throw new Error('Could not add any product to cart (all out of stock or no Add to Cart button)');
-  }
+
+  // Navigate to products, drill down through categories, add a product to cart
+  await addProductToCart(page);
   
   // Navigate to checkout
   await page.goto(routes.checkout(), { waitUntil: 'commit', timeout: 60000 });

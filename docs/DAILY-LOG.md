@@ -8,6 +8,77 @@
 
 ---
 
+## June 26, 2026 — E2E Locator Fixes Rounds 1 & 2 + Full Audit 🔧
+
+**Status:** ✅ PR #576 MERGED — fix/invalid-workflow | ✅ PR #577 MERGED — fix/e2e-locators | ✅ PR #578 MERGED — fix/e2e-locators-2  
+**Scope:** Root-cause triage of 148-failure E2E audit. Three PRs in sequence reduced failures from 148 → 130 → projected ~88 after #578 merges.
+
+### PR #576 — Fix Invalid Workflow (Secrets in Job-Level `if`)
+
+GitHub Actions does not expose the `secrets` context in job-level `if:` expressions — only inside `steps`. The `e2e-auth` job was referencing `secrets.E2E_USERNAME` in its `if:` condition, making the workflow file invalid.
+
+**Fix:** Moved all secret-presence checks inside `run:` steps as shell guards:
+```bash
+if [ -z "$E2E_USERNAME" ]; then echo "Skipping — secrets not configured"; exit 0; fi
+```
+Job-level `if:` now only references `github.ref` (always available).
+
+### Full E2E Audit — Baseline Run Against Production
+
+Ran all 211 tests against `https://bapi-headless.vercel.app` (production) after fixing CI secrets and creating the `e2e.ci` WordPress user.
+
+**Result (pre-fix):** 148 failed · 58 passed · 5 skipped
+
+Root cause identified: every `addProductToCart` helper across 6 spec files used `a[href*="/categories/"]` to find category links. The live site uses `/products/{slug}` for category URLs — `/categories/` never appeared in any real URL. This caused the category drill-down to find 0 links → 0 products → cascading failures across all cart, checkout, coupon, and payment tests.
+
+### PR #577 — Round 1 Locator Fixes (6 files)
+
+Fixed all `a[href*="/categories/"]` and `a[href*="/category/"]` selectors across the 6 spec files touched in the audit:
+
+| File | Change |
+|------|--------|
+| `cart-checkout.spec.ts` | `addProductToCart` helper + `Promise.race` |
+| `cart-management.spec.ts` | `addProductToCart` helper |
+| `checkout-multi-locale.spec.ts` | locale-aware cart helper |
+| `discount-coupons.spec.ts` | cart helper |
+| `payment-flows.spec.ts` | cart helper + `Promise.race` |
+| `products.spec.ts` | `navigateToAnyProduct` + `beforeEach` + 2 category assertions |
+
+Also:
+- All `categoryLinks`/`subcategoryLinks` scoped to `page.locator('main')` (Copilot review: avoid matching breadcrumbs and header nav anchors)
+- `:visible` added back to all `productLinks` re-queries after navigation (was being dropped on reassignment)
+- `Promise.race` `waitFor` calls changed to `state:'visible'` (was `'attached'`)
+
+**Result after merge:** 130 failed · 76 passed · 5 skipped (+18 tests fixed)
+
+### PR #578 — Round 2 Locator Fixes (3 files)
+
+Second audit revealed three additional root-cause bugs:
+
+**1. `product-navigation.spec.ts` — completely missed in PR #577**
+9 instances of the broken `/categories/` selector still present. All replaced with `page.locator('main').locator('a[href*="/products/"]:visible')`. URL assertions updated from `/categories?/` → `/products/`. `safeClick(categoryLink)` replaced with `page.goto(categoryHref)` throughout.
+
+**2. `cart-management.spec.ts` — `safeClick` doesn't navigate**
+`addProductToCart` was using `safeClick(categoryLink)` to enter categories. Unlike `cart-checkout.spec.ts` (which passed), this click didn't trigger reliable navigation on the live site — all 17 tests that need a product in cart were failing at exactly ~20s. Fix: get `categoryHref` then `page.goto()`. Also added fail-fast guard (Copilot review): throws immediately if `productCount === 0` after navigation, preventing negative `productIndex` when `forceDifferent=true`.
+
+**3. `payment-flows.spec.ts` — stale `productLinks` locator**
+`setupCheckoutWithProduct` captured `productLinks` on the category page, then the for-loop navigated to `product[0]`. On iteration `i=1`, `productLinks.nth(1)` was evaluated on the current product detail page (wrong DOM) → 15s `getAttribute` timeout. Fix: snapshot all hrefs into `string[]` before entering the loop.
+
+**Projected result after merge:** ~88 failed (−42 from #578)
+
+### Remaining Known Failures After Round 2
+| Cluster | Count | Root Cause |
+|---------|-------|-----------|
+| `checkout-multi-locale` | 21 | Add-to-cart `isVisible({ timeout: 2000 })` too short; locale routing |
+| `b2b-order-journey.auth.spec.ts` | 10 | Needs `--project=setup,authenticated` (ran unauthenticated) |
+| `discount-coupons` | 17 | Same 2s button timeout + stale locator on retry |
+| `authentication.spec.ts` | 7 | Real UI bugs: duplicate password label, missing links |
+| `products.spec.ts` | 8 | Category card `.filter()` too restrictive; `img[alt*="product"]` no match |
+| `language-selector` | 5 | Various |
+| `homepage.spec.ts` | 1 | Color contrast on category card descriptions (`text-neutral-600`) |
+
+---
+
 ## June 26, 2026 — E2E Tests Wired Into CI Pipeline + Secrets Configured 🚀
 
 **Status:** ✅ PR #574 MERGED — ci/e2e-in-pipeline | ✅ PR #575 MERGED — ci/use-existing-secrets  

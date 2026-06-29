@@ -28,9 +28,9 @@ test.describe('Multi-Locale Checkout Flow', () => {
   for (const locale of TEST_LOCALES) {
     test.describe(`${locale.name} (${locale.code})`, () => {
       test(`should display checkout page in ${locale.name}`, async ({ page }) => {
-        await page.goto(routes.checkout(locale.code), { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        
+        // Add a product first — empty cart redirects away from checkout
+        await setupCheckoutWithProduct(page, locale.code);
+
         // Should show checkout heading
         const heading = page.getByRole('heading', { level: 1 }).first();
         await expect(heading).toBeVisible();

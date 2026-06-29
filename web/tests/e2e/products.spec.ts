@@ -230,13 +230,20 @@ test.describe('Product Pages', () => {
       await toast.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
       
       // CartButton is a <button> (not a link) and the badge only renders when items > 0.
-      // Verify via localStorage rather than a fragile cart-link text check.
-      const cartItems = await page.evaluate(() => {
-        const stored = localStorage.getItem('bapi-cart-storage');
-        const data = stored ? JSON.parse(stored) : null;
-        return (data as { state?: { items?: unknown[] } } | null)?.state?.items?.length ?? 0;
-      });
-      expect(cartItems).toBeGreaterThan(0);
+      // Poll localStorage — cart state may flush slightly after the toast fires.
+      await expect.poll(
+        async () => {
+          const stored = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
+          if (!stored) return 0;
+          try {
+            const data = JSON.parse(stored) as { state?: { items?: unknown[] } };
+            return data?.state?.items?.length ?? 0;
+          } catch {
+            return 0;
+          }
+        },
+        { timeout: 10000, message: 'Expected cart to have at least one item in localStorage' }
+      ).toBeGreaterThan(0);
     });
 
     test('should display product images gallery', async ({ page }) => {
@@ -314,14 +321,21 @@ test.describe('Product Pages', () => {
         const toast = page.locator('[role="alert"], [role="status"]');
         await toast.first().waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
         
-        // Verify cart has items via localStorage (CartButton is a <button>, not a link)
-        const cartData = await page.evaluate(() => {
-          const stored = localStorage.getItem('bapi-cart-storage');
-          return stored ? JSON.parse(stored) : null;
-        });
-        expect(
-          (cartData as { state?: { items?: unknown[] } } | null)?.state?.items?.length ?? 0
-        ).toBeGreaterThan(0);
+        // Poll localStorage until the total quantity of all items equals the chosen value (3).
+        // Cart state may flush slightly after the toast; guard JSON.parse for robustness.
+        await expect.poll(
+          async () => {
+            const stored = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
+            if (!stored) return 0;
+            try {
+              const data = JSON.parse(stored) as { state?: { items?: { quantity: number }[] } };
+              return (data?.state?.items ?? []).reduce((sum, item) => sum + (item.quantity ?? 0), 0);
+            } catch {
+              return 0;
+            }
+          },
+          { timeout: 10000, message: 'Expected total cart quantity to equal 3' }
+        ).toBe(3);
       }
     });
 

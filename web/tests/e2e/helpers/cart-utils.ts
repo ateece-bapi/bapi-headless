@@ -108,8 +108,12 @@ export async function addProductToCart(
     async () => {
       const stored = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
       if (!stored) return 0;
-      const data = JSON.parse(stored) as { state?: { items?: unknown[] } };
-      return data?.state?.items?.length ?? 0;
+      try {
+        const data = JSON.parse(stored) as { state?: { items?: unknown[] } };
+        return data?.state?.items?.length ?? 0;
+      } catch {
+        return 0; // Corrupt/partial write — keep polling
+      }
     },
     { timeout: 10000, message: 'Expected cart to have at least one item in localStorage' }
   ).toBeGreaterThan(0);

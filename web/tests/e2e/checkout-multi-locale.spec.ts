@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
 import { safeClick, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
+import { addProductToCart } from './helpers/cart-utils';
 
 /**
  * Multi-Locale Checkout E2E Tests (Phase B)
@@ -313,64 +314,8 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
   await page.reload({ waitUntil: 'commit' });
   await waitAfterNavigation(page);
   
-  // Navigate to products page in specified locale
-  await page.goto(routes.products(locale), { waitUntil: 'commit', timeout: 60000 });
-  await waitAfterNavigation(page);
-  
-  // Find and add product (language-agnostic approach)
-  let productAdded = false;
-  
-  // Look for product links
-  let productLinks = page.locator('a[href*="/product/"]:visible');
-  let productCount = await productLinks.count();
-  
-  // Navigate through categories if needed
-  if (productCount === 0) {
-    const categoryLinks = page.locator('main').locator('a[href*="/products/"]:visible');
-    const categoryCount = await categoryLinks.count();
-    
-    if (categoryCount > 0) {
-      const categoryHref = await categoryLinks.first().getAttribute('href');
-      if (categoryHref) {
-        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        
-        productLinks = page.locator('a[href*="/product/"]:visible');
-        productCount = await productLinks.count();
-      }
-    }
-  }
-  
-  // Try to add products (try first 3)
-  for (let i = 0; i < Math.min(productCount, 3); i++) {
-    const productHref = await productLinks.nth(i).getAttribute('href');
-    if (!productHref) continue;
-    
-    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await waitAfterNavigation(page);
-    
-    // Look for Add to Cart button (language agnostic - uses button role)
-    const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier|warenkorb|カート/i });
-    const buttonVisible = await addToCartButton.first().isVisible({ timeout: 2000 }).catch(() => false);
-    
-    if (buttonVisible) {
-      await safeClick(addToCartButton.first());
-      
-      // Check for toast (success indicator)
-      const toast = page.locator('[role="alert"], [role="status"]');
-      const toastAppeared = await toast.first().isVisible({ timeout: 3000 }).catch(() => false);
-      
-      if (toastAppeared) {
-        await waitForToastToDismiss(page);
-        productAdded = true;
-        break;
-      }
-    }
-  }
-  
-  if (!productAdded) {
-    throw new Error(`Could not add product to cart in locale: ${locale}`);
-  }
+  // Navigate to products in locale, drill down through categories, and add a product to cart
+  await addProductToCart(page, { locale });
   
   // Navigate to checkout
   await page.goto(routes.checkout(locale), { waitUntil: 'commit', timeout: 60000 });

@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
 import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
+import { addProductToCart } from './helpers/cart-utils';
 
 /**
  * Cart Management Edge Cases E2E Tests (Phase G)
@@ -381,7 +382,7 @@ test.describe('Multiple Items Management', () => {
   test('should handle multiple different products in cart', async ({ page }) => {
     // Add two different products
     await addProductToCart(page);
-    await addProductToCart(page, true); // Force different product
+    await addProductToCart(page, { productIndex: 1 }); // Force different product
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
@@ -405,7 +406,7 @@ test.describe('Multiple Items Management', () => {
 
   test('should update individual item quantities independently', async ({ page }) => {
     await addProductToCart(page);
-    await addProductToCart(page, true);
+    await addProductToCart(page, { productIndex: 1 });
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
@@ -433,7 +434,7 @@ test.describe('Multiple Items Management', () => {
 
   test('should remove individual items without affecting others', async ({ page }) => {
     await addProductToCart(page);
-    await addProductToCart(page, true);
+    await addProductToCart(page, { productIndex: 1 });
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
@@ -559,50 +560,7 @@ test.describe('Cart Error Handling', () => {
   });
 });
 
-/**
- * Helper: Add product to cart
- */
-async function addProductToCart(page: Page, forceDifferent: boolean = false): Promise<void> {
-  await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-  await waitAfterNavigation(page);
-  
-  let productLinks = page.locator('a[href*="/product/"]:visible');
-  let productCount = await productLinks.count();
-  
-  if (productCount === 0) {
-    const categoryLink = page.locator('main').locator('a[href*="/products/"]:visible').first();
-    if (await categoryLink.isVisible({ timeout: 3000 })) {
-      const categoryHref = await categoryLink.getAttribute('href');
-      if (categoryHref) {
-        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await waitAfterNavigation(page);
-        productLinks = page.locator('a[href*="/product/"]:visible');
-        productCount = await productLinks.count();
-      }
-    }
-  }
-  
-  if (productCount === 0) {
-    throw new Error('No products found after navigating through categories — cannot add to cart');
-  }
-  
-  const productIndex = forceDifferent ? Math.min(1, productCount - 1) : 0;
-  const productHref = await productLinks.nth(productIndex).getAttribute('href');
-  
-  if (productHref) {
-    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await waitAfterNavigation(page);
-    
-    const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier/i });
-    
-    if (await addToCartButton.first().isVisible({ timeout: 3000 })) {
-      await safeClick(addToCartButton.first());
-      
-      // Wait for toast
-      await waitForToastToDismiss(page);
-    }
-  }
-}
+// addProductToCart is imported from helpers/cart-utils
 
 /**
  * Helper: Get cart total amount

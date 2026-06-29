@@ -72,20 +72,15 @@ export async function addProductToCart(
   await page.goto(productHref!, { waitUntil: 'commit', timeout: 60000 });
   await waitForFullPageLoad(page);
 
-  // Handle variable products — select first radio for every attribute group
-  const configureMessage = page.getByText(/configure.*specifications|select.*specifications/i);
-  const hasConfigureMessage = await Promise.race([
-    configureMessage.count().then(c => c > 0),
-    page.waitForTimeout(2000).then(() => false),
-  ]);
+  // Always try to select radios for variable products — don't require a configure message,
+  // which may not appear quickly enough or may use different text.
+  const attributeNames: string[] = await page.evaluate(() => {
+    const radios = Array.from(document.querySelectorAll('input[type="radio"]'));
+    const names = radios.map(r => r.getAttribute('name')).filter(Boolean) as string[];
+    return [...new Set(names)];
+  });
 
-  if (hasConfigureMessage) {
-    const attributeNames: string[] = await page.evaluate(() => {
-      const radios = Array.from(document.querySelectorAll('input[type="radio"]'));
-      const names = radios.map(r => r.getAttribute('name')).filter(Boolean) as string[];
-      return [...new Set(names)];
-    });
-
+  if (attributeNames.length > 0) {
     for (const attributeName of attributeNames.slice(0, 5)) {
       const firstRadio = page.locator(`input[type="radio"][name="${attributeName}"]`).first();
       const radioId = await firstRadio.getAttribute('id');
@@ -93,7 +88,7 @@ export async function addProductToCart(
         const label = page.locator(`label[for="${radioId}"]`);
         const isChecked = await firstRadio.isChecked();
         if (!isChecked) {
-          await label.click({ timeout: 2000 });
+          await label.click({ timeout: 2000 }).catch(() => {});
           await page.waitForTimeout(200);
         }
       }
@@ -107,7 +102,19 @@ export async function addProductToCart(
   await waitForStableElement(addToCartButton);
   await safeClick(addToCartButton);
 
-  // Verify cart badge updated (shows any digit)
-  const cartBadge = page.getByRole('link', { name: /cart/i }).first();
-  await expect(cartBadge).toContainText(/\d+/, { timeout: 10000 });
+  // Verify cart updated via localStorage (CartButton is a <button>, not a link;
+  // cart badge only renders when totalItems > 0, so poll localStorage directly).
+  await expect.poll(
+    async () => {
+      const stored = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
+      if (!stored) return 0;
+      try {
+        const data = JSON.parse(stored) as { state?: { items?: unknown[] } };
+        return data?.state?.items?.length ?? 0;
+      } catch {
+        return 0; // Corrupt/partial write — keep polling
+      }
+    },
+    { timeout: 10000, message: 'Expected cart to have at least one item in localStorage' }
+  ).toBeGreaterThan(0);
 }

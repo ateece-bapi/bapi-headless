@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { routes } from './routes';
+import { routes, DEFAULT_LOCALE } from './routes';
 import { safeClick, waitForStableElement, waitAfterNavigation, waitForFullPageLoad } from './test-utils';
 
 /**
@@ -17,16 +17,17 @@ import { safeClick, waitForStableElement, waitAfterNavigation, waitForFullPageLo
  * 6. Verify the cart badge updates to show at least one item.
  *
  * @param page         Playwright Page instance
- * @param options.locale       BCP-47 locale code for locale-prefixed routes (default: 'en')
+ * @param options.locale       BCP-47 locale code for locale-prefixed routes (default: DEFAULT_LOCALE)
  * @param options.productIndex Which product to add (0-based). Clamped to available count.
  */
 export async function addProductToCart(
   page: Page,
   options: { locale?: string; productIndex?: number } = {}
 ): Promise<void> {
-  const { locale = 'en', productIndex = 0 } = options;
+  const { locale = DEFAULT_LOCALE, productIndex = 0 } = options;
 
   await page.goto(routes.products(locale), { waitUntil: 'commit', timeout: 60000 });
+  await waitAfterNavigation(page);
 
   // Wait for either category links OR direct product links to appear
   await Promise.race([

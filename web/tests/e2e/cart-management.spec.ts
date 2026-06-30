@@ -180,8 +180,8 @@ test.describe('Remove Items', () => {
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
     
-    // Remove all items
-    const removeButtons = page.locator('button[aria-label*="remove" i], button:has-text("Remove")');
+    // Remove all items — include data-testid selector to match all remove button variants (same as test:155)
+    const removeButtons = page.locator('button[aria-label*="remove" i], button:has-text("Remove"), button[data-testid*="remove"]');
     const buttonCount = await removeButtons.count();
     
     for (let i = 0; i < buttonCount; i++) {
@@ -193,8 +193,9 @@ test.describe('Remove Items', () => {
     }
     
     // Should show empty cart message (check common patterns)
+    // waitFor actually waits up to 5s; isVisible() is an instant check that ignores timeout
     const emptyMessage = page.locator('text=/cart is empty|no items|empty cart|your cart is empty/i');
-    const emptyVisible = await emptyMessage.first().isVisible({ timeout: 5000 }).catch(() => false);
+    const emptyVisible = await emptyMessage.first().waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
     
     // Also check via localStorage — poll for up to 5s for Zustand to persist the cleared cart
     let cartCount = await getCartItemCount(page);
@@ -450,17 +451,20 @@ test.describe('Multiple Items Management', () => {
     const inputCount = await quantityInputs.count();
     
     if (inputCount >= 2) {
-      // Update first item
+      // Update first item — use short wait instead of waitForPageReady (which can
+      // block 15 s on networkidle after cart re-renders and exceeds the 60 s test timeout)
       await quantityInputs.first().fill('2');
-      await waitForPageReady(page);
+      await page.waitForTimeout(1500);
       
-      // Update second item
-      await quantityInputs.nth(1).fill('3');
-      await waitForPageReady(page);
+      // Re-locate after potential cart re-render to avoid stale element references
+      const inputs2 = page.locator('input[type="number"], input[name*="quantity" i]');
+      await inputs2.nth(1).fill('3');
+      await page.waitForTimeout(1500);
       
-      // Verify updates
-      const firstQty = await quantityInputs.first().inputValue();
-      const secondQty = await quantityInputs.nth(1).inputValue();
+      // Re-locate again before reading back values
+      const inputs3 = page.locator('input[type="number"], input[name*="quantity" i]');
+      const firstQty = await inputs3.first().inputValue();
+      const secondQty = await inputs3.nth(1).inputValue();
       
       expect(parseInt(firstQty)).toBe(2);
       expect(parseInt(secondQty)).toBe(3);

@@ -296,13 +296,13 @@ test.describe('Product Search', () => {
       // Should show results or "no results" message
       const results = page.locator('a[href*="/product/"]');
       const noResults = page.locator('text=/no results|no products|sin resultados/i');
-      const mainContent = page.locator('main');
-      
       const hasResults = await results.first().isVisible({ timeout: 3000 }).catch(() => false);
       const hasNoResults = await noResults.isVisible({ timeout: 2000 }).catch(() => false);
-      const hasContent = await mainContent.isVisible({ timeout: 1000 }).catch(() => false);
+      // Fallback: check for any product/category links in main (search may use different URL structure)
+      const mainLinks = page.locator('main a[href*="/product/"], main a[href*="/products/"]');
+      const hasContent = await mainLinks.first().isVisible({ timeout: 1000 }).catch(() => false);
       
-      // Should show either results, no results message, or any main content
+      // Should show either results, no results message, or product/category links
       expect(hasResults || hasNoResults || hasContent).toBeTruthy();
     }
   });

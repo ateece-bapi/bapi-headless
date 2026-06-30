@@ -77,8 +77,8 @@ test.describe('Authentication', () => {
     });
 
     test('should show/hide password', async ({ page }) => {
-      // Use type selector to avoid strict mode violation from multiple password labels
-      const passwordInput = page.locator('input[type="password"]').first();
+      // Use label-based selector so the locator stays valid after type="password"→"text" toggle
+      const passwordInput = page.getByLabel(/password/i).first();
       await waitForStableElement(passwordInput);
       
       // Initially should be type="password"

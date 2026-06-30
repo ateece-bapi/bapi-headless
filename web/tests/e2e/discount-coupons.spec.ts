@@ -167,47 +167,53 @@ test.describe('Invalid Coupon Handling', () => {
   test('should reject invalid coupon code', async ({ page }) => {
     await setupCheckoutWithProduct(page);
     
-    const applied = await applyCoupon(page, TEST_COUPONS.invalid.nonexistent);
-    
-    // Only assert error if coupon input was found and an attempt was made
-    if (applied !== false) {
-      // Should show error message
-      const errorMessages = [
-        page.locator('[role="alert"]:has-text("invalid"), [role="alert"]:has-text("not found")'),
-        page.locator('text=/invalid coupon|coupon not found|invalid code/i'),
-        page.locator('.error:has-text("coupon"), .error:has-text("code")'),
-      ];
-      
-      let errorFound = false;
-      for (const message of errorMessages) {
-        if (await message.first().isVisible({ timeout: 3000 }).catch(() => false)) {
-          errorFound = true;
-          break;
-        }
-      }
-      
-      // Error should be displayed
-      expect(errorFound).toBeTruthy();
+    // Skip if coupon input is not available on this deployment
+    const couponInputEl = await findCouponInput(page);
+    if (!couponInputEl) {
+      test.skip(true, 'Coupon input not available on this checkout page');
+      return;
     }
+    
+    // Input found — submit invalid coupon and expect an error message
+    await applyCoupon(page, TEST_COUPONS.invalid.nonexistent);
+    
+    const errorMessages = [
+      page.locator('[role="alert"]:has-text("invalid"), [role="alert"]:has-text("not found")'),
+      page.locator('text=/invalid coupon|coupon not found|invalid code/i'),
+      page.locator('.error:has-text("coupon"), .error:has-text("code")'),
+    ];
+    
+    let errorFound = false;
+    for (const message of errorMessages) {
+      if (await message.first().isVisible({ timeout: 3000 }).catch(() => false)) {
+        errorFound = true;
+        break;
+      }
+    }
+    
+    expect(errorFound).toBeTruthy();
   });
 
   test('should reject expired coupon code', async ({ page }) => {
     await setupCheckoutWithProduct(page);
     
-    const applied = await applyCoupon(page, TEST_COUPONS.invalid.expired);
-    
-    // Only assert error if coupon input was found and an attempt was made
-    if (applied !== false) {
-      // Should show expired error
-      const expiredMessage = page.locator('text=/expired|no longer valid/i');
-      const errorMessage = page.locator('[role="alert"]:has-text("expired"), [role="alert"]:has-text("invalid")');
-      
-      const expiredVisible = await expiredMessage.first().isVisible({ timeout: 3000 }).catch(() => false);
-      const errorVisible = await errorMessage.first().isVisible({ timeout: 2000 }).catch(() => false);
-      
-      // Either specific expired message or general error
-      expect(expiredVisible || errorVisible).toBeTruthy();
+    // Skip if coupon input is not available on this deployment
+    const couponInputEl = await findCouponInput(page);
+    if (!couponInputEl) {
+      test.skip(true, 'Coupon input not available on this checkout page');
+      return;
     }
+    
+    // Input found — submit expired coupon and expect an error message
+    await applyCoupon(page, TEST_COUPONS.invalid.expired);
+    
+    const expiredMessage = page.locator('text=/expired|no longer valid/i');
+    const errorMessage = page.locator('[role="alert"]:has-text("expired"), [role="alert"]:has-text("invalid")');
+    
+    const expiredVisible = await expiredMessage.first().isVisible({ timeout: 3000 }).catch(() => false);
+    const errorVisible = await errorMessage.first().isVisible({ timeout: 2000 }).catch(() => false);
+    
+    expect(expiredVisible || errorVisible).toBeTruthy();
   });
 
   test('should not apply discount for invalid coupon', async ({ page }) => {

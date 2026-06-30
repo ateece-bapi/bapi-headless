@@ -155,7 +155,8 @@ test.describe('Language Selector', () => {
     await injectAxe(page);
     
     // Check accessibility of initial state
-    // Disable color-contrast: category card descriptions use text-neutral-600 (known UI issue)
+    // Disable color-contrast: homepage may have other elements with low contrast beyond the card
+    // description fix in this PR (the text-neutral-600→700 fix is also in this PR)
     await checkA11y(page, undefined, {
       detailedReport: true,
       detailedReportOptions: { html: true },

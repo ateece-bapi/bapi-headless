@@ -226,7 +226,7 @@ test.describe('Checkout Process', () => {
     const checkoutButton = page.locator('a[href*="checkout"], button:has-text("Checkout"), button:has-text("Proceed")').first();
     
     if (await checkoutButton.isVisible({ timeout: 2000 })) {
-      await checkoutButton.click();
+      await safeClick(checkoutButton);
       
       // Should navigate to checkout
       await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 10000 });

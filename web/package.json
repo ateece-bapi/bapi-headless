@@ -45,7 +45,7 @@
     "youtube:help": "tsx scripts/youtube-cli.ts help"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.71.2",
+    "@anthropic-ai/sdk": "^0.109.0",
     "@aws-sdk/client-ses": "^3.985.0",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",

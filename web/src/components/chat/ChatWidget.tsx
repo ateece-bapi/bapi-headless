@@ -108,7 +108,7 @@ export default function ChatWidget() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        logger.error('Chat API Error', { status: response.status, error: errorData });
+        logger.error('Chat API Error', { status: response.status, error: errorData.error, details: errorData.details });
         throw new Error(errorData.message || 'Failed to get response');
       }
 

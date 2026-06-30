@@ -305,10 +305,18 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    logger.error('Chat API Error', error);
+    logger.error('Chat API Error', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack?.split('\n')[1]?.trim() : undefined,
+    });
 
     // Handle Anthropic API errors
     if (error instanceof Anthropic.APIError) {
+      logger.error('Anthropic API Error', {
+        status: error.status,
+        message: error.message,
+        name: error.name,
+      });
       return NextResponse.json(
         {
           error: 'AI service error',

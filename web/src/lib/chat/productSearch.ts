@@ -16,7 +16,9 @@ const PRODUCT_SEARCH_QUERY = gql`
         databaseId
         name
         slug
+        description
         shortDescription
+        partNumber
         image {
           sourceUrl
           altText
@@ -25,6 +27,14 @@ const PRODUCT_SEARCH_QUERY = gql`
           price
           regularPrice
           sku
+          stockStatus
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
           productCategories {
             nodes {
               name
@@ -34,6 +44,14 @@ const PRODUCT_SEARCH_QUERY = gql`
         ... on VariableProduct {
           price
           regularPrice
+          stockStatus
+          attributes {
+            nodes {
+              name
+              label
+              options
+            }
+          }
           productCategories {
             nodes {
               name
@@ -62,17 +80,27 @@ const PRODUCT_SEARCH_QUERY = gql`
   }
 `;
 
+export interface ProductAttribute {
+  name: string;
+  label: string;
+  options: string[];
+}
+
 export interface ProductSearchResult {
   id: string;
   databaseId: number;
   name: string;
   slug: string;
+  description: string | null;
   shortDescription: string | null;
+  partNumber: string | null;
   price: string | null;
   regularPrice: string | null;
   sku: string | null;
+  stockStatus: string | null;
   imageUrl: string | null;
   categories: string[];
+  attributes: ProductAttribute[];
   url: string;
 }
 
@@ -106,12 +134,20 @@ export async function searchProducts(
       databaseId: product.databaseId,
       name: product.name,
       slug: product.slug,
-      shortDescription: product.shortDescription,
-      price: product.price,
-      regularPrice: product.regularPrice,
-      sku: product.sku,
+      description: product.description || null,
+      shortDescription: product.shortDescription || null,
+      partNumber: product.partNumber || null,
+      price: product.price || null,
+      regularPrice: product.regularPrice || null,
+      sku: product.sku || null,
+      stockStatus: product.stockStatus || null,
       imageUrl: product.image?.sourceUrl || null,
       categories: product.productCategories?.nodes?.map((cat: any) => cat.name) || [],
+      attributes: product.attributes?.nodes?.map((attr: any) => ({
+        name: attr.name,
+        label: attr.label,
+        options: attr.options || [],
+      })) || [],
       url: `/products/${product.slug}`,
     }));
   } catch (error) {
@@ -131,13 +167,24 @@ export function formatProductsForAI(products: ProductSearchResult[]): string {
 
   return products
     .map((product, index) => {
+      const partId = product.partNumber || product.sku;
+      const descriptionText = (product.description || product.shortDescription || '')
+        .replace(/<[^>]*>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .substring(0, 300);
+
       const parts = [
         `${index + 1}. **${product.name}**`,
-        product.sku ? `   - SKU: ${product.sku}` : '',
-        product.price ? `   - Price: ${product.price}` : '',
+        partId ? `   - Part #: ${partId}` : '',
         product.categories.length > 0 ? `   - Category: ${product.categories.join(', ')}` : '',
-        product.shortDescription
-          ? `   - Description: ${product.shortDescription.replace(/<[^>]*>/g, '').substring(0, 150)}...`
+        product.stockStatus ? `   - Stock: ${product.stockStatus}` : '',
+        product.price ? `   - Price: ${product.price}` : '',
+        descriptionText ? `   - Description: ${descriptionText}${descriptionText.length >= 300 ? '...' : ''}` : '',
+        product.attributes.length > 0
+          ? product.attributes
+              .map((attr) => `   - ${attr.label || attr.name}: ${attr.options.join(', ')}`)
+              .join('\n')
           : '',
         `   - View product: ${product.url}`,
       ];

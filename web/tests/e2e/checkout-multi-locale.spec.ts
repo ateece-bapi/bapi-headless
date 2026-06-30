@@ -142,13 +142,14 @@ test.describe('Locale Switching During Checkout', () => {
     const checkoutHeading = page.getByRole('heading', { name: /checkout/i });
     await expect(checkoutHeading).toBeVisible({ timeout: 2000 });
     
-    // Switch to Spanish
-    const languageSelector = page.locator('[aria-label*="language"], [data-testid*="language"]').first();
-    if (await languageSelector.isVisible({ timeout: 2000 })) {
-      await safeClick(languageSelector);
+    // Switch to Spanish via the language selector (use role-based selectors to avoid
+    // regex /es/i matching 'United States' in the region selector)
+    const languageSelectorBtn = page.getByRole('button', { name: /select language/i });
+    if (await languageSelectorBtn.isVisible({ timeout: 2000 })) {
+      await safeClick(languageSelectorBtn);
       
-      // Click Spanish option
-      const spanishOption = page.locator('text=/español|spanish|es/i').first();
+      // Click Spanish option from the listbox
+      const spanishOption = page.getByRole('option', { name: /español/i });
       if (await spanishOption.isVisible({ timeout: 1000 })) {
         await safeClick(spanishOption);
         await waitAfterNavigation(page);

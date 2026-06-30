@@ -135,9 +135,9 @@ test.describe('Language Selector', () => {
     // submit a parent form instead of activating the button in some browsers.
     await page.keyboard.press('Space');
     
-    // Wait for listbox or individual options to appear
+    // Wait for listbox or individual options to appear (waitFor actually waits, isVisible is instant)
     const listboxOrOption = page.locator('[role="listbox"], [role="option"]').first();
-    const dropdownOpened = await listboxOrOption.isVisible({ timeout: 5000 }).catch(() => false);
+    const dropdownOpened = await listboxOrOption.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
     
     if (!dropdownOpened) {
       // Headless UI keyboard behaviour may vary by browser build — skip rather than fail

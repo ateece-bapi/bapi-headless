@@ -32,8 +32,8 @@ test.describe('Authentication', () => {
       const emailInput = page.getByLabel(/email/i);
       await expect(emailInput).toBeVisible();
       
-      // Password input should be visible
-      const passwordInput = page.getByLabel(/password/i);
+      // Password input should be visible — use the input ID to avoid matching the show-password toggle button
+      const passwordInput = page.locator('#password');
       await expect(passwordInput).toBeVisible();
       
       // Submit button should be visible

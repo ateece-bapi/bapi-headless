@@ -196,8 +196,19 @@ test.describe('Remove Items', () => {
     const emptyMessage = page.locator('text=/cart is empty|no items|empty cart|your cart is empty/i');
     const emptyVisible = await emptyMessage.first().isVisible({ timeout: 5000 }).catch(() => false);
     
-    // Also check via localStorage — cart should have 0 items
-    const cartCount = await getCartItemCount(page);
+    // Also check via localStorage — poll for up to 5s for Zustand to persist the cleared cart
+    let cartCount = await getCartItemCount(page);
+    if (cartCount > 0) {
+      await page.waitForFunction(
+        () => {
+          const raw = localStorage.getItem('bapi-cart-storage');
+          if (!raw) return true;
+          try { const d = JSON.parse(raw); return (d?.state?.items?.length ?? 0) === 0; } catch { return true; }
+        },
+        { timeout: 5000 }
+      ).catch(() => { /* ignore — we'll re-check below */ });
+      cartCount = await getCartItemCount(page);
+    }
     
     expect(emptyVisible || cartCount === 0).toBeTruthy();
   });
@@ -423,10 +434,17 @@ test.describe('Multiple Items Management', () => {
 
   test('should update individual item quantities independently', async ({ page }) => {
     await addProductToCart(page);
-    try { await addProductToCart(page, { productIndex: 1 }); } catch { /* fall back */ }
+    let secondAdded = false;
+    try { await addProductToCart(page, { productIndex: 1 }); secondAdded = true; } catch { /* fall back */ }
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
+    
+    if (!secondAdded) {
+      // Only one product type available on this deployment — skip multi-item check
+      test.skip(true, 'Second product type not available for independent-quantity test');
+      return;
+    }
     
     const quantityInputs = page.locator('input[type="number"], input[name*="quantity" i]');
     const inputCount = await quantityInputs.count();
@@ -454,16 +472,17 @@ test.describe('Multiple Items Management', () => {
     let secondAdded = false;
     try { await addProductToCart(page, { productIndex: 1 }); secondAdded = true; } catch { /* fall back */ }
     
+    if (!secondAdded) {
+      // Only one product type available on this deployment — skip multi-item removal check
+      test.skip(true, 'Second product type not available for independent-removal test');
+      return;
+    }
+    
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
     await waitAfterNavigation(page);
     
     const initialCount = await getCartItemCount(page);
-    if (!secondAdded) {
-      // Only one product type available — just verify removal works
-      expect(initialCount).toBeGreaterThanOrEqual(1);
-    } else {
-      expect(initialCount).toBeGreaterThanOrEqual(2);
-    }
+    expect(initialCount).toBeGreaterThanOrEqual(2);
     
     // Remove first item
     const removeButton = page.locator('button[aria-label*="remove" i], button:has-text("Remove")').first();

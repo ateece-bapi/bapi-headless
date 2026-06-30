@@ -66,7 +66,7 @@ async function getUserCustomerGroups(): Promise<string[]> {
 /**
  * BAPI AI Assistant - Technical Product Support Chatbot
  *
- * Powered by Claude 3.5 Sonnet for accurate technical responses
+ * Powered by Claude Haiku 4.5 for accurate technical responses
  * about BAPI's 600+ HVAC sensors and building automation products.
  */
 
@@ -208,7 +208,7 @@ export async function POST(request: NextRequest) {
 
     // Initial API call to Claude
     let response = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-haiku-4-5',
       max_tokens: 1024,
       system: systemPrompt,
       tools,
@@ -251,7 +251,7 @@ export async function POST(request: NextRequest) {
 
       // Continue conversation with tool result
       response = await anthropic.messages.create({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-haiku-4-5',
         max_tokens: 1024,
         system: systemPrompt,
         tools,

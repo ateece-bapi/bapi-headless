@@ -235,8 +235,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                       <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h3>
 
-                    {/* Description */}
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-600">
+                    {/* Description — text-neutral-700 meets WCAG AA contrast on white */}
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-700">
                       {category.description}
                     </p>
 

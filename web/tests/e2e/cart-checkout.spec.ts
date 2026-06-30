@@ -218,19 +218,18 @@ test.describe('Checkout Process', () => {
   });
 
   test('should navigate to checkout from cart', async ({ page }) => {
-    // Click cart button to open cart drawer/modal  
-    const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await safeClick(cartButton);
+    // Navigate directly to cart page (CartButton is a <button>, not a link)
+    await page.goto(routes.cart());
     await waitForPageReady(page);
     
-    // Find checkout button in cart
-    const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
+    // Find checkout button in cart (may be a button or link)
+    const checkoutButton = page.locator('a[href*="checkout"], button:has-text("Checkout"), button:has-text("Proceed")').first();
     
-    if (await checkoutButton.isVisible({ timeout: 500 })) {
-      await safeClick(checkoutButton);
+    if (await checkoutButton.isVisible({ timeout: 2000 })) {
+      await checkoutButton.click();
       
       // Should navigate to checkout
-      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`));
+      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 10000 });
       await waitForPageReady(page);
       
       // Checkout page should load

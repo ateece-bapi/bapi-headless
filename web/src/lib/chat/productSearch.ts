@@ -144,10 +144,10 @@ export async function searchProducts(
       imageUrl: product.image?.sourceUrl || null,
       categories: product.productCategories?.nodes?.map((cat: any) => cat.name) || [],
       attributes: product.attributes?.nodes?.map((attr: any) => ({
-        name: attr.name,
-        label: attr.label,
-        options: attr.options || [],
-      })) || [],
+        name: attr.name ?? '',
+        label: attr.label ?? '',
+        options: (attr.options ?? []).filter((o: string | null) => o != null && o !== ''),
+      })).filter((attr: ProductAttribute) => attr.name || attr.label) || [],
       url: `/products/${product.slug}`,
     }));
   } catch (error) {
@@ -183,6 +183,7 @@ export function formatProductsForAI(products: ProductSearchResult[]): string {
         descriptionText ? `   - Description: ${descriptionText}${descriptionText.length >= 300 ? '...' : ''}` : '',
         product.attributes.length > 0
           ? product.attributes
+              .filter((attr) => (attr.label || attr.name) && attr.options.length > 0)
               .map((attr) => `   - ${attr.label || attr.name}: ${attr.options.join(', ')}`)
               .join('\n')
           : '',

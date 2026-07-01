@@ -144,196 +144,179 @@ export async function POST(request: NextRequest) {
   const toolsUsed: string[] = [];
   const productsRecommended: string[] = [];
 
-  try {
-    // Get user's customer groups for B2B product filtering
-    const customerGroups = await getUserCustomerGroups();
+  // --- Pre-flight checks (non-streaming) ---
+  const customerGroups = await getUserCustomerGroups();
 
-    // Rate limiting - prevent abuse of expensive AI API calls
-    const clientIP = getClientIP(request);
-    const rateLimitResult = checkRateLimit(clientIP, RATE_LIMITS.CHAT_API);
+  const clientIP = getClientIP(request);
+  const rateLimitResult = checkRateLimit(clientIP, RATE_LIMITS.CHAT_API);
 
-    if (!rateLimitResult.success) {
-      logger.warn('Chat API rate limit exceeded', {
-        ip: clientIP,
-        limit: rateLimitResult.limit,
-        reset: new Date(rateLimitResult.reset * 1000).toISOString(),
-      });
-
-      return NextResponse.json(
-        {
-          error: 'Rate limit exceeded',
-          message: `Too many chat requests. Please try again in ${Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)} seconds.`,
-          retryAfter: Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000),
-        },
-        {
-          status: 429,
-          headers: {
-            'X-RateLimit-Limit': String(rateLimitResult.limit),
-            'X-RateLimit-Remaining': String(rateLimitResult.remaining),
-            'X-RateLimit-Reset': String(rateLimitResult.reset),
-            'Retry-After': String(Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)),
-          },
-        }
-      );
-    }
-
-    // Check if API key is configured
-    if (!process.env.ANTHROPIC_API_KEY) {
-      logger.error('ANTHROPIC_API_KEY not found in environment variables');
-      return NextResponse.json(
-        {
-          error: 'Configuration error',
-          message: 'AI service is not properly configured. Please contact support.',
-        },
-        { status: 500 }
-      );
-    }
-
-    const { messages, locale } = await request.json();
-
-    if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json(
-        { error: 'Invalid request: messages array required' },
-        { status: 400 }
-      );
-    }
-
-    // Get user's message (last message in array)
-    const userMessage = messages[messages.length - 1]?.content || '';
-
-    // Add locale hint to system prompt if provided
-    const systemPrompt = locale
-      ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
-      : SYSTEM_PROMPT;
-
-    // Initial API call to Claude
-    let response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5',
-      max_tokens: 1024,
-      system: systemPrompt,
-      tools,
-      messages: messages.map((msg: { role: string; content: string }) => ({
-        role: (msg.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
-        content: msg.content,
-      })),
+  if (!rateLimitResult.success) {
+    logger.warn('Chat API rate limit exceeded', {
+      ip: clientIP,
+      limit: rateLimitResult.limit,
+      reset: new Date(rateLimitResult.reset * 1000).toISOString(),
     });
-
-    // Handle tool use (function calling)
-    while (response.stop_reason === 'tool_use') {
-      const toolUse = response.content.find((block) => block.type === 'tool_use') as any;
-
-      if (!toolUse) break;
-
-      let toolResult: any;
-
-      // Execute the tool
-      if (toolUse.name === 'search_products') {
-        toolsUsed.push('search_products');
-
-        const { query, limit = 5 } = toolUse.input;
-        // Apply customer group filtering for B2B access control
-        const products = await searchProducts(query, limit, customerGroups);
-        const formattedProducts = formatProductsForAI(products);
-
-        // Track recommended products
-        products.forEach((product) => {
-          if (product.slug) {
-            productsRecommended.push(product.slug);
-          }
-        });
-
-        toolResult = {
-          type: 'tool_result',
-          tool_use_id: toolUse.id,
-          content: formattedProducts,
-        };
-      }
-
-      // Continue conversation with tool result
-      response = await anthropic.messages.create({
-        model: 'claude-haiku-4-5',
-        max_tokens: 1024,
-        system: systemPrompt,
-        tools,
-        messages: [
-          ...messages.map((msg: { role: string; content: string }) => ({
-            role: (msg.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
-            content: msg.content,
-          })),
-          {
-            role: 'assistant' as const,
-            content: response.content,
-          },
-          {
-            role: 'user' as const,
-            content: [toolResult],
-          },
-        ],
-      });
-    }
-
-    // Extract final text response
-    const assistantMessage = response.content.find((block) => block.type === 'text');
-    const text = assistantMessage?.type === 'text' ? assistantMessage.text : '';
-
-    // Calculate metrics
-    const responseTimeMs = Date.now() - startTime;
-    const tokensUsed = response.usage.input_tokens + response.usage.output_tokens;
-
-    // Log analytics (non-blocking)
-    const analytics: ChatAnalytics = {
-      conversationId,
-      timestamp: new Date().toISOString(),
-      language: locale || 'en',
-      userMessage,
-      assistantResponse: text,
-      productsRecommended: productsRecommended.length > 0 ? productsRecommended : undefined,
-      toolsUsed: toolsUsed.length > 0 ? toolsUsed : undefined,
-      tokensUsed,
-      responseTimeMs,
-    };
-
-    // Log without awaiting (don't block response)
-    logChatAnalytics(analytics).catch((err) => logger.error('Failed to log analytics', err));
-
-    return NextResponse.json({
-      message: text,
-      conversationId, // Return ID so client can submit feedback later
-      usage: {
-        input_tokens: response.usage.input_tokens,
-        output_tokens: response.usage.output_tokens,
-      },
-    });
-  } catch (error) {
-    logger.error('Chat API Error', {
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack?.split('\n')[1]?.trim() : undefined,
-    });
-
-    // Handle Anthropic API errors
-    if (error instanceof Anthropic.APIError) {
-      logger.error('Anthropic API Error', {
-        status: error.status,
-        message: error.message,
-        name: error.name,
-      });
-      return NextResponse.json(
-        {
-          error: 'AI service error',
-          message: 'Unable to process your request. Please try again.',
-          details: error.message,
-        },
-        { status: error.status || 500 }
-      );
-    }
-
-    // Handle other errors
     return NextResponse.json(
       {
-        error: 'Internal server error',
-        message: 'Something went wrong. Please try again later.',
+        error: 'Rate limit exceeded',
+        message: `Too many chat requests. Please try again in ${Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)} seconds.`,
+        retryAfter: Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000),
       },
+      {
+        status: 429,
+        headers: {
+          'X-RateLimit-Limit': String(rateLimitResult.limit),
+          'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+          'X-RateLimit-Reset': String(rateLimitResult.reset),
+          'Retry-After': String(Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)),
+        },
+      }
+    );
+  }
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    logger.error('ANTHROPIC_API_KEY not found in environment variables');
+    return NextResponse.json(
+      { error: 'Configuration error', message: 'AI service is not properly configured. Please contact support.' },
       { status: 500 }
     );
   }
+
+  let parsedBody: { messages?: unknown; locale?: string };
+  try {
+    parsedBody = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+
+  const { messages, locale } = parsedBody;
+
+  if (!messages || !Array.isArray(messages)) {
+    return NextResponse.json({ error: 'Invalid request: messages array required' }, { status: 400 });
+  }
+
+  const userMessage = (messages[messages.length - 1] as { content?: string })?.content || '';
+
+  const systemPrompt = locale
+    ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
+    : SYSTEM_PROMPT;
+
+  // --- Streaming response ---
+  const encoder = new TextEncoder();
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      const enqueue = (data: object) =>
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+
+      try {
+        let currentMessages: Anthropic.MessageParam[] = messages.map(
+          (msg: { role: string; content: string }) => ({
+            role: (msg.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
+            content: msg.content,
+          })
+        );
+
+        // Tool-use loop: non-streaming passes resolve quickly; final text response streams
+        const MAX_TOOL_ITERATIONS = 3;
+        for (let i = 0; i < MAX_TOOL_ITERATIONS; i++) {
+          const apiStream = anthropic.messages.stream({
+            model: 'claude-haiku-4-5',
+            max_tokens: 1024,
+            system: systemPrompt,
+            tools,
+            messages: currentMessages,
+          });
+
+          // Stream text tokens to client as they arrive
+          for await (const event of apiStream) {
+            if (
+              event.type === 'content_block_delta' &&
+              event.delta.type === 'text_delta' &&
+              event.delta.text
+            ) {
+              enqueue({ type: 'token', text: event.delta.text });
+            }
+          }
+
+          const finalMessage = await apiStream.finalMessage();
+
+          if (finalMessage.stop_reason !== 'tool_use') {
+            // Done — log analytics and signal completion
+            const fullText = finalMessage.content
+              .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+              .map((b) => b.text)
+              .join('');
+
+            const responseTimeMs = Date.now() - startTime;
+            const tokensUsed = finalMessage.usage.input_tokens + finalMessage.usage.output_tokens;
+
+            const analytics: ChatAnalytics = {
+              conversationId,
+              timestamp: new Date().toISOString(),
+              language: locale || 'en',
+              userMessage,
+              assistantResponse: fullText,
+              productsRecommended: productsRecommended.length > 0 ? productsRecommended : undefined,
+              toolsUsed: toolsUsed.length > 0 ? toolsUsed : undefined,
+              tokensUsed,
+              responseTimeMs,
+            };
+            logChatAnalytics(analytics).catch((err) => logger.error('Failed to log analytics', err));
+
+            enqueue({ type: 'done', conversationId, usage: finalMessage.usage });
+            break;
+          }
+
+          // Execute the tool call, then loop for the next streaming response
+          const toolUse = finalMessage.content.find(
+            (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
+          );
+          if (!toolUse) break;
+
+          toolsUsed.push(toolUse.name);
+          let toolResultContent = 'No results found.';
+
+          if (toolUse.name === 'search_products') {
+            const input = toolUse.input as { query: string; limit?: number };
+            const products = await searchProducts(input.query, input.limit ?? 5, customerGroups);
+            products.forEach((p) => { if (p.slug) productsRecommended.push(p.slug); });
+            toolResultContent = formatProductsForAI(products);
+          }
+
+          currentMessages = [
+            ...currentMessages,
+            { role: 'assistant' as const, content: finalMessage.content },
+            {
+              role: 'user' as const,
+              content: [{ type: 'tool_result' as const, tool_use_id: toolUse.id, content: toolResultContent }],
+            },
+          ];
+        }
+      } catch (error) {
+        logger.error('Chat API Error', {
+          message: error instanceof Error ? error.message : String(error),
+          stack: error instanceof Error ? error.stack?.split('\n')[1]?.trim() : undefined,
+        });
+
+        if (error instanceof Anthropic.APIError) {
+          logger.error('Anthropic API Error', { status: error.status, message: error.message });
+          enqueue({ type: 'error', message: 'Unable to process your request. Please try again.' });
+        } else {
+          enqueue({ type: 'error', message: 'Something went wrong. Please try again later.' });
+        }
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no',
+    },
+  });
 }

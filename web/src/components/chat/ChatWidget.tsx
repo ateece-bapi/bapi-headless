@@ -9,8 +9,9 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  conversationId?: string; // For tracking feedback
+  conversationId?: string;
   feedbackGiven?: 'positive' | 'negative';
+  isStreaming?: boolean;
 }
 
 export default function ChatWidget() {
@@ -112,31 +113,86 @@ export default function ChatWidget() {
         throw new Error(errorData.message || 'Failed to get response');
       }
 
-      const data = await response.json();
+      // Add empty streaming message placeholder
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: '', timestamp: new Date(), isStreaming: true },
+      ]);
+      setIsLoading(false);
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message,
-        timestamp: new Date(),
-        conversationId: data.conversationId, // Store for feedback
-      };
+      // Read SSE stream
+      const reader = response.body!.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process complete SSE events (separated by double newline)
+        const parts = buffer.split('\n\n');
+        buffer = parts.pop() ?? '';
+
+        for (const part of parts) {
+          if (!part.startsWith('data: ')) continue;
+          try {
+            const data = JSON.parse(part.slice(6));
+
+            if (data.type === 'token') {
+              setMessages((prev) => {
+                const updated = [...prev];
+                const last = updated[updated.length - 1];
+                if (last?.role === 'assistant') {
+                  updated[updated.length - 1] = { ...last, content: last.content + data.text };
+                }
+                return updated;
+              });
+            } else if (data.type === 'done') {
+              setMessages((prev) => {
+                const updated = [...prev];
+                const last = updated[updated.length - 1];
+                if (last?.role === 'assistant') {
+                  updated[updated.length - 1] = {
+                    ...last,
+                    isStreaming: false,
+                    conversationId: data.conversationId,
+                  };
+                }
+                return updated;
+              });
+            } else if (data.type === 'error') {
+              throw new Error(data.message);
+            }
+          } catch {
+            // Skip malformed SSE events
+          }
+        }
+      }
     } catch (error) {
       logger.error('Chat error', error);
-      const errorMessage: Message = {
-        role: 'assistant',
-        content:
-          locale === 'de'
-            ? 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
-            : locale === 'es'
-              ? 'Lo siento, ocurrió un error. Por favor, inténtelo de nuevo.'
-              : locale === 'fr'
-                ? "Désolé, une erreur s'est produite. Veuillez réessayer."
-                : 'Sorry, an error occurred. Please try again.',
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      // Remove any partial streaming message before adding the error
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        const withoutPartial =
+          last?.role === 'assistant' && last.isStreaming ? prev.slice(0, -1) : prev;
+        return [
+          ...withoutPartial,
+          {
+            role: 'assistant',
+            content:
+              locale === 'de'
+                ? 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
+                : locale === 'es'
+                  ? 'Lo siento, ocurrió un error. Por favor, inténtelo de nuevo.'
+                  : locale === 'fr'
+                    ? "Désolé, une erreur s'est produite. Veuillez réessayer."
+                    : 'Sorry, an error occurred. Please try again.',
+            timestamp: new Date(),
+          },
+        ];
+      });
     } finally {
       setIsLoading(false);
     }
@@ -291,6 +347,9 @@ export default function ChatWidget() {
                 >
                   <div className="whitespace-pre-wrap break-words text-sm">
                     {renderMessageContent(message.content)}
+                    {message.isStreaming && (
+                      <span className="ml-0.5 inline-block h-3.5 w-0.5 animate-pulse bg-neutral-400" />
+                    )}
                   </div>
                   <p
                     className={`mt-1 text-xs ${

@@ -2,8 +2,14 @@
 import '../src/app/globals.css';
 
 import type { Preview } from '@storybook/nextjs-vite';
+import { NextIntlClientProvider } from 'next-intl';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { handlers } from './mocks/handlers';
+import React from 'react';
+
+// Import English messages — used as the default locale in Storybook
+// Components using useTranslations() or next-intl Link require this provider.
+import enMessages from '../messages/en.json';
 
 /**
  * Initialize MSW for Storybook
@@ -16,6 +22,14 @@ initialize({
 });
 
 const preview: Preview = {
+  decorators: [
+    // Wrap every story in NextIntlClientProvider so components that use
+    // next-intl Link, useTranslations(), useLocale(), etc. don't crash.
+    (Story) =>
+      React.createElement(NextIntlClientProvider, { locale: 'en', messages: enMessages },
+        React.createElement(Story)
+      ),
+  ],
   parameters: {
     controls: {
       matchers: {

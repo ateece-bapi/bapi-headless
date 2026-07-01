@@ -77,7 +77,7 @@ export function ProcessSteps({
             </h3>
 
             {/* Description */}
-            <p className="text-base leading-relaxed text-neutral-600">
+            <p className="text-base leading-relaxed text-neutral-700">
               {step.description}
             </p>
           </div>

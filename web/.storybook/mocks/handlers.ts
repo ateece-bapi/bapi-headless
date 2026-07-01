@@ -67,82 +67,43 @@ const mockProductOutOfStock = {
 
 /**
  * MSW GraphQL handlers
+ *
+ * NOTE: MSW v2 uses first-match routing — all slug variants must be handled
+ * inside a single graphql.query() registration. Multiple registrations for the
+ * same operation name are ignored after the first.
  */
 export const handlers = [
-  /**
-   * GetProductBySlug - Default success case
-   */
   graphql.query('GetProductBySlug', ({ variables }) => {
     const { slug } = variables;
 
-    // Route to different mock products based on slug
-    if (slug === 'humidity-sensor-no-image') {
-      return HttpResponse.json({
-        data: {
-          product: mockProductNoImage,
-        },
-      });
-    }
+    switch (slug) {
+      case 'humidity-sensor-no-image':
+        return HttpResponse.json({ data: { product: mockProductNoImage } });
 
-    if (slug === 'long-title-sensor') {
-      return HttpResponse.json({
-        data: {
-          product: mockProductLongTitle,
-        },
-      });
-    }
+      case 'long-title-sensor':
+        return HttpResponse.json({ data: { product: mockProductLongTitle } });
 
-    if (slug === 'co2-sensor-out-of-stock') {
-      return HttpResponse.json({
-        data: {
-          product: mockProductOutOfStock,
-        },
-      });
-    }
+      case 'co2-sensor-out-of-stock':
+        return HttpResponse.json({ data: { product: mockProductOutOfStock } });
 
-    // Default product
-    return HttpResponse.json({
-      data: {
-        product: mockProduct,
-      },
-    });
-  }),
+      case 'not-found-404':
+        return HttpResponse.json({ data: { product: null } });
 
-  /**
-   * GetProductBySlug - Not found case
-   */
-  graphql.query('GetProductBySlug', ({ variables }) => {
-    const { slug } = variables;
-
-    if (slug === 'not-found-404') {
-      return HttpResponse.json({
-        data: {
-          product: null,
-        },
-      });
-    }
-  }),
-
-  /**
-   * GetProductBySlug - Network error case
-   */
-  graphql.query('GetProductBySlug', ({ variables }) => {
-    const { slug } = variables;
-
-    if (slug === 'error-500') {
-      return HttpResponse.json(
-        {
-          errors: [
-            {
-              message: 'Internal server error',
-              extensions: {
-                category: 'internal',
+      case 'error-500':
+        return HttpResponse.json(
+          {
+            errors: [
+              {
+                message: 'Internal server error',
+                extensions: { category: 'internal' },
               },
-            },
-          ],
-        },
-        { status: 500 }
-      );
+            ],
+          },
+          { status: 500 }
+        );
+
+      default:
+        return HttpResponse.json({ data: { product: mockProduct } });
     }
   }),
 ];

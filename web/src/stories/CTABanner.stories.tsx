@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { CTABanner } from '@/components/landing/CTABanner';
 
 const meta: Meta<typeof CTABanner> = {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from '@storybook/test';
 import { useRef } from 'react';
 import { ToastProvider, useToast } from './Toast';
@@ -374,7 +374,7 @@ export const ButtonDisabledState: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /out of stock/i });
+    const addButton = canvas.getByRole('button', { name: /add to cart.*currently unavailable/i });
 
     // Verify button is disabled
     expect(addButton).toBeDisabled();

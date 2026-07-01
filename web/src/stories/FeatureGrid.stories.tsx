@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { FeatureGrid } from '@/components/landing/FeatureGrid';
 import {
   CableIcon,

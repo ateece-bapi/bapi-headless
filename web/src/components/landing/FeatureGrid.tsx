@@ -76,7 +76,7 @@ export function FeatureGrid({
           </h3>
 
           {/* Description */}
-          <p className="text-center text-base leading-relaxed text-neutral-600">
+          <p className="text-center text-base leading-relaxed text-neutral-700">
             {feature.description}
           </p>
         </div>

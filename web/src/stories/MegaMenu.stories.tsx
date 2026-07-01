@@ -48,6 +48,7 @@ const meta: Meta = {
   title: 'Components/MegaMenu',
   parameters: {
     layout: 'fullscreen',
+    chromatic: { delay: 400 }, // menu open/close transition is 300ms
     docs: {
       description: {
         component:
@@ -276,7 +277,7 @@ export const Overview: Story = {
               <div className="space-y-4 md:col-span-3">
                 {/* Featured Product */}
                 <div className="rounded-lg border-2 border-primary-200 bg-linear-to-br from-primary-50 via-white to-primary-50/30 p-4">
-                  <div className="mb-2 inline-block rounded-full bg-accent-500 px-2 py-0.5 text-xs font-bold uppercase text-white">
+                  <div className="mb-2 inline-block rounded-full bg-accent-500 px-2 py-0.5 text-xs font-bold uppercase text-neutral-900">
                     NEW
                   </div>
                   <div className="mb-2 text-lg font-black text-neutral-900">
@@ -540,7 +541,7 @@ export const BrandCompliance: Story = {
       {/* Category Order Alert */}
       <div className="rounded-lg border-2 border-accent-500 bg-accent-50 p-6">
         <div className="flex items-start gap-3">
-          <AlertTriangleIcon className="mt-1 shrink-0 text-accent-600" />
+          <AlertTriangleIcon className="mt-1 shrink-0 text-accent-950" />
           <div className="space-y-2">
             <h3 className="text-lg font-semibold text-accent-950">
               Mandatory Category Order (Never Reorder!)

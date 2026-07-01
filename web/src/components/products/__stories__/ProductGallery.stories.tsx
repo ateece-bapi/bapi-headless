@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import StorybookProductGallery from './StorybookProductGallery';
 import type { GalleryImage } from './StorybookProductGallery';
 

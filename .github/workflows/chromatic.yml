@@ -85,5 +85,6 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web
-          # All other options (viewports, browsers, TurboSnap, exitZeroOnChanges, etc.)
-          # are now configured in web/chromatic.config.yml
+          # On main branch: add Firefox for cross-browser baseline.
+          # On PRs: chromatic.config.yml (chrome-only) keeps snapshot quota manageable.
+          browsers: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'chrome,firefox' || 'chrome' }}

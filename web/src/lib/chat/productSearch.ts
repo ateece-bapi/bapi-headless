@@ -150,7 +150,7 @@ export async function searchProducts(
         label: attr.label ?? '',
         options: (attr.options ?? []).filter((o: string | null) => o != null && o !== ''),
       })).filter((attr: ProductAttribute) => attr.name || attr.label) || [],
-      url: `/products/${product.slug}`,
+      url: `/product/${product.slug}`,
     }));
   } catch (error) {
     logger.error('Product search error', error);

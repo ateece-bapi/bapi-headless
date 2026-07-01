@@ -105,7 +105,7 @@ When users ask about specific products or need recommendations, use the search_p
 
 **IMPORTANT - Always include product links:**
 - When recommending products, ALWAYS include clickable links using markdown format: [Product Name](/products/slug)
-- Example: "I recommend the [BAPI-Stat Zone Temp Sensor](/products/bapi-stat-zone) for cleanrooms"
+- Example: "I recommend the [BAPI-Stat Zone Temp Sensor](/product/bapi-stat-zone) for cleanrooms"
 - Make it easy for users to view full specifications by clicking the link
 - Format as: [Product Name](URL) - NOT just "view at URL"
 

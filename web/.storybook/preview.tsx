@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { handlers } from './mocks/handlers';
 import React from 'react';
+import { ToastProvider } from '../src/components/ui/Toast';
 
 // Import English messages — used as the default locale in Storybook
 // Components using useTranslations() or next-intl Link require this provider.
@@ -23,11 +24,14 @@ initialize({
 
 const preview: Preview = {
   decorators: [
-    // Wrap every story in NextIntlClientProvider so components that use
-    // next-intl Link, useTranslations(), useLocale(), etc. don't crash.
+    // Wrap every story in the same root providers as the app layout:
+    // - NextIntlClientProvider: required for next-intl Link, useTranslations(), useLocale()
+    // - ToastProvider: required for useToast() in cart, form, and auth components
     (Story) =>
-      React.createElement(NextIntlClientProvider, { locale: 'en', messages: enMessages },
-        React.createElement(Story)
+      React.createElement(
+        NextIntlClientProvider,
+        { locale: 'en', messages: enMessages },
+        React.createElement(ToastProvider, null, React.createElement(Story))
       ),
   ],
   parameters: {

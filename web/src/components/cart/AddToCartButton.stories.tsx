@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import AddToCartButton from './AddToCartButton';
 import { mockProductForClient, makeProductForClient } from '../../../test/msw/fixtures';
 import type { CartItem } from '@/store';
-import { ToastProvider } from '@/components/ui';
 
 /**
  * Add to Cart Button Component
@@ -38,13 +37,6 @@ const meta = {
     },
   },
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <ToastProvider>
-        <Story />
-      </ToastProvider>
-    ),
-  ],
   argTypes: {
     quantity: {
       control: { type: 'number', min: 1, max: 99 },

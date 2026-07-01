@@ -189,7 +189,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { messages, locale } = parsedBody;
+  const { messages, locale, pageContext } = parsedBody as {
+    messages: unknown;
+    locale?: string;
+    pageContext?: string;
+  };
 
   if (!messages || !Array.isArray(messages)) {
     return NextResponse.json({ error: 'Invalid request: messages array required' }, { status: 400 });
@@ -197,9 +201,18 @@ export async function POST(request: NextRequest) {
 
   const userMessage = (messages[messages.length - 1] as { content?: string })?.content || '';
 
-  const systemPrompt = locale
+  const systemPromptText = locale
     ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
     : SYSTEM_PROMPT;
+
+  const systemPromptWithContext = pageContext
+    ? `${systemPromptText}\n\n**Current Page:** User is viewing \`${pageContext}\` — tailor your response to this context if relevant.`
+    : systemPromptText;
+
+  // Cache the system prompt for 5 minutes — saves ~90% on repeated input token costs
+  const systemPrompt: Anthropic.TextBlockParam[] = [
+    { type: 'text', text: systemPromptWithContext, cache_control: { type: 'ephemeral' } },
+  ];
 
   // --- Streaming response ---
   const encoder = new TextEncoder();
@@ -249,7 +262,15 @@ export async function POST(request: NextRequest) {
               .join('');
 
             const responseTimeMs = Date.now() - startTime;
-            const tokensUsed = finalMessage.usage.input_tokens + finalMessage.usage.output_tokens;
+            const usage = finalMessage.usage as Anthropic.Usage & {
+              cache_read_input_tokens?: number;
+              cache_creation_input_tokens?: number;
+            };
+            const tokensUsed = usage.input_tokens + usage.output_tokens;
+            const cacheHit = (usage.cache_read_input_tokens ?? 0) > 0;
+            if (cacheHit) {
+              logger.debug('Prompt cache hit', { cache_read_tokens: usage.cache_read_input_tokens });
+            }
 
             const analytics: ChatAnalytics = {
               conversationId,

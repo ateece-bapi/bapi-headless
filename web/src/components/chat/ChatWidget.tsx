@@ -104,6 +104,7 @@ export default function ChatWidget() {
             content: msg.content,
           })),
           locale,
+          pageContext: typeof window !== 'undefined' ? window.location.pathname : undefined,
         }),
       });
 

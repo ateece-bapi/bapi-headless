@@ -10,8 +10,7 @@ import LanguageSelector from './LanguageSelector';
  *
  * Stories:
  * - Default: idle/closed state
- * - Open: dropdown visible (Chromatic captures expanded UI)
- * - Interaction: click to open, select a language
+ * - OpenDropdown: click to expand, Chromatic captures the list, asserts 3 locale options
  */
 
 const meta: Meta<typeof LanguageSelector> = {

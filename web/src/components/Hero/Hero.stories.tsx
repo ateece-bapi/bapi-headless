@@ -13,7 +13,7 @@ import { Hero } from './index';
  * Stories:
  * - English (default): Primary English content
  * - Spanish: Tests font rendering and longer strings
- * - Short/Minimal: Edge case with minimal copy
+ * - Mobile: 375px viewport where background image is replaced by solid color
  */
 
 const enTranslations = {
@@ -57,7 +57,7 @@ const meta: Meta<typeof Hero> = {
     docs: {
       description: {
         component:
-          'Homepage hero section. Above-the-fold — highest visual regression priority. Accepts a `translations` prop for i18n support (10 locales: en, de, fr, es, ja, zh, vi, ar, th, pl). Background image is hidden on mobile (solid color instead) and shown on desktop.',
+          'Homepage hero section. Above-the-fold — highest visual regression priority. Accepts a `translations` prop for i18n support. Background image is hidden on mobile (solid color instead) and shown on desktop.',
       },
     },
     chromatic: { delay: 300 }, // Allow TaglineRotator transitions to settle

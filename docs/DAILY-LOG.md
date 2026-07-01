@@ -2,9 +2,58 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** June 30, 2026  
-**Status:** Phase 1 Complete - Live in Production (46 days post-launch)  
+**Updated:** July 1, 2026  
+**Status:** Phase 1 Complete - Live in Production (47 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 1, 2026 — BAPI Assistant (AI Chatbot) Overhaul 🤖
+
+**Status:** ✅ Complete — PR #585 merged
+
+### Background
+The BAPI Assistant had been silently failing. `claude-3-haiku-20240307` was retired by Anthropic (all Claude 3 models now return 404). The chatbot was also using a 38-version-old SDK and only had minimal product search data. This session did a full overhaul.
+
+### What Was Done
+
+#### 1. Model Update
+- Replaced deprecated `claude-3-haiku-20240307` with `claude-haiku-4-5` (current-gen, 200k context, Feb 2025 knowledge cutoff)
+- Updated Anthropic SDK from `0.71.2` → `0.109.0`
+- Updated `web/scripts/test-claude-api.mjs` with current model names
+
+#### 2. Richer Product Search Data
+- Expanded GraphQL query in `productSearch.ts` to return `description`, `partNumber`, `attributes` (specs like Temperature Range, Protocol, Output Signal), and `stockStatus`
+- Fixed `partNumber` GraphQL query — must use `... on Product { partNumber }` fragment (not available on root `ProductUnion`)
+- Fixed nullable attribute fields per Copilot review: `(attributes?.nodes ?? []).map(...).filter(...)`
+- Fixed product links: `/products/slug` → `/product/slug` throughout
+
+#### 3. Streaming Responses
+- Rewrote chat API route to use `anthropic.messages.stream()` — tokens render as they arrive instead of waiting 2–4s for full response
+- Tool-use phase (product search) runs non-streaming; final text generation streams
+- Client reads SSE stream with `ReadableStream` reader, updates message content token by token
+- Added blinking cursor on streaming messages
+- Added `isStreaming` state separate from `isLoading` — send button stays disabled during full stream, spinner only shows during tool-use phase
+
+#### 4. Prompt Caching
+- System prompt sent as `TextBlockParam` with `cache_control: { type: 'ephemeral' }` — Anthropic caches it for 5 minutes, ~90% cost reduction on cache hits
+- Cache hit logged via `cache_read_input_tokens` in usage response
+
+#### 5. Page Context Awareness
+- Widget sends `window.location.pathname` with each message
+- Route appends current page to system prompt: *"User is viewing /en/product/bapi-stat-zone"*
+- Sanitized server-side: strips newlines/backticks, allows only URL-safe chars, caps at 200 chars (prompt injection prevention)
+
+#### 6. Copilot PR Review — All Issues Resolved (2 review rounds)
+- Round 1: nullable attributes chaining, missing `done` event on loop exhaustion, prompt injection, null body assertion, stuck `isStreaming` cursor
+- Round 2: remaining `/products/slug` in system prompt, concurrent send possible during streaming
+
+### Files Changed
+- `web/src/app/api/chat/route.ts` — full streaming rewrite + prompt caching + page context
+- `web/src/components/chat/ChatWidget.tsx` — streaming SSE reader + `isStreaming` state
+- `web/src/lib/chat/productSearch.ts` — enriched GraphQL query + null safety
+- `web/scripts/test-claude-api.mjs` — updated model list
+- `web/package.json` + `web/pnpm-lock.yaml` — SDK update
 
 ---
 

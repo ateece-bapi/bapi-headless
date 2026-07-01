@@ -19,6 +19,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [showHandoffForm, setShowHandoffForm] = useState(false);
   const [handoffSubmitting, setHandoffSubmitting] = useState(false);
   const [handoffSuccess, setHandoffSuccess] = useState(false);
@@ -82,7 +83,7 @@ export default function ChatWidget() {
   }, [isOpen, locale, messages.length]);
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isStreaming) return;
 
     const userMessage: Message = {
       role: 'user',
@@ -120,6 +121,7 @@ export default function ChatWidget() {
         { role: 'assistant', content: '', timestamp: new Date(), isStreaming: true },
       ]);
       setIsLoading(false);
+      setIsStreaming(true);
 
       // Read SSE stream
       if (!response.body) throw new Error('No response body for streaming');
@@ -206,6 +208,7 @@ export default function ChatWidget() {
       });
     } finally {
       setIsLoading(false);
+      setIsStreaming(false);
     }
   };
 
@@ -449,11 +452,11 @@ export default function ChatWidget() {
                 }
                 className="max-h-32 flex-1 resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
                 rows={1}
-                disabled={isLoading}
+                disabled={isLoading || isStreaming}
               />
               <button
                 onClick={sendMessage}
-                disabled={!input.trim() || isLoading}
+                disabled={!input.trim() || isLoading || isStreaming}
                 className="rounded-xl bg-primary-500 p-3 text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:bg-neutral-300"
                 aria-label="Send message"
               >

@@ -26,7 +26,9 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, userEvent, waitFor, within } from '@storybook/test';
 import CartDrawer from './CartDrawer';
+import { useCartStore } from '@/store';
 import type { CartItem } from '@/store';
 
 const meta: Meta<typeof CartDrawer> = {
@@ -89,231 +91,37 @@ const createCartItem = (overrides: Partial<CartItem> = {}): CartItem => ({
 });
 
 // ============================================================================
-// Mock Hooks with Different Cart States
+// Store state helpers
+// CartDrawer reads directly from the Zustand store (no injectable hooks).
+// Use useCartStore.setState() in story decorators to control cart state.
 // ============================================================================
 
-/**
- * Empty cart mock
- */
-const mockEmptyCart = () => ({
-  items: [],
-  isEmpty: true,
-  addItem: () => {},
-  removeItem: () => {},
-  updateQuantity: () => {},
-  clearCart: () => {},
-  totalItems: 0,
-  subtotal: 0,
-});
-
-/**
- * Single item cart mock
- */
-const mockSingleItemCart = () => ({
-  items: [createCartItem()],
-  isEmpty: false,
-  addItem: () => {},
-  removeItem: () => {},
-  updateQuantity: () => {},
-  clearCart: () => {},
-  totalItems: 1,
-  subtotal: 49.0,
-});
-
-/**
- * Multiple items cart mock
- */
-const mockMultipleItemsCart = () => ({
-  items: [
-    createCartItem({
-      id: 'prod-1',
-      databaseId: 101,
-      name: 'Temperature Sensor Model 101',
-      price: '$49.00',
-      numericPrice: 49.0,
-      quantity: 2,
-    }),
-    createCartItem({
-      id: 'prod-2',
-      databaseId: 102,
-      name: 'Humidity Sensor Model 205',
-      slug: 'humidity-sensor-205',
-      price: '$89.00',
-      numericPrice: 89.0,
-      quantity: 1,
-      image: {
-        sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Humidity',
-        altText: 'Humidity Sensor',
-      },
-    }),
-    createCartItem({
-      id: 'prod-3',
-      databaseId: 103,
-      name: 'Pressure Transducer PT-300',
-      slug: 'pressure-transducer-300',
-      price: '$129.00',
-      numericPrice: 129.0,
-      quantity: 3,
-      image: {
-        sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Pressure',
-        altText: 'Pressure Transducer',
-      },
-    }),
-  ],
-  isEmpty: false,
-  addItem: () => {},
-  removeItem: () => {},
-  updateQuantity: () => {},
-  clearCart: () => {},
-  totalItems: 6,
-  subtotal: 49.0 * 2 + 89.0 + 129.0 * 3,
-});
-
-/**
- * Many items cart mock (tests scrolling)
- */
-const mockManyItemsCart = () => {
-  const items: CartItem[] = Array.from({ length: 10 }, (_, i) =>
-    createCartItem({
-      id: `prod-${i + 1}`,
-      databaseId: 100 + i,
-      name: `Product ${i + 1}`,
-      slug: `product-${i + 1}`,
-      price: `$${(29 + i * 10).toFixed(2)}`,
-      quantity: (i % 3) + 1,
-    })
-  );
-
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = items.reduce((sum, item) => {
-    const price = parseFloat(item.price.replace('$', ''));
-    return sum + price * item.quantity;
-  }, 0);
-
-  return {
-    items,
-    isEmpty: false,
-    addItem: () => {},
-    removeItem: () => {},
-    updateQuantity: () => {},
-    clearCart: () => {},
-    totalItems,
-    subtotal,
-  };
+/** Set the Zustand store to the desired state before each story renders. */
+const setStoreState = (items: CartItem[], isOpen = true) => {
+  useCartStore.setState({ items, isOpen });
 };
 
-/**
- * Cart with variable products
- */
-const mockVariableProductsCart = () => ({
-  items: [
-    createCartItem({
-      id: 'prod-var-1',
-      databaseId: 201,
-      name: 'Temperature Sensor - Industrial',
-      slug: 'temp-sensor-industrial',
-      price: '$149.00',
-      numericPrice: 149.0,
-      quantity: 1,
-      variationId: 2011,
-      variationName: 'Stainless Steel, 0-100°C',
-      variationSku: 'TS-IND-SS-100',
-      selectedAttributes: {
-        material: 'Stainless Steel',
-        range: '0-100°C',
-        output: '4-20mA',
-      },
-    }),
-    createCartItem({
-      id: 'prod-var-2',
-      databaseId: 202,
-      name: 'Pressure Transducer - Heavy Duty',
-      slug: 'pressure-transducer-hd',
-      price: '$299.00',
-      numericPrice: 299.0,
-      quantity: 2,
-      variationId: 2021,
-      variationName: 'Titanium, 0-500PSI',
-      variationSku: 'PT-HD-TI-500',
-      selectedAttributes: {
-        material: 'Titanium',
-        'pressure-range': '0-500 PSI',
-        connection: '1/4" NPT',
-      },
-      image: {
-        sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Pressure+HD',
-        altText: 'Heavy Duty Pressure Transducer',
-      },
-    }),
-  ],
-  isEmpty: false,
-  addItem: () => {},
-  removeItem: () => {},
-  updateQuantity: () => {},
-  clearCart: () => {},
-  totalItems: 3,
-  subtotal: 149.0 + 299.0 * 2,
-});
+const singleItem = [createCartItem()];
 
-/**
- * High value cart mock
- */
-const mockHighValueCart = () => ({
-  items: [
-    createCartItem({
-      id: 'prod-premium-1',
-      databaseId: 301,
-      name: 'Multi-Parameter Sensor System MPS-5000',
-      slug: 'mps-5000',
-      price: '$2,499.00',
-      numericPrice: 2499.0,
-      quantity: 1,
-      partNumber: 'MPS-5K-PRO',
-      image: {
-        sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=MPS-5000',
-        altText: 'Multi-Parameter Sensor System',
-      },
-    }),
-    createCartItem({
-      id: 'prod-premium-2',
-      databaseId: 302,
-      name: 'Data Logger with Cloud Integration DL-360',
-      slug: 'data-logger-dl-360',
-      price: '$1,899.00',
-      numericPrice: 1899.0,
-      quantity: 2,
-      partNumber: 'DL-360-CLOUD',
-      image: {
-        sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=DL-360',
-        altText: 'Cloud Data Logger',
-      },
-    }),
-  ],
-  isEmpty: false,
-  addItem: () => {},
-  removeItem: () => {},
-  updateQuantity: () => {},
-  clearCart: () => {},
-  totalItems: 3,
-  subtotal: 2499.0 + 1899.0 * 2,
-});
+const multipleItems: CartItem[] = [
+  createCartItem({ id: 'prod-1', databaseId: 101, name: 'Temperature Sensor Model 101', price: '$49.00', numericPrice: 49.0, quantity: 2 }),
+  createCartItem({ id: 'prod-2', databaseId: 102, name: 'Humidity Sensor Model 205', slug: 'humidity-sensor-205', price: '$89.00', numericPrice: 89.0, quantity: 1, image: { sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Humidity', altText: 'Humidity Sensor' } }),
+  createCartItem({ id: 'prod-3', databaseId: 103, name: 'Pressure Transducer PT-300', slug: 'pressure-transducer-300', price: '$129.00', numericPrice: 129.0, quantity: 3, image: { sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Pressure', altText: 'Pressure Transducer' } }),
+];
 
-/**
- * Cart drawer open/close mock
- */
-const mockCartDrawerOpen = () => ({
-  isOpen: true,
-  openCart: () => {},
-  closeCart: () => {},
-  toggleCart: () => {},
-});
+const manyItems: CartItem[] = Array.from({ length: 10 }, (_, i) =>
+  createCartItem({ id: `prod-${i + 1}`, databaseId: 100 + i, name: `Product ${i + 1}`, slug: `product-${i + 1}`, price: `$${(29 + i * 10).toFixed(2)}`, quantity: (i % 3) + 1 })
+);
 
-const mockCartDrawerClosed = () => ({
-  isOpen: false,
-  openCart: () => {},
-  closeCart: () => {},
-  toggleCart: () => {},
-});
+const variableItems: CartItem[] = [
+  createCartItem({ id: 'prod-var-1', databaseId: 201, name: 'Temperature Sensor - Industrial', slug: 'temp-sensor-industrial', price: '$149.00', numericPrice: 149.0, quantity: 1, variationId: 2011, variationName: 'Stainless Steel, 0-100°C', variationSku: 'TS-IND-SS-100', selectedAttributes: { material: 'Stainless Steel', range: '0-100°C', output: '4-20mA' } }),
+  createCartItem({ id: 'prod-var-2', databaseId: 202, name: 'Pressure Transducer - Heavy Duty', slug: 'pressure-transducer-hd', price: '$299.00', numericPrice: 299.0, quantity: 2, variationId: 2021, variationSku: 'PT-HD-TI-500', selectedAttributes: { material: 'Titanium', 'pressure-range': '0-500 PSI', connection: '1/4" NPT' }, image: { sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Pressure+HD', altText: 'Heavy Duty Pressure Transducer' } }),
+];
+
+const highValueItems: CartItem[] = [
+  createCartItem({ id: 'prod-premium-1', databaseId: 301, name: 'Multi-Parameter Sensor System MPS-5000', slug: 'mps-5000', price: '$2,499.00', numericPrice: 2499.0, quantity: 1, partNumber: 'MPS-5K-PRO', image: { sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=MPS-5000', altText: 'Multi-Parameter Sensor System' } }),
+  createCartItem({ id: 'prod-premium-2', databaseId: 302, name: 'Data Logger with Cloud Integration DL-360', slug: 'data-logger-dl-360', price: '$1,899.00', numericPrice: 1899.0, quantity: 2, partNumber: 'DL-360-CLOUD', image: { sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=DL-360', altText: 'Cloud Data Logger' } }),
+];
 
 // ============================================================================
 // Stories
@@ -323,10 +131,7 @@ const mockCartDrawerClosed = () => ({
  * Empty cart - shows "Your cart is empty" message
  */
 export const EmptyCart: Story = {
-  args: {
-    useCart: mockEmptyCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState([]); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -341,10 +146,7 @@ export const EmptyCart: Story = {
  * Single item - one product with full details
  */
 export const SingleItem: Story = {
-  args: {
-    useCart: mockSingleItemCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(singleItem); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -359,10 +161,7 @@ export const SingleItem: Story = {
  * Multiple items - 3 different products with varying quantities
  */
 export const MultipleItems: Story = {
-  args: {
-    useCart: mockMultipleItemsCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(multipleItems); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -377,10 +176,7 @@ export const MultipleItems: Story = {
  * Many items - 10 products to test scrolling behavior
  */
 export const ManyItems: Story = {
-  args: {
-    useCart: mockManyItemsCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(manyItems); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -395,10 +191,7 @@ export const ManyItems: Story = {
  * Variable products - items with selected attributes displayed
  */
 export const WithVariations: Story = {
-  args: {
-    useCart: mockVariableProductsCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(variableItems); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -413,10 +206,7 @@ export const WithVariations: Story = {
  * High value cart - premium products with large subtotal
  */
 export const HighValueCart: Story = {
-  args: {
-    useCart: mockHighValueCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(highValueItems); return <Story />; }],
   parameters: {
     docs: {
       description: {
@@ -428,18 +218,15 @@ export const HighValueCart: Story = {
 };
 
 /**
- * Closed drawer - demonstrates closed state (not visible)
+ * Closed drawer - demonstrates closed state (component returns null)
  */
 export const ClosedDrawer: Story = {
-  args: {
-    useCart: mockMultipleItemsCart,
-    useCartDrawer: mockCartDrawerClosed,
-  },
+  decorators: [(Story) => { setStoreState(multipleItems, false); return <Story />; }],
   parameters: {
     docs: {
       description: {
         story:
-          'Drawer in closed state (returns null). Used to show the drawer can be hidden. In real app, this is controlled by user interaction.',
+          'Drawer in closed state (returns null). In real app, this is controlled by user interaction.',
       },
     },
   },
@@ -449,14 +236,9 @@ export const ClosedDrawer: Story = {
  * Mobile viewport - optimized for mobile devices
  */
 export const MobileView: Story = {
-  args: {
-    useCart: mockMultipleItemsCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(multipleItems); return <Story />; }],
   parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
+    viewport: { defaultViewport: 'mobile1' },
     docs: {
       description: {
         story:
@@ -470,18 +252,108 @@ export const MobileView: Story = {
  * Tablet viewport - mid-size screen
  */
 export const TabletView: Story = {
-  args: {
-    useCart: mockManyItemsCart,
-    useCartDrawer: mockCartDrawerOpen,
-  },
+  decorators: [(Story) => { setStoreState(manyItems); return <Story />; }],
   parameters: {
-    viewport: {
-      defaultViewport: 'tablet',
-    },
+    viewport: { defaultViewport: 'tablet' },
     docs: {
       description: {
         story:
           'Cart drawer on tablet viewport (768px). Shows optimal drawer width (max-w-md) and spacing for medium screens.',
+      },
+    },
+  },
+};
+
+// ============================================================================
+// Interaction Tests
+// ============================================================================
+
+/**
+ * Interaction test: close button dismisses the drawer.
+ * Verifies that clicking "Close cart" removes the dialog from the DOM.
+ */
+export const CloseButton: Story = {
+  decorators: [(Story) => { setStoreState(singleItem); return <Story />; }],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Drawer is open — dialog should be present
+    const dialog = canvas.getByRole('dialog', { name: /shopping cart/i });
+    expect(dialog).toBeInTheDocument();
+
+    // Click the close button
+    await userEvent.click(canvas.getByRole('button', { name: /close cart/i }));
+
+    // Dialog should be gone after store updates isOpen: false
+    await waitFor(() => {
+      expect(canvas.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interaction test: clicking the close (✕) button sets `isOpen: false` in the Zustand store, causing the component to return null and the dialog to be removed from the DOM.',
+      },
+    },
+  },
+};
+
+/**
+ * Interaction test: increase quantity button updates the count.
+ * Verifies the + button calls updateQuantity and the display reflects the change.
+ */
+export const IncreaseQuantity: Story = {
+  decorators: [(Story) => { setStoreState([createCartItem({ quantity: 1 })]); return <Story />; }],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Initial quantity should be 1
+    expect(canvas.getByText('1')).toBeInTheDocument();
+
+    // Click the increase button
+    await userEvent.click(canvas.getByRole('button', { name: /increase quantity/i }));
+
+    // Quantity should now be 2
+    await waitFor(() => {
+      expect(canvas.getByText('2')).toBeInTheDocument();
+    });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interaction test: clicking + increments the item quantity via Zustand `updateQuantity`. The displayed count updates immediately after store re-renders the component.',
+      },
+    },
+  },
+};
+
+/**
+ * Interaction test: remove item empties the cart.
+ * Verifies the Remove button calls removeItem and the empty cart message appears.
+ */
+export const RemoveItem: Story = {
+  decorators: [(Story) => { setStoreState([createCartItem({ quantity: 1 })]); return <Story />; }],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Item should be visible
+    expect(canvas.getByText('Temperature Sensor Model 101')).toBeInTheDocument();
+
+    // Click Remove
+    await userEvent.click(canvas.getByRole('button', { name: /remove/i }));
+
+    // Cart should now show empty state
+    await waitFor(() => {
+      expect(canvas.getByText(/your cart is empty/i)).toBeInTheDocument();
+    });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interaction test: clicking Remove calls Zustand `removeItem`. With a single item, the cart becomes empty and the empty-cart message is displayed.',
       },
     },
   },

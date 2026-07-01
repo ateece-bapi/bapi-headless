@@ -24,9 +24,10 @@ snapshotDelay: 0
 
 # Browsers to capture snapshots in
 # https://www.chromatic.com/docs/browsers
+# Chrome only on PRs to keep snapshot quota manageable (~186/build at 3 viewports).
+# Firefox runs on main branch only via the CI workflow override.
 browsers:
   - chrome
-  - firefox
 
 ##
 ## Viewport / responsive snapshots

@@ -29,12 +29,11 @@ const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
 
 // Try different model names
 const modelsToTest = [
-  'claude-3-5-sonnet-20240620',
-  'claude-3-5-sonnet-latest',
-  'claude-3-5-sonnet-20241022',
-  'claude-3-opus-20240229',
-  'claude-3-sonnet-20240229',
-  'claude-3-haiku-20240307',
+  'claude-haiku-4-5',
+  'claude-sonnet-5',
+  'claude-opus-4-8',
+  'claude-sonnet-4-6',
+  'claude-opus-4-7',
 ];
 
 console.log('📋 Testing models:\n');

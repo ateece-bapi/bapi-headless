@@ -9,8 +9,9 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  conversationId?: string; // For tracking feedback
+  conversationId?: string;
   feedbackGiven?: 'positive' | 'negative';
+  isStreaming?: boolean;
 }
 
 export default function ChatWidget() {
@@ -18,6 +19,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [showHandoffForm, setShowHandoffForm] = useState(false);
   const [handoffSubmitting, setHandoffSubmitting] = useState(false);
   const [handoffSuccess, setHandoffSuccess] = useState(false);
@@ -81,7 +83,7 @@ export default function ChatWidget() {
   }, [isOpen, locale, messages.length]);
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isStreaming) return;
 
     const userMessage: Message = {
       role: 'user',
@@ -103,42 +105,110 @@ export default function ChatWidget() {
             content: msg.content,
           })),
           locale,
+          pageContext: typeof window !== 'undefined' ? window.location.pathname : undefined,
         }),
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        logger.error('Chat API Error', { status: response.status, error: errorData });
+        logger.error('Chat API Error', { status: response.status, error: errorData.error, details: errorData.details });
         throw new Error(errorData.message || 'Failed to get response');
       }
 
-      const data = await response.json();
+      // Add empty streaming message placeholder
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: '', timestamp: new Date(), isStreaming: true },
+      ]);
+      setIsLoading(false);
+      setIsStreaming(true);
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message,
-        timestamp: new Date(),
-        conversationId: data.conversationId, // Store for feedback
-      };
+      // Read SSE stream
+      if (!response.body) throw new Error('No response body for streaming');
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process complete SSE events (separated by double newline)
+        const parts = buffer.split('\n\n');
+        buffer = parts.pop() ?? '';
+
+        for (const part of parts) {
+          if (!part.startsWith('data: ')) continue;
+          try {
+            const data = JSON.parse(part.slice(6));
+
+            if (data.type === 'token') {
+              setMessages((prev) => {
+                const updated = [...prev];
+                const last = updated[updated.length - 1];
+                if (last?.role === 'assistant') {
+                  updated[updated.length - 1] = { ...last, content: last.content + data.text };
+                }
+                return updated;
+              });
+            } else if (data.type === 'done') {
+              setMessages((prev) => {
+                const updated = [...prev];
+                const last = updated[updated.length - 1];
+                if (last?.role === 'assistant') {
+                  updated[updated.length - 1] = {
+                    ...last,
+                    isStreaming: false,
+                    conversationId: data.conversationId,
+                  };
+                }
+                return updated;
+              });
+            } else if (data.type === 'error') {
+              throw new Error(data.message);
+            }
+          } catch {
+            // Skip malformed SSE events
+          }
+        }
+      }
+
+      // Stream ended — clear isStreaming in case server closed without a done event
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === 'assistant' && last.isStreaming) {
+          return [...prev.slice(0, -1), { ...last, isStreaming: false }];
+        }
+        return prev;
+      });
     } catch (error) {
       logger.error('Chat error', error);
-      const errorMessage: Message = {
-        role: 'assistant',
-        content:
-          locale === 'de'
-            ? 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
-            : locale === 'es'
-              ? 'Lo siento, ocurrió un error. Por favor, inténtelo de nuevo.'
-              : locale === 'fr'
-                ? "Désolé, une erreur s'est produite. Veuillez réessayer."
-                : 'Sorry, an error occurred. Please try again.',
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      // Remove any partial streaming message before adding the error
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        const withoutPartial =
+          last?.role === 'assistant' && last.isStreaming ? prev.slice(0, -1) : prev;
+        return [
+          ...withoutPartial,
+          {
+            role: 'assistant',
+            content:
+              locale === 'de'
+                ? 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
+                : locale === 'es'
+                  ? 'Lo siento, ocurrió un error. Por favor, inténtelo de nuevo.'
+                  : locale === 'fr'
+                    ? "Désolé, une erreur s'est produite. Veuillez réessayer."
+                    : 'Sorry, an error occurred. Please try again.',
+            timestamp: new Date(),
+          },
+        ];
+      });
     } finally {
       setIsLoading(false);
+      setIsStreaming(false);
     }
   };
 
@@ -291,6 +361,9 @@ export default function ChatWidget() {
                 >
                   <div className="whitespace-pre-wrap break-words text-sm">
                     {renderMessageContent(message.content)}
+                    {message.isStreaming && (
+                      <span className="ml-0.5 inline-block h-3.5 w-0.5 animate-pulse bg-neutral-400" />
+                    )}
                   </div>
                   <p
                     className={`mt-1 text-xs ${
@@ -379,11 +452,11 @@ export default function ChatWidget() {
                 }
                 className="max-h-32 flex-1 resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
                 rows={1}
-                disabled={isLoading}
+                disabled={isLoading || isStreaming}
               />
               <button
                 onClick={sendMessage}
-                disabled={!input.trim() || isLoading}
+                disabled={!input.trim() || isLoading || isStreaming}
                 className="rounded-xl bg-primary-500 p-3 text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:bg-neutral-300"
                 aria-label="Send message"
               >

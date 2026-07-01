@@ -512,6 +512,10 @@ export const Step1ValidationOnEmptySubmit: Story = {
     // Click with all fields empty — validation should block advancement
     await userEvent.click(continueBtn);
 
+    // Validation toast must appear: proves validation actually ran, not just that onNext is a no-op
+    const alert = await canvas.findByRole('alert');
+    expect(alert).toHaveTextContent(/missing information/i);
+
     // Step didn't advance: form submit button is still visible (we're still on step 1)
     // If validation failed to block, we'd see "Continue to Review" instead
     expect(canvas.queryByRole('button', { name: /continue to review/i })).not.toBeInTheDocument();

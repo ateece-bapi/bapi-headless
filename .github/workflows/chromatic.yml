@@ -85,6 +85,10 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web
+          # SNAPSHOT QUOTA HOLD: free plan resets July 27 2026 at 2:22 PM.
+          # skip=true builds Storybook and runs tests but captures no snapshots.
+          # Remove this line after July 27.
+          skip: true
           # On main branch: add Firefox for cross-browser baseline.
           # On PRs: chromatic.config.yml (chrome-only) keeps snapshot quota manageable.
           browsers: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'chrome,firefox' || 'chrome' }}

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { useState } from 'react';
 import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';

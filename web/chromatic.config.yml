@@ -1,0 +1,62 @@
+##
+## Chromatic Configuration
+## https://www.chromatic.com/docs/configuration
+##
+
+# Authentication is token-based via CHROMATIC_PROJECT_TOKEN secret in GitHub Actions.
+# projectId is not required when using a project token.
+
+##
+## Build configuration
+##
+buildScriptName: build-storybook   # matches "build-storybook" in package.json scripts
+storybookBuildDir: storybook-static  # output of build-storybook
+
+##
+## Snapshot behaviour
+##
+# Only capture snapshots that are different from baseline
+onlyChanged: true
+
+# Delay (ms) before capturing snapshot. Set to 0 globally; components with
+# animations (300ms transitions) set chromatic: { delay: 400 } in their story.
+snapshotDelay: 0
+
+# Browsers to capture snapshots in
+# https://www.chromatic.com/docs/browsers
+browsers:
+  - chrome
+  - firefox
+
+##
+## Viewport / responsive snapshots
+## Matches BAPI breakpoints: mobile (375), tablet (768), desktop (1280)
+##
+viewports:
+  - 375    # mobile-first base (sm: breakpoint)
+  - 768    # md: tablet
+  - 1280   # lg: desktop
+
+##
+## CI / PR behaviour
+##
+# Exit with zero even when there are visual changes (requires human review/approval)
+exitZeroOnChanges: true
+
+# Auto-accept changes on the main branch baseline
+autoAcceptChanges: "main"
+
+##
+## Ignore patterns
+## Stories that should not be snapshotted (guide/doc-only stories)
+##
+ignoreLastBuildOnBranch: "renovate/**"
+
+##
+## Externals — files that affect all stories when changed
+## https://www.chromatic.com/docs/turbosnap#configure-externals
+##
+externals:
+  - src/app/globals.css
+  - tailwind.config.js
+  - "public/images/**"

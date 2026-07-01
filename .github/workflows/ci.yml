@@ -57,8 +57,21 @@ jobs:
         run: pnpm test
 
       - name: Run Storybook accessibility tests
-        run: pnpm run test:storybook:ci
-        continue-on-error: true  # Non-blocking: Reports issues without failing CI
+        id: storybook-a11y
+        # pipefail preserves the exit code through tee so continue-on-error still works
+        shell: bash
+        run: |
+          set -o pipefail
+          pnpm run test:storybook:ci 2>&1 | tee web/storybook-a11y.log
+        continue-on-error: true  # Non-blocking: failures are surfaced via artifact, not PR block
+
+      - name: Upload Storybook a11y results
+        if: always() && steps.storybook-a11y.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-a11y-report
+          path: web/storybook-a11y.log
+          retention-days: 14
 
       # E2E tests temporarily disabled - taking 1.5 hours in CI
       # TODO: Re-enable after optimization (test sharding, mocking, timeout tuning)

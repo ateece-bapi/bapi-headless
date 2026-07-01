@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import TaglineRotator from './TaglineRotator';
 
 /**
@@ -30,6 +30,7 @@ const meta = {
   component: TaglineRotator,
   parameters: {
     layout: 'centered',
+    chromatic: { delay: 400 }, // tagline fade transition is 300ms
   },
   tags: ['autodocs'],
   args: {

@@ -1,7 +1,5 @@
-name: Chromatic Visual Regression (DISABLED)
+name: Chromatic Visual Regression
 
-# TEMPORARILY DISABLED - Chromatic checks taking too long
-# Re-enable by changing if: false to if: true
 on:
   push:
     branches:
@@ -15,6 +13,7 @@ on:
       - 'web/tailwind.config.js'
       - 'web/postcss.config.mjs'
       - 'web/next.config.ts'
+      - 'web/chromatic.config.yml'
       - '.github/workflows/chromatic.yml'
   pull_request:
     branches:
@@ -28,12 +27,12 @@ on:
       - 'web/tailwind.config.js'
       - 'web/postcss.config.mjs'
       - 'web/next.config.ts'
+      - 'web/chromatic.config.yml'
       - '.github/workflows/chromatic.yml'
 
 jobs:
   chromatic:
     runs-on: ubuntu-latest
-    if: false  # DISABLED - Remove this line to re-enable
     
     steps:
       - name: Checkout code
@@ -77,12 +76,14 @@ jobs:
           pnpm run build-storybook
       
       - name: Publish to Chromatic
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        # Allow push-to-main (baseline updates) and PRs from the same repo.
+        # Skips forked PRs (no access to secrets).
+        if: |
+          github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name == github.repository
         uses: chromaui/action@v11
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web
-          storybookBuildDir: storybook-static
-          exitZeroOnChanges: true  # Don't fail build on UI changes
-          exitOnceUploaded: true  # Exit immediately after upload
-          skip: '@(renovate/**|dependabot/**)'  # Skip bot branches
+          # All other options (viewports, browsers, TurboSnap, exitZeroOnChanges, etc.)
+          # are now configured in web/chromatic.config.yml

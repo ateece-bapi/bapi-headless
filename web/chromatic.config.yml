@@ -3,7 +3,8 @@
 ## https://www.chromatic.com/docs/configuration
 ##
 
-projectId: ""  # Set via CHROMATIC_PROJECT_TOKEN env var (never commit the token)
+# Authentication is token-based via CHROMATIC_PROJECT_TOKEN secret in GitHub Actions.
+# projectId is not required when using a project token.
 
 ##
 ## Build configuration

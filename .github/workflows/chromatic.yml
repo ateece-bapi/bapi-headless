@@ -76,7 +76,11 @@ jobs:
           pnpm run build-storybook
       
       - name: Publish to Chromatic
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        # Allow push-to-main (baseline updates) and PRs from the same repo.
+        # Skips forked PRs (no access to secrets).
+        if: |
+          github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name == github.repository
         uses: chromaui/action@v11
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

@@ -18,7 +18,9 @@ const PRODUCT_SEARCH_QUERY = gql`
         slug
         description
         shortDescription
-        partNumber
+        ... on Product {
+          partNumber
+        }
         image {
           sourceUrl
           altText

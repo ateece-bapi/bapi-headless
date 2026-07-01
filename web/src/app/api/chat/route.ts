@@ -205,8 +205,13 @@ export async function POST(request: NextRequest) {
     ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
     : SYSTEM_PROMPT;
 
-  const systemPromptWithContext = pageContext
-    ? `${systemPromptText}\n\n**Current Page:** User is viewing \`${pageContext}\` — tailor your response to this context if relevant.`
+  // Sanitize pageContext: allow only safe path characters, strip newlines/backticks
+  const safePageContext = pageContext
+    ? pageContext.replace(/[`\n\r]/g, '').replace(/[^a-zA-Z0-9/_\-=?&.]/g, '').slice(0, 200)
+    : undefined;
+
+  const systemPromptWithContext = safePageContext
+    ? `${systemPromptText}\n\n**Current Page:** User is viewing ${safePageContext} — tailor your response to this context if relevant.`
     : systemPromptText;
 
   // Cache the system prompt for 5 minutes — saves ~90% on repeated input token costs
@@ -293,7 +298,11 @@ export async function POST(request: NextRequest) {
           const toolUse = finalMessage.content.find(
             (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
           );
-          if (!toolUse) break;
+          if (!toolUse) {
+            // tool_use stop_reason but no tool_use block — signal done to unblock client
+            enqueue({ type: 'done', conversationId, usage: finalMessage.usage });
+            break;
+          }
 
           toolsUsed.push(toolUse.name);
           let toolResultContent = 'No results found.';
@@ -313,6 +322,11 @@ export async function POST(request: NextRequest) {
               content: [{ type: 'tool_result' as const, tool_use_id: toolUse.id, content: toolResultContent }],
             },
           ];
+
+          // Safety: if we've exhausted iterations, signal done so client isn't left hanging
+          if (i === MAX_TOOL_ITERATIONS - 1) {
+            enqueue({ type: 'done', conversationId, usage: finalMessage.usage });
+          }
         }
       } catch (error) {
         logger.error('Chat API Error', {

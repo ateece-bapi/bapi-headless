@@ -122,7 +122,8 @@ export default function ChatWidget() {
       setIsLoading(false);
 
       // Read SSE stream
-      const reader = response.body!.getReader();
+      if (!response.body) throw new Error('No response body for streaming');
+      const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
 
@@ -171,6 +172,15 @@ export default function ChatWidget() {
           }
         }
       }
+
+      // Stream ended — clear isStreaming in case server closed without a done event
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === 'assistant' && last.isStreaming) {
+          return [...prev.slice(0, -1), { ...last, isStreaming: false }];
+        }
+        return prev;
+      });
     } catch (error) {
       logger.error('Chat error', error);
       // Remove any partial streaming message before adding the error

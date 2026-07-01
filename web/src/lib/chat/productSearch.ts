@@ -145,11 +145,11 @@ export async function searchProducts(
       stockStatus: product.stockStatus || null,
       imageUrl: product.image?.sourceUrl || null,
       categories: product.productCategories?.nodes?.map((cat: any) => cat.name) || [],
-      attributes: product.attributes?.nodes?.map((attr: any) => ({
+      attributes: (product.attributes?.nodes ?? []).map((attr: any) => ({
         name: attr.name ?? '',
         label: attr.label ?? '',
         options: (attr.options ?? []).filter((o: string | null) => o != null && o !== ''),
-      })).filter((attr: ProductAttribute) => attr.name || attr.label) || [],
+      })).filter((attr: ProductAttribute) => attr.name || attr.label),
       url: `/product/${product.slug}`,
     }));
   } catch (error) {

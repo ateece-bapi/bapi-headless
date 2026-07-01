@@ -50,7 +50,7 @@ autoAcceptChanges: "main"
 ## Ignore patterns
 ## Stories that should not be snapshotted (guide/doc-only stories)
 ##
-ignoreLastBuildOnBranch: "renovate/**"
+ignoreLastBuildOnBranch: "renovate/*"
 
 ##
 ## Externals — files that affect all stories when changed

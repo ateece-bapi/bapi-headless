@@ -1,3 +1,4 @@
+@import 'material-symbols/rounded.css';
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
@@ -10,7 +11,6 @@
  * - Fill: 0 (no fill/outline)
  * - Optical Size: 24
  */
-@import 'material-symbols/rounded.css';
 
 /* Material Symbols font-variation-settings (per design specs) */
 .material-symbols-rounded {

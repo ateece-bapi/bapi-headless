@@ -8,6 +8,59 @@
 
 ---
 
+## July 1, 2026 — Storybook Interaction Tests + Chromatic Quota Management 🧪
+
+**Status:** ✅ PR #588 merged — chore/storybook-interaction-tests
+
+### Background
+Following PRs #586 and #587 (global ToastProvider, Chromatic glob fix, Phase 1 stories), this session tackled all remaining medium-priority Storybook improvements: fixing broken CartDrawer stories, adding play-function interaction tests, and reducing Chromatic snapshot cost.
+
+### What Was Done
+
+#### 1. CartDrawer Stories — Complete Rewrite
+Previous 488-line file was silently broken — `CartDrawer` accepts no props (reads Zustand store directly), so all `useCart`/`useCartDrawer` args were ignored and stories rendered nothing. Rewrote to drive state via `useCartStore.setState({ items, isOpen })` in per-story decorators. All 8 visual stories now render correctly.
+
+#### 2. Play Function Interaction Tests (4 total)
+| Story | Interaction Verified |
+|-------|---------------------|
+| `CartDrawer/CloseButton` | Click ✕ → `isOpen: false` → dialog removed from DOM |
+| `CartDrawer/IncreaseQuantity` | Click + → Zustand `updateQuantity` → count shows 2 |
+| `CartDrawer/RemoveItem` | Click Remove → store removes item → empty cart message appears |
+| `CheckoutWizard/Step1ValidationOnEmptySubmit` | Click Continue with empty form → `firstNameInput` is invalid (native HTML5 constraint validation blocks submit) |
+
+**Key debugging finding:** `CheckoutWizard` uses native `required` attributes without `noValidate` — browser constraint validation fires before the JS `onSubmit` handler, so `showToast` is never called. Asserting `expect(firstNameInput).toBeInvalid()` is the correct test (not a toast assertion). Confirmed via Chromatic build failure showing browser "Please fill out this field." tooltip.
+
+#### 3. CheckoutWizard Provider Cleanup
+Removed per-story `NextIntlClientProvider` wrapping incomplete `mockMessages` that was overriding the global `en.json` and causing translateFn render crashes. All 14 CheckoutWizard stories now rely on the global provider from `.storybook/preview.tsx`.
+
+#### 4. Chromatic Snapshot Cost Reduction
+- Chrome-only on PR builds (~93 snapshots); Firefox added only on `main` push (~186)
+- Workflow `browsers` fallback changed from `''` → `'chrome'` (Copilot review: empty string could override config unpredictably)
+
+#### 5. CSS @import Order Fix
+`@import 'material-symbols/rounded.css'` was placed after `@import 'tailwindcss'` in `globals.css`, violating the CSS/PostCSS spec that `@import` must precede all other statements. Moved material-symbols import to first position.
+
+#### 6. Chromatic Quota Hold
+Free plan at 4,760/5,000 snapshots; reset July 27 at 2:22 PM. Added `skip: true` to Chromatic workflow — Storybook still builds and runs interaction tests but captures no snapshots. Remove `skip: true` after July 27.
+
+### Test Results
+- **Storybook test-runner:** 25/25 suites · 222/222 tests · 0 accessibility violations
+- **Skipped:** 6 suites / 26 tests (expected — stories without play functions or tagged skip)
+
+### Files Changed
+- `web/src/components/cart/CartDrawer.stories.tsx` — complete rewrite (store-driven state + 3 play functions)
+- `web/src/components/checkout/CheckoutWizard.stories.tsx` — removed per-story providers, added `Step1ValidationOnEmptySubmit` play function
+- `.github/workflows/chromatic.yml` — Firefox gated to main; `''` → `'chrome'` fallback; `skip: true` quota hold
+- `web/chromatic.config.yml` — chrome-only baseline
+- `web/src/app/globals.css` — `@import` order fix
+
+### PR Review Iterations (Copilot automated review)
+1. **Round 1:** Weak toast assertion (step didn't advance → could be no-op); empty-string browsers fallback
+2. **Round 2 (after fix attempt):** `findByRole('alert')` failed in Chromatic — native form validation intercepted before JS toast
+3. **Round 3 (final):** `toBeInvalid()` on required field → clean pass
+
+---
+
 ## July 1, 2026 — BAPI Assistant (AI Chatbot) Overhaul 🤖
 
 **Status:** ✅ Complete — PR #585 merged

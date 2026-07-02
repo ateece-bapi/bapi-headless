@@ -156,13 +156,20 @@ add_action('graphql_register_types', function () {
                 $favs = [];
             }
 
-            $original_count = count($favs);
             $sanitized_id = sanitize_text_field($input['productId']);
+            $found = false;
             $favs = array_values(
-                array_filter($favs, fn($fav) => is_array($fav) && ($fav['productId'] ?? null) !== $sanitized_id)
+                array_filter($favs, function ($fav) use ($sanitized_id, &$found) {
+                    if (!is_array($fav)) return false; // drop corrupted entries
+                    if (($fav['productId'] ?? null) === $sanitized_id) {
+                        $found = true;
+                        return false; // remove matched entry
+                    }
+                    return true;
+                })
             );
 
-            if (count($favs) === $original_count) {
+            if (!$found) {
                 return ['success' => false, 'notFound' => true];
             }
 

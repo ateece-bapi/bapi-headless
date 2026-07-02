@@ -15,17 +15,12 @@ import userEvent from '@testing-library/user-event';
 
 // ─── Hoisted mocks ────────────────────────────────────────────────────────────
 
-const { mockUseAuth, mockPush, mockUseParams, mockFetch, mockToast } = vi.hoisted(() => ({
+const { mockUseAuth, mockPush, mockUseParams, mockFetch, mockShowToast } = vi.hoisted(() => ({
   mockUseAuth: vi.fn(),
   mockPush: vi.fn(),
   mockUseParams: vi.fn(),
   mockFetch: vi.fn(),
-  mockToast: {
-    info: vi.fn(),
-    loading: vi.fn(() => 'toast-id'),
-    success: vi.fn(),
-    error: vi.fn(),
-  },
+  mockShowToast: vi.fn(),
 }));
 
 vi.mock('@/hooks/useAuth', () => ({ useAuth: mockUseAuth }));
@@ -33,7 +28,7 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: mockPush }),
   useParams: mockUseParams,
 }));
-vi.mock('sonner', () => ({ toast: mockToast }));
+vi.mock('@/components/ui/Toast', () => ({ useToast: () => ({ showToast: mockShowToast }) }));
 vi.mock('@/lib/logger', () => ({
   default: { info: vi.fn(), error: vi.fn(), debug: vi.fn(), warn: vi.fn() },
 }));
@@ -158,7 +153,7 @@ describe('FavoriteButton', () => {
   it('redirects to sign-in when unauthenticated user clicks', async () => {
     render(<FavoriteButton {...DEFAULT_PROPS} />);
     await userEvent.click(screen.getByRole('button'));
-    expect(mockToast.info).toHaveBeenCalledWith('Please sign in to save favorites');
+    expect(mockShowToast).toHaveBeenCalledWith('info', 'Sign In Required', expect.any(String), 5000);
     expect(mockPush).toHaveBeenCalledWith('/en/sign-in');
   });
 
@@ -230,7 +225,7 @@ describe('FavoriteButton', () => {
     await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
     await userEvent.click(screen.getByRole('button'));
     await waitFor(() =>
-      expect(mockToast.success).toHaveBeenCalledWith('Added to favorites', expect.anything()),
+      expect(mockShowToast).toHaveBeenCalledWith('success', 'Saved to Favorites', expect.any(String), 3000, expect.anything()),
     );
   });
 
@@ -281,7 +276,7 @@ describe('FavoriteButton', () => {
     );
     await userEvent.click(screen.getByRole('button'));
     await waitFor(() =>
-      expect(mockToast.success).toHaveBeenCalledWith('Removed from favorites', expect.anything()),
+      expect(mockShowToast).toHaveBeenCalledWith('success', 'Removed from Favorites', expect.any(String), 3000),
     );
   });
 
@@ -312,7 +307,7 @@ describe('FavoriteButton', () => {
     await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
 
     await userEvent.click(screen.getByRole('button'));
-    await waitFor(() => expect(mockToast.error).toHaveBeenCalled());
+    await waitFor(() => expect(mockShowToast).toHaveBeenCalledWith('error', expect.any(String), expect.any(String), 5000));
 
     // Should have rolled back to not-favorited
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false');
@@ -329,7 +324,7 @@ describe('FavoriteButton', () => {
       expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true'),
     );
     await userEvent.click(screen.getByRole('button'));
-    await waitFor(() => expect(mockToast.error).toHaveBeenCalled());
+    await waitFor(() => expect(mockShowToast).toHaveBeenCalledWith('error', expect.any(String), expect.any(String), 5000));
 
     // Should have rolled back to favorited
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true');

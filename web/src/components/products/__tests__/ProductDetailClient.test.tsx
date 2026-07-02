@@ -6,6 +6,12 @@ import { renderWithIntl } from '@/test/i18n-test-utils';
 import { ProductDetailClient } from '@/components/products';
 import { ToastProvider } from '@/components/ui/Toast';
 
+// FavoriteButton uses useRouter + useToast + fetch — mock it here since
+// ProductDetailClient tests are not testing FavoriteButton behaviour
+vi.mock('@/components/FavoriteButton', () => ({
+  default: () => <button aria-label="Add to favorites" />,
+}));
+
 type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
 type Variation = any; // Component uses any for variations
 

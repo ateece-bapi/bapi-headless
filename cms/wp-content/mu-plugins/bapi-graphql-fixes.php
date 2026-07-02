@@ -7,6 +7,10 @@
  *
  * This file should live at:
  * cms/wp-content/mu-plugins/bapi-graphql-fixes.php
+ *
+ * DUAL-FILE PATTERN: The repo root copy (bapi-graphql-fixes.php) is the development
+ * source of truth. This CMS copy is the deploy artifact kept in sync manually.
+ * Always edit the root copy and SCP it to Kinsta staging; never edit this file independently.
  */
 
 if (!defined('ABSPATH')) {

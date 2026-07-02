@@ -58,6 +58,10 @@ function mockFetchFailure() {
   mockFetch.mockResolvedValue({ ok: false, status: 503 });
 }
 
+function mockHttpAuthError(status = 401) {
+  mockFetch.mockResolvedValue({ ok: false, status });
+}
+
 const fakeFav = (overrides = {}) => ({
   id: 'fav-111',
   productId: 'prod-1',
@@ -171,6 +175,22 @@ describe('GET /api/favorites', () => {
     mockFetchFailure();
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(500);
+  });
+
+  it('returns 401 and clears cookies when WordPress returns HTTP 401', async () => {
+    mockHttpAuthError(401);
+    const res = await GET(makeGetRequest());
+    expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
+  });
+
+  it('returns 401 and clears cookies when WordPress returns HTTP 403', async () => {
+    mockHttpAuthError(403);
+    const res = await GET(makeGetRequest());
+    expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 });
 
@@ -305,6 +325,14 @@ describe('POST /api/favorites', () => {
     const res = await POST(makePostRequest(validBody));
     expect(res.status).toBe(500);
   });
+
+  it('returns 401 and clears cookies when WordPress returns HTTP 401', async () => {
+    mockHttpAuthError(401);
+    const res = await POST(makePostRequest(validBody));
+    expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
+  });
 });
 
 // ─── DELETE ──────────────────────────────────────────────────────────────────
@@ -386,6 +414,14 @@ describe('DELETE /api/favorites', () => {
     mockFetchFailure();
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(500);
+  });
+
+  it('returns 401 and clears cookies when WordPress returns HTTP 401', async () => {
+    mockHttpAuthError(401);
+    const res = await DELETE(makeDeleteRequest('prod-1'));
+    expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 });
 

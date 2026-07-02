@@ -51,6 +51,13 @@ async function wpGraphQL<T>(
     cache: 'no-store',
   });
 
+  // WordPress may return HTTP 401/403 for an invalid or expired JWT.
+  // Convert these to an errors[] payload so isAuthError() / clearAuthCookies() handles them
+  // correctly instead of falling through to the generic catch → 500 path.
+  if (response.status === 401 || response.status === 403) {
+    return { errors: [{ message: 'Unauthorized' }] };
+  }
+
   if (!response.ok) {
     throw new Error(`WordPress GraphQL request failed: ${response.status}`);
   }

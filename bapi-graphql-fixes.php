@@ -79,10 +79,11 @@ add_action('graphql_register_types', function () {
 
             // Filter out any corrupted/non-array entries before sorting
             $favs = array_values(array_filter($favs, fn($f) => is_array($f)));
-            usort($favs, fn($a, $b) => strcmp(
-                $b['createdAt'] ?? '',
-                $a['createdAt'] ?? ''
-            ));
+            usort($favs, function ($a, $b) {
+                $ta = strtotime($a['createdAt'] ?? '') ?: 0;
+                $tb = strtotime($b['createdAt'] ?? '') ?: 0;
+                return $tb - $ta; // newest first
+            });
             return $favs;
         },
     ]);

@@ -103,16 +103,18 @@ add_action('graphql_register_types', function () {
                 $favs = [];
             }
 
-            // Idempotent: return existing entry if already saved
+            // Sanitize input first, then check for duplicates against stored (already-sanitized) values
+            $sanitized_id = sanitize_text_field($input['productId']);
+
             foreach ($favs as $fav) {
-                if ($fav['productId'] === $input['productId']) {
+                if ($fav['productId'] === $sanitized_id) {
                     return ['favorite' => $fav, 'alreadyExists' => true, 'success' => false];
                 }
             }
 
             $new_fav = [
                 'id'           => 'fav-' . time() . '-' . substr(md5(uniqid('', true)), 0, 9),
-                'productId'    => sanitize_text_field($input['productId']),
+                'productId'    => $sanitized_id,
                 'productName'  => sanitize_text_field($input['productName']),
                 'productSlug'  => sanitize_text_field($input['productSlug']),
                 'productImage' => isset($input['productImage']) ? esc_url_raw($input['productImage']) : null,
@@ -149,8 +151,9 @@ add_action('graphql_register_types', function () {
             }
 
             $original_count = count($favs);
+            $sanitized_id = sanitize_text_field($input['productId']);
             $favs = array_values(
-                array_filter($favs, fn($fav) => $fav['productId'] !== $input['productId'])
+                array_filter($favs, fn($fav) => $fav['productId'] !== $sanitized_id)
             );
 
             if (count($favs) === $original_count) {

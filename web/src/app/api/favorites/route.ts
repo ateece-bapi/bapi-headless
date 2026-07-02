@@ -37,6 +37,10 @@ async function wpGraphQL<T>(
   query: string,
   variables: Record<string, unknown> = {}
 ): Promise<GraphQLResponse<T>> {
+  if (!GRAPHQL_ENDPOINT) {
+    throw new Error('NEXT_PUBLIC_WORDPRESS_GRAPHQL is not configured');
+  }
+
   const response = await fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -129,9 +133,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Product already in favorites' }, { status: 409 });
     }
 
+    if (!result?.success || !result?.favorite) {
+      logger.error('addFavorite returned unexpected response', result);
+      return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
+    }
+
     return NextResponse.json({
       success: true,
-      favorite: result?.favorite,
+      favorite: result.favorite,
       message: 'Product added to favorites',
     });
   } catch (error) {
@@ -177,6 +186,11 @@ export async function DELETE(request: NextRequest) {
 
     if (result?.notFound) {
       return NextResponse.json({ error: 'Favorite not found' }, { status: 404 });
+    }
+
+    if (!result?.success) {
+      logger.error('removeFavorite returned unexpected response', result);
+      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, message: 'Product removed from favorites' });

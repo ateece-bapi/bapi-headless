@@ -260,6 +260,13 @@ describe('POST /api/favorites', () => {
     expect((await res.json()).error).toBe('Failed to add to favorites');
   });
 
+  it('returns 500 when addFavorite result is missing or success=false', async () => {
+    mockGraphQL({ addFavorite: null });
+    const res = await POST(makePostRequest(validBody));
+    expect(res.status).toBe(500);
+    expect((await res.json()).error).toBe('Failed to add to favorites');
+  });
+
   it('returns 500 on network failure', async () => {
     mockFetchFailure();
     const res = await POST(makePostRequest(validBody));
@@ -327,36 +334,17 @@ describe('DELETE /api/favorites', () => {
     expect((await res.json()).error).toBe('Failed to remove from favorites');
   });
 
+  it('returns 500 when removeFavorite result is missing or success=false', async () => {
+    mockGraphQL({ removeFavorite: null });
+    const res = await DELETE(makeDeleteRequest('prod-1'));
+    expect(res.status).toBe(500);
+    expect((await res.json()).error).toBe('Failed to remove from favorites');
+  });
+
   it('returns 500 on network failure', async () => {
     mockFetchFailure();
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(500);
   });
 });
-
-// ─── Hoisted mocks ────────────────────────────────────────────────────────────
-
-const { mockGetServerAuth, mockExistsSync, mockWriteFile, mockMkdir, mockReadFile } =
-  vi.hoisted(() => ({
-    mockGetServerAuth: vi.fn(),
-    mockExistsSync: vi.fn(),
-    mockWriteFile: vi.fn(),
-    mockMkdir: vi.fn(),
-    mockReadFile: vi.fn(),
-  }));
-
-vi.mock('@/lib/auth/server', () => ({ getServerAuth: mockGetServerAuth }));
-vi.mock('@/lib/logger', () => ({
-  default: { info: vi.fn(), error: vi.fn(), debug: vi.fn(), warn: vi.fn() },
-}));
-vi.mock('fs', () => ({
-  default: { existsSync: mockExistsSync },
-  existsSync: mockExistsSync,
-}));
-vi.mock('fs/promises', () => ({
-  default: { writeFile: mockWriteFile, mkdir: mockMkdir, readFile: mockReadFile },
-  writeFile: mockWriteFile,
-  mkdir: mockMkdir,
-  readFile: mockReadFile,
-}));
 

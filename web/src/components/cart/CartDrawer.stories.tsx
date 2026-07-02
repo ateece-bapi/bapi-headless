@@ -26,7 +26,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, userEvent, waitFor, within } from '@storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import CartDrawer from './CartDrawer';
 import { useCartStore } from '@/store';
 import type { CartItem } from '@/store';

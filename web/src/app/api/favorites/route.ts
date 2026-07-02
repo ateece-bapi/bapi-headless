@@ -58,6 +58,10 @@ async function wpGraphQL<T>(
   return response.json() as Promise<GraphQLResponse<T>>;
 }
 
+function isAuthError(errors: Array<{ message: string }>): boolean {
+  return errors.some((e) => /unauthorized|invalid.?token|expired/i.test(e.message));
+}
+
 // ---------------------------------------------------------------------------
 // GET — fetch current user's favorites
 // ---------------------------------------------------------------------------
@@ -80,7 +84,8 @@ export async function GET(_request: NextRequest) {
 
     if (errors?.length) {
       logger.error('GraphQL errors fetching favorites', errors);
-      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
+      const status = isAuthError(errors) ? 401 : 500;
+      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status });
     }
 
     return NextResponse.json({ favorites: data?.myFavorites ?? [] });
@@ -104,9 +109,17 @@ export async function POST(request: NextRequest) {
     const body = await request.json() as Record<string, unknown>;
     const { productId, productName, productSlug, productImage, productPrice } = body;
 
-    if (!productId || !productName || !productSlug) {
+    if (
+      typeof productId !== 'string' || !productId ||
+      typeof productName !== 'string' || !productName ||
+      typeof productSlug !== 'string' || !productSlug
+    ) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
+
+    // Only forward strings for optional fields
+    const imageStr = typeof productImage === 'string' ? productImage : undefined;
+    const priceStr = typeof productPrice === 'string' ? productPrice : undefined;
 
     const { data, errors } = await wpGraphQL<{
       addFavorite: { favorite: Favorite; alreadyExists: boolean; success: boolean };
@@ -119,12 +132,13 @@ export async function POST(request: NextRequest) {
           success
         }
       }`,
-      { input: { productId, productName, productSlug, productImage, productPrice } }
+      { input: { productId, productName, productSlug, productImage: imageStr, productPrice: priceStr } }
     );
 
     if (errors?.length) {
       logger.error('GraphQL errors adding favorite', errors);
-      return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
+      const status = isAuthError(errors) ? 401 : 500;
+      return NextResponse.json({ error: 'Failed to add to favorites' }, { status });
     }
 
     const result = data?.addFavorite;
@@ -179,7 +193,8 @@ export async function DELETE(request: NextRequest) {
 
     if (errors?.length) {
       logger.error('GraphQL errors removing favorite', errors);
-      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });
+      const status = isAuthError(errors) ? 401 : 500;
+      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status });
     }
 
     const result = data?.removeFavorite;

@@ -63,7 +63,7 @@ add_action('graphql_register_types', function () {
         'resolve'     => function ($root, $args, $context) {
             $user_id = $context->viewer->databaseId ?? 0;
             if (!$user_id) {
-                return [];
+                throw new \GraphQL\Error\UserError('Unauthorized');
             }
 
             $raw  = get_user_meta($user_id, 'bapi_favorites', true);
@@ -113,7 +113,7 @@ add_action('graphql_register_types', function () {
 
             foreach ($favs as $fav) {
                 if (!is_array($fav)) continue;
-                if ($fav['productId'] === $sanitized_id) {
+                if (($fav['productId'] ?? null) === $sanitized_id) {
                     return ['favorite' => $fav, 'alreadyExists' => true, 'success' => false];
                 }
             }

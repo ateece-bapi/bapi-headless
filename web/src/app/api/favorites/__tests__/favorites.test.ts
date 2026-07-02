@@ -152,10 +152,16 @@ describe('GET /api/favorites', () => {
   });
 
   it('returns 500 on GraphQL errors', async () => {
-    mockGraphQLError('Unauthorized');
+    mockGraphQLError('Internal server error');
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(500);
     expect((await res.json()).error).toBe('Failed to fetch favorites');
+  });
+
+  it('returns 401 when GraphQL reports Unauthorized', async () => {
+    mockGraphQLError('Unauthorized');
+    const res = await GET(makeGetRequest());
+    expect(res.status).toBe(401);
   });
 
   it('returns 500 on network failure', async () => {
@@ -254,10 +260,21 @@ describe('POST /api/favorites', () => {
   });
 
   it('returns 500 on GraphQL errors', async () => {
-    mockGraphQLError('Internal error');
+    mockGraphQLError('Internal server error');
     const res = await POST(makePostRequest(validBody));
     expect(res.status).toBe(500);
     expect((await res.json()).error).toBe('Failed to add to favorites');
+  });
+
+  it('returns 401 when GraphQL reports Unauthorized', async () => {
+    mockGraphQLError('Unauthorized');
+    const res = await POST(makePostRequest(validBody));
+    expect(res.status).toBe(401);
+  });
+
+  it('returns 400 when productId is not a string', async () => {
+    const res = await POST(makePostRequest({ productId: 123, productName: 'Test', productSlug: 'test' }));
+    expect(res.status).toBe(400);
   });
 
   it('returns 500 when addFavorite result is missing or success=false', async () => {
@@ -328,10 +345,16 @@ describe('DELETE /api/favorites', () => {
   });
 
   it('returns 500 on GraphQL errors', async () => {
-    mockGraphQLError('Internal error');
+    mockGraphQLError('Internal server error');
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(500);
     expect((await res.json()).error).toBe('Failed to remove from favorites');
+  });
+
+  it('returns 401 when GraphQL reports Unauthorized', async () => {
+    mockGraphQLError('Unauthorized');
+    const res = await DELETE(makeDeleteRequest('prod-1'));
+    expect(res.status).toBe(401);
   });
 
   it('returns 500 when removeFavorite result is missing or success=false', async () => {

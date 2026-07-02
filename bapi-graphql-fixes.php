@@ -108,6 +108,9 @@ add_action('graphql_register_types', function () {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }
 
+            // NOTE: This is a read-modify-write on a shared JSON blob. Concurrent writes from
+            // multiple tabs could overwrite each other (last-write-wins). Accepted limitation
+            // for Phase 1 given the low probability of simultaneous favorites saves.
             $raw  = get_user_meta($user_id, 'bapi_favorites', true);
             $favs = $raw ? json_decode($raw, true) : [];
             if (!is_array($favs)) {

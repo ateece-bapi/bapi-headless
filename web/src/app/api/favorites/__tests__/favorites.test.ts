@@ -177,6 +177,12 @@ describe('GET /api/favorites', () => {
     expect(res.status).toBe(500);
   });
 
+  it('returns 500 when WordPress returns unexpected payload with no data or errors', async () => {
+    mockFetch.mockResolvedValue({ ok: true, json: async () => ({}) });
+    const res = await GET(makeGetRequest());
+    expect(res.status).toBe(500);
+  });
+
   it('returns 401 and clears cookies when WordPress returns HTTP 401', async () => {
     mockHttpAuthError(401);
     const res = await GET(makeGetRequest());

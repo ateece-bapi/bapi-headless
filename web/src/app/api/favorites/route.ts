@@ -108,7 +108,12 @@ export async function GET(_request: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
     }
 
-    return NextResponse.json({ favorites: data?.myFavorites ?? [] });
+    if (!Array.isArray(data?.myFavorites)) {
+      logger.error('myFavorites returned unexpected response shape', { data });
+      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
+    }
+
+    return NextResponse.json({ favorites: data.myFavorites });
   } catch (error) {
     logger.error('Error fetching favorites', error);
     return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });

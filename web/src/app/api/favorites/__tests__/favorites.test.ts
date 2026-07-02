@@ -167,8 +167,6 @@ describe('GET /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 500 on network failure', async () => {
@@ -183,20 +181,16 @@ describe('GET /api/favorites', () => {
     expect(res.status).toBe(500);
   });
 
-  it('returns 401 and clears cookies when WordPress returns HTTP 401', async () => {
+  it('returns 401 when WordPress returns HTTP 401', async () => {
     mockHttpAuthError(401);
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
-  it('returns 401 and clears cookies when WordPress returns HTTP 403', async () => {
+  it('returns 401 when WordPress returns HTTP 403', async () => {
     mockHttpAuthError(403);
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 });
 
@@ -306,8 +300,6 @@ describe('POST /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await POST(makePostRequest(validBody));
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 400 when productId is not a string', async () => {
@@ -343,8 +335,6 @@ describe('POST /api/favorites', () => {
     mockHttpAuthError(401);
     const res = await POST(makePostRequest(validBody));
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 });
 
@@ -412,8 +402,6 @@ describe('DELETE /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 500 when removeFavorite result is missing or success=false', async () => {
@@ -433,8 +421,6 @@ describe('DELETE /api/favorites', () => {
     mockHttpAuthError(401);
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(401);
-    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
-    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 });
 

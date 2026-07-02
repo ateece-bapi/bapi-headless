@@ -52,7 +52,7 @@ async function wpGraphQL<T>(
   });
 
   // WordPress may return HTTP 401/403 for an invalid or expired JWT.
-  // Convert these to an errors[] payload so isAuthError() / clearAuthCookies() handles them
+  // Convert these to an errors[] payload so isAuthError() handles them
   // correctly instead of falling through to the generic catch → 500 path.
   if (response.status === 401 || response.status === 403) {
     return { errors: [{ message: 'Unauthorized' }] };
@@ -71,12 +71,6 @@ function isAuthError(errors: Array<{ message: string }>): boolean {
 
 function isLimitError(errors: Array<{ message: string }>): boolean {
   return errors.some((e) => /favorites limit reached/i.test(e.message));
-}
-
-async function clearAuthCookies(): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.delete('auth_token');
-  cookieStore.delete('refresh_token');
 }
 
 // ---------------------------------------------------------------------------
@@ -102,7 +96,6 @@ export async function GET(_request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors fetching favorites', errors);
       if (isAuthError(errors)) {
-        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
@@ -168,7 +161,6 @@ export async function POST(request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors adding favorite', errors);
       if (isAuthError(errors)) {
-        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       if (isLimitError(errors)) {
@@ -230,7 +222,6 @@ export async function DELETE(request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors removing favorite', errors);
       if (isAuthError(errors)) {
-        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });

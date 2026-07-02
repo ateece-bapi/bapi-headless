@@ -65,7 +65,7 @@ add_action('graphql_register_types', function () {
         'type'        => ['list_of' => 'BapiFavorite'],
         'description' => "Get the current authenticated user's saved product favorites, sorted newest first.",
         'resolve'     => function ($root, $args, $context) {
-            $user_id = $context->viewer->databaseId ?? 0;
+            $user_id = $context->viewer?->databaseId ?? 0;
             if (!$user_id) {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }
@@ -101,7 +101,7 @@ add_action('graphql_register_types', function () {
             'success'       => ['type' => 'Boolean'],
         ],
         'mutateAndGetPayload' => function ($input, $context) {
-            $user_id = $context->viewer->databaseId ?? 0;
+            $user_id = $context->viewer?->databaseId ?? 0;
             if (!$user_id) {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }
@@ -111,6 +111,7 @@ add_action('graphql_register_types', function () {
             if (!is_array($favs)) {
                 $favs = [];
             }
+            $favs = array_values(array_filter($favs, 'is_array'));
 
             // Sanitize input first, then check for duplicates against stored (already-sanitized) values
             $sanitized_id = sanitize_text_field($input['productId']);
@@ -156,7 +157,7 @@ add_action('graphql_register_types', function () {
             'notFound' => ['type' => 'Boolean'],
         ],
         'mutateAndGetPayload' => function ($input, $context) {
-            $user_id = $context->viewer->databaseId ?? 0;
+            $user_id = $context->viewer?->databaseId ?? 0;
             if (!$user_id) {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }

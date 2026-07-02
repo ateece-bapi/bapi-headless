@@ -14,7 +14,7 @@ import enMessages from '../messages/en.json';
 
 /**
  * Initialize MSW for Storybook
- * 
+ *
  * This enables mocking of GraphQL/REST API requests in stories.
  * Useful for testing components without a live backend.
  */
@@ -41,6 +41,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+
     // Next.js App Router support
     nextjs: {
       appDirectory: true,
@@ -64,8 +65,16 @@ const preview: Preview = {
         loaderFile: './image-loader.ts',
       },
     },
+
     msw: {
       handlers,
+    },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
     },
   },
   loaders: [mswLoader], // Enable MSW for all stories

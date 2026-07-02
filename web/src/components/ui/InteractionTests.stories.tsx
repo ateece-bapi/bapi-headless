@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, userEvent, within } from '@storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 import { useRef } from 'react';
 import { ToastProvider, useToast } from './Toast';
 import AddToCartButton from '../cart/AddToCartButton';
@@ -8,7 +8,7 @@ import { mockProductForClient } from '../../../test/msw/fixtures';
 /**
  * Interaction Tests Stories
  *
- * Demonstrates automated interaction testing with @storybook/test:
+ * Demonstrates automated interaction testing with storybook/test:
  * - userEvent: Simulates user interactions (click, type, hover)
  * - within: Queries elements within component
  * - expect: Assertions for testing behavior
@@ -31,7 +31,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Automated interaction test demonstrations using @storybook/test. Shows play functions that simulate user behavior, verify outcomes, and document expected component interactions. These tests run automatically in Storybook and can be integrated into CI/CD pipelines.',
+          'Automated interaction test demonstrations using storybook/test. Shows play functions that simulate user behavior, verify outcomes, and document expected component interactions. These tests run automatically in Storybook and can be integrated into CI/CD pipelines.',
       },
     },
   },
@@ -408,7 +408,7 @@ export const InteractionTestsSummary: StoryObj = {
     <div className="max-w-3xl space-y-8 rounded-xl border-2 border-neutral-200 bg-white p-8">
       <div>
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-          Interaction Tests with @storybook/test
+          Interaction Tests with storybook/test
         </h2>
         <p className="text-neutral-700">
           7 automated interaction tests demonstrating user behavior verification
@@ -483,7 +483,7 @@ export const InteractionTestsSummary: StoryObj = {
     docs: {
       description: {
         story:
-          'Summary of all interaction tests with @storybook/test. Shows test coverage, tools used, and benefits of automated interaction testing.',
+          'Summary of all interaction tests with storybook/test. Shows test coverage, tools used, and benefits of automated interaction testing.',
       },
     },
   },

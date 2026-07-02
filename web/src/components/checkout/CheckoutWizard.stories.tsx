@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, userEvent, within } from '@storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 import CheckoutWizard from './CheckoutWizard';
 import type { CheckoutData } from './CheckoutPageClient';
 

@@ -7,6 +7,11 @@
  *
  * This file should live at:
  * cms/wp-content/mu-plugins/bapi-graphql-fixes.php
+ *
+ * DUAL-FILE PATTERN: The repo root copy (bapi-graphql-fixes.php) is the development
+ * source of truth. The CMS copy (cms/wp-content/mu-plugins/bapi-graphql-fixes.php) is
+ * the deploy artifact kept in sync manually. Always edit the root copy and SCP it to
+ * Kinsta staging; never edit the CMS copy independently.
  */
 
 if (!defined('ABSPATH')) {
@@ -35,3 +40,161 @@ add_filter('graphql_connection_max_query_amount', function($max, $source, $args,
     // Keep existing limit for other queries
     return $max;
 }, 10, 5);
+
+// ---------------------------------------------------------------------------
+// BAPI Favorites — stored as JSON in WordPress user meta (bapi_favorites)
+// ---------------------------------------------------------------------------
+
+add_action('graphql_register_types', function () {
+
+    // ── Shared object type ─────────────────────────────────────────────────
+    register_graphql_object_type('BapiFavorite', [
+        'description' => 'A BAPI saved product favorite',
+        'fields'      => [
+            'id'           => ['type' => 'String', 'description' => 'Unique favorite ID'],
+            'productId'    => ['type' => 'String', 'description' => 'WordPress product database ID'],
+            'productName'  => ['type' => 'String', 'description' => 'Product display name'],
+            'productSlug'  => ['type' => 'String', 'description' => 'Product URL slug'],
+            'productImage' => ['type' => 'String', 'description' => 'Product image URL'],
+            'productPrice' => ['type' => 'String', 'description' => 'Product price string'],
+            'createdAt'    => ['type' => 'String', 'description' => 'ISO 8601 creation timestamp'],
+        ],
+    ]);
+
+    // ── Query: myFavorites ─────────────────────────────────────────────────
+    register_graphql_field('RootQuery', 'myFavorites', [
+        'type'        => ['list_of' => 'BapiFavorite'],
+        'description' => "Get the current authenticated user's saved product favorites, sorted newest first.",
+        'resolve'     => function ($root, $args, $context) {
+            $user_id = $context->viewer?->databaseId ?? 0;
+            if (!$user_id) {
+                throw new \GraphQL\Error\UserError('Unauthorized');
+            }
+
+            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
+            $favs = $raw ? json_decode($raw, true) : [];
+            if (!is_array($favs)) {
+                return [];
+            }
+
+            // Filter out any corrupted/non-array entries before sorting
+            $favs = array_values(array_filter($favs, fn($f) => is_array($f)));
+            usort($favs, function ($a, $b) {
+                $ta = strtotime($a['createdAt'] ?? '') ?: 0;
+                $tb = strtotime($b['createdAt'] ?? '') ?: 0;
+                return $tb - $ta; // newest first
+            });
+            return $favs;
+        },
+    ]);
+
+    // ── Mutation: addFavorite ──────────────────────────────────────────────
+    register_graphql_mutation('addFavorite', [
+        'inputFields'  => [
+            'productId'    => ['type' => ['non_null' => 'String']],
+            'productName'  => ['type' => ['non_null' => 'String']],
+            'productSlug'  => ['type' => ['non_null' => 'String']],
+            'productImage' => ['type' => 'String'],
+            'productPrice' => ['type' => 'String'],
+        ],
+        'outputFields' => [
+            'favorite'      => ['type' => 'BapiFavorite'],
+            'alreadyExists' => ['type' => 'Boolean'],
+            'success'       => ['type' => 'Boolean'],
+        ],
+        'mutateAndGetPayload' => function ($input, $context) {
+            $user_id = $context->viewer?->databaseId ?? 0;
+            if (!$user_id) {
+                throw new \GraphQL\Error\UserError('Unauthorized');
+            }
+
+            // NOTE: This is a read-modify-write on a shared JSON blob. Concurrent writes from
+            // multiple tabs could overwrite each other (last-write-wins). Accepted limitation
+            // for Phase 1 given the low probability of simultaneous favorites saves.
+            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
+            $favs = $raw ? json_decode($raw, true) : [];
+            if (!is_array($favs)) {
+                $favs = [];
+            }
+            $favs = array_values(array_filter($favs, 'is_array'));
+
+            // Sanitize input first, then check for duplicates against stored (already-sanitized) values
+            $sanitized_id = sanitize_text_field($input['productId']);
+
+            foreach ($favs as $fav) {
+                if (!is_array($fav)) continue;
+                if (($fav['productId'] ?? null) === $sanitized_id) {
+                    return ['favorite' => $fav, 'alreadyExists' => true, 'success' => false];
+                }
+            }
+
+            if (count($favs) >= 500) {
+                throw new \GraphQL\Error\UserError('Favorites limit reached (max 500)');
+            }
+
+            $new_fav = [
+                'id'           => 'fav-' . time() . '-' . substr(md5(uniqid('', true)), 0, 9),
+                'productId'    => $sanitized_id,
+                'productName'  => sanitize_text_field($input['productName']),
+                'productSlug'  => sanitize_text_field($input['productSlug']),
+                'productImage' => isset($input['productImage']) ? esc_url_raw($input['productImage']) : null,
+                'productPrice' => isset($input['productPrice']) ? sanitize_text_field($input['productPrice']) : null,
+                'createdAt'    => gmdate('c'),
+            ];
+
+            $favs[] = $new_fav;
+            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            if ($saved === false) {
+                throw new \GraphQL\Error\UserError('Failed to persist favorites');
+            }
+
+            return ['favorite' => $new_fav, 'alreadyExists' => false, 'success' => true];
+        },
+    ]);
+
+    // ── Mutation: removeFavorite ───────────────────────────────────────────
+    register_graphql_mutation('removeFavorite', [
+        'inputFields'  => [
+            'productId' => ['type' => ['non_null' => 'String']],
+        ],
+        'outputFields' => [
+            'success'  => ['type' => 'Boolean'],
+            'notFound' => ['type' => 'Boolean'],
+        ],
+        'mutateAndGetPayload' => function ($input, $context) {
+            $user_id = $context->viewer?->databaseId ?? 0;
+            if (!$user_id) {
+                throw new \GraphQL\Error\UserError('Unauthorized');
+            }
+
+            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
+            $favs = $raw ? json_decode($raw, true) : [];
+            if (!is_array($favs)) {
+                $favs = [];
+            }
+
+            $sanitized_id = sanitize_text_field($input['productId']);
+            $found = false;
+            $favs = array_values(
+                array_filter($favs, function ($fav) use ($sanitized_id, &$found) {
+                    if (!is_array($fav)) return false; // drop corrupted entries
+                    if (($fav['productId'] ?? null) === $sanitized_id) {
+                        $found = true;
+                        return false; // remove matched entry
+                    }
+                    return true;
+                })
+            );
+
+            if (!$found) {
+                return ['success' => false, 'notFound' => true];
+            }
+
+            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            if ($saved === false) {
+                throw new \GraphQL\Error\UserError('Failed to persist favorites');
+            }
+            return ['success' => true, 'notFound' => false];
+        },
+    ]);
+});

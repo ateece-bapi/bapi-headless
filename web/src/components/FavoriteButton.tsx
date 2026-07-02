@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { HeartIcon, HeartOutlineIcon } from '@/lib/icons';
+import { HeartIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
-import { toast } from 'sonner';
+import { useToast } from '@/components/ui/Toast';
 import logger from '@/lib/logger';
 
 interface FavoriteButtonProps {
@@ -30,6 +30,7 @@ export default function FavoriteButton({
 }: FavoriteButtonProps) {
   const { user, isLoaded } = useAuth();
   const router = useRouter();
+  const { showToast } = useToast();
   const [isFavorited, setIsFavorited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +65,7 @@ export default function FavoriteButton({
 
     // Redirect to sign-in if not authenticated
     if (!isLoaded || !user) {
-      toast.info('Please sign in to save favorites');
+      showToast('info', 'Sign In Required', 'Please sign in to save products to your favorites.', 5000);
       router.push(`/${locale}/sign-in`);
       return;
     }
@@ -75,11 +76,6 @@ export default function FavoriteButton({
     // Optimistic update - update UI immediately
     setIsFavorited(!isFavorited);
     setIsLoading(true);
-
-    // Show optimistic toast
-    const toastId = toast.loading(
-      previousState ? 'Removing from favorites...' : 'Adding to favorites...'
-    );
 
     try {
       if (previousState) {
@@ -92,7 +88,7 @@ export default function FavoriteButton({
           throw new Error('Failed to remove from favorites');
         }
 
-        toast.success('Removed from favorites', { id: toastId });
+        showToast('success', 'Removed from Favorites', `${productName} has been removed from your saved products.`, 3000);
         onToggle?.(false);
       } else {
         // Add to favorites
@@ -110,11 +106,25 @@ export default function FavoriteButton({
           }),
         });
 
+        if (response.status === 409) {
+          // Already favorited (e.g. added from another tab or session) — treat as success
+          showToast('success', 'Already Saved', `${productName} is already in your saved products.`, 3000, {
+            label: 'View Saved',
+            onClick: () => { router.push(`/${locale}/account/favorites`); },
+          });
+          setIsFavorited(true);
+          onToggle?.(true);
+          return;
+        }
+
         if (!response.ok) {
           throw new Error('Failed to add to favorites');
         }
 
-        toast.success('Added to favorites', { id: toastId });
+        showToast('success', 'Saved to Favorites', `${productName} has been added to your saved products.`, 3000, {
+          label: 'View Saved',
+          onClick: () => { router.push(`/${locale}/account/favorites`); },
+        });
         onToggle?.(true);
       }
     } catch (error) {
@@ -123,11 +133,13 @@ export default function FavoriteButton({
       // Rollback on error
       setIsFavorited(previousState);
 
-      toast.error(
+      showToast(
+        'error',
+        previousState ? 'Could Not Remove' : 'Could Not Save',
         previousState
           ? 'Failed to remove from favorites. Please try again.'
           : 'Failed to add to favorites. Please try again.',
-        { id: toastId }
+        5000
       );
     } finally {
       setIsLoading(false);

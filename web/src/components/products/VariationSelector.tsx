@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
-import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
+import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, BriefcaseIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
@@ -23,6 +23,7 @@ import { formatPrice, convertWooCommercePrice, convertWooCommercePriceNumeric } 
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 import { useToast } from '@/components/ui/Toast';
+import FavoriteButton from '@/components/FavoriteButton';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -85,8 +86,6 @@ export default function VariationSelector({
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
-  const [favoritedVariationId, setFavoritedVariationId] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
   const region = useRegion();
 
@@ -278,15 +277,6 @@ export default function VariationSelector({
     }
   }, [availableOptionsMap, selectedAttributes]);
 
-  // Reset favorite state when matched variation changes
-  useEffect(() => {
-    if (matchedVariation) {
-      setIsFavorited(favoritedVariationId === matchedVariation.id);
-    } else {
-      setIsFavorited(false);
-    }
-  }, [matchedVariation, favoritedVariationId]);
-
   if (variationAttributes.length === 0) {
     return null;
   }
@@ -413,25 +403,17 @@ export default function VariationSelector({
                     <p className="text-xs text-neutral-500">
                       {t('attributesSelected', { selected: selectedCount, total: totalCount })}
                     </p>
-                    {/* Inline Favorite Button */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newState = !isFavorited;
-                        setIsFavorited(newState);
-                        setFavoritedVariationId(newState ? matchedVariation.id : null);
-                      }}
-                      className={`flex items-center justify-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold shadow-sm transition-all hover:scale-105 focus:outline-none focus:ring-2 ${
-                        isFavorited
-                          ? 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500/50'
-                          : 'border border-neutral-300 bg-white text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
-                      }`}
-                      aria-pressed={isFavorited}
-                      aria-label={isFavorited ? t('removeFromFavorites') : t('addToFavorites')}
-                    >
-                      <HeartIcon className={`h-3.5 w-3.5 ${isFavorited ? 'fill-current' : ''}`} />
-                      <span className="hidden sm:inline">{t('favorite')}</span>
-                    </button>
+                    {/* Real FavoriteButton — persists to /account/favorites */}
+                    {product && (
+                      <FavoriteButton
+                        productId={String(product.databaseId)}
+                        productName={`${product.name} (${matchedVariation.partNumber || matchedVariation.sku})`}
+                        productSlug={product.slug}
+                        productImage={matchedVariation.image?.sourceUrl || product.image?.sourceUrl}
+                        size="sm"
+                        variant="button"
+                      />
+                    )}
                   </div>
                 </div>
 

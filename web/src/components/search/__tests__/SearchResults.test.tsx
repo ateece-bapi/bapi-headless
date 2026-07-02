@@ -19,13 +19,17 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SearchResults from '../SearchResults';
 
+// ─── Hoisted mocks ────────────────────────────────────────────────────────────
+
+const { mockShowToast } = vi.hoisted(() => ({ mockShowToast: vi.fn() }));
+
 // ─── Mock deps ────────────────────────────────────────────────────────────────
 vi.mock('@/hooks/useAuth', () => ({
   useAuth: () => ({ user: { customerGroups: ['end-user'] }, isLoaded: true }),
 }));
 
 vi.mock('@/components/ui/Toast', () => ({
-  useToast: () => ({ showToast: vi.fn() }),
+  useToast: () => ({ showToast: mockShowToast }),
 }));
 
 vi.mock('@/lib/navigation', () => ({
@@ -157,6 +161,31 @@ describe('SearchResults', () => {
       <SearchResults products={[]} query="xyz" locale="en" translations={baseTranslations} />,
     );
     expect(screen.getByRole('link', { name: 'Contact Us' })).toBeInTheDocument();
+  });
+
+  it('fires showToast once when products are empty and auth is loaded', () => {
+    render(
+      <SearchResults products={[]} query="widget" locale="en" translations={baseTranslations} />,
+    );
+    expect(mockShowToast).toHaveBeenCalledOnce();
+    expect(mockShowToast).toHaveBeenCalledWith(
+      'info',
+      'No Results Found',
+      expect.stringContaining('widget'),
+      expect.any(Number),
+    );
+  });
+
+  it('does not fire showToast when results are present', () => {
+    render(
+      <SearchResults
+        products={[makeProduct(1)] as any}
+        query="sensor"
+        locale="en"
+        translations={baseTranslations}
+      />,
+    );
+    expect(mockShowToast).not.toHaveBeenCalled();
   });
 
   // ─── Product rendering ────────────────────────────────────────────────────────

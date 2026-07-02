@@ -7,6 +7,7 @@ import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
 import { useToast } from '@/components/ui/Toast';
+import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
 import { REGIONS, LANGUAGES, CURRENCIES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import {
@@ -44,8 +45,8 @@ const RegionSelectorV2: React.FC = () => {
       showToast('info', 'Language Suggestion', message, 7000, {
         label: 'Switch',
         onClick: () => {
+          schedulePendingToast({ type: 'success', title: 'Language Changed', message: `Switched to ${languageName}`, duration: 3000 });
           router.replace(pathname, { locale: suggestedLanguage });
-          showToast('success', 'Language Changed', `Switched to ${languageName}`, 3000);
         },
       });
     }

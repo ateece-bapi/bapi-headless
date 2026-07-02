@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
-import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, HeartIcon, BriefcaseIcon } from '@/lib/icons';
+import { PackageIcon, RotateCcwIcon, Share2Icon, CheckIcon, BriefcaseIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';

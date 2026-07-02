@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { HeartIcon, HeartOutlineIcon } from '@/lib/icons';
+import { HeartIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
 import { useToast } from '@/components/ui/Toast';
@@ -105,6 +105,17 @@ export default function FavoriteButton({
             productPrice,
           }),
         });
+
+        if (response.status === 409) {
+          // Already favorited (e.g. added from another tab or session) — treat as success
+          showToast('success', 'Already Saved', `${productName} is already in your saved products.`, 3000, {
+            label: 'View Saved',
+            onClick: () => { router.push(`/${locale}/account/favorites`); },
+          });
+          setIsFavorited(true);
+          onToggle?.(true);
+          return;
+        }
 
         if (!response.ok) {
           throw new Error('Failed to add to favorites');

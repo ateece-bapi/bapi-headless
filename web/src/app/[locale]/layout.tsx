@@ -8,6 +8,8 @@ import { HtmlLangAttribute } from '@/components/layout/HtmlLangAttribute';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';
+import { PendingToastFlush } from '@/components/ui/PendingToastFlush';
+import { SessionExpiryToast } from '@/components/auth/SessionExpiryToast';
 import { AnalyticsClient, SpeedInsightsClient } from '@/components/analytics/AnalyticsClient';
 import { WebVitalsClient } from '@/components/analytics/WebVitalsClient';
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
@@ -90,6 +92,8 @@ export default async function LocaleLayout({
               {/* Auto-detect region/language for first-time visitors */}
               <AutoRegionDetection />
 
+              <PendingToastFlush />
+              <SessionExpiryToast />
               <Header />
               <main id="main-content" className="relative z-base">
                 {children}

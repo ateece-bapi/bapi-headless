@@ -24,6 +24,7 @@ import CheckoutWizard from './CheckoutWizard';
 import CheckoutSummary from './CheckoutSummary';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
+import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
 import { useCartStore } from '@/store/cart';
 
 export interface ShippingAddress {
@@ -120,7 +121,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
     // Redirect to cart if empty (e.g., after clearing or manual removal)
     if (totalItems() === 0) {
       logger.debug('[Checkout] Cart became empty, redirecting to cart page');
-      showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+      schedulePendingToast({ type: 'warning', title: t('toasts.cartEmpty'), message: t('toasts.cartEmptyMessage') });
       router.push(`/${locale}/cart`);
     }
   }, [totalItems, isLoadingCart, router, showToast, locale, t]);
@@ -137,20 +138,32 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
       if (!localCartData) {
         logger.debug('[Checkout] No cart data found');
         setIsLoadingCart(false);
-        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        schedulePendingToast({ type: 'warning', title: t('toasts.cartEmpty'), message: t('toasts.cartEmptyMessage') });
         setTimeout(() => router.push(`/${locale}/cart`), 1000);
         return;
       }
 
       const parsed = JSON.parse(localCartData);
       const items = parsed.state?.items || [];
+      const zustandItemCount = totalItems();
 
       logger.debug('[Checkout] Cart items loaded', { itemCount: items.length });
+
+      // Warn if local storage has fewer items than the Zustand store expected
+      // (can happen if localStorage was partially cleared or corrupted in another tab)
+      if (zustandItemCount > 0 && items.length < zustandItemCount) {
+        showToast(
+          'warning',
+          'Cart Updated',
+          `${zustandItemCount - items.length} item(s) could not be restored and were removed from your cart.`,
+          6000
+        );
+      }
 
       if (items.length === 0) {
         logger.debug('[Checkout] Cart is empty');
         setIsLoadingCart(false);
-        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        schedulePendingToast({ type: 'warning', title: t('toasts.cartEmpty'), message: t('toasts.cartEmptyMessage') });
         setTimeout(() => router.push(`/${locale}/cart`), 1000);
         return;
       }
@@ -213,7 +226,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
 
       // Redirect to cart if empty
       if (data.cart?.isEmpty) {
-        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        schedulePendingToast({ type: 'warning', title: t('toasts.cartEmpty'), message: t('toasts.cartEmptyMessage') });
         router.push(`/${locale}/cart`);
         return;
       }
@@ -222,7 +235,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('checkout.fetch_cart_failed', error);
-      showToast('error', title, message);
+      schedulePendingToast({ type: 'error', title, message });
       router.push(`/${locale}/cart`);
     } finally {
       setIsLoadingCart(false);
@@ -284,8 +297,8 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
         }
 
         // Redirect to order confirmation with actual order ID
+        schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
         router.push(`/${locale}/order-confirmation/${result.order.id}`);
-        showToast('success', t('toasts.orderPlaced'), t('toasts.orderPlacedMessage'));
       } else {
         // PayPal or other payment methods
         // Phase 2: Implement PayPal order creation via WooCommerce API
@@ -293,8 +306,8 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         const mockOrderId = Math.floor(Math.random() * 100000);
+        schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
         router.push(`/${locale}/order-confirmation/${mockOrderId}`);
-        showToast('success', t('toasts.orderPlaced'), t('toasts.orderPlacedMessage'));
       }
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);

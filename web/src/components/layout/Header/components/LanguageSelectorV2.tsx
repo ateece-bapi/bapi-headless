@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { useToast } from '@/components/ui/Toast';
+import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
 import { LANGUAGE_GROUPS } from '@/lib/constants/languageGroups';
@@ -17,7 +17,6 @@ export function LanguageSelectorV2() {
   const pathname = usePathname();
   const currentLocale = useLocale() as LanguageCode;
   const t = useTranslations('ui.languageChanged');
-  const { showToast } = useToast();
 
   // Prevent hydration mismatch by only rendering Headless UI on client
   // This is a standard Next.js pattern for client-only components
@@ -34,11 +33,13 @@ export function LanguageSelectorV2() {
 
     const languageName = LANGUAGES[newLocale].nativeName;
 
-    // Show toast notification with setTimeout to ensure it's visible
-    // Toast appears in current language before navigation
-    setTimeout(() => {
-      showToast('success', t('title'), t('message', { language: languageName }), 2500);
-    }, 100);
+    // Schedule toast to fire after navigation remounts the page
+    schedulePendingToast({
+      type: 'success',
+      title: t('title'),
+      message: t('message', { language: languageName }),
+      duration: 4000,
+    });
 
     // Use next-intl's router which handles locale switching automatically
     router.replace(pathname, { locale: newLocale });

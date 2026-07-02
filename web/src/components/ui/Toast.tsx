@@ -11,17 +11,23 @@ import {
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
+export interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
 export interface Toast {
   id: string;
   type: ToastType;
   title: string;
   message: string;
   duration?: number;
+  action?: ToastAction;
 }
 
 interface ToastContextType {
   toasts: Toast[];
-  showToast: (type: ToastType, title: string, message: string, duration?: number) => void;
+  showToast: (type: ToastType, title: string, message: string, duration?: number, action?: ToastAction) => void;
   removeToast: (id: string) => void;
 }
 
@@ -36,7 +42,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const showToast = useCallback(
-    (type: ToastType, title: string, message: string, duration = 5000) => {
+    (type: ToastType, title: string, message: string, duration = 5000, action?: ToastAction) => {
       const id = Math.random().toString(36).substring(2, 9);
       const newToast: Toast = {
         id,
@@ -44,6 +50,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         title,
         message,
         duration,
+        action,
       };
 
       setToasts((prev) => [...prev, newToast]);
@@ -83,7 +90,7 @@ function ToastContainer({ toasts, onClose }: ToastContainerProps) {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 flex items-end px-4 py-6 sm:items-start sm:p-6">
+    <div className="pointer-events-none fixed inset-0 z-toast flex items-end px-4 py-6 sm:items-start sm:p-6">
       <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
         {toasts.map((toast) => (
           <ToastItem key={toast.id} toast={toast} onClose={onClose} />
@@ -137,6 +144,20 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
           <div className="ml-3 w-0 flex-1 pt-0.5">
             <p className="text-sm font-medium">{toast.title}</p>
             <p className="mt-1 text-sm opacity-90">{toast.message}</p>
+            {toast.action && (
+              <div className="mt-3">
+                <button
+                  type="button"
+                  className="rounded-md text-sm font-semibold underline underline-offset-2 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  onClick={() => {
+                    toast.action!.onClick();
+                    onClose(toast.id);
+                  }}
+                >
+                  {toast.action.label}
+                </button>
+              </div>
+            )}
           </div>
           <div className="ml-4 flex flex-shrink-0">
             <button

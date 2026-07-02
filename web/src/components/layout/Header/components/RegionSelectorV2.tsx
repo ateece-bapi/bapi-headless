@@ -6,7 +6,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
-import { toast } from 'sonner';
+import { useToast } from '@/components/ui/Toast';
 import { REGIONS, LANGUAGES, CURRENCIES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import {
@@ -23,6 +23,7 @@ const RegionSelectorV2: React.FC = () => {
   const currentLocale = useLocale() as LanguageCode;
   const router = useRouter();
   const pathname = usePathname();
+  const { showToast } = useToast();
 
   // Prevent hydration mismatch by only rendering Headless UI on client
   useEffect(() => {
@@ -40,18 +41,11 @@ const RegionSelectorV2: React.FC = () => {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
       const message = getLanguageSuggestionMessage(regionCode, languageName);
 
-      // Show toast with action button using Sonner
-      toast.info(message, {
-        duration: 7000,
-        action: {
-          label: 'Switch',
-          onClick: () => {
-            // Change language using next-intl navigation helpers
-            router.replace(pathname, { locale: suggestedLanguage });
-
-            // Show success toast after language switch
-            toast.success('Language Changed');
-          },
+      showToast('info', 'Language Suggestion', message, 7000, {
+        label: 'Switch',
+        onClick: () => {
+          router.replace(pathname, { locale: suggestedLanguage });
+          showToast('success', 'Language Changed', `Switched to ${languageName}`, 3000);
         },
       });
     }

@@ -38,6 +38,10 @@ vi.mock('@/lib/logger', () => ({
   },
 }));
 
+vi.mock('@/components/ui/Toast', () => ({
+  useToast: () => ({ showToast: vi.fn() }),
+}));
+
 describe('VariationSelector - Component Smoke Tests', () => {
   it('renders without crashing with empty data', () => {
     expect(() => {

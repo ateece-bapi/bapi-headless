@@ -13,7 +13,6 @@ import { useTranslations } from 'next-intl';
 
 interface Favorite {
   id: string;
-  userId: string;
   productId: string;
   productName: string;
   productSlug: string;

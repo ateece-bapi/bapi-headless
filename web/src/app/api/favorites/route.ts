@@ -69,6 +69,10 @@ function isAuthError(errors: Array<{ message: string }>): boolean {
   return errors.some((e) => /unauthorized|invalid.?token|expired/i.test(e.message));
 }
 
+function isLimitError(errors: Array<{ message: string }>): boolean {
+  return errors.some((e) => /favorites limit reached/i.test(e.message));
+}
+
 async function clearAuthCookies(): Promise<void> {
   const cookieStore = await cookies();
   cookieStore.delete('auth_token');
@@ -161,6 +165,9 @@ export async function POST(request: NextRequest) {
       if (isAuthError(errors)) {
         await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      if (isLimitError(errors)) {
+        return NextResponse.json({ error: 'Favorites limit reached (max 500)' }, { status: 409 });
       }
       return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
     }

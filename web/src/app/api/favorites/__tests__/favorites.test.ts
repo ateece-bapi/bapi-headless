@@ -289,6 +289,13 @@ describe('POST /api/favorites', () => {
     expect((await res.json()).error).toBe('Failed to add to favorites');
   });
 
+  it('returns 409 when favorites limit is reached', async () => {
+    mockGraphQLError('Favorites limit reached (max 500)');
+    const res = await POST(makePostRequest(validBody));
+    expect(res.status).toBe(409);
+    expect((await res.json()).error).toBe('Favorites limit reached (max 500)');
+  });
+
   it('returns 401 when GraphQL reports Unauthorized', async () => {
     mockGraphQLError('Unauthorized');
     const res = await POST(makePostRequest(validBody));

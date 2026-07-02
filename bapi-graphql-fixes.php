@@ -118,6 +118,10 @@ add_action('graphql_register_types', function () {
                 }
             }
 
+            if (count($favs) >= 500) {
+                throw new \GraphQL\Error\UserError('Favorites limit reached (max 500)');
+            }
+
             $new_fav = [
                 'id'           => 'fav-' . time() . '-' . substr(md5(uniqid('', true)), 0, 9),
                 'productId'    => $sanitized_id,

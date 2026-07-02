@@ -10,12 +10,13 @@ import { NextRequest } from 'next/server';
 
 // ─── Hoisted mocks ────────────────────────────────────────────────────────────
 
-const { mockCookiesGet } = vi.hoisted(() => ({
+const { mockCookiesGet, mockCookiesDelete } = vi.hoisted(() => ({
   mockCookiesGet: vi.fn(),
+  mockCookiesDelete: vi.fn(),
 }));
 
 vi.mock('next/headers', () => ({
-  cookies: () => ({ get: mockCookiesGet }),
+  cookies: () => ({ get: mockCookiesGet, delete: mockCookiesDelete }),
 }));
 vi.mock('@/lib/logger', () => ({
   default: { info: vi.fn(), error: vi.fn(), debug: vi.fn(), warn: vi.fn() },
@@ -162,6 +163,8 @@ describe('GET /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await GET(makeGetRequest());
     expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 500 on network failure', async () => {
@@ -270,6 +273,8 @@ describe('POST /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await POST(makePostRequest(validBody));
     expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 400 when productId is not a string', async () => {
@@ -366,6 +371,8 @@ describe('DELETE /api/favorites', () => {
     mockGraphQLError('Unauthorized');
     const res = await DELETE(makeDeleteRequest('prod-1'));
     expect(res.status).toBe(401);
+    expect(mockCookiesDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookiesDelete).toHaveBeenCalledWith('refresh_token');
   });
 
   it('returns 500 when removeFavorite result is missing or success=false', async () => {

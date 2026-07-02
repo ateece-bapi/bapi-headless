@@ -62,6 +62,12 @@ function isAuthError(errors: Array<{ message: string }>): boolean {
   return errors.some((e) => /unauthorized|invalid.?token|expired/i.test(e.message));
 }
 
+async function clearAuthCookies(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.delete('auth_token');
+  cookieStore.delete('refresh_token');
+}
+
 // ---------------------------------------------------------------------------
 // GET — fetch current user's favorites
 // ---------------------------------------------------------------------------
@@ -85,6 +91,7 @@ export async function GET(_request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors fetching favorites', errors);
       if (isAuthError(errors)) {
+        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
@@ -145,6 +152,7 @@ export async function POST(request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors adding favorite', errors);
       if (isAuthError(errors)) {
+        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
@@ -203,6 +211,7 @@ export async function DELETE(request: NextRequest) {
     if (errors?.length) {
       logger.error('GraphQL errors removing favorite', errors);
       if (isAuthError(errors)) {
+        await clearAuthCookies();
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });

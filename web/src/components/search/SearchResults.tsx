@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { SearchIcon, ArrowLeftIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
+import { useToast } from '@/components/ui/Toast';
 
 interface Product {
   id: string;
@@ -58,11 +59,22 @@ export default function SearchResults({
   locale,
   translations: t,
 }: SearchResultsProps) {
-  const { user } = useAuth();
+  const { user, isLoaded } = useAuth();
+  const { showToast } = useToast();
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+  const noResultsToastShown = useRef(false);
 
   // Filter products by customer group (B2B access control)
   const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
+
+  // Show info toast once when auth is resolved and results are confirmed empty
+  useEffect(() => {
+    if (!isLoaded || noResultsToastShown.current) return;
+    if (filteredProducts.length === 0) {
+      noResultsToastShown.current = true;
+      showToast('info', 'No Results Found', `No products matched "${query}". Try a different search term or browse all products.`, 6000);
+    }
+  }, [isLoaded, filteredProducts.length, query, showToast]);
 
   const handleImageError = (productId: string) => {
     setFailedImages((prev) => new Set(prev).add(productId));

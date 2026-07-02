@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/Toast';
+import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
 import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
 import { EyeIcon, EyeOffIcon, LockIcon, UserIcon, ShieldCheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
@@ -55,7 +56,11 @@ export function SignInForm({ locale }: SignInFormProps) {
         // Phase 1 uses standard JWT authentication only
         
         // Standard login (no 2FA)
-        showToast('success', t('toast.welcomeBack.title'), t('toast.welcomeBack.message'));
+        schedulePendingToast({
+          type: 'success',
+          title: t('toast.welcomeBack.title'),
+          message: t('toast.welcomeBack.message'),
+        });
 
         // Redirect to intended page or account dashboard
         const redirect = searchParams?.get('redirect') || `/${locale}/account`;

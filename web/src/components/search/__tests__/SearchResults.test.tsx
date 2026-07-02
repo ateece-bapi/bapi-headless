@@ -21,7 +21,11 @@ import SearchResults from '../SearchResults';
 
 // ─── Mock deps ────────────────────────────────────────────────────────────────
 vi.mock('@/hooks/useAuth', () => ({
-  useAuth: () => ({ user: { customerGroups: ['end-user'] } }),
+  useAuth: () => ({ user: { customerGroups: ['end-user'] }, isLoaded: true }),
+}));
+
+vi.mock('@/components/ui/Toast', () => ({
+  useToast: () => ({ showToast: vi.fn() }),
 }));
 
 vi.mock('@/lib/navigation', () => ({

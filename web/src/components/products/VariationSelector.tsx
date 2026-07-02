@@ -22,6 +22,7 @@ import { useRegion } from '@/store/regionStore';
 import { formatPrice, convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
+import { useToast } from '@/components/ui/Toast';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -80,6 +81,7 @@ export default function VariationSelector({
   const t = useTranslations('productPage.configurator');
   const tAttr = useTranslations('productPage.productAttributes');
   const locale = useLocale();
+  const { showToast } = useToast();
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
@@ -479,9 +481,11 @@ export default function VariationSelector({
                             try {
                               await navigator.clipboard.writeText(partNumber);
                               setCopySuccess(true);
+                              showToast('success', 'Copied!', `Part number ${partNumber} copied to clipboard.`, 2500);
                               setTimeout(() => setCopySuccess(false), 1500);
                             } catch (err) {
                               logger.error('Failed to copy part number', { error: err });
+                              showToast('error', 'Copy Failed', 'Unable to copy to clipboard. Please copy manually.', 4000);
                             }
                           }}
                           className={`flex h-10 w-10 items-center justify-center rounded-lg border shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${

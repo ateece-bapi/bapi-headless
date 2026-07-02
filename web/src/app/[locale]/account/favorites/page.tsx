@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
-import { ArrowLeftIcon, HeartIcon } from '@/lib/icons';
+import { ArrowLeftIcon, ArrowRightIcon, HeartIcon, PackageIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import FavoriteButton from '@/components/FavoriteButton';
 import { ProductCardSkeleton } from '@/components/skeletons';
@@ -134,12 +134,6 @@ export default function FavoritesPage() {
                 >
                   {t('empty.browseProducts')}
                 </Link>
-                <Link
-                  href="/test-favorites"
-                  className="inline-flex items-center justify-center rounded-lg border-2 border-primary-600 px-6 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50"
-                >
-                  {t('empty.testFavorites')}
-                </Link>
               </div>
             </div>
           ) : (
@@ -156,60 +150,66 @@ export default function FavoritesPage() {
                 {favorites.map((favorite) => (
                   <div
                     key={favorite.id}
-                    className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                    className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                   >
+                    {/* Gradient overlay on hover — matches ProductCard */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    {/* Favorite remove button — top-right overlay */}
+                    <div className="absolute right-3 top-3 z-10">
+                      <FavoriteButton
+                        productId={favorite.productId}
+                        productName={favorite.productName}
+                        productSlug={favorite.productSlug}
+                        productImage={favorite.productImage}
+                        productPrice={favorite.productPrice}
+                        size="sm"
+                        variant="icon"
+                        onToggle={(isFavorited) =>
+                          handleFavoriteToggle(isFavorited, favorite.productId)
+                        }
+                      />
+                    </div>
+
+                    {/* Product image — matches ProductCard aspect ratio & contain */}
                     <Link href={`/product/${favorite.productSlug}`}>
-                      {favorite.productImage ? (
-                        <div className="aspect-square overflow-hidden bg-neutral-100">
+                      <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-3">
+                        {favorite.productImage ? (
                           <Image
                             src={favorite.productImage}
                             alt={favorite.productName}
-                            width={400}
-                            height={400}
+                            fill
+                            className="object-contain p-3 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
                             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                            className="h-full w-full object-cover transition-transform hover:scale-105"
                           />
-                        </div>
-                      ) : (
-                        <div className="flex aspect-square items-center justify-center bg-neutral-100">
-                          <div className="text-sm text-neutral-400">{t('noImage')}</div>
-                        </div>
-                      )}
+                        ) : (
+                          <PackageIcon className="h-20 w-20 text-gray-300" />
+                        )}
+                      </div>
                     </Link>
-                    <div className="p-4">
+
+                    {/* Content */}
+                    <div className="relative p-4">
                       <Link href={`/product/${favorite.productSlug}`}>
-                        <h3 className="mb-2 font-bold text-neutral-900 transition-colors hover:text-primary-600">
+                        <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
                           {favorite.productName}
+                          <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                         </h3>
                       </Link>
-                      <p className="mb-3 text-sm text-neutral-700">{t('productId')} {favorite.productId}</p>
+
                       {favorite.productPrice && (
-                        <p className="mb-4 text-lg font-bold text-primary-600">
+                        <p className="mb-4 mt-3 text-lg font-bold text-primary-700">
                           {favorite.productPrice}
                         </p>
                       )}
-                      <div className="flex gap-2">
-                        <Link
-                          href={`/product/${favorite.productSlug}`}
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
-                        >
-                          {t('viewProduct')}
-                        </Link>
-                        <div className="flex-shrink-0">
-                          <FavoriteButton
-                            productId={favorite.productId}
-                            productName={favorite.productName}
-                            productSlug={favorite.productSlug}
-                            productImage={favorite.productImage}
-                            productPrice={favorite.productPrice}
-                            size="md"
-                            variant="icon"
-                            onToggle={(isFavorited) =>
-                              handleFavoriteToggle(isFavorited, favorite.productId)
-                            }
-                          />
-                        </div>
-                      </div>
+
+                      <Link
+                        href={`/product/${favorite.productSlug}`}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3"
+                      >
+                        <span>{t('viewProduct')}</span>
+                        <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 ))}

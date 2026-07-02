@@ -129,7 +129,10 @@ add_action('graphql_register_types', function () {
             ];
 
             $favs[] = $new_fav;
-            update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            if ($saved === false) {
+                throw new \GraphQL\Error\UserError('Failed to persist favorites');
+            }
 
             return ['favorite' => $new_fav, 'alreadyExists' => false, 'success' => true];
         },
@@ -173,7 +176,10 @@ add_action('graphql_register_types', function () {
                 return ['success' => false, 'notFound' => true];
             }
 
-            update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
+            if ($saved === false) {
+                throw new \GraphQL\Error\UserError('Failed to persist favorites');
+            }
             return ['success' => true, 'notFound' => false];
         },
     ]);

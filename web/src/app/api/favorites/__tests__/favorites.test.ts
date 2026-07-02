@@ -277,6 +277,17 @@ describe('POST /api/favorites', () => {
     expect(res.status).toBe(400);
   });
 
+  it('returns 400 when request body is invalid JSON', async () => {
+    const req = new NextRequest('http://localhost/api/favorites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: 'not-valid-json',
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    expect((await res.json()).error).toBe('Invalid JSON body');
+  });
+
   it('returns 500 when addFavorite result is missing or success=false', async () => {
     mockGraphQL({ addFavorite: null });
     const res = await POST(makePostRequest(validBody));

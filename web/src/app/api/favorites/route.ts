@@ -84,8 +84,10 @@ export async function GET(_request: NextRequest) {
 
     if (errors?.length) {
       logger.error('GraphQL errors fetching favorites', errors);
-      const status = isAuthError(errors) ? 401 : 500;
-      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status });
+      if (isAuthError(errors)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
     }
 
     return NextResponse.json({ favorites: data?.myFavorites ?? [] });
@@ -106,7 +108,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const body = await request.json() as Record<string, unknown>;
+    let body: Record<string, unknown>;
+    try {
+      body = await request.json() as Record<string, unknown>;
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
     const { productId, productName, productSlug, productImage, productPrice } = body;
 
     if (
@@ -137,8 +144,10 @@ export async function POST(request: NextRequest) {
 
     if (errors?.length) {
       logger.error('GraphQL errors adding favorite', errors);
-      const status = isAuthError(errors) ? 401 : 500;
-      return NextResponse.json({ error: 'Failed to add to favorites' }, { status });
+      if (isAuthError(errors)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
     }
 
     const result = data?.addFavorite;
@@ -193,8 +202,10 @@ export async function DELETE(request: NextRequest) {
 
     if (errors?.length) {
       logger.error('GraphQL errors removing favorite', errors);
-      const status = isAuthError(errors) ? 401 : 500;
-      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status });
+      if (isAuthError(errors)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });
     }
 
     const result = data?.removeFavorite;

@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerAuth } from '@/lib/auth/server';
+import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
-import { writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import path from 'path';
 
-// Type definitions
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
 interface Favorite {
   id: string;
-  userId: string;
   productId: string;
   productName: string;
   productSlug: string;
@@ -17,94 +16,122 @@ interface Favorite {
   createdAt: string;
 }
 
-const favoritesFilePath = path.join(process.cwd(), 'data', 'favorites.json');
-
-// Helper to read favorites from file
-async function readFavorites(): Promise<Favorite[]> {
-  if (!existsSync(favoritesFilePath)) {
-    return [];
-  }
-  const { readFile } = await import('fs/promises');
-  const data = await readFile(favoritesFilePath, 'utf-8');
-  return JSON.parse(data);
+interface GraphQLResponse<T> {
+  data?: T;
+  errors?: Array<{ message: string }>;
 }
 
-// Helper to write favorites to file
-async function writeFavorites(favorites: Favorite[]): Promise<void> {
-  const dataDir = path.join(process.cwd(), 'data');
-  if (!existsSync(dataDir)) {
-    await mkdir(dataDir, { recursive: true });
-  }
-  await writeFile(favoritesFilePath, JSON.stringify(favorites, null, 2));
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+
+async function getAuthToken(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get('auth_token')?.value ?? null;
 }
 
-// GET - Fetch user's favorites
-export async function GET(request: NextRequest) {
+async function wpGraphQL<T>(
+  token: string,
+  query: string,
+  variables: Record<string, unknown> = {}
+): Promise<GraphQLResponse<T>> {
+  const response = await fetch(GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ query, variables }),
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    throw new Error(`WordPress GraphQL request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<GraphQLResponse<T>>;
+}
+
+// ---------------------------------------------------------------------------
+// GET — fetch current user's favorites
+// ---------------------------------------------------------------------------
+
+export async function GET() {
   try {
-    const { userId } = await getServerAuth();
-
-    if (!userId) {
+    const token = await getAuthToken();
+    if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const allFavorites = await readFavorites();
-    const userFavorites = allFavorites.filter((fav) => fav.userId === userId);
+    const { data, errors } = await wpGraphQL<{ myFavorites: Favorite[] }>(
+      token,
+      `query GetMyFavorites {
+        myFavorites {
+          id productId productName productSlug productImage productPrice createdAt
+        }
+      }`
+    );
 
-    // Sort by creation date (newest first)
-    userFavorites.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    if (errors?.length) {
+      logger.error('GraphQL errors fetching favorites', errors);
+      return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
+    }
 
-    return NextResponse.json({ favorites: userFavorites });
+    return NextResponse.json({ favorites: data?.myFavorites ?? [] });
   } catch (error) {
     logger.error('Error fetching favorites', error);
     return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
   }
 }
 
-// POST - Add to favorites
+// ---------------------------------------------------------------------------
+// POST — add a product to favorites
+// ---------------------------------------------------------------------------
+
 export async function POST(request: NextRequest) {
   try {
-    const { userId } = await getServerAuth();
-
-    if (!userId) {
+    const token = await getAuthToken();
+    if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const body = await request.json();
+    const body = await request.json() as Record<string, unknown>;
     const { productId, productName, productSlug, productImage, productPrice } = body;
 
     if (!productId || !productName || !productSlug) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const favorites = await readFavorites();
-
-    // Check if already favorited
-    const alreadyFavorited = favorites.some(
-      (fav) => fav.userId === userId && fav.productId === productId
+    const { data, errors } = await wpGraphQL<{
+      addFavorite: { favorite: Favorite; alreadyExists: boolean; success: boolean };
+    }>(
+      token,
+      `mutation AddFavorite($input: AddFavoriteInput!) {
+        addFavorite(input: $input) {
+          favorite { id productId productName productSlug productImage productPrice createdAt }
+          alreadyExists
+          success
+        }
+      }`,
+      { input: { productId, productName, productSlug, productImage, productPrice } }
     );
 
-    if (alreadyFavorited) {
+    if (errors?.length) {
+      logger.error('GraphQL errors adding favorite', errors);
+      return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
+    }
+
+    const result = data?.addFavorite;
+
+    if (result?.alreadyExists) {
       return NextResponse.json({ error: 'Product already in favorites' }, { status: 409 });
     }
 
-    // Create new favorite
-    const newFavorite: Favorite = {
-      id: `fav-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      userId,
-      productId,
-      productName,
-      productSlug,
-      productImage,
-      productPrice,
-      createdAt: new Date().toISOString(),
-    };
-
-    favorites.push(newFavorite);
-    await writeFavorites(favorites);
-
     return NextResponse.json({
       success: true,
-      favorite: newFavorite,
+      favorite: result?.favorite,
       message: 'Product added to favorites',
     });
   } catch (error) {
@@ -113,12 +140,14 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// DELETE - Remove from favorites
+// ---------------------------------------------------------------------------
+// DELETE — remove a product from favorites
+// ---------------------------------------------------------------------------
+
 export async function DELETE(request: NextRequest) {
   try {
-    const { userId } = await getServerAuth();
-
-    if (!userId) {
+    const token = await getAuthToken();
+    if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -129,24 +158,28 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Product ID required' }, { status: 400 });
     }
 
-    const favorites = await readFavorites();
-
-    // Find and remove the favorite
-    const favoriteIndex = favorites.findIndex(
-      (fav) => fav.userId === userId && fav.productId === productId
+    const { data, errors } = await wpGraphQL<{
+      removeFavorite: { success: boolean; notFound: boolean };
+    }>(
+      token,
+      `mutation RemoveFavorite($input: RemoveFavoriteInput!) {
+        removeFavorite(input: $input) { success notFound }
+      }`,
+      { input: { productId } }
     );
 
-    if (favoriteIndex === -1) {
+    if (errors?.length) {
+      logger.error('GraphQL errors removing favorite', errors);
+      return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });
+    }
+
+    const result = data?.removeFavorite;
+
+    if (result?.notFound) {
       return NextResponse.json({ error: 'Favorite not found' }, { status: 404 });
     }
 
-    favorites.splice(favoriteIndex, 1);
-    await writeFavorites(favorites);
-
-    return NextResponse.json({
-      success: true,
-      message: 'Product removed from favorites',
-    });
+    return NextResponse.json({ success: true, message: 'Product removed from favorites' });
   } catch (error) {
     logger.error('Error removing from favorites', error);
     return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });

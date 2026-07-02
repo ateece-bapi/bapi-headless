@@ -62,7 +62,7 @@ async function wpGraphQL<T>(
 // GET — fetch current user's favorites
 // ---------------------------------------------------------------------------
 
-export async function GET() {
+export async function GET(_request: NextRequest) {
   try {
     const token = await getAuthToken();
     if (!token) {

@@ -72,7 +72,12 @@ add_action('graphql_register_types', function () {
                 return [];
             }
 
-            usort($favs, fn($a, $b) => strcmp($b['createdAt'], $a['createdAt']));
+            // Filter out any corrupted/non-array entries before sorting
+            $favs = array_values(array_filter($favs, fn($f) => is_array($f)));
+            usort($favs, fn($a, $b) => strcmp(
+                $b['createdAt'] ?? '',
+                $a['createdAt'] ?? ''
+            ));
             return $favs;
         },
     ]);
@@ -107,6 +112,7 @@ add_action('graphql_register_types', function () {
             $sanitized_id = sanitize_text_field($input['productId']);
 
             foreach ($favs as $fav) {
+                if (!is_array($fav)) continue;
                 if ($fav['productId'] === $sanitized_id) {
                     return ['favorite' => $fav, 'alreadyExists' => true, 'success' => false];
                 }
@@ -153,7 +159,7 @@ add_action('graphql_register_types', function () {
             $original_count = count($favs);
             $sanitized_id = sanitize_text_field($input['productId']);
             $favs = array_values(
-                array_filter($favs, fn($fav) => $fav['productId'] !== $sanitized_id)
+                array_filter($favs, fn($fav) => is_array($fav) && ($fav['productId'] ?? null) !== $sanitized_id)
             );
 
             if (count($favs) === $original_count) {

@@ -19,13 +19,26 @@ export function SessionExpiryToast() {
     if (!isLoaded || hasHandled.current) return;
     hasHandled.current = true;
 
-    const wasAuthenticated = localStorage.getItem('bapi_was_authenticated') === 'true';
+    let wasAuthenticated = false;
+    try {
+      wasAuthenticated = localStorage.getItem('bapi_was_authenticated') === 'true';
+    } catch {
+      return; // localStorage unavailable (e.g. Safari private mode)
+    }
 
     if (isSignedIn) {
-      localStorage.setItem('bapi_was_authenticated', 'true');
+      try {
+        localStorage.setItem('bapi_was_authenticated', 'true');
+      } catch {
+        // Ignore write failures
+      }
     } else if (wasAuthenticated) {
       // Session expired — user was previously signed in but is no longer
-      localStorage.removeItem('bapi_was_authenticated');
+      try {
+        localStorage.removeItem('bapi_was_authenticated');
+      } catch {
+        // Ignore removal failures
+      }
       showToast(
         'warning',
         'Session Expired',

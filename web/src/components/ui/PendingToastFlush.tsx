@@ -49,7 +49,7 @@ export function PendingToastFlush() {
     } catch {
       // Corrupt entry — ignore
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps — intentionally runs once on mount
+  }, [showToast]);
 
   return null;
 }

@@ -10,6 +10,7 @@
  * - Close button triggers animated removal
  */
 
+import type React from 'react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import { ToastProvider, useToast, type ToastType } from '../Toast';
@@ -40,6 +41,11 @@ function renderWithProvider(ui: React.ReactElement) {
   return render(<ToastProvider>{ui}</ToastProvider>);
 }
 
+/** Query all visible toasts regardless of role (alert for error/warning, status for success/info). */
+function getToasts() {
+  return [...screen.queryAllByRole('alert'), ...screen.queryAllByRole('status')];
+}
+
 describe('Toast', () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -65,8 +71,10 @@ describe('Toast', () => {
         fireEvent.click(screen.getByRole('button', { name: 'Show Toast' }));
       });
 
-      const alert = screen.getByRole('alert');
-      expect(alert).toHaveAttribute('aria-live', expected);
+      // role matches live region: 'alert' for assertive (error/warning), 'status' for polite (success/info)
+      const expectedRole = expected === 'assertive' ? 'alert' : 'status';
+      const el = screen.getByRole(expectedRole);
+      expect(el).toHaveAttribute('aria-live', expected);
     },
   );
 
@@ -82,7 +90,7 @@ describe('Toast', () => {
       fireEvent.click(btn);
     });
 
-    expect(screen.getAllByRole('alert')).toHaveLength(1);
+    expect(getToasts()).toHaveLength(1);
   });
 
   it('adds a second toast when type differs', async () => {
@@ -102,7 +110,7 @@ describe('Toast', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Error' }));
     });
 
-    expect(screen.getAllByRole('alert')).toHaveLength(2);
+    expect(getToasts()).toHaveLength(2);
   });
 
   // ─── Toast cap ───────────────────────────────────────────────────────────
@@ -128,8 +136,7 @@ describe('Toast', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Show 5' }));
     });
 
-    const alerts = screen.getAllByRole('alert');
-    expect(alerts).toHaveLength(4);
+    expect(getToasts()).toHaveLength(4);
     // Oldest (Toast 1) should be gone; newest (Toast 5) should be present
     expect(screen.queryByText('Message 1')).toBeNull();
     expect(screen.getByText('Message 5')).toBeTruthy();
@@ -146,7 +153,7 @@ describe('Toast', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Show Toast' }));
     });
 
-    expect(screen.getByRole('alert')).toBeTruthy();
+    expect(getToasts()).toHaveLength(1);
 
     // Advance well past default 5000ms
     await act(async () => {
@@ -154,7 +161,7 @@ describe('Toast', () => {
     });
 
     // Toast should still be visible (not auto-dismissed)
-    expect(screen.getByRole('alert')).toBeTruthy();
+    expect(getToasts()).toHaveLength(1);
   });
 
   // ─── Auto-dismiss ─────────────────────────────────────────────────────────
@@ -166,14 +173,14 @@ describe('Toast', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Show Toast' }));
     });
 
-    expect(screen.getByRole('alert')).toBeTruthy();
+    expect(getToasts()).toHaveLength(1);
 
     // Advance past duration + exit animation (300ms)
     await act(async () => {
       vi.advanceTimersByTime(3000 + 300);
     });
 
-    expect(screen.queryByRole('alert')).toBeNull();
+    expect(getToasts()).toHaveLength(0);
   });
 
   // ─── Close button ─────────────────────────────────────────────────────────
@@ -185,14 +192,14 @@ describe('Toast', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Show Toast' }));
     });
 
-    expect(screen.getByRole('alert')).toBeTruthy();
+    expect(getToasts()).toHaveLength(1);
 
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Close notification' }));
       vi.advanceTimersByTime(300); // exit animation
     });
 
-    expect(screen.queryByRole('alert')).toBeNull();
+    expect(getToasts()).toHaveLength(0);
   });
 
   // ─── Action button ────────────────────────────────────────────────────────
@@ -213,6 +220,6 @@ describe('Toast', () => {
     });
 
     expect(mockAction).toHaveBeenCalledOnce();
-    expect(screen.queryByRole('alert')).toBeNull();
+    expect(getToasts()).toHaveLength(0);
   });
 });

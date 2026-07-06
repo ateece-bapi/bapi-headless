@@ -136,6 +136,9 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
   // Animate in: start invisible/translated, flip to visible on first paint
   const [isVisible, setIsVisible] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Guard against re-entrancy: close button + auto-dismiss timer can both fire
+  // during the 300ms exit window; only the first call should schedule removal.
+  const isClosingRef = useRef(false);
 
   // Enter animation — triggers on next frame so the transition actually runs
   useEffect(() => {
@@ -143,8 +146,11 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  // Animate out, then call onClose after the transition completes (300ms)
+  // Animate out, then call onClose after the transition completes (300ms).
+  // Re-entrancy guard prevents duplicate removal timers.
   const handleClose = useCallback(() => {
+    if (isClosingRef.current) return;
+    isClosingRef.current = true;
     setIsVisible(false);
     closeTimerRef.current = setTimeout(() => onClose(toast.id), 300);
   }, [onClose, toast.id]);
@@ -184,9 +190,13 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
     info: 'text-info-700',
   };
 
-  // Only errors and warnings should interrupt screen readers immediately.
-  // Success and info use polite so they don't break the user's current reading flow.
-  const ariaLive = toast.type === 'error' || toast.type === 'warning' ? 'assertive' : 'polite';
+  // Errors and warnings interrupt screen readers immediately (assertive + alert).
+  // Success and info use polite live regions (status) so they don't break reading flow.
+  // role="alert" has an implicit assertive live region; role="status" is implicitly polite.
+  // Setting both role and aria-live explicitly makes the contract clear to AT.
+  const isUrgent = toast.type === 'error' || toast.type === 'warning';
+  const role = isUrgent ? 'alert' : 'status';
+  const ariaLive = isUrgent ? 'assertive' : 'polite';
 
   const Icon = icons[toast.type];
 
@@ -195,7 +205,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
       className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg transition-all duration-300 ease-in-out ${styles[toast.type]} ${
         isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
       }`}
-      role="alert"
+      role={role}
       aria-live={ariaLive}
       aria-atomic="true"
     >

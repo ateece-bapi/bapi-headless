@@ -27,6 +27,18 @@ if (!defined('ABSPATH')) {
  * Fixes issue: Product #136296 (Duct Temperature Transmitter) has 150 variations
  * but only first 100 were returned by GraphQL, causing missing "4-20mA" option.
  */
+/**
+ * Extend WPGraphQL JWT auth token expiry to 1 hour
+ *
+ * The plugin default is 300 seconds (5 minutes), which is far too short for
+ * normal browsing sessions. Tokens are silently refreshed by the Next.js
+ * /api/auth/me route using the 30-day refresh_token cookie, but a longer
+ * primary expiry gives a better fallback window.
+ */
+add_filter('graphql_jwt_auth_expire', function () {
+    return 3600; // 1 hour in seconds
+});
+
 add_filter('graphql_connection_max_query_amount', function($max, $source, $args, $context, $info) {
     // Increase limit only for the VariableProduct variations connection
     if (

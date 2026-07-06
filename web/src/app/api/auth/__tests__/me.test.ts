@@ -3,7 +3,9 @@
  *
  * Tests current user fetch from WordPress JWT token with coverage of:
  * - No auth cookie → 401
- * - Invalid/expired token → 401 + cookies cleared
+ * - Invalid/expired token, no refresh token → 401 + cookies cleared
+ * - Invalid/expired token, valid refresh token → silent refresh → 200
+ * - Silent refresh fails → 401 + cookies cleared
  * - Successful fetch: user shape, roles, customer group processing
  * - Customer group slugification (e.g. "END USER" → "end-user")
  * - Default customer group fallback when none present
@@ -16,15 +18,16 @@ import { GET } from '../me/route';
 import { NextRequest } from 'next/server';
 
 // ─── Hoisted mocks ────────────────────────────────────────────────────────────
-const { mockCookieGet, mockCookieDelete, mockCookies } = vi.hoisted(() => {
+const { mockCookieGet, mockCookieDelete, mockCookieSet, mockCookies } = vi.hoisted(() => {
   const mockCookieGet = vi.fn();
   const mockCookieDelete = vi.fn();
+  const mockCookieSet = vi.fn();
   const mockCookies = vi.fn(() => ({
     get: mockCookieGet,
     delete: mockCookieDelete,
-    set: vi.fn(),
+    set: mockCookieSet,
   }));
-  return { mockCookieGet, mockCookieDelete, mockCookies };
+  return { mockCookieGet, mockCookieDelete, mockCookieSet, mockCookies };
 });
 
 vi.mock('next/headers', () => ({
@@ -63,6 +66,18 @@ function makeViewerResponse(overrides: Record<string, unknown> = {}) {
   };
 }
 
+function makeExpiredTokenResponse() {
+  return { data: { viewer: null }, errors: [{ message: 'Expired token' }] };
+}
+
+function makeRefreshSuccessResponse(authToken = 'new-auth-token') {
+  return { data: { refreshJwtAuthToken: { authToken } } };
+}
+
+function makeRefreshFailResponse() {
+  return { data: { refreshJwtAuthToken: null }, errors: [{ message: 'Invalid refresh token' }] };
+}
+
 describe('GET /api/auth/me', () => {
   const mockFetch = vi.fn();
   const originalFetch = global.fetch;
@@ -71,10 +86,11 @@ describe('GET /api/auth/me', () => {
     vi.clearAllMocks();
     global.fetch = mockFetch as unknown as typeof fetch;
 
-    // Default: auth cookie is present
-    mockCookieGet.mockImplementation((name: string) =>
-      name === 'auth_token' ? { value: 'valid-token' } : undefined,
-    );
+    // Default: auth cookie present, no refresh token
+    mockCookieGet.mockImplementation((name: string) => {
+      if (name === 'auth_token') return { value: 'valid-token' };
+      return undefined;
+    });
 
     // Default: WordPress returns a valid viewer
     mockFetch.mockResolvedValue({
@@ -104,15 +120,11 @@ describe('GET /api/auth/me', () => {
     expect(mockFetch).not.toHaveBeenCalled();
   });
 
-  // ─── Token validation failure ────────────────────────────────────────────────
+  // ─── Token validation failure (no refresh token) ─────────────────────────────
 
-  it('returns 401 when WordPress returns errors (expired/invalid token)', async () => {
+  it('returns 401 when WordPress returns errors and no refresh token is available', async () => {
     mockFetch.mockResolvedValue({
-      json: () =>
-        Promise.resolve({
-          data: { viewer: null },
-          errors: [{ message: 'Expired token' }],
-        }),
+      json: () => Promise.resolve(makeExpiredTokenResponse()),
     });
 
     const res = await GET(makeRequest());
@@ -121,12 +133,86 @@ describe('GET /api/auth/me', () => {
     expect(body.user).toBeNull();
   });
 
-  it('clears both cookies when token is invalid', async () => {
+  it('clears both cookies when token is invalid and no refresh token exists', async () => {
     mockFetch.mockResolvedValue({
-      json: () => Promise.resolve({ data: { viewer: null }, errors: [{ message: 'Bad token' }] }),
+      json: () => Promise.resolve(makeExpiredTokenResponse()),
     });
 
     await GET(makeRequest());
+    expect(mockCookieDelete).toHaveBeenCalledWith('auth_token');
+    expect(mockCookieDelete).toHaveBeenCalledWith('refresh_token');
+  });
+
+  // ─── Silent refresh ───────────────────────────────────────────────────────────
+
+  it('silently refreshes and returns user when auth token is expired but refresh token is valid', async () => {
+    // auth_token present, refresh_token also present
+    mockCookieGet.mockImplementation((name: string) => {
+      if (name === 'auth_token') return { value: 'expired-token' };
+      if (name === 'refresh_token') return { value: 'valid-refresh-token' };
+      return undefined;
+    });
+
+    mockFetch
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeExpiredTokenResponse()) }) // viewer with expired token
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeRefreshSuccessResponse()) }) // refresh mutation
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeViewerResponse()) }); // viewer retry
+
+    const res = await GET(makeRequest());
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.user.email).toBe('test@bapi.com');
+  });
+
+  it('sets a new auth_token cookie after successful silent refresh', async () => {
+    mockCookieGet.mockImplementation((name: string) => {
+      if (name === 'auth_token') return { value: 'expired-token' };
+      if (name === 'refresh_token') return { value: 'valid-refresh-token' };
+      return undefined;
+    });
+
+    mockFetch
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeExpiredTokenResponse()) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeRefreshSuccessResponse('brand-new-token')) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeViewerResponse()) });
+
+    await GET(makeRequest());
+    expect(mockCookieSet).toHaveBeenCalledWith(
+      'auth_token',
+      'brand-new-token',
+      expect.objectContaining({ httpOnly: true }),
+    );
+  });
+
+  it('does not clear cookies when silent refresh succeeds', async () => {
+    mockCookieGet.mockImplementation((name: string) => {
+      if (name === 'auth_token') return { value: 'expired-token' };
+      if (name === 'refresh_token') return { value: 'valid-refresh-token' };
+      return undefined;
+    });
+
+    mockFetch
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeExpiredTokenResponse()) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeRefreshSuccessResponse()) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeViewerResponse()) });
+
+    await GET(makeRequest());
+    expect(mockCookieDelete).not.toHaveBeenCalled();
+  });
+
+  it('clears cookies and returns 401 when refresh token is also invalid', async () => {
+    mockCookieGet.mockImplementation((name: string) => {
+      if (name === 'auth_token') return { value: 'expired-token' };
+      if (name === 'refresh_token') return { value: 'expired-refresh-token' };
+      return undefined;
+    });
+
+    mockFetch
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeExpiredTokenResponse()) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(makeRefreshFailResponse()) });
+
+    const res = await GET(makeRequest());
+    expect(res.status).toBe(401);
     expect(mockCookieDelete).toHaveBeenCalledWith('auth_token');
     expect(mockCookieDelete).toHaveBeenCalledWith('refresh_token');
   });

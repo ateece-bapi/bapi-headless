@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
 import { Link } from '@/lib/navigation';
-import Image from 'next/image';
-import { ArrowLeftIcon, ArrowRightIcon, HeartIcon, PackageIcon } from '@/lib/icons';
+import { ArrowLeftIcon, HeartIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import FavoriteButton from '@/components/FavoriteButton';
+import ProductCard from '@/components/products/ProductCard';
 import { ProductCardSkeleton } from '@/components/skeletons';
 import { useTranslations } from 'next-intl';
 
@@ -146,15 +146,9 @@ export default function FavoritesPage() {
                 </h2>
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {favorites.map((favorite) => (
-                  <div
-                    key={favorite.id}
-                    className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl"
-                  >
-                    {/* Gradient overlay on hover — matches ProductCard */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                    {/* Favorite remove button — top-right overlay */}
+                {favorites.map((favorite, index) => (
+                  <div key={favorite.id} className="relative">
+                    {/* Remove-from-favorites button — overlaid top-right */}
                     <div className="absolute right-3 top-3 z-10">
                       <FavoriteButton
                         productId={favorite.productId}
@@ -169,47 +163,21 @@ export default function FavoritesPage() {
                         }
                       />
                     </div>
-
-                    {/* Product image — matches ProductCard aspect ratio & contain */}
-                    <Link href={`/product/${favorite.productSlug}`}>
-                      <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-3">
-                        {favorite.productImage ? (
-                          <Image
-                            src={favorite.productImage}
-                            alt={favorite.productName}
-                            fill
-                            className="object-contain p-3 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
-                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          />
-                        ) : (
-                          <PackageIcon className="h-20 w-20 text-gray-300" />
-                        )}
-                      </div>
-                    </Link>
-
-                    {/* Content */}
-                    <div className="relative p-4">
-                      <Link href={`/product/${favorite.productSlug}`}>
-                        <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-                          {favorite.productName}
-                          <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
-                        </h3>
-                      </Link>
-
-                      {favorite.productPrice && (
-                        <p className="mb-4 mt-3 text-lg font-bold text-primary-700">
-                          {favorite.productPrice}
-                        </p>
-                      )}
-
-                      <Link
-                        href={`/product/${favorite.productSlug}`}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3"
-                      >
-                        <span>{t('viewProduct')}</span>
-                        <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Link>
-                    </div>
+                    <ProductCard
+                      product={{
+                        id: favorite.productId,
+                        name: favorite.productName,
+                        slug: favorite.productSlug,
+                        image: favorite.productImage
+                          ? { sourceUrl: favorite.productImage, altText: favorite.productName }
+                          : null,
+                        price: favorite.productPrice ?? null,
+                        partNumber: null,
+                        shortDescription: null,
+                      }}
+                      locale={locale}
+                      index={index}
+                    />
                   </div>
                 ))}
               </div>

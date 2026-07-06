@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useTranslations } from 'next-intl';
 
 interface ProductCardProps {
   product: {
@@ -31,6 +32,7 @@ export default function ProductCard({
   index = 0,
 }: ProductCardProps) {
   const { id, name, slug, partNumber, price, image, shortDescription } = product;
+  const t = useTranslations('products');
 
   // Analytics tracking
   const analytics = useProductCardAnalytics({
@@ -101,7 +103,7 @@ export default function ProductCard({
           <div className="mt-auto flex items-center justify-between">
             {price && <span className="text-lg font-bold text-primary-600">{price}</span>}
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-500">
-              View Details
+              {t('viewDetails')}
               <ArrowRightIcon className="h-4 w-4" />
             </span>
           </div>
@@ -176,7 +178,7 @@ export default function ProductCard({
 
         {/* View Details Link */}
         <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3">
-          <span>View Details</span>
+          <span>{t('viewDetails')}</span>
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       </div>

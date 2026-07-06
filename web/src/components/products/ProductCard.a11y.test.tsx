@@ -5,10 +5,15 @@
  * Tests WCAG 2.1 Level AA compliance for e-commerce product listings.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { ProductCard } from './ProductCard';
+
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+  useLocale: () => 'en',
+}));
 
 const mockProduct = {
   id: 'test-product-1',

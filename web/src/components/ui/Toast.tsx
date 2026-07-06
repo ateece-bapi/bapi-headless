@@ -77,7 +77,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         }
 
         const newToast: Toast = {
-          id: Math.random().toString(36).substring(2, 9),
+          id: crypto.randomUUID(),
           type,
           title,
           message,

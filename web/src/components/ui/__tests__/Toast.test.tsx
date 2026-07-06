@@ -164,6 +164,25 @@ describe('Toast', () => {
     expect(getToasts()).toHaveLength(1);
   });
 
+  it('does not auto-dismiss when action is provided even if duration is explicitly set', async () => {
+    // action takes precedence over any caller-provided duration
+    renderWithProvider(
+      <ToastTrigger duration={1000} action={{ label: 'Retry', onClick: vi.fn() }} />,
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Show Toast' }));
+    });
+
+    expect(getToasts()).toHaveLength(1);
+
+    await act(async () => {
+      vi.advanceTimersByTime(5000);
+    });
+
+    expect(getToasts()).toHaveLength(1);
+  });
+
   // ─── Auto-dismiss ─────────────────────────────────────────────────────────
 
   it('auto-dismisses after the specified duration when no action', async () => {

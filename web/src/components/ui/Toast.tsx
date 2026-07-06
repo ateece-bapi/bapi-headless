@@ -65,9 +65,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       duration?: number,
       action?: ToastAction,
     ) => {
-      // Toasts with action buttons must not auto-dismiss — user needs time to act.
-      // Caller can override by passing an explicit duration.
-      const effectiveDuration = duration ?? (action ? 0 : 5000);
+      // Toasts with action buttons must never auto-dismiss — action presence
+      // takes precedence over any caller-supplied duration. This ensures the
+      // action button is always reachable (keyboard, pointer, screen reader).
+      const effectiveDuration = action ? 0 : (duration ?? 5000);
 
       setToasts((prev) => {
         // Deduplicate: ignore if identical type+title+message already visible

@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
     // Primary viewer fetch
     const { data, errors } = await fetchViewer(token);
 
-    if (!errors && data?.viewer) {
+    if (!errors?.length && data?.viewer) {
       return buildUserResponse(data.viewer);
     }
 
@@ -118,13 +118,14 @@ export async function GET(request: NextRequest) {
         });
 
         const { data: retryData, errors: retryErrors } = await fetchViewer(newAuthToken);
-        if (!retryErrors && retryData?.viewer) {
+        if (!retryErrors?.length && retryData?.viewer) {
           logger.debug('Silent token refresh succeeded');
           return buildUserResponse(retryData.viewer);
         }
+        logger.debug('Silent refresh: viewer retry failed after token refresh', { retryErrors });
+      } else {
+        logger.debug('Silent token refresh failed', { refreshErrors });
       }
-
-      logger.debug('Silent token refresh failed', { refreshErrors });
     }
 
     // Both tokens exhausted — clear cookies and require sign-in

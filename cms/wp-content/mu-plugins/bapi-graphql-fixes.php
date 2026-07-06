@@ -34,9 +34,9 @@ if (!defined('ABSPATH')) {
  * /api/auth/me route using the 30-day refresh_token cookie, but a longer
  * primary expiry gives a better fallback window.
  */
-add_filter('graphql_jwt_auth_expire', function () {
+add_filter('graphql_jwt_auth_expire', function ($expiration) {
     return 3600; // 1 hour in seconds
-});
+}, 10, 1);
 
 add_filter('graphql_connection_max_query_amount', function($max, $source, $args, $context, $info) {
     // Increase limit only for the VariableProduct variations connection

@@ -43,7 +43,7 @@ export function SessionExpiryToast() {
         'warning',
         'Session Expired',
         'Your session has expired. Please sign in again to continue.',
-        8000,
+        undefined,
         { label: 'Sign In', onClick: () => { window.location.href = '/sign-in'; } }
       );
     }

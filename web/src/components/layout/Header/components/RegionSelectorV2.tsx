@@ -42,7 +42,7 @@ const RegionSelectorV2: React.FC = () => {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
       const message = getLanguageSuggestionMessage(regionCode, languageName);
 
-      showToast('info', 'Language Suggestion', message, 7000, {
+      showToast('info', 'Language Suggestion', message, undefined, {
         label: 'Switch',
         onClick: () => {
           schedulePendingToast({ type: 'success', title: 'Language Changed', message: `Switched to ${languageName}`, duration: 3000 });

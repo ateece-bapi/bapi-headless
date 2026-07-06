@@ -108,7 +108,7 @@ export default function FavoriteButton({
 
         if (response.status === 409) {
           // Already favorited (e.g. added from another tab or session) — treat as success
-          showToast('success', 'Already Saved', `${productName} is already in your saved products.`, 3000, {
+          showToast('success', 'Already Saved', `${productName} is already in your saved products.`, undefined, {
             label: 'View Saved',
             onClick: () => { router.push(`/${locale}/account/favorites`); },
           });
@@ -121,7 +121,7 @@ export default function FavoriteButton({
           throw new Error('Failed to add to favorites');
         }
 
-        showToast('success', 'Saved to Favorites', `${productName} has been added to your saved products.`, 3000, {
+        showToast('success', 'Saved to Favorites', `${productName} has been added to your saved products.`, undefined, {
           label: 'View Saved',
           onClick: () => { router.push(`/${locale}/account/favorites`); },
         });

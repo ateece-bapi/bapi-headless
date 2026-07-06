@@ -225,7 +225,7 @@ describe('FavoriteButton', () => {
     await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
     await userEvent.click(screen.getByRole('button'));
     await waitFor(() =>
-      expect(mockShowToast).toHaveBeenCalledWith('success', 'Saved to Favorites', expect.any(String), 3000, expect.anything()),
+      expect(mockShowToast).toHaveBeenCalledWith('success', 'Saved to Favorites', expect.any(String), undefined, expect.anything()),
     );
   });
 

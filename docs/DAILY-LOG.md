@@ -2,9 +2,113 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 1, 2026  
-**Status:** Phase 1 Complete - Live in Production (47 days post-launch)  
+**Updated:** July 6, 2026  
+**Status:** Phase 1 Complete - Live in Production (52 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 2–6, 2026 — Favorites: Runtime Auth Debugging & Fixes 🔧
+
+**Status:** ✅ Fully working — PR #594 merged + hotfix to main
+
+### Background
+After PR #593 (favorites WP user meta migration) merged and PHP deployed to Kinsta staging, production testing revealed that `addFavorite` was returning Unauthorized for all authenticated users. Two separate bugs were found and fixed.
+
+### Bug 1: `AppContext->viewer` null in custom resolvers (PR #594)
+
+**Root cause:** All three resolvers (`myFavorites`, `addFavorite`, `removeFavorite`) used `$context->viewer?->databaseId ?? 0` to get the current user ID. While WPGraphQL's built-in `viewer` query field works correctly, `AppContext->viewer` is **not populated** inside custom resolvers registered via `register_graphql_mutation` / `register_graphql_field`. The property is only resolved through WPGraphQL's own field resolution pipeline.
+
+**Confirmed via curl:**
+- `{ viewer { databaseId } }` → returned user 16332 ✓
+- `mutation { addFavorite(...) }` → `Unauthorized` ✗
+
+**Fix:** Replace `$context->viewer?->databaseId ?? 0` with `get_current_user_id()` in all three resolvers. The WPGraphQL JWT Authentication plugin correctly calls `wp_set_current_user()` before request execution, so standard WordPress functions work.
+
+**After fix:** `{ "data": { "addFavorite": { "success": true, "alreadyExists": false } } }` ✓
+
+### Bug 2: `clearAuthCookies()` logging users out on failed save (hotfix to main)
+
+**Root cause:** The favorites API route was calling `clearAuthCookies()` on any 401 response, deleting `auth_token` and `refresh_token`. While correct for true token expiry (in `/api/auth/me`), this was too aggressive for a business logic route — the token was perfectly valid for everything else, just not being recognized by WPGraphQL's custom resolver context.
+
+**Symptom:** Three consecutive 401s → cookies cleared → user silently logged out.
+
+**Fix:** Removed `clearAuthCookies()` from the favorites route entirely. Cookie clearing belongs only in auth-specific routes.
+
+### Deployment Order
+1. PHP fix deployed to Kinsta staging via SCP
+2. Curl verified: `addFavorite` returns `success: true`
+3. Hotfix (no cookie clearing) pushed directly to main
+4. PR #594 opened, Copilot review passed clean (no comments), merged
+5. Final SCP to sync staging with merged source
+6. End-to-end UI test confirmed: Save works, favorites page shows saved items
+
+### Files Changed
+- `bapi-graphql-fixes.php` + `cms/wp-content/mu-plugins/bapi-graphql-fixes.php` — `get_current_user_id()` in all 3 resolvers (PR #594)
+- `web/src/app/api/favorites/route.ts` — removed `clearAuthCookies()` + `clearAuthCookies` function (hotfix)
+- `web/src/app/api/favorites/__tests__/favorites.test.ts` — updated tests to match (hotfix)
+
+---
+
+## July 2, 2026 — Favorites: WordPress User Meta Migration 💾
+
+**Status:** ✅ PR #593 merged — fix/favorites-wp-user-meta
+
+### Background
+PR #591 (FavoriteButton → real API) was flagged in Copilot review: favorites were stored in `data/favorites.json` — an ephemeral file that disappears on every Vercel redeployment. This PR migrated favorites storage to WordPress user meta via WPGraphQL mutations, making them durable across deployments.
+
+### What Was Done
+
+#### 1. WordPress MU Plugin — WPGraphQL Favorites Integration (`bapi-graphql-fixes.php`)
+Registered new GraphQL types, query, and mutations in the existing MU plugin:
+- **`BapiFavorite` type** — 7 fields: `id`, `productId`, `productName`, `productSlug`, `productImage`, `productPrice`, `createdAt`
+- **`myFavorites` root query** — reads `bapi_favorites` user meta JSON, filters corrupted entries, sorts newest first via `strtotime()` timestamp comparison
+- **`addFavorite` mutation** — sanitizes `productId` first, deduplication check, 500-item cap, `update_user_meta()` return check
+- **`removeFavorite` mutation** — uses `$found = false` closure flag (not count comparison) to detect actual removal vs corrupted entry skips; `update_user_meta()` return check
+- All resolvers use PHP 8 nullsafe operator `$context->viewer?->databaseId ?? 0` to prevent warnings when viewer is null
+- All mutations throw `UserError('Unauthorized')` if unauthenticated
+
+#### 2. Next.js API Route Rewrite (`web/src/app/api/favorites/route.ts`)
+Complete rewrite — no more filesystem imports:
+- `wpGraphQL<T>()` helper: POSTs to WP GraphQL with `Authorization: Bearer`; converts HTTP 401/403 to `errors[]` payload so auth path is consistent
+- `isAuthError()`: regex `/unauthorized|invalid.?token|expired/i`
+- `isLimitError()`: regex `/favorites limit reached/i`
+- `clearAuthCookies()`: deletes `auth_token` + `refresh_token` on JWT errors (consistent with `/api/auth/me`)
+- **GET**: `!Array.isArray(data?.myFavorites)` → 500 (prevents silent empty array on unexpected payload)
+- **POST**: `request.json()` in try/catch → 400 on invalid JSON; string type guards for required fields; `alreadyExists` → 409; limit error → 409; auth error → 401 + cookie clear
+- **DELETE**: `notFound` → 404; auth error → 401 + cookie clear
+
+#### 3. Test Suite (29 → 42 tests)
+- `mockCookiesDelete` added to hoisted mock for cookie-clear assertions
+- `mockHttpAuthError()` helper for HTTP-level 401/403 simulation
+- Tests cover: all 401/403 paths (no-cookie, GraphQL Unauthorized, HTTP 401, HTTP 403), 400 (invalid JSON, missing/wrong-type fields), 409 (alreadyExists, limit reached), 404 (notFound), 500 (GraphQL error, null result, network failure, unexpected payload), 200 happy paths, JWT forwarding, mutation variable assertions, cookie deletion assertions
+
+### PR Review Iterations (9 rounds — Copilot automated review)
+| Round | Issues Fixed |
+|-------|-------------|
+| 1 | endpoint guard, null-result guards, string type checks |
+| 2 | 401 mapping, PHP sanitize-before-compare |
+| 3 | PHP corrupted-meta guards, GET signature fix |
+| 4 | CMS file sync, removeFavorite count→found-flag |
+| 5 | request.json() → 400, consistent 401 "Unauthorized" message |
+| 6 | clearAuthCookies on 401, 500-item favorites cap |
+| 7 | HTTP 401/403 → errors[] in wpGraphQL(), dual-file comment |
+| 8 | viewer?-> nullsafe, filter corrupted entries in addFavorite |
+| 9 | limit error → 409, remove unused userId type field |
+| 10 | sort by strtotime() instead of strcmp() |
+| 11 | missing data → 500 (not silent empty array), race condition documented |
+
+### Deployment
+- PHP deployed to Kinsta staging via SCP before merge
+- Verified on staging: `viewer?->`, `strtotime`, `saved === false`, `found = false` all confirmed present
+- **Known open issue:** Runtime "Unauthorized" GraphQL error on `addFavorite` mutation in staging — JWT token not being recognized server-to-server. Diagnosed as next priority.
+
+### Files Changed
+- `bapi-graphql-fixes.php` — WPGraphQL favorites integration (source of truth)
+- `cms/wp-content/mu-plugins/bapi-graphql-fixes.php` — deploy artifact (kept in sync)
+- `web/src/app/api/favorites/route.ts` — complete rewrite (WPGraphQL-backed)
+- `web/src/app/api/favorites/__tests__/favorites.test.ts` — 42 tests
+- `web/src/app/[locale]/account/favorites/page.tsx` — removed unused `userId` from local Favorite type
 
 ---
 

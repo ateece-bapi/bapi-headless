@@ -13,7 +13,7 @@
 import type React from 'react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, act, fireEvent } from '@testing-library/react';
-import { ToastProvider, useToast, type ToastType } from '../Toast';
+import { ToastProvider, useToast, EXIT_ANIMATION_MS, type ToastType } from '../Toast';
 
 // Helper: renders a button that calls showToast when clicked
 function ToastTrigger({
@@ -194,9 +194,9 @@ describe('Toast', () => {
 
     expect(getToasts()).toHaveLength(1);
 
-    // Advance past duration + exit animation (300ms)
+    // Advance past duration + exit animation
     await act(async () => {
-      vi.advanceTimersByTime(3000 + 300);
+      vi.advanceTimersByTime(3000 + EXIT_ANIMATION_MS);
     });
 
     expect(getToasts()).toHaveLength(0);
@@ -215,7 +215,7 @@ describe('Toast', () => {
 
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Close notification' }));
-      vi.advanceTimersByTime(300); // exit animation
+      vi.advanceTimersByTime(EXIT_ANIMATION_MS); // exit animation
     });
 
     expect(getToasts()).toHaveLength(0);
@@ -235,7 +235,7 @@ describe('Toast', () => {
 
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
-      vi.advanceTimersByTime(300);
+      vi.advanceTimersByTime(EXIT_ANIMATION_MS);
     });
 
     expect(mockAction).toHaveBeenCalledOnce();

@@ -128,6 +128,13 @@ function ToastContainer({ toasts, onClose }: ToastContainerProps) {
   );
 }
 
+/**
+ * Duration of the slide-out exit animation in milliseconds.
+ * Must match the Tailwind `duration-{n}` class on the toast element.
+ * Exported so tests can advance fake timers by exactly this value.
+ */
+export const EXIT_ANIMATION_MS = 300;
+
 interface ToastItemProps {
   toast: Toast;
   onClose: (id: string) => void;
@@ -138,7 +145,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
   const [isVisible, setIsVisible] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Guard against re-entrancy: close button + auto-dismiss timer can both fire
-  // during the 300ms exit window; only the first call should schedule removal.
+  // during the EXIT_ANIMATION_MS exit window; only the first call should schedule removal.
   const isClosingRef = useRef(false);
 
   // Enter animation — triggers on next frame so the transition actually runs
@@ -147,13 +154,13 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  // Animate out, then call onClose after the transition completes (300ms).
+  // Animate out, then call onClose after the transition completes.
   // Re-entrancy guard prevents duplicate removal timers.
   const handleClose = useCallback(() => {
     if (isClosingRef.current) return;
     isClosingRef.current = true;
     setIsVisible(false);
-    closeTimerRef.current = setTimeout(() => onClose(toast.id), 300);
+    closeTimerRef.current = setTimeout(() => onClose(toast.id), EXIT_ANIMATION_MS);
   }, [onClose, toast.id]);
 
   // Auto-dismiss timer (skipped when duration === 0)
@@ -203,7 +210,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
 
   return (
     <div
-      className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg transition-all duration-300 ease-in-out ${styles[toast.type]} ${
+      className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg transition-[transform,opacity] duration-300 ease-in-out ${styles[toast.type]} ${
         isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
       }`}
       role={role}

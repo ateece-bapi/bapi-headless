@@ -1,6 +1,14 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+  type ReactNode,
+} from 'react';
 import {
   XIcon,
   CheckCircleIcon,
@@ -21,48 +29,67 @@ export interface Toast {
   type: ToastType;
   title: string;
   message: string;
-  duration?: number;
+  duration: number;
   action?: ToastAction;
 }
 
 interface ToastContextType {
   toasts: Toast[];
-  showToast: (type: ToastType, title: string, message: string, duration?: number, action?: ToastAction) => void;
+  showToast: (
+    type: ToastType,
+    title: string,
+    message: string,
+    duration?: number,
+    action?: ToastAction,
+  ) => void;
   removeToast: (id: string) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
+/** Maximum number of toasts visible simultaneously. Oldest is dropped when exceeded. */
+const MAX_TOASTS = 4;
+
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  // Declare removeToast BEFORE showToast to fix temporal dead zone error
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
   const showToast = useCallback(
-    (type: ToastType, title: string, message: string, duration = 5000, action?: ToastAction) => {
-      const id = Math.random().toString(36).substring(2, 9);
-      const newToast: Toast = {
-        id,
-        type,
-        title,
-        message,
-        duration,
-        action,
-      };
+    (
+      type: ToastType,
+      title: string,
+      message: string,
+      duration?: number,
+      action?: ToastAction,
+    ) => {
+      // Toasts with action buttons must not auto-dismiss — user needs time to act.
+      // Caller can override by passing an explicit duration.
+      const effectiveDuration = duration ?? (action ? 0 : 5000);
 
-      setToasts((prev) => [...prev, newToast]);
+      setToasts((prev) => {
+        // Deduplicate: ignore if identical type+title+message already visible
+        if (prev.some((t) => t.type === type && t.title === title && t.message === message)) {
+          return prev;
+        }
 
-      // Auto-remove after duration
-      if (duration > 0) {
-        setTimeout(() => {
-          removeToast(id);
-        }, duration);
-      }
+        const newToast: Toast = {
+          id: Math.random().toString(36).substring(2, 9),
+          type,
+          title,
+          message,
+          duration: effectiveDuration,
+          action,
+        };
+
+        // Cap at MAX_TOASTS — drop the oldest when exceeded
+        const withNew = [...prev, newToast];
+        return withNew.length > MAX_TOASTS ? withNew.slice(withNew.length - MAX_TOASTS) : withNew;
+      });
     },
-    [removeToast] // Add removeToast to dependencies
+    [],
   );
 
   return (
@@ -106,6 +133,36 @@ interface ToastItemProps {
 }
 
 function ToastItem({ toast, onClose }: ToastItemProps) {
+  // Animate in: start invisible/translated, flip to visible on first paint
+  const [isVisible, setIsVisible] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Enter animation — triggers on next frame so the transition actually runs
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setIsVisible(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // Animate out, then call onClose after the transition completes (300ms)
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    closeTimerRef.current = setTimeout(() => onClose(toast.id), 300);
+  }, [onClose, toast.id]);
+
+  // Auto-dismiss timer (skipped when duration === 0)
+  useEffect(() => {
+    if (!toast.duration || toast.duration <= 0) return;
+    const timer = setTimeout(handleClose, toast.duration);
+    return () => clearTimeout(timer);
+  }, [toast.duration, handleClose]);
+
+  // Clean up pending close timer on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
   const icons = {
     success: CheckCircleIcon,
     error: AlertCircleIcon,
@@ -121,19 +178,25 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
   };
 
   const iconStyles = {
-    success: 'text-success-700', // Darker for better contrast on light background
+    success: 'text-success-700',
     error: 'text-error-700',
-    warning: 'text-warning-800', // Warning needs even darker due to yellow
+    warning: 'text-warning-800',
     info: 'text-info-700',
   };
+
+  // Only errors and warnings should interrupt screen readers immediately.
+  // Success and info use polite so they don't break the user's current reading flow.
+  const ariaLive = toast.type === 'error' || toast.type === 'warning' ? 'assertive' : 'polite';
 
   const Icon = icons[toast.type];
 
   return (
     <div
-      className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg ${styles[toast.type]}`}
+      className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg transition-all duration-300 ease-in-out ${styles[toast.type]} ${
+        isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+      }`}
       role="alert"
-      aria-live="assertive"
+      aria-live={ariaLive}
       aria-atomic="true"
     >
       <div className="p-4">
@@ -151,7 +214,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
                   className="rounded-md text-sm font-semibold underline underline-offset-2 opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   onClick={() => {
                     toast.action!.onClick();
-                    onClose(toast.id);
+                    handleClose();
                   }}
                 >
                   {toast.action.label}
@@ -163,7 +226,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
             <button
               type="button"
               className="inline-flex rounded-md opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-              onClick={() => onClose(toast.id)}
+              onClick={handleClose}
               aria-label="Close notification"
             >
               <XIcon className="h-5 w-5" aria-hidden="true" />

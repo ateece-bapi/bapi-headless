@@ -4275,5 +4275,36 @@
       "contactSales": "Contacter les Ventes",
       "viewProducts": "Voir Toutes les Sondes"
     }
+  },
+  "chat": {
+    "welcomeMessage": "Bonjour! Je suis l'assistant BAPI. Comment puis-je vous aider avec les capteurs CVC et l'automatisation des bâtiments?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Salons & Événements",
+    "heroDescription": "Rencontrez notre équipe lors des principaux événements industriels. Découvrez les dernières innovations BAPI en matière de capteurs et de contrôles d'automatisation des bâtiments.",
+    "heroBadge": "Événements industriels",
+    "meta": {
+      "title": "Salons & Événements | BAPI",
+      "description": "Rencontrez BAPI lors des principaux salons professionnels. Découvrez où notre équipe présentera les derniers capteurs et contrôles d'automatisation des bâtiments."
+    },
+    "filters": {
+      "upcoming": "À venir",
+      "past": "Passés",
+      "all": "Tous les événements"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "Aucun événement à venir",
+        "description": "Revenez bientôt pour notre calendrier de salons 2026."
+      },
+      "past": {
+        "title": "Aucun événement passé",
+        "description": "Notre historique d'événements apparaîtra ici."
+      },
+      "all": {
+        "title": "Aucun événement",
+        "description": "Les informations sur les salons seront bientôt disponibles."
+      }
+    }
   }
 }

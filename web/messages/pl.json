@@ -4274,5 +4274,36 @@
       "contactSales": "Skontaktuj Się z Działem Sprzedaży",
       "viewProducts": "Zobacz Wszystkie Sondy"
     }
+  },
+  "chat": {
+    "welcomeMessage": "Cześć! Jestem asystentem BAPI. Jak mogę Ci pomóc w zakresie czujników HVAC i automatyki budynkowej?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Targi i Wydarzenia",
+    "heroDescription": "Spotkaj się z naszym zespołem na wiodących wydarzeniach branżowych. Odkryj najnowsze innowacje BAPI w zakresie czujników i sterowników automatyki budynkowej.",
+    "heroBadge": "Wydarzenia Branżowe",
+    "meta": {
+      "title": "Targi i Wydarzenia | BAPI",
+      "description": "Spotkaj się z BAPI na wiodących targach branżowych. Dowiedz się, gdzie nasz zespół będzie prezentować najnowsze czujniki i sterowniki automatyki budynkowej."
+    },
+    "filters": {
+      "upcoming": "Nadchodzące",
+      "past": "Minione",
+      "all": "Wszystkie wydarzenia"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "Brak nadchodzących wydarzeń",
+        "description": "Sprawdź wkrótce nasz harmonogram targów 2026."
+      },
+      "past": {
+        "title": "Brak minionych wydarzeń",
+        "description": "Historia naszych wydarzeń pojawi się tutaj."
+      },
+      "all": {
+        "title": "Brak wydarzeń",
+        "description": "Informacje o targach będą wkrótce dostępne."
+      }
+    }
   }
 }

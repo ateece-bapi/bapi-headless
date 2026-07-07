@@ -4274,5 +4274,36 @@
       "contactSales": "営業担当に問い合わせる",
       "viewProducts": "すべてのプローブを見る"
     }
+  },
+  "chat": {
+    "welcomeMessage": "こんにちは！BAPIアシスタントです。HVACセンサーとビルオートメーションについてどのようにお手伝いできますか？"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Trade Shows & Events",
+    "heroDescription": "Connect with our team at leading industry events. Discover BAPI's latest innovations in building automation sensors and controls.",
+    "heroBadge": "Industry Events",
+    "meta": {
+      "title": "Trade Shows & Events | BAPI",
+      "description": "Connect with BAPI at leading industry trade shows and conferences. Discover where our team will be showcasing the latest building automation sensors and controls."
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "all": "All Events"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "No Upcoming Events",
+        "description": "Check back soon for our 2026 trade show schedule."
+      },
+      "past": {
+        "title": "No Past Events",
+        "description": "Our event history will appear here."
+      },
+      "all": {
+        "title": "No Events",
+        "description": "Trade show information will be available soon."
+      }
+    }
   }
 }

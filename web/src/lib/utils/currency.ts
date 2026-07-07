@@ -1,17 +1,20 @@
 import type { CurrencyCode } from '@/types/region';
 import { CURRENCIES } from '@/types/region';
+import { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED } from './exchangeRates';
 
 /**
- * Exchange rates relative to USD (base currency)
- * In production, these should come from an API (e.g., exchangerate-api.com)
+ * Exchange rates relative to USD (base currency).
+ *
+ * These static rates are used in client-side utilities (e.g. cart display).
+ * For server-rendered price conversions, use `getLiveExchangeRates()` from
+ * `./exchangeRates` which fetches from the ECB daily feed with 24-hour caching.
+ *
+ * Last manually updated: see FALLBACK_RATES_LAST_UPDATED in exchangeRates.ts
  */
-const EXCHANGE_RATES: Record<CurrencyCode, number> = {
-  USD: 1.0,
-  EUR: 0.92,  // Euro (1 USD ≈ 0.92 EUR)
-  GBP: 0.79,  // British Pound (1 USD ≈ 0.79 GBP)
-  PLN: 3.98,  // Polish Zloty (1 USD ≈ 3.98 PLN)
-  AED: 3.67,  // UAE Dirham (1 USD ≈ 3.67 AED)
-};
+const EXCHANGE_RATES: Record<CurrencyCode, number> = FALLBACK_RATES;
+
+// Re-export so callers can display when rates were last confirmed.
+export { FALLBACK_RATES_LAST_UPDATED as RATES_LAST_UPDATED };
 
 /**
  * Format a price in the specified currency

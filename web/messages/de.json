@@ -4275,5 +4275,36 @@
       "contactSales": "Vertrieb kontaktieren",
       "viewProducts": "Alle Sonden anzeigen"
     }
+  },
+  "chat": {
+    "welcomeMessage": "Hallo! Ich bin der BAPI-Assistent. Wie kann ich Ihnen bei HVAC-Sensoren und Gebäudeautomation helfen?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Messen & Veranstaltungen",
+    "heroDescription": "Treffen Sie unser Team auf führenden Branchenveranstaltungen. Entdecken Sie BAPIs neueste Innovationen bei Gebäudeautomationssensoren und -steuerungen.",
+    "heroBadge": "Branchenveranstaltungen",
+    "meta": {
+      "title": "Messen & Veranstaltungen | BAPI",
+      "description": "Treffen Sie BAPI auf führenden Fachmessen und Konferenzen. Erfahren Sie, wo unser Team die neuesten Gebäudeautomationssensoren und -steuerungen vorstellt."
+    },
+    "filters": {
+      "upcoming": "Bevorstehend",
+      "past": "Vergangen",
+      "all": "Alle Veranstaltungen"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "Keine bevorstehenden Veranstaltungen",
+        "description": "Schauen Sie bald wieder vorbei für unseren Messekalender 2026."
+      },
+      "past": {
+        "title": "Keine vergangenen Veranstaltungen",
+        "description": "Unsere Veranstaltungshistorie wird hier erscheinen."
+      },
+      "all": {
+        "title": "Keine Veranstaltungen",
+        "description": "Messinformationen werden bald verfügbar sein."
+      }
+    }
   }
 }

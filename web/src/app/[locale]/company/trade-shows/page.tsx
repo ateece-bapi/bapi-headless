@@ -5,15 +5,11 @@
  * Displays BAPI's trade show calendar with filterable card grid.
  * Phase 1: Static data (TypeScript)
  * Phase 2: WordPress custom post type via GraphQL
- *
- * i18n Scope:
- * - Phase 1: Navigation labels translated (messages/*.json: tradeShows.label/description)
- * - Phase 2: Full page content + event metadata via next-intl
- * Note: Page content/metadata currently hard-coded English for April 10 deadline
  */
 
 import { CalendarIcon } from '@/lib/icons';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { TradeShowsClient } from './TradeShowsClient';
 import { TRADE_SHOWS, getUpcomingShows, getPastShows } from '@/lib/data/tradeShows';
 
@@ -30,11 +26,10 @@ export async function generateMetadata({
   params,
 }: TradeShowsPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'tradeShowsPage.meta' });
 
-  // TODO: Pull from i18n in Step 7
-  const title = 'Trade Shows & Events | BAPI';
-  const description =
-    'Connect with BAPI at leading industry trade shows and conferences. Discover where our team will be showcasing the latest building automation sensors and controls.';
+  const title = t('title');
+  const description = t('description');
 
   return {
     title,
@@ -58,6 +53,7 @@ export async function generateMetadata({
  */
 export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'tradeShowsPage' });
   
   const upcomingShows = getUpcomingShows();
   const pastShows = getPastShows();
@@ -104,27 +100,26 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
 
   // TODO: Pull labels from i18n in Step 7
   const labels = {
-    heroTitle: 'Trade Shows & Events',
-    heroDescription:
-      'Connect with our team at leading industry events. Discover BAPI\'s latest innovations in building automation sensors and controls.',
-    heroBadge: 'Industry Events',
+    heroTitle: t('heroTitle'),
+    heroDescription: t('heroDescription'),
+    heroBadge: t('heroBadge'),
     filters: {
-      upcoming: 'Upcoming',
-      past: 'Past',
-      all: 'All Events',
+      upcoming: t('filters.upcoming'),
+      past: t('filters.past'),
+      all: t('filters.all'),
     },
     emptyState: {
       upcoming: {
-        title: 'No Upcoming Events',
-        description: 'Check back soon for our 2026 trade show schedule.',
+        title: t('emptyState.upcoming.title'),
+        description: t('emptyState.upcoming.description'),
       },
       past: {
-        title: 'No Past Events',
-        description: 'Our event history will appear here.',
+        title: t('emptyState.past.title'),
+        description: t('emptyState.past.description'),
       },
       all: {
-        title: 'No Events',
-        description: 'Trade show information will be available soon.',
+        title: t('emptyState.all.title'),
+        description: t('emptyState.all.description'),
       },
     },
   };

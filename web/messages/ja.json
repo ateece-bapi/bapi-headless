@@ -357,6 +357,11 @@
       "cny": "中国人民元 (¥)",
       "vnd": "ベトナムドン (₫)",
       "aed": "アラブ首長国連邦ディルハム (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "megaMenu": {

@@ -357,6 +357,11 @@
       "cny": "人民币 (¥)",
       "vnd": "越南盾 (₫)",
       "aed": "阿联酋迪拉姆 (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "megaMenu": {

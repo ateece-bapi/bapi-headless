@@ -98,7 +98,6 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
     })),
   };
 
-  // TODO: Pull labels from i18n in Step 7
   const labels = {
     heroTitle: t('heroTitle'),
     heroDescription: t('heroDescription'),

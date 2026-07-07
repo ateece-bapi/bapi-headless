@@ -1994,6 +1994,11 @@
       "cny": "CNY (¥)",
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Sprachvorschlag",
+      "switchAction": "Wechseln",
+      "message": "Zu {language} für diese Region wechseln?"
     }
   },
   "units": {

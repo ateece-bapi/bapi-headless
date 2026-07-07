@@ -357,6 +357,11 @@
       "cny": "CNY (¥)",
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Sugerencia de idioma",
+      "switchAction": "Cambiar",
+      "message": "¿Cambiar a {language} para esta región?"
     }
   },
   "megaMenu": {

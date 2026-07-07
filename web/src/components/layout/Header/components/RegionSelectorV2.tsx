@@ -4,7 +4,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
 import { useToast } from '@/components/ui/Toast';
 import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
@@ -12,7 +12,6 @@ import { REGIONS, LANGUAGES, CURRENCIES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import {
   getSuggestedLanguage,
-  getLanguageSuggestionMessage,
 } from '@/lib/utils/regionLanguageMapping';
 import { REGION_GROUPS } from '@/lib/constants/regionGroups';
 import { ChevronDownIcon, GlobeAltIcon, CheckIcon } from '@heroicons/react/24/outline';
@@ -25,6 +24,8 @@ const RegionSelectorV2: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { showToast } = useToast();
+  const tLangChanged = useTranslations('ui.languageChanged');
+  const tSuggestion = useTranslations('region.languageSuggestion');
 
   // Prevent hydration mismatch by only rendering Headless UI on client
   useEffect(() => {
@@ -40,12 +41,17 @@ const RegionSelectorV2: React.FC = () => {
     // Only suggest if language is different AND exists in LANGUAGES
     if (suggestedLanguage !== currentLocale && LANGUAGES[suggestedLanguage]) {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
-      const message = getLanguageSuggestionMessage(regionCode, languageName);
+      const message = tSuggestion('message', { language: languageName });
 
-      showToast('info', 'Language Suggestion', message, undefined, {
-        label: 'Switch',
+      showToast('info', tSuggestion('title'), message, undefined, {
+        label: tSuggestion('switchAction'),
         onClick: () => {
-          schedulePendingToast({ type: 'success', title: 'Language Changed', message: `Switched to ${languageName}`, duration: 3000 });
+          schedulePendingToast({
+            type: 'success',
+            title: tLangChanged('title'),
+            message: tLangChanged('message', { language: languageName }),
+            duration: 3000,
+          });
           router.replace(pathname, { locale: suggestedLanguage });
         },
       });

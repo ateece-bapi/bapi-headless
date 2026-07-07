@@ -1,15 +1,13 @@
 import type { CurrencyCode } from '@/types/region';
 import { CURRENCIES } from '@/types/region';
-import { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED } from './exchangeRates';
+import { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED } from './fallbackRates';
 
 /**
  * Exchange rates relative to USD (base currency).
  *
  * These static rates are used in client-side utilities (e.g. cart display).
  * For server-rendered price conversions, use `getLiveExchangeRates()` from
- * `./exchangeRates` which fetches from the ECB daily feed with 24-hour caching.
- *
- * Last manually updated: see FALLBACK_RATES_LAST_UPDATED in exchangeRates.ts
+ * `./exchangeRates` (server-only) which fetches from the ECB daily feed.
  */
 const EXCHANGE_RATES: Record<CurrencyCode, number> = FALLBACK_RATES;
 

@@ -9,7 +9,6 @@ import { REGIONS, LANGUAGES, CURRENCIES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import {
   getSuggestedLanguage,
-  getLanguageSuggestionMessage,
 } from '@/lib/utils/regionLanguageMapping';
 
 /**
@@ -25,6 +24,7 @@ export default function MobileRegionLanguageSelector() {
   const { showToast } = useToast();
   const tLangChanged = useTranslations('ui.languageChanged');
   const tRegion = useTranslations('region');
+  const tSuggestion = useTranslations('region.languageSuggestion');
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as LanguageCode;
@@ -47,9 +47,9 @@ export default function MobileRegionLanguageSelector() {
     const suggestedLanguage = getSuggestedLanguage(regionCode);
     if (suggestedLanguage !== currentLocale && LANGUAGES[suggestedLanguage]) {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
-      const message = getLanguageSuggestionMessage(regionCode, languageName);
-      showToast('info', 'Language Suggestion', message, undefined, {
-        label: 'Switch',
+      const message = tSuggestion('message', { language: languageName });
+      showToast('info', tSuggestion('title'), message, undefined, {
+        label: tSuggestion('switchAction'),
         onClick: () => {
           schedulePendingToast({
             type: 'success',

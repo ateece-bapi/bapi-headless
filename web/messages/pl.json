@@ -558,6 +558,11 @@
       "cny": "CNY (¥)",
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Sugestia języka",
+      "switchAction": "Zmień",
+      "message": "Przełączyć na {language} dla tego regionu?"
     }
   },
   "units": {

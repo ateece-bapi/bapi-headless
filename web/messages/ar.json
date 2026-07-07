@@ -357,6 +357,11 @@
       "cny": "يوان صيني (¥)",
       "vnd": "دونج فيتنامي (₫)",
       "aed": "درهم إماراتي (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "اقتراح اللغة",
+      "switchAction": "تبديل",
+      "message": "التبديل إلى {language} لهذه المنطقة؟"
     }
   },
   "megaMenu": {

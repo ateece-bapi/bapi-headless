@@ -558,6 +558,11 @@
       "cny": "หยวน (¥)",
       "vnd": "ดองเวียดนาม (₫)",
       "aed": "ดิรฮัมอาหรับเอมิเรตส์ (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "units": {

@@ -5,37 +5,31 @@
  * ECB feed: https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
  * - Free, no API key required
  * - Updated every business day ~16:00 CET
- * - Base currency: EUR
+ * - Base currency: EUR (no EUR entry in the feed itself)
  *
  * Next.js caching: revalidates once per day (86400 s).
+ *
+ * SERVER-ONLY — imports next/cache. Do not import from client components.
+ * Client-side code should use FALLBACK_RATES from `./fallbackRates`.
  */
 
 import { unstable_cache } from 'next/cache';
 import type { CurrencyCode } from '@/types/region';
+import { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED } from './fallbackRates';
 
-/** Fallback static rates (USD base). Update manually if ECB feed is unavailable. */
-export const FALLBACK_RATES: Record<CurrencyCode, number> = {
-  USD: 1.0,
-  EUR: 0.92,
-  GBP: 0.79,
-  PLN: 3.98,
-  AED: 3.67,
-};
-
-/**
- * Date the fallback rates were last manually verified.
- * CI will warn when this is more than 30 days old.
- */
-export const FALLBACK_RATES_LAST_UPDATED = '2026-07-07';
+export { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED };
 
 /** Cache tag used for on-demand revalidation via /api/revalidate */
 export const EXCHANGE_RATES_CACHE_TAG = 'exchange-rates';
 
-/** Currencies we need (ECB rates are EUR-based; we convert to USD base). */
-const NEEDED_CURRENCIES: Exclude<CurrencyCode, 'USD'>[] = ['EUR', 'GBP', 'PLN', 'AED'];
+/**
+ * Non-EUR currencies we need from the feed.
+ * EUR is not listed in the feed (it is the base); we derive it from USD/EUR.
+ */
+const NEEDED_CURRENCIES: Exclude<CurrencyCode, 'USD' | 'EUR'>[] = ['GBP', 'PLN', 'AED'];
 
 interface EcbRates {
-  /** EUR-based rates, e.g. { USD: 1.08, GBP: 0.86, ... } */
+  /** EUR-based rates returned by the feed, e.g. { USD: 1.08, GBP: 0.86, ... } */
   [currency: string]: number;
 }
 
@@ -50,8 +44,10 @@ async function fetchEcbRates(): Promise<EcbRates | null> {
 
     const xml = await res.text();
 
-    // Parse <Cube currency="USD" rate="1.0836"/>  entries
-    const rateRegex = /<Cube currency="([A-Z]{3})" rate="([\d.]+)"\/>/g;
+    // ECB XML uses single-quoted attributes, e.g.:
+    //   <Cube currency='USD' rate='1.0836'/>
+    // The regex accepts both single and double quotes for robustness.
+    const rateRegex = /<Cube currency=['"]([A-Z]{3})['"] rate=['"]([0-9.]+)['"]\s*\/>/g;
     const rates: EcbRates = {};
     let match: RegExpExecArray | null;
 
@@ -68,6 +64,8 @@ async function fetchEcbRates(): Promise<EcbRates | null> {
 /**
  * Returns USD-based exchange rates, fetched from the ECB daily feed.
  * Results are cached server-side for 24 hours.
+ *
+ * EUR is derived as: EUR per USD = 1 / (USD per EUR from feed).
  */
 export const getLiveExchangeRates = unstable_cache(
   async (): Promise<Record<CurrencyCode, number>> => {
@@ -78,11 +76,15 @@ export const getLiveExchangeRates = unstable_cache(
       return FALLBACK_RATES;
     }
 
-    // ECB base = EUR. Convert to USD base:
-    // rate_USD_base(X) = ecbRate(X) / ecbRate(USD)
-    const usdPerEur = ecbRates['USD']; // how many USD per 1 EUR
+    // ECB base = EUR.
+    // ecbRates['USD'] = number of USD per 1 EUR
+    const usdPerEur = ecbRates['USD'];
 
-    const result: Partial<Record<CurrencyCode, number>> = { USD: 1.0 };
+    const result: Partial<Record<CurrencyCode, number>> = {
+      USD: 1.0,
+      // EUR is not in the feed (it IS the base). Derive: EUR per USD = 1 / (USD per EUR)
+      EUR: 1 / usdPerEur,
+    };
 
     for (const currency of NEEDED_CURRENCIES) {
       const ecbRate = ecbRates[currency]; // units of `currency` per 1 EUR
@@ -93,7 +95,7 @@ export const getLiveExchangeRates = unstable_cache(
         continue;
       }
 
-      // X per USD = (X per EUR) / (USD per EUR)
+      // currency-per-USD = (currency-per-EUR) / (USD-per-EUR)
       result[currency] = ecbRate / usdPerEur;
     }
 
@@ -102,3 +104,4 @@ export const getLiveExchangeRates = unstable_cache(
   ['ecb-exchange-rates'],
   { revalidate: 86400, tags: [EXCHANGE_RATES_CACHE_TAG] }
 );
+

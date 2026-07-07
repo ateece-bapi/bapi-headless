@@ -9,6 +9,7 @@ import { RATE_LIMITS } from '@/lib/constants/rate-limits';
 import { cookies } from 'next/headers';
 import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
 import { slugifyArray } from '@/lib/utils/slugify';
+import { locales } from '@/i18n';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -110,7 +111,7 @@ When users ask about specific products or need recommendations, use the search_p
 - Format as: [Product Name](URL) - NOT just "view at URL"
 
 **Languages:**
-You can respond in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai, Polish.
+You can respond in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai, Polish, Hindi.
 Detect the user's language and respond in the same language.`;
 
 // Define tools for Claude to use
@@ -201,8 +202,14 @@ export async function POST(request: NextRequest) {
 
   const userMessage = (messages[messages.length - 1] as { content?: string })?.content || '';
 
-  const systemPromptText = locale
-    ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
+  // Validate locale against the supported allowlist to prevent prompt injection.
+  // An unrecognised locale is silently dropped — the model auto-detects language.
+  const safeLocale = typeof locale === 'string' && (locales as readonly string[]).includes(locale)
+    ? locale
+    : undefined;
+
+  const systemPromptText = safeLocale
+    ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${safeLocale.toUpperCase()} - Respond in this language.`
     : SYSTEM_PROMPT;
 
   // Sanitize pageContext: allow only safe path characters, strip newlines/backticks
@@ -280,7 +287,7 @@ export async function POST(request: NextRequest) {
             const analytics: ChatAnalytics = {
               conversationId,
               timestamp: new Date().toISOString(),
-              language: locale || 'en',
+              language: safeLocale || 'en',
               userMessage,
               assistantResponse: fullText,
               productsRecommended: productsRecommended.length > 0 ? productsRecommended : undefined,

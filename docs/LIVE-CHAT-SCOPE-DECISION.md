@@ -16,7 +16,7 @@ The Phase 1 "Live Chat Integration" requirement has been fulfilled with an **AI-
 |-----------|---------|
 | **AI Engine** | Claude Haiku 4.5 via Anthropic API |
 | **Capabilities** | Product search, technical Q&A, specifications, installation guidance |
-| **Languages** | English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai, Polish |
+| **Languages** | English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai, Polish, Hindi |
 | **Product Access** | B2B customer-group-filtered catalog (608 products) |
 | **Escalation Path** | Human handoff via email (`/api/chat/handoff`) |
 | **Rate Limiting** | Per-IP rate limiting on `/api/chat` |
@@ -44,7 +44,7 @@ When a user cannot get their question answered by the AI, they can submit a hand
 
 ### Why This Approach Was Chosen
 
-1. **Timeline constraint** — A fully staffed live agent platform (e.g., Intercom, Zendesk Chat, LiveChat.com) requires agent scheduling, training, and tooling that were out of scope for the May 4 deadline.
+1. **Timeline constraint** — A fully staffed live agent platform (e.g., Intercom, Zendesk Chat, LiveChat.com) requires agent scheduling, training, and tooling that were out of scope for the May 8, 2026 go-live deadline.
 2. **Product complexity** — BAPI products require technical expertise. An AI with access to the full 608-product catalog provides higher-quality first-response than a general-purpose chat queue.
 3. **B2B context** — BAPI's customers are primarily engineers and facility managers who expect accurate technical answers, not instant acknowledgment. Email follow-up is standard for B2B technical support.
 4. **Cost-effectiveness** — Operating a staffed live chat requires dedicated headcount. The AI advisor handles routine inquiries automatically.

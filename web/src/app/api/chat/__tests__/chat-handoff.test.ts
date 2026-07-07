@@ -251,6 +251,7 @@ describe('POST /api/chat/handoff — language field', () => {
     ['ar', 'أحتاج مساعدة في اختيار المستشعر.'],
     ['th', 'ฉันต้องการความช่วยเหลือในการเลือกเซ็นเซอร์'],
     ['pl', 'Potrzebuję pomocy przy wyborze czujnika.'],
+    ['hi', 'कृपया सेंसर चुनने में मेरी सहायता करें।'],
   ] as const)(
     'persists language "%s" correctly in handoff record',
     async (language, message) => {

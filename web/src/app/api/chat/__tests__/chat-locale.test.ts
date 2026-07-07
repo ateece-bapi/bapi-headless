@@ -2,7 +2,7 @@
  * /api/chat route tests — locale & multilingual behavior
  *
  * Covers:
- * - Locale injection into Claude system prompt (all 10 supported locales)
+ * - Locale injection into Claude system prompt (all 11 supported locales)
  * - Missing locale falls back to base system prompt (no language instruction)
  * - Analytics language field matches request locale
  * - Product search tool results are passed to Claude regardless of locale
@@ -212,6 +212,7 @@ describe('locale injection into Claude system prompt', () => {
     ['ar', 'AR'],
     ['th', 'TH'],
     ['pl', 'PL'],
+    ['hi', 'HI'],
   ] as const)(
     'uppercases locale %s to %s in system prompt',
     async (locale, expected) => {
@@ -272,7 +273,7 @@ describe('analytics language field', () => {
     expect(analyticsPayload.language).toBe('en');
   });
 
-  it.each(['fr', 'ja', 'zh', 'ar'] as const)(
+  it.each(['fr', 'ja', 'zh', 'ar', 'hi'] as const)(
     'logs analytics with locale "%s"',
     async (locale) => {
       mockMessagesStream.mockReturnValue(makeTextStream());

@@ -61,7 +61,7 @@ When a user cannot get their question answered by the AI, they can submit a hand
 
 ## Stakeholder Communication Checklist
 
-Before stakeholder testing (April 10 – May 3, 2026), confirm the following:
+The following should have been confirmed with stakeholders before testing (April 10 – May 3, 2026). Retained here for reference and onboarding:
 
 - [ ] **Sales Manager** — Informed that chat is AI-first; human escalation via email
 - [ ] **Product Manager** — Confirmed AI advisor satisfies Phase 1 "live chat" requirement

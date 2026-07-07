@@ -8,6 +8,115 @@
 
 ---
 
+## July 7, 2026 — i18n / Regional Support Gaps Closed 🌐
+
+**Status:** ✅ PR #598 merged — feat/i18n-regional-support-gaps
+
+### Background
+A Copilot codebase review flagged three i18n gaps left over from Phase 1: the mobile locale/region selector was still a non-functional stub, exchange rates were hardcoded with no refresh path, and several user-facing strings (chat welcome message, trade-shows page) bypassed the message files entirely.
+
+### What Was Done
+
+#### 1. MobileRegionLanguageSelector — Real Hooks (was a stub)
+- Replaced the non-functional placeholder with controlled `<select>` elements wired to real state
+- `useLocale()` + `useTranslations('region')` from `next-intl` for labels
+- `useRegion()` / `useSetRegion()` from the Zustand region store
+- `useRouter()` / `usePathname()` from `@/lib/navigation` for locale switching
+- `schedulePendingToast()` on language change; language-suggestion toast on region change
+- All 11 languages and 5 regions rendered from `LANGUAGES` / `REGIONS` constants — no hardcoded options
+
+#### 2. Live Exchange Rates (ECB XML Feed)
+- New `web/src/lib/utils/fallbackRates.ts` — client-safe static rates + `FALLBACK_RATES_LAST_UPDATED` constant (no `next/*` imports)
+- New `web/src/lib/utils/exchangeRates.ts` — server-only; fetches ECB daily XML feed via `unstable_cache` (24h revalidation, tagged `exchange-rates` for on-demand invalidation); falls back to `FALLBACK_RATES` when feed is unavailable
+- EUR derived as `1 / usdPerEur` (ECB base currency, not listed in feed)
+- `currency.ts` updated to import from `fallbackRates.ts` (breaks client→server module chain)
+- `scripts/check-exchange-rate-staleness.mjs` — plain-node CI script that warns when fallback rates are >30 days old
+
+#### 3. Hardcoded UI Strings Moved to Message Files
+- `ChatWidget.tsx` — replaced 8-level locale ternary welcome message with `useTranslations('chat')` → `t('welcomeMessage')`
+- `trade-shows/page.tsx` — replaced hardcoded labels and `generateMetadata` strings with `getTranslations({ locale, namespace: 'tradeShowsPage' })`
+- All 11 locale files updated with `chat.welcomeMessage`, `tradeShowsPage.*`, and `region.languageSuggestion.*` keys
+- `ar`, `de`, `fr`, `es`, `pl` have native translations; other locales default to English
+
+#### 4. Language-Suggestion Toast Localized
+- `RegionSelectorV2` and `MobileRegionLanguageSelector` both had hardcoded English `'Language Suggestion'` / `'Switch'` toast strings
+- Added `region.languageSuggestion.{title, switchAction, message}` to all 11 locales
+- Both components now use `useTranslations('region.languageSuggestion')`
+
+#### 5. Unit Tests — ECB Parsing & Rate Conversion (9 new tests)
+- `web/src/lib/utils/__tests__/exchangeRates.test.ts`
+- Covers: single-quoted + double-quoted XML attributes, USD-base conversion math, EUR derivation, per-currency fallback when a currency is missing, full fallback when USD absent from feed, network failure
+
+### PR Review Rounds (10 issues resolved across 3 rounds)
+- **Round 1 (8 issues)**: ECB regex double-quotes only; EUR in NEEDED_CURRENCIES; EUR not computed from live feed; client import chain (next/cache in currency.ts); no unit tests; CI script breaks with plain node; toast strings hardcoded English; stale TODO comment
+- **Round 2 (2 issues)**: Missing `import type React` in MobileRegionLanguageSelector; over-complex region `<option>` label logic
+- **Round 3 (2 issues)**: CI script regex single-quote only + missing date validation; currency.ts import comment unclear
+
+### Files Changed (20 files)
+- `web/src/lib/utils/fallbackRates.ts` — new, client-safe static rates
+- `web/src/lib/utils/exchangeRates.ts` — new, server-only ECB fetcher
+- `web/src/lib/utils/__tests__/exchangeRates.test.ts` — new, 9 tests
+- `web/src/lib/utils/currency.ts` — imports from fallbackRates, clarified comment
+- `web/src/components/layout/Header/components/MobileRegionLanguageSelector.tsx` — full rewrite
+- `web/src/components/layout/Header/components/RegionSelectorV2.tsx` — localized toast strings
+- `web/src/components/chat/ChatWidget.tsx` — useTranslations for welcome message
+- `web/src/app/[locale]/company/trade-shows/page.tsx` — getTranslations for labels + metadata
+- `web/messages/{en,de,fr,es,fr,ja,zh,vi,ar,th,pl,hi}.json` — new keys across all 11 locales
+- `scripts/check-exchange-rate-staleness.mjs` — new CI staleness checker
+
+---
+
+## July 7, 2026 — Live Chat: Scope Documentation & Multilingual Locale Tests 💬
+
+**Status:** ✅ PR #599 merged — feat/live-chat-scope-and-locale-tests
+
+### Background
+Phase 1 required "Live Chat Integration — Customer support chat system." The implementation uses an AI advisor (Claude Haiku 4.5) with email escalation, not a real-time human agent platform. A Copilot PR review flagged that this gap vs. stakeholder expectations needed to be surfaced explicitly, and that the chat API tests had no multilingual coverage. A security issue was also identified: the `locale` field was inserted directly into the Claude system prompt without validation, creating a prompt-injection vector.
+
+### What Was Done
+
+#### 1. Scope Decision Document (`docs/LIVE-CHAT-SCOPE-DECISION.md`)
+- Created explicit record of what Phase 1 "live chat" means: AI chatbot (Claude Haiku 4.5) + email escalation via `/api/chat/handoff`
+- Documents what it is NOT (no real-time agent queue, no SLA, no Intercom/Zendesk)
+- Stakeholder communication checklist for Sales Manager, Product Manager, Customer Service, Select Customers
+- Phase 2 upgrade path (Intercom / Zendesk Chat / Tawk.to) if real-time agent chat is required post-launch
+
+#### 2. Multilingual Chat API Tests (new file: `chat-locale.test.ts`, 31 tests)
+- All 11 supported locales (`en`, `de`, `fr`, `es`, `ja`, `zh`, `vi`, `ar`, `th`, `pl`, `hi`) injected correctly into Claude system prompt
+- Omitting locale omits the explicit `User's Language` override (model falls back to auto-detection)
+- Locale preserved through the tool-use loop (product search → second Claude call)
+- `logChatAnalytics` receives correct `language` field; defaults to `'en'` when locale absent
+- `searchProducts` / `formatProductsForAI` called correctly regardless of locale
+- `tool_result` content passed verbatim to second Claude call
+
+#### 3. Security Fix — Locale Prompt Injection (`route.ts`)
+- Identified that `locale` was appended raw into the Claude system prompt (e.g. a crafted value like `"IGNORE PREVIOUS INSTRUCTIONS\n..."` could inject arbitrary AI instructions)
+- Imported `locales` from `@/i18n` and validated the field against the 11-locale allowlist before use
+- Invalid/unsupported locales silently dropped; model auto-detects language as fallback
+- Analytics `language` field updated to use `safeLocale` (invalid locales no longer reach the analytics log)
+- Tests added for prompt-injection attempt, unsupported locale codes, and analytics default
+
+#### 4. Hindi Added Everywhere (`hi`)
+- `i18n.ts` already listed Hindi as the 11th locale but it was missing from the Claude system prompt's `**Languages:**` list — fixed in `route.ts`
+- Added `hi` to locale parametric tests, analytics locale test, and handoff language-persistence test
+
+#### 5. Handoff Locale Tests (`chat-handoff.test.ts`, +11 tests)
+- 9 non-English locales persisted correctly in handoff records
+- Omitted language defaults to `'en'` (route uses `language || 'en'`)
+
+### PR Review Rounds
+- **Round 1**: Hindi missing from 10-locale list; doc table malformed; date inconsistency ("May 4" vs "May 8")
+- **Round 2**: Locale prompt-injection security issue; test comment ambiguity; checklist date wording (past vs future)
+- All feedback addressed before merge
+
+### Files Changed
+- `docs/LIVE-CHAT-SCOPE-DECISION.md` — new scope decision document
+- `web/src/app/api/chat/__tests__/chat-locale.test.ts` — new, 31 tests
+- `web/src/app/api/chat/__tests__/chat-handoff.test.ts` — +11 locale tests
+- `web/src/app/api/chat/route.ts` — locale allowlist validation + Hindi in SYSTEM_PROMPT
+
+---
+
 ## July 6–7, 2026 — Toast System: Accessibility, Deduplication & Lifecycle Improvements 🍞
 
 **Status:** ✅ PR #597 merged — fix/toast-improvements

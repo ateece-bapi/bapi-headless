@@ -1,5 +1,8 @@
 import type { CurrencyCode } from '@/types/region';
 import { CURRENCIES } from '@/types/region';
+// Imported from fallbackRates.ts (not exchangeRates.ts) intentionally:
+// fallbackRates.ts has no next/* imports and is safe for client components.
+// Server-side code should use getLiveExchangeRates() from ./exchangeRates instead.
 import { FALLBACK_RATES, FALLBACK_RATES_LAST_UPDATED } from './fallbackRates';
 
 /**

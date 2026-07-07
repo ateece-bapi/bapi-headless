@@ -18,7 +18,8 @@ const src = readFileSync(
   'utf8'
 );
 
-const match = src.match(/FALLBACK_RATES_LAST_UPDATED\s*=\s*'([^']+)'/);
+// Match either single or double-quoted value for robustness
+const match = src.match(/FALLBACK_RATES_LAST_UPDATED\s*=\s*['"](\d{4}-\d{2}-\d{2})['"]/);
 if (!match) {
   console.error('Could not parse FALLBACK_RATES_LAST_UPDATED from fallbackRates.ts');
   process.exit(1);
@@ -28,6 +29,11 @@ const FALLBACK_RATES_LAST_UPDATED = match[1];
 const STALE_DAYS = 30;
 
 const lastUpdated = new Date(FALLBACK_RATES_LAST_UPDATED);
+if (isNaN(lastUpdated.getTime())) {
+  console.error(`FALLBACK_RATES_LAST_UPDATED '${FALLBACK_RATES_LAST_UPDATED}' is not a valid date.`);
+  process.exit(1);
+}
+
 const now = new Date();
 const diffDays = Math.floor((now - lastUpdated) / (1000 * 60 * 60 * 24));
 

@@ -232,3 +232,45 @@ describe('GET /api/chat/handoff', () => {
     expect(res.status).toBe(500);
   });
 });
+
+// ─── Handoff locale / language field ─────────────────────────────────────────
+
+describe('POST /api/chat/handoff — language field', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    setupEmptyHandoffs();
+  });
+
+  it.each([
+    ['de', 'Ich brauche Hilfe bei der Sensorauswahl.'],
+    ['fr', "J'ai besoin d'aide pour choisir un capteur."],
+    ['es', 'Necesito ayuda para seleccionar un sensor.'],
+    ['ja', 'センサーの選定を手伝ってください。'],
+    ['zh', '我需要帮助选择传感器。'],
+    ['vi', 'Tôi cần hỗ trợ chọn cảm biến.'],
+    ['ar', 'أحتاج مساعدة في اختيار المستشعر.'],
+    ['th', 'ฉันต้องการความช่วยเหลือในการเลือกเซ็นเซอร์'],
+    ['pl', 'Potrzebuję pomocy przy wyborze czujnika.'],
+  ] as const)(
+    'persists language "%s" correctly in handoff record',
+    async (language, message) => {
+      const req = makePost({ ...VALID_BODY, message, language });
+      const res = await POST(req);
+
+      expect(res.status).toBe(200);
+      const written = JSON.parse(mockWriteFile.mock.calls[0][1] as string);
+      expect(written.handoffs[0].language).toBe(language);
+    }
+  );
+
+  it('defaults language to "en" when language is omitted', async () => {
+    const { language: _language, ...bodyWithoutLanguage } = VALID_BODY;
+    const req = makePost(bodyWithoutLanguage);
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const written = JSON.parse(mockWriteFile.mock.calls[0][1] as string);
+    // The route uses `language || 'en'` — omitted language falls back to 'en'
+    expect(written.handoffs[0].language).toBe('en');
+  });
+});

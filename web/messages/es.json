@@ -357,6 +357,11 @@
       "cny": "CNY (¥)",
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Sugerencia de idioma",
+      "switchAction": "Cambiar",
+      "message": "¿Cambiar a {language} para esta región?"
     }
   },
   "megaMenu": {
@@ -4271,6 +4276,37 @@
       "subtitle": "Nuestros especialistas en pruebas y mediciones están listos para ayudarle a elegir las sondas adecuadas para sus aplicaciones. Obtenga asesoramiento experto y precios competitivos.",
       "contactSales": "Contactar Ventas",
       "viewProducts": "Ver Todas las Sondas"
+    }
+  },
+  "chat": {
+    "welcomeMessage": "¡Hola! Soy el asistente de BAPI. ¿Cómo puedo ayudarle con sensores HVAC y automatización de edificios?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Ferias & Eventos",
+    "heroDescription": "Conéctese con nuestro equipo en los principales eventos de la industria. Descubra las últimas innovaciones de BAPI en sensores y controles de automatización de edificios.",
+    "heroBadge": "Eventos Industriales",
+    "meta": {
+      "title": "Ferias & Eventos | BAPI",
+      "description": "Conéctese con BAPI en las principales ferias comerciales. Descubra dónde nuestro equipo presentará los últimos sensores y controles de automatización de edificios."
+    },
+    "filters": {
+      "upcoming": "Próximos",
+      "past": "Pasados",
+      "all": "Todos los eventos"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "No hay eventos próximos",
+        "description": "Vuelva pronto para ver nuestro calendario de ferias 2026."
+      },
+      "past": {
+        "title": "No hay eventos pasados",
+        "description": "Nuestro historial de eventos aparecerá aquí."
+      },
+      "all": {
+        "title": "No hay eventos",
+        "description": "La información sobre ferias comerciales estará disponible pronto."
+      }
     }
   }
 }

@@ -1009,6 +1009,11 @@
       "cny": "CNY (¥)",
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "units": {
@@ -4320,6 +4325,37 @@
       "subtitle": "Our test and measurement specialists are ready to help you choose the right probes for your applications. Get expert advice and competitive pricing.",
       "contactSales": "Contact Sales",
       "viewProducts": "View All Probes"
+    }
+  },
+  "chat": {
+    "welcomeMessage": "Hello! I'm the BAPI Assistant. How can I help you with HVAC sensors and building automation products?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Trade Shows & Events",
+    "heroDescription": "Connect with our team at leading industry events. Discover BAPI's latest innovations in building automation sensors and controls.",
+    "heroBadge": "Industry Events",
+    "meta": {
+      "title": "Trade Shows & Events | BAPI",
+      "description": "Connect with BAPI at leading industry trade shows and conferences. Discover where our team will be showcasing the latest building automation sensors and controls."
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "all": "All Events"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "No Upcoming Events",
+        "description": "Check back soon for our 2026 trade show schedule."
+      },
+      "past": {
+        "title": "No Past Events",
+        "description": "Our event history will appear here."
+      },
+      "all": {
+        "title": "No Events",
+        "description": "Trade show information will be available soon."
+      }
     }
   }
 }

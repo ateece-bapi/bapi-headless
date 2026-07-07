@@ -1,62 +1,109 @@
 'use client';
 
+import type React from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter, usePathname } from '@/lib/navigation';
+import { useRegion, useSetRegion } from '@/store/regionStore';
+import { useToast } from '@/components/ui/Toast';
+import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
+import { REGIONS, LANGUAGES, CURRENCIES } from '@/types/region';
+import type { RegionCode, LanguageCode } from '@/types/region';
+import {
+  getSuggestedLanguage,
+} from '@/lib/utils/regionLanguageMapping';
+
 /**
  * Mobile region and language selector component.
  * Provides dropdowns for language and region selection in mobile navigation.
- *
- * **Phase 1 Priority**: Translation Services & Regional Support (i18n, currency conversion)
- *
- * @returns {JSX.Element} Mobile selector UI with language and region dropdowns
- *
- * @example
- * ```tsx
- * <MobileRegionLanguageSelector />
- * ```
- *
- * @todo Phase 1: Implement useTranslation hook with i18n integration
- * @todo Phase 1: Implement useRegion hook with currency/measurement conversion
- * @todo Phase 1: Add language detection utility (detectUserLanguage)
- * @todo Phase 1: Integrate toast notification system for language suggestions
  */
 export default function MobileRegionLanguageSelector() {
-  // Phase 1 TODO: Replace with actual hooks once i18n infrastructure is implemented
-  // - useTranslation() from @/hooks/useTranslation
-  // - useRegion() from @/hooks/useRegion
-  // - showToast() from @/components/ui/Toast
-  // - detectUserLanguage() from @/lib/i18n/languageDetection
+  const currentLocale = useLocale() as LanguageCode;
+  const currentRegion = useRegion();
+  const setRegion = useSetRegion();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { showToast } = useToast();
+  const tLangChanged = useTranslations('ui.languageChanged');
+  const tRegion = useTranslations('region');
+  const tSuggestion = useTranslations('region.languageSuggestion');
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = e.target.value as LanguageCode;
+    if (newLocale === currentLocale) return;
+
+    const languageName = LANGUAGES[newLocale]?.nativeName ?? newLocale;
+    schedulePendingToast({
+      type: 'success',
+      title: tLangChanged('title'),
+      message: tLangChanged('message', { language: languageName }),
+      duration: 4000,
+    });
+    router.replace(pathname, { locale: newLocale });
+  };
+
+  const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const regionCode = e.target.value as RegionCode;
+    setRegion(regionCode);
+
+    const suggestedLanguage = getSuggestedLanguage(regionCode);
+    if (suggestedLanguage !== currentLocale && LANGUAGES[suggestedLanguage]) {
+      const languageName = LANGUAGES[suggestedLanguage].nativeName;
+      const message = tSuggestion('message', { language: languageName });
+      showToast('info', tSuggestion('title'), message, undefined, {
+        label: tSuggestion('switchAction'),
+        onClick: () => {
+          schedulePendingToast({
+            type: 'success',
+            title: tLangChanged('title'),
+            message: tLangChanged('message', { language: languageName }),
+            duration: 3000,
+          });
+          router.replace(pathname, { locale: suggestedLanguage });
+        },
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4 border-t border-neutral-200 px-4 py-4">
-      {/* Language Selector - Phase 1 i18n Implementation Required */}
+      {/* Language Selector */}
       <div>
         <label htmlFor="mobile-language" className="text-sm font-medium text-neutral-700">
-          Language
+          {tRegion('selectLanguage')}
         </label>
         <select
           id="mobile-language"
-          defaultValue="en"
-          className="mt-1 block w-full rounded-md border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+          value={currentLocale}
+          onChange={handleLanguageChange}
+          className="mt-1 block w-full rounded-md border border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
         >
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="fr">Français</option>
+          {Object.values(LANGUAGES).map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.nativeName}
+            </option>
+          ))}
         </select>
       </div>
 
-      {/* Region Selector - Phase 1 Regional Support Implementation Required */}
+      {/* Region Selector */}
       <div>
         <label htmlFor="mobile-region" className="text-sm font-medium text-neutral-700">
-          Region
+          {tRegion('selectRegion')}
         </label>
         <select
           id="mobile-region"
-          defaultValue="us"
-          className="mt-1 block w-full rounded-md border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+          value={currentRegion.code}
+          onChange={handleRegionChange}
+          className="mt-1 block w-full rounded-md border border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
         >
-          <option value="us">United States (USD)</option>
-          <option value="ca">Canada (CAD)</option>
-          <option value="uk">United Kingdom (GBP)</option>
-          <option value="eu">Europe (EUR)</option>
+          {Object.values(REGIONS).map((region) => {
+            const currency = CURRENCIES[region.currency];
+            return (
+              <option key={region.code} value={region.code}>
+                {region.name} ({currency.symbol} {currency.code})
+              </option>
+            );
+          })}
         </select>
       </div>
     </div>

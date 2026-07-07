@@ -558,6 +558,11 @@
       "cny": "หยวน (¥)",
       "vnd": "ดองเวียดนาม (₫)",
       "aed": "ดิรฮัมอาหรับเอมิเรตส์ (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "units": {
@@ -4273,6 +4278,37 @@
       "subtitle": "ผู้เชี่ยวชาญด้านการทดสอบและวัดค่าของเราพร้อมที่จะช่วยคุณเลือกโพรบที่เหมาะสมสำหรับการใช้งานของคุณ รับคำแนะนำจากผู้เชี่ยวชาญและราคาที่แข่งขันได้",
       "contactSales": "ติดต่อฝ่ายขาย",
       "viewProducts": "ดูโพรบทั้งหมด"
+    }
+  },
+  "chat": {
+    "welcomeMessage": "สวัสดี! ฉันคือผู้ช่วย BAPI ฉันจะช่วยคุณเกี่ยวกับเซ็นเซอร์ HVAC และระบบอัตโนมัติของอาคารได้อย่างไร?"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Trade Shows & Events",
+    "heroDescription": "Connect with our team at leading industry events. Discover BAPI's latest innovations in building automation sensors and controls.",
+    "heroBadge": "Industry Events",
+    "meta": {
+      "title": "Trade Shows & Events | BAPI",
+      "description": "Connect with BAPI at leading industry trade shows and conferences. Discover where our team will be showcasing the latest building automation sensors and controls."
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "all": "All Events"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "No Upcoming Events",
+        "description": "Check back soon for our 2026 trade show schedule."
+      },
+      "past": {
+        "title": "No Past Events",
+        "description": "Our event history will appear here."
+      },
+      "all": {
+        "title": "No Events",
+        "description": "Trade show information will be available soon."
+      }
     }
   }
 }

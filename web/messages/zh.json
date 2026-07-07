@@ -357,6 +357,11 @@
       "cny": "人民币 (¥)",
       "vnd": "越南盾 (₫)",
       "aed": "阿联酋迪拉姆 (د.إ)"
+    },
+    "languageSuggestion": {
+      "title": "Language Suggestion",
+      "switchAction": "Switch",
+      "message": "Switch to {language} for this region?"
     }
   },
   "megaMenu": {
@@ -4273,6 +4278,37 @@
       "subtitle": "我们的测试与测量专家随时准备帮助您为应用选择合适的探头。获取专家建议和有竞争力的价格。",
       "contactSales": "联系销售",
       "viewProducts": "查看所有探头"
+    }
+  },
+  "chat": {
+    "welcomeMessage": "您好！我是BAPI助手。我如何帮助您了解HVAC传感器和楼宇自动化？"
+  },
+  "tradeShowsPage": {
+    "heroTitle": "Trade Shows & Events",
+    "heroDescription": "Connect with our team at leading industry events. Discover BAPI's latest innovations in building automation sensors and controls.",
+    "heroBadge": "Industry Events",
+    "meta": {
+      "title": "Trade Shows & Events | BAPI",
+      "description": "Connect with BAPI at leading industry trade shows and conferences. Discover where our team will be showcasing the latest building automation sensors and controls."
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "all": "All Events"
+    },
+    "emptyState": {
+      "upcoming": {
+        "title": "No Upcoming Events",
+        "description": "Check back soon for our 2026 trade show schedule."
+      },
+      "past": {
+        "title": "No Past Events",
+        "description": "Our event history will appear here."
+      },
+      "all": {
+        "title": "No Events",
+        "description": "Trade show information will be available soon."
+      }
     }
   }
 }

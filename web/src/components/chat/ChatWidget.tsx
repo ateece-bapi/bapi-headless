@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { XIcon, SendIcon, MessageCircleIcon, Loader2Icon, ThumbsUpIcon, ThumbsDownIcon, UserCircleIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
@@ -26,6 +26,7 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const locale = useLocale();
+  const t = useTranslations('chat');
 
   // Convert markdown links to HTML
   const renderMessageContent = (content: string) => {
@@ -60,27 +61,12 @@ export default function ChatWidget() {
       setMessages([
         {
           role: 'assistant',
-          content:
-            locale === 'de'
-              ? 'Hallo! Ich bin der BAPI-Assistent. Wie kann ich Ihnen bei HVAC-Sensoren und Gebäudeautomation helfen?'
-              : locale === 'es'
-                ? '¡Hola! Soy el asistente de BAPI. ¿Cómo puedo ayudarle con sensores HVAC y automatización de edificios?'
-                : locale === 'fr'
-                  ? "Bonjour! Je suis l'assistant BAPI. Comment puis-je vous aider avec les capteurs CVC et l'automatisation des bâtiments?"
-                  : locale === 'ja'
-                    ? 'こんにちは！BAPIアシスタントです。HVACセンサーとビルオートメーションについてどのようにお手伝いできますか？'
-                    : locale === 'zh'
-                      ? '您好！我是BAPI助手。我如何帮助您了解HVAC传感器和楼宇自动化？'
-                      : locale === 'vi'
-                        ? 'Xin chào! Tôi là trợ lý BAPI. Tôi có thể giúp gì cho bạn về cảm biến HVAC và tự động hóa tòa nhà?'
-                        : locale === 'ar'
-                          ? 'مرحباً! أنا مساعد BAPI. كيف يمكنني مساعدتك بشأن أجهزة استشعار التدفئة والتهوية وتكييف الهواء وأتمتة المباني؟'
-                          : "Hello! I'm the BAPI Assistant. How can I help you with HVAC sensors and building automation products?",
+          content: t('welcomeMessage'),
           timestamp: new Date(),
         },
       ]);
     }
-  }, [isOpen, locale, messages.length]);
+  }, [isOpen, locale, messages.length, t]);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading || isStreaming) return;

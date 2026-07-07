@@ -2,9 +2,76 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 6, 2026  
+**Updated:** July 7, 2026  
 **Status:** Phase 1 Complete - Live in Production (52 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 6–7, 2026 — Toast System: Accessibility, Deduplication & Lifecycle Improvements 🍞
+
+**Status:** ✅ PR #597 merged — fix/toast-improvements
+
+### Background
+The shared `Toast.tsx` component had accumulated several correctness issues: all toasts used `role="alert"` + `aria-live="assertive"` (interrupting screen readers for non-urgent notifications), there was no cap on simultaneous toasts, duplicate toasts stacked without limit, action-button toasts auto-dismissed before users could interact with them, and the animation lifecycle was spread across both `ToastProvider` and callers.
+
+### What Was Done
+
+#### 1. Accessibility — `role` and `aria-live` by severity
+- Error/warning → `role="alert"` + `aria-live="assertive"` (screen reader interrupts immediately)
+- Success/info → `role="status"` + `aria-live="polite"` (non-interrupting, reads at next pause)
+- Previously all types used `role="alert"` + `aria-live="assertive"`, which interrupted screen readers even for benign success notifications
+
+#### 2. Toast cap — `MAX_TOASTS = 4`
+- Oldest toast is dropped when a 5th is added
+- Prevents toast storms from API retries or rapid user actions
+
+#### 3. Deduplication
+- Identical `type + title + message` combination is silently ignored while already visible
+- Different type with same text allowed through (e.g. success + error with same message)
+
+#### 4. Action presence enforces `duration = 0`
+- `effectiveDuration = action ? 0 : (duration ?? 5000)`
+- Action presence takes unconditional precedence — no caller can pass a duration that overrides it
+- Cleaned up 4 call sites that were passing a dead `duration` alongside `action`: `FavoriteButton.tsx` (×2), `RegionSelectorV2.tsx`, `SessionExpiryToast.tsx`
+
+#### 5. Self-contained `ToastItem` animation lifecycle
+- Enter: `requestAnimationFrame` flips `isVisible` for CSS `translate-x-0 opacity-100` transition
+- Exit: `handleClose` sets `isVisible = false`, schedules `onClose(id)` after `EXIT_ANIMATION_MS`
+- `isClosingRef` re-entrancy guard prevents duplicate removal timers when close-button click and auto-dismiss timer both fire during the 300ms exit window
+- `EXIT_ANIMATION_MS = 300` exported constant — ties `setTimeout` delay, tests, and Tailwind `duration-300` class to a single source of truth
+- `transition-[transform,opacity]` replaces `transition-all` (browser only tracks the two animated properties)
+
+#### 6. `crypto.randomUUID()` for toast IDs
+- Replaces `Math.random().toString(36).substring(2, 9)` which could (rarely) collide
+- RFC 4122-compliant, collision-free, available in jsdom/Node/all modern browsers
+
+### Copilot Review — 4 rounds, 20 total comments
+All comments addressed before merge. Key catches:
+- `role="alert"` implicit assertive conflicts with explicit `aria-live="polite"` → role now dynamic
+- `handleClose` re-entrancy (close button + auto-dismiss both fire during exit window) → `isClosingRef` guard
+- `duration ?? (action ? 0 : 5000)` allowed caller override of action-dismiss rule → enforced `action ? 0 : (duration ?? 5000)`
+- `Math.random()` collision risk → `crypto.randomUUID()`
+- `transition-all` inefficiency → `transition-[transform,opacity]`
+- `300` hard-coded in multiple places → `EXIT_ANIMATION_MS` constant
+
+### Test Suite — `web/src/components/ui/__tests__/Toast.test.tsx` (new file)
+12 new tests, 2330 total passing. Covers:
+- `aria-live` + `role` by type (4 parametrized)
+- Deduplication (same type ignored, different type allowed)
+- Cap at 4 / oldest dropped
+- Action present → no auto-dismiss (with and without explicit duration)
+- Auto-dismiss after explicit duration
+- Close button + exit animation timing
+- Action button fires `onClick` and closes
+
+### Files Changed
+- `web/src/components/ui/Toast.tsx` — full rewrite of `ToastItem` + provider logic
+- `web/src/components/ui/__tests__/Toast.test.tsx` — new test file
+- `web/src/components/FavoriteButton.tsx` — removed dead `duration` args
+- `web/src/components/layout/Header/components/RegionSelectorV2.tsx` — removed dead `duration` arg
+- `web/src/components/auth/SessionExpiryToast.tsx` — removed dead `duration` arg
+- `web/src/components/__tests__/FavoriteButton.test.tsx` — updated toast call assertion
 
 ---
 
@@ -70,7 +137,7 @@ Registered new GraphQL types, query, and mutations in the existing MU plugin:
 
 #### 2. Next.js API Route Rewrite (`web/src/app/api/favorites/route.ts`)
 Complete rewrite — no more filesystem imports:
-- `wpGraphQL<T>()` helper: POSTs to WP GraphQL with `Authorization: Bearer`; converts HTTP 401/403 to `errors[]` payload so auth path is consistent
+- `wpGraphQL<T>()` helper: POSTs to WP GraphQL with `Authorization: Bearer`;  converts HTTP 401/403 to `errors[]` payload so auth path is consistent
 - `isAuthError()`: regex `/unauthorized|invalid.?token|expired/i`
 - `isLimitError()`: regex `/favorites limit reached/i`
 - `clearAuthCookies()`: deletes `auth_token` + `refresh_token` on JWT errors (consistent with `/api/auth/me`)

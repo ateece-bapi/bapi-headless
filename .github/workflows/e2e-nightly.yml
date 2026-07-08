@@ -10,6 +10,10 @@ on:
     - cron: '0 2 * * *'   # 02:00 UTC nightly
   workflow_dispatch:        # Allow manual trigger for ad-hoc runs
 
+permissions:
+  contents: read
+  issues: write   # Required for the failure triage step that opens GitHub issues
+
 jobs:
   e2e-nightly:
     name: "E2E nightly (shard ${{ matrix.shard }}/${{ matrix.total }})"
@@ -71,8 +75,8 @@ jobs:
           E2E_USERNAME: ${{ secrets.E2E_USERNAME }}
           E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
         run: |
-          if [ -z "$PLAYWRIGHT_BASE_URL" ]; then
-            echo "PREVIEW_INTEGRATION_URL not configured — skipping nightly E2E run"
+          if [ -z "$PLAYWRIGHT_BASE_URL" ] || [ -z "$E2E_USERNAME" ] || [ -z "$E2E_PASSWORD" ]; then
+            echo "Required secrets not fully configured (PREVIEW_INTEGRATION_URL, E2E_USERNAME, E2E_PASSWORD) — skipping nightly E2E run"
             exit 0
           fi
           pnpm exec playwright test \
@@ -122,6 +126,7 @@ jobs:
         working-directory: web
 
       - name: Download all shard blob reports
+        id: download-blobs
         uses: actions/download-artifact@v4
         with:
           pattern: playwright-nightly-blob-*-${{ github.run_id }}
@@ -129,8 +134,15 @@ jobs:
           merge-multiple: true
 
       - name: Merge blob reports into HTML
+        # Skip when no blobs were produced (e.g. all shards gracefully skipped
+        # because required secrets were absent). The download step still succeeds
+        # in that case but leaves the target directory empty.
         working-directory: web
         run: |
+          if [ -z "$(ls -A all-blob-reports 2>/dev/null)" ]; then
+            echo "No blob reports found — shards were skipped, nothing to merge"
+            exit 0
+          fi
           pnpm exec playwright merge-reports \
             --reporter html \
             ./all-blob-reports

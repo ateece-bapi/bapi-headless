@@ -36,7 +36,9 @@ jobs:
           if ! diff --unified "$ROOT_FILE" "$MU_FILE"; then
             echo ""
             echo "ERROR: $ROOT_FILE and $MU_FILE have diverged."
-            echo "Copy the updated version to both locations and commit."
+            echo "Edit the root copy ($ROOT_FILE), then run:"
+            echo "  cp $ROOT_FILE $MU_FILE"
+            echo "and commit both files together."
             exit 1
           fi
 

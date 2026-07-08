@@ -51,7 +51,7 @@ export interface MockUserProfile {
 }
 
 /**
- * Mock user data - add your team members' Clerk user IDs here
+ * Mock user data - add your team members' WordPress user IDs here
  */
 export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
   // BAPI Test Customer
@@ -162,7 +162,7 @@ export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
   },
 
   // Add more test users here
-  // 'user_clerk_id_2': { ... },
+  // '<wordpress-user-id>': { ... },
 };
 
 /**

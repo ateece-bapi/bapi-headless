@@ -77,22 +77,24 @@ jobs:
           fi
           pnpm exec playwright test \
             --project=chromium \
+            --reporter=blob \
             --shard=${{ matrix.shard }}/${{ matrix.total }}
 
-      - name: Upload Playwright report (shard ${{ matrix.shard }})
+      - name: Upload blob report (shard ${{ matrix.shard }})
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-nightly-shard-${{ matrix.shard }}-${{ github.run_id }}
-          path: web/playwright-report/
-          retention-days: 14
+          name: playwright-nightly-blob-${{ matrix.shard }}-${{ github.run_id }}
+          path: web/blob-report/
+          retention-days: 1
           if-no-files-found: ignore
 
-  # ── Merge shard blobs into a single report ─────────────────────────────────
-  # Runs after all shards complete. Uploads a combined HTML report and opens
-  # a GitHub issue when any shard fails.
+  # ── Merge shard blob reports into a single HTML report ────────────────────
+  # Runs after all shards complete regardless of pass/fail.
+  # Uses `playwright merge-reports` (requires blob reporter in shard steps).
+  # Opens a GitHub issue when any shard fails.
   e2e-nightly-report:
-    name: "E2E nightly — report & triage"
+    name: "E2E nightly — merge reports & triage"
     runs-on: ubuntu-latest
     needs: e2e-nightly
     if: always()
@@ -101,12 +103,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download all shard reports
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: pnpm install --frozen-lockfile
+        working-directory: web
+
+      - name: Download all shard blob reports
         uses: actions/download-artifact@v4
         with:
-          pattern: playwright-nightly-shard-*-${{ github.run_id }}
-          path: all-reports/
+          pattern: playwright-nightly-blob-*-${{ github.run_id }}
+          path: web/all-blob-reports/
           merge-multiple: true
+
+      - name: Merge blob reports into HTML
+        working-directory: web
+        run: |
+          pnpm exec playwright merge-reports \
+            --reporter html \
+            ./all-blob-reports
+
+      - name: Upload merged HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-nightly-report-${{ github.run_id }}
+          path: web/playwright-report/
+          retention-days: 14
+          if-no-files-found: ignore
 
       - name: Open GitHub issue on any shard failure
         if: ${{ needs.e2e-nightly.result == 'failure' }}
@@ -126,7 +162,8 @@ jobs:
                 `- **Run:** [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
                 `- **Commit:** ${context.sha}`,
                 '',
-                'Download individual shard artifacts for screenshots and traces.',
+                'Download the merged HTML report artifact for screenshots and traces:',
+                `\`playwright-nightly-report-${context.runId}\``,
               ].join('\n'),
-              labels: ['bug', 'e2e'],
+              labels: ['bug'],
             });

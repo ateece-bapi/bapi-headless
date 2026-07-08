@@ -4,7 +4,7 @@
  */
 
 export interface MockUserProfile {
-  userId: string; // Clerk user ID
+  userId: string; // WordPress user ID
   companyName: string;
   accountNumber: string;
   billingAddress: {

@@ -2,7 +2,7 @@ import { gql } from 'graphql-request';
 
 /**
  * GraphQL queries for fetching WooCommerce customer orders
- * Uses WordPress customer ID linked in Clerk metadata
+ * Uses WordPress customer ID from user session metadata
  */
 
 export const GET_CUSTOMER_ORDERS = gql`

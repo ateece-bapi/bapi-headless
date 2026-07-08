@@ -7,6 +7,41 @@ on:
     branches: [ main ]
 
 jobs:
+  # ── MU-plugin sync guard ───────────────────────────────────────────────────
+  # Fails the build when bapi-graphql-fixes.php at the repo root diverges from
+  # the copy deployed inside cms/wp-content/mu-plugins/. Zero-cost safety net
+  # that eliminates the risk of forgetting to sync changes manually.
+  mu-plugin-sync:
+    name: "MU-plugin: root == cms copy"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Diff bapi-graphql-fixes.php
+        run: |
+          ROOT_FILE="bapi-graphql-fixes.php"
+          MU_FILE="cms/wp-content/mu-plugins/bapi-graphql-fixes.php"
+
+          if [ ! -f "$ROOT_FILE" ]; then
+            echo "ERROR: $ROOT_FILE not found in repo root"
+            exit 1
+          fi
+
+          if [ ! -f "$MU_FILE" ]; then
+            echo "ERROR: $MU_FILE not found — create it or update the path"
+            exit 1
+          fi
+
+          if ! diff --unified "$ROOT_FILE" "$MU_FILE"; then
+            echo ""
+            echo "ERROR: $ROOT_FILE and $MU_FILE have diverged."
+            echo "Copy the updated version to both locations and commit."
+            exit 1
+          fi
+
+          echo "OK: both copies of bapi-graphql-fixes.php are identical."
+
   web-ci:
     name: "Web: sanity, test, build"
     runs-on: ubuntu-latest
@@ -109,9 +144,6 @@ jobs:
       #     retention-days: 7
 
       - name: Build
-        env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: pnpm run build
 
   # ── E2E smoke suite ────────────────────────────────────────────────────────

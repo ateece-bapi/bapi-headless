@@ -9,8 +9,9 @@
  * cms/wp-content/mu-plugins/bapi-graphql-fixes.php
  *
  * DUAL-FILE PATTERN: The repo root copy (bapi-graphql-fixes.php) is the development
- * source of truth. This CMS copy is the deploy artifact kept in sync manually.
- * Always edit the root copy and SCP it to Kinsta staging; never edit this file independently.
+ * source of truth. The CMS copy (cms/wp-content/mu-plugins/bapi-graphql-fixes.php) is
+ * the deploy artifact kept in sync manually. Always edit the root copy and SCP it to
+ * Kinsta staging; never edit the CMS copy independently.
  */
 
 if (!defined('ABSPATH')) {

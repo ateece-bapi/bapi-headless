@@ -2,7 +2,7 @@
  * Public layout (no authentication required)
  *
  * This layout is used for public pages (homepage, products) that don't require
- * authentication. By removing ClerkProvider, these pages can be statically
+ * authentication. These pages are statically
  * generated and cached by CDN, dramatically improving performance.
  *
  * Note: This is a route group layout that nests INSIDE the root layout.

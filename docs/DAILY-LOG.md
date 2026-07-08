@@ -8,6 +8,88 @@
 
 ---
 
+## July 8, 2026 — Product Navigation: 404 Pages, Test Restoration, Applications Route Fix 🧭
+
+**Status:** ✅ PR merged — fix/not-found-pages-tests-applications
+
+### What Was Done
+
+#### Action 6 — Branded 404 Pages (`not-found.tsx`)
+- `web/src/app/not-found.tsx` — root-level branded 404; handles pre-locale routes and bots hitting non-existent paths before middleware intercepts; BAPI Blue/neutral color system, "Go to homepage" + "Browse products" CTAs
+- `web/src/app/[locale]/not-found.tsx` — locale-scoped 404 using `Link` from `@/lib/navigation` for automatic locale-aware hrefs; rendered by any `notFound()` call from within the `[locale]` segment (product pages, category pages, application pages, etc.); inherits intl context from parent layout
+
+#### Action 7 — Restore Skipped `ProductDetailClient` Tests
+- Removed `it.skip` and stale TODO comments from 3 tests in `ProductDetailClient.test.tsx`
+- **"adds correct variation to cart"** — verifies `addItem` called with correct `variationId`/`variationName` after selecting L+Blue → Variant B (databaseId 102)
+- **"allows tabbing to all interactive elements"** — verifies radio group (size), color swatch (color), and Add to Cart button are all focusable in sequence
+- **"Add to Cart button is accessible"** — verifies `ariaLabel` prop flows through `VariationSelector` → `AddToCartButton` correctly
+- All 3 pass with the existing `ProductVariationSelector` + `VariationSelector` architecture; TODOs were stale — the component structure they referenced was already in place
+- Suite: **2384 passed | 16 skipped** (was 2381 | 19, +3 restored)
+
+#### Action 8 — Fix Applications Subcategory Product Filter
+- `web/src/app/[locale]/applications/[category]/[subcategory]/page.tsx`
+- Replaced `getProducts(50)` (returned all 50 products unfiltered) with `getProductsByCategory(primaryCategory, 50)` using the first `wpCategories` slug from `applicationCategories` config — the primary WordPress category for each subcategory
+- Removed the "temporary debug info" block that was leaking internal WordPress category slugs to end users in production
+- Added `notFound()` guard when `wpCategories` is empty (mis-configured subcategory entry in `applicationCategories.ts`)
+
+### PR Review
+Copilot automated review: no comments — all 4 files approved on first pass.
+
+### Files Changed (4 files)
+- `web/src/app/not-found.tsx` — new root-level branded 404
+- `web/src/app/[locale]/not-found.tsx` — new locale-scoped branded 404
+- `web/src/app/[locale]/applications/[category]/[subcategory]/page.tsx` — product filter fix + debug block removal
+- `web/src/components/products/__tests__/ProductDetailClient.test.tsx` — 3 tests restored
+
+---
+
+## July 8, 2026 — Pre-Launch Risk Reduction (CI Hardening) 🔒
+
+**Status:** ✅ PR #601 merged — chore/pre-launch-risk-reduction
+
+### Background
+A Copilot codebase review (Actions 9–11) identified three pre-launch risk items: the full Playwright E2E suite was disabled in CI with no nightly path, lingering Clerk SDK references remained in CI and source comments despite auth being fully migrated to WordPress JWT, and the MU-plugin PHP file had a manual sync risk with no automated guard.
+
+### What Was Done
+
+#### Action 9 — Nightly E2E CI (`e2e-nightly.yml`)
+- New `e2e-nightly.yml` workflow runs nightly at 02:00 UTC and on `workflow_dispatch`
+- Full 21-spec Playwright suite parallelised across **4 shards** via `--shard=$N/4` and `fail-fast: false`
+- Shards use `--reporter=blob`; a follow-on `e2e-nightly-report` job runs `playwright merge-reports` to produce a single merged HTML artifact
+- Report job skips merge gracefully when no blob artifacts exist (all shards skipped due to missing secrets)
+- GitHub issue auto-opened on any shard failure (labels: `bug`; `issues: write` permission declared)
+- Workflow-level `permissions: contents: read, issues: write` added for reliability in read-only-default orgs
+- Skip condition checks all three required secrets (`PREVIEW_INTEGRATION_URL`, `E2E_USERNAME`, `E2E_PASSWORD`) — consistent with the existing `e2e-auth` job pattern
+
+#### Action 10 — Clerk References Removed
+- `ci.yml`: `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` dropped from the Build step (no Clerk SDK in `package.json`; auth is WordPress JWT)
+- `web/src/lib/mock-user-data.ts`: JSDoc and placeholder key comment updated from "Clerk user ID" to "WordPress user ID"; stale `user_clerk_id_2` example key replaced with `<wordpress-user-id>`
+- `web/src/lib/graphql/queries/customer-orders.ts`: doc comment clarified — module accepts `$customerId` from caller, does not read session metadata itself
+- `web/src/app/[locale]/account/settings/[[...rest]]/page.tsx`: comment updated from "Clerk UserProfile Component" to "User Profile Component"
+- `web/src/app/[locale]/(public)/layout.tsx`: removed stale `ClerkProvider` reference from comment
+- `web/.env.local.example`: Clerk section removed locally (file is gitignored)
+
+#### Action 11 — MU-Plugin Sync Guard (`ci.yml`)
+- New `mu-plugin-sync` job runs on every push/PR in parallel with `web-ci`
+- `diff --unified` between `bapi-graphql-fixes.php` (root, source of truth) and `cms/wp-content/mu-plugins/bapi-graphql-fixes.php`
+- Fails with a clear message directing contributors to edit the root copy, then `cp` to the CMS path and commit both
+- `cms/wp-content/mu-plugins/bapi-graphql-fixes.php` synced from root (comment wording had drifted)
+
+### PR Review Rounds (8 issues resolved across 2 rounds)
+- **Round 1 (4 issues)**: `'e2e'` label on issue creation would 422 (label doesn't exist); merge-reports step was described but not implemented (needed blob reporter + `playwright merge-reports`); doc comment in `customer-orders.ts` inaccurate; `mock-user-data.ts` still had Clerk refs after partial cleanup
+- **Round 2 (4 issues)**: Missing `permissions` block for `issues: write`; skip condition only checked `PREVIEW_INTEGRATION_URL`, not `E2E_USERNAME`/`E2E_PASSWORD`; report job could fail when shards were skipped and no blobs existed; mu-plugin error message ambiguously said "update both locations"
+
+### Files Changed (9 files)
+- `.github/workflows/e2e-nightly.yml` — new nightly 4-shard Playwright workflow with blob merge + triage
+- `.github/workflows/ci.yml` — new `mu-plugin-sync` job; Clerk env vars removed from Build step; error message clarified
+- `cms/wp-content/mu-plugins/bapi-graphql-fixes.php` — synced from root source of truth
+- `web/src/lib/mock-user-data.ts` — Clerk refs purged from JSDoc and placeholder comment
+- `web/src/lib/graphql/queries/customer-orders.ts` — doc comment accuracy fix
+- `web/src/app/[locale]/account/settings/[[...rest]]/page.tsx` — comment updated
+- `web/src/app/[locale]/(public)/layout.tsx` — stale ClerkProvider comment removed
+
+---
+
 ## July 7, 2026 — i18n / Regional Support Gaps Closed 🌐
 
 **Status:** ✅ PR #598 merged — feat/i18n-regional-support-gaps

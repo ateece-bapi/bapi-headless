@@ -212,10 +212,7 @@ describe('ProductDetailClient', () => {
   });
 
   describe('Cart interaction', () => {
-    // TODO: Fix this test - variation state updates need investigation
-    // The enterprise VariationSelector correctly identifies variations
-    // but the parent component state update timing needs to be handled properly
-    it.skip('adds correct variation to cart on Add to Cart', async () => {
+    it('adds correct variation to cart on Add to Cart', async () => {
       const addItemMock = vi.fn();
       const openCartMock = vi.fn();
       const mockUseCart = () => ({
@@ -271,9 +268,7 @@ describe('ProductDetailClient', () => {
 });
 
 describe('Keyboard navigation and robustness', () => {
-  // TODO: Update test for new ProductDetailClient structure with ProductHero + ProductVariationSelector
-  // The new component uses ProductVariationSelector which renders differently
-  it.skip('allows tabbing to all interactive elements', async () => {
+  it('allows tabbing to all interactive elements', async () => {
     renderProductDetail();
 
     // For variable products, select a variation first to show Add to Cart button
@@ -349,10 +344,7 @@ describe('Accessibility', () => {
     expect(screen.getByRole('button', { name: /Blue/i })).toBeInTheDocument();
   });
 
-  // TODO: Update test for new ProductDetailClient structure
-  // Add to Cart now renders in ProductVariationSelector for variable products
-  // and in a separate section for simple products
-  it.skip('Add to Cart button is accessible', async () => {
+  it('Add to Cart button is accessible', async () => {
     renderProductDetail();
 
     // For variable products, must select a variation first

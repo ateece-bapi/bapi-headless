@@ -7,7 +7,7 @@ import {
   getWordPressCategoriesForApplication,
   getApplicationBreadcrumbs,
 } from '@/lib/navigation/applicationCategories';
-import { getProducts, getProductPrice } from '@/lib/graphql';
+import { getProductsByCategory, getProductPrice } from '@/lib/graphql';
 
 // Force dynamic rendering (don't pre-render at build time)
 export const dynamic = 'force-dynamic';
@@ -42,10 +42,16 @@ export default async function ApplicationSubcategoryPage({
   // Get WordPress categories to fetch products from
   const wpCategories = getWordPressCategoriesForApplication(categorySlug, subcategorySlug);
 
-  // Fetch products from WordPress
-  // Note: We're using category slugs. The GraphQL query may need adjustment
-  // to support filtering by multiple category slugs.
-  const data = await getProducts(50); // TODO: Filter by wpCategories
+  // Fetch products from WordPress — use the first mapped category slug.
+  // wpCategories may list several slugs for broad application areas; the
+  // primary slug covers the core product set for this subcategory.
+  // Full multi-category merging is tracked for Phase 2 refinement.
+  const primaryCategory = wpCategories[0];
+  if (!primaryCategory) {
+    notFound();
+  }
+
+  const data = await getProductsByCategory(primaryCategory, 50);
   const products = data.products?.nodes || [];
 
   // Get breadcrumbs
@@ -98,17 +104,6 @@ export default async function ApplicationSubcategoryPage({
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-3xl font-bold text-neutral-900">Products for {subcategory.name}</h2>
           <div className="text-neutral-700">{products.length} products</div>
-        </div>
-
-        {/* WordPress Categories Info (temporary - for debugging) */}
-        <div className="mb-8 rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-          <p className="text-sm text-neutral-700">
-            <span className="font-medium">Fetching from WordPress categories:</span>{' '}
-            {wpCategories.join(', ')}
-          </p>
-          <p className="mt-1 text-xs text-neutral-700">
-            (This is temporary debug info - will be removed in production)
-          </p>
         </div>
 
         {products.length === 0 ? (

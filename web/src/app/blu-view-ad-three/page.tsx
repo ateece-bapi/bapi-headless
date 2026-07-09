@@ -13,13 +13,14 @@ export const metadata: Metadata = {
  * the image filename to determine the destination link URL.
  *
  * To swap campaigns: replace the image file and rename it to the destination
- * page slug (e.g. "wireless.webp" → www.bapisensors.com/wireless).
+ * page slug (e.g. "wireless.webp" → bapisensors.com/wireless).
+ * TODO: Replace wireless.jpg with the actual campaign image when assigned.
  */
 export default function BluViewAdThree() {
   return (
     <main>
       <Image
-        src="/images/blu-view-ads/placeholder.webp"
+        src="/images/blu-view-ads/wireless.jpg"
         alt="Blu-View Banner Ad"
         width={1200}
         height={400}

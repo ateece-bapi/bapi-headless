@@ -2,9 +2,40 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 7, 2026  
-**Status:** Phase 1 Complete - Live in Production (52 days post-launch)  
+**Updated:** July 9, 2026  
+**Status:** Phase 1 Complete - Live in Production (54 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 9, 2026 — New BAPI Logo Deployed Site-Wide 🎨
+
+**Status:** ✅ PR #603 merged — chore/update-bapi-logo
+
+### What Was Done
+
+Replaced the legacy `bapi_logo_Sensor Solutions_1993` logo asset with the new plain digital logo (`bapi_logo_plain_Web_Digital-01.png`) across all layout components, structured data schemas, and accessibility attributes.
+
+#### Changes
+- **Header** (`Header/config.ts`) — Updated `HEADER_CONFIG.logo.src` and all 3 mega-menu featured panel logo references to new asset
+- **Header Logo Component** (`Header/components/Logo.tsx`) — Updated `aria-label` from `"BAPI Home - Sensor Solutions Since 1993"` to `"BAPI Home - Building Automation Products Inc."`
+- **Footer** (`Footer.tsx`) — Updated logo `src` and `alt` text to match new branding
+- **Structured Data / SEO** — Updated Organization schema logo URL in `metadata/schemas.ts`, `schema/generators.ts`, and `schema/video.ts`
+- **Asset** — Added `bapi_logo_plain_Web_Digital-01.png` to `web/public/images/logos/`
+
+Alt text updated from `"BAPI - Sensor Solutions Since 1993"` → `"BAPI - Building Automation Products Inc."` throughout to reflect the plain logo (no tagline text in image).
+
+### PR Review
+Copilot automated review flagged 1 issue: the `aria-label` on the header logo link in `Logo.tsx` still referenced the old tagline even though `HEADER_CONFIG.logo.alt` was updated. Fixed and pushed before merge.
+
+### Files Changed (6 files)
+- `web/public/images/logos/bapi_logo_plain_Web_Digital-01.png` — new logo asset
+- `web/src/components/layout/Header/config.ts` — 4 logo src references updated + alt text
+- `web/src/components/layout/Header/components/Logo.tsx` — aria-label updated
+- `web/src/components/layout/Footer.tsx` — logo src + alt text updated
+- `web/src/lib/metadata/schemas.ts` — Organization schema logo URL
+- `web/src/lib/schema/generators.ts` — Organization structured data logo URL
+- `web/src/lib/schema/video.ts` — VideoObject publisher logo URL
 
 ---
 

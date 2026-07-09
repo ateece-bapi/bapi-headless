@@ -54,6 +54,42 @@ add_filter('graphql_connection_max_query_amount', function($max, $source, $args,
 }, 10, 5);
 
 // ---------------------------------------------------------------------------
+// GraphQL Query Complexity Monitoring
+// ---------------------------------------------------------------------------
+
+/**
+ * Log high-complexity GraphQL queries to PHP error log.
+ *
+ * WPGraphQL Smart Cache sets the X-GraphQL-Complexity response header and
+ * blocks queries that exceed the configured max (currently 2000). This hook
+ * fires before the limit check so we can log anything approaching the ceiling.
+ *
+ * Alert threshold mirrors the Next.js frontend: 1500 (75% of max 2000).
+ */
+add_filter('graphql_request_results', function ($response, $schema, $operation, $variables, $query) {
+    $complexity_threshold = 1500;
+
+    // WPGraphQL Smart Cache exposes per-request complexity via this constant.
+    // It may not be set if the Smart Cache plugin is inactive.
+    if (!defined('GRAPHQL_REQUEST_COMPLEXITY')) {
+        return $response;
+    }
+
+    $complexity = (int) GRAPHQL_REQUEST_COMPLEXITY;
+
+    if ($complexity >= $complexity_threshold) {
+        error_log(sprintf(
+            '[BAPI GraphQL] High complexity query detected: %d (threshold: %d). Operation: %s',
+            $complexity,
+            $complexity_threshold,
+            $operation ?: 'unnamed'
+        ));
+    }
+
+    return $response;
+}, 10, 5);
+
+// ---------------------------------------------------------------------------
 // BAPI Favorites — stored as JSON in WordPress user meta (bapi_favorites)
 // ---------------------------------------------------------------------------
 

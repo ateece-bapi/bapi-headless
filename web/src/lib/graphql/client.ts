@@ -1,6 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
 import { AppError } from '@/lib/errors';
 import { CACHE_REVALIDATION } from '@/lib/constants/cache';
+import { createComplexityAwareFetch } from './complexityMonitor';
+
+const complexityAwareFetch = createComplexityAwareFetch();
 
 const endpoint = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -20,6 +23,7 @@ export const graphqlClient = new GraphQLClient(endpoint || 'https://placeholder.
   headers: {
     'Content-Type': 'application/json',
   },
+  fetch: complexityAwareFetch,
 });
 
 /**
@@ -55,6 +59,7 @@ export const getGraphQLClient = (
       revalidate: CACHE_REVALIDATION.DEFAULT,
       tags: tags || ['graphql'], // Default tag if none provided
     },
+    fetch: complexityAwareFetch,
   });
 };
 

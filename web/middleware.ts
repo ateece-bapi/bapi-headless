@@ -87,6 +87,13 @@ export default function middleware(request: NextRequest) {
   // RUNTIME DEBUG: Log incoming requests
   console.log('[MIDDLEWARE] Incoming request:', pathname);
 
+  // Exempt Blu-View banner ad pages from locale middleware.
+  // These are unlisted pages served directly to the Blu-View app by URL —
+  // the app expects a fixed path with no locale prefix.
+  if (pathname.startsWith('/blu-view-ad-')) {
+    return NextResponse.next();
+  }
+
   // Helper to strip locale prefix for accurate path matching.
   // Uses LOCALE_WITH_END_REGEX (not LOCALE_REGEX) to avoid incorrectly stripping
   // locale-like prefixes from non-locale paths (e.g., /english/page → glish/page).

@@ -8,6 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import * as Sentry from '@sentry/nextjs';
 import { getCurrentUser } from '@/lib/auth/server';
 import { verifyTwoFactorCode } from '@/lib/auth/two-factor';
 import logger from '@/lib/logger';
@@ -141,6 +142,14 @@ export async function POST(request: NextRequest) {
     }
 
     logger.info('2FA enabled successfully', { userId: user.id, email: user.email });
+
+    Sentry.captureEvent({
+      message: 'user.2fa.enabled',
+      level: 'info',
+      tags: { category: '2fa', action: 'enabled' },
+      user: { id: String(user.id), email: user.email },
+      extra: { userId: user.id },
+    });
 
     return NextResponse.json({
       success: true,

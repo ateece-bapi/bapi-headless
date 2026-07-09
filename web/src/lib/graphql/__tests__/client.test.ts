@@ -69,6 +69,12 @@ describe('GraphQL Client', () => {
       expect(options.headers).toBeDefined();
       expect(options.headers['Content-Type']).toBe('application/json');
     });
+
+    it('should pass a custom fetch function (complexity monitor) to the client', () => {
+      getGraphQLClient();
+      const options = MockedGraphQLClient.mock.calls[0][1];
+      expect(typeof options.fetch).toBe('function');
+    });
   });
 
   describe('Cache Tag System', () => {

@@ -2,7 +2,7 @@
  * GraphQL Query Complexity Monitoring
  *
  * Reads the `X-GraphQL-Complexity` response header set by WPGraphQL Smart Cache
- * and alerts via Sentry when complexity exceeds 80% of the configured WordPress limit.
+ * and alerts via Sentry when complexity exceeds 75% of the configured WordPress limit.
  *
  * WordPress limits (set in WPGraphQL settings):
  *   - Max depth: 20
@@ -18,8 +18,15 @@ import logger from '@/lib/logger';
 
 const COMPLEXITY_HEADER = 'x-graphql-complexity';
 
-/** Alert when query complexity reaches this fraction of the WordPress max (2000) */
+/** Alert when query complexity reaches or exceeds this absolute value (75% of the WordPress max of 2000) */
 const COMPLEXITY_ALERT_THRESHOLD = 1500;
+
+/** Normalise the three valid `fetch` input types to a plain string URL for logging */
+function inputToUrl(input: Parameters<typeof fetch>[0]): string {
+  if (typeof input === 'string') return input;
+  if (input instanceof URL) return input.toString();
+  return (input as Request).url;
+}
 
 /**
  * Creates a fetch wrapper that reads `X-GraphQL-Complexity` from every GraphQL
@@ -48,9 +55,7 @@ export function createComplexityAwareFetch(): typeof fetch {
       // Network-level failure — could be a timeout or DNS issue.
       Sentry.captureException(error, {
         tags: { type: 'graphql_network_error' },
-        extra: {
-          url: typeof input === 'string' ? input : (input as Request).url,
-        },
+        extra: { url: inputToUrl(input) },
       });
       throw error;
     }
@@ -63,8 +68,7 @@ export function createComplexityAwareFetch(): typeof fetch {
         logger.info('GraphQL query complexity', { complexity });
 
         if (complexity >= COMPLEXITY_ALERT_THRESHOLD) {
-          const url =
-            typeof input === 'string' ? input : (input as Request).url;
+          const url = inputToUrl(input);
 
           logger.warn('GraphQL complexity threshold exceeded', {
             complexity,
@@ -72,18 +76,17 @@ export function createComplexityAwareFetch(): typeof fetch {
             url,
           });
 
-          Sentry.captureMessage(
-            `GraphQL complexity alert: ${complexity} (threshold: ${COMPLEXITY_ALERT_THRESHOLD})`,
-            {
-              level: 'warning',
-              tags: { type: 'graphql_complexity' },
-              extra: {
-                complexity,
-                threshold: COMPLEXITY_ALERT_THRESHOLD,
-                url,
-              },
-            }
-          );
+          // Use a stable message so all high-complexity alerts group into a
+          // single Sentry issue. Exact values go into `extra` for triage.
+          Sentry.captureMessage('GraphQL complexity threshold exceeded', {
+            level: 'warning',
+            tags: { type: 'graphql_complexity' },
+            extra: {
+              complexity,
+              threshold: COMPLEXITY_ALERT_THRESHOLD,
+              url,
+            },
+          });
         }
       }
     }

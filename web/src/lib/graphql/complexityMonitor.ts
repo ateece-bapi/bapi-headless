@@ -21,11 +21,26 @@ const COMPLEXITY_HEADER = 'x-graphql-complexity';
 /** Alert when query complexity reaches or exceeds this absolute value (75% of the WordPress max of 2000) */
 const COMPLEXITY_ALERT_THRESHOLD = 1500;
 
-/** Normalise the three valid `fetch` input types to a plain string URL for logging */
+/**
+ * Normalise the three valid `fetch` input types to a plain string URL for logging.
+ *
+ * Query params are stripped before logging/capturing to avoid leaking GraphQL
+ * query text or user-supplied variables that graphql-request encodes into the
+ * URL when using GET requests.
+ */
 function inputToUrl(input: Parameters<typeof fetch>[0]): string {
-  if (typeof input === 'string') return input;
-  if (input instanceof URL) return input.toString();
-  return (input as Request).url;
+  let raw: string;
+  if (typeof input === 'string') raw = input;
+  else if (input instanceof URL) raw = input.toString();
+  else raw = (input as Request).url;
+
+  try {
+    const parsed = new URL(raw);
+    return `${parsed.origin}${parsed.pathname}`;
+  } catch {
+    // Fallback for relative URLs or unparseable strings
+    return raw.split('?')[0];
+  }
 }
 
 /**

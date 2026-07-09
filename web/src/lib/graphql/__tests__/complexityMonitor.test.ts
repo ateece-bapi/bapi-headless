@@ -44,6 +44,7 @@ describe('createComplexityAwareFetch', () => {
   let monitoredFetch: ReturnType<typeof createComplexityAwareFetch>;
 
   beforeEach(() => {
+    vi.unstubAllGlobals(); // ensure no fetch stub leaks from a previously-failed test
     vi.clearAllMocks();
     monitoredFetch = createComplexityAwareFetch();
   });
@@ -126,12 +127,13 @@ describe('createComplexityAwareFetch', () => {
 
   // ── URL normalisation ─────────────────────────────────────────────────────
 
-  it('extracts the URL string from a string input', async () => {
+  it('strips query params from string input URLs before logging', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(makeResponse('1600')));
-    await monitoredFetch('https://example.com/graphql?q=1');
+    await monitoredFetch('https://example.com/graphql?query=foo&variables=%7B%7D');
 
     const [, opts] = (Sentry.captureMessage as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(opts.extra.url).toBe('https://example.com/graphql?q=1');
+    // Query params (which may contain GraphQL query text) must not be logged
+    expect(opts.extra.url).toBe('https://example.com/graphql');
     vi.unstubAllGlobals();
   });
 

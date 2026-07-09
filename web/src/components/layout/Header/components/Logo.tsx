@@ -7,7 +7,7 @@ const Logo: React.FC = () => (
   <Link
     href="/"
     className="flex-shrink-0 rounded-lg transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-    aria-label="BAPI Home - Sensor Solutions Since 1993"
+    aria-label="BAPI Home - Building Automation Products Inc."
   >
     <Image
       src={HEADER_CONFIG.logo.src}

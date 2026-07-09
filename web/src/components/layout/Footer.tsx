@@ -98,8 +98,8 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-4 lg:col-span-2">
             <Link href="/" className="mb-2 inline-block">
               <Image
-                src="/images/logos/bapi_logo_Sensor Solutions_1993.webp"
-                alt="BAPI - Sensor Solutions Since 1993"
+                src="/images/logos/bapi_logo_plain_Web_Digital-01.png"
+                alt="BAPI - Building Automation Products Inc."
                 width={200}
                 height={140}
                 className="h-14 w-auto transition-opacity hover:opacity-80 lg:h-16"

@@ -25,21 +25,38 @@ import { test, expect } from '@playwright/test';
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:3000';
 
 /**
- * Asserts that `source` redirects to `expectedDestination`.
- * Follows at most one redirect so we can inspect the final URL.
+ * Asserts that `source` returns a 3xx redirect with a `Location` header that
+ * exactly matches `expectedDestination` (path only, trailing slash normalised).
+ *
+ * Does NOT follow the redirect so the raw HTTP response is inspected directly.
+ * Using an exact pathname match prevents false passes like `/en/contact` being
+ * found inside `/en/contact-sales`.
  */
 async function assertRedirects(
   request: import('@playwright/test').APIRequestContext,
   source: string,
   expectedDestination: string,
 ): Promise<void> {
-  const url = `${BASE_URL}${source}`;
-  const response = await request.get(url, { maxRedirects: 1 });
-  // The response URL after following the single redirect should match.
+  const response = await request.get(`${BASE_URL}${source}`, {
+    maxRedirects: 0,
+    // Playwright throws on non-2xx by default when maxRedirects=0 — suppress.
+    failOnStatusCode: false,
+  });
+
+  const status = response.status();
+  expect(status, `Expected ${source} to return a 3xx redirect`).toBeGreaterThanOrEqual(300);
+  expect(status, `Expected ${source} to return a 3xx redirect`).toBeLessThan(400);
+
+  const location = response.headers()['location'] ?? '';
+  // Normalise: strip the origin (Location may be absolute or relative) and
+  // any trailing slash so both forms compare equal.
+  const normalize = (url: string) =>
+    url.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '') || '/';
+
   expect(
-    response.url(),
-    `Expected ${source} to redirect to ${expectedDestination}`,
-  ).toContain(expectedDestination);
+    normalize(location),
+    `Expected ${source} to redirect to ${expectedDestination}, got Location: ${location}`,
+  ).toBe(normalize(expectedDestination));
 }
 
 // ---------------------------------------------------------------------------

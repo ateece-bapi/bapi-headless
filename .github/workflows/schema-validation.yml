@@ -53,9 +53,6 @@ jobs:
           HUSKY: 0
         run: pnpm install --frozen-lockfile
 
-      - name: Install graphql-inspector CLI
-        run: pnpm add -g @graphql-inspector/cli
-
       # ── Step 1: Download the live schema from the WordPress staging endpoint ──
       - name: Download live schema from staging
         env:
@@ -67,8 +64,8 @@ jobs:
             exit 0
           fi
 
-          echo "Downloading schema from $WORDPRESS_GRAPHQL …"
-          npx graphql-inspector introspect "$WORDPRESS_GRAPHQL" \
+          echo "Downloading live schema from staging endpoint …"
+          pnpm dlx @graphql-inspector/cli introspect "$WORDPRESS_GRAPHQL" \
             --write /tmp/live-schema.graphql
 
           echo "Live schema written to /tmp/live-schema.graphql"
@@ -98,7 +95,7 @@ jobs:
         if: env.SKIP_DRIFT != 'true'
         run: |
           set +e
-          npx graphql-inspector diff \
+          pnpm dlx @graphql-inspector/cli diff \
             /tmp/committed-schema.graphql \
             /tmp/live-schema.graphql \
             --onlyFailOnBreakingChanges \

@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
   //   • Bare-source rule  (no locale prefix)  → always redirects to /en/…
   //   • Locale-source rule (/:locale/…)       → preserves the user's locale
   //   • Every rule pair uses the same locale regex:
-  //       /:locale(en|de|fr|es|ja|zh|vi|ar)
+  //       /:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)
   //   • permanent: true  = HTTP 308 (asset/SEO URLs that will never change)
   //   • permanent: false = HTTP 307 (functional redirects that may change)
   //
@@ -71,7 +71,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/:slug(contact|contact-us)',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/company/:slug(contact|contact-us)',
         destination: '/:locale/contact',
         permanent: true,
       },
@@ -87,7 +87,7 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/sign-up',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/sign-up',
         destination: '/:locale/sign-in',
         permanent: false,
       },
@@ -104,7 +104,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/:stub(technical-documentation|learning-center)',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/:stub(technical-documentation|learning-center)',
         destination: '/:locale/resources',
         permanent: true,
       },
@@ -116,7 +116,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/tools-guides',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/tools-guides',
         destination: '/:locale/resources/selector',
         permanent: true,
       },
@@ -128,7 +128,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/:stub(get-help|for-existing-customers)',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/:stub(get-help|for-existing-customers)',
         destination: '/:locale/support',
         permanent: true,
       },
@@ -140,7 +140,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/about-bapi',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/about-bapi',
         destination: '/:locale/company',
         permanent: true,
       },
@@ -152,7 +152,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/get-in-touch',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/get-in-touch',
         destination: '/:locale/contact',
         permanent: true,
       },
@@ -167,7 +167,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/resources/application-notes',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/resources/application-notes',
         destination: '/:locale/application-notes',
         permanent: true,
       },
@@ -182,7 +182,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/quote',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/quote',
         destination: '/:locale/request-quote',
         permanent: true,
       },
@@ -197,7 +197,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/categories',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/products/categories',
         destination: '/:locale/products',
         permanent: true,
       },
@@ -212,7 +212,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/support/contact',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/support/contact',
         destination: '/:locale/contact',
         permanent: true,
       },
@@ -227,7 +227,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/about',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/company/about',
         destination: '/:locale/company/why-bapi',
         permanent: true,
       },
@@ -242,7 +242,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/contact-sales',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/contact-sales',
         destination: '/:locale/contact',
         permanent: true,
       },
@@ -281,7 +281,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/:path*',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/:path*',
         headers: [
           {
             key: 'Cache-Control',

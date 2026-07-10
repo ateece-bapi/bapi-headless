@@ -1,18 +1,15 @@
 name: Lighthouse CI
 
-# TEMPORARILY DISABLED: Performance optimization during active development
-# Re-enable before Phase 1 launch (May 4, 2026)
-# on:
-#   pull_request:
-#     branches: [main]
-#     paths:
-#       - 'web/src/**'
-#       - 'web/public/**'
-#       - 'web/next.config.ts'
-#       - 'web/package.json'
-
 on:
-  workflow_dispatch: # Manual trigger only
+  pull_request:
+    branches: [main]
+    paths:
+      - 'web/src/**'
+      - 'web/public/**'
+      - 'web/next.config.ts'
+      - 'web/package.json'
+      - 'web/lighthouserc.json'
+  workflow_dispatch: # Manual trigger also available
 
 jobs:
   lighthouse:

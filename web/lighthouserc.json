@@ -53,7 +53,9 @@
         "uses-http2": "off",
         "redirects-http": "off",
         "is-on-https": "off",
-        "canonical": "off"
+        "canonical": "off",
+
+        "errors-in-console": ["warn", { "maxLength": 0 }]
       }
     },
     "upload": {

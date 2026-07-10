@@ -2,6 +2,7 @@
 
 > Modern headless WordPress/WooCommerce with Next.js frontend, showcasing professional building automation products with full e-commerce capabilities.
 
+[![web CI](https://github.com/ateece-bapi/bapi-headless/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ateece-bapi/bapi-headless/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.8.2-21759b?logo=wordpress)](https://wordpress.org/)

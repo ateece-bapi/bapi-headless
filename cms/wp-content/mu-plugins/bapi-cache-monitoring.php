@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BAPI Cache Monitoring
  * Description: Tracks WPGraphQL Smart Cache hit/miss metrics and exposes a REST endpoint for observability.
- *              Logs are written to WP_CONTENT_DIR/logs/cache-metrics.log (rotated daily).
+ *              Logs are written to WP_CONTENT_DIR/logs/cache-metrics-YYYY-MM-DD.log (daily rotation).
  *              Alert threshold: miss rate > 30% triggers an error_log entry for external log shippers.
  * Version: 1.0.0
  * Author: BAPI Development Team
@@ -32,7 +32,8 @@ function bapi_cache_log_file(): string {
     if ( ! is_dir( $dir ) ) {
         wp_mkdir_p( $dir );
         // Prevent direct web access to the log directory.
-        file_put_contents( $dir . '/.htaccess', "deny from all\n" );
+        // Includes both Apache 2.4 (Require) and 2.2 (Deny) directives for compatibility.
+        file_put_contents( $dir . '/.htaccess', "Require all denied\nDeny from all\n" );
     }
     return $dir . '/cache-metrics-' . gmdate( 'Y-m-d' ) . '.log';
 }

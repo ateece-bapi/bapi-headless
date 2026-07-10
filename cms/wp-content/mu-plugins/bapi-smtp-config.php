@@ -52,7 +52,7 @@ function bapi_smtp_is_configured(): bool {
 }
 
 if ( ! bapi_smtp_is_configured() ) {
-    // Log a notice in production so it shows up in Kinsta logs.
+    // Log a debug notice only when WP_DEBUG is enabled (staging/dev only).
     if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
         error_log( '[BAPI SMTP] SMTP not configured. Set BAPI_SMTP_* constants to enable transactional email.' );
     }

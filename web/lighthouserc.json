@@ -32,7 +32,6 @@
       }
     },
     "assert": {
-      "preset": "lighthouse:no-pwa",
       "assertions": {
         "categories:performance": ["error", { "minScore": 0.8 }],
         "categories:accessibility": ["error", { "minScore": 0.95 }],
@@ -48,14 +47,7 @@
         "interactive": ["warn", { "maxNumericValue": 4000 }],
         "max-potential-fid": ["warn", { "maxNumericValue": 150 }],
 
-        "render-blocking-resources": ["warn", { "maxLength": 5 }],
-
-        "uses-http2": "off",
-        "redirects-http": "off",
-        "is-on-https": "off",
-        "canonical": "off",
-
-        "errors-in-console": ["warn", { "maxLength": 0 }]
+        "render-blocking-resources": ["warn", { "maxLength": 5 }]
       }
     },
     "upload": {

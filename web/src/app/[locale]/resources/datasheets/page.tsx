@@ -19,6 +19,11 @@ interface WPMediaItem {
   date: string;
 }
 
+// This page reads `cookies()` to check the auth token for OEM document
+// filtering — that makes it dynamic by nature. Declaring it explicitly
+// prevents Next.js from attempting (and noisily failing) static generation.
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: Promise<{ locale: string }>;
 };
@@ -76,6 +81,13 @@ async function getUserCustomerGroups(): Promise<string[]> {
     // Default to 'end-user' if no valid groups
     return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
   } catch (error) {
+    // During static/build context Next.js throws DYNAMIC_SERVER_USAGE when
+    // cookies() is called. This is expected — treat it as a guest session
+    // rather than logging a noisy error that inflates Lighthouse error counts.
+    if ((error as { digest?: string })?.digest === 'DYNAMIC_SERVER_USAGE') {
+      logger.warn('Skipping customer-group lookup in static/build context');
+      return ['end-user'];
+    }
     logger.error('Failed to get user customer groups', error);
     return ['end-user']; // Fallback to guest
   }

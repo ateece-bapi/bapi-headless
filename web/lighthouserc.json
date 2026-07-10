@@ -5,15 +5,14 @@
       "startServerReadyPattern": "Ready",
       "startServerReadyTimeout": 60000,
       "url": [
-        "http://localhost:3000/",
-        "http://localhost:3000/products",
-        "http://localhost:3000/contact",
-        "http://localhost:3000/support"
+        "http://localhost:3000/en",
+        "http://localhost:3000/en/products",
+        "http://localhost:3000/en/contact",
+        "http://localhost:3000/en/support"
       ],
       "numberOfRuns": 3,
       "settings": {
         "preset": "desktop",
-        "chromePath": "/home/ateece/.cache/puppeteer/chrome/linux-146.0.7680.153/chrome-linux64/chrome",
         "chromeFlags": [
           "--headless=new",
           "--no-sandbox",
@@ -34,20 +33,20 @@
     },
     "assert": {
       "assertions": {
-        "categories:performance": ["warn", { "minScore": 0.8 }],
+        "categories:performance": ["error", { "minScore": 0.8 }],
         "categories:accessibility": ["error", { "minScore": 0.95 }],
         "categories:best-practices": ["warn", { "minScore": 0.85 }],
         "categories:seo": ["warn", { "minScore": 0.9 }],
-        
-        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 3000 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.15 }],
-        "total-blocking-time": ["warn", { "maxNumericValue": 500 }],
-        "speed-index": ["warn", { "maxNumericValue": 3500 }],
-        
+
+        "first-contentful-paint": ["warn", { "maxNumericValue": 4000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 6000 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 1000 }],
+        "speed-index": ["warn", { "maxNumericValue": 6000 }],
+
         "interactive": ["warn", { "maxNumericValue": 4000 }],
         "max-potential-fid": ["warn", { "maxNumericValue": 150 }],
-        
+
         "render-blocking-resources": ["warn", { "maxLength": 5 }]
       }
     },

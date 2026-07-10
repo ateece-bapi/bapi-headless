@@ -1,0 +1,153 @@
+name: GraphQL Schema Drift Detection
+
+# Compares the committed schema.json (web/schema.json) against the live
+# WordPress/WPGraphQL schema on every PR that touches GraphQL-related files.
+# Fails on breaking changes (removed types, removed fields, changed argument
+# types) so that frontend codegen stays in sync with the backend.
+#
+# To approve a known breaking change:
+#   1. Update web/schema.json via `pnpm run schema:download`
+#   2. Re-run `pnpm run codegen` and fix any TypeScript errors
+#   3. Commit both schema.json + generated.ts in the same PR
+#
+# Tools: @graphql-inspector/cli (schema diffing, industry-standard)
+# Docs:  https://the-guild.dev/graphql/inspector
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'web/schema.json'
+      - 'web/src/lib/graphql/**'
+      - 'web/codegen.ts'
+      - 'cms/wp-content/**/*.php'
+      - 'bapi-graphql-fixes.php'
+
+jobs:
+  schema-drift:
+    name: "GraphQL: schema drift check"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./web
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: './web/pnpm-lock.yaml'
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: pnpm install --frozen-lockfile
+
+      # ── Step 1: Download the live schema from the WordPress staging endpoint ──
+      - name: Download live schema from staging
+        env:
+          WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
+        run: |
+          if [ -z "$WORDPRESS_GRAPHQL" ]; then
+            echo "::warning::NEXT_PUBLIC_WORDPRESS_GRAPHQL secret is not set — skipping live schema download."
+            echo "SKIP_DRIFT=true" >> "$GITHUB_ENV"
+            exit 0
+          fi
+
+          echo "Downloading live schema from staging endpoint …"
+          pnpm dlx @graphql-inspector/cli introspect "$WORDPRESS_GRAPHQL" \
+            --write /tmp/live-schema.graphql
+
+          echo "Live schema written to /tmp/live-schema.graphql"
+          echo "SKIP_DRIFT=false" >> "$GITHUB_ENV"
+
+      # ── Step 2: Convert committed schema.json to SDL for comparison ──────────
+      - name: Convert committed schema.json to SDL
+        if: env.SKIP_DRIFT != 'true'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { buildClientSchema, printSchema } = require('graphql');
+            const introspection = JSON.parse(fs.readFileSync('schema.json', 'utf8'));
+            const data = introspection.__schema ? introspection : introspection.data;
+            const schema = buildClientSchema(data.__schema ? data : data.data);
+            fs.writeFileSync('/tmp/committed-schema.graphql', printSchema(schema));
+            console.log('Committed schema converted to SDL.');
+          "
+
+      # ── Step 3: Diff committed (old) vs. live (new) ──────────────────────────
+      # "old" = what's in the PR's schema.json
+      # "new" = what the live WordPress endpoint currently serves
+      #
+      # Breaking changes cause a hard failure. Non-breaking changes (new
+      # fields, new types) are surfaced as warnings only.
+      - name: Diff committed schema vs. live schema
+        if: env.SKIP_DRIFT != 'true'
+        run: |
+          set +e
+          pnpm dlx @graphql-inspector/cli diff \
+            /tmp/committed-schema.graphql \
+            /tmp/live-schema.graphql \
+            --onlyFailOnBreakingChanges \
+            --format=github \
+            2>&1 | tee /tmp/schema-diff.txt
+          DIFF_EXIT=$?
+          set -e
+
+          echo ""
+          echo "──────────────────────────────────────────────────"
+          if [ $DIFF_EXIT -ne 0 ]; then
+            echo "❌ Breaking schema changes detected."
+            echo ""
+            echo "The live WordPress GraphQL schema has changes that are"
+            echo "INCOMPATIBLE with the committed web/schema.json."
+            echo ""
+            echo "To resolve:"
+            echo "  1. Run: pnpm run schema:download  (updates web/schema.json)"
+            echo "  2. Run: pnpm run codegen           (regenerates types)"
+            echo "  3. Fix any TypeScript errors introduced"
+            echo "  4. Commit web/schema.json + web/src/lib/graphql/generated.ts"
+            echo "──────────────────────────────────────────────────"
+            exit 1
+          else
+            echo "✅ No breaking schema changes."
+            echo "──────────────────────────────────────────────────"
+          fi
+
+      # ── Step 4: Upload diff as artifact for review ────────────────────────────
+      - name: Upload schema diff
+        if: always() && env.SKIP_DRIFT != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: graphql-schema-diff
+          path: /tmp/schema-diff.txt
+          retention-days: 30
+
+      # ── Step 5: Codegen health check ─────────────────────────────────────────
+      # Verify that the committed schema.json + .graphql queries produce
+      # valid TypeScript without errors.  Catches drift in the generated
+      # types file even when the live endpoint is unavailable.
+      - name: Verify codegen produces valid output
+        run: |
+          echo "Running codegen against committed schema.json …"
+          pnpm run codegen
+          echo "Checking for uncommitted changes in generated.ts …"
+          if git diff --name-only | grep -q 'src/lib/graphql/generated.ts'; then
+            echo "::error::web/src/lib/graphql/generated.ts is out of date."
+            echo "Run 'pnpm run codegen' and commit the result."
+            git diff src/lib/graphql/generated.ts
+            exit 1
+          fi
+          echo "✅ generated.ts is up to date."
+        env:
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}

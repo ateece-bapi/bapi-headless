@@ -285,8 +285,7 @@ ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
 
 ## Test Credentials
 
-**Password:** Retrieve from secure storage (not committed to repo)
-# For test credentials, contact the BAPI dev team via email
+**Password:** Retrieve from secure storage (not committed to repo). Contact the BAPI dev team via email to request access.
 
 | Email | Customer Group | Description |
 |-------|----------------|-------------|

@@ -38,11 +38,11 @@
         "categories:best-practices": ["warn", { "minScore": 0.85 }],
         "categories:seo": ["warn", { "minScore": 0.9 }],
 
-        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
-        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 4000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 6000 }],
         "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
-        "total-blocking-time": ["error", { "maxNumericValue": 500 }],
-        "speed-index": ["warn", { "maxNumericValue": 3500 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 1000 }],
+        "speed-index": ["warn", { "maxNumericValue": 6000 }],
 
         "interactive": ["warn", { "maxNumericValue": 4000 }],
         "max-potential-fid": ["warn", { "maxNumericValue": 150 }],

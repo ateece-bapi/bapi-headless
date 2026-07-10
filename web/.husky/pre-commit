@@ -1,4 +1,22 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Block commits that contain secrets (AWS keys, Stripe tokens, API keys, etc.)
+# Uses secretlint with @secretlint/secretlint-rule-preset-recommend
+echo "🔍 Scanning staged files for secrets..."
+# Use -z / xargs -0 so filenames with spaces are handled correctly.
+# The --name-only check uses a separate newline pass to detect whether any files are staged.
+if git diff --cached --name-only --diff-filter=ACM | grep -q .; then
+  git diff --cached --name-only -z --diff-filter=ACM \
+    | xargs -0 npx --no-install secretlint --secretlintrc .secretlintrc.json
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Commit blocked: potential secrets detected in staged files."
+    echo "   Review the output above, remove the secrets, and try again."
+    echo "   If this is a false positive, use 'git commit --no-verify' (use sparingly)."
+    exit 1
+  fi
+fi
+echo "✅ No secrets detected."
+
 npx --no-install lint-staged

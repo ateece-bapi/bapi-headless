@@ -10,6 +10,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import * as Sentry from '@sentry/nextjs';
 import { POST as setupPOST } from '../setup/route';
 import { POST as verifySetupPOST } from '../verify-setup/route';
 import { POST as verifyLoginPOST } from '../verify-login/route';
@@ -22,6 +23,11 @@ import type { NextRequest } from 'next/server';
 // Mock auth module at module level
 vi.mock('@/lib/auth/server', () => ({
   getCurrentUser: vi.fn(),
+}));
+
+// Mock Sentry so analytics events are captured without real SDK calls
+vi.mock('@sentry/nextjs', () => ({
+  captureEvent: vi.fn(),
 }));
 
 // Mock next/headers at module level
@@ -288,6 +294,15 @@ describe.skip('2FA API Routes - Integration Tests', () => {
 
       expect(verifyResponse.status).toBe(200);
       expect(verifyData.success).toBe(true);
+
+      // Sentry analytics event must be emitted with correct shape
+      expect(Sentry.captureEvent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: 'user.2fa.enabled',
+          level: 'info',
+          tags: expect.objectContaining({ category: '2fa', action: 'enabled' }),
+        })
+      );
     });
 
     it('rejects invalid code format', async () => {
@@ -498,6 +513,15 @@ describe.skip('2FA API Routes - Integration Tests', () => {
 
       expect(response.status).toBe(200);
       expect(data.success).toBe(true);
+
+      // Sentry analytics event must be emitted with correct shape
+      expect(Sentry.captureEvent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: 'user.2fa.disabled',
+          level: 'info',
+          tags: expect.objectContaining({ category: '2fa', action: 'disabled' }),
+        })
+      );
     });
 
     it('rejects invalid password', async () => {

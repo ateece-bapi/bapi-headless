@@ -231,6 +231,13 @@ add_action('graphql_register_types', function() {
             // Store enabled status
             if (isset($input['enabled'])) {
                 update_user_meta($user_id, 'two_factor_enabled', (bool) $input['enabled']);
+
+                // Record timestamp when 2FA is enabled (used by bapi-2fa-analytics.php for 30-day trend).
+                if ($input['enabled']) {
+                    update_user_meta($user_id, 'two_factor_enabled_at', current_time('mysql', true));
+                } else {
+                    delete_user_meta($user_id, 'two_factor_enabled_at');
+                }
                 
                 // Log 2FA status change
                 error_log(sprintf(

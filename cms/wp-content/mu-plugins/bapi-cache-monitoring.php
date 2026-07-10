@@ -59,7 +59,9 @@ function bapi_cache_log( string $event, array $extra = [] ): void {
 }
 
 /**
- * Atomically update the running in-memory counters stored in a transient.
+ * Update the running in-memory counters stored in a transient.
+ * Note: this is a read-modify-write and may lose increments under high concurrency.
+ * Counters are intentionally approximate — use them for trend monitoring, not exact auditing.
  *
  * @param string $key  'hits' | 'misses' | 'invalidations'
  */

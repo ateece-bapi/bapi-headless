@@ -82,13 +82,16 @@ add_action( 'phpmailer_init', function ( PHPMailer\PHPMailer\PHPMailer $phpmaile
         $phpmailer->SMTPAutoTLS = false;
     }
 
-    // Debug SMTP to error_log (staging only — never enable in production).
-    if ( bapi_smtp_env( 'BAPI_SMTP_DEBUG' ) === '1' ) {
+    // Debug SMTP to error_log — only when BOTH BAPI_SMTP_DEBUG=1 AND WP_DEBUG are set.
+    // Gating on WP_DEBUG prevents a misconfigured production env var from leaking
+    // SMTP session details (which may include credentials) into production logs.
+    if ( bapi_smtp_env( 'BAPI_SMTP_DEBUG' ) === '1' && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
         $phpmailer->SMTPDebug  = 2; // SMTP::DEBUG_SERVER
         $phpmailer->Debugoutput = 'error_log';
     }
 
-    // Override From headers only if the message has no explicit From set.
+    // Unconditionally override From headers whenever BAPI_SMTP_FROM_EMAIL is configured.
+    // This ensures all outbound mail uses the authorised sender address.
     $from_email = bapi_smtp_env( 'BAPI_SMTP_FROM_EMAIL' );
     $from_name  = bapi_smtp_env( 'BAPI_SMTP_FROM_NAME', get_bloginfo( 'name' ) );
 

@@ -51,7 +51,7 @@ function bapi_2fa_stats_permission( WP_REST_Request $request ): bool {
 function bapi_2fa_stats_endpoint(): WP_REST_Response {
     global $wpdb;
 
-    // Total non-spam, non-deleted users.
+    // Total registered users (all rows in wp_users — no spam/deleted filtering applied).
     $total_users = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->users}" );
 
     // Users with 2FA enabled.

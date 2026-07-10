@@ -13,8 +13,8 @@
  * the deploy artifact kept in sync manually. Always edit the root copy and SCP it to
  * Kinsta staging; never edit the CMS copy independently.
  *
- * KINSTA STAGING DEPLOY COMMAND:
- * scp -P 17338 bapi-graphql-fixes.php bapiheadlessstaging@35.224.70.159:/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/bapi-graphql-fixes.php
+ * KINSTA STAGING DEPLOY:
+ * See docs/WORDPRESS-BACKEND-SETUP.md for SSH credentials and the correct remote path.
  */
 
 if (!defined('ABSPATH')) {

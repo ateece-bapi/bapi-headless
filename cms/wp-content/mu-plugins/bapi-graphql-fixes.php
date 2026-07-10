@@ -12,6 +12,9 @@
  * source of truth. The CMS copy (cms/wp-content/mu-plugins/bapi-graphql-fixes.php) is
  * the deploy artifact kept in sync manually. Always edit the root copy and SCP it to
  * Kinsta staging; never edit the CMS copy independently.
+ *
+ * KINSTA STAGING DEPLOY COMMAND:
+ * scp -P 17338 bapi-graphql-fixes.php bapiheadlessstaging@35.224.70.159:/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/bapi-graphql-fixes.php
  */
 
 if (!defined('ABSPATH')) {

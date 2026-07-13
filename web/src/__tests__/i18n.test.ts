@@ -7,7 +7,6 @@
  * If this test fails after adding or removing a locale, update:
  *   1. The expected count below
  *   2. The README "11 languages" reference
- *   3. docs/WEB_GRAPHQL_QUERY_GUIDE.md (if translation-related queries change)
  */
 
 import { describe, it, expect } from 'vitest';

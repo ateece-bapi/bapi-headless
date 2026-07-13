@@ -4,10 +4,11 @@ This document tracks the **complexity budget** for every GraphQL query and mutat
 the Next.js frontend. Review after adding new fields; re-measure quarterly via the WPGraphQL
 Introspection tool or a static analyzer.
 
-> **Complexity budget**: The production WPGraphQL instance enforces a hard limit of **1 000**
-> complexity units per request. Queries approaching or exceeding **500** are marked ⚠️ expensive
-> and must use GET-method caching + split-query patterns (see
-> [GRAPHQL_SETUP.md](../GRAPHQL_SETUP.md)).
+> **Complexity budget**: The production WPGraphQL instance enforces a hard limit of **2 000**
+> complexity units per request (configured in WPGraphQL settings; monitored via
+> `web/src/lib/graphql/complexityMonitor.ts`). Sentry alerts fire at **1 500** (75% of max).
+> Queries approaching or exceeding **1 000** are marked ⚠️ expensive and must use
+> GET-method caching + split-query patterns (see [GRAPHQL_SETUP.md](../GRAPHQL_SETUP.md)).
 > Note: GET-method caching applies to **queries only** — mutations always use POST and bypass CDN caching regardless of complexity.
 
 ---
@@ -18,9 +19,10 @@ Introspection tool or a static analyzer.
 |------|-------|-------|-------------------|
 | Cheap | 0 – 100 | ✅ cheap | None |
 | Moderate | 101 – 300 | 🟡 moderate | Cache tags required |
-| Heavy | 301 – 500 | 🟠 heavy | Cache tags + GET method |
-| Expensive | 501 – 999 | ⚠️ expensive | Split query + deferred loading |
-| Over budget | ≥ 1 000 | 🚫 blocked | Refactor before shipping |
+| Heavy | 301 – 700 | 🟠 heavy | Cache tags + GET method |
+| Expensive | 701 – 1 499 | ⚠️ expensive | Split query + deferred loading |
+| Alert zone | 1 500 – 1 999 | 🔴 alert | Sentry fires; refactor immediately |
+| Over budget | ≥ 2 000 | 🚫 blocked | WPGraphQL rejects request |
 
 ---
 
@@ -209,8 +211,8 @@ Includes categories, featured image with mediaDetails. Cache tag: `['application
 
 ## Rules of Thumb
 
-1. **Never exceed 750 complexity** in a single query. Leave headroom for WPGraphQL's own
-   introspection overhead.
+1. **Never exceed 1 500 complexity** in a single query (the Sentry alert threshold — 75% of the
+   WPGraphQL max of 2 000). Leave headroom for introspection overhead.
 2. **Always pass cache tags** to `getGraphQLClient(tags)` for queries in the ✅/🟡/🟠 tiers.
 3. **Expensive queries (⚠️)** must use GET-method caching:
    ```ts
@@ -232,8 +234,9 @@ Enable query complexity logging in WPGraphQL (`wp-config.php`):
 define( 'GRAPHQL_DEBUG', true );
 ```
 
-Then inspect the `X-WPGraphQL-Query-Complexity` response header (or the `extensions.queryStats`
-JSON field) in GraphiQL or DevTools → Network.
+Then inspect the `X-GraphQL-Complexity` response header (lowercase `x-graphql-complexity` in
+DevTools → Network) or the `extensions.queryStats` JSON field in GraphiQL.
+This matches the header constant in `web/src/lib/graphql/complexityMonitor.ts`.
 
 Alternatively, use the [graphql-query-complexity](https://github.com/slicknode/graphql-query-complexity)
 npm package as a pre-flight check in CI.

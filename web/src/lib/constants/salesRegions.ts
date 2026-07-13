@@ -12,19 +12,19 @@
  * Regions:
  *  1  – North America          (Matt Holder)
  *  2  – South America          (John Shields)
- *  3  – Northern Europe        (John Shields)
+ *  3  – Scandinavia & Baltic   (John Shields)
  *  4  – Western Europe         (Mike Moss)
- *  5  – Eastern Europe         (Mike Moss)
- *  6  – Southern Europe/Turkey (Jan Zurawski)
+ *  5  – Central Europe         (Mike Moss)
+ *  6  – Eastern Europe/Balkans (Jan Zurawski)
  *  7  – West & Central Africa  (John Shields)
  *  8  – East & Southern Africa (John Shields)
- *  9  – Middle East & N. Africa(Murtaza Kalabhai)
+ *  9  – Middle East & Turkey   (Murtaza Kalabhai)
  * 10  – South Asia             (Murtaza Kalabhai)
  * 11  – China & Mongolia       (Tim Wilder)
  * 12  – East Asia              (Tim Wilder)
  * 13  – Southeast Asia         (Tim Wilder)
  * 14  – Australia & Pacific    (Andy Brooks)
- * 15  – Russia & Central Asia  (John Shields)
+ * 15  – Russia & Kazakhstan    (John Shields)
  */
 
 export interface SalesRep {
@@ -129,7 +129,7 @@ export const SALES_REGIONS: SalesRegion[] = [
     id: 7,
     name: 'West & Central Africa',
     repId: 'john-shields',
-    description: 'West Africa, Central Africa & North Africa',
+    description: 'West & Central Africa (Morocco, Algeria, Libya & sub-Saharan west)',
   },
   {
     id: 8,
@@ -313,10 +313,10 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   'Burkina Faso': 7,
   'Cape Verde': 7,
   'São Tomé and Principe': 7,
+  Sudan: 7,
 
   // ── Region 8: East & Southern Africa ─────────────────────────────────────
   'Dem. Rep. Congo': 8,
-  Sudan: 7,
   'S. Sudan': 8,
   Ethiopia: 8,
   Eritrea: 8,
@@ -427,6 +427,18 @@ export function getSalesRep(repId: string): SalesRep | undefined {
   return SALES_REPS.find((r) => r.id === repId);
 }
 
+/**
+ * Precomputed O(1) lookup maps — built once at module load so per-render calls
+ * in GlobalPresence (called for every geography on every hover) stay fast.
+ */
+const REGION_BY_ID = new Map<number, SalesRegion>(
+  SALES_REGIONS.map((r) => [r.id, r]),
+);
+
+const REP_BY_ID = new Map<string, SalesRep>(
+  SALES_REPS.map((r) => [r.id, r]),
+);
+
 /** Look up a SalesRegion and its SalesRep for a given Natural Earth country name. */
 export function getRegionForCountry(
   countryName: string,
@@ -434,10 +446,10 @@ export function getRegionForCountry(
   const regionId = COUNTRY_TO_REGION[countryName];
   if (!regionId) return null;
 
-  const region = SALES_REGIONS.find((r) => r.id === regionId);
+  const region = REGION_BY_ID.get(regionId);
   if (!region) return null;
 
-  const rep = getSalesRep(region.repId);
+  const rep = REP_BY_ID.get(region.repId);
   if (!rep) return null;
 
   return { region, rep };

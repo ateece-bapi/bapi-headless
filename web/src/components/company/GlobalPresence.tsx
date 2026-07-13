@@ -18,7 +18,7 @@ import type { Location, FacilityType } from '@/lib/constants/locations';
 import { getRegionForCountry } from '@/lib/constants/salesRegions';
 import type { SalesRep, SalesRegion } from '@/lib/constants/salesRegions';
 import { Building2Icon, MapPinIcon, UserIcon, MailIcon, PhoneIcon } from '@/lib/icons';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from '@/lib/navigation';
 
 // react-simple-maps Geography supports mouse events at runtime but its bundled
@@ -121,6 +121,13 @@ export function GlobalPresence({
   // country for ~220 ms, so moving quickly toward the popup doesn't change it.
   const popupDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Clear any pending timer on unmount to prevent state updates on dead components.
+  useEffect(() => {
+    return () => {
+      if (popupDebounceRef.current) clearTimeout(popupDebounceRef.current);
+    };
+  }, []);
+
   // Get active facility types for legend (only show types that exist in data)
   const activeFacilityTypes = getActiveFacilityTypes();
 
@@ -130,12 +137,19 @@ export function GlobalPresence({
     // Map highlight: immediate
     setActiveRegionId(info?.region.id ?? null);
 
-    // Popup: cancel any pending update, then schedule a new one
+    // Popup: if the country has no region (ocean, unmapped territory) clear
+    // immediately so the highlight and popup are never out of sync.
+    // Otherwise debounce so the card stays stable while the user moves to click it.
     if (popupDebounceRef.current) clearTimeout(popupDebounceRef.current);
-    popupDebounceRef.current = setTimeout(() => {
-      setPopupRegionInfo(info);
+    if (!info) {
+      setPopupRegionInfo(null);
       popupDebounceRef.current = null;
-    }, 220);
+    } else {
+      popupDebounceRef.current = setTimeout(() => {
+        setPopupRegionInfo(info);
+        popupDebounceRef.current = null;
+      }, 220);
+    }
   }
 
   function handleCountryLeave() {

@@ -22,3 +22,6 @@ web/test-output/
 
 # Temporary image assets (review if needed)
 web/2026-approved-images/
+
+# Internal/confidential PDFs — keep local only
+docs/*.pdf

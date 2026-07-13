@@ -18,7 +18,7 @@ describe('i18n locales', () => {
     expect(locales).toHaveLength(11);
   });
 
-  it('includes all Phase 1 languages', () => {
+  it('includes all Phase 1 + Hindi languages', () => {
     const expected = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'] as const;
     for (const lang of expected) {
       expect(locales).toContain(lang);

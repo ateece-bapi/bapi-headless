@@ -18,10 +18,8 @@ import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const STORIES_DIR = join(__dirname, '..', 'src', 'stories');
 
-/** Matches named exports: `export const Foo` or `export { Foo }` */
+/** Matches story exports: `export const Foo` (one per story variation) */
 const NAMED_EXPORT_RE = /^export\s+const\s+\w+/gm;
-/** Skip the default export (the meta object) */
-const DEFAULT_EXPORT_RE = /^export\s+default\s+/m;
 
 async function findStoryFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -39,10 +37,7 @@ async function findStoryFiles(dir) {
 
 async function countStories(filePath) {
   const src = await readFile(filePath, 'utf8');
-  const namedExports = [...src.matchAll(NAMED_EXPORT_RE)];
-  // Exclude the default export line and any re-exports that are not stories
-  const storyCount = namedExports.filter(([match]) => !DEFAULT_EXPORT_RE.test(match)).length;
-  return storyCount;
+  return [...src.matchAll(NAMED_EXPORT_RE)].length;
 }
 
 async function main() {

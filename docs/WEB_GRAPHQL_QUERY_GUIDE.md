@@ -8,6 +8,7 @@ Introspection tool or a static analyzer.
 > complexity units per request. Queries approaching or exceeding **500** are marked ⚠️ expensive
 > and must use GET-method caching + split-query patterns (see
 > [GRAPHQL_SETUP.md](../GRAPHQL_SETUP.md)).
+> Note: GET-method caching applies to **queries only** — mutations always use POST and bypass CDN caching regardless of complexity.
 
 ---
 

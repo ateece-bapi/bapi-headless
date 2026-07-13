@@ -34,6 +34,7 @@
     "optimize:families": "node scripts/optimize-images.mjs families",
     "audit:images": "node scripts/audit-images.mjs",
     "storybook": "storybook dev -p 6006",
+    "storybook:audit": "node scripts/storybook-audit.mjs",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --config-file chromatic.config.yml --exit-zero-on-changes",
     "lighthouse": "lhci autorun --config=lighthouserc.json",

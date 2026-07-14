@@ -6,6 +6,7 @@
 import { getGraphQLClient } from './graphql/client';
 import {
   GetPageBySlugDocument,
+  GetContactRepBioDocument,
   GetPagesDocument,
   GetPostsDocument,
   GetPostBySlugDocument,
@@ -21,6 +22,50 @@ export interface Page {
   date: string;
   modified: string;
   featuredImage?: string;
+}
+
+export interface ContactRepBio {
+  title: string;
+  bioParagraphs: string[];
+  wpFeaturedImage?: string;
+  modified: string;
+}
+
+/**
+ * Fetch bio content for a sales rep's individual contact page.
+ * Bio is stored in the ACF "Contact Rep Profile" field group (bio textarea).
+ * The WordPress slug follows the pattern "contact-{rep-slug}".
+ */
+export async function getContactRepBio(repSlug: string): Promise<ContactRepBio | null> {
+  const wpSlug = `contact-${repSlug}`;
+  try {
+    const client = getGraphQLClient(['contact-pages', `contact-${repSlug}`], true);
+    const data = await client.request(GetContactRepBioDocument, { slug: wpSlug });
+
+    if (!data?.page) {
+      return null;
+    }
+
+    const { title, modified, featuredImage } = data.page;
+    const rawBio: string = data.page.contactRepProfile?.bio ?? '';
+
+    // Split on double newlines (paragraph breaks) to produce discrete paragraphs.
+    // ACF Textarea "Automatically add paragraphs" setting inserts \n\n between blocks.
+    const bioParagraphs = rawBio
+      .split(/\n{2,}/)
+      .map((p) => p.replace(/\n/g, ' ').trim())
+      .filter((p) => p.length > 0);
+
+    return {
+      title: title || '',
+      bioParagraphs,
+      wpFeaturedImage: featuredImage?.node?.sourceUrl ?? undefined,
+      modified: modified || '',
+    };
+  } catch (error) {
+    logger.warn('Contact rep bio fetch failed', { repSlug, error });
+    return null;
+  }
 }
 
 export interface Post {

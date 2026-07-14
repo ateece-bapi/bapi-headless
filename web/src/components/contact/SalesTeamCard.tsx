@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { MailIcon, PhoneIcon, PlayIcon, XIcon, MapPinIcon, BriefcaseIcon } from '@/lib/icons';
+import Link from 'next/link';
+import { MailIcon, PhoneIcon, PlayIcon, XIcon, MapPinIcon, BriefcaseIcon, UserIcon } from '@/lib/icons';
 
 interface SalesTeamCardProps {
   name: string;
@@ -12,6 +13,7 @@ interface SalesTeamCardProps {
   phone: string;
   photo: string;
   video?: string; // Optional YouTube embed URL
+  profileHref?: string; // Optional link to individual contact page
 }
 
 /**
@@ -29,6 +31,7 @@ export default function SalesTeamCard({
   phone,
   photo,
   video,
+  profileHref,
 }: SalesTeamCardProps) {
   const [imageSrc, setImageSrc] = useState(photo);
   const [showVideoModal, setShowVideoModal] = useState(false);
@@ -118,13 +121,22 @@ export default function SalesTeamCard({
 
           {/* Contact Buttons */}
           <div className="flex gap-2">
+            {profileHref && (
+              <Link
+                href={profileHref}
+                className="flex flex-1 transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+              >
+                <UserIcon className="h-4 w-4" />
+                Contact
+              </Link>
+            )}
             <a
               href={`mailto:${email}`}
-              className="flex flex-1 transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+              className={`flex transform items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl ${profileHref ? 'h-11 w-12 border-2 border-primary-600 bg-white text-primary-700 hover:bg-primary-50' : 'flex-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800'}`}
               title={`Email ${name}`}
             >
               <MailIcon className="h-4 w-4" />
-              Email
+              {!profileHref && 'Email'}
             </a>
             <a
               href={`tel:${phone.replace(/[^0-9+]/g, '')}`}

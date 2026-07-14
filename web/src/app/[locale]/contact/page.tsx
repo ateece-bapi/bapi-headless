@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import {
   PhoneIcon,
   MailIcon,
@@ -15,212 +16,23 @@ import {
   HeadphonesIcon,
 } from '@/lib/icons';
 import SalesTeamCard from '@/components/contact/SalesTeamCard';
-
-// Sales team data - Photos go in /public/images/team/
-interface SalesRep {
-  name: string;
-  title: string;
-  region: string;
-  email: string;
-  phone: string;
-  photo: string;
-  video?: string;
-}
-
-// Organized by geographic regions
-const northAmericaTeam: SalesRep[] = [
-  {
-    name: 'Matt Holder',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'North America',
-    email: 'mholder@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/matt-holder.webp',
-  },
-  {
-    name: 'Steve Lindquist',
-    title: 'Key Account Specialist',
-    region: 'North America',
-    email: 'slindquist@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/steve-lindquist.webp',
-  },
-  {
-    name: 'Todd Vanden Heuvel',
-    title: 'Key Account Specialist',
-    region: 'North America',
-    email: 'tvandenheuvel@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/todd-vanden-heuvel.webp',
-  },
-  {
-    name: 'Mitchell Ogorman',
-    title: 'Key Account Specialist',
-    region: 'North America',
-    email: 'mogorman@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/mitchell-ogorman.webp',
-  },
-  {
-    name: 'Jennifer Sanford',
-    title: 'Key Account Specialist',
-    region: 'North America',
-    email: 'jsanford@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/jennifer-sanford.webp',
-  },
-  {
-    name: 'Jon Greenwald',
-    title: 'Distribution Accounts Leader',
-    region: 'North America',
-    email: 'jgreenwald@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/jon-greenwald.webp',
-    video: 'https://www.youtube.com/embed/iBeUe3OGrk4',
-  },
-  {
-    name: 'Brian Thaldorf',
-    title: 'Distribution Account Specialist',
-    region: 'North America',
-    email: 'bthaldorf@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/brian-thaldorf.webp',
-  },
-  {
-    name: 'Reggie Saucke',
-    title: 'HVAC Sensor Sales',
-    region: 'North America',
-    email: 'rsaucke@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/reggie-saucke.webp',
-  },
-  {
-    name: 'Jacob Benson',
-    title: 'HVAC Sensor Sales',
-    region: 'North America',
-    email: 'jbenson@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/jacob-benson.webp',
-  },
-];
-
-const ukTeam: SalesRep[] = [
-  {
-    name: 'Mike Moss',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'UK & Western Europe',
-    email: 'mmoss@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/mike-moss.webp',
-  },
-];
-
-const europeTeam: SalesRep[] = [
-  {
-    name: 'Jan Zurawski',
-    title: 'Regional Business Development & Operations Manager',
-    region: 'Central & Eastern Europe',
-    email: 'jzurawski@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/jan-zurawski.webp',
-    video: 'https://www.youtube.com/embed/O5jwFOFAO0A',
-  },
-];
-
-const middleEastTeam: SalesRep[] = [
-  {
-    name: 'Murtaza Kalabhai',
-    title: 'Regional Sales Manager',
-    region: 'Middle East & India',
-    email: 'mkalabhai@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/murtaza-kalabhai.webp',
-  },
-];
-
-const indiaTeam: SalesRep[] = [
-  {
-    name: 'Sharad Thakur',
-    title: 'North India Sales Manager',
-    region: 'India',
-    email: 'sharad@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/sharad-thakur.webp',
-  },
-  {
-    name: 'Shyam Krishnareddygari',
-    title: 'South India Sales Manager',
-    region: 'India',
-    email: 'shyam@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/shyam-krishnareddygari.webp',
-  },
-];
-
-const southAmericaTeam: SalesRep[] = [
-  {
-    name: 'John Shields',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'Africa, South America, Middle East, India, Scandinavia',
-    email: 'jshields@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/john-shields.webp',
-  },
-];
-
-const africaTeam: SalesRep[] = [
-  {
-    name: 'John Shields',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'Africa, South America, Middle East, India, Scandinavia',
-    email: 'jshields@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/john-shields.webp',
-  },
-];
-
-const asiaTeam: SalesRep[] = [
-  {
-    name: 'Tim Wilder',
-    title: 'Director of Research & Development',
-    region: 'Asia',
-    email: 'twilder@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/tim-wilder.webp',
-  },
-];
-
-const australiaTeam: SalesRep[] = [
-  {
-    name: 'Andy Brooks',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'Australia & New Zealand',
-    email: 'abrooks@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/andy-brooks.webp',
-  },
-];
-
-const technicalTeam: SalesRep[] = [
-  {
-    name: 'Jonathan Hillebrand',
-    title: 'Senior Product Manager',
-    region: 'Technical Support',
-    email: 'jhillebrand@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/jonathan-hillebrand.webp',
-  },
-  {
-    name: 'Don Clark',
-    title: 'RMA & Technical Service Manager',
-    region: 'Technical Support',
-    email: 'dclark@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/donald-clark.webp',
-  },
-];
+import {
+  northAmericaTeam,
+  ukTeam,
+  europeTeam,
+  middleEastTeam,
+  indiaTeam,
+  southAmericaTeam,
+  africaTeam,
+  asiaTeam,
+  australiaTeam,
+  technicalTeam,
+} from '@/lib/constants/team';
 
 export default function ContactPage() {
+  const params = useParams<{ locale: string }>();
+  const locale = params?.locale ?? 'en';
+
   // Mobile accordion state - tracks which sections are expanded
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set(['north-america']) // North America expanded by default
@@ -706,6 +518,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -744,6 +557,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -782,6 +596,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -820,6 +635,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -858,6 +674,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -896,6 +713,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -934,6 +752,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -972,6 +791,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -1010,6 +830,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>
@@ -1048,6 +869,7 @@ export default function ContactPage() {
                   phone={member.phone}
                   photo={member.photo}
                   video={member.video}
+                  profileHref={`/${locale}/contact/${member.slug}`}
                 />
               ))}
             </div>

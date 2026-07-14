@@ -1,3 +1,19 @@
+query GetContactRepBio($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    title
+    modified
+    contactRepProfile {
+      bio
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+}
+
 query GetPageBySlug($slug: ID!) {
   page(id: $slug, idType: URI) {
     id

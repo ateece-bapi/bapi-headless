@@ -1,6 +1,13 @@
 'use client';
 
-import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
+import {
+  ComposableMap,
+  Geographies,
+  Geography as _Geography,
+  Marker,
+  ZoomableGroup,
+} from 'react-simple-maps';
+import React from 'react';
 import {
   BAPI_LOCATIONS,
   FACILITY_TYPE_LABELS,
@@ -8,9 +15,21 @@ import {
   getActiveFacilityTypes,
 } from '@/lib/constants/locations';
 import type { Location, FacilityType } from '@/lib/constants/locations';
-import { Building2Icon, MapPinIcon } from '@/lib/icons';
-import { useState } from 'react';
+import { getRegionForCountry } from '@/lib/constants/salesRegions';
+import type { SalesRep, SalesRegion } from '@/lib/constants/salesRegions';
+import { Building2Icon, MapPinIcon, UserIcon, MailIcon, PhoneIcon } from '@/lib/icons';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from '@/lib/navigation';
+
+// react-simple-maps Geography supports mouse events at runtime but its bundled
+// type declarations omit them. Extend the component type so we can attach hover
+// handlers without suppressing all type-checking on this element.
+const Geography = _Geography as React.ComponentType<
+  React.ComponentProps<typeof _Geography> & {
+    onMouseEnter?: (event: React.MouseEvent<SVGPathElement>) => void;
+    onMouseLeave?: (event: React.MouseEvent<SVGPathElement>) => void;
+  }
+>;
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
@@ -89,8 +108,86 @@ export function GlobalPresence({
 }: GlobalPresenceProps = {}) {
   const [tooltip, setTooltip] = useState<{ location: Location; visible: boolean } | null>(null);
 
+  // Two separate states for map vs. popup so they can update at different rates:
+  // - activeRegionId  → immediate, drives map highlight color (feels responsive)
+  // - popupRegionInfo → debounced, drives the popup card (stays stable so user can click it)
+  const [activeRegionId, setActiveRegionId] = useState<number | null>(null);
+  const [popupRegionInfo, setPopupRegionInfo] = useState<{
+    region: SalesRegion;
+    rep: SalesRep;
+  } | null>(null);
+
+  // Debounce timer — popup content only updates after the cursor has rested on a
+  // country for ~220 ms, so moving quickly toward the popup doesn't change it.
+  const popupDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clear any pending timer on unmount to prevent state updates on dead components.
+  useEffect(() => {
+    return () => {
+      if (popupDebounceRef.current) clearTimeout(popupDebounceRef.current);
+    };
+  }, []);
+
   // Get active facility types for legend (only show types that exist in data)
   const activeFacilityTypes = getActiveFacilityTypes();
+
+  function handleCountryEnter(countryName: string) {
+    const info = getRegionForCountry(countryName);
+
+    // Map highlight: immediate
+    setActiveRegionId(info?.region.id ?? null);
+
+    // Popup: if the country has no region (ocean, unmapped territory) clear
+    // immediately so the highlight and popup are never out of sync.
+    // Otherwise debounce so the card stays stable while the user moves to click it.
+    if (popupDebounceRef.current) clearTimeout(popupDebounceRef.current);
+    if (!info) {
+      setPopupRegionInfo(null);
+      popupDebounceRef.current = null;
+    } else {
+      popupDebounceRef.current = setTimeout(() => {
+        setPopupRegionInfo(info);
+        popupDebounceRef.current = null;
+      }, 220);
+    }
+  }
+
+  function handleCountryLeave() {
+    // Container-level leave — clear everything immediately
+    if (popupDebounceRef.current) {
+      clearTimeout(popupDebounceRef.current);
+      popupDebounceRef.current = null;
+    }
+    setActiveRegionId(null);
+    setPopupRegionInfo(null);
+  }
+
+  function handlePopupMouseEnter() {
+    // Mouse is now on the popup card — cancel any pending debounced update so the
+    // content doesn't change while the user is trying to read or click it.
+    if (popupDebounceRef.current) {
+      clearTimeout(popupDebounceRef.current);
+      popupDebounceRef.current = null;
+    }
+  }
+
+  function getGeographyFill(countryName: string): string {
+    if (activeRegionId === null) return '#E5E7EB'; // neutral-200 default
+    const info = getRegionForCountry(countryName);
+    if (info && info.region.id === activeRegionId) {
+      return '#93C5FD'; // blue-300 – strong contrast highlight
+    }
+    return '#F3F4F6'; // neutral-100 – dimmed non-active countries
+  }
+
+  function getGeographyStroke(countryName: string): string {
+    if (activeRegionId === null) return '#D1D5DB';
+    const info = getRegionForCountry(countryName);
+    if (info && info.region.id === activeRegionId) {
+      return '#1e6fb9'; // primary-600 – highlighted border
+    }
+    return '#E5E7EB';
+  }
 
   return (
     <section className="bg-linear-to-b from-white to-neutral-50 py-16">
@@ -110,7 +207,8 @@ export function GlobalPresence({
         </div>
 
         {/* Interactive World Map */}
-        <div className="relative mb-12 rounded-2xl bg-white p-6 shadow-lg">
+        {/* onMouseLeave on the card (not per-country) so the panel stays reachable */}
+        <div className="relative mb-12 rounded-2xl bg-white p-6 shadow-lg" onMouseLeave={handleCountryLeave}>
           <div className="relative" style={{ height: '500px' }}>
             <ComposableMap
               projection="geoMercator"
@@ -124,20 +222,23 @@ export function GlobalPresence({
                 {/* World Geography Base Layer */}
                 <Geographies geography={geoUrl}>
                   {({ geographies }: { geographies: GeoFeature[] }) =>
-                    geographies.map((geo: GeoFeature) => (
-                      <Geography
-                        key={geo.rsmKey}
-                        geography={geo}
-                        fill="#E5E7EB" // neutral-200
-                        stroke="#D1D5DB" // neutral-300
-                       
-                        style={{
-                          default: { outline: 'none' },
-                          hover: { outline: 'none', fill: '#D1D5DB' },
-                          pressed: { outline: 'none' },
-                        }}
-                      />
-                    ))
+                    geographies.map((geo: GeoFeature) => {
+                      const countryName = geo.properties.name as string;
+                      return (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill={getGeographyFill(countryName)}
+                          stroke={getGeographyStroke(countryName)}
+                          onMouseEnter={() => handleCountryEnter(countryName)}
+                          style={{
+                            default: { outline: 'none' },
+                            hover: { outline: 'none' },
+                            pressed: { outline: 'none' },
+                          }}
+                        />
+                      );
+                    })
                   }
                 </Geographies>
 
@@ -179,7 +280,7 @@ export function GlobalPresence({
               </ZoomableGroup>
             </ComposableMap>
 
-            {/* Hover Tooltip */}
+            {/* Facility marker tooltip — top-center, pointer-events: none */}
             {tooltip?.visible &&
               (() => {
                 const translation = locationTranslations?.facilities[tooltip.location.id];
@@ -215,9 +316,88 @@ export function GlobalPresence({
                   </div>
                 );
               })()}
+
+            {/* Regional sales contact popup — bottom-right corner, anchored */}
+            {/* onMouseEnter cancels the debounce so content freezes the moment the */}
+            {/* user's cursor arrives — they can always click what they originally saw. */}
+            <div
+              onMouseEnter={handlePopupMouseEnter}
+              className={`absolute bottom-4 right-4 z-40 w-64 transition-all duration-200 ${
+                popupRegionInfo
+                  ? 'pointer-events-auto translate-y-0 opacity-100'
+                  : 'pointer-events-none translate-y-2 opacity-0'
+              }`}
+            >
+              {popupRegionInfo && (
+                <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white/95 shadow-xl backdrop-blur-sm">
+                  {/* Colored top bar */}
+                  <div className="h-1 w-full bg-primary-600" />
+                  <div className="p-4">
+                    <p className="mb-0.5 text-xs font-semibold uppercase tracking-wider text-primary-600">
+                      {popupRegionInfo.region.name}
+                    </p>
+                    <p className="mb-3 text-xs text-neutral-500">
+                      {popupRegionInfo.region.description}
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-100">
+                        <UserIcon className="h-5 w-5 text-primary-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold leading-tight text-neutral-900">
+                          {popupRegionInfo.rep.name}
+                        </p>
+                        <p className="text-xs leading-tight text-neutral-500">
+                          Regional Sales
+                        </p>
+                      </div>
+                    </div>
+                    {(popupRegionInfo.rep.email || popupRegionInfo.rep.phone) && (
+                      <div className="mt-3 space-y-1.5 border-t border-neutral-100 pt-3">
+                        {popupRegionInfo.rep.email && (
+                          <a
+                            href={`mailto:${popupRegionInfo.rep.email}`}
+                            className="flex items-center gap-2 text-xs text-neutral-600 hover:text-primary-600"
+                          >
+                            <MailIcon className="h-3.5 w-3.5 shrink-0" />
+                            <span className="truncate">{popupRegionInfo.rep.email}</span>
+                          </a>
+                        )}
+                        {popupRegionInfo.rep.phone && (
+                          <a
+                            href={`tel:${popupRegionInfo.rep.phone}`}
+                            className="flex items-center gap-2 text-xs text-neutral-600 hover:text-primary-600"
+                          >
+                            <PhoneIcon className="h-3.5 w-3.5 shrink-0" />
+                            {popupRegionInfo.rep.phone}
+                          </a>
+                        )}
+                      </div>
+                    )}
+                    <Link
+                      href="/contact"
+                      className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg bg-primary-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+                    >
+                      Contact {popupRegionInfo.rep.name.split(' ')[0]}
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Interaction hint — center-bottom, fades out when a region is active */}
+            <div
+              className={`pointer-events-none absolute bottom-3 left-1/2 z-30 -translate-x-1/2 transition-opacity duration-200 ${
+                popupRegionInfo ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
+              <span className="rounded-full bg-white/80 px-3 py-1 text-xs text-neutral-400 shadow backdrop-blur-sm">
+                Hover a country to find your regional contact
+              </span>
+            </div>
           </div>
 
-          {/* Map Legend - Only show active facility types */}
+          {/* Map Legend */}
           <div className="mt-6 border-t border-neutral-200 pt-6">
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {activeFacilityTypes.map((type) => {
@@ -249,6 +429,15 @@ export function GlobalPresence({
               })}
             </div>
           </div>
+
+          {/* Mobile fallback — touch devices can't hover */}
+          <p className="mt-4 text-center text-xs text-neutral-400 md:hidden">
+            Visit our{' '}
+            <Link href="/contact" className="text-primary-600 underline">
+              contact page
+            </Link>{' '}
+            to reach your regional sales rep.
+          </p>
         </div>
 
         {/* Location Cards Grid */}

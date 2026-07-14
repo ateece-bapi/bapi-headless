@@ -165,13 +165,28 @@ export default async function ContactRepPage({ params }: Props) {
             {/* Bio section — pulled from WordPress at build time */}
             {bio && bio.bioParagraphs.length > 0 && (
               <div className="mt-10 border-t border-neutral-100 pt-8">
-                <h2 className="mb-5 text-xl font-bold text-neutral-900">About {member.name}</h2>
+                {/* Section heading with BAPI accent bar */}
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="h-7 w-1 rounded-full bg-accent-500" />
+                  <h2 className="text-xl font-bold text-neutral-900">About {member.name}</h2>
+                </div>
+
                 <div className="space-y-4">
-                  {bio.bioParagraphs.map((paragraph, i) => (
-                    <p key={i} className="text-base leading-relaxed text-neutral-700">
-                      {paragraph}
-                    </p>
-                  ))}
+                  {bio.bioParagraphs.map((paragraph, i) =>
+                    i === 0 ? (
+                      /* Lead paragraph — slightly larger, primary colour, left-border accent */
+                      <p
+                        key={i}
+                        className="border-l-4 border-primary-200 pl-4 text-[1.05rem] font-medium leading-relaxed text-primary-800"
+                      >
+                        {paragraph}
+                      </p>
+                    ) : (
+                      <p key={i} className="text-base leading-relaxed text-neutral-600">
+                        {paragraph}
+                      </p>
+                    )
+                  )}
                 </div>
               </div>
             )}

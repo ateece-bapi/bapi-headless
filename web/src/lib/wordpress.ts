@@ -49,12 +49,29 @@ export async function getContactRepBio(repSlug: string): Promise<ContactRepBio |
     const { title, modified, featuredImage } = data.page;
     const rawBio: string = data.page.contactRepProfile?.bio ?? '';
 
-    // Split on double newlines (paragraph breaks) to produce discrete paragraphs.
-    // ACF Textarea "Automatically add paragraphs" setting inserts \n\n between blocks.
-    const bioParagraphs = rawBio
-      .split(/\n{2,}/)
-      .map((p) => p.replace(/\n/g, ' ').trim())
+    // Split on any newline(s) first. If a bio was entered without paragraph
+    // breaks (one big block), auto-group into ~3-sentence chunks for readability.
+    const rawParagraphs = rawBio
+      .split(/\n+/)
+      .map((p) => p.trim())
       .filter((p) => p.length > 0);
+
+    let bioParagraphs: string[];
+    if (rawParagraphs.length <= 1 && rawParagraphs[0]) {
+      // No newlines — split on sentence boundaries (period/!/? followed by a
+      // capital letter) then group every 3 sentences into a paragraph.
+      const sentences = rawParagraphs[0].split(/(?<=[.!?'"])\s+(?=[A-Z])/);
+      bioParagraphs = [];
+      for (let i = 0; i < sentences.length; i += 3) {
+        const chunk = sentences
+          .slice(i, i + 3)
+          .join(' ')
+          .trim();
+        if (chunk) bioParagraphs.push(chunk);
+      }
+    } else {
+      bioParagraphs = rawParagraphs;
+    }
 
     return {
       title: title || '',

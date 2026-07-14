@@ -375,7 +375,7 @@ export function GlobalPresence({
                       </div>
                     )}
                     <Link
-                      href="/contact"
+                      href={`/contact/${popupRegionInfo.rep.id}`}
                       className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg bg-primary-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                     >
                       Contact {popupRegionInfo.rep.name.split(' ')[0]}

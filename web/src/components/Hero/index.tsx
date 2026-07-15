@@ -29,8 +29,7 @@ import { HeroContent, HeroActions } from './components';
  */
 
 const heroImage = {
-  desktop: '/images/facilities/BAPI_Building_2026_2.webp',
-  mobile: '/images/facilities/BAPI_Building_2026_2.webp',
+  src: '/images/facilities/BAPI_Building_2026_2.webp',
   alt: 'BAPI headquarters — Building Automation Products Inc. facility',
 };
 
@@ -55,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
         {/* Desktop: Background image - Next.js Image for optimization */}
         <div className="absolute inset-0 hidden md:block">
           <Image
-            src={heroImage.desktop}
+            src={heroImage.src}
             alt={heroImage.alt}
             fill
             sizes="100vw"
@@ -86,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
 
           {/* Right column / stacked below xl - PRODUCT IMAGE SHOWCASE */}
           <div className="mt-12 hidden xl:mt-0 xl:block">
-            <div className="hero-image-container relative aspect-[768/495]">
+            <div className="hero-image-container relative aspect-[768/495] overflow-hidden rounded-2xl">
               <Image
                 src="/images/products/families/Full_Family_with_Pendant_2026.webp"
                 alt="BAPI 2026 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"

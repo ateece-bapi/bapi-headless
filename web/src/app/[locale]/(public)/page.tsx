@@ -304,7 +304,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 },
               ].map((facility) => (
                 <div
-                  key={facility.label}
+                  key={facility.src}
                   className="group relative h-48 overflow-hidden rounded-xl border-2 border-neutral-200 shadow-lg lg:h-64"
                 >
                   <Image

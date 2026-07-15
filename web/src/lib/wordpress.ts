@@ -49,9 +49,23 @@ export async function getContactRepBio(repSlug: string): Promise<ContactRepBio |
     const { title, modified, featuredImage } = data.page;
     const rawBio: string = data.page.contactRepProfile?.bio ?? '';
 
+    // Normalise raw ACF text: strip any HTML tags, decode common entities,
+    // and convert <br>/<p> variants to newlines before paragraph splitting.
+    const cleanBio = rawBio
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/p>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .trim();
+
     // Split on any newline(s) first. If a bio was entered without paragraph
     // breaks (one big block), auto-group into ~3-sentence chunks for readability.
-    const rawParagraphs = rawBio
+    const rawParagraphs = cleanBio
       .split(/\n+/)
       .map((p) => p.trim())
       .filter((p) => p.length > 0);

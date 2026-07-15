@@ -232,24 +232,23 @@ export const technicalTeam: TeamMember[] = [
   },
 ];
 
-/** All team members with a WordPress contact page — used for generateStaticParams */
-export const ALL_TEAM_MEMBERS: TeamMember[] = [
-  ...northAmericaTeam,
-  ...ukTeam,
-  ...europeTeam,
-  ...middleEastTeam,
-  ...indiaTeam,
-  // Deduplicate John Shields who appears in multiple regional groups
-  {
-    slug: 'john-shields',
-    name: 'John Shields',
-    title: 'Business Development & Regional Sales Manager',
-    region: 'Africa, South America, Middle East, India, Scandinavia',
-    email: 'jshields@bapihvac.com',
-    phone: '+1-800-553-3027',
-    photo: '/images/team/john-shields.webp',
-  },
-  ...asiaTeam,
-  ...australiaTeam,
-  ...technicalTeam,
-];
+/** All team members with a WordPress contact page — used for generateStaticParams.
+ * Built from all regional arrays and deduplicated by slug so adding a rep to any
+ * group is sufficient — no manual maintenance of this list required.
+ */
+export const ALL_TEAM_MEMBERS: TeamMember[] = Array.from(
+  new Map(
+    [
+      ...northAmericaTeam,
+      ...ukTeam,
+      ...europeTeam,
+      ...middleEastTeam,
+      ...indiaTeam,
+      ...southAmericaTeam,
+      ...africaTeam,
+      ...asiaTeam,
+      ...australiaTeam,
+      ...technicalTeam,
+    ].map((m) => [m.slug, m]),
+  ).values(),
+);

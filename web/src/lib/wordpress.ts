@@ -6,6 +6,7 @@
 import { getGraphQLClient } from './graphql/client';
 import {
   GetPageBySlugDocument,
+  GetContactRepBioDocument,
   GetPagesDocument,
   GetPostsDocument,
   GetPostBySlugDocument,
@@ -21,6 +22,81 @@ export interface Page {
   date: string;
   modified: string;
   featuredImage?: string;
+}
+
+export interface ContactRepBio {
+  title: string;
+  bioParagraphs: string[];
+  wpFeaturedImage?: string;
+  modified: string;
+}
+
+/**
+ * Fetch bio content for a sales rep's individual contact page.
+ * Bio is stored in the ACF "Contact Rep Profile" field group (bio textarea).
+ * The WordPress slug follows the pattern "contact-{rep-slug}".
+ */
+export async function getContactRepBio(repSlug: string): Promise<ContactRepBio | null> {
+  const wpSlug = `contact-${repSlug}`;
+  try {
+    const client = getGraphQLClient(['contact-pages', `contact-${repSlug}`], true);
+    const data = await client.request(GetContactRepBioDocument, { slug: wpSlug });
+
+    if (!data?.page) {
+      return null;
+    }
+
+    const { title, modified, featuredImage } = data.page;
+    const rawBio: string = data.page.contactRepProfile?.bio ?? '';
+
+    // Normalise raw ACF text: strip any HTML tags, decode common entities,
+    // and convert <br>/<p> variants to newlines before paragraph splitting.
+    const cleanBio = rawBio
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/p>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .trim();
+
+    // Split on any newline(s) first. If a bio was entered without paragraph
+    // breaks (one big block), auto-group into ~3-sentence chunks for readability.
+    const rawParagraphs = cleanBio
+      .split(/\n+/)
+      .map((p) => p.trim())
+      .filter((p) => p.length > 0);
+
+    let bioParagraphs: string[];
+    if (rawParagraphs.length <= 1 && rawParagraphs[0]) {
+      // No newlines — split on sentence boundaries (period/!/? followed by a
+      // capital letter) then group every 3 sentences into a paragraph.
+      const sentences = rawParagraphs[0].split(/(?<=[.!?'"])\s+(?=[A-Z])/);
+      bioParagraphs = [];
+      for (let i = 0; i < sentences.length; i += 3) {
+        const chunk = sentences
+          .slice(i, i + 3)
+          .join(' ')
+          .trim();
+        if (chunk) bioParagraphs.push(chunk);
+      }
+    } else {
+      bioParagraphs = rawParagraphs;
+    }
+
+    return {
+      title: title || '',
+      bioParagraphs,
+      wpFeaturedImage: featuredImage?.node?.sourceUrl ?? undefined,
+      modified: modified || '',
+    };
+  } catch (error) {
+    logger.warn('Contact rep bio fetch failed', { repSlug, error });
+    return null;
+  }
 }
 
 export interface Post {

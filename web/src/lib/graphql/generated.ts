@@ -62,6 +62,27 @@ export type AddCartItemsPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
+/** Input for the addFavorite mutation. */
+export type AddFavoriteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  productId: Scalars['String']['input'];
+  productImage?: InputMaybe<Scalars['String']['input']>;
+  productName: Scalars['String']['input'];
+  productPrice?: InputMaybe<Scalars['String']['input']>;
+  productSlug: Scalars['String']['input'];
+};
+
+/** The payload for the addFavorite mutation. */
+export type AddFavoritePayload = {
+  __typename?: 'AddFavoritePayload';
+  alreadyExists?: Maybe<Scalars['Boolean']['output']>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  favorite?: Maybe<BapiFavorite>;
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
 /** Input for the addFee mutation. */
 export type AddFeeInput = {
   /** Fee amount */
@@ -1475,6 +1496,25 @@ export type BapiCustomTemplateSettings_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+/** A BAPI saved product favorite */
+export type BapiFavorite = {
+  __typename?: 'BapiFavorite';
+  /** ISO 8601 creation timestamp */
+  createdAt?: Maybe<Scalars['String']['output']>;
+  /** Unique favorite ID */
+  id?: Maybe<Scalars['String']['output']>;
+  /** WordPress product database ID */
+  productId?: Maybe<Scalars['String']['output']>;
+  /** Product image URL */
+  productImage?: Maybe<Scalars['String']['output']>;
+  /** Product display name */
+  productName?: Maybe<Scalars['String']['output']>;
+  /** Product price string */
+  productPrice?: Maybe<Scalars['String']['output']>;
+  /** Product URL slug */
+  productSlug?: Maybe<Scalars['String']['output']>;
 };
 
 /** The cart object */
@@ -3065,6 +3105,29 @@ export type Connection = {
   nodes: Array<Node>;
   /** Information about pagination in a connection. */
   pageInfo: PageInfo;
+};
+
+/** The &quot;ContactRepProfile&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type ContactRepProfile = AcfFieldGroup & AcfFieldGroupFields & ContactRepProfile_Fields & {
+  __typename?: 'ContactRepProfile';
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ContactRepProfile&quot; Field Group */
+  bio?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+};
+
+/** Interface representing fields of the ACF &quot;ContactRepProfile&quot; Field Group */
+export type ContactRepProfile_Fields = {
+  /** Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;ContactRepProfile&quot; Field Group */
+  bio?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
 /** Base interface for content objects like posts, pages, and media items. Provides common fields available across these content types. */
@@ -19541,7 +19604,7 @@ export type PaWirelessApplicationToTaxonomyConnectionEdge = Edge & OneToOneConne
 };
 
 /** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
-export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPageOptions & {
+export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfContactRepProfile & WithAcfPageOptions & {
   __typename?: 'Page';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -19559,6 +19622,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   commentStatus?: Maybe<Scalars['String']['output']>;
   /** Connection between the Page type and the Comment type */
   comments?: Maybe<PageToCommentConnection>;
+  /** Fields of the ContactRepProfile ACF Field Group */
+  contactRepProfile?: Maybe<ContactRepProfile>;
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
@@ -27273,6 +27338,22 @@ export type RemoveCouponsPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
+/** Input for the removeFavorite mutation. */
+export type RemoveFavoriteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  productId: Scalars['String']['input'];
+};
+
+/** The payload for the removeFavorite mutation. */
+export type RemoveFavoritePayload = {
+  __typename?: 'RemoveFavoritePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  notFound?: Maybe<Scalars['Boolean']['output']>;
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
 /** Input for the removeItemsFromCart mutation. */
 export type RemoveItemsFromCartInput = {
   /** Remove all cart items */
@@ -27375,6 +27456,8 @@ export type RootMutation = {
   __typename?: 'RootMutation';
   /** The addCartItems mutation */
   addCartItems?: Maybe<AddCartItemsPayload>;
+  /** The addFavorite mutation */
+  addFavorite?: Maybe<AddFavoritePayload>;
   /** The addFee mutation */
   addFee?: Maybe<AddFeePayload>;
   /** The addToCart mutation */
@@ -27545,6 +27628,8 @@ export type RootMutation = {
   registerUser?: Maybe<RegisterUserPayload>;
   /** The removeCoupons mutation */
   removeCoupons?: Maybe<RemoveCouponsPayload>;
+  /** The removeFavorite mutation */
+  removeFavorite?: Maybe<RemoveFavoritePayload>;
   /** The removeItemsFromCart mutation */
   removeItemsFromCart?: Maybe<RemoveItemsFromCartPayload>;
   /** The resetUserPassword mutation */
@@ -27649,6 +27734,12 @@ export type RootMutation = {
 /** The root mutation */
 export type RootMutationAddCartItemsArgs = {
   input: AddCartItemsInput;
+};
+
+
+/** The root mutation */
+export type RootMutationAddFavoriteArgs = {
+  input: AddFavoriteInput;
 };
 
 
@@ -28163,6 +28254,12 @@ export type RootMutationRemoveCouponsArgs = {
 
 
 /** The root mutation */
+export type RootMutationRemoveFavoriteArgs = {
+  input: RemoveFavoriteInput;
+};
+
+
+/** The root mutation */
 export type RootMutationRemoveItemsFromCartArgs = {
   input: RemoveItemsFromCartInput;
 };
@@ -28585,6 +28682,8 @@ export type RootQuery = {
   menuItems?: Maybe<RootQueryToMenuItemConnection>;
   /** Connection between the RootQuery type and the Menu type */
   menus?: Maybe<RootQueryToMenuConnection>;
+  /** Get the current authenticated user&#039;s saved product favorites, sorted newest first. */
+  myFavorites?: Maybe<Array<Maybe<BapiFavorite>>>;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Fetches an object given its Unique Resource Identifier */
@@ -39354,6 +39453,12 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+/** Provides access to fields of the &quot;ContactRepProfile&quot; ACF Field Group via the &quot;contactRepProfile&quot; field */
+export type WithAcfContactRepProfile = {
+  /** Fields of the ContactRepProfile ACF Field Group */
+  contactRepProfile?: Maybe<ContactRepProfile>;
+};
+
 /** Provides access to fields of the &quot;CustomerInformation&quot; ACF Field Group via the &quot;customerInformation&quot; field */
 export type WithAcfCustomerInformation = {
   /** Fields of the CustomerInformation ACF Field Group */
@@ -39539,11 +39644,17 @@ export type ChatProductSearchQueryVariables = Exact<{
 
 
 export type ChatProductSearchQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
-      | { __typename?: 'ExternalProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'GroupProduct', price?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, price?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, sku?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+            | { __typename?: 'GlobalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
+            | { __typename?: 'LocalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
+          > } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+            | { __typename?: 'GlobalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
+            | { __typename?: 'LocalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
+          > } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
     > } | null | undefined };
 
 export type GetApplicationNotesQueryVariables = Exact<{
@@ -39710,6 +39821,13 @@ export type GetOrderByDatabaseIdQuery = { __typename?: 'RootQuery', order?: { __
             | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
             | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
            } | null | undefined, variation?: { __typename?: 'LineItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, sku?: string | null | undefined } } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', databaseId?: number | null | undefined, methodTitle?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, taxLines?: { __typename?: 'OrderToTaxLineConnection', nodes: Array<{ __typename?: 'TaxLine', label?: string | null | undefined, taxTotal?: string | null | undefined, shippingTaxTotal?: string | null | undefined, rateCode?: string | null | undefined }> } | null | undefined, feeLines?: { __typename?: 'OrderToFeeLineConnection', nodes: Array<{ __typename?: 'FeeLine', databaseId?: number | null | undefined, name?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, metaData?: Array<{ __typename?: 'MetaData', key: string, value?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+
+export type GetContactRepBioQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetContactRepBioQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null | undefined, modified?: string | null | undefined, contactRepProfile?: { __typename?: 'ContactRepProfile', bio?: string | null | undefined } | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined } | null | undefined };
 
 export type GetPageBySlugQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
@@ -40074,7 +40192,11 @@ export const ChatProductSearchDocument = gql`
       databaseId
       name
       slug
+      description
       shortDescription
+      ... on Product {
+        partNumber
+      }
       image {
         sourceUrl
         altText
@@ -40083,6 +40205,14 @@ export const ChatProductSearchDocument = gql`
         price
         regularPrice
         sku
+        stockStatus
+        attributes {
+          nodes {
+            name
+            label
+            options
+          }
+        }
         productCategories {
           nodes {
             name
@@ -40092,6 +40222,14 @@ export const ChatProductSearchDocument = gql`
       ... on VariableProduct {
         price
         regularPrice
+        stockStatus
+        attributes {
+          nodes {
+            name
+            label
+            options
+          }
+        }
         productCategories {
           nodes {
             name
@@ -41067,6 +41205,23 @@ export const GetOrderByDatabaseIdDocument = gql`
     metaData {
       key
       value
+    }
+  }
+}
+    `;
+export const GetContactRepBioDocument = gql`
+    query GetContactRepBio($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    title
+    modified
+    contactRepProfile {
+      bio
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
     }
   }
 }
@@ -42735,6 +42890,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetOrderByDatabaseId(variables: GetOrderByDatabaseIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetOrderByDatabaseIdQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetOrderByDatabaseIdQuery>({ document: GetOrderByDatabaseIdDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetOrderByDatabaseId', 'query', variables);
+    },
+    GetContactRepBio(variables: GetContactRepBioQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetContactRepBioQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetContactRepBioQuery>({ document: GetContactRepBioDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetContactRepBio', 'query', variables);
     },
     GetPageBySlug(variables: GetPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPageBySlugQuery>({ document: GetPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPageBySlug', 'query', variables);

@@ -600,7 +600,7 @@ body {
    * - Follows separation of concerns (styles in CSS, not JSX)
    */
   .hero-bg-image {
-    background-image: url('/images/bapi-facility-solar-optimized.webp');
+    background-image: url('/images/facilities/BAPI_Building_2026_2.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

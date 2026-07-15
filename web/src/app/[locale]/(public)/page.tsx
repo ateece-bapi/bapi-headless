@@ -279,16 +279,47 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 {t('whyBapi.description')}
               </p>
             </div>
-            {/* Facility Image */}
-            <div className="relative h-80 w-full overflow-hidden rounded-2xl border-2 border-neutral-200 shadow-xl lg:h-[450px]">
-              <Image
-                src="/images/bapi-facility-solar.webp"
-                alt="BAPI Manufacturing Facility with Solar Panels"
-                fill
-                className="object-cover object-center"
-                sizes="(min-width: 1024px) 1200px, 100vw"
-                priority
-              />
+            {/* Global Facilities Grid */}
+            <div className="grid grid-cols-2 gap-3 lg:gap-4">
+              {[
+                {
+                  src: '/images/facilities/BAPI_Building_2026_2.webp',
+                  alt: 'BAPI USA Headquarters — Building Automation Products Inc., Gays Mills, WI',
+                  label: '🇺🇸 USA',
+                },
+                {
+                  src: '/images/facilities/BAPI_UK_Building_2026.webp',
+                  alt: 'BAPI England Facility',
+                  label: '🇬🇧 England',
+                },
+                {
+                  src: '/images/facilities/BAPI_Poland_Building_1.webp',
+                  alt: 'BAPI Poland Facility',
+                  label: '🇵🇱 Poland',
+                },
+                {
+                  src: '/images/facilities/BAPI_Vietnam_2026.webp',
+                  alt: 'BAPI Vietnam Facility',
+                  label: '🇻🇳 Vietnam',
+                },
+              ].map((facility) => (
+                <div
+                  key={facility.src}
+                  className="group relative h-48 overflow-hidden rounded-xl border-2 border-neutral-200 shadow-lg lg:h-64"
+                >
+                  <Image
+                    src={facility.src}
+                    alt={facility.alt}
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 600px, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
+                  <span className="absolute bottom-3 left-3 text-sm font-bold text-white drop-shadow-md">
+                    {facility.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 

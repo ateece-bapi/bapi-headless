@@ -283,22 +283,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="grid grid-cols-2 gap-3 lg:gap-4">
               {[
                 {
-                  src: '/images/facilities/BAPI_Building_2026_2.png',
+                  src: '/images/facilities/BAPI_Building_2026_2.webp',
                   alt: 'BAPI USA Headquarters — Building Automation Products Inc., Gays Mills, WI',
                   label: '🇺🇸 USA',
                 },
                 {
-                  src: '/images/facilities/BAPI_UK_Building_2026.png',
+                  src: '/images/facilities/BAPI_UK_Building_2026.webp',
                   alt: 'BAPI England Facility',
                   label: '🇬🇧 England',
                 },
                 {
-                  src: '/images/facilities/BAPI_Poland_Building_1.png',
+                  src: '/images/facilities/BAPI_Poland_Building_1.webp',
                   alt: 'BAPI Poland Facility',
                   label: '🇵🇱 Poland',
                 },
                 {
-                  src: '/images/facilities/BAPI_Vietnam_2026.png',
+                  src: '/images/facilities/BAPI_Vietnam_2026.webp',
                   alt: 'BAPI Vietnam Facility',
                   label: '🇻🇳 Vietnam',
                 },

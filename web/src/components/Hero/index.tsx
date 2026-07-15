@@ -29,8 +29,8 @@ import { HeroContent, HeroActions } from './components';
  */
 
 const heroImage = {
-  desktop: '/images/facilities/BAPI_Building_2026_2.png',
-  mobile: '/images/facilities/BAPI_Building_2026_2.png',
+  desktop: '/images/facilities/BAPI_Building_2026_2.webp',
+  mobile: '/images/facilities/BAPI_Building_2026_2.webp',
   alt: 'BAPI headquarters — Building Automation Products Inc. facility',
 };
 

@@ -401,11 +401,6 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               href: '/wireless-site-verification/',
               description: t('resources.toolsGuides.siteVerificationDesc'),
             },
-            {
-              label: t('resources.toolsGuides.productSelector'),
-              href: '/resources/selector',
-              description: t('resources.toolsGuides.productSelectorDesc'),
-            },
           ],
         },
       ],

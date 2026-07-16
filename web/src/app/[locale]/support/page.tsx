@@ -160,14 +160,6 @@ export default async function SupportPage() {
               <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
-                    href="/resources/selector"
-                    className="duration-normal text-primary-500 transition-colors hover:text-primary-600"
-                  >
-                    {t('resources.toolsUtilities.links.productSelector')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/resources/cross-reference"
                     className="duration-normal text-primary-500 transition-colors hover:text-primary-600"
                   >

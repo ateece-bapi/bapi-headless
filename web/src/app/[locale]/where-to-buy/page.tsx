@@ -810,7 +810,7 @@ export default function WhereToBuyPage() {
                           {distributor.phone && (
                             <a
                               href={`tel:${distributor.phone}`}
-                              className="flex transform items-center justify-center gap-2 rounded-lg border-2 border-accent-600 bg-accent-500 px-3 py-2 text-sm font-semibold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-xl"
+                              className={`flex transform items-center justify-center gap-2 rounded-lg border-2 border-accent-600 bg-accent-500 px-3 py-2 text-sm font-semibold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-xl${!distributor.email ? ' col-span-2' : ''}`}
                             >
                               <PhoneIcon className="h-4 w-4" />
                               Call

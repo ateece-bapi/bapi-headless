@@ -87,13 +87,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               {item.megaMenu && expandedIndex === index && (
                 <div className="space-y-4 rounded-lg border-l-4 border-primary-500 bg-primary-50/30 px-2 py-3">
                   {item.megaMenu.columns.map((column) => {
-                    const IconComponent = column.icon;
+                    const IconComponent = typeof column.icon === 'string' ? null : column.icon;
+                    const iconPath = typeof column.icon === 'string' ? column.icon : null;
                     return (
                       <div key={column.title} className="space-y-2">
                         <div className="flex items-center gap-2 border-b border-primary-200 px-3 pb-1.5">
-                          {IconComponent && (
+                          {(iconPath || IconComponent) && (
                             <div className="rounded bg-primary-100 p-1">
-                              <IconComponent className="h-3 w-3 text-primary-700" />
+                              {iconPath ? (
+                                <img src={iconPath} alt="" aria-hidden="true" className="h-3 w-3 object-contain" />
+                              ) : IconComponent ? (
+                                <IconComponent className="h-3 w-3 text-primary-700" />
+                              ) : null}
                             </div>
                           )}
                           <div className="text-xs font-black uppercase tracking-wider text-primary-800">
@@ -102,7 +107,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                         </div>
                         <ul className="space-y-1">
                           {column.links.map((link) => (
-                            <li key={link.href}>
+                            <li key={`${link.href}-${link.label}`}>
                               <Link
                                 href={link.href}
                                 onClick={onClose}

@@ -4069,7 +4069,9 @@
       "title": "Precyzyjne Sondy HVAC, Którym Możesz Zaufać.",
       "description": "Zestaw sond testowych spełniających wymagania dotyczące dokładności w systemach HVAC i chłodniczych. Bezproblemowa integracja z aplikacją Blu-View zapewnia precyzyjny pomiar i łatwe rejestrowanie danych.",
       "cta": "Poznaj Sondy",
-      "secondaryCta": "Pobierz Aplikację Blu-View"
+      "secondaryCta": "Pobierz Aplikację Blu-View",
+      "titleLine1": "Precision HVAC Probes",
+      "titleLine2": "You Can Trust."
     },
     "keyFeatures": {
       "precision": {

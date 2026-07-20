@@ -4114,9 +4114,11 @@
     },
     "hero": {
       "title": "Precision HVAC Probes You Can Trust.",
-      "description": "A suite of test probes for demanding accuracy requirements across HVAC and refrigeration systems. Seamlessly integrate with the Blu-View App for precise measurement and easy data logging.",
-      "cta": "Explore Probes",
-      "secondaryCta": "Download Blu-View App"
+      "titleLine1": "Precision HVAC Probes",
+      "titleLine2": "You Can Trust.",
+      "description": "A suite of test probes for temperature, humidity, dew point, differential pressure, and K-Factor. Built-in displays, data logging, and seamless Blü-View app integration.",
+      "cta": "Explore the Probes",
+      "secondaryCta": "Discover Blu-View App"
     },
     "keyFeatures": {
       "precision": {

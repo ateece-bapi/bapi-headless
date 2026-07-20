@@ -8,7 +8,6 @@ import {
   ChevronRightIcon,
   DownloadIcon,
   GaugeIcon,
-  HardDriveIcon,
   HumidityPercentageIcon,
   SettingsIcon,
   SmartphoneIcon,
@@ -127,62 +126,75 @@ export default async function BluTestPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section - Blue gradient with image bleeding below */}
-      <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+      {/* Hero Banner - Clean blue background, text only */}
+      <section className="bg-primary-700 py-10 md:py-14">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold leading-tight text-white lg:text-6xl xl:text-7xl">
+            {t('hero.titleLine1')}
+            <br />
+            <span className="text-accent-500">{t('hero.titleLine2')}</span>
+          </h1>
+        </div>
+      </section>
 
-        <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav
-            className="flex items-center gap-2 pt-8 text-sm text-primary-100 md:pt-10"
-            aria-label="Breadcrumb"
-          >
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('breadcrumb.home')}
-            </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <Link href="/products" className="transition-colors hover:text-white">
-              {t('breadcrumb.products')}
-            </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">{t('breadcrumb.bluTest')}</span>
-          </nav>
+      {/* Brand Intro - Blü-Test logo, description, CTAs, probe + app phone */}
+      <section className="bg-white py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left Column */}
+            <div className="flex flex-col">
+              {/* Blü-Test Brand Logo */}
+              <div className="mb-6">
+                <Image
+                  src="/images/blu-test/hero/Blu_Test_Web_Digital 2.png"
+                  alt="BAPI Blü-Test — Test Instrument Suite"
+                  width={320}
+                  height={160}
+                  className="object-contain object-left"
+                />
+              </div>
 
-          <div className="grid lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
-            {/* Left Column - Content */}
-            <div className="flex flex-col justify-center py-12 md:py-16 lg:py-20">
-              <h1 className="mb-5 text-4xl font-bold leading-tight text-accent-500 lg:text-5xl xl:mb-4 xl:text-6xl">
-                {t('hero.title')}
-              </h1>
-              <p className="mb-6 text-lg leading-relaxed text-white lg:text-xl xl:mb-5">
+              <p className="mb-8 text-lg leading-relaxed text-neutral-600">
                 {t('hero.description')}
               </p>
+
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="#blu-test-suite"
-                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                  style={{ color: '#08304B' }}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                 >
                   {t('hero.cta')}
+                  <ChevronRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+                  href="#blu-view-app"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-primary-600 px-8 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                 >
                   {t('hero.secondaryCta')}
                 </Link>
               </div>
+
+              {/* Probe image anchored to bottom-left */}
+              <div className="relative mt-8 h-[160px] lg:h-[200px]">
+                <Image
+                  src="/images/blu-test/hero/Blu-Test 8 inch temperature and humidity.png"
+                  alt="Blü-Test 8 inch Temperature and Humidity Probe"
+                  fill
+                  className="object-contain object-left-bottom"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
             </div>
 
-            {/* Right Column - Hero Image bleeding below hero */}
-            <div className="relative hidden lg:block">
-              <div className="absolute bottom-[-100px] left-0 right-0 top-4">
+            {/* Right Column - App Phone */}
+            <div className="flex items-center justify-center">
+              <div className="relative h-[560px] w-[300px] lg:h-[640px] lg:w-[340px]">
                 <Image
-                  src="/images/blu-test/hero/2021BluTestAngle_PLAIN.png"
-                  alt="Blu-Test Probe Collection"
+                  src="/images/blu-test/hero/mobile_app.png"
+                  alt="Blu-View App showing live probe data"
                   fill
-                  className="object-contain object-bottom"
-                  sizes="700px"
+                  className="object-contain"
+                  sizes="340px"
                   priority
                 />
               </div>
@@ -191,55 +203,50 @@ export default async function BluTestPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Key Features - 2 Column Layout with Product Image */}
-      <section className="relative z-10 bg-neutral-100 pb-16 pt-28 lg:pb-20 lg:pt-32">
+      {/* Key Features - 3 cards left, probe lineup right */}
+      <section className="bg-neutral-50 py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Left Column - Feature Cards */}
-            <div className="space-y-6">
-              {/* Precision Measurement */}
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary-600">
-                  <ThermometerIcon className="h-7 w-7 text-white" />
+            {/* Left - Feature Cards */}
+            <div className="flex flex-col gap-6">
+              {[
+                {
+                  icon: <ThermometerIcon className="h-6 w-6 text-white" />,
+                  title: t('keyFeatures.precision.title'),
+                  description: t('keyFeatures.precision.description'),
+                },
+                {
+                  icon: <DownloadIcon className="h-6 w-6 text-white" />,
+                  title: t('keyFeatures.dataLogging.title'),
+                  description: t('keyFeatures.dataLogging.description'),
+                },
+                {
+                  icon: <SmartphoneIcon className="h-6 w-6 text-white" />,
+                  title: t('keyFeatures.integration.title'),
+                  description: t('keyFeatures.integration.description'),
+                },
+              ].map((feature, i) => (
+                <div key={i} className="flex gap-5 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-primary-600">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-neutral-600">{feature.description}</p>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  {t('keyFeatures.precision.title')}
-                </h3>
-                <p className="text-neutral-600">{t('keyFeatures.precision.description')}</p>
-              </div>
-
-              {/* Onboard Data Logging */}
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary-600">
-                  <HardDriveIcon className="h-7 w-7 text-white" />
-                </div>
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  {t('keyFeatures.dataLogging.title')}
-                </h3>
-                <p className="text-neutral-600">{t('keyFeatures.dataLogging.description')}</p>
-              </div>
-
-              {/* Smart Device Integration */}
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary-600">
-                  <SmartphoneIcon className="h-7 w-7 text-white" />
-                </div>
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  {t('keyFeatures.integration.title')}
-                </h3>
-                <p className="text-neutral-600">{t('keyFeatures.integration.description')}</p>
-              </div>
+              ))}
             </div>
 
-            {/* Right Column - Phone showcasing the app */}
+            {/* Right - Probe Group Lineup */}
             <div className="flex items-center justify-center">
-              <div className="relative h-[560px] w-[300px] lg:h-[640px] lg:w-[340px]">
+              <div className="relative h-[420px] w-full max-w-[480px]">
                 <Image
-                  src="/images/blu-test/hero/Hero_mobilePhone.png"
-                  alt="Blu-View App showing live probe data"
+                  src="/images/blu-test/Blu-Test_2021_US 1.png"
+                  alt="Blü-Test probe lineup"
                   fill
-                  className="object-contain mix-blend-multiply"
-                  sizes="340px"
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 480px"
                 />
               </div>
             </div>

@@ -4143,17 +4143,6 @@
       "appStore": "Télécharger dans l'App Store",
       "exploreApp": "Explorer l'application"
     },
-      "feature2": {
-        "title": "Télécharger les Journaux",
-        "description": "Accédez aux journaux de mesure stockés dans la mémoire embarquée de l'appareil. Exportez les données pour l'analyse, les rapports et la documentation de conformité."
-      },
-      "feature3": {
-        "title": "Gestion des Appareils",
-        "description": "Gérez plusieurs sondes, vérifiez les niveaux de batterie, mettez à jour le micrologiciel et recevez des rappels d'étalonnage depuis un tableau de bord central."
-      },
-      "downloadApp": "Télécharger l'Application",
-      "learnMore": "En Savoir Plus"
-    },
     "testProbes": {
       "title": "La Suite Blü-Test",
       "subtitle": "Une famille complète de sondes intelligentes certifiées NIST. Toutes disposent d'un enregistreur de données embarqué, d'un écran LCD intégré sur la poignée et d'une connectivité Bluetooth transparente.",

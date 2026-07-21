@@ -4142,17 +4142,6 @@
       "appStore": "Pobierz z App Store",
       "exploreApp": "Odkryj aplikację"
     },
-      "feature2": {
-        "title": "Pobieranie Logów",
-        "description": "Uzyskaj dostęp do przechowywanych logów pomiarów z wbudowanej pamięci urządzenia. Eksportuj dane do analizy, raportowania i dokumentacji zgodności."
-      },
-      "feature3": {
-        "title": "Zarządzanie Urządzeniami",
-        "description": "Zarządzaj wieloma sondami, sprawdzaj poziomy baterii, aktualizuj oprogramowanie i otrzymuj przypomnienia o kalibracji z jednego centralnego pulpitu."
-      },
-      "downloadApp": "Pobierz Aplikację",
-      "learnMore": "Dowiedz Się Więcej"
-    },
     "testProbes": {
       "title": "Zestaw Blü-Test",
       "subtitle": "Kompleksowa rodzina inteligentnych, certyfikowanych przez NIST sond. Wszystkie wyposażone w wbudowany rejestrator danych, wyświetlacz LCD na uchwycie i bezproblemową łączność Bluetooth.",

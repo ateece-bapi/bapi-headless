@@ -4143,17 +4143,6 @@
       "appStore": "Im App Store laden",
       "exploreApp": "App erkunden"
     },
-      "feature2": {
-        "title": "Protokolle herunterladen",
-        "description": "Greifen Sie auf gespeicherte Messprotokolle aus dem integrierten Gerätespeicher zu. Exportieren Sie Daten für Analysen, Berichte und Konformitätsdokumentation."
-      },
-      "feature3": {
-        "title": "Geräteverwaltung",
-        "description": "Verwalten Sie mehrere Sonden, überprüfen Sie Batteriestände, aktualisieren Sie die Firmware und erhalten Sie Kalibrierungserinnerungen von einem zentralen Dashboard aus."
-      },
-      "downloadApp": "App herunterladen",
-      "learnMore": "Mehr erfahren"
-    },
     "testProbes": {
       "title": "Die Blü-Test Suite",
       "subtitle": "Eine umfassende Familie intelligenter, NIST-zertifizierter Sonden. Alle verfügen über einen integrierten Datenlogger, ein eingebautes LCD-Display am Griff und nahtlose Bluetooth-Konnektivität.",

@@ -4140,17 +4140,6 @@
       "appStore": "Descargar en App Store",
       "exploreApp": "Explorar la App"
     },
-      "feature2": {
-        "title": "Descargar Registros",
-        "description": "Acceda a registros de medición almacenados en la memoria del dispositivo. Exporte datos para análisis, informes y documentación de cumplimiento."
-      },
-      "feature3": {
-        "title": "Gestión de Dispositivos",
-        "description": "Gestione múltiples sondas, verifique niveles de batería, actualice firmware y reciba recordatorios de calibración todo desde un panel central."
-      },
-      "downloadApp": "Descargar la Aplicación",
-      "learnMore": "Más Información"
-    },
     "testProbes": {
       "title": "La Suite Blü-Test",
       "subtitle": "Una familia completa de sondas inteligentes certificadas por NIST. Todas cuentan con un registrador de datos integrado, una pantalla LCD incorporada en el mango y conectividad Bluetooth perfecta.",

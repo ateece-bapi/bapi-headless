@@ -4143,17 +4143,6 @@
       "appStore": "Tải trên App Store",
       "exploreApp": "Khám phá ứng dụng"
     },
-      "feature2": {
-        "title": "Tải Xuống Nhật Ký",
-        "description": "Truy cập nhật ký đo lường được lưu trữ từ bộ nhớ thiết bị tích hợp. Xuất dữ liệu để phân tích, báo cáo và tài liệu tuân thủ."
-      },
-      "feature3": {
-        "title": "Quản Lý Thiết Bị",
-        "description": "Quản lý nhiều đầu dò, kiểm tra mức pin, cập nhật firmware và nhận nhắc nhở hiệu chuẩn tất cả từ một bảng điều khiển trung tâm."
-      },
-      "downloadApp": "Tải Ứng Dụng",
-      "learnMore": "Tìm Hiểu Thêm"
-    },
     "testProbes": {
       "title": "Bộ Sản Phẩm Blü-Test",
       "subtitle": "Dòng sản phẩm toàn diện các đầu dò thông minh, được chứng nhận NIST. Tất cả đều có bộ ghi dữ liệu tích hợp, màn hình LCD tích hợp trên tay cầm và kết nối Bluetooth liền mạch.",

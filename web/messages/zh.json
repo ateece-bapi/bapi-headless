@@ -4142,17 +4142,6 @@
       "appStore": "在App Store下载",
       "exploreApp": "探索应用"
     },
-      "feature2": {
-        "title": "下载日志",
-        "description": "从板载设备内存访问存储的测量日志。导出数据用于分析、报告和合规性文档。"
-      },
-      "feature3": {
-        "title": "设备管理",
-        "description": "管理多个探头、检查电池电量、更新固件，并从一个中央仪表板接收校准提醒。"
-      },
-      "downloadApp": "下载应用",
-      "learnMore": "了解更多"
-    },
     "testProbes": {
       "title": "Blü-Test 系列",
       "subtitle": "一个全面的智能、NIST 认证探头系列。所有探头均配备板载数据记录器、手柄上的内置 LCD 显示屏和无缝蓝牙连接。",

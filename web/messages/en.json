@@ -4166,6 +4166,10 @@
         "description": "Using a highly accurate reference device allows you to confidently validate existing building sensors, diagnose complex systemic issues, and ensure regulatory compliance with minimal guesswork."
       }
     },
+    "cordless": {
+      "title": "Forget About Cords, Meters and Separate Data Loggers",
+      "description": "The rechargeable battery and memory let probes capture data for days. Just double click to activate logging, place it, and walk away. The log file will be ready for download when you return."
+    },
     "bluetooth": {
       "title": "The Bluetooth of Truth",
       "description": "Wireless connectivity means no more writing down readings. The Blu-View app automatically logs measurements with timestamps, eliminates transcription errors, and generates professional reports.",
@@ -4174,22 +4178,12 @@
       "feature3": "Export to PDF, Excel, or cloud storage for easy sharing and archiving"
     },
     "bluView": {
-      "title": "Blü-View App",
-      "subtitle": "The Blü-View app puts complete control at your fingertips. View live data, download logs, update firmware, and manage multiple devices from one interface.",
-      "feature1": {
-        "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time with intuitive displays."
-      },
-      "feature2": {
-        "title": "Download Logs",
-        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
-      },
-      "feature3": {
-        "title": "Device Management",
-        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
-      },
-      "downloadApp": "Download the App",
-      "learnMore": "Learn More"
+      "title": "Blü-View",
+      "tagline": "Access Blü-Test, WAM, and more from one app.",
+      "description": "Blü-View provides a comprehensive platform for monitoring all your BAPI services from a single application. Access your BAPI wireless sensors and Blü-Test instruments through one unified dashboard in Blü-Test. Log in to WAM to review alerts. Utilize the Scanner to assess signal strength prior to sensor installation.",
+      "googlePlay": "Get it on Google Play",
+      "appStore": "Download on the App Store",
+      "exploreApp": "Explore the App"
     },
     "testProbes": {
       "title": "The Blü-Test Suite",
@@ -4242,6 +4236,10 @@
         "feature1": "Ultra-sensitive pressure measurement",
         "feature2": "±0.1\" WC to ±0.5\" WC ranges",
         "feature3": "Perfect for clean room and lab applications"
+      },
+      "kit": {
+        "name": "Blü-Test Kit",
+        "description": "6 Blü-Test probes for measuring temperature, humidity and pressure in a convenient carrying case."
       }
     },
     "specifications": {

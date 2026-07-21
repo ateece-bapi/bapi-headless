@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 import {
-  BarChart3Icon,
   ChevronRightIcon,
   DownloadIcon,
   GaugeIcon,
@@ -88,37 +87,52 @@ export default async function BluTestPage({ params }: Props) {
       description: t('testProbes.standardPress.description'),
       image: '/images/blu-test/probes/Standard-range_press_probe.png',
     },
+    {
+      name: t('testProbes.kit.name'),
+      slug: 'blu-test-kit',
+      description: t('testProbes.kit.description'),
+      image: '/images/blu-test/probes/BluTest_Case_Main 1.png',
+    },
   ];
+
+  const iconCircle = (icon: React.ReactNode) => (
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500">{icon}</div>
+  );
 
   // Why Accurate Reference Devices Matter - 6 features with Material Symbols
   const accuracyFeatures = [
     {
-      icon: <ThermometerIcon className="h-10 w-10 text-primary-600" />,
+      icon: iconCircle(<ThermometerIcon className="h-6 w-6 text-white" />),
       title: t('accuracy.temperature.title'),
       description: t('accuracy.temperature.description'),
     },
     {
-      icon: <HumidityPercentageIcon className="h-10 w-10 text-primary-600" />,
+      icon: (
+        <div className="flex gap-2">
+          {iconCircle(<HumidityPercentageIcon className="h-6 w-6 text-white" />)}
+          {iconCircle(<ThermometerIcon className="h-6 w-6 text-white" />)}
+        </div>
+      ),
       title: t('accuracy.humidity.title'),
       description: t('accuracy.humidity.description'),
     },
     {
-      icon: <GaugeIcon className="h-10 w-10 text-primary-600" />,
+      icon: iconCircle(<GaugeIcon className="h-6 w-6 text-white" />),
       title: t('accuracy.pressure.title'),
       description: t('accuracy.pressure.description'),
     },
     {
-      icon: <WindIcon className="h-10 w-10 text-primary-600" />,
+      icon: iconCircle(<WindIcon className="h-6 w-6 text-white" />),
       title: t('accuracy.airflow.title'),
       description: t('accuracy.airflow.description'),
     },
     {
-      icon: <VerifiedIcon className="h-10 w-10 text-primary-600" />,
+      icon: iconCircle(<VerifiedIcon className="h-6 w-6 text-white" />),
       title: t('accuracy.calibration.title'),
       description: t('accuracy.calibration.description'),
     },
     {
-      icon: <SmartphoneIcon className="h-10 w-10 text-primary-600" />,
+      icon: iconCircle(<SmartphoneIcon className="h-6 w-6 text-white" />),
       title: t('accuracy.appIntegration.title'),
       description: t('accuracy.appIntegration.description'),
     },
@@ -254,130 +268,29 @@ export default async function BluTestPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Why Accurate Reference Devices Matter */}
-      <section className="bg-white py-16 lg:py-20">
+      {/* Cordless - Forget About Cords section */}
+      <section className="bg-primary-700 py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-primary-600 lg:text-5xl">
-              {t('accuracy.title')}
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-neutral-600">
-              {t('accuracy.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {accuracyFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="rounded-2xl bg-neutral-100 p-6 transition-all duration-300 hover:shadow-md"
-              >
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="mb-3 text-lg font-bold text-neutral-900">{feature.title}</h3>
-                <p className="text-sm text-neutral-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Baseline of Truth Banner */}
-          <div className="mt-10 flex items-center justify-between gap-8 rounded-2xl bg-primary-700 p-8">
-            <div className="flex items-start gap-4">
-              <VerifiedIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-200" />
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-white">{t('accuracy.baseline.title')}</h3>
-                <p className="text-primary-100">{t('accuracy.baseline.description')}</p>
-              </div>
-            </div>
-            <div className="flex-shrink-0">
-              <BarChart3Icon className="h-20 w-20 text-accent-400" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blu-View App Section */}
-      <section id="blu-view-app" className="bg-neutral-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            {/* Left - Features */}
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left - Text */}
             <div>
-              {/* Icon + Title inline */}
-              <div className="mb-6 flex items-center gap-4">
-                <div className="relative h-16 w-16 flex-shrink-0">
-                  <Image
-                    src="/images/blu-test/BluView_icon.png"
-                    alt="Blü-View App"
-                    fill
-                    className="object-contain"
-                    sizes="64px"
-                  />
-                </div>
-                <h2 className="text-4xl font-bold text-primary-700 lg:text-5xl">
-                  {t('bluView.title')}
-                </h2>
-              </div>
-
-              <p className="mb-8 text-lg text-neutral-600">{t('bluView.subtitle')}</p>
-
-              {/* Feature List - yellow square icons */}
-              <ul className="mb-8 space-y-6">
-                <li className="flex items-start gap-4">
-                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent-500">
-                    <DownloadIcon className="h-5 w-5 text-neutral-900" />
-                  </span>
-                  <div>
-                    <h4 className="mb-1 font-bold text-neutral-900">{t('bluView.feature1.title')}</h4>
-                    <p className="text-sm text-neutral-600">{t('bluView.feature1.description')}</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent-500">
-                    <DownloadIcon className="h-5 w-5 text-neutral-900" />
-                  </span>
-                  <div>
-                    <h4 className="mb-1 font-bold text-neutral-900">{t('bluView.feature2.title')}</h4>
-                    <p className="text-sm text-neutral-600">{t('bluView.feature2.description')}</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent-500">
-                    <SettingsIcon className="h-5 w-5 text-neutral-900" />
-                  </span>
-                  <div>
-                    <h4 className="mb-1 font-bold text-neutral-900">{t('bluView.feature3.title')}</h4>
-                    <p className="text-sm text-neutral-600">{t('bluView.feature3.description')}</p>
-                  </div>
-                </li>
-              </ul>
-
-              {/* Buttons */}
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-400 focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                >
-                  <DownloadIcon className="h-5 w-5" />
-                  {t('bluView.downloadApp')}
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
-                >
-                  {t('bluView.learnMore')}
-                  <ChevronRightIcon className="h-5 w-5" />
-                </Link>
-              </div>
+              <h2 className="mb-6 text-3xl font-bold leading-tight text-white lg:text-4xl">
+                {t('cordless.title')}
+              </h2>
+              <p className="text-base leading-relaxed text-primary-100">
+                {t('cordless.description')}
+              </p>
             </div>
 
-            {/* Right - Phone Mockup */}
+            {/* Right - Photo */}
             <div className="flex justify-center">
-              <div className="relative h-[600px] w-[300px]">
+              <div className="relative h-[407px] w-full max-w-[628px] overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/blu-test/hero/Blu-View_PhoneView.png"
-                  alt="Blu-View App Interface"
+                  src="/images/blu-test/blu-test-fan 2.png"
+                  alt="HVAC technician using Blü-Test probe on ceiling equipment"
                   fill
-                  className="object-contain drop-shadow-2xl"
-                  sizes="300px"
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 628px"
                 />
               </div>
             </div>
@@ -431,6 +344,149 @@ export default async function BluTestPage({ params }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blu-View App Section */}
+      <section id="blu-view-app" className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Left */}
+            <div>
+              {/* Icon + Title inline */}
+              <div className="mb-4 flex items-center gap-4">
+                <div className="relative h-16 w-16 flex-shrink-0">
+                  <Image
+                    src="/images/blu-test/BluView_icon.png"
+                    alt="Blü-View App"
+                    fill
+                    className="object-contain"
+                    sizes="64px"
+                  />
+                </div>
+                <h2 className="text-4xl font-bold text-primary-700 lg:text-5xl">
+                  {t('bluView.title')}
+                </h2>
+              </div>
+
+              <p className="mb-6 text-2xl font-bold leading-snug text-primary-600">
+                {t('bluView.tagline')}
+              </p>
+
+              <p className="mb-10 text-base leading-relaxed text-neutral-600">
+                {t('bluView.description')}
+              </p>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center gap-4">
+                {/* Google Play */}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.bapi.bluview"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t('bluView.googlePlay')}
+                  className="inline-block rounded-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                >
+                  <Image
+                    src="/images/blu-test/GetItOnGooglePlay_Badge_Web_color_English 2.png"
+                    alt={t('bluView.googlePlay')}
+                    width={180}
+                    height={54}
+                    className="h-[54px] w-auto object-contain"
+                  />
+                </a>
+
+                {/* App Store */}
+                <a
+                  href="https://apps.apple.com/us/app/blu-view/id6478835493"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t('bluView.appStore')}
+                  className="inline-block rounded-lg focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                >
+                  <Image
+                    src="/images/blu-test/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917 2.png"
+                    alt={t('bluView.appStore')}
+                    width={180}
+                    height={54}
+                    className="h-[54px] w-auto object-contain"
+                  />
+                </a>
+
+                {/* Explore the App */}
+                <Link
+                  href="/blu-view"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-400 focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+                >
+                  {t('bluView.exploreApp')}
+                  <ChevronRightIcon className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right - Phone Mockup */}
+            <div className="flex justify-center">
+              <div className="relative h-[600px] w-[300px]">
+                <Image
+                  src="/images/blu-test/hero/Blu-View_PhoneView.png"
+                  alt="Blu-View App Interface"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  sizes="300px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Accurate Reference Devices Matter */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-primary-600 lg:text-5xl">
+              {t('accuracy.title')}
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-neutral-600">
+              {t('accuracy.subtitle')}
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {accuracyFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="rounded-2xl bg-neutral-100 p-6 transition-all duration-300 hover:shadow-md"
+              >
+                <div className="mb-4">{feature.icon}</div>
+                <h3 className="mb-3 text-lg font-bold text-neutral-900">{feature.title}</h3>
+                <p className="text-sm text-neutral-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Baseline of Truth Banner */}
+          <div className="mt-10 rounded-2xl bg-primary-700 p-8 lg:p-10">
+            <div className="flex items-center justify-between gap-8">
+              <div className="min-w-0 flex-1">
+                <div className="mb-3 flex items-center gap-3">
+                  <VerifiedIcon className="h-6 w-6 flex-shrink-0 text-primary-200" />
+                  <h3 className="text-xl font-bold text-white">{t('accuracy.baseline.title')}</h3>
+                </div>
+                <p className="text-primary-100 lg:text-lg">{t('accuracy.baseline.description')}</p>
+              </div>
+              <div className="hidden flex-shrink-0 lg:block">
+                <Image
+                  src="/images/blu-test/hero/monitoring_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 1.png"
+                  alt=""
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 object-contain"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

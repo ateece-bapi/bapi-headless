@@ -2803,6 +2803,10 @@
         "value": "硅",
         "title": "压阻式",
         "description": "采用 IC 技术制造的单晶硅传感器"
+      },
+      "kit": {
+        "name": "Blü-Test套件",
+        "description": "6个Blü-Test探头用于测量温度、湿度和压力，配有便携手提箱。"
       }
     },
     "specifications": {
@@ -4119,6 +4123,10 @@
         "description": "使用高精度参考设备可让您自信地验证现有楼宇传感器、诊断复杂的系统问题，并以最少的猜测确保符合法规要求。"
       }
     },
+    "cordless": {
+      "title": "忘记线缆、仪表和单独的数据记录仪",
+      "description": "可充电电池和内存让探头能够连续数天采集数据。只需双击激活记录，放置好探头然后离开。返回时日志文件即可下载。"
+    },
     "bluetooth": {
       "title": "真值蓝牙",
       "description": "无线连接意味着不再需要手写读数。Blu-View 应用程序自动记录带有时间戳的测量值，消除转录错误，并生成专业报告。",
@@ -4127,12 +4135,13 @@
       "feature3": "导出为 PDF、Excel 或云存储，便于共享和归档"
     },
     "bluView": {
-      "title": "Blü-View 应用",
-      "subtitle": "Blü-View 应用程序将完全控制权掌握在您的指尖。查看实时数据、下载日志、更新固件，并从一个界面管理多个设备。",
-      "feature1": {
-        "title": "实时监控",
-        "description": "查看所有已连接探头的实时传感器数据。通过直观的显示实时监控温度、湿度、压力等。"
-      },
+      "title": "Blü-View",
+      "tagline": "从一个应用访问Blü-Test、WAM及更多功能。",
+      "description": "Blü-View提供一个综合平台，让您从单一应用程序监控所有BAPI服务。通过统一仪表板访问BAPI无线传感器和Blü-Test仪器。登录WAM查看警报。在安装传感器之前使用扫描仪评估信号强度。",
+      "googlePlay": "在Google Play上获取",
+      "appStore": "在App Store下载",
+      "exploreApp": "探索应用"
+    },
       "feature2": {
         "title": "下载日志",
         "description": "从板载设备内存访问存储的测量日志。导出数据用于分析、报告和合规性文档。"

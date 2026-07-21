@@ -2804,6 +2804,10 @@
         "value": "Silicon",
         "title": "Áp trở",
         "description": "Cảm biến silicon đơn tinh thể được chế tạo bằng công nghệ IC"
+      },
+      "kit": {
+        "name": "Bộ Blü-Test",
+        "description": "6 đầu dò Blü-Test để đo nhiệt độ, độ ẩm và áp suất trong hộp đựng tiện lợi."
       }
     },
     "specifications": {
@@ -4120,6 +4124,10 @@
         "description": "Sử dụng thiết bị tham chiếu có độ chính xác cao cho phép bạn tự tin xác thực các cảm biến tòa nhà hiện có, chẩn đoán các vấn đề hệ thống phức tạp và đảm bảo tuân thủ quy định với mức độ đoán nhận tối thiểu."
       }
     },
+    "cordless": {
+      "title": "Quên đi dây cáp, đồng hồ đo và bộ ghi dữ liệu riêng lẻ",
+      "description": "Pin sạc và bộ nhớ cho phép đầu dò ghi dữ liệu trong nhiều ngày. Chỉ cần nhấp đúp để kích hoạt ghi nhật ký, đặt thiết bị vào và đi. Tệp nhật ký sẽ sẵn sàng để tải xuống khi bạn quay lại."
+    },
     "bluetooth": {
       "title": "Bluetooth Của Sự Thật",
       "description": "Kết nối không dây có nghĩa là không cần ghi chép số đo nữa. Ứng dụng Blu-View tự động ghi các phép đo với dấu thời gian, loại bỏ lỗi phiên âm và tạo báo cáo chuyên nghiệp.",
@@ -4128,12 +4136,13 @@
       "feature3": "Xuất sang PDF, Excel hoặc lưu trữ đám mây để dễ dàng chia sẻ và lưu trữ"
     },
     "bluView": {
-      "title": "Ứng Dụng Blü-View",
-      "subtitle": "Ứng dụng Blü-View đặt toàn bộ quyền kiểm soát trong tầm tay bạn. Xem dữ liệu trực tiếp, tải xuống nhật ký, cập nhật firmware và quản lý nhiều thiết bị từ một giao diện.",
-      "feature1": {
-        "title": "Giám Sát Thời Gian Thực",
-        "description": "Xem dữ liệu cảm biến trực tiếp từ tất cả các đầu dò được kết nối. Giám sát nhiệt độ, độ ẩm, áp suất và nhiều hơn nữa trong thời gian thực với màn hình trực quan."
-      },
+      "title": "Blü-View",
+      "tagline": "Truy cập Blü-Test, WAM và nhiều hơn từ một ứng dụng.",
+      "description": "Blü-View cung cấp nền tảng toàn diện để giám sát tất cả dịch vụ BAPI từ một ứng dụng duy nhất. Truy cập cảm biến không dây BAPI và thiết bị Blü-Test qua bảng điều khiển hợp nhất. Đăng nhập WAM để xem cảnh báo. Sử dụng máy quét để đánh giá cường độ tín hiệu trước khi lắp đặt cảm biến.",
+      "googlePlay": "Tải trên Google Play",
+      "appStore": "Tải trên App Store",
+      "exploreApp": "Khám phá ứng dụng"
+    },
       "feature2": {
         "title": "Tải Xuống Nhật Ký",
         "description": "Truy cập nhật ký đo lường được lưu trữ từ bộ nhớ thiết bị tích hợp. Xuất dữ liệu để phân tích, báo cáo và tài liệu tuân thủ."

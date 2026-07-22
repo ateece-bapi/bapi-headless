@@ -92,7 +92,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       t('taglines.3'),
       t('taglines.4'),
       t('taglines.5'),
-      t('taglines.6'),
     ],
   };
 

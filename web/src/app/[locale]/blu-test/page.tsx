@@ -8,7 +8,6 @@ import {
   DownloadIcon,
   GaugeIcon,
   HumidityPercentageIcon,
-  SettingsIcon,
   SmartphoneIcon,
   ThermometerIcon,
   VerifiedIcon,

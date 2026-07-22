@@ -2803,6 +2803,10 @@
         "value": "Krzem",
         "title": "Piezorezystancyjny",
         "description": "Jednokrystaliczny czujnik krzemowy wytwarzany technologią IC"
+      },
+      "kit": {
+        "name": "Zestaw Blü-Test",
+        "description": "6 sond Blü-Test do pomiaru temperatury, wilgotności i ciśnienia w wygodnej walizce."
       }
     },
     "specifications": {
@@ -4069,7 +4073,9 @@
       "title": "Precyzyjne Sondy HVAC, Którym Możesz Zaufać.",
       "description": "Zestaw sond testowych spełniających wymagania dotyczące dokładności w systemach HVAC i chłodniczych. Bezproblemowa integracja z aplikacją Blu-View zapewnia precyzyjny pomiar i łatwe rejestrowanie danych.",
       "cta": "Poznaj Sondy",
-      "secondaryCta": "Pobierz Aplikację Blu-View"
+      "secondaryCta": "Pobierz Aplikację Blu-View",
+      "titleLine1": "Precyzyjne sondy HVAC",
+      "titleLine2": "Którym możesz zaufać."
     },
     "keyFeatures": {
       "precision": {
@@ -4117,6 +4123,10 @@
         "description": "Używanie bardzo dokładnego urządzenia referencyjnego pozwala pewnie walidować istniejące czujniki budynkowe, diagnozować złożone problemy systemowe i zapewniać zgodność z przepisami przy minimalnym zgadywaniu."
       }
     },
+    "cordless": {
+      "title": "Zapomnij o kablach, miernikach i oddzielnych rejestratorach danych",
+      "description": "Akumulator i pamięć pozwalają sondzie rejestrować dane przez wiele dni. Wystarczy dwukrotnie kliknąć, aby aktywować rejestrowanie, umieścić sondę i odejść. Plik dziennika będzie gotowy do pobrania po powrocie."
+    },
     "bluetooth": {
       "title": "Bluetooth Prawdy",
       "description": "Łączność bezprzewodowa oznacza koniec z zapisywaniem odczytów. Aplikacja Blu-View automatycznie rejestruje pomiary z znacznikami czasu, eliminuje błędy transkrypcji i generuje profesjonalne raporty.",
@@ -4125,22 +4135,12 @@
       "feature3": "Eksport do PDF, Excel lub pamięci w chmurze dla łatwego udostępniania i archiwizacji"
     },
     "bluView": {
-      "title": "Aplikacja Blü-View",
-      "subtitle": "Aplikacja Blü-View zapewnia pełną kontrolę na wyciągnięcie ręki. Przeglądaj dane na żywo, pobieraj logi, aktualizuj oprogramowanie i zarządzaj wieloma urządzeniami z jednego interfejsu.",
-      "feature1": {
-        "title": "Monitorowanie w Czasie Rzeczywistym",
-        "description": "Przeglądaj dane czujników na żywo ze wszystkich podłączonych sond. Monitoruj temperaturę, wilgotność, ciśnienie i więcej w czasie rzeczywistym za pomocą intuicyjnych wyświetlaczy."
-      },
-      "feature2": {
-        "title": "Pobieranie Logów",
-        "description": "Uzyskaj dostęp do przechowywanych logów pomiarów z wbudowanej pamięci urządzenia. Eksportuj dane do analizy, raportowania i dokumentacji zgodności."
-      },
-      "feature3": {
-        "title": "Zarządzanie Urządzeniami",
-        "description": "Zarządzaj wieloma sondami, sprawdzaj poziomy baterii, aktualizuj oprogramowanie i otrzymuj przypomnienia o kalibracji z jednego centralnego pulpitu."
-      },
-      "downloadApp": "Pobierz Aplikację",
-      "learnMore": "Dowiedz Się Więcej"
+      "title": "Blü-View",
+      "tagline": "Dostęp do Blü-Test, WAM i nie tylko z jednej aplikacji.",
+      "description": "Blü-View zapewnia kompleksową platformę do monitorowania wszystkich usług BAPI z jednej aplikacji. Uzyskaj dostęp do czujników bezprzewodowych BAPI i instrumentów Blü-Test za pośrednictwem ujednoliconego panelu. Zaloguj się do WAM, aby przeglądać alerty. Użyj skanera do oceny siły sygnału przed instalacją czujnika.",
+      "googlePlay": "Pobierz z Google Play",
+      "appStore": "Pobierz z App Store",
+      "exploreApp": "Odkryj aplikację"
     },
     "testProbes": {
       "title": "Zestaw Blü-Test",

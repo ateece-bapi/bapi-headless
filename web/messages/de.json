@@ -2804,6 +2804,10 @@
         "value": "Silizium",
         "title": "Piezoresistiv",
         "description": "Einkristall-Siliziumsensor gefertigt mit IC-Technologie"
+      },
+      "kit": {
+        "name": "Blü-Test Kit",
+        "description": "6 Blü-Test Sonden zur Messung von Temperatur, Luftfeuchtigkeit und Druck in einem praktischen Tragekoffer."
       }
     },
     "specifications": {
@@ -4070,7 +4074,9 @@
       "title": "Präzisions-HLK-Sonden, denen Sie vertrauen können.",
       "description": "Eine Reihe von Testsonden für anspruchsvolle Genauigkeitsanforderungen in HLK- und Kältesystemen. Nahtlose Integration mit der Blu-View App für präzise Messungen und einfache Datenprotokollierung.",
       "cta": "Sonden erkunden",
-      "secondaryCta": "Blu-View App herunterladen"
+      "secondaryCta": "Blu-View App herunterladen",
+      "titleLine1": "Präzise HVAC-Sonden",
+      "titleLine2": "Denen Sie vertrauen können."
     },
     "keyFeatures": {
       "precision": {
@@ -4118,6 +4124,10 @@
         "description": "Die Verwendung eines hochgenauen Referenzgeräts ermöglicht es Ihnen, vorhandene Gebäudesensoren sicher zu validieren, komplexe systemische Probleme zu diagnostizieren und die Einhaltung gesetzlicher Vorschriften mit minimalem Rätselraten sicherzustellen."
       }
     },
+    "cordless": {
+      "title": "Vergessen Sie Kabel, Messgeräte und separate Datenlogger",
+      "description": "Der aufladbare Akku und der Speicher ermöglichen es den Sonden, tagelang Daten zu erfassen. Doppelklicken Sie einfach, um die Protokollierung zu starten, platzieren Sie die Sonde und gehen Sie. Die Protokolldatei ist beim Zurückkommen zum Herunterladen bereit."
+    },
     "bluetooth": {
       "title": "Das Bluetooth der Wahrheit",
       "description": "Drahtlose Konnektivität bedeutet, dass Sie keine Messwerte mehr notieren müssen. Die Blu-View App protokolliert Messungen automatisch mit Zeitstempeln, eliminiert Übertragungsfehler und erstellt professionelle Berichte.",
@@ -4126,22 +4136,12 @@
       "feature3": "Export in PDF, Excel oder Cloud-Speicher für einfaches Teilen und Archivieren"
     },
     "bluView": {
-      "title": "Blü-View App",
-      "subtitle": "Die Blü-View App gibt Ihnen die vollständige Kontrolle auf Knopfdruck. Zeigen Sie Live-Daten an, laden Sie Protokolle herunter, aktualisieren Sie die Firmware und verwalten Sie mehrere Geräte über eine Benutzeroberfläche.",
-      "feature1": {
-        "title": "Echtzeitüberwachung",
-        "description": "Zeigen Sie Live-Sensordaten von allen verbundenen Sonden an. Überwachen Sie Temperatur, Feuchtigkeit, Druck und mehr in Echtzeit mit intuitiven Anzeigen."
-      },
-      "feature2": {
-        "title": "Protokolle herunterladen",
-        "description": "Greifen Sie auf gespeicherte Messprotokolle aus dem integrierten Gerätespeicher zu. Exportieren Sie Daten für Analysen, Berichte und Konformitätsdokumentation."
-      },
-      "feature3": {
-        "title": "Geräteverwaltung",
-        "description": "Verwalten Sie mehrere Sonden, überprüfen Sie Batteriestände, aktualisieren Sie die Firmware und erhalten Sie Kalibrierungserinnerungen von einem zentralen Dashboard aus."
-      },
-      "downloadApp": "App herunterladen",
-      "learnMore": "Mehr erfahren"
+      "title": "Blü-View",
+      "tagline": "Zugriff auf Blü-Test, WAM und mehr aus einer App.",
+      "description": "Blü-View bietet eine umfassende Plattform zur Überwachung aller Ihrer BAPI-Dienste aus einer einzigen Anwendung. Greifen Sie über ein einheitliches Dashboard auf Ihre BAPI-Funksensoren und Blü-Test-Instrumente zu. Melden Sie sich bei WAM an, um Warnmeldungen zu überprüfen. Nutzen Sie den Scanner, um die Signalstärke vor der Sensorinstallation zu beurteilen.",
+      "googlePlay": "Jetzt bei Google Play",
+      "appStore": "Im App Store laden",
+      "exploreApp": "App erkunden"
     },
     "testProbes": {
       "title": "Die Blü-Test Suite",

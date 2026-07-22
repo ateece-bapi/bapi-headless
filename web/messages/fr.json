@@ -2804,6 +2804,10 @@
         "value": "Silicium",
         "title": "Piézorésistif",
         "description": "Capteur en silicium monocristallin fabriqué avec la technologie IC"
+      },
+      "kit": {
+        "name": "Kit Blü-Test",
+        "description": "6 sondes Blü-Test pour mesurer la température, l'humidité et la pression dans une mallette de transport pratique."
       }
     },
     "specifications": {
@@ -4070,7 +4074,9 @@
       "title": "Sondes HVAC de Précision en qui Vous Pouvez Avoir Confiance.",
       "description": "Une suite de sondes de test pour des exigences de précision rigoureuses dans les systèmes HVAC et de réfrigération. Intégration transparente avec l'application Blu-View pour une mesure précise et un enregistrement de données facile.",
       "cta": "Explorer les Sondes",
-      "secondaryCta": "Télécharger l'Application Blu-View"
+      "secondaryCta": "Télécharger l'Application Blu-View",
+      "titleLine1": "Sondes CVC de précision",
+      "titleLine2": "En qui vous pouvez avoir confiance."
     },
     "keyFeatures": {
       "precision": {
@@ -4118,6 +4124,10 @@
         "description": "L'utilisation d'un appareil de référence de haute précision vous permet de valider en toute confiance les capteurs de bâtiment existants, de diagnostiquer des problèmes systémiques complexes et d'assurer la conformité réglementaire avec un minimum de conjectures."
       }
     },
+    "cordless": {
+      "title": "Oubliez les câbles, les appareils de mesure et les enregistreurs de données séparés",
+      "description": "La batterie rechargeable et la mémoire permettent aux sondes de capturer des données pendant des jours. Double-cliquez simplement pour activer l'enregistrement, placez la sonde et partez. Le fichier journal sera prêt à télécharger à votre retour."
+    },
     "bluetooth": {
       "title": "Le Bluetooth de Vérité",
       "description": "La connectivité sans fil signifie plus besoin de noter les lectures. L'application Blu-View enregistre automatiquement les mesures avec horodatage, élimine les erreurs de transcription et génère des rapports professionnels.",
@@ -4126,22 +4136,12 @@
       "feature3": "Exportation vers PDF, Excel ou stockage cloud pour un partage et archivage faciles"
     },
     "bluView": {
-      "title": "Application Blü-View",
-      "subtitle": "L'application Blü-View met le contrôle complet à portée de main. Visualisez les données en direct, téléchargez les journaux, mettez à jour le micrologiciel et gérez plusieurs appareils depuis une seule interface.",
-      "feature1": {
-        "title": "Surveillance en Temps Réel",
-        "description": "Visualisez les données de capteur en direct de toutes les sondes connectées. Surveillez la température, l'humidité, la pression et plus encore en temps réel avec des affichages intuitifs."
-      },
-      "feature2": {
-        "title": "Télécharger les Journaux",
-        "description": "Accédez aux journaux de mesure stockés dans la mémoire embarquée de l'appareil. Exportez les données pour l'analyse, les rapports et la documentation de conformité."
-      },
-      "feature3": {
-        "title": "Gestion des Appareils",
-        "description": "Gérez plusieurs sondes, vérifiez les niveaux de batterie, mettez à jour le micrologiciel et recevez des rappels d'étalonnage depuis un tableau de bord central."
-      },
-      "downloadApp": "Télécharger l'Application",
-      "learnMore": "En Savoir Plus"
+      "title": "Blü-View",
+      "tagline": "Accédez à Blü-Test, WAM et bien plus depuis une seule application.",
+      "description": "Blü-View offre une plateforme complète pour surveiller tous vos services BAPI depuis une seule application. Accédez à vos capteurs sans fil BAPI et instruments Blü-Test via un tableau de bord unifié. Connectez-vous à WAM pour examiner les alertes. Utilisez le scanner pour évaluer la force du signal avant l'installation des capteurs.",
+      "googlePlay": "Disponible sur Google Play",
+      "appStore": "Télécharger dans l'App Store",
+      "exploreApp": "Explorer l'application"
     },
     "testProbes": {
       "title": "La Suite Blü-Test",

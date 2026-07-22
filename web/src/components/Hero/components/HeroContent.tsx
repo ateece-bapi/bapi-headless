@@ -39,12 +39,14 @@ const HeroContent: React.FC<HeroContentProps> = ({ title, description, taglines,
       {/* FIXED: Mobile-first tagline scaling - text-lg to text-4xl */}
       <div
         className={clsx(
-          'mb-4 max-w-4xl px-4 pb-2 font-semibold text-primary-500',
+          'mb-4 max-w-4xl px-4 pb-2',
           // Mobile to lg: centered with mx-auto
           'mx-auto',
           // xl+: remove auto margins for left alignment
           'xl:mx-0 xl:pl-0',
-          'text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl'
+          // Use arbitrary child selector to override TaglineRotator's internal <p> styles
+          '[&_p]:font-semibold [&_p]:text-primary-500',
+          '[&_p]:text-base sm:[&_p]:text-lg md:[&_p]:text-xl lg:[&_p]:text-xl xl:[&_p]:text-2xl 2xl:[&_p]:text-3xl'
         )}
       >
         <TaglineRotator taglines={taglines} />

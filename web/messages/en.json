@@ -733,8 +733,8 @@
   },
   "home": {
     "hero": {
-      "title": "Precision Sensor Solutions for Building Automation",
-      "description": "NIST-traceable sensors and BACnet-certified controllers trusted by engineers worldwide for healthcare, data centers, and critical facilities.",
+      "title": "Changing the way you think\nabout sensors since 1993",
+      "description": "Accurate and dependable sensors engineered for critical performance and long-term reliability.",
       "cta": "Explore Products",
       "secondaryCta": "Talk to Sales",
       "productFamilyTitle": "Complete sensor solutions for building automation systems",
@@ -742,12 +742,11 @@
     },
     "taglines": [
       "Industry Leading Sensors",
-      "Changing the way you think about sensors since 1993",
-      "Seamless wireless integration for your existing BAS",
-      "Precision Engineering",
       "Building the Future",
       "...It's in the details",
-      "People. Building. Sensors"
+      "People. Building. Sensors",
+      "Another BAPI Original",
+      "BAPI-Backed"
     ],
     "stats": {
       "yearsValue": "30+",

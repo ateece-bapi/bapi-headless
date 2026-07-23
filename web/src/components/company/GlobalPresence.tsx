@@ -36,6 +36,7 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 // Type definitions for map data
 type GeoFeature = {
   rsmKey: string;
+  id?: number; // numeric ISO 3166-1 code from world-atlas TopoJSON
   type: string;
   geometry: unknown;
   properties: Record<string, unknown>;
@@ -224,7 +225,7 @@ export function GlobalPresence({
                   {({ geographies }: { geographies: GeoFeature[] }) =>
                     geographies.map((geo: GeoFeature) => {
                       const countryName = geo.properties.name as string;
-                      const isoId = geo.properties.id as number | undefined;
+                      const isoId = geo.id;
                       return (
                         <Geography
                           key={geo.rsmKey}

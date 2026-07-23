@@ -63,7 +63,6 @@ export default function ContactPage() {
         'india',
         'south-america',
         'africa',
-        'asia',
         'australia',
         'technical',
       ];
@@ -448,17 +447,6 @@ export default function ContactPage() {
                 Africa
               </a>
               <a
-                href="#asia"
-                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'asia'
-                    ? 'bg-primary-500 text-white shadow-md'
-                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
-                }`}
-              >
-                <GlobeIcon className="h-4 w-4" />
-                Asia
-              </a>
-              <a
                 href="#australia"
                 className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
                   activeSection === 'australia'
@@ -466,9 +454,9 @@ export default function ContactPage() {
                     : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Building2Icon className="h-4 w-4" />
-                <span className="hidden sm:inline">Australia & NZ</span>
-                <span className="sm:hidden">AU/NZ</span>
+                <GlobeIcon className="h-4 w-4" />
+                <span className="hidden sm:inline">Asia & Pacific</span>
+                <span className="sm:hidden">Asia/AU</span>
               </a>
               <a
                 href="#technical"

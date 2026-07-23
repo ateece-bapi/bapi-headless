@@ -20,9 +20,9 @@
  *  8  – East & Southern Africa (John Shields)
  *  9  – Middle East & Turkey   (Murtaza Kalabhai)
  * 10  – South Asia             (Murtaza Kalabhai)
- * 11  – China & Mongolia       (Tim Wilder)
- * 12  – East Asia              (Tim Wilder)
- * 13  – Southeast Asia         (Tim Wilder)
+ * 11  – China & Mongolia       (Andy Brooks)
+ * 12  – East Asia              (Andy Brooks)
+ * 13  – Southeast Asia         (Andy Brooks)
  * 14  – Australia & Pacific    (Andy Brooks)
  * 15  – Russia & Kazakhstan    (John Shields)
  */
@@ -75,16 +75,10 @@ export const SALES_REPS: SalesRep[] = [
     regions: [9, 10],
   },
   {
-    id: 'tim-wilder',
-    name: 'Tim Wilder',
-    title: 'Business Development & Regional Sales',
-    regions: [11, 12, 13],
-  },
-  {
     id: 'andy-brooks',
     name: 'Andy Brooks',
     title: 'Business Development & Regional Sales',
-    regions: [14],
+    regions: [11, 12, 13, 14],
   },
 ];
 
@@ -152,19 +146,19 @@ export const SALES_REGIONS: SalesRegion[] = [
   {
     id: 11,
     name: 'China & Mongolia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'China & Mongolia',
   },
   {
     id: 12,
     name: 'East Asia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'Japan, South Korea, North Korea & Taiwan',
   },
   {
     id: 13,
     name: 'Southeast Asia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'Vietnam, Thailand, Malaysia, Indonesia, Philippines & neighbors',
   },
   {

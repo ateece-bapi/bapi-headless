@@ -24,7 +24,6 @@ import {
   indiaTeam,
   southAmericaTeam,
   africaTeam,
-  asiaTeam,
   australiaTeam,
   technicalTeam,
 } from '@/lib/constants/team';
@@ -758,46 +757,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Asia Sales */}
-          <div
-            id="asia"
-            className="-mx-4 mb-8 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
-          >
-            <button
-              onClick={() => toggleSection('asia')}
-              className="w-full text-left lg:cursor-default"
-              aria-expanded={expandedSections.has('asia')}
-            >
-              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
-                <span>
-                  <span className="mr-2">🌏</span>Asia{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
-                </span>
-                <span className="text-primary-500 lg:hidden">
-                  {expandedSections.has('asia') ? '▼' : '▶'}
-                </span>
-              </h3>
-            </button>
-            <div
-              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('asia') ? '' : 'hidden lg:grid'}`}
-            >
-              {asiaTeam.map((member) => (
-                <SalesTeamCard
-                  key={member.email}
-                  name={member.name}
-                  title={member.title}
-                  region={member.region}
-                  email={member.email}
-                  phone={member.phone}
-                  photo={member.photo}
-                  video={member.video}
-                  profileHref={`/${locale}/contact/${member.slug}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Australia & New Zealand Sales */}
+          {/* Asia, Australia & Pacific Sales */}
           <div
             id="australia"
             className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
@@ -809,7 +769,7 @@ export default function ContactPage() {
             >
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🇦🇺</span>Australia & New Zealand{' '}
+                  <span className="mr-2">🌏</span>Asia, Australia & Pacific{' '}
                   <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">

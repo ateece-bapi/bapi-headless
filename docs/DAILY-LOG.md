@@ -2,9 +2,49 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 9, 2026  
+**Updated:** July 22, 2026  
 **Status:** Phase 1 Complete - Live in Production (54 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 22, 2026 — Homepage Hero Banner Copy & UX Overhaul 🎯
+
+**Status:** ✅ PR #628 merged — fix/hero-banner-copy-update
+
+### What Was Done
+
+Implemented approved Asana feedback for the homepage hero banner: updated marketing copy, overhauled visual hierarchy, and synced all 11 locale message files.
+
+#### Copy Changes (`web/messages/en.json`)
+- **H1** updated to: *"Changing the way you think about sensors since 1993"* (with deliberate line break via `whitespace-pre-line`)
+- **Description** replaced per approved copy: *"Accurate and dependable sensors engineered for critical performance and long-term reliability."*
+- **Taglines removed:** "Precision Sensor Solutions for Building Automation", "Changing the way you think about sensors since 1993", "Precision Engineering", "Seamless wireless integration for your existing BAS"
+- **Taglines added:** "Another BAPI Original", "BAPI-Backed"
+- Final tagline set (6): Industry Leading Sensors / Building the Future / ...It's in the details / People. Building. Sensors / Another BAPI Original / BAPI-Backed
+
+#### Typography & Hierarchy (`web/src/components/Hero/components/HeroContent.tsx`)
+- H1 `whitespace-pre-line` added for controlled two-line break
+- Tagline rotator: color changed `text-neutral-700` → `text-gray-900` (black), then revised to `text-primary-500` (BAPI Blue) with `font-semibold` and one size step down at all breakpoints for clear hierarchy below H1
+- Tagline override fixed using `[&_p]:` arbitrary selector variants on the wrapper div — resolves PR review finding that wrapper classes weren't overriding `TaglineRotator`'s internal `<p>` (which has hardcoded `text-3xl font-extrabold`)
+- Description: `text-gray-600` → `text-gray-800`, `font-normal` → `font-medium`, `mb-4` → `mb-8`, size bumped at `xl+` to `text-xl 2xl:text-2xl`
+
+#### Page (`web/src/app/[locale]/(public)/page.tsx`)
+- Taglines array reduced from `taglines.0`–`.6` (7) to `taglines.0`–`.5` (6) to match updated message files
+
+#### All Locales Synced (`web/messages/*.json`)
+All 10 non-English locale files (de, fr, es, ar, ja, zh, hi, pl, th, vi) updated to match the new 6-tagline structure — removes the 3 deleted taglines and appends "Another BAPI Original" / "BAPI-Backed" (kept as English brand phrases across all locales).
+
+### PR Review
+Copilot automated review flagged 2 issues — both addressed before merge:
+1. Tagline wrapper classes (font/size) not taking effect because `TaglineRotator` renders its own `<p>` with hardcoded styles — fixed with `[&_p]:` arbitrary selectors
+2. Only `en.json` updated initially, leaving non-English locales pointing to stale/removed tagline indices — fixed by updating all 10 locale files
+
+### Files Changed (14 files)
+- `web/messages/en.json` — hero title, description, tagline list
+- `web/messages/de|fr|es|ar|ja|zh|hi|pl|th|vi.json` — tagline arrays synced (10 files)
+- `web/src/app/[locale]/(public)/page.tsx` — tagline index range trimmed
+- `web/src/components/Hero/components/HeroContent.tsx` — typography, spacing, arbitrary selector fix
 
 ---
 

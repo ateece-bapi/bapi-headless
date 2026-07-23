@@ -191,6 +191,20 @@ export function GlobalPresence({
     return '#E5E7EB';
   }
 
+  /** Fill/stroke for overlay territories (e.g. French Guiana) that belong to
+   *  a specific region but are embedded in another country's base polygon.
+   *  Returns highlight when their region is active, neutral default otherwise
+   *  (never dimmed — the overlay should be invisible unless it's in focus). */
+  function getOverlayFill(regionId: number): string {
+    if (activeRegionId === regionId) return '#93C5FD';
+    return '#E5E7EB'; // neutral default — not dimmed
+  }
+
+  function getOverlayStroke(regionId: number): string {
+    if (activeRegionId === regionId) return '#1e6fb9';
+    return '#D1D5DB';
+  }
+
   return (
     <section className="bg-linear-to-b from-white to-neutral-50 py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -254,8 +268,8 @@ export function GlobalPresence({
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
-                        fill={getGeographyFill('French Guiana')}
-                        stroke={getGeographyStroke('French Guiana')}
+                        fill={getOverlayFill(2)}
+                        stroke={getOverlayStroke(2)}
                         onMouseEnter={() => handleCountryEnter('French Guiana')}
                         style={{
                           default: { outline: 'none' },

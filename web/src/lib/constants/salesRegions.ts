@@ -447,8 +447,8 @@ const NUMERIC_ISO_OVERRIDES: Record<number, number> = {
 };
 
 /** Look up a SalesRegion and its SalesRep for a given Natural Earth country name.
- *  Pass numericIsoId (geo.properties.id) to correctly resolve overseas territories
- *  that share a country name with their administering nation (e.g. French Guiana). */
+ *  Pass numericIsoId (geo.id from the GeoFeature) to correctly resolve overseas
+ *  territories that share a country name with their administering nation. */
 export function getRegionForCountry(
   countryName: string,
   numericIsoId?: number,

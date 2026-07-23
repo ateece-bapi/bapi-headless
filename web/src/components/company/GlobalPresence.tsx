@@ -32,10 +32,12 @@ const Geography = _Geography as React.ComponentType<
 >;
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+const frenchGuianaOverlayUrl = '/data/french-guiana.geojson';
 
 // Type definitions for map data
 type GeoFeature = {
   rsmKey: string;
+  id?: number; // numeric ISO 3166-1 code from world-atlas TopoJSON
   type: string;
   geometry: unknown;
   properties: Record<string, unknown>;
@@ -131,8 +133,8 @@ export function GlobalPresence({
   // Get active facility types for legend (only show types that exist in data)
   const activeFacilityTypes = getActiveFacilityTypes();
 
-  function handleCountryEnter(countryName: string) {
-    const info = getRegionForCountry(countryName);
+  function handleCountryEnter(countryName: string, isoId?: number) {
+    const info = getRegionForCountry(countryName, isoId);
 
     // Map highlight: immediate
     setActiveRegionId(info?.region.id ?? null);
@@ -171,22 +173,36 @@ export function GlobalPresence({
     }
   }
 
-  function getGeographyFill(countryName: string): string {
+  function getGeographyFill(countryName: string, isoId?: number): string {
     if (activeRegionId === null) return '#E5E7EB'; // neutral-200 default
-    const info = getRegionForCountry(countryName);
+    const info = getRegionForCountry(countryName, isoId);
     if (info && info.region.id === activeRegionId) {
       return '#93C5FD'; // blue-300 – strong contrast highlight
     }
     return '#F3F4F6'; // neutral-100 – dimmed non-active countries
   }
 
-  function getGeographyStroke(countryName: string): string {
+  function getGeographyStroke(countryName: string, isoId?: number): string {
     if (activeRegionId === null) return '#D1D5DB';
-    const info = getRegionForCountry(countryName);
+    const info = getRegionForCountry(countryName, isoId);
     if (info && info.region.id === activeRegionId) {
       return '#1e6fb9'; // primary-600 – highlighted border
     }
     return '#E5E7EB';
+  }
+
+  /** Fill/stroke for overlay territories (e.g. French Guiana) that belong to
+   *  a specific region but are embedded in another country's base polygon.
+   *  Returns highlight when their region is active, neutral default otherwise
+   *  (never dimmed — the overlay should be invisible unless it's in focus). */
+  function getOverlayFill(regionId: number): string {
+    if (activeRegionId === regionId) return '#93C5FD';
+    return '#E5E7EB'; // neutral default — not dimmed
+  }
+
+  function getOverlayStroke(regionId: number): string {
+    if (activeRegionId === regionId) return '#1e6fb9';
+    return '#D1D5DB';
   }
 
   return (
@@ -224,13 +240,14 @@ export function GlobalPresence({
                   {({ geographies }: { geographies: GeoFeature[] }) =>
                     geographies.map((geo: GeoFeature) => {
                       const countryName = geo.properties.name as string;
+                      const isoId = geo.id;
                       return (
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          fill={getGeographyFill(countryName)}
-                          stroke={getGeographyStroke(countryName)}
-                          onMouseEnter={() => handleCountryEnter(countryName)}
+                          fill={getGeographyFill(countryName, isoId)}
+                          stroke={getGeographyStroke(countryName, isoId)}
+                          onMouseEnter={() => handleCountryEnter(countryName, isoId)}
                           style={{
                             default: { outline: 'none' },
                             hover: { outline: 'none' },
@@ -239,6 +256,28 @@ export function GlobalPresence({
                         />
                       );
                     })
+                  }
+                </Geographies>
+
+                {/* French Guiana overlay — world-atlas merges it into France's
+                    multipolygon so it wrongly highlights with Western Europe.
+                    This local GeoJSON patch renders it with South America's fill. */}
+                <Geographies geography={frenchGuianaOverlayUrl}>
+                  {({ geographies }: { geographies: GeoFeature[] }) =>
+                    geographies.map((geo: GeoFeature) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill={getOverlayFill(2)}
+                        stroke={getOverlayStroke(2)}
+                        onMouseEnter={() => handleCountryEnter('French Guiana')}
+                        style={{
+                          default: { outline: 'none' },
+                          hover: { outline: 'none' },
+                          pressed: { outline: 'none' },
+                        }}
+                      />
+                    ))
                   }
                 </Geographies>
 

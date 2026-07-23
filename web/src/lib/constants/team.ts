@@ -187,24 +187,12 @@ export const africaTeam: TeamMember[] = [
   },
 ];
 
-export const asiaTeam: TeamMember[] = [
-  {
-    slug: 'tim-wilder',
-    name: 'Tim Wilder',
-    title: 'Director of Research & Development',
-    region: 'Asia',
-    email: 'twilder@bapihvac.com',
-    phone: '+1-800-553-3027',
-    photo: '/images/team/tim-wilder.webp',
-  },
-];
-
 export const australiaTeam: TeamMember[] = [
   {
     slug: 'andy-brooks',
     name: 'Andy Brooks',
     title: 'Business Development & Regional Sales Manager',
-    region: 'Australia & New Zealand',
+    region: 'Asia, Australia & Pacific',
     email: 'abrooks@bapihvac.com',
     phone: '+1-800-553-3027',
     photo: '/images/team/andy-brooks.webp',
@@ -246,7 +234,6 @@ export const ALL_TEAM_MEMBERS: TeamMember[] = Array.from(
       ...indiaTeam,
       ...southAmericaTeam,
       ...africaTeam,
-      ...asiaTeam,
       ...australiaTeam,
       ...technicalTeam,
     ].map((m) => [m.slug, m]),

@@ -14,15 +14,15 @@
  *  2  – South America          (John Shields)
  *  3  – Scandinavia & Baltic   (John Shields)
  *  4  – Western Europe         (Mike Moss)
- *  5  – Central Europe         (Mike Moss)
+ *  5  – Central Europe         (Jan Zurawski)
  *  6  – Eastern Europe/Balkans (Jan Zurawski)
  *  7  – West & Central Africa  (John Shields)
  *  8  – East & Southern Africa (John Shields)
  *  9  – Middle East & Turkey   (Murtaza Kalabhai)
  * 10  – South Asia             (Murtaza Kalabhai)
- * 11  – China & Mongolia       (Tim Wilder)
- * 12  – East Asia              (Tim Wilder)
- * 13  – Southeast Asia         (Tim Wilder)
+ * 11  – China & Mongolia       (Andy Brooks)
+ * 12  – East Asia              (Andy Brooks)
+ * 13  – Southeast Asia         (Andy Brooks)
  * 14  – Australia & Pacific    (Andy Brooks)
  * 15  – Russia & Kazakhstan    (John Shields)
  */
@@ -60,13 +60,13 @@ export const SALES_REPS: SalesRep[] = [
     id: 'mike-moss',
     name: 'Mike Moss',
     title: 'Business Development & Regional Sales',
-    regions: [4, 5],
+    regions: [4],
   },
   {
     id: 'jan-zurawski',
     name: 'Jan Zurawski',
     title: 'Business Development & Regional Sales',
-    regions: [6],
+    regions: [5, 6],
   },
   {
     id: 'murtaza-kalabhai',
@@ -75,16 +75,10 @@ export const SALES_REPS: SalesRep[] = [
     regions: [9, 10],
   },
   {
-    id: 'tim-wilder',
-    name: 'Tim Wilder',
-    title: 'Business Development & Regional Sales',
-    regions: [11, 12, 13],
-  },
-  {
     id: 'andy-brooks',
     name: 'Andy Brooks',
     title: 'Business Development & Regional Sales',
-    regions: [14],
+    regions: [11, 12, 13, 14],
   },
 ];
 
@@ -116,7 +110,7 @@ export const SALES_REGIONS: SalesRegion[] = [
   {
     id: 5,
     name: 'Central Europe',
-    repId: 'mike-moss',
+    repId: 'jan-zurawski',
     description: 'Germany, Austria, Switzerland, Italy, Czech Republic, Slovakia & Slovenia',
   },
   {
@@ -152,19 +146,19 @@ export const SALES_REGIONS: SalesRegion[] = [
   {
     id: 11,
     name: 'China & Mongolia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'China & Mongolia',
   },
   {
     id: 12,
     name: 'East Asia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'Japan, South Korea, North Korea & Taiwan',
   },
   {
     id: 13,
     name: 'Southeast Asia',
-    repId: 'tim-wilder',
+    repId: 'andy-brooks',
     description: 'Vietnam, Thailand, Malaysia, Indonesia, Philippines & neighbors',
   },
   {

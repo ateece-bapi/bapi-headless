@@ -2,9 +2,71 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 22, 2026  
+**Updated:** July 23, 2026  
 **Status:** Phase 1 Complete - Live in Production (54 days post-launch)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## July 23, 2026 — Sales Territory Restructure, Team Photo & French Guiana Map Fix 🗺️
+
+**Status:** ✅ PRs #629, #630, #631 merged
+
+### What Was Done
+
+Three separate Asana feedback items implemented and shipped across two PRs.
+
+#### Sales Territory Restructure (PRs #629 / #630)
+
+Removed Tim Wilder from the team and restructured global sales region assignments following personnel changes.
+
+**`web/src/lib/constants/salesRegions.ts`**
+- Tim Wilder removed entirely
+- Andy Brooks: regions [11, 12, 13, 14] — Asia, Australia & Pacific
+- Jan Zurawski: regions [5, 6] — Central & Eastern Europe
+- Mike Moss: region [4] only — Western Europe
+
+**`web/src/lib/constants/team.ts`**
+- `asiaTeam` export removed (contained Tim Wilder)
+- `australiaTeam` Andy Brooks entry updated: region label → "Asia, Australia & Pacific"
+- `asiaTeam` removed from `allTeamMembers` spread
+
+**`web/src/app/[locale]/contact/page.tsx`**
+- Separate Asia section removed; Australia section renamed "Asia, Australia & Pacific"
+- `'asia'` removed from scroll-tracking sections array
+- `#asia` nav button removed; "Asia & Pacific" button now points to `#australia`
+
+#### Jonathan Hillebrand Photo Update (PR #631)
+
+Replaced team photo for Jonathan Hillebrand on the contact page.
+- Source: `Jonathan_Final.jpg` (810×1200)
+- Converted to WebP at q85 (~93KB) via `cwebp`
+- Replaced `web/public/images/team/jonathan-hillebrand.webp` in-place
+
+#### French Guiana World Map Fix (PR #631)
+
+Fixed French Guiana not highlighting correctly on the interactive `GlobalPresence.tsx` world map.
+
+**Root cause:** `world-atlas` (all resolutions — 10m, 50m, 110m) stores France as a **single multipolygon feature** (ID `250`) that includes Metropolitan France, French Guiana, and all overseas territories. There is no separate feature for French Guiana, so standard `getRegionForCountry()` logic based on feature name or numeric ID never matched it. The polygon rendered as part of France (Western Europe, region 4) instead of South America (region 2).
+
+**Solution:** Extracted French Guiana's exact polygon coordinates from France's multipolygon via a Node.js script, saved as a local GeoJSON file, and rendered it as a second independent `<Geographies>` layer on top of the base map.
+
+**Changes:**
+- `web/public/data/french-guiana.geojson` — new file, 19-point polygon, centroid ~lng -53 lat 3.5
+- `web/src/lib/constants/salesRegions.ts` — added `NUMERIC_ISO_OVERRIDES: { 254: 2 }`, added `'French Guiana': 2` to `COUNTRY_TO_REGION`, updated `getRegionForCountry()` signature with optional `numericIsoId` param
+- `web/src/components/company/GlobalPresence.tsx` — added second `<Geographies>` layer for French Guiana overlay; added `getOverlayFill(regionId)` and `getOverlayStroke(regionId)` helpers (return neutral `#E5E7EB`/`#D1D5DB` when region not active — never dimmed — and highlight `#93C5FD`/`#1e6fb9` when active); `GeoFeature` type extended with `id?: number`
+
+**PR review items addressed:**
+1. French Guiana overlay was using `getGeographyFill('French Guiana')` which returned the dimmed `#F3F4F6` when hovering France — replaced with dedicated `getOverlayFill(2)` that returns neutral instead
+2. JSDoc in `salesRegions.ts` referenced `geo.properties.id` — corrected to `geo.id`
+
+### Files Changed
+- `web/src/lib/constants/salesRegions.ts` — region assignments, overrides, JSDoc fix
+- `web/src/lib/constants/team.ts` — asiaTeam removed, Andy Brooks label updated
+- `web/src/app/[locale]/contact/page.tsx` — Asia section removed, nav updated
+- `web/public/images/team/jonathan-hillebrand.webp` — new photo
+- `web/public/data/french-guiana.geojson` — new GeoJSON overlay file
+- `web/src/components/company/GlobalPresence.tsx` — overlay layer + helper functions
 
 ---
 

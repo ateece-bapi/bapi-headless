@@ -131,8 +131,8 @@ export function GlobalPresence({
   // Get active facility types for legend (only show types that exist in data)
   const activeFacilityTypes = getActiveFacilityTypes();
 
-  function handleCountryEnter(countryName: string) {
-    const info = getRegionForCountry(countryName);
+  function handleCountryEnter(countryName: string, isoId?: number) {
+    const info = getRegionForCountry(countryName, isoId);
 
     // Map highlight: immediate
     setActiveRegionId(info?.region.id ?? null);
@@ -171,18 +171,18 @@ export function GlobalPresence({
     }
   }
 
-  function getGeographyFill(countryName: string): string {
+  function getGeographyFill(countryName: string, isoId?: number): string {
     if (activeRegionId === null) return '#E5E7EB'; // neutral-200 default
-    const info = getRegionForCountry(countryName);
+    const info = getRegionForCountry(countryName, isoId);
     if (info && info.region.id === activeRegionId) {
       return '#93C5FD'; // blue-300 – strong contrast highlight
     }
     return '#F3F4F6'; // neutral-100 – dimmed non-active countries
   }
 
-  function getGeographyStroke(countryName: string): string {
+  function getGeographyStroke(countryName: string, isoId?: number): string {
     if (activeRegionId === null) return '#D1D5DB';
-    const info = getRegionForCountry(countryName);
+    const info = getRegionForCountry(countryName, isoId);
     if (info && info.region.id === activeRegionId) {
       return '#1e6fb9'; // primary-600 – highlighted border
     }
@@ -224,13 +224,14 @@ export function GlobalPresence({
                   {({ geographies }: { geographies: GeoFeature[] }) =>
                     geographies.map((geo: GeoFeature) => {
                       const countryName = geo.properties.name as string;
+                      const isoId = geo.properties.id as number | undefined;
                       return (
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          fill={getGeographyFill(countryName)}
-                          stroke={getGeographyStroke(countryName)}
-                          onMouseEnter={() => handleCountryEnter(countryName)}
+                          fill={getGeographyFill(countryName, isoId)}
+                          stroke={getGeographyStroke(countryName, isoId)}
+                          onMouseEnter={() => handleCountryEnter(countryName, isoId)}
                           style={{
                             default: { outline: 'none' },
                             hover: { outline: 'none' },

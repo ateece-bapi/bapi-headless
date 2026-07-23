@@ -433,10 +433,37 @@ const REP_BY_ID = new Map<string, SalesRep>(
   SALES_REPS.map((r) => [r.id, r]),
 );
 
-/** Look up a SalesRegion and its SalesRep for a given Natural Earth country name. */
+/**
+ * Numeric ISO 3166-1 overrides for territories that share a `name` with their
+ * administering nation in the Natural Earth / world-atlas dataset.
+ * Keyed by numeric ISO code; value is the BAPI region id to assign.
+ *
+ * Example: French Guiana (ISO 254) appears as name="France" in world-atlas@2
+ * but should map to South America (region 2), not Western Europe (region 4).
+ */
+const NUMERIC_ISO_OVERRIDES: Record<number, number> = {
+  254: 2, // French Guiana → South America
+};
+
+/** Look up a SalesRegion and its SalesRep for a given Natural Earth country name.
+ *  Pass numericIsoId (geo.properties.id) to correctly resolve overseas territories
+ *  that share a country name with their administering nation (e.g. French Guiana). */
 export function getRegionForCountry(
   countryName: string,
+  numericIsoId?: number,
 ): { region: SalesRegion; rep: SalesRep } | null {
+  // Numeric ISO override takes priority for ambiguous territories
+  if (numericIsoId !== undefined) {
+    const overrideRegionId = NUMERIC_ISO_OVERRIDES[numericIsoId];
+    if (overrideRegionId !== undefined) {
+      const region = REGION_BY_ID.get(overrideRegionId);
+      if (!region) return null;
+      const rep = REP_BY_ID.get(region.repId);
+      if (!rep) return null;
+      return { region, rep };
+    }
+  }
+
   const regionId = COUNTRY_TO_REGION[countryName];
   if (!regionId) return null;
 

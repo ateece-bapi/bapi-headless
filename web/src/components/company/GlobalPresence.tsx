@@ -31,7 +31,8 @@ const Geography = _Geography as React.ComponentType<
   }
 >;
 
-const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
+const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+const frenchGuianaOverlayUrl = '/data/french-guiana.geojson';
 
 // Type definitions for map data
 type GeoFeature = {
@@ -241,6 +242,28 @@ export function GlobalPresence({
                         />
                       );
                     })
+                  }
+                </Geographies>
+
+                {/* French Guiana overlay — world-atlas merges it into France's
+                    multipolygon so it wrongly highlights with Western Europe.
+                    This local GeoJSON patch renders it with South America's fill. */}
+                <Geographies geography={frenchGuianaOverlayUrl}>
+                  {({ geographies }: { geographies: GeoFeature[] }) =>
+                    geographies.map((geo: GeoFeature) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill={getGeographyFill('French Guiana')}
+                        stroke={getGeographyStroke('French Guiana')}
+                        onMouseEnter={() => handleCountryEnter('French Guiana')}
+                        style={{
+                          default: { outline: 'none' },
+                          hover: { outline: 'none' },
+                          pressed: { outline: 'none' },
+                        }}
+                      />
+                    ))
                   }
                 </Geographies>
 

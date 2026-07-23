@@ -222,6 +222,7 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Guyana: 2,
   Suriname: 2,
   'Fr. Guiana': 2,
+  'French Guiana': 2,
   'Falkland Is.': 2,
 
   // ── Region 3: Scandinavia, Baltic & Greenland ──────────────────────────────

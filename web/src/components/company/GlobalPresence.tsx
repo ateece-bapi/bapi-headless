@@ -31,7 +31,7 @@ const Geography = _Geography as React.ComponentType<
   }
 >;
 
-const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
 // Type definitions for map data
 type GeoFeature = {

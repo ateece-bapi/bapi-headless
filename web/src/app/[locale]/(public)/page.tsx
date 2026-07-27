@@ -24,7 +24,7 @@ import {
 const GlobalPresence = dynamic(
   () => import('@/components/company/GlobalPresence').then((mod) => ({ default: mod.GlobalPresence })),
   {
-    ssr: true, // Keep SSR for SEO
+    ssr: false, // Map uses client-side projection math — SSR produces floating-point mismatch
     loading: () => (
       <div className="bg-neutral-50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

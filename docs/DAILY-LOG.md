@@ -8,6 +8,66 @@
 
 ---
 
+## July 27, 2026 — World Map: Region Corrections, Marker Icons & Location Pins 🗺️
+
+**Status:** ✅ PR #[fix/sales-region-country-assignments] merged
+
+### What Was Done
+
+Full overhaul of the interactive `GlobalPresence` world map based on Christian Ellefson feedback and comparison against the BAPI internal territory map.
+
+#### Sales Region Country Reassignments (`salesRegions.ts`)
+- **Mexico + Central America + Caribbean → Latin America (region 2)**. Region 2 renamed "Latin America"; region 1 (North America) is now USA & Canada only.
+- **Benelux (NL, BE, LU) → Central Europe (region 5)**. Removed from Western Europe (region 4).
+- **Baltic States (EE, LV, LT) → Eastern Europe (region 6)**. Moved from Scandinavia (region 3); region 3 renamed "Scandinavia".
+- **Belarus → Russia (region 15)**. Moved from Eastern Europe; region 15 renamed "Russia".
+- **Kazakhstan → Middle East (region 9)**. Moved from Russia.
+- **Pakistan → Middle East (region 9)**. Moved from South Asia.
+- **Myanmar → South Asia (region 10)**. Moved from Southeast Asia.
+- **Egypt → West & Central Africa (region 7)**. Moved from Middle East (it's North Africa).
+- All `SALES_REGIONS` descriptions and JSDoc header comment updated to match.
+
+#### Map Marker Icons (`GlobalPresence.tsx`, `locations.ts`)
+Replaced plain colored circles with icon-based SVG markers matching the BAPI internal map legend:
+- **HQ** → pulsing BAPI-blue badge with "HQ" label
+- **Factory Distribution Center** → grey badge with upward arrow
+- **Business Development & Regional Sales** → blue badge with person silhouette
+- `FACILITY_TYPE_COLORS` updated (green→grey for factory, yellow→blue-400 for sales)
+- `FACILITY_TYPE_LABELS` updated to BAPI map terminology
+- Legend below map updated to show matching icon badges instead of plain circles
+- `en.json` `mapLegend` labels updated
+
+#### New Location Pins (`locations.ts`, `en.json`, `page.tsx`)
+Added missing Business Dev & Regional Sales markers to match the BAPI internal map, using dual-marker pattern (factory arrow + person pin at same coordinates where applicable):
+
+| Location | Type | Rep |
+|---|---|---|
+| Gays Mills, USA | Sales (blue person) | Matt Holder |
+| Aldershot, UK | Manufacturing (factory arrow) | — |
+| Nowa Wola, Poland | Sales (blue person) | Jan Zurawski |
+| Dubai, UAE | Sales (blue person) | Murtaza Kalabhai |
+| Mumbai, India | Sales (blue person) | Murtaza Kalabhai |
+| Bangkok, Thailand | Sales (blue person) | Andy Brooks |
+| Sydney, Australia | Sales (blue person) | Andy Brooks |
+| Auckland, NZ | Sales (blue person) | Andy Brooks |
+
+Also added `salesRep` metadata to `sales-uk` (Mike Moss). All new entries have full `en.json` + `page.tsx` translation wiring.
+
+#### Hydration & Build Fixes
+- **Hydration mismatch** — `react-simple-maps` computes SVG `transform` values in floating-point; Node.js and V8 produce slightly different results (e.g. `342.9622110647173` vs `342.96221106471734`), causing a React hydration error on every load. Fixed by disabling SSR for the map.
+- **Build error** — `ssr: false` cannot be used in a Server Component directly. Created `GlobalPresenceDynamic.tsx` (`'use client'`) which owns the `dynamic(..., { ssr: false })` call and loading skeleton. Both `page.tsx` and `company/page.tsx` import the wrapper.
+
+### Files Changed
+- `web/src/lib/constants/salesRegions.ts` — region assignments, names, descriptions
+- `web/src/lib/constants/locations.ts` — 9 new/updated location entries, colors, labels
+- `web/src/components/company/GlobalPresence.tsx` — icon-based markers + legend
+- `web/src/components/company/GlobalPresenceDynamic.tsx` — new client wrapper (ssr: false)
+- `web/src/app/[locale]/(public)/page.tsx` — switched to GlobalPresenceDynamic
+- `web/src/app/[locale]/company/page.tsx` — switched to GlobalPresenceDynamic
+- `web/messages/en.json` — mapLegend labels + 8 new facility translation entries
+
+---
+
 ## July 23, 2026 — Sales Territory Restructure, Team Photo & French Guiana Map Fix 🗺️
 
 **Status:** ✅ PRs #629, #630, #631 merged

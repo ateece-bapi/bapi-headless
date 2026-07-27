@@ -54,6 +54,7 @@ export interface Location {
  */
 export const BAPI_LOCATIONS: Location[] = [
   // === HEADQUARTERS ===
+  // BAPI map shows both the HQ marker AND a Business Dev person marker here
   {
     id: 'headquarters-usa',
     name: 'Global Headquarters',
@@ -65,6 +66,21 @@ export const BAPI_LOCATIONS: Location[] = [
     status: 'operational',
     description: 'Corporate headquarters and primary manufacturing facility',
     established: '1993',
+  },
+  {
+    id: 'sales-rep-usa',
+    name: 'North America Sales',
+    city: 'Gays Mills',
+    region: 'Wisconsin',
+    country: 'USA',
+    coordinates: [-90.8543, 43.3297], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'North America regional sales',
+    salesRep: {
+      name: 'Matt Holder',
+      territory: 'North America',
+    },
   },
 
   // === MANUFACTURING & OFFICE FACILITIES ===
@@ -80,6 +96,22 @@ export const BAPI_LOCATIONS: Location[] = [
     status: 'operational',
     description: 'European production facility, office, and customer service center',
   },
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'sales-rep-poland',
+    name: 'Central & Eastern Europe Sales',
+    city: 'Nowa Wola',
+    region: 'Podkarpackie',
+    country: 'Poland',
+    coordinates: [21.0333, 50.5833], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Central & Eastern Europe regional sales',
+    salesRep: {
+      name: 'Jan Zurawski',
+      territory: 'Central & Eastern Europe',
+    },
+  },
   {
     id: 'manufacturing-vietnam',
     name: 'Asia-Pacific Manufacturing & Office',
@@ -94,6 +126,18 @@ export const BAPI_LOCATIONS: Location[] = [
 
   // === SALES OFFICES ===
   // Per Mike Moss: UK should be listed as sales office (not distribution)
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'manufacturing-uk',
+    name: 'UK Factory Distribution Center',
+    city: 'Aldershot',
+    region: 'Hampshire',
+    country: 'United Kingdom',
+    coordinates: [-0.7629, 51.2485], // [lng, lat]
+    type: 'manufacturing',
+    status: 'operational',
+    description: 'European factory distribution center',
+  },
   {
     id: 'sales-uk',
     name: 'UK Sales Office',
@@ -104,45 +148,91 @@ export const BAPI_LOCATIONS: Location[] = [
     type: 'sales',
     status: 'operational',
     description: 'European sales and customer support hub',
+    salesRep: {
+      name: 'Mike Moss',
+      territory: 'Western Europe',
+    },
   },
 
-  // TODO: Add sales staff locations (awaiting data from Mike Moss)
-  // Per Mike Moss: "include the locations of our sales staff"
-  // Example structure:
-  // {
-  //   id: 'sales-rep-midwest',
-  //   name: 'Midwest Sales Representative',
-  //   city: 'Chicago',
-  //   region: 'Illinois',
-  //   country: 'USA',
-  //   coordinates: [-87.6298, 41.8781],
-  //   type: 'sales',
-  //   status: 'operational',
-  //   description: 'Midwest territory sales and support',
-  //   salesRep: {
-  //     name: 'John Doe',
-  //     territory: 'IL, WI, MI, IN, OH',
-  //   },
-  // },
+  // === SALES REPRESENTATIVE LOCATIONS ===
+  {
+    id: 'sales-rep-uae',
+    name: 'Middle East & South Asia Sales',
+    city: 'Dubai',
+    region: 'Dubai',
+    country: 'United Arab Emirates',
+    coordinates: [55.2708, 25.2048], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Middle East, Turkey & South Asia regional sales',
+    salesRep: {
+      name: 'Murtaza Kalabhai',
+      territory: 'Middle East, Turkey & South Asia',
+    },
+  },
+  {
+    id: 'sales-rep-india',
+    name: 'South Asia Sales',
+    city: 'Mumbai',
+    region: 'Maharashtra',
+    country: 'India',
+    coordinates: [72.8777, 19.076], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'South Asia regional sales',
+    salesRep: {
+      name: 'Murtaza Kalabhai',
+      territory: 'South Asia',
+    },
+  },
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'sales-rep-sea',
+    name: 'Southeast Asia Sales',
+    city: 'Bangkok',
+    region: 'Bangkok',
+    country: 'Thailand',
+    coordinates: [100.5018, 13.7563], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Southeast Asia regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Southeast Asia',
+    },
+  },
+  {
+    id: 'sales-rep-australia',
+    name: 'Asia-Pacific Sales',
+    city: 'Sydney',
+    region: 'New South Wales',
+    country: 'Australia',
+    coordinates: [151.2093, -33.8688], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Asia-Pacific regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Asia, Australia & Pacific',
+    },
+  },
+  {
+    id: 'sales-rep-newzealand',
+    name: 'New Zealand Sales',
+    city: 'Auckland',
+    region: 'Auckland',
+    country: 'New Zealand',
+    coordinates: [174.7633, -36.8485], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'New Zealand regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Asia, Australia & Pacific',
+    },
+  },
 
   // TODO: Add distribution partner locations (awaiting data from Mike Moss)
-  // Per Mike Moss: "possibly even distribution partners"
-  // Example structure:
-  // {
-  //   id: 'partner-germany',
-  //   name: 'European Distribution Partner',
-  //   city: 'Munich',
-  //   region: 'Bavaria',
-  //   country: 'Germany',
-  //   coordinates: [11.5820, 48.1351],
-  //   type: 'distribution-partner',
-  //   status: 'operational',
-  //   description: 'Authorized distributor for Central Europe',
-  //   partner: {
-  //     companyName: 'Example GmbH',
-  //     website: 'https://example.com',
-  //   },
-  // },
 ];
 
 /**
@@ -154,28 +244,24 @@ export const BAPI_LOCATIONS: Location[] = [
  * - Added 'distribution-partner' for third-party distributors
  */
 export const FACILITY_TYPE_LABELS: Record<FacilityType, string> = {
-  headquarters: 'Headquarters',
-  manufacturing: 'Manufacturing & Office',
-  sales: 'Sales Office',
+  headquarters: 'BAPI Headquarters',
+  manufacturing: 'Factory Distribution Center',
+  sales: 'Business Development & Regional Sales',
   'distribution-partner': 'Distribution Partner',
 };
 
 /**
- * Facility type colors for map markers
- *
- * Per Mike Moss: All manufacturing facilities (Poland, Vietnam) use same color
- *
- * Color palette:
- * - Blue (#166fb9): BAPI primary (Web/Digital) - headquarters
- * - Green (#10B981): Manufacturing facilities (consistent color for all)
- * - Yellow (#FFC843): BAPI accent - sales offices
- * - Gray (#6B7280): Distribution partners
+ * Facility type colors for map markers — matches BAPI internal world map legend:
+ * - Blue (#166fb9): BAPI Headquarters (pulsing blue badge)
+ * - Gray (#6B7280): Factory Distribution Center (grey arrow badge)
+ * - Blue-400 (#60A5FA): Business Development & Regional Sales (blue person badge)
+ * - Gray-400 (#9CA3AF): Distribution Partners
  */
 export const FACILITY_TYPE_COLORS: Record<FacilityType, string> = {
-  headquarters: '#166fb9', // BAPI Blue (Web/Digital) - primary facility
-  manufacturing: '#10B981', // Green-500 - all manufacturing (Poland + Vietnam same)
-  sales: '#FFC843', // BAPI Yellow - sales offices
-  'distribution-partner': '#6B7280', // Gray-500 - third-party partners
+  headquarters: '#166fb9', // BAPI Blue — pulsing HQ badge
+  manufacturing: '#6B7280', // Gray-500 — Factory Distribution Center grey arrow
+  sales: '#60A5FA',         // Blue-400 — Business Development & Regional Sales person
+  'distribution-partner': '#9CA3AF', // Gray-400 — third-party partners
 };
 
 /**

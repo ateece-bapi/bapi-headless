@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
+import dynamic from 'next/dynamic';
 import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
-import { GlobalPresence } from '@/components/company/GlobalPresence';
+import { GlobalPresenceDynamic as GlobalPresence } from '@/components/company/GlobalPresenceDynamic';
 import { generatePageMetadata } from '@/lib/metadata';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';

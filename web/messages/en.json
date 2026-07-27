@@ -832,9 +832,9 @@
       "title": "Our Global Presence",
       "subtitle": "From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.",
       "mapLegend": {
-        "headquarters": "Headquarters",
-        "manufacturing": "Manufacturing & Office",
-        "sales": "Sales Office",
+        "headquarters": "BAPI Headquarters",
+        "manufacturing": "Factory Distribution Center",
+        "sales": "Business Development & Regional Sales",
         "distributionPartner": "Distribution Partner"
       },
       "facilities": {
@@ -846,12 +846,26 @@
           "type": "Headquarters",
           "established": "Est. 1993"
         },
+        "salesRepUsa": {
+          "name": "North America Sales",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "North America regional sales",
+          "type": "Business Development & Regional Sales"
+        },
         "manufacturingPoland": {
           "name": "European Manufacturing & Office",
           "city": "Nowa Wola",
           "country": "Poland",
           "description": "European production facility, office, and customer service center",
-          "type": "Manufacturing & Office"
+          "type": "Factory Distribution Center"
+        },
+        "salesRepPoland": {
+          "name": "Central & Eastern Europe Sales",
+          "city": "Nowa Wola",
+          "country": "Poland",
+          "description": "Central & Eastern Europe regional sales",
+          "type": "Business Development & Regional Sales"
         },
         "manufacturingVietnam": {
           "name": "Asia-Pacific Manufacturing & Office",
@@ -861,12 +875,54 @@
           "type": "Manufacturing & Office",
           "status": "Opening Soon"
         },
+        "manufacturingUk": {
+          "name": "UK Factory Distribution Center",
+          "city": "Aldershot",
+          "country": "United Kingdom",
+          "description": "European factory distribution center",
+          "type": "Factory Distribution Center"
+        },
         "salesUk": {
           "name": "UK Sales Office",
           "city": "Aldershot",
           "country": "United Kingdom",
           "description": "European sales and customer support hub",
-          "type": "Sales Office"
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepUae": {
+          "name": "Middle East & South Asia Sales",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "description": "Middle East, Turkey & South Asia regional sales",
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepIndia": {
+          "name": "South Asia Sales",
+          "city": "Mumbai",
+          "country": "India",
+          "description": "South Asia regional sales",
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepSea": {
+          "name": "Southeast Asia Sales",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "description": "Southeast Asia regional sales",
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepAustralia": {
+          "name": "Asia-Pacific Sales",
+          "city": "Sydney",
+          "country": "Australia",
+          "description": "Asia-Pacific regional sales",
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepNewzealand": {
+          "name": "New Zealand Sales",
+          "city": "Auckland",
+          "country": "New Zealand",
+          "description": "New Zealand regional sales",
+          "type": "Business Development & Regional Sales"
         }
       },
       "cta": {

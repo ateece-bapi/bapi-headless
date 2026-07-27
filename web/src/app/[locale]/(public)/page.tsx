@@ -17,26 +17,10 @@ import {
 } from '@/lib/icons';
 
 /**
- * Lazy load GlobalPresence component to improve initial page load
- * This component is below the fold and includes heavy map rendering
- * Deferring it reduces Total Blocking Time (TBT) significantly
+ * GlobalPresence is rendered via a client-side-only wrapper (ssr: false) to
+ * avoid floating-point hydration mismatches from react-simple-maps projection math.
  */
-const GlobalPresence = dynamic(
-  () => import('@/components/company/GlobalPresence').then((mod) => ({ default: mod.GlobalPresence })),
-  {
-    ssr: true, // Keep SSR for SEO
-    loading: () => (
-      <div className="bg-neutral-50 py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="animate-pulse space-y-8">
-            <div className="mx-auto h-8 w-64 rounded bg-neutral-200"></div>
-            <div className="mx-auto h-96 rounded-2xl bg-neutral-200"></div>
-          </div>
-        </div>
-      </div>
-    ),
-  }
-);
+import { GlobalPresenceDynamic as GlobalPresence } from '@/components/company/GlobalPresenceDynamic';
 
 /**
  * Homepage - Main landing page for BAPI Headless E-Commerce
@@ -413,12 +397,40 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               type: t('locations.facilities.headquartersUsa.type'),
               established: t('locations.facilities.headquartersUsa.established'),
             },
+            'sales-rep-usa': {
+              name: t('locations.facilities.salesRepUsa.name'),
+              city: t('locations.facilities.salesRepUsa.city'),
+              country: t('locations.facilities.salesRepUsa.country'),
+              description: t('locations.facilities.salesRepUsa.description'),
+              type: t('locations.facilities.salesRepUsa.type'),
+            },
+            'manufacturing-uk': {
+              name: t('locations.facilities.manufacturingUk.name'),
+              city: t('locations.facilities.manufacturingUk.city'),
+              country: t('locations.facilities.manufacturingUk.country'),
+              description: t('locations.facilities.manufacturingUk.description'),
+              type: t('locations.facilities.manufacturingUk.type'),
+            },
+            'sales-uk': {
+              name: t('locations.facilities.salesUk.name'),
+              city: t('locations.facilities.salesUk.city'),
+              country: t('locations.facilities.salesUk.country'),
+              description: t('locations.facilities.salesUk.description'),
+              type: t('locations.facilities.salesUk.type'),
+            },
             'manufacturing-poland': {
               name: t('locations.facilities.manufacturingPoland.name'),
               city: t('locations.facilities.manufacturingPoland.city'),
               country: t('locations.facilities.manufacturingPoland.country'),
               description: t('locations.facilities.manufacturingPoland.description'),
               type: t('locations.facilities.manufacturingPoland.type'),
+            },
+            'sales-rep-poland': {
+              name: t('locations.facilities.salesRepPoland.name'),
+              city: t('locations.facilities.salesRepPoland.city'),
+              country: t('locations.facilities.salesRepPoland.country'),
+              description: t('locations.facilities.salesRepPoland.description'),
+              type: t('locations.facilities.salesRepPoland.type'),
             },
             'manufacturing-vietnam': {
               name: t('locations.facilities.manufacturingVietnam.name'),
@@ -428,12 +440,40 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               type: t('locations.facilities.manufacturingVietnam.type'),
               status: t('locations.facilities.manufacturingVietnam.status'),
             },
-            'sales-uk': {
-              name: t('locations.facilities.salesUk.name'),
-              city: t('locations.facilities.salesUk.city'),
-              country: t('locations.facilities.salesUk.country'),
-              description: t('locations.facilities.salesUk.description'),
-              type: t('locations.facilities.salesUk.type'),
+            'sales-rep-uae': {
+              name: t('locations.facilities.salesRepUae.name'),
+              city: t('locations.facilities.salesRepUae.city'),
+              country: t('locations.facilities.salesRepUae.country'),
+              description: t('locations.facilities.salesRepUae.description'),
+              type: t('locations.facilities.salesRepUae.type'),
+            },
+            'sales-rep-india': {
+              name: t('locations.facilities.salesRepIndia.name'),
+              city: t('locations.facilities.salesRepIndia.city'),
+              country: t('locations.facilities.salesRepIndia.country'),
+              description: t('locations.facilities.salesRepIndia.description'),
+              type: t('locations.facilities.salesRepIndia.type'),
+            },
+            'sales-rep-sea': {
+              name: t('locations.facilities.salesRepSea.name'),
+              city: t('locations.facilities.salesRepSea.city'),
+              country: t('locations.facilities.salesRepSea.country'),
+              description: t('locations.facilities.salesRepSea.description'),
+              type: t('locations.facilities.salesRepSea.type'),
+            },
+            'sales-rep-australia': {
+              name: t('locations.facilities.salesRepAustralia.name'),
+              city: t('locations.facilities.salesRepAustralia.city'),
+              country: t('locations.facilities.salesRepAustralia.country'),
+              description: t('locations.facilities.salesRepAustralia.description'),
+              type: t('locations.facilities.salesRepAustralia.type'),
+            },
+            'sales-rep-newzealand': {
+              name: t('locations.facilities.salesRepNewzealand.name'),
+              city: t('locations.facilities.salesRepNewzealand.city'),
+              country: t('locations.facilities.salesRepNewzealand.country'),
+              description: t('locations.facilities.salesRepNewzealand.description'),
+              type: t('locations.facilities.salesRepNewzealand.type'),
             },
           },
           cta: {

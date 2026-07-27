@@ -11,20 +11,20 @@
  *
  * Regions:
  *  1  – North America          (Matt Holder)
- *  2  – South America          (John Shields)
- *  3  – Scandinavia & Baltic   (John Shields)
+ *  2  – Latin America          (John Shields)
+ *  3  – Scandinavia            (John Shields)
  *  4  – Western Europe         (Mike Moss)
  *  5  – Central Europe         (Jan Zurawski)
  *  6  – Eastern Europe/Balkans (Jan Zurawski)
  *  7  – West & Central Africa  (John Shields)
  *  8  – East & Southern Africa (John Shields)
  *  9  – Middle East & Turkey   (Murtaza Kalabhai)
- * 10  – South Asia             (Murtaza Kalabhai)
+ * 10  – South Asia & Myanmar   (Murtaza Kalabhai)
  * 11  – China & Mongolia       (Andy Brooks)
  * 12  – East Asia              (Andy Brooks)
  * 13  – Southeast Asia         (Andy Brooks)
  * 14  – Australia & Pacific    (Andy Brooks)
- * 15  – Russia & Kazakhstan    (John Shields)
+ * 15  – Russia                 (John Shields)
  */
 
 export interface SalesRep {
@@ -87,43 +87,43 @@ export const SALES_REGIONS: SalesRegion[] = [
     id: 1,
     name: 'North America',
     repId: 'matt-holder',
-    description: 'USA, Canada, Mexico & Caribbean',
+    description: 'USA & Canada',
   },
   {
     id: 2,
-    name: 'South America',
+    name: 'Latin America',
     repId: 'john-shields',
-    description: 'All South American countries',
+    description: 'Mexico, Central America, Caribbean & South America',
   },
   {
     id: 3,
-    name: 'Scandinavia & Baltic',
+    name: 'Scandinavia',
     repId: 'john-shields',
-    description: 'Norway, Sweden, Finland, Denmark, Iceland, Greenland & Baltic States',
+    description: 'Norway, Sweden, Finland, Denmark, Iceland, Greenland & Faroe Islands',
   },
   {
     id: 4,
     name: 'Western Europe',
     repId: 'mike-moss',
-    description: 'UK, Ireland, France, Benelux, Spain & Portugal',
+    description: 'UK, Ireland, France, Spain & Portugal',
   },
   {
     id: 5,
     name: 'Central Europe',
     repId: 'jan-zurawski',
-    description: 'Germany, Austria, Switzerland, Italy, Czech Republic, Slovakia & Slovenia',
+    description: 'Germany, Austria, Switzerland, Italy, Benelux, Czech Republic, Slovakia & Slovenia',
   },
   {
     id: 6,
     name: 'Eastern Europe & Balkans',
     repId: 'jan-zurawski',
-    description: 'Poland, Ukraine, Belarus, Hungary, Romania, Bulgaria & the Balkans',
+    description: 'Poland, Ukraine, Baltic States, Hungary, Romania, Bulgaria & the Balkans',
   },
   {
     id: 7,
     name: 'West & Central Africa',
     repId: 'john-shields',
-    description: 'West & Central Africa (Morocco, Algeria, Libya & sub-Saharan west)',
+    description: 'West & Central Africa (North Africa incl. Egypt, Morocco, Algeria & Libya; sub-Saharan west)',
   },
   {
     id: 8,
@@ -135,13 +135,13 @@ export const SALES_REGIONS: SalesRegion[] = [
     id: 9,
     name: 'Middle East & Turkey',
     repId: 'murtaza-kalabhai',
-    description: 'Turkey, Arabian Peninsula, Levant, Iran, Egypt & Caucasus',
+    description: 'Turkey, Arabian Peninsula, Levant, Iran, Caucasus, Kazakhstan & Pakistan',
   },
   {
     id: 10,
     name: 'South Asia',
     repId: 'murtaza-kalabhai',
-    description: 'India, Pakistan, Bangladesh, Sri Lanka & Nepal',
+    description: 'India, Bangladesh, Sri Lanka, Nepal & Myanmar',
   },
   {
     id: 11,
@@ -169,9 +169,9 @@ export const SALES_REGIONS: SalesRegion[] = [
   },
   {
     id: 15,
-    name: 'Russia & Kazakhstan',
+    name: 'Russia',
     repId: 'john-shields',
-    description: 'Russia & Kazakhstan',
+    description: 'Russia & Belarus',
   },
 ];
 
@@ -185,30 +185,33 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   // ── Region 1: North America ──────────────────────────────────────────────
   'United States of America': 1,
   Canada: 1,
-  Mexico: 1,
-  Guatemala: 1,
-  Belize: 1,
-  Honduras: 1,
-  'El Salvador': 1,
-  Nicaragua: 1,
-  'Costa Rica': 1,
-  Panama: 1,
-  Cuba: 1,
-  Jamaica: 1,
-  Haiti: 1,
-  'Dominican Rep.': 1,
-  'Puerto Rico': 1,
-  'Trinidad and Tobago': 1,
-  Bahamas: 1,
-  Barbados: 1,
-  'Antigua and Barb.': 1,
-  'St. Kitts and Nevis': 1,
-  Grenada: 1,
-  'St. Vincent and the Grenadines': 1,
-  Dominica: 1,
-  'St. Lucia': 1,
 
-  // ── Region 2: South America ──────────────────────────────────────────────
+  // ── Region 2: Latin America ───────────────────────────────────────────────
+  // Central America & Mexico
+  Mexico: 2,
+  Guatemala: 2,
+  Belize: 2,
+  Honduras: 2,
+  'El Salvador': 2,
+  Nicaragua: 2,
+  'Costa Rica': 2,
+  Panama: 2,
+  // Caribbean
+  Cuba: 2,
+  Jamaica: 2,
+  Haiti: 2,
+  'Dominican Rep.': 2,
+  'Puerto Rico': 2,
+  'Trinidad and Tobago': 2,
+  Bahamas: 2,
+  Barbados: 2,
+  'Antigua and Barb.': 2,
+  'St. Kitts and Nevis': 2,
+  Grenada: 2,
+  'St. Vincent and the Grenadines': 2,
+  Dominica: 2,
+  'St. Lucia': 2,
+  // South America
   Brazil: 2,
   Argentina: 2,
   Chile: 2,
@@ -225,35 +228,32 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   'French Guiana': 2,
   'Falkland Is.': 2,
 
-  // ── Region 3: Scandinavia, Baltic & Greenland ──────────────────────────────
+  // ── Region 3: Scandinavia & Greenland ──────────────────────────────────────
   Norway: 3,
   Sweden: 3,
   Finland: 3,
   Denmark: 3,
   Iceland: 3,
   Greenland: 3,
-  Estonia: 3,
-  Latvia: 3,
-  Lithuania: 3,
   'Faroe Is.': 3,
 
-  // ── Region 4: Western Europe (UK, Ireland, France, Iberia, Benelux) ───────
+  // ── Region 4: Western Europe (UK, Ireland, France & Iberia) ──────────────
   'United Kingdom': 4,
   Ireland: 4,
   France: 4,
-  Netherlands: 4,
-  Belgium: 4,
-  Luxembourg: 4,
   Spain: 4,
   Portugal: 4,
   Andorra: 4,
   Monaco: 4,
 
-  // ── Region 5: Central Europe (German-speaking + Italy cluster) ───────────
+  // ── Region 5: Central Europe (German-speaking, Benelux + Italy cluster) ──
   Germany: 5,
   Austria: 5,
   Switzerland: 5,
   Liechtenstein: 5,
+  Netherlands: 5,
+  Belgium: 5,
+  Luxembourg: 5,
   Italy: 5,
   Slovenia: 5,
   Czechia: 5,
@@ -263,7 +263,6 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   // ── Region 6: Eastern Europe & Balkans ────────────────────────────────────
   Poland: 6,
   Ukraine: 6,
-  Belarus: 6,
   Moldova: 6,
   Romania: 6,
   Bulgaria: 6,
@@ -278,12 +277,17 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Kosovo: 6,
   Greece: 6,
   Malta: 6,
+  // Baltic States
+  Estonia: 6,
+  Latvia: 6,
+  Lithuania: 6,
 
   // ── Region 7: West & Central Africa (incl. North Africa) ─────────────────
   Morocco: 7,
   Algeria: 7,
   Tunisia: 7,
   Libya: 7,
+  Egypt: 7,
   'W. Sahara': 7,
   Mauritania: 7,
   Mali: 7,
@@ -342,7 +346,6 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   // ── Region 9: Middle East, Turkey & Caucasus ────────────────────────────
   Turkey: 9,
   Cyprus: 9,
-  Egypt: 9,
   'Saudi Arabia': 9,
   Yemen: 9,
   Oman: 9,
@@ -362,20 +365,22 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Georgia: 9,
   Armenia: 9,
   Azerbaijan: 9,
-  // Central Asian stans (dark red on map, not purple Russia zone)
+  // Central Asian stans
   Uzbekistan: 9,
   Turkmenistan: 9,
   Kyrgyzstan: 9,
   Tajikistan: 9,
+  Kazakhstan: 9,
+  Pakistan: 9,
 
-  // ── Region 10: South Asia ─────────────────────────────────────────────────
+  // ── Region 10: South Asia & Myanmar ──────────────────────────────────────
   India: 10,
-  Pakistan: 10,
   Bangladesh: 10,
   'Sri Lanka': 10,
   Nepal: 10,
   Bhutan: 10,
   Maldives: 10,
+  Myanmar: 10,
 
   // ── Region 11: China & Mongolia ───────────────────────────────────────────
   China: 11,
@@ -396,7 +401,6 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Singapore: 13,
   Indonesia: 13,
   Philippines: 13,
-  Myanmar: 13,
   Cambodia: 13,
   Laos: 13,
   Brunei: 13,
@@ -412,9 +416,9 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Fiji: 14,
   'New Caledonia': 14,
 
-  // ── Region 15: Russia & Kazakhstan ─────────────────────────────────────
+  // ── Region 15: Russia ───────────────────────────────────────────────────
   Russia: 15,
-  Kazakhstan: 15,
+  Belarus: 15,
 };
 
 /** Look up a SalesRep by their id. */

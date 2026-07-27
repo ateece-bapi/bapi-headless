@@ -155,6 +155,37 @@ export const BAPI_LOCATIONS: Location[] = [
     },
   },
   {
+    id: 'sales-rep-india',
+    name: 'South Asia Sales',
+    city: 'Mumbai',
+    region: 'Maharashtra',
+    country: 'India',
+    coordinates: [72.8777, 19.076], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'South Asia regional sales',
+    salesRep: {
+      name: 'Murtaza Kalabhai',
+      territory: 'South Asia',
+    },
+  },
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'sales-rep-sea',
+    name: 'Southeast Asia Sales',
+    city: 'Bangkok',
+    region: 'Bangkok',
+    country: 'Thailand',
+    coordinates: [100.5018, 13.7563], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Southeast Asia regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Southeast Asia',
+    },
+  },
+  {
     id: 'sales-rep-australia',
     name: 'Asia-Pacific Sales',
     city: 'Sydney',

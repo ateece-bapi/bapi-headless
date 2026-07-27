@@ -889,6 +889,20 @@
           "description": "Middle East, Turkey & South Asia regional sales",
           "type": "Business Development & Regional Sales"
         },
+        "salesRepIndia": {
+          "name": "South Asia Sales",
+          "city": "Mumbai",
+          "country": "India",
+          "description": "South Asia regional sales",
+          "type": "Business Development & Regional Sales"
+        },
+        "salesRepSea": {
+          "name": "Southeast Asia Sales",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "description": "Southeast Asia regional sales",
+          "type": "Business Development & Regional Sales"
+        },
         "salesRepAustralia": {
           "name": "Asia-Pacific Sales",
           "city": "Sydney",

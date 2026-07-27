@@ -54,6 +54,7 @@ export interface Location {
  */
 export const BAPI_LOCATIONS: Location[] = [
   // === HEADQUARTERS ===
+  // BAPI map shows both the HQ marker AND a Business Dev person marker here
   {
     id: 'headquarters-usa',
     name: 'Global Headquarters',
@@ -65,6 +66,21 @@ export const BAPI_LOCATIONS: Location[] = [
     status: 'operational',
     description: 'Corporate headquarters and primary manufacturing facility',
     established: '1993',
+  },
+  {
+    id: 'sales-rep-usa',
+    name: 'North America Sales',
+    city: 'Gays Mills',
+    region: 'Wisconsin',
+    country: 'USA',
+    coordinates: [-90.8543, 43.3297], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'North America regional sales',
+    salesRep: {
+      name: 'Matt Holder',
+      territory: 'North America',
+    },
   },
 
   // === MANUFACTURING & OFFICE FACILITIES ===

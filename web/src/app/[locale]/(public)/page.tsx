@@ -413,6 +413,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               type: t('locations.facilities.headquartersUsa.type'),
               established: t('locations.facilities.headquartersUsa.established'),
             },
+            'sales-rep-usa': {
+              name: t('locations.facilities.salesRepUsa.name'),
+              city: t('locations.facilities.salesRepUsa.city'),
+              country: t('locations.facilities.salesRepUsa.country'),
+              description: t('locations.facilities.salesRepUsa.description'),
+              type: t('locations.facilities.salesRepUsa.type'),
+            },
             'manufacturing-uk': {
               name: t('locations.facilities.manufacturingUk.name'),
               city: t('locations.facilities.manufacturingUk.city'),

@@ -846,6 +846,13 @@
           "type": "Headquarters",
           "established": "Est. 1993"
         },
+        "salesRepUsa": {
+          "name": "North America Sales",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "North America regional sales",
+          "type": "Business Development & Regional Sales"
+        },
         "manufacturingPoland": {
           "name": "European Manufacturing & Office",
           "city": "Nowa Wola",

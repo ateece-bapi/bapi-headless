@@ -80,6 +80,22 @@ export const BAPI_LOCATIONS: Location[] = [
     status: 'operational',
     description: 'European production facility, office, and customer service center',
   },
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'sales-rep-poland',
+    name: 'Central & Eastern Europe Sales',
+    city: 'Nowa Wola',
+    region: 'Podkarpackie',
+    country: 'Poland',
+    coordinates: [21.0333, 50.5833], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Central & Eastern Europe regional sales',
+    salesRep: {
+      name: 'Jan Zurawski',
+      territory: 'Central & Eastern Europe',
+    },
+  },
   {
     id: 'manufacturing-vietnam',
     name: 'Asia-Pacific Manufacturing & Office',
@@ -94,6 +110,18 @@ export const BAPI_LOCATIONS: Location[] = [
 
   // === SALES OFFICES ===
   // Per Mike Moss: UK should be listed as sales office (not distribution)
+  // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
+  {
+    id: 'manufacturing-uk',
+    name: 'UK Factory Distribution Center',
+    city: 'Aldershot',
+    region: 'Hampshire',
+    country: 'United Kingdom',
+    coordinates: [-0.7629, 51.2485], // [lng, lat]
+    type: 'manufacturing',
+    status: 'operational',
+    description: 'European factory distribution center',
+  },
   {
     id: 'sales-uk',
     name: 'UK Sales Office',
@@ -104,6 +132,10 @@ export const BAPI_LOCATIONS: Location[] = [
     type: 'sales',
     status: 'operational',
     description: 'European sales and customer support hub',
+    salesRep: {
+      name: 'Mike Moss',
+      territory: 'Western Europe',
+    },
   },
 
   // === SALES REPRESENTATIVE LOCATIONS ===

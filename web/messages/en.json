@@ -851,7 +851,14 @@
           "city": "Nowa Wola",
           "country": "Poland",
           "description": "European production facility, office, and customer service center",
-          "type": "Manufacturing & Office"
+          "type": "Factory Distribution Center"
+        },
+        "salesRepPoland": {
+          "name": "Central & Eastern Europe Sales",
+          "city": "Nowa Wola",
+          "country": "Poland",
+          "description": "Central & Eastern Europe regional sales",
+          "type": "Business Development & Regional Sales"
         },
         "manufacturingVietnam": {
           "name": "Asia-Pacific Manufacturing & Office",
@@ -860,6 +867,13 @@
           "description": "New manufacturing facility and office serving Asian markets",
           "type": "Manufacturing & Office",
           "status": "Opening Soon"
+        },
+        "manufacturingUk": {
+          "name": "UK Factory Distribution Center",
+          "city": "Aldershot",
+          "country": "United Kingdom",
+          "description": "European factory distribution center",
+          "type": "Factory Distribution Center"
         },
         "salesUk": {
           "name": "UK Sales Office",

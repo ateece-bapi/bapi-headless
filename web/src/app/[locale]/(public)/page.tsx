@@ -413,12 +413,33 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               type: t('locations.facilities.headquartersUsa.type'),
               established: t('locations.facilities.headquartersUsa.established'),
             },
+            'manufacturing-uk': {
+              name: t('locations.facilities.manufacturingUk.name'),
+              city: t('locations.facilities.manufacturingUk.city'),
+              country: t('locations.facilities.manufacturingUk.country'),
+              description: t('locations.facilities.manufacturingUk.description'),
+              type: t('locations.facilities.manufacturingUk.type'),
+            },
+            'sales-uk': {
+              name: t('locations.facilities.salesUk.name'),
+              city: t('locations.facilities.salesUk.city'),
+              country: t('locations.facilities.salesUk.country'),
+              description: t('locations.facilities.salesUk.description'),
+              type: t('locations.facilities.salesUk.type'),
+            },
             'manufacturing-poland': {
               name: t('locations.facilities.manufacturingPoland.name'),
               city: t('locations.facilities.manufacturingPoland.city'),
               country: t('locations.facilities.manufacturingPoland.country'),
               description: t('locations.facilities.manufacturingPoland.description'),
               type: t('locations.facilities.manufacturingPoland.type'),
+            },
+            'sales-rep-poland': {
+              name: t('locations.facilities.salesRepPoland.name'),
+              city: t('locations.facilities.salesRepPoland.city'),
+              country: t('locations.facilities.salesRepPoland.country'),
+              description: t('locations.facilities.salesRepPoland.description'),
+              type: t('locations.facilities.salesRepPoland.type'),
             },
             'manufacturing-vietnam': {
               name: t('locations.facilities.manufacturingVietnam.name'),
@@ -427,13 +448,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               description: t('locations.facilities.manufacturingVietnam.description'),
               type: t('locations.facilities.manufacturingVietnam.type'),
               status: t('locations.facilities.manufacturingVietnam.status'),
-            },
-            'sales-uk': {
-              name: t('locations.facilities.salesUk.name'),
-              city: t('locations.facilities.salesUk.city'),
-              country: t('locations.facilities.salesUk.country'),
-              description: t('locations.facilities.salesUk.description'),
-              type: t('locations.facilities.salesUk.type'),
             },
             'sales-rep-uae': {
               name: t('locations.facilities.salesRepUae.name'),

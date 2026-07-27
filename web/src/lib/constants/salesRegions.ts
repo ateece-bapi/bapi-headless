@@ -123,7 +123,7 @@ export const SALES_REGIONS: SalesRegion[] = [
     id: 7,
     name: 'West & Central Africa',
     repId: 'john-shields',
-    description: 'West & Central Africa (Morocco, Algeria, Libya & sub-Saharan west)',
+    description: 'West & Central Africa (North Africa incl. Egypt, Morocco, Algeria & Libya; sub-Saharan west)',
   },
   {
     id: 8,
@@ -135,7 +135,7 @@ export const SALES_REGIONS: SalesRegion[] = [
     id: 9,
     name: 'Middle East & Turkey',
     repId: 'murtaza-kalabhai',
-    description: 'Turkey, Arabian Peninsula, Levant, Iran, Egypt, Caucasus, Kazakhstan & Pakistan',
+    description: 'Turkey, Arabian Peninsula, Levant, Iran, Caucasus, Kazakhstan & Pakistan',
   },
   {
     id: 10,
@@ -287,6 +287,7 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   Algeria: 7,
   Tunisia: 7,
   Libya: 7,
+  Egypt: 7,
   'W. Sahara': 7,
   Mauritania: 7,
   Mali: 7,
@@ -345,7 +346,6 @@ export const COUNTRY_TO_REGION: Record<string, number> = {
   // ── Region 9: Middle East, Turkey & Caucasus ────────────────────────────
   Turkey: 9,
   Cyprus: 9,
-  Egypt: 9,
   'Saudi Arabia': 9,
   Yemen: 9,
   Oman: 9,

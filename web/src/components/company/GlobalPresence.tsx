@@ -281,7 +281,7 @@ export function GlobalPresence({
                   }
                 </Geographies>
 
-                {/* Location Markers */}
+{/* Location Markers — icon style matches BAPI internal world map legend */}
                 {BAPI_LOCATIONS.map((location) => (
                   <Marker
                     key={location.id}
@@ -289,31 +289,38 @@ export function GlobalPresence({
                     onMouseEnter={() => setTooltip({ location, visible: true })}
                     onMouseLeave={() => setTooltip(null)}
                   >
-                    {/* Marker Circle */}
-                    <circle
-                      r={location.type === 'headquarters' ? 8 : 6}
-                      fill={FACILITY_TYPE_COLORS[location.type]}
-                      stroke="white"
-                      strokeWidth={2}
-                      className="cursor-pointer transition-all duration-200 hover:scale-125"
-                      style={{
-                        filter:
-                          location.type === 'headquarters'
-                            ? 'drop-shadow(0 4px 6px rgba(20, 121, 188, 0.4))'
-                            : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
-                      }}
-                    />
-                    {/* Pulse Animation for Headquarters */}
-                    {location.type === 'headquarters' && (
-                      <circle
-                        r={8}
-                        fill="none"
-                        stroke={FACILITY_TYPE_COLORS[location.type]}
-                       
-                        opacity={0.6}
-                        className="animate-ping"
-                      />
-                    )}
+                    <g
+                      className="cursor-pointer"
+                      style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
+                    >
+                      {/* BAPI Headquarters — pulsing blue badge */}
+                      {location.type === 'headquarters' && (
+                        <>
+                          <circle r={12} fill="none" stroke="#166fb9" strokeWidth={2} opacity={0.4} className="animate-ping" />
+                          <circle r={10} fill="#166fb9" stroke="white" strokeWidth={2} />
+                          <text fill="white" textAnchor="middle" dominantBaseline="central" fontSize="7" fontWeight="bold" y="1">HQ</text>
+                        </>
+                      )}
+                      {/* Factory Distribution Center — grey badge with upward arrow */}
+                      {location.type === 'manufacturing' && (
+                        <>
+                          <circle r={9} fill="#6B7280" stroke="white" strokeWidth={1.5} />
+                          <path d="M0,-6 L3.5,-1.5 L2,-1.5 L2,4.5 L-2,4.5 L-2,-1.5 L-3.5,-1.5 Z" fill="white" />
+                        </>
+                      )}
+                      {/* Business Development & Regional Sales — blue badge with person icon */}
+                      {location.type === 'sales' && (
+                        <>
+                          <circle r={9} fill="#60A5FA" stroke="white" strokeWidth={1.5} />
+                          <circle r={2.5} fill="white" cx="0" cy="-3" />
+                          <path d="M-3.5,5 C-3.5,0 3.5,0 3.5,5 Z" fill="white" />
+                        </>
+                      )}
+                      {/* Distribution Partner */}
+                      {location.type === 'distribution-partner' && (
+                        <circle r={8} fill="#9CA3AF" stroke="white" strokeWidth={1.5} />
+                      )}
+                    </g>
                   </Marker>
                 ))}
               </ZoomableGroup>
@@ -455,10 +462,19 @@ export function GlobalPresence({
 
                 return (
                   <div key={type} className="flex items-center gap-2">
-                    <div
-                      className="h-4 w-4 rounded-full"
-                      style={{ backgroundColor: FACILITY_TYPE_COLORS[type] }}
-                    />
+                    {/* Mini icon badge matching the map marker style */}
+                    <svg width="20" height="20" viewBox="-10 -10 20 20" className="shrink-0" aria-hidden="true">
+                      {type === 'headquarters' && (
+                        <><circle r={9} fill="#166fb9" /><text fill="white" textAnchor="middle" dominantBaseline="central" fontSize="6" fontWeight="bold" y="0.5">HQ</text></>
+                      )}
+                      {type === 'manufacturing' && (
+                        <><circle r={9} fill="#6B7280" /><path d="M0,-5.5 L3,-1 L1.5,-1 L1.5,4 L-1.5,4 L-1.5,-1 L-3,-1 Z" fill="white" /></>
+                      )}
+                      {type === 'sales' && (
+                        <><circle r={9} fill="#60A5FA" /><circle r={2} fill="white" cx="0" cy="-2.5" /><path d="M-3,4.5 C-3,0.5 3,0.5 3,4.5 Z" fill="white" /></>
+                      )}
+                      {type === 'distribution-partner' && <circle r={8} fill="#9CA3AF" />}
+                    </svg>
                     <span className="text-neutral-700">
                       {locationTranslations?.mapLegend[translationKey] ||
                         FACILITY_TYPE_LABELS[type]}

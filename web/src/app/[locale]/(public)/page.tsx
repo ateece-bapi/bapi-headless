@@ -435,6 +435,27 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               description: t('locations.facilities.salesUk.description'),
               type: t('locations.facilities.salesUk.type'),
             },
+            'sales-rep-uae': {
+              name: t('locations.facilities.salesRepUae.name'),
+              city: t('locations.facilities.salesRepUae.city'),
+              country: t('locations.facilities.salesRepUae.country'),
+              description: t('locations.facilities.salesRepUae.description'),
+              type: t('locations.facilities.salesRepUae.type'),
+            },
+            'sales-rep-australia': {
+              name: t('locations.facilities.salesRepAustralia.name'),
+              city: t('locations.facilities.salesRepAustralia.city'),
+              country: t('locations.facilities.salesRepAustralia.country'),
+              description: t('locations.facilities.salesRepAustralia.description'),
+              type: t('locations.facilities.salesRepAustralia.type'),
+            },
+            'sales-rep-newzealand': {
+              name: t('locations.facilities.salesRepNewzealand.name'),
+              city: t('locations.facilities.salesRepNewzealand.city'),
+              country: t('locations.facilities.salesRepNewzealand.country'),
+              description: t('locations.facilities.salesRepNewzealand.description'),
+              type: t('locations.facilities.salesRepNewzealand.type'),
+            },
           },
           cta: {
             text: t('locations.cta.text'),

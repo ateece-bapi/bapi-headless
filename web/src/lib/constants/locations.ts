@@ -106,43 +106,54 @@ export const BAPI_LOCATIONS: Location[] = [
     description: 'European sales and customer support hub',
   },
 
-  // TODO: Add sales staff locations (awaiting data from Mike Moss)
-  // Per Mike Moss: "include the locations of our sales staff"
-  // Example structure:
-  // {
-  //   id: 'sales-rep-midwest',
-  //   name: 'Midwest Sales Representative',
-  //   city: 'Chicago',
-  //   region: 'Illinois',
-  //   country: 'USA',
-  //   coordinates: [-87.6298, 41.8781],
-  //   type: 'sales',
-  //   status: 'operational',
-  //   description: 'Midwest territory sales and support',
-  //   salesRep: {
-  //     name: 'John Doe',
-  //     territory: 'IL, WI, MI, IN, OH',
-  //   },
-  // },
+  // === SALES REPRESENTATIVE LOCATIONS ===
+  {
+    id: 'sales-rep-uae',
+    name: 'Middle East & South Asia Sales',
+    city: 'Dubai',
+    region: 'Dubai',
+    country: 'United Arab Emirates',
+    coordinates: [55.2708, 25.2048], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Middle East, Turkey & South Asia regional sales',
+    salesRep: {
+      name: 'Murtaza Kalabhai',
+      territory: 'Middle East, Turkey & South Asia',
+    },
+  },
+  {
+    id: 'sales-rep-australia',
+    name: 'Asia-Pacific Sales',
+    city: 'Sydney',
+    region: 'New South Wales',
+    country: 'Australia',
+    coordinates: [151.2093, -33.8688], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'Asia-Pacific regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Asia, Australia & Pacific',
+    },
+  },
+  {
+    id: 'sales-rep-newzealand',
+    name: 'New Zealand Sales',
+    city: 'Auckland',
+    region: 'Auckland',
+    country: 'New Zealand',
+    coordinates: [174.7633, -36.8485], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'New Zealand regional sales',
+    salesRep: {
+      name: 'Andy Brooks',
+      territory: 'Asia, Australia & Pacific',
+    },
+  },
 
   // TODO: Add distribution partner locations (awaiting data from Mike Moss)
-  // Per Mike Moss: "possibly even distribution partners"
-  // Example structure:
-  // {
-  //   id: 'partner-germany',
-  //   name: 'European Distribution Partner',
-  //   city: 'Munich',
-  //   region: 'Bavaria',
-  //   country: 'Germany',
-  //   coordinates: [11.5820, 48.1351],
-  //   type: 'distribution-partner',
-  //   status: 'operational',
-  //   description: 'Authorized distributor for Central Europe',
-  //   partner: {
-  //     companyName: 'Example GmbH',
-  //     website: 'https://example.com',
-  //   },
-  // },
 ];
 
 /**

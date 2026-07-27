@@ -17,26 +17,10 @@ import {
 } from '@/lib/icons';
 
 /**
- * Lazy load GlobalPresence component to improve initial page load
- * This component is below the fold and includes heavy map rendering
- * Deferring it reduces Total Blocking Time (TBT) significantly
+ * GlobalPresence is rendered via a client-side-only wrapper (ssr: false) to
+ * avoid floating-point hydration mismatches from react-simple-maps projection math.
  */
-const GlobalPresence = dynamic(
-  () => import('@/components/company/GlobalPresence').then((mod) => ({ default: mod.GlobalPresence })),
-  {
-    ssr: false, // Map uses client-side projection math — SSR produces floating-point mismatch
-    loading: () => (
-      <div className="bg-neutral-50 py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="animate-pulse space-y-8">
-            <div className="mx-auto h-8 w-64 rounded bg-neutral-200"></div>
-            <div className="mx-auto h-96 rounded-2xl bg-neutral-200"></div>
-          </div>
-        </div>
-      </div>
-    ),
-  }
-);
+import { GlobalPresenceDynamic as GlobalPresence } from '@/components/company/GlobalPresenceDynamic';
 
 /**
  * Homepage - Main landing page for BAPI Headless E-Commerce

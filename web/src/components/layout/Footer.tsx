@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
-import { LinkedinIcon, YoutubeIcon } from '@/lib/icons';
+import { LinkedinIcon, YoutubeIcon, FacebookIcon } from '@/lib/icons';
 import { useTranslations, useLocale } from 'next-intl';
 
 // Footer sections now use translation keys - next-intl format
@@ -56,13 +56,18 @@ const getFooterSections = (t: any) => [
 const social = [
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/bapi-building-automation-products-inc-/',
+    href: 'https://www.linkedin.com/company/bapi',
     icon: LinkedinIcon,
   },
   {
     name: 'YouTube',
-    href: 'https://www.youtube.com/@BAPIInc',
+    href: 'https://www.youtube.com/user/BAPIHVAC',
     icon: YoutubeIcon,
+  },
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/bapihvac',
+    icon: FacebookIcon,
   },
 ];
 

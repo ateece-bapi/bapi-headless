@@ -105,6 +105,7 @@ import {
   ThumbsDownIcon,
   LinkedinIcon,
   YoutubeIcon,
+  FacebookIcon,
 } from '@/lib/icons';
 
 const meta: Meta = {
@@ -125,7 +126,7 @@ export default meta;
 type Story = StoryObj;
 
 // Icon registry organized by category
-const icons = {
+const icons: Record<string, Array<{ name: string; icon: React.ElementType; usage: string }>> = {
   Navigation: [
     { name: 'Menu', icon: MenuIcon, usage: 'Mobile menu toggle' },
     { name: 'X', icon: XIcon, usage: 'Close buttons, remove items' },
@@ -236,6 +237,7 @@ const icons = {
     { name: 'ThumbsDown', icon: ThumbsDownIcon, usage: 'Dislike/not helpful' },
     { name: 'Linkedin', icon: LinkedinIcon, usage: 'LinkedIn social link' },
     { name: 'Youtube', icon: YoutubeIcon, usage: 'YouTube social link' },
+    { name: 'Facebook', icon: FacebookIcon, usage: 'Facebook social link' },
   ],
 };
 

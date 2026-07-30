@@ -3125,7 +3125,7 @@
       },
       "easyIntegration": {
         "title": "Łatwa integracja",
-        "description": "Bezproblemowa integracja z istniejącymi systemami BAS. Standardowe wyjścia BACnet i Modbus."
+        "description": "Bezproblemowa integracja z istniejącymi systemami BMS. Standardowe wyjścia BACnet i Modbus."
       },
       "scalable": {
         "title": "Łatwa skalowalność",
@@ -3242,7 +3242,7 @@
       "paragraph2": "Moduły są łatwo programowane do pojedynczej zmiennej czujnika za pomocą przycisku i wyświetlacza LCD. Wszystkie moduły można montować na powierzchni, szynie snaptrack 2,75\" lub szynie DIN 35mm. Są zasilane przez odbiornik lub opcjonalnie mogą być zasilane oddzielnie przy użyciu zestawu wtykowych zacisków do połączeń zdalnych.",
       "resistance": {
         "name": "Moduł wyjścia rezystancyjnego",
-        "description": "Konwertuje dane temperatury na rezystancję dla wejść BAS. Fabrycznie skalibrowany do wyjścia krzywych termistorów 10K-2, 10K 3, 10K 3(11K) lub 20K."
+        "description": "Konwertuje dane temperatury na rezystancję dla wejść BMS. Fabrycznie skalibrowany do wyjścia krzywych termistorów 10K-2, 10K 3, 10K 3(11K) lub 20K."
       },
       "voltage": {
         "name": "Moduł wyjścia napięciowego",
@@ -3250,7 +3250,7 @@
       },
       "setpoint": {
         "name": "Moduł wyjścia nastawy",
-        "description": "Konwertuje dane nastawy na rezystancję lub napięcie dla BAS. Pięć fabrycznie ustawionych zakresów z opcjonalną funkcją nadpisania do kontroli obecności."
+        "description": "Konwertuje dane nastawy na rezystancję lub napięcie dla BMS. Pięć fabrycznie ustawionych zakresów z opcjonalną funkcją nadpisania do kontroli obecności."
       }
     },
     "digitalModules": {
@@ -3777,7 +3777,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Czujniki temperatury",
-      "description": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu. Kompatybilne ze wszystkimi liniami kontrolerów BAS z szeroką gamą niestandardowych wyjść.",
+      "description": "Szeroka gama niestandardowych wyjść, kompatybilna z większością kontrolerów BMS.",
       "keywords": "czujniki temperatury, czujniki HVAC, automatyka budynków, czujniki temperatury pomieszczenia, czujniki kanałowe, czujniki zanurzeniowe"
     },
     "breadcrumb": {
@@ -3787,7 +3787,7 @@
     },
     "hero": {
       "title": "Czujniki temperatury",
-      "description": "Wysokiej jakości czujniki temperatury dla niemal każdego obszaru obiektu. Z szeroką gamą niestandardowych wyjść, dzięki czemu są kompatybilne ze wszystkimi liniami kontrolerów BAS.",
+      "description": "Z szeroką gamą niestandardowych wyjść, dzięki czemu są kompatybilne z większością kontrolerów BMS.",
       "cta": "Rozpocznij"
     },
     "roomSensors": {

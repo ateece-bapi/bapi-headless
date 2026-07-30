@@ -3126,7 +3126,7 @@
       },
       "easyIntegration": {
         "title": "Tích Hợp Dễ Dàng",
-        "description": "Tích hợp liền mạch với hệ thống BAS hiện có. Đầu ra BACnet và Modbus tiêu chuẩn."
+        "description": "Tích hợp liền mạch với hệ thống BMS hiện có. Đầu ra BACnet và Modbus tiêu chuẩn."
       },
       "scalable": {
         "title": "Mở Rộng Dễ Dàng",
@@ -3243,7 +3243,7 @@
       "paragraph2": "Các module dễ dàng được huấn luyện cho một biến cảm biến duy nhất bằng nút nhấn và LCD. Tất cả module có thể lắp đặt trên bề mặt, snaptrack 2.75\" hoặc ray DIN 35mm. Chúng được cấp nguồn bởi bộ thu, hoặc tùy chọn có thể được cấp nguồn riêng khi sử dụng Bộ Kit Khối Đầu Cuối Có Thể Cắm cho kết nối từ xa.",
       "resistance": {
         "name": "Module Đầu Ra Điện Trở",
-        "description": "Chuyển đổi dữ liệu nhiệt độ thành điện trở cho đầu vào BAS. Được hiệu chuẩn tại nhà máy để xuất ra đường cong thermistor 10K-2, 10K 3, 10K 3(11K) hoặc 20K."
+        "description": "Chuyển đổi dữ liệu nhiệt độ thành điện trở cho đầu vào BMS. Được hiệu chuẩn tại nhà máy để xuất ra đường cong thermistor 10K-2, 10K 3, 10K 3(11K) hoặc 20K."
       },
       "voltage": {
         "name": "Module Đầu Ra Điện Áp",
@@ -3251,7 +3251,7 @@
       },
       "setpoint": {
         "name": "Module Đầu Ra Setpoint",
-        "description": "Chuyển đổi dữ liệu setpoint thành điện trở hoặc điện áp cho BAS. Năm dải nhà máy với chức năng ghi đè tùy chọn cho điều khiển sử dụng."
+        "description": "Chuyển đổi dữ liệu setpoint thành điện trở hoặc điện áp cho BMS. Năm dải nhà máy với chức năng ghi đè tùy chọn cho điều khiển sử dụng."
       }
     },
     "digitalModules": {
@@ -3778,7 +3778,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Cảm Biến Nhiệt Độ",
-      "description": "Cảm biến nhiệt độ chất lượng cao cho hầu hết mọi khu vực trong cơ sở. Tương thích với tất cả các dòng bộ điều khiển BAS với nhiều loại đầu ra tùy chỉnh.",
+      "description": "Nhiều loại đầu ra tùy chỉnh, tương thích với hầu hết bộ điều khiển BMS.",
       "keywords": "cảm biến nhiệt độ, cảm biến HVAC, tự động hóa tòa nhà, cảm biến nhiệt độ phòng, cảm biến ống dẫn, cảm biến ngâm"
     },
     "breadcrumb": {
@@ -3788,7 +3788,7 @@
     },
     "hero": {
       "title": "Cảm Biến Nhiệt Độ",
-      "description": "Cảm biến nhiệt độ chất lượng cao cho hầu hết mọi khu vực trong cơ sở. Với nhiều loại đầu ra tùy chỉnh nên chúng tương thích với tất cả các dòng bộ điều khiển BAS.",
+      "description": "Với nhiều loại đầu ra tùy chỉnh nên chúng tương thích với hầu hết bộ điều khiển BMS.",
       "cta": "Bắt Đầu"
     },
     "roomSensors": {

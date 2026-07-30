@@ -3123,7 +3123,7 @@
       },
       "easyIntegration": {
         "title": "Integración Fácil",
-        "description": "Integración perfecta con sistemas BAS existentes. Salidas estándar BACnet y Modbus."
+        "description": "Integración perfecta con sistemas BMS existentes. Salidas estándar BACnet y Modbus."
       },
       "scalable": {
         "title": "Escalabilidad Fácil",
@@ -3240,7 +3240,7 @@
       "paragraph2": "Los módulos se entrenan fácilmente a una variable de sensor única con un botón y LCD. Todos los módulos son montables en superficie, riel snaptrack de 2.75\" o riel DIN de 35mm. Son alimentados por el receptor, u opcionalmente pueden ser alimentados por separado cuando se usa el Kit de Bloque Terminal Enchufable para conexiones remotas.",
       "resistance": {
         "name": "Módulo de Salida de Resistencia",
-        "description": "Convierte datos de temperatura en resistencia para entradas BAS. Calibrado de fábrica para generar curvas de termistor 10K-2, 10K 3, 10K 3(11K) o 20K."
+        "description": "Convierte datos de temperatura en resistencia para entradas BMS. Calibrado de fábrica para generar curvas de termistor 10K-2, 10K 3, 10K 3(11K) o 20K."
       },
       "voltage": {
         "name": "Módulo de Salida de Voltaje",
@@ -3248,7 +3248,7 @@
       },
       "setpoint": {
         "name": "Módulo de Salida de Punto de Ajuste",
-        "description": "Convierte datos de punto de ajuste en resistencia o voltaje para BAS. Cinco rangos de fábrica con función de anulación opcional para control de ocupación."
+        "description": "Convierte datos de punto de ajuste en resistencia o voltaje para BMS. Cinco rangos de fábrica con función de anulación opcional para control de ocupación."
       }
     },
     "digitalModules": {
@@ -3775,7 +3775,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Sensores de Temperatura",
-      "description": "Sensores de temperatura de alta calidad para casi cualquier área de una instalación. Compatible con todas las líneas de controladores BAS con una amplia gama de salidas personalizadas.",
+      "description": "Amplia gama de salidas personalizadas, compatible con la mayoría de los controladores BMS.",
       "keywords": "sensores de temperatura, sensores HVAC, automatización de edificios, sensores de temperatura ambiente, sensores de conducto, sensores de inmersión"
     },
     "breadcrumb": {
@@ -3785,7 +3785,7 @@
     },
     "hero": {
       "title": "Sensores de Temperatura",
-      "description": "Sensores de temperatura de alta calidad para casi cualquier área de una instalación. Con una amplia gama de salidas personalizadas para que sean compatibles con todas las líneas de controladores BAS.",
+      "description": "Con una amplia gama de salidas personalizadas para que sean compatibles con la mayoría de los controladores BMS.",
       "cta": "Comenzar"
     },
     "roomSensors": {

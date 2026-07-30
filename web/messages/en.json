@@ -3224,7 +3224,7 @@
       },
       "easyIntegration": {
         "title": "Easy Integration",
-        "description": "Seamless integration with existing BAS systems. Standard BACnet and Modbus outputs."
+        "description": "Seamless integration with existing BMS systems. Standard BACnet and Modbus outputs."
       },
       "scalable": {
         "title": "Easy Scalability",
@@ -3341,7 +3341,7 @@
       "paragraph2": "The modules are easily trained to a single sensor variable with a pushbutton and LCD. All modules are surface, 2.75\" snaptrack, or 35mm DIN rail mountable. They are powered by the receiver, or optionally may be powered separately when the Pluggable Terminal Block Kit is used for remote connections.",
       "resistance": {
         "name": "Resistance Output Module",
-        "description": "Converts temperature data into resistance for BAS inputs. Factory calibrated to output 10K-2, 10K 3, 10K 3(11K) or 20K thermistor curves."
+        "description": "Converts temperature data into resistance for BMS inputs. Factory calibrated to output 10K-2, 10K 3, 10K 3(11K) or 20K thermistor curves."
       },
       "voltage": {
         "name": "Voltage Output Module",
@@ -3349,7 +3349,7 @@
       },
       "setpoint": {
         "name": "Setpoint Output Module",
-        "description": "Converts setpoint data into resistance or voltage for BAS. Five factory ranges with optional override function for occupancy control."
+        "description": "Converts setpoint data into resistance or voltage for BMS. Five factory ranges with optional override function for occupancy control."
       }
     },
     "digitalModules": {
@@ -3876,7 +3876,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Temperature Sensors",
-      "description": "High quality temperature sensors for nearly every area of a facility. Compatible with all lines of BAS controllers with a wide array of custom outputs.",
+      "description": "Compatible with most BMS controllers with a wide array of custom outputs.",
       "keywords": "temperature sensors, HVAC sensors, building automation, room temperature sensors, duct sensors, immersion sensors"
     },
     "breadcrumb": {
@@ -3886,7 +3886,7 @@
     },
     "hero": {
       "title": "Temperature Sensors",
-      "description": "High quality temperature sensors for nearly every area of a facility. With a wide array of custom outputs so they are compatible with all lines of BAS controllers.",
+      "description": "With a wide array of custom outputs so they are compatible with most BMS controllers.",
       "cta": "Get Started"
     },
     "roomSensors": {

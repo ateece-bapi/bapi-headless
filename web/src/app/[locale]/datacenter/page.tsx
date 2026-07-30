@@ -128,7 +128,7 @@ export default function DataCenterPage() {
                 </p>
 
                 <p>
-                  Our sensors provide real-time data to your Building Automation System (BAS) or Building Management System (BMS), enabling proactive maintenance and rapid response to environmental threats. With BAPI&apos;s proven reliability and accuracy, you can maintain uptime and protect your valuable IT assets.
+                  Our sensors provide real-time data to your Building Management System (BMS), enabling proactive maintenance and rapid response to environmental threats. With BAPI&apos;s proven reliability and accuracy, you can maintain uptime and protect your valuable IT assets.
                 </p>
               </div>
 
@@ -151,7 +151,7 @@ export default function DataCenterPage() {
                   },
                   {
                     icon: ShieldCheckIcon,
-                    title: 'BAS Integration',
+                    title: 'BMS Integration',
                     description: 'Seamless integration with existing systems',
                   },
                 ].map((feature) => (
@@ -240,7 +240,7 @@ export default function DataCenterPage() {
                 icon: ClockIcon,
                 title: 'Real-Time Alerts',
                 description:
-                  'Immediate notification of environmental anomalies enables rapid response. Integration with your BAS/BMS ensures critical issues are never missed.',
+                  'Immediate notification of environmental anomalies enables rapid response. Integration with your BMS ensures critical issues are never missed.',
               },
               {
                 icon: CheckCircleIcon,
@@ -252,7 +252,7 @@ export default function DataCenterPage() {
                 icon: ServerIcon,
                 title: 'Easy Integration',
                 description:
-                  'Multiple output options including BACnet, Modbus, and analog signals ensure compatibility with any Building Automation System.',
+                  'Multiple output options including BACnet, Modbus, and analog signals ensure compatibility with any Building Management System.',
               },
             ].map((benefit) => (
               <div

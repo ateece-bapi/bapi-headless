@@ -3778,7 +3778,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Capteurs de Température",
-      "description": "Capteurs de température de haute qualité pour pratiquement toutes les zones d'une installation. Compatibles avec toutes les gammes de contrôleurs BAS avec une large gamme de sorties personnalisées.",
+      "description": "Compatibles avec toutes les gammes de contrôleurs BMS avec une large gamme de sorties personnalisées.",
       "keywords": "capteurs de température, capteurs HVAC, automatisation du bâtiment, capteurs de température ambiante, capteurs de conduits, capteurs à immersion"
     },
     "breadcrumb": {
@@ -3788,7 +3788,7 @@
     },
     "hero": {
       "title": "Capteurs de Température",
-      "description": "Capteurs de température de haute qualité pour pratiquement toutes les zones d'une installation. Avec une large gamme de sorties personnalisées pour qu'ils soient compatibles avec toutes les gammes de contrôleurs BAS.",
+      "description": "Avec une large gamme de sorties personnalisées pour qu'ils soient compatibles avec toutes les gammes de contrôleurs BMS.",
       "cta": "Commencer"
     },
     "roomSensors": {

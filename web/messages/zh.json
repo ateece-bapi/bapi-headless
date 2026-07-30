@@ -3777,7 +3777,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "温度传感器",
-      "description": "适用于设施几乎每个区域的高质量温度传感器。兼容所有系列的BAS控制器，具有广泛的自定义输出选择。",
+      "description": "兼容大多数BMS控制器，具有广泛的自定义输出选择。",
       "keywords": "温度传感器, HVAC传感器, 楼宇自动化, 房间温度传感器, 风管传感器, 浸入式传感器"
     },
     "breadcrumb": {
@@ -3787,7 +3787,7 @@
     },
     "hero": {
       "title": "温度传感器",
-      "description": "适用于设施几乎每个区域的高质量温度传感器。具有广泛的自定义输出选择，兼容所有系列的BAS控制器。",
+      "description": "具有广泛的自定义输出选择，兼容大多数BMS控制器。",
       "cta": "立即开始"
     },
     "roomSensors": {

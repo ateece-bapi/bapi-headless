@@ -3876,7 +3876,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Temperature Sensors",
-      "description": "Compatible with most BMS controllers with a wide array of custom outputs.",
+      "description": "A wide array of custom outputs compatible with most BMS controllers.",
       "keywords": "temperature sensors, HVAC sensors, building automation, room temperature sensors, duct sensors, immersion sensors"
     },
     "breadcrumb": {

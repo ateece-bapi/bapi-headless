@@ -3775,7 +3775,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Sensores de Temperatura",
-      "description": "Compatible con todas las líneas de controladores BMS con una amplia gama de salidas personalizadas.",
+      "description": "Amplia gama de salidas personalizadas, compatible con la mayoría de los controladores BMS.",
       "keywords": "sensores de temperatura, sensores HVAC, automatización de edificios, sensores de temperatura ambiente, sensores de conducto, sensores de inmersión"
     },
     "breadcrumb": {
@@ -3785,7 +3785,7 @@
     },
     "hero": {
       "title": "Sensores de Temperatura",
-      "description": "Con una amplia gama de salidas personalizadas para que sean compatibles con todas las líneas de controladores BMS.",
+      "description": "Con una amplia gama de salidas personalizadas para que sean compatibles con la mayoría de los controladores BMS.",
       "cta": "Comenzar"
     },
     "roomSensors": {

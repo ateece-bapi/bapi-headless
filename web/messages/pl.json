@@ -3777,7 +3777,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Czujniki temperatury",
-      "description": "Kompatybilne ze wszystkimi liniami kontrolerów BMS z szeroką gamą niestandardowych wyjść.",
+      "description": "Szeroka gama niestandardowych wyjść, kompatybilna z większością kontrolerów BMS.",
       "keywords": "czujniki temperatury, czujniki HVAC, automatyka budynków, czujniki temperatury pomieszczenia, czujniki kanałowe, czujniki zanurzeniowe"
     },
     "breadcrumb": {
@@ -3787,7 +3787,7 @@
     },
     "hero": {
       "title": "Czujniki temperatury",
-      "description": "Z szeroką gamą niestandardowych wyjść, dzięki czemu są kompatybilne ze wszystkimi liniami kontrolerów BMS.",
+      "description": "Z szeroką gamą niestandardowych wyjść, dzięki czemu są kompatybilne z większością kontrolerów BMS.",
       "cta": "Rozpocznij"
     },
     "roomSensors": {

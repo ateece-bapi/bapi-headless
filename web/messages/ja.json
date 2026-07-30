@@ -3777,7 +3777,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "温度センサー",
-      "description": "幅広いカスタム出力でBMSコントローラーのすべてのラインに対応。",
+      "description": "幅広いカスタム出力でほとんどのBMSコントローラーに対応。",
       "keywords": "温度センサー, HVACセンサー, ビル自動化, 室温センサー, ダクトセンサー, 浸漬センサー"
     },
     "breadcrumb": {
@@ -3787,7 +3787,7 @@
     },
     "hero": {
       "title": "温度センサー",
-      "description": "幅広いカスタム出力により、すべてのBMSコントローラーラインと互換性があります。",
+      "description": "幅広いカスタム出力により、ほとんどのBMSコントローラーと互換性があります。",
       "cta": "開始する"
     },
     "roomSensors": {

@@ -3778,7 +3778,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Temperatursensoren",
-      "description": "Kompatibel mit allen BMS-Controller-Linien mit einer breiten Palette von benutzerdefinierten Ausgängen.",
+      "description": "Breite Palette von benutzerdefinierten Ausgängen, kompatibel mit den meisten BMS-Controllern.",
       "keywords": "Temperatursensoren, HVAC-Sensoren, Gebäudeautomation, Raumtemperatursensoren, Kanalsensoren, Tauchsensoren"
     },
     "breadcrumb": {
@@ -3788,7 +3788,7 @@
     },
     "hero": {
       "title": "Temperatursensoren",
-      "description": "Mit einer breiten Palette von benutzerdefinierten Ausgängen, sodass sie mit allen BMS-Controller-Linien kompatibel sind.",
+      "description": "Mit einer breiten Palette von benutzerdefinierten Ausgängen, sodass sie mit den meisten BMS-Controllern kompatibel sind.",
       "cta": "Jetzt starten"
     },
     "roomSensors": {

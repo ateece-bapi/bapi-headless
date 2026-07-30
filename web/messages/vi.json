@@ -3778,7 +3778,7 @@
   "temperatureLandingPage": {
     "metadata": {
       "title": "Cảm Biến Nhiệt Độ",
-      "description": "Tương thích với tất cả các dòng bộ điều khiển BMS với nhiều loại đầu ra tùy chỉnh.",
+      "description": "Nhiều loại đầu ra tùy chỉnh, tương thích với hầu hết bộ điều khiển BMS.",
       "keywords": "cảm biến nhiệt độ, cảm biến HVAC, tự động hóa tòa nhà, cảm biến nhiệt độ phòng, cảm biến ống dẫn, cảm biến ngâm"
     },
     "breadcrumb": {
@@ -3788,7 +3788,7 @@
     },
     "hero": {
       "title": "Cảm Biến Nhiệt Độ",
-      "description": "Với nhiều loại đầu ra tùy chỉnh nên chúng tương thích với tất cả các dòng bộ điều khiển BMS.",
+      "description": "Với nhiều loại đầu ra tùy chỉnh nên chúng tương thích với hầu hết bộ điều khiển BMS.",
       "cta": "Bắt Đầu"
     },
     "roomSensors": {

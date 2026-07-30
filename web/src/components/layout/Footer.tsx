@@ -280,9 +280,15 @@ const Footer: React.FC = () => {
                 />
               </div>
 
-              {/* Text Certifications */}
+              {/* ISO Logo + Text Certifications */}
               <div className="space-y-1.5 text-sm font-medium text-neutral-700">
-                <p className="font-semibold text-neutral-900">{t('certifications.iso')}</p>
+                <Image
+                  src="/images/awards/PRI_Programs_Accredited_v4_ISO90012015-1.png"
+                  alt={t('certifications.iso')}
+                  width={180}
+                  height={72}
+                  className="h-auto w-44"
+                />
                 <p className="font-semibold text-neutral-900">{t('certifications.ce')}</p>
               </div>
             </div>

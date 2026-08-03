@@ -1,7 +1,11 @@
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { gql } from 'graphql-request';
 import logger from '@/lib/logger';
-import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
+import {
+  filterProductsByCustomerGroup,
+  getProductCustomerGroups,
+  type ProductWithCustomerGroup,
+} from '@/lib/utils/filterProductsByCustomerGroup';
 
 /**
  * Product search for AI chatbot integration
@@ -10,7 +14,7 @@ import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCusto
 
 const PRODUCT_SEARCH_QUERY = gql`
   query ChatProductSearch($search: String!, $first: Int = 5) {
-    products(where: { search: $search }, first: $first) {
+    products(where: { search: $search, visibility: VISIBLE }, first: $first) {
       nodes {
         id
         databaseId
@@ -30,6 +34,9 @@ const PRODUCT_SEARCH_QUERY = gql`
           regularPrice
           sku
           stockStatus
+          customerGroup1
+          customerGroup2
+          customerGroup3
           attributes {
             nodes {
               name
@@ -47,6 +54,9 @@ const PRODUCT_SEARCH_QUERY = gql`
           price
           regularPrice
           stockStatus
+          customerGroup1
+          customerGroup2
+          customerGroup3
           attributes {
             nodes {
               name
@@ -106,12 +116,22 @@ export interface ProductSearchResult {
   url: string;
 }
 
+const UNTAGGED_OEM_PRODUCT_PATTERNS = [/\bnovar\b/i];
+
+/** Returns whether a product is OEM-only and unavailable in chatbot recommendations. */
+function isOemProduct(product: ProductWithCustomerGroup & { slug?: string | null }): boolean {
+  if (getProductCustomerGroups(product).length > 0) return true;
+
+  const searchableName = `${product.name ?? ''} ${product.slug ?? ''}`;
+  return UNTAGGED_OEM_PRODUCT_PATTERNS.some((pattern) => pattern.test(searchableName));
+}
+
 /**
  * Search products by keyword
  * Used by AI chatbot to find relevant BAPI products
  * @param query Search query string
  * @param limit Maximum number of results
- * @param customerGroup Optional customer group for B2B filtering (e.g., 'alc', 'acs', 'emc', 'ccg')
+ * @param customerGroups Optional customer groups for B2B filtering (e.g., 'alc', 'acs', 'emc', 'ccg')
  */
 export async function searchProducts(
   query: string,
@@ -128,8 +148,10 @@ export async function searchProducts(
 
     const products = data?.products?.nodes || [];
 
-    // Apply customer group filtering before mapping
-    const filteredProducts = filterProductsByCustomerGroup(products, customerGroups);
+    // OEM products are never eligible for chatbot recommendations, even for authorized users.
+    const filteredProducts = filterProductsByCustomerGroup(products, customerGroups).filter(
+      (product) => !isOemProduct(product)
+    );
 
     return filteredProducts.map((product: any) => ({
       id: product.id,

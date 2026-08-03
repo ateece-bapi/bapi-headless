@@ -180,6 +180,21 @@ afterEach(() => {
 // ─── System prompt locale injection ───────────────────────────────────────────
 
 describe('locale injection into Claude system prompt', () => {
+  it('identifies Blu-Test probes as handheld portable instruments', async () => {
+    mockMessagesStream.mockReturnValue(makeTextStream());
+    const req = makePostRequest({ messages: VALID_MESSAGES, locale: 'en' });
+
+    const res = await POST(req);
+    await drainStream(res);
+
+    expect(capturedSystemPrompt()).toContain(
+      'Blü-Test (also written Blu-Test) probes are handheld, portable test and measurement instruments'
+    );
+    expect(capturedSystemPrompt()).toContain(
+      'Never recommend OEM or customer-specific products'
+    );
+  });
+
   it('includes language instruction when locale is provided', async () => {
     mockMessagesStream.mockReturnValue(makeTextStream());
     const req = makePostRequest({ messages: VALID_MESSAGES, locale: 'de' });

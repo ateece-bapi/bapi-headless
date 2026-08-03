@@ -49,7 +49,7 @@ ChatWidget displays response word-by-word
 
 ### Key Capabilities
 
-- **Product search** — Claude can query our live WooCommerce catalog (608 products) in real-time
+- **Product search** — Claude queries active, publicly visible, non-OEM listings in the live WooCommerce catalog in real time
 - **Technical Q&A** — specifications, installation guidance, application recommendations
 - **B2B pricing awareness** — filters product results by the logged-in user's customer group
 - **11 languages** — auto-detects language and responds in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai, Polish, Hindi
@@ -82,7 +82,7 @@ This key is set in Vercel's environment variables (not in the codebase). The key
 | `web/src/app/api/chat/feedback/route.ts` | Thumbs up/down feedback collection |
 | `web/src/app/api/chat/analytics/route.ts` | Admin analytics data |
 | `web/src/components/chat/ChatWidget.tsx` | Frontend chat bubble and conversation UI |
-| `web/src/lib/chat/productSearch.ts` | GraphQL query that searches the live product catalog |
+| `web/src/lib/chat/productSearch.ts` | GraphQL query that searches visible catalog listings and excludes all OEM products |
 | `web/src/lib/chat/analytics.ts` | Logs conversation metadata for the admin dashboard |
 
 ### Admin Dashboard

@@ -6,6 +6,7 @@ import {
   getProductCustomerGroups,
   type ProductWithCustomerGroup,
 } from '@/lib/utils/filterProductsByCustomerGroup';
+import { slugify } from '@/lib/utils/slugify';
 
 /**
  * Product search for AI chatbot integration
@@ -120,7 +121,10 @@ const UNTAGGED_OEM_PRODUCT_PATTERNS = [/\bnovar\b/i];
 
 /** Returns whether a product is OEM-only and unavailable in chatbot recommendations. */
 function isOemProduct(product: ProductWithCustomerGroup & { slug?: string | null }): boolean {
-  if (getProductCustomerGroups(product).length > 0) return true;
+  const hasOemCustomerGroup = getProductCustomerGroups(product).some(
+    (group) => slugify(group) !== 'end-user'
+  );
+  if (hasOemCustomerGroup) return true;
 
   const searchableName = `${product.name ?? ''} ${product.slug ?? ''}`;
   return UNTAGGED_OEM_PRODUCT_PATTERNS.some((pattern) => pattern.test(searchableName));

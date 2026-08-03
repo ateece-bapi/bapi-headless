@@ -40,6 +40,13 @@ describe('chat product search', () => {
             customerGroup1: null,
           },
           {
+            id: 'end-user-duct-sensor',
+            databaseId: 5,
+            name: 'End User Duct Temperature Sensor',
+            slug: 'end-user-duct-temperature-sensor',
+            customerGroup1: 'END USER',
+          },
+          {
             id: 'restricted-duct-sensor',
             databaseId: 2,
             name: 'ALC Duct Temperature Sensor',
@@ -64,8 +71,11 @@ describe('chat product search', () => {
       },
     });
 
-    const products = await searchProducts('duct sensor', 5, ['alc', 'acs']);
+    const products = await searchProducts('duct sensor', 5, ['end-user', 'alc', 'acs']);
 
-    expect(products.map((product) => product.slug)).toEqual(['duct-temperature-sensor']);
+    expect(products.map((product) => product.slug)).toEqual([
+      'duct-temperature-sensor',
+      'end-user-duct-temperature-sensor',
+    ]);
   });
 });

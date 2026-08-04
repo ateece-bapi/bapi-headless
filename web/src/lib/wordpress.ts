@@ -31,13 +31,18 @@ export interface ContactRepBio {
   modified: string;
 }
 
+const CONTACT_REP_WP_SLUG_OVERRIDES: Record<string, string> = {
+  'jan-zurawski': 'contact-sascha-stuckmann',
+};
+
 /**
  * Fetch bio content for a sales rep's individual contact page.
  * Bio is stored in the ACF "Contact Rep Profile" field group (bio textarea).
- * The WordPress slug follows the pattern "contact-{rep-slug}".
+ * WordPress slugs normally follow "contact-{rep-slug}"; legacy exceptions
+ * are mapped above so public profile URLs remain stable.
  */
 export async function getContactRepBio(repSlug: string): Promise<ContactRepBio | null> {
-  const wpSlug = `contact-${repSlug}`;
+  const wpSlug = CONTACT_REP_WP_SLUG_OVERRIDES[repSlug] ?? `contact-${repSlug}`;
   try {
     const client = getGraphQLClient(['contact-pages', `contact-${repSlug}`], true);
     const data = await client.request(GetContactRepBioDocument, { slug: wpSlug });

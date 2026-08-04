@@ -44,7 +44,7 @@ const CONTACT_REP_WP_SLUG_OVERRIDES: Record<string, string> = {
 export async function getContactRepBio(repSlug: string): Promise<ContactRepBio | null> {
   const wpSlug = CONTACT_REP_WP_SLUG_OVERRIDES[repSlug] ?? `contact-${repSlug}`;
   try {
-    const client = getGraphQLClient(['contact-pages', `contact-${repSlug}`], true);
+    const client = getGraphQLClient(['contact-pages', wpSlug], true);
     const data = await client.request(GetContactRepBioDocument, { slug: wpSlug });
 
     if (!data?.page) {

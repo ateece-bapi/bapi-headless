@@ -130,6 +130,7 @@
       },
       "testInstruments": {
         "title": "परीक्षण उपकरण",
+        "bluTestDesc": "तापमान, आर्द्रता, ओसांक, विभेदक दबाव और K-Factor के लिए परीक्षण प्रोब का एक समूह",
         "allTestInstruments": "सभी परीक्षण उपकरण",
         "allTestInstrumentsDesc": "NIST-ट्रेसेबल तापमान, आर्द्रता, और दबाव संदर्भ"
       },

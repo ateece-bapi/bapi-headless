@@ -537,6 +537,7 @@
       },
       "testInstruments": {
         "title": "Instrumentos de Prueba",
+        "bluTestDesc": "Un conjunto de sondas de prueba para temperatura, humedad, punto de rocío, presión diferencial y factor K",
         "allTestInstruments": "Todos los Instrumentos de Prueba",
         "allTestInstrumentsDesc": "Referencias de temperatura, humedad y presión trazables NIST"
       },

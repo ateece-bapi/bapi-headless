@@ -214,6 +214,7 @@
       },
       "testInstruments": {
         "title": "Messgeräte",
+        "bluTestDesc": "Eine Reihe von Testsonden für Temperatur, Feuchtigkeit, Taupunkt, Differenzdruck und K-Faktor",
         "allTestInstruments": "Alle Messgeräte",
         "allTestInstrumentsDesc": "NIST-rückführbare Temperatur-, Feuchtigkeits- und Druckreferenzen"
       },

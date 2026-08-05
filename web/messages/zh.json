@@ -539,6 +539,7 @@
       },
       "testInstruments": {
         "title": "测试仪器",
+        "bluTestDesc": "一套用于温度、湿度、露点、压差和 K 系数测量的测试探头",
         "allTestInstruments": "所有测试仪器",
         "allTestInstrumentsDesc": "NIST可溯源的温度、湿度和压力基准"
       },

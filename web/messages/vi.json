@@ -175,6 +175,7 @@
       },
       "testInstruments": {
         "title": "Thiết Bị Kiểm Tra",
+        "bluTestDesc": "Bộ đầu dò kiểm tra nhiệt độ, độ ẩm, điểm sương, chênh lệch áp suất và hệ số K",
         "allTestInstruments": "Tất Cả Thiết Bị Kiểm Tra",
         "allTestInstrumentsDesc": "Các tiêu chuẩn nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
       },

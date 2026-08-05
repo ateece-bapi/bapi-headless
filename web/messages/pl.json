@@ -130,6 +130,7 @@
       },
       "testInstruments": {
         "title": "Przyrządy Testowe",
+        "bluTestDesc": "Zestaw sond testowych do pomiaru temperatury, wilgotności, punktu rosy, ciśnienia różnicowego i współczynnika K",
         "allTestInstruments": "Wszystkie Przyrządy Testowe",
         "allTestInstrumentsDesc": "Wzorce temperatury, wilgotności i ciśnienia z certyfikatem NIST"
       },

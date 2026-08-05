@@ -2,9 +2,61 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** July 23, 2026  
-**Status:** Phase 1 Complete - Live in Production (54 days post-launch)  
+**Updated:** August 5, 2026
+**Status:** Phase 1 Complete - Live in Production (67 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 5, 2026 — Blü-Test Mega-Menu & Product Links 🧪
+
+**Status:** ✅ PR #653 merged — feat/add-blu-test-mega-menu-link
+
+### What Was Done
+
+Added the Blü-Test landing page to the Products mega-menu and connected its product cards to the live Blü-Test suite product page.
+
+#### Mega-Menu
+- Added **Blü-Test** under **Test Instruments**, linking to `/blu-test`
+- Added the approved description: *"A suite of test probes for temperature, humidity, dew point, differential pressure, and K-Factor"*
+- Added localized descriptions for all 11 supported languages
+- Added focused regression coverage for the menu label, destination, and description
+
+#### Blü-Test Landing Page
+- Updated all eight product-card **Learn More** buttons to link to `/product/blu-test-bluetooth-testing-probe-suite`
+- Removed obsolete per-probe slugs from the landing-page card data
+- Verified all eight localized links in the browser
+
+### Files Changed (14 files)
+- `web/src/components/layout/Header/config.ts` — Blü-Test mega-menu item and localized description
+- `web/src/components/layout/Header/config.test.ts` — focused navigation regression test
+- `web/src/app/[locale]/blu-test/page.tsx` — shared Blü-Test suite product destination
+- `web/messages/{en,de,fr,es,ar,ja,zh,hi,pl,th,vi}.json` — localized mega-menu descriptions
+
+---
+
+## July 30, 2026 — BAS → BMS Terminology Update 🌐
+
+**Status:** ✅ PR #644 merged — fix/bas-to-bms-terminology
+
+### What Was Done
+
+Global terminology update per Christian Ellefson feedback: "BAS" (Building Automation System) is a US-centric term; "BMS" (Building Management System) is the globally accepted standard.
+
+#### Changes
+- **Temperature landing page** — Removed redundant introductory sentence; updated hero + metadata descriptions to: *"With a wide array of custom outputs so they are compatible with most BMS controllers"*
+- **All 11 locales** — BAS acronym replaced with BMS throughout; "all [lines of] BMS controllers" → "most BMS controllers" aligned across de, es, fr, ar, hi, ja, pl, th, vi (zh was already correct)
+- **`datacenter/page.tsx`** — Removed "Building Automation System (BAS) or" from prose; "BAS Integration" → "BMS Integration"; "BAS/BMS" → "BMS"
+- **`TaglineRotator.stories.tsx`** — Updated story tagline + JSDoc copy; fixed pre-existing `&apos;` HTML entity used in plain JS string context (was rendering as literal characters)
+
+### PR Review Rounds (2 commits)
+- **Round 1 (3 comments)**: Metadata description had duplicate "with" ("Compatible with most BMS controllers with a wide array..."); non-English locales still said "all" instead of "most"; `&apos;` HTML entity in JS string context
+- **Round 2**: All addressed — metadata reworded to "A wide array of custom outputs compatible with most BMS controllers"; 9 locales aligned to "most"; `&apos;` replaced with real apostrophe
+
+### Files Changed (13 files)
+- `web/messages/{en,de,fr,es,ar,ja,zh,hi,pl,th,vi}.json` — BAS→BMS + "most" alignment + temperature landing page descriptions
+- `web/src/app/[locale]/datacenter/page.tsx` — BAS references removed/consolidated
+- `web/src/components/ui/TaglineRotator.stories.tsx` — copy update + `&apos;` fix
 
 ---
 

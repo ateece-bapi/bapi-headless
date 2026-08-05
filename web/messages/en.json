@@ -132,6 +132,7 @@
       },
       "testInstruments": {
         "title": "Test Instruments",
+        "bluTestDesc": "A suite of test probes for temperature, humidity, dew point, differential pressure, and K-Factor",
         "allTestInstruments": "All Test Instruments",
         "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },

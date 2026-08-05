@@ -18,6 +18,8 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const BLU_TEST_PRODUCT_HREF = '/product/blu-test-bluetooth-testing-probe-suite';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'bluTestLandingPage' });
@@ -46,49 +48,41 @@ export default async function BluTestPage({ params }: Props) {
   const testProbes = [
     {
       name: t('testProbes.tempProbe95.name'),
-      slug: 'temperature-probe-95',
       description: t('testProbes.tempProbe95.description'),
       image: '/images/blu-test/probes/9.5_temp_probe.png',
     },
     {
       name: t('testProbes.tempProbe6.name'),
-      slug: 'temperature-probe-6',
       description: t('testProbes.tempProbe6.description'),
       image: '/images/blu-test/probes/6_temp_probe.png',
     },
     {
       name: t('testProbes.piercingProbe.name'),
-      slug: 'piercing-probe-4',
       description: t('testProbes.piercingProbe.description'),
       image: '/images/blu-test/probes/4_piercing_probe.png',
     },
     {
       name: t('testProbes.remoteTemp.name'),
-      slug: 'remote-temperature-probe',
       description: t('testProbes.remoteTemp.description'),
       image: '/images/blu-test/probes/Remote_temp_probe.png',
     },
     {
       name: t('testProbes.tempHumid.name'),
-      slug: 'temperature-humidity-probe-8',
       description: t('testProbes.tempHumid.description'),
       image: '/images/blu-test/probes/8_temp_humid_probe.png',
     },
     {
       name: t('testProbes.lowPress.name'),
-      slug: 'low-range-pressure-probe',
       description: t('testProbes.lowPress.description'),
       image: '/images/blu-test/probes/Low-range_press_probe.png',
     },
     {
       name: t('testProbes.standardPress.name'),
-      slug: 'standard-range-pressure-probe',
       description: t('testProbes.standardPress.description'),
       image: '/images/blu-test/probes/Standard-range_press_probe.png',
     },
     {
       name: t('testProbes.kit.name'),
-      slug: 'blu-test-kit',
       description: t('testProbes.kit.description'),
       image: '/images/blu-test/probes/BluTest_Case_Main 1.png',
     },
@@ -335,7 +329,7 @@ export default async function BluTestPage({ params }: Props) {
                   <h3 className="mb-3 text-base font-bold text-neutral-900">{probe.name}</h3>
                   <p className="mb-6 flex-1 text-sm leading-relaxed text-neutral-600">{probe.description}</p>
                   <Link
-                    href={`/products/${probe.slug}`}
+                    href={BLU_TEST_PRODUCT_HREF}
                     className="inline-flex w-full items-center justify-center rounded-xl bg-primary-600 px-6 py-3 text-center font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                   >
                     {tCommon('learnMore')}

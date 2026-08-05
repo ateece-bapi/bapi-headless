@@ -539,6 +539,7 @@
       },
       "testInstruments": {
         "title": "テスト機器",
+        "bluTestDesc": "温度、湿度、露点、差圧、Kファクター用のテストプローブ一式",
         "allTestInstruments": "すべてのテスト機器",
         "allTestInstrumentsDesc": "NIST トレーサブル温度、湿度、圧力リファレンス"
       },

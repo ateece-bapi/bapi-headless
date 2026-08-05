@@ -14,7 +14,7 @@ export const NAV_LINKS: NavLink[] = [];
  * Generate mega menu items with translations
  * @param t - Translation function from useTranslations('megaMenu')
  * Updated: March 16, 2026 - Updated with proper subcategory links after WordPress restructure
- * 
+ *
  * TEMPERATURE: Application-based subcategories (10 total, showing top 6 in mega-menu)
  * HUMIDITY: Existing subcategories (Phase 2: will be application-based)
  * PRESSURE: Existing subcategories (well-structured, no changes needed)
@@ -222,6 +222,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           slug: 'test-instruments',
           icon: '/images/icons/Test_Instruments_Icon.webp',
           links: [
+            {
+              label: 'Blü-Test',
+              href: '/blu-test',
+              description: t('products.testInstruments.bluTestDesc'),
+            },
             {
               label: t('products.testInstruments.allTestInstruments'),
               href: '/products/test-instruments',

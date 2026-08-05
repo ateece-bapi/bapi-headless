@@ -539,6 +539,7 @@
       },
       "testInstruments": {
         "title": "Instruments de Test",
+        "bluTestDesc": "Une suite de sondes de test pour la température, l’humidité, le point de rosée, la pression différentielle et le facteur K",
         "allTestInstruments": "Tous les Instruments de Test",
         "allTestInstrumentsDesc": "Références de température, humidité et pression traçables NIST"
       },

@@ -12,7 +12,7 @@ export default function AirQualityPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+      <section className="bg-bapi-primary-gradient py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <WindIcon className="mx-auto mb-4 h-16 w-16" />
@@ -162,7 +162,7 @@ export default function AirQualityPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+      <section className="bg-bapi-primary-gradient py-16 text-white">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold">Ready to Improve Your Indoor Air Quality?</h2>
           <p className="mb-8 text-xl text-primary-50">

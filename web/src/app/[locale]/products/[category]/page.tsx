@@ -255,7 +255,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs - Always shown */}
-      <div className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
+      <div className="bg-bapi-primary-gradient relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         

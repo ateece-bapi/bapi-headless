@@ -177,7 +177,7 @@ export default function RealWorldInstallationsPage() {
   return (
     <div className="bg-linear-to-br min-h-screen from-neutral-50 to-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white sm:py-20">
+      <section className="bg-bapi-primary-gradient py-16 text-white sm:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-content text-center">
             <h1 className="mb-6 text-balance text-4xl font-extrabold sm:text-5xl lg:text-6xl">

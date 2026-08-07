@@ -25,7 +25,7 @@ export default async function WebinarsPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'webinarsPage' });
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+      <section className="bg-bapi-primary-gradient py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <MonitorIcon className="mx-auto mb-4 h-16 w-16" />

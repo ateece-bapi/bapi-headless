@@ -799,7 +799,7 @@ export default function WhereToBuyPage() {
                             href={distributor.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-linear-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+                            className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-bapi-primary-gradient px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
                           >
                             <GlobeIcon className="h-4 w-4" />
                             Visit Website
@@ -837,7 +837,7 @@ export default function WhereToBuyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-linear-to-r from-primary-700 to-primary-600 py-12 text-white lg:py-16">
+      <section className="bg-bapi-primary-gradient py-12 text-white lg:py-16">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
             Interested in Becoming a Distributor?

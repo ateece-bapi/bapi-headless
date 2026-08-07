@@ -29,7 +29,7 @@ export default function DataCenterPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b-4 border-accent-500 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="relative overflow-hidden border-b-4 border-accent-500 bg-bapi-primary-gradient py-16 text-white lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -513,7 +513,7 @@ export default function DataCenterPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="bg-bapi-primary-gradient py-16 text-white lg:py-20">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-bold lg:text-4xl">
             Ready to Protect Your Data Center?

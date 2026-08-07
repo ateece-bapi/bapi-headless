@@ -28,7 +28,7 @@ export default async function SensorSpecsPage({
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-700 py-20 text-white">
+      <section className="relative overflow-hidden bg-bapi-primary-gradient py-20 text-white">
         {/* Background Pattern (optional) */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -173,7 +173,7 @@ export default async function SensorSpecsPage({
       {/* Browse Products CTA */}
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-12 shadow-xl">
+          <div className="rounded-2xl bg-bapi-primary-gradient p-12 shadow-xl">
             <ThermometerIcon className="mx-auto mb-6 h-16 w-16 text-white" />
             <h2 className="mb-4 text-3xl font-bold text-white">
               {t('cta.title')}

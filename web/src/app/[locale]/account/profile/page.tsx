@@ -38,7 +38,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
             {/* Profile Header */}
-            <div className="bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-12">
+            <div className="bg-bapi-primary-gradient px-8 py-12">
               <div className="flex items-center gap-6">
                 {/* Avatar with first letter of name */}
                 <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-white/20 shadow-lg backdrop-blur-sm">

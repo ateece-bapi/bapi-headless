@@ -77,7 +77,7 @@ export default async function MainProductPage({
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30"
     >
       {/* Hero Section - Server Rendered for Fast LCP */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
+      <section className="bg-bapi-primary-gradient relative overflow-hidden border-b-4 border-accent-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="h-150 w-150 absolute right-0 top-0 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -157,7 +157,7 @@ export default async function MainProductPage({
 
               <Link
                 href="/products/featured/ba-series"
-                className="bg-linear-to-r inline-flex items-center gap-2 rounded-xl from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
                 <ArrowRightIcon className="h-5 w-5" />
@@ -197,7 +197,7 @@ export default async function MainProductPage({
         </div>
 
         {/* CTA Section */}
-        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-bapi-primary-gradient relative overflow-hidden rounded-2xl p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

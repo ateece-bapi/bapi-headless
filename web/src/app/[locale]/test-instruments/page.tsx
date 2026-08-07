@@ -22,7 +22,7 @@ export default function TestInstrumentsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 pt-12 pb-6 text-white lg:pt-16 lg:pb-10 border-b-4 border-accent-500">
+      <section className="relative overflow-hidden bg-bapi-primary-gradient pt-12 pb-6 text-white lg:pt-16 lg:pb-10 border-b-4 border-accent-500">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -320,7 +320,7 @@ export default function TestInstrumentsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-16 text-white lg:py-24">
+      <section className="bg-bapi-primary-gradient py-16 text-white lg:py-24">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-bold lg:text-4xl">Upgrade Your Test Equipment</h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">

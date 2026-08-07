@@ -579,7 +579,7 @@ export default async function BluTestPage({ params }: Props) {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="bg-bapi-primary-gradient py-16 text-white lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="mb-6 text-4xl font-bold lg:text-5xl">{t('cta.title')}</h2>

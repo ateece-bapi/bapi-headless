@@ -194,7 +194,7 @@ export default async function WirelessPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 pt-8 pb-4 text-white md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3">
+      <section className="relative overflow-hidden bg-bapi-primary-gradient pt-8 pb-4 text-white md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -624,7 +624,7 @@ export default async function WirelessPage({ params }: Props) {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white">
+      <section className="bg-bapi-primary-gradient py-16 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center sm:px-8">
           <h2 className="mb-4 text-3xl font-bold lg:text-4xl">{t('cta.title')}</h2>
           <p className="mb-8 text-lg text-primary-50">{t('cta.description')}</p>

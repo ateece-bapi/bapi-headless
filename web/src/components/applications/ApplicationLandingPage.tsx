@@ -61,7 +61,7 @@ function HeroSection({
   appName: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 pb-20 pt-12 text-white lg:pb-32 lg:pt-16">
+    <section className="relative overflow-hidden bg-bapi-primary-gradient pb-20 pt-12 text-white lg:pb-32 lg:pt-16">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
@@ -378,7 +378,7 @@ function ExamplesSection({ examples }: { examples: ApplicationLandingPageData['e
  */
 function CTASection({ ctas }: { ctas: ApplicationLandingPageData['ctas'] }) {
   return (
-    <section className="bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-24">
+    <section className="bg-bapi-primary-gradient py-20 text-white lg:py-24">
       <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
         <h2 className="mb-6 text-balance text-3xl font-bold lg:text-4xl">
           Ready to Solve Your Challenges?

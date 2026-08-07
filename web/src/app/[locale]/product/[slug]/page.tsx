@@ -612,7 +612,7 @@ export default async function ProductPage({
             <StructuredData schema={[productSchema, breadcrumbSchema]} />
 
             {/* Breadcrumb Navigation - Blue Gradient Header */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
+            <div className="bg-bapi-primary-gradient relative overflow-hidden border-b-4 border-accent-500">
               {/* Background decoration */}
               <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
               

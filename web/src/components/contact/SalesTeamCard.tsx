@@ -124,7 +124,7 @@ export default function SalesTeamCard({
             {profileHref && (
               <Link
                 href={profileHref}
-                className="flex flex-1 transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+                className="flex flex-1 transform items-center justify-center gap-2 rounded-lg bg-bapi-primary-gradient px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
               >
                 <UserIcon className="h-4 w-4" />
                 Contact
@@ -132,7 +132,7 @@ export default function SalesTeamCard({
             )}
             <a
               href={`mailto:${email}`}
-              className={`flex transform items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl ${profileHref ? 'h-11 w-12 border-2 border-primary-600 bg-white text-primary-700 hover:bg-primary-50' : 'flex-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800'}`}
+              className={`flex transform items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl ${profileHref ? 'h-11 w-12 border-2 border-primary-600 bg-white text-primary-700 hover:bg-primary-50' : 'flex-1 bg-bapi-primary-gradient text-white hover:from-primary-700 hover:to-primary-800'}`}
               aria-label={`Email ${name}`}
             >
               <MailIcon className="h-4 w-4" />

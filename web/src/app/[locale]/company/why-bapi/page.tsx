@@ -35,7 +35,7 @@ export default async function WhyBapiPage() {
   return (
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800 border-b-4 border-accent-500">
+      <section className="bg-bapi-primary-gradient relative overflow-hidden border-b-4 border-accent-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -178,7 +178,7 @@ export default async function WhyBapiPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-bapi-primary-gradient relative overflow-hidden rounded-2xl p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

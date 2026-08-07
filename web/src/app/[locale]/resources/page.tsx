@@ -106,7 +106,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-700 py-20 text-white">
+      <div className="bg-bapi-primary-gradient relative overflow-hidden py-20 text-white">
         {/* Decorative Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 transform rounded-full bg-white blur-3xl" />

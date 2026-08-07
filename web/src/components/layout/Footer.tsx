@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
               />
             </Link>
             <p className="max-w-sm text-sm font-semibold leading-relaxed text-neutral-900 lg:text-base">
-              <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text font-extrabold text-transparent">
+              <span className="bg-bapi-primary-gradient bg-clip-text font-extrabold text-transparent">
                 {t('brand.tagline')}
               </span>
             </p>

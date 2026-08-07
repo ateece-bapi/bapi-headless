@@ -21,7 +21,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="bg-bapi-primary-gradient relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -144,7 +144,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
             </p>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-xl bg-bapi-primary-gradient px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               View All Categories
               <ChevronRightIcon className="h-5 w-5" />
@@ -156,7 +156,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
       {/* CTA Section */}
       {hasProducts && (
         <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+          <div className="relative overflow-hidden rounded-2xl bg-bapi-primary-gradient p-10 shadow-2xl lg:p-16">
             <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
             <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

@@ -296,7 +296,7 @@ export default function ChatWidget() {
       {isOpen && (
         <div className="z-modal fixed bottom-6 right-6 flex h-[600px] max-h-[calc(100vh-3rem)] w-[400px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl">
           {/* Header */}
-          <div className="flex items-center justify-between bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-4 text-white">
+          <div className="flex items-center justify-between bg-bapi-primary-gradient p-4 text-white">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
                 <MessageCircleIcon className="h-5 w-5" />
@@ -458,7 +458,7 @@ export default function ChatWidget() {
         <div className="z-chat-widget fixed inset-0 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
           <div className="mx-4 max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-2xl">
             {/* Form Header */}
-            <div className="rounded-t-2xl bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-6 text-white">
+            <div className="rounded-t-2xl bg-bapi-primary-gradient p-6 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <UserCircleIcon className="h-8 w-8" />

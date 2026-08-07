@@ -21,7 +21,7 @@ interface WirelessCTAProps {
  */
 export default function WirelessCTA({ locale, translations }: WirelessCTAProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-700 py-12 text-white">
+    <section className="relative overflow-hidden bg-bapi-primary-gradient py-12 text-white">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 

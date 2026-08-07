@@ -47,7 +47,7 @@ export default async function CompanyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-12 text-white lg:py-16">
+      <section className="bg-bapi-primary-gradient py-12 text-white lg:py-16">
         <PageContainer size="prose">
           <div className="text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">

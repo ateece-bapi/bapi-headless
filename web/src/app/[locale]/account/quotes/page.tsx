@@ -49,7 +49,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
       )}
 
       {/* Header */}
-      <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
+      <section className="bg-bapi-primary-gradient w-full text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
             href="/account"

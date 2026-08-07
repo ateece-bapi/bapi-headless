@@ -61,7 +61,7 @@ export const Default: Story = {};
 export const WithBackground: Story = {
   decorators: [
     (Story) => (
-      <div className="rounded-xl bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 p-12">
+      <div className="rounded-xl bg-bapi-primary-gradient p-12">
         <div className="text-white">
           <Story />
         </div>

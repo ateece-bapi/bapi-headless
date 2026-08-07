@@ -43,7 +43,7 @@ export function CTABanner({
 }: CTABannerProps) {
   const variants = {
     blue: {
-      bg: 'bg-gradient-to-br from-primary-700 to-primary-500',
+      bg: 'bg-bapi-primary-gradient',
       text: 'text-white',
       button: 'bg-accent-500 text-neutral-900 hover:bg-accent-600',
     },

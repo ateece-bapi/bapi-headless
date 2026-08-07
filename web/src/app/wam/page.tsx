@@ -29,7 +29,7 @@ export default function WAMPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
+      <section className="relative bg-bapi-primary-gradient text-white">
         <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}

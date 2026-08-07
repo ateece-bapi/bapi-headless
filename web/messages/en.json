@@ -4203,7 +4203,7 @@
       "imageAlt": "Blü-Test handheld probe suite connected to the Blu-View app",
       "realTime": {
         "title": "Real-Time Monitoring",
-        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time along side BAPI wireless sensors."
+        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time alongside BAPI wireless sensors."
       },
       "logs": {
         "title": "Download Logs",

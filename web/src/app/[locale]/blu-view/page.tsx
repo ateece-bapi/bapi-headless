@@ -512,7 +512,7 @@ export default async function BluViewPage({ params }: Props) {
               </div>
 
               <Link
-                href="#"
+                href="/support"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary-700 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
               >
                 {t('bleScanner.cta')}
@@ -671,7 +671,7 @@ export default async function BluViewPage({ params }: Props) {
               {t('cta.contactUs')}
             </Link>
             <Link
-              href="#"
+              href="#download-blu-view"
               className="rounded-lg border-2 border-white px-10 py-4 font-bold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/30"
             >
               {t('cta.downloadApp')}

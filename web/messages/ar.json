@@ -4310,5 +4310,158 @@
         "description": "ستتوفر معلومات المعارض التجارية قريباً."
       }
     }
+  },
+  "bluViewLandingPage": {
+    "metadata": {
+      "title": "Blü-View App — Access Blü-Test, WAM & More | BAPI",
+      "description": "Blü-View is BAPI's unified mobile platform for wireless sensors, Blü-Test instruments, WAM monitoring, and more. Download on iOS and Android.",
+      "keywords": "Blü-View, BAPI app, wireless sensors, Blü-Test, WAM, mobile app, HVAC app"
+    },
+    "hero": {
+      "title": "Blü-View",
+      "tagline": "Access Blü-Test, WAM, and more from one app.",
+      "description": "Blü-View is a platform for accessing all your BAPI services from a single application. Access your BAPI wireless sensors and Blü-Test instruments through one unified dashboard in Blü-Test. Log in to WAM to review alerts. Utilize the Scanner to assess signal strength prior to sensor installation.",
+      "googlePlay": "Get it on Google Play",
+      "appStore": "Download on the App Store",
+      "imageAlt": "Blü-View app running on a smartphone at an HVAC workbench"
+    },
+    "features": {
+      "learnMore": "Learn More",
+      "bluTest": {
+        "title": "Blü-Test",
+        "description": "View data from your Blü-Test test instruments and your BAPI wireless sensors on the same dashboard. View graphs and download logs, update firmware and view certificates of calibration."
+      },
+      "wam": {
+        "title": "WAM",
+        "description": "Safeguard your assets with BAPI's environmental monitoring. Track temperature, humidity, door contacts, and more. Set up custom alerts to get notified of any issues."
+      },
+      "scanner": {
+        "title": "Scanner",
+        "description": "Scan your environment for Bluetooth devices. Verify signal strength for BAPI's wireless sensors before you place an order. You can submit your signal data for us to review."
+      },
+      "website": {
+        "title": "BAPI Website",
+        "description": "Get quick access to the BAPI website. Browse products and get access to documentation for troubleshooting on site."
+      },
+      "tools": {
+        "title": "Tools",
+        "description": "Access useful calculators and converters for common HVAC/R applications."
+      },
+      "settings": {
+        "title": "Settings",
+        "description": "Swap between imperial and metric units of measure. Disable notifications for calibration reminders."
+      }
+    },
+    "bluTest": {
+      "logoAlt": "BAPI Blü-Test — Test Instrument Suite",
+      "introduction": "Blü-Test is a suite of handheld testing probes that interface via Bluetooth LE to the user's enabled Android or iOS smart device through the Blü-View app available on Google Play or the App Store.",
+      "imageAlt": "Blü-Test probe suite — seven probes for temperature, humidity, pressure, and airflow measurement",
+      "realTime": {
+        "title": "Real-Time Monitoring",
+        "description": "View live sensor data from all connected probes. Monitor temperature, humidity, pressure, and more in real-time along side BAPI wireless sensors."
+      },
+      "logs": {
+        "title": "Download Logs",
+        "description": "Access stored measurement logs from onboard device memory. Export data for analysis, reporting, and compliance documentation."
+      },
+      "management": {
+        "title": "Device Management",
+        "description": "Manage multiple probes, check battery levels, update firmware, and receive calibration reminders all from one central dashboard."
+      }
+    },
+    "photoCards": {
+      "allOnOneDisplay": {
+        "title": "All on one display",
+        "description": "Just double press the button inside your BAPI wireless sensor to put it into advertising mode. The app will automatically connect to both your Blü-Test probe and the wireless sensor and display both on your dashboard making it easy to validate your wireless sensors against a NIST traceable reference."
+      },
+      "forgetCords": {
+        "title": "Forget About Cords and Meters",
+        "description": "The rechargeable battery and memory let probes capture data for days. Just double click to activate logging, place it, and walk away. The log file will be ready for download when you return."
+      },
+      "calibrationNotifications": {
+        "title": "Calibration Notifications",
+        "description": "All Blü-Test instruments are calibrated to NIST standards to ensure accuracy and include a NIST traceable calibration certificate that is viewable in the app. The app will notify when your Blü-Test needs to be recalibrated."
+      }
+    },
+    "testing": {
+      "headline": "Testing and validation simplified.",
+      "description": "Monitor temperature, humidity, pressure, and more in real-time from all connected probes. Wirelessly connect with your instruments to download logs for analysis, reporting, and compliance. Manage multiple devices from a single dashboard, check battery levels, push firmware updates, and receive automatic re-calibration reminders.",
+      "cta": "Learn More about Blü-Test",
+      "imageAlt": "Technician using a Blü-Test probe on HVAC equipment"
+    },
+    "wam": {
+      "logoAlt": "WAM — Wireless Asset Monitoring by BAPI",
+      "subtitle": "Wireless Asset Monitoring",
+      "description": "WAM is BAPI's wireless environmental monitoring platform that gives facilities real-time visibility into temperature, humidity, barometric pressure, light levels, door contacts, and water leak detection. Customize alerts and get notifications before a serious loss.",
+      "heroAlt": "WAM sensors and gateway hardware",
+      "howItWorks": {
+        "title": "How It Works",
+        "description": "Wireless sensors continuously track conditions across your facility and send instant SMS and email alerts when readings cross your custom thresholds. Historical trend data, exportable reports, and automated compliance logs keep you audit-ready at all times.",
+        "imageAlt": "Restaurant worker monitoring food safety with WAM"
+      },
+      "keyFeatures": {
+        "title": "Key Features",
+        "imageAlt": "Greenhouse operators using WAM for environmental monitoring",
+        "feature1": "Custom alert thresholds",
+        "feature2": "Role-based access for multiple users and locations",
+        "feature3": "Interactive trend charts & exportable reports"
+      },
+      "proactive": {
+        "headline": "Proactive monitoring, simplified.",
+        "description": "Equipment failures and unnoticed environmental issues can lead to significant financial losses, including thousands of dollars in lost inventory, compliance violations, and costly downtime. With WAM, you can proactively detect and address potential problems before they escalate into major issues. This innovative solution works tirelessly around the clock to safeguard your perishable assets, ensuring that they remain protected and your operations run smoothly.",
+        "cta": "Learn More about WAM",
+        "imageAlt": "Store manager reviewing WAM alerts on smartphone"
+      }
+    },
+    "bleScanner": {
+      "title": "BLE Scanner",
+      "imageAlt": "BLE Scanner app showing Bluetooth devices detected on a floor plan",
+      "cta": "Learn How to Verify Your Location",
+      "scan": {
+        "title": "Scan your environment",
+        "description": "See Bluetooth devices in your environment including BAPI's wireless sensors and test instruments."
+      },
+      "signal": {
+        "title": "Measure signal strength",
+        "description": "Check the Bluetooth signal strength around you in real-time with RSSI values displayed in the app."
+      },
+      "verify": {
+        "title": "Verify your environment",
+        "description": "Verify a strong connection for every sensor in your environment before you place an order."
+      }
+    },
+    "appCards": {
+      "website": {
+        "title": "BAPI Website",
+        "imageAlt": "Hand holding phone showing BAPI app with wiring documentation",
+        "description": "Explore our extensive catalog where you can easily browse through a wide range of products and place your orders with just a few clicks. Additionally, don't forget to check out our comprehensive product documentation, which includes detailed datasheets, step-by-step instructions, and insightful application notes to help you make the most of your purchases."
+      },
+      "tools": {
+        "title": "Tools",
+        "imageAlt": "HVAC technician working on electrical panel",
+        "description": "Get quick access to calculators and converters for common HVAC problems.",
+        "calc1": "RTD Accuracy Calculator",
+        "calc2": "Temperature Finder",
+        "calc3": "Output Finder mA/V",
+        "calc4": "Temperature to Resistance",
+        "calc5": "Resistance to Temperature"
+      },
+      "settings": {
+        "title": "Settings",
+        "imageAlt": "Technician smiling while using phone near rooftop HVAC equipment",
+        "description1": "You can update your units of measure in the settings at any time, allowing you to switch between imperial and metric systems as needed.",
+        "description2": "Furthermore, you have the option to manage your notification preferences by enabling or disabling alerts for firmware updates and calibration reminders."
+      }
+    },
+    "showcase": {
+      "imageAlt": "Blü-View app displayed on phone and tablet alongside Blü-Test probe instrument",
+      "probeAlt": "Blü-Test 8-inch temperature and humidity probe instrument"
+    },
+    "cta": {
+      "headline": "Download Blü-View today!",
+      "description": "Get started with Blü-View today. Contact us for pricing, product demos, or technical support.",
+      "contactUs": "Contact Us",
+      "downloadApp": "Download The App"
+    }
   }
 }

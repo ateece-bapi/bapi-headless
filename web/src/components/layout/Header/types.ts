@@ -33,6 +33,7 @@ export interface MegaMenuItem {
   megaMenu?: {
     columns: MegaMenuColumn[];
     featured?: MegaMenuFeatured;
+    featuredSecondary?: MegaMenuFeatured;
   };
 }
 

@@ -369,7 +369,8 @@
       "premiumSolution": "حل متميز",
       "new": "جديد",
       "download": "تحميل",
-      "phase2": "المرحلة 2"
+      "phase2": "المرحلة 2",
+      "mobileApp": "تطبيق جوال"
     },
     "resources": {
       "label": "الموارد",
@@ -561,6 +562,11 @@
         "title": "خط ETA",
         "allEtaLine": "جميع منتجات ETA",
         "allEtaLineDesc": "حلول الإدخال/الإخراج المعيارية والتحكم لأتمتة المباني"
+      },
+      "featuredSecondary": {
+        "title": "تطبيق Blü-View",
+        "description": "منصة BAPI المتكاملة للهاتف المحمول لأجهزة Blü-Test ومراقبة WAM وماسح BLE والمزيد.",
+        "cta": "استكشف Blü-View"
       }
     }
   },

@@ -44,7 +44,8 @@
       "premiumSolution": "โซลูชั่นพรีเมี่ยม",
       "new": "ใหม่",
       "download": "ดาวน์โหลด",
-      "phase2": "เฟส 2"
+      "phase2": "เฟส 2",
+      "mobileApp": "แอปมือถือ"
     },
     "resources": {
       "label": "ทรัพยากร",
@@ -236,6 +237,11 @@
         "title": "ETA Line",
         "allEtaLine": "ผลิตภัณฑ์ ETA ทั้งหมด",
         "allEtaLineDesc": "โซลูชัน I/O แบบโมดูลาร์และการควบคุมสำหรับระบบอัตโนมัติในอาคาร"
+      },
+      "featuredSecondary": {
+        "title": "แอป Blü-View",
+        "description": "แพลตฟอร์มมือถือแบบรวมของ BAPI สำหรับเครื่องมือ Blü-Test การตรวจสอบ WAM เครื่องสแกน BLE และอื่นๆ",
+        "cta": "สำรวจ Blü-View"
       }
     }
   },

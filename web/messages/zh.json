@@ -369,7 +369,8 @@
       "premiumSolution": "高级解决方案",
       "new": "新品",
       "download": "下载",
-      "phase2": "阶段2"
+      "phase2": "阶段2",
+      "mobileApp": "移动应用"
     },
     "resources": {
       "label": "资源",
@@ -561,6 +562,11 @@
         "title": "ETA Line",
         "allEtaLine": "所有ETA产品",
         "allEtaLineDesc": "用于楼宇自动化的模块化I/O和控制解决方案"
+      },
+      "featuredSecondary": {
+        "title": "Blü-View 应用",
+        "description": "BAPI 的统一移动平台，适用于 Blü-Test 仪器、WAM 监控、BLE 扫描仪等。",
+        "cta": "探索 Blü-View"
       }
     }
   },

@@ -282,9 +282,12 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             </div>
           </div>
 
-          {/* Featured Section */}
-          {item.megaMenu.featured && (
-            <div className="md:col-span-3">
+          {/* Right column: WAM featured + Blü-View secondary stacked */}
+          {(item.megaMenu.featured || item.megaMenu.featuredSecondary) && (
+            <div className="md:col-span-3 flex flex-col gap-4">
+
+              {/* WAM featured card */}
+              {item.megaMenu.featured && (
               <div
                 className={clsx(
                   'relative overflow-hidden rounded-xl border-2 p-5 transition-shadow duration-300 sm:p-6 md:p-8',
@@ -433,6 +436,58 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   </Link>
                 </div>
               </div>
+              )}
+
+              {/* Blü-View secondary featured card */}
+              {item.megaMenu.featuredSecondary && (
+              <div className="relative overflow-hidden rounded-xl border-2 border-primary-200 bg-gradient-to-br from-primary-50 via-white to-primary-50 p-5 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary-500/10 sm:p-6">
+                <div className="flex items-start gap-4">
+                  {/* Logo */}
+                  <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary-700 shadow-md">
+                    {item.megaMenu.featuredSecondary.logo ? (
+                      <Image
+                        src={item.megaMenu.featuredSecondary.logo}
+                        alt={item.megaMenu.featuredSecondary.logoAlt || ''}
+                        fill
+                        className="object-contain p-1.5"
+                        sizes="56px"
+                      />
+                    ) : null}
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    {/* Badge */}
+                    <div className="mb-2 inline-flex items-center gap-1 rounded-full bg-primary-100 px-2.5 py-1 text-xs font-bold text-primary-700">
+                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      {item.megaMenu.featuredSecondary.badge}
+                    </div>
+
+                    {/* Title */}
+                    <p className="text-base font-black leading-tight text-neutral-900">
+                      {item.megaMenu.featuredSecondary.title}
+                    </p>
+
+                    {/* Description */}
+                    <p className="mt-1 text-xs leading-relaxed text-neutral-600">
+                      {item.megaMenu.featuredSecondary.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <Link
+                  href={item.megaMenu.featuredSecondary.href}
+                  onClick={onCloseImmediate}
+                  className="group mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                >
+                  {item.megaMenu.featuredSecondary.cta}
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </Link>
+              </div>
+              )}
+
             </div>
           )}
         </div>

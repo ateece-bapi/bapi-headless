@@ -89,7 +89,8 @@
       "premiumSolution": "Giải pháp cao cấp",
       "new": "Mới",
       "download": "Tải xuống",
-      "phase2": "Giai đoạn 2"
+      "phase2": "Giai đoạn 2",
+      "mobileApp": "Ứng dụng di động"
     },
     "products": {
       "label": "Sản phẩm",
@@ -197,6 +198,11 @@
         "title": "ETA Line",
         "allEtaLine": "Tất cả Sản phẩm ETA",
         "allEtaLineDesc": "Giải pháp I/O và điều khiển mô-đun cho tự động hóa tòa nhà"
+      },
+      "featuredSecondary": {
+        "title": "Ứng dụng Blü-View",
+        "description": "Nền tảng di động thống nhất của BAPI cho thiết bị Blü-Test, giám sát WAM, máy quét BLE và nhiều hơn nữa.",
+        "cta": "Khám phá Blü-View"
       }
     },
     "resources": {

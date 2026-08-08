@@ -369,7 +369,8 @@
       "premiumSolution": "プレミアムソリューション",
       "new": "新着",
       "download": "ダウンロード",
-      "phase2": "フェーズ2"
+      "phase2": "フェーズ2",
+      "mobileApp": "Mobile App"
     },
     "resources": {
       "label": "リソース",
@@ -561,6 +562,11 @@
         "title": "ETA Line",
         "allEtaLine": "すべてのETA製品",
         "allEtaLineDesc": "ビルオートメーション用モジュラーI/O・制御ソリューション"
+      },
+      "featuredSecondary": {
+        "title": "Blü-View App",
+        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
+        "cta": "Explore Blü-View"
       }
     }
   },

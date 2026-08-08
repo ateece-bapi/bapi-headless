@@ -258,6 +258,15 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           logoAlt: 'WAM Wireless Asset Monitoring logo',
         }),
       },
+      featuredSecondary: {
+        title: t('products.featuredSecondary.title'),
+        description: t('products.featuredSecondary.description'),
+        cta: t('products.featuredSecondary.cta'),
+        href: '/blu-view',
+        badge: t('badges.mobileApp'),
+        logo: '/images/blu-view/blu-view.png',
+        logoAlt: 'Blü-View mobile app icon',
+      },
     },
   },
   // PHASE 2: Applications section deferred to Phase 2 (April 10, 2026 deadline)

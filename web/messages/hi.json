@@ -44,7 +44,8 @@
       "premiumSolution": "प्रीमियम समाधान",
       "new": "नया",
       "download": "डाउनलोड",
-      "phase2": "चरण 2"
+      "phase2": "चरण 2",
+      "mobileApp": "Mobile App"
     },
     "products": {
       "label": "उत्पाद",
@@ -152,6 +153,11 @@
         "title": "ETA Line",
         "allEtaLine": "सभी ETA उत्पाद",
         "allEtaLineDesc": "बिल्डिंग ऑटोमेशन के लिए मॉड्यूलर I/O और नियंत्रण समाधान"
+      },
+      "featuredSecondary": {
+        "title": "Blü-View App",
+        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
+        "cta": "Explore Blü-View"
       }
     },
     "resources": {

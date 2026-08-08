@@ -45,7 +45,7 @@
       "new": "Nowe",
       "download": "Pobierz",
       "phase2": "Faza 2",
-      "mobileApp": "Mobile App"
+      "mobileApp": "Aplikacja mobilna"
     },
     "products": {
       "label": "Produkty",
@@ -155,9 +155,9 @@
         "allEtaLineDesc": "Modularne rozwiązania I/O i sterowania dla automatyki budynkowej"
       },
       "featuredSecondary": {
-        "title": "Blü-View App",
-        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
-        "cta": "Explore Blü-View"
+        "title": "Aplikacja Blü-View",
+        "description": "Zunifikowana platforma mobilna BAPI dla instrumentów Blü-Test, monitoringu WAM, skanera BLE i nie tylko.",
+        "cta": "Odkryj Blü-View"
       }
     },
     "support": {

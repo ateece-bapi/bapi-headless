@@ -370,7 +370,7 @@
       "new": "新着",
       "download": "ダウンロード",
       "phase2": "フェーズ2",
-      "mobileApp": "Mobile App"
+      "mobileApp": "モバイルアプリ"
     },
     "resources": {
       "label": "リソース",
@@ -564,9 +564,9 @@
         "allEtaLineDesc": "ビルオートメーション用モジュラーI/O・制御ソリューション"
       },
       "featuredSecondary": {
-        "title": "Blü-View App",
-        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
-        "cta": "Explore Blü-View"
+        "title": "Blü-View アプリ",
+        "description": "Blü-Test機器、WAMモニタリング、BLEスキャナーなどのためのBAPIの統合モバイルプラットフォーム。",
+        "cta": "Blü-Viewを探索する"
       }
     }
   },

@@ -370,7 +370,7 @@
       "new": "Nouveau",
       "download": "Télécharger",
       "phase2": "Phase 2",
-      "mobileApp": "Mobile App"
+      "mobileApp": "Application mobile"
     },
     "resources": {
       "label": "Ressources",
@@ -565,8 +565,8 @@
       },
       "featuredSecondary": {
         "title": "Blü-View App",
-        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
-        "cta": "Explore Blü-View"
+        "description": "La plateforme mobile unifiée de BAPI pour les instruments Blü-Test, la surveillance WAM, le scanner BLE et plus encore.",
+        "cta": "Explorer Blü-View"
       }
     }
   },

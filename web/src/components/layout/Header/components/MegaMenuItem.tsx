@@ -458,7 +458,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   <div className="min-w-0 flex-1">
                     {/* Badge */}
                     <div className="mb-2 inline-flex items-center gap-1 rounded-full bg-primary-100 px-2.5 py-1 text-xs font-bold text-primary-700">
-                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                       </svg>
                       {item.megaMenu.featuredSecondary.badge}
@@ -480,7 +480,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                 <Link
                   href={item.megaMenu.featuredSecondary.href}
                   onClick={onCloseImmediate}
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                  className="group mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-primary-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                 >
                   {item.megaMenu.featuredSecondary.cta}
                   <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>

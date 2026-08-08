@@ -90,7 +90,7 @@
       "new": "Mới",
       "download": "Tải xuống",
       "phase2": "Giai đoạn 2",
-      "mobileApp": "Mobile App"
+      "mobileApp": "Ứng dụng di động"
     },
     "products": {
       "label": "Sản phẩm",
@@ -200,9 +200,9 @@
         "allEtaLineDesc": "Giải pháp I/O và điều khiển mô-đun cho tự động hóa tòa nhà"
       },
       "featuredSecondary": {
-        "title": "Blü-View App",
-        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
-        "cta": "Explore Blü-View"
+        "title": "Ứng dụng Blü-View",
+        "description": "Nền tảng di động thống nhất của BAPI cho thiết bị Blü-Test, giám sát WAM, máy quét BLE và nhiều hơn nữa.",
+        "cta": "Khám phá Blü-View"
       }
     },
     "resources": {

@@ -370,7 +370,7 @@
       "new": "جديد",
       "download": "تحميل",
       "phase2": "المرحلة 2",
-      "mobileApp": "Mobile App"
+      "mobileApp": "تطبيق جوال"
     },
     "resources": {
       "label": "الموارد",
@@ -564,9 +564,9 @@
         "allEtaLineDesc": "حلول الإدخال/الإخراج المعيارية والتحكم لأتمتة المباني"
       },
       "featuredSecondary": {
-        "title": "Blü-View App",
-        "description": "BAPI's unified mobile platform for Blü-Test instruments, WAM monitoring, BLE Scanner, and more.",
-        "cta": "Explore Blü-View"
+        "title": "تطبيق Blü-View",
+        "description": "منصة BAPI المتكاملة للهاتف المحمول لأجهزة Blü-Test ومراقبة WAM وماسح BLE والمزيد.",
+        "cta": "استكشف Blü-View"
       }
     }
   },

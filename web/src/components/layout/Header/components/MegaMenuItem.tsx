@@ -282,9 +282,12 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             </div>
           </div>
 
-          {/* Featured Section */}
-          {item.megaMenu.featured && (
-            <div className="md:col-span-3">
+          {/* Right column: WAM featured + Blü-View secondary stacked */}
+          {(item.megaMenu.featured || item.megaMenu.featuredSecondary) && (
+            <div className="md:col-span-3 flex flex-col gap-4">
+
+              {/* WAM featured card */}
+              {item.megaMenu.featured && (
               <div
                 className={clsx(
                   'relative overflow-hidden rounded-xl border-2 p-5 transition-shadow duration-300 sm:p-6 md:p-8',
@@ -433,12 +436,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   </Link>
                 </div>
               </div>
-            </div>
-          )}
+              )}
 
-          {/* Blü-View secondary featured card */}
-          {item.megaMenu.featuredSecondary && (
-            <div className="md:col-span-3">
+              {/* Blü-View secondary featured card */}
+              {item.megaMenu.featuredSecondary && (
               <div className="relative overflow-hidden rounded-xl border-2 border-primary-200 bg-gradient-to-br from-primary-50 via-white to-primary-50 p-5 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary-500/10 sm:p-6">
                 <div className="flex items-start gap-4">
                   {/* Logo */}
@@ -485,6 +486,8 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </Link>
               </div>
+              )}
+
             </div>
           )}
         </div>

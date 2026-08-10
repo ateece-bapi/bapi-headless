@@ -132,11 +132,11 @@ export default async function BluTestPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Banner - Clean blue background, text only */}
-      <section className="bg-primary-700 py-10 md:py-14">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold leading-tight text-white lg:text-6xl xl:text-7xl">
+      <section className="border-b-4 border-accent-500 bg-primary-700 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
             {t('hero.titleLine1')}
             <br />
             <span className="text-accent-500">{t('hero.titleLine2')}</span>
@@ -144,13 +144,12 @@ export default async function BluTestPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Brand Intro - Blü-Test logo, description, CTAs, probe + app phone */}
-      <section className="bg-white py-12 lg:py-16">
+      {/* Brand Intro - logo, description, CTAs, probe + app phone */}
+      <section className="bg-white py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left Column */}
             <div className="flex flex-col">
-              {/* Blü-Test Brand Logo */}
               <div className="mb-6">
                 <Image
                   src="/images/blu-test/hero/Blu_Test_Web_Digital 2.png"
@@ -161,11 +160,11 @@ export default async function BluTestPage({ params }: Props) {
                 />
               </div>
 
-              <p className="mb-8 text-lg leading-relaxed text-neutral-600">
+              <p className="max-w-xl text-lg leading-relaxed text-neutral-600">
                 {t('hero.description')}
               </p>
 
-              <div className="flex flex-col gap-4 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="#blu-test-suite"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
@@ -604,6 +603,6 @@ export default async function BluTestPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

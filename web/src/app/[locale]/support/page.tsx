@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import {
-  LifeBuoyIcon,
   FileTextIcon,
   WrenchIcon,
   MessageSquareIcon,
@@ -13,6 +12,7 @@ import {
   PhoneIcon,
 } from '@/lib/icons';
 import { generatePageMetadata } from '@/lib/metadata';
+import PageHeader from '@/components/layout/PageHeader';
 
 /**
  * AI-optimized metadata for support center
@@ -44,16 +44,11 @@ export default async function SupportPage() {
   const t = await getTranslations('supportPage');
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center">
-            <LifeBuoyIcon className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-2xl text-xl text-primary-50">{t('hero.subtitle')}</p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: t('hero.title') }]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      />
 
       {/* Quick Actions */}
       <section className="bg-neutral-50 py-12">

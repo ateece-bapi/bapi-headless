@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
-import { RadioIcon, SignalIcon, MapPinIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@/lib/icons';
+import { SignalIcon, MapPinIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@/lib/icons';
+import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Wireless Site Verification',
@@ -11,18 +12,11 @@ export const metadata: Metadata = {
 export default function WirelessSiteVerificationPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center">
-            <RadioIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Wireless Site Verification</h1>
-            <p className="mx-auto max-w-2xl text-xl text-primary-50">
-              Verify signal strength and optimize your wireless sensor deployment
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Wireless Site Verification' }]}
+        title="Wireless Site Verification"
+        description="Verify signal strength and optimize your wireless sensor deployment"
+      />
 
       {/* Introduction */}
       <section className="py-16">

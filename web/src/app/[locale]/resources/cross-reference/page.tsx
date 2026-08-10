@@ -3,6 +3,8 @@ import { Link } from '@/lib/navigation';
 import { RefreshCwIcon, SearchIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -28,20 +30,19 @@ export default async function CrossReferencePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'crossReferencePage' });
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <RefreshCwIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Resources', href: '/resources' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      />
 
       {/* Search Tool */}
       <section className="py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h2 className="mb-6 text-2xl font-bold text-neutral-900">{t('searchTool.heading')}</h2>
 
@@ -91,12 +92,12 @@ export default async function CrossReferencePage({ params }: Props) {
               </button>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Popular Cross References */}
       <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('popularSection.heading')}
           </h2>
@@ -146,7 +147,7 @@ export default async function CrossReferencePage({ params }: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Need Help Section */}

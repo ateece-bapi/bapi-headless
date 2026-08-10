@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
-import { PackageIcon, FileTextIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
+import { PackageIcon, FileTextIcon } from '@/lib/icons';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
   title: 'RMA Request',
@@ -8,24 +10,28 @@ export const metadata: Metadata = {
 };
 
 export default function RMARequestPage() {
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'RMA Request' },
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <PackageIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">RMA Request</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              Return Merchandise Authorization for BAPI products
-            </p>
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title="RMA Request"
+        description="Return Merchandise Authorization for BAPI products"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+            <PackageIcon className="h-4 w-4" />
+            Returns &amp; Repairs
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Process Overview */}
       <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <h2 className="mb-8 text-center text-2xl font-bold text-neutral-900">RMA Process</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
             <div className="text-center">
@@ -57,12 +63,12 @@ export default function RMARequestPage() {
               <p className="text-sm text-neutral-700">Repair, replace, or credit</p>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Important Information */}
       <section className="py-12">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="mb-8 rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
             <h3 className="mb-3 flex items-center text-lg font-bold text-amber-900">
               <FileTextIcon className="mr-2 h-5 w-5" />
@@ -78,12 +84,12 @@ export default function RMARequestPage() {
               <li>• Write RMA number clearly on outside of shipping box</li>
             </ul>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* RMA Form */}
       <section className="py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
             <h2 className="mb-6 text-2xl font-bold text-neutral-900">RMA Request Form</h2>
 
@@ -335,12 +341,12 @@ export default function RMARequestPage() {
               </div>
             </form>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Return Shipping Address */}
       <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="mb-6 text-center">
             <h3 className="mb-2 text-2xl font-bold text-neutral-900">Return Shipping Address</h3>
             <p className="text-neutral-700">Ship products with RMA number to:</p>
@@ -354,12 +360,12 @@ export default function RMARequestPage() {
               <strong>Important:</strong> Write RMA number on outside of box
             </p>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Contact Support */}
       <section className="py-12">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <PageContainer size="content" className="text-center">
           <h3 className="mb-3 text-xl font-bold text-neutral-900">Questions About Returns?</h3>
           <p className="mb-4 text-neutral-700">Contact our customer service team for assistance</p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -377,7 +383,7 @@ export default function RMARequestPage() {
               sales@bapihvac.com
             </a>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

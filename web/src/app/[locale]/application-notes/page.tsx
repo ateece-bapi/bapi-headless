@@ -11,6 +11,8 @@ import { getGraphQLClient } from '@/lib/graphql/client';
 import { BookOpenIcon, LightbulbIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ApplicationNote, ApplicationNoteCategory, CategoryWithNotes } from '@/types/applicationNote';
+import PageHeader from '@/components/layout/PageHeader';
+import PageContainer from '@/components/layout/PageContainer';
 
 async function fetchApplicationNotes(): Promise<ApplicationNote[]> {
   try {
@@ -103,48 +105,42 @@ export default async function ApplicationNotesPage({
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 transform rounded-full bg-white blur-3xl" />
-          <div className="absolute bottom-0 left-0 h-96 w-96 -translate-x-1/2 translate-y-1/2 transform rounded-full bg-accent-400 blur-3xl" />
-        </div>
-        <div className="container relative mx-auto px-4 py-20 md:py-24">
-          <div className="mb-6 flex items-center gap-3">
-            <BookOpenIcon className="h-10 w-10" />
-            <span className="rounded-full bg-white/20 px-3 py-1 text-sm font-semibold uppercase tracking-wider">
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Resources', href: '/resources' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+        eyebrow={
+          <div className="flex items-center gap-3">
+            <BookOpenIcon className="h-6 w-6" />
+            <span className="text-sm font-semibold uppercase">
               {t('hero.badge')}
             </span>
           </div>
-          <h1 className="mb-6 max-w-4xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-            {t('hero.title')}
-          </h1>
-          <p className="mb-2 max-w-3xl text-xl leading-relaxed text-primary-100 md:text-2xl">
-            {t('hero.subtitle')}
-          </p>
-
-          {/* Stats */}
-          <div className="mt-12 grid max-w-2xl grid-cols-2 gap-6 md:grid-cols-3">
-            <div className="rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
-              <div className="mb-1 text-3xl font-bold">{applicationNotes.length}</div>
+        }
+      >
+        <div className="mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-3">
+            <div className="border border-white/20 bg-white/10 p-4">
+              <div className="mb-1 text-2xl font-bold">{applicationNotes.length}</div>
               <div className="text-sm text-primary-100">{t('hero.stats.articlesLabel')}</div>
             </div>
-            <div className="rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
-              <div className="mb-1 text-3xl font-bold">15+</div>
+            <div className="border border-white/20 bg-white/10 p-4">
+              <div className="mb-1 text-2xl font-bold">15+</div>
               <div className="text-sm text-primary-100">{t('hero.stats.expertiseLabel')}</div>
             </div>
-            <div className="col-span-2 rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm md:col-span-1">
-              <div className="mb-1 text-3xl font-bold">100%</div>
+            <div className="col-span-2 border border-white/20 bg-white/10 p-4 sm:col-span-1">
+              <div className="mb-1 text-2xl font-bold">100%</div>
               <div className="text-sm text-primary-100">{t('hero.stats.accessLabel')}</div>
             </div>
-          </div>
         </div>
-      </div>
+      </PageHeader>
 
       {/* Value Proposition */}
       <div className="border-b border-neutral-200 bg-white">
-        <div className="container mx-auto px-4 py-12">
+        <PageContainer size="site" className="py-10">
           <div className="flex max-w-4xl items-start gap-4">
             <div className="flex-shrink-0 rounded-lg bg-primary-50 p-3">
               <LightbulbIcon className="h-6 w-6 text-primary-600" />
@@ -158,11 +154,11 @@ export default async function ApplicationNotesPage({
               </p>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </div>
 
       {/* Application Notes List */}
-      <div className="container mx-auto px-4 py-12">
+      <PageContainer size="site" className="py-12">
         {applicationNotes.length === 0 ? (
           <div className="rounded-lg border border-neutral-200 bg-white py-20 text-center">
             <BookOpenIcon className="mx-auto mb-4 h-16 w-16 text-neutral-300" />
@@ -178,7 +174,7 @@ export default async function ApplicationNotesPage({
             showCategoryAccordion={true}
           />
         )}
-      </div>
+      </PageContainer>
     </div>
   );
 }

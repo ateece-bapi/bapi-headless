@@ -1,6 +1,8 @@
 import { MonitorIcon, CalendarIcon, AlertCircleIcon, UsersIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,22 +27,23 @@ export default async function WebinarsPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'webinarsPage' });
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <MonitorIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-semibold text-neutral-900">
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Resources', href: '/resources' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      >
+        <div className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-semibold text-neutral-900">
               <CalendarIcon className="h-5 w-5" />
               {t('comingSoon.badge')}
-            </div>
-          </div>
         </div>
-      </section>
+      </PageHeader>
 
       <section className="py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="mb-12 rounded-xl border-2 border-primary-200 bg-primary-50 p-8">
             <div className="flex items-start gap-4">
               <AlertCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
@@ -74,7 +77,7 @@ export default async function WebinarsPage({ params }: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       <section className="bg-neutral-50 py-12">

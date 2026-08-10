@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { FileTextIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 import DocumentLibraryClient from '@/components/resources/DocumentLibraryClient';
+import PageHeader from '@/components/layout/PageHeader';
 import { cookies } from 'next/headers';
 import { extractCustomerGroupFromTitle } from '@/lib/utils/filterProductsByCustomerGroup';
 import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
@@ -245,21 +245,19 @@ export default async function DatasheetsPage({ params }: Props) {
   
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
-            <div className="mt-6">
-              <p className="text-sm text-primary-100">
-                {t('hero.totalDocs', { count: documents.length })}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Resources', href: '/resources' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      >
+        <p className="mt-6 text-sm text-primary-100">
+          {t('hero.totalDocs', { count: documents.length })}
+        </p>
+      </PageHeader>
 
       {/* Document Library */}
       <DocumentLibraryClient documents={documents} totalCount={documents.length} />

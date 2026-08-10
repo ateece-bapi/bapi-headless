@@ -28,7 +28,6 @@ import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
 import { CartDrawer } from '@/components/cart';
 import {
-  Breadcrumbs,
   ProductHero,
   ProductConfigurator,
   ProductTabs,
@@ -38,6 +37,7 @@ import {
   ProductDetailClient,
   CategoryPage,
 } from '@/components/products';
+import PageHeader from '@/components/layout/PageHeader';
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
@@ -611,22 +611,13 @@ export default async function ProductPage({
             {/* Structured Data for SEO */}
             <StructuredData schema={[productSchema, breadcrumbSchema]} />
 
-            {/* Breadcrumb Navigation - Blue Gradient Header */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-              
-              <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <Breadcrumbs items={breadcrumbItems} variant="gradient" />
-                
-                {/* Product Title */}
-                <div className="mt-4">
-                  <h1 className="text-4xl font-bold text-white lg:text-5xl">
-                    {product.name || slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </h1>
-                </div>
-              </div>
-            </div>
+            <PageHeader
+              breadcrumbs={breadcrumbItems}
+              title={
+                product.name || slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+              }
+              spacing="compact"
+            />
 
             <ProductDetailClient product={productForClient} productId={productDbId} />
 

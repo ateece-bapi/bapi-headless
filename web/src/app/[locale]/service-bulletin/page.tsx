@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
-import { AlertTriangleIcon, FileTextIcon, ClockIcon, SearchIcon } from '@/lib/icons';
+import { SearchIcon } from '@/lib/icons';
+import PageHeader from '@/components/layout/PageHeader';
+import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Service Bulletins',
@@ -10,22 +12,15 @@ export const metadata: Metadata = {
 export default function ServiceBulletinPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <AlertTriangleIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Service Bulletins</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              Important technical updates and service information for BAPI products
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Service Bulletins' }]}
+        title="Service Bulletins"
+        description="Important technical updates and service information for BAPI products"
+      />
 
       {/* Search & Filter */}
       <section className="bg-neutral-50 py-8">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="w-full flex-1 md:max-w-md">
               <div className="relative">
@@ -54,12 +49,12 @@ export default function ServiceBulletinPage() {
               </select>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Bulletins List */}
       <section className="py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="space-y-4">
             {/* Sample Bulletin */}
             <div className="duration-normal rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary-500">
@@ -176,12 +171,12 @@ export default function ServiceBulletinPage() {
               Next
             </button>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Subscribe Section */}
       <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <PageContainer size="narrow" className="text-center">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Get Service Bulletin Notifications
           </h2>
@@ -198,7 +193,7 @@ export default function ServiceBulletinPage() {
               Subscribe
             </button>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

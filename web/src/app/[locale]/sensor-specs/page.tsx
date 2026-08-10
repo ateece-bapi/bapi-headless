@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import { ThermometerIcon, DropletsIcon, GaugeIcon } from '@/lib/icons';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 export async function generateMetadata({
   params,
@@ -25,45 +27,33 @@ export default async function SensorSpecsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'sensorSpecsPage' });
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-700 py-20 text-white">
-        {/* Background Pattern (optional) */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-
-        <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <ThermometerIcon className="mx-auto mb-6 h-20 w-20 text-primary-50" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl md:text-6xl">
-              {t('hero.title')}
-            </h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50 sm:text-2xl">
-              {t('hero.subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      />
 
       {/* Introduction */}
       <section className="py-16">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <PageContainer size="narrow">
           <h2 className="mb-6 text-center text-3xl font-bold text-neutral-900 sm:text-4xl">
             {t('introduction.heading')}
           </h2>
           <p className="text-center text-lg leading-relaxed text-neutral-700">
             {t('introduction.description')}
           </p>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Sensor Type Cards */}
       <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {/* Thermistors */}
             <div className="group flex flex-col rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:border-primary-500 hover:shadow-lg">
@@ -167,12 +157,12 @@ export default async function SensorSpecsPage({
               </Link>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Browse Products CTA */}
       <section className="py-16">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <PageContainer size="narrow" className="text-center">
           <div className="rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-12 shadow-xl">
             <ThermometerIcon className="mx-auto mb-6 h-16 w-16 text-white" />
             <h2 className="mb-4 text-3xl font-bold text-white">
@@ -188,7 +178,7 @@ export default async function SensorSpecsPage({
               {t('cta.buttonText')}
             </Link>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

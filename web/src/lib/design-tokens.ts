@@ -89,7 +89,7 @@ export const zIndex = {
 } as const;
 
 export const spacing = {
-  container: '1600px',
+  container: '1280px',
   content: '1200px',
   narrow: '800px',
 } as const;

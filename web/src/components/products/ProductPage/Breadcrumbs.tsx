@@ -4,25 +4,29 @@ import { Link } from '@/lib/navigation';
 import React from 'react';
 import { ChevronRightIcon } from '@/lib/icons';
 
-interface BreadcrumbsProps {
-  items: Array<{
-    label: string;
-    href?: string;
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface BreadcrumbSchema {
+  '@context': string;
+  '@type': string;
+  itemListElement: Array<{
+    '@type': string;
+    position: number;
+    name: string;
+    item?: string;
   }>;
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbItem[];
   /**
    * Optional Schema.org structured data
    * If provided, will be injected into the page for SEO
    */
-  schema?: {
-    '@context': string;
-    '@type': string;
-    itemListElement: Array<{
-      '@type': string;
-      position: number;
-      name: string;
-      item?: string;
-    }>;
-  };
+  schema?: BreadcrumbSchema;
   /**
    * Visual variant - 'default' for white background, 'gradient' for blue gradient hero
    */

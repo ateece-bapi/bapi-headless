@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
-import { PhoneIcon, MailIcon, ClockIcon, MapPinIcon, MessageSquareIcon } from '@/lib/icons';
+import { PhoneIcon, MailIcon, ClockIcon, MapPinIcon } from '@/lib/icons';
 import { generatePageMetadata } from '@/lib/metadata';
+import PageHeader from '@/components/layout/PageHeader';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -28,16 +29,15 @@ export default async function ContactSupportPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <MessageSquareIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Support', href: '/support' },
+          { label: t('hero.title') },
+        ]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+      />
 
       {/* Contact Methods */}
       <section className="py-16">

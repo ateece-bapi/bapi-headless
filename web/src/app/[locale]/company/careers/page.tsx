@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
+import PageHeader from '@/components/layout/PageHeader';
 import { Link } from '@/lib/navigation';
 import {
   BriefcaseIcon,
@@ -111,52 +112,31 @@ const cultureValues = [
 export default async function CareersPage() {
   const page = await getPageBySlug('careers');
   const t = await getTranslations('companyPages.careers');
+  const breadcrumbs = [
+    { label: t('breadcrumb.home'), href: '/' },
+    { label: t('breadcrumb.company'), href: '/company' },
+    { label: t('breadcrumb.careers') },
+  ];
 
   return (
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
-      {/* Hero Section */}
-      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('breadcrumb.home')}
-            </Link>
-            <span>/</span>
-            <Link href="/company" className="transition-colors hover:text-white">
-              {t('breadcrumb.company')}
-            </Link>
-            <span>/</span>
-            <span className="font-medium text-white">{t('breadcrumb.careers')}</span>
-          </nav>
-
-          {/* Header */}
-          <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title={t('hero.title')}
+        description={t('hero.description')}
+        spacing="large"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <BriefcaseIcon className="h-4 w-4" />
               {t('hero.badge')}
-            </div>
-
-            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              {t('hero.title')}
-            </h1>
-
-            <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
-              {t('hero.description')}
-            </p>
-
-            <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
+          </div>
+        }
+      >
+        <div className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
               <SparklesIcon className="h-5 w-5 text-yellow-300" />
               <span className="font-medium text-white">{t('hero.tagline')}</span>
-            </div>
-          </div>
         </div>
-      </section>
+      </PageHeader>
 
       {/* Benefits Grid */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">

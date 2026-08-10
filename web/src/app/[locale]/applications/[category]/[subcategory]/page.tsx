@@ -8,6 +8,7 @@ import {
   getApplicationBreadcrumbs,
 } from '@/lib/navigation/applicationCategories';
 import { getProductsByCategory, getProductPrice } from '@/lib/graphql';
+import PageHeader from '@/components/layout/PageHeader';
 
 // Force dynamic rendering (don't pre-render at build time)
 export const dynamic = 'force-dynamic';
@@ -56,48 +57,31 @@ export default async function ApplicationSubcategoryPage({
 
   // Get breadcrumbs
   const breadcrumbs = getApplicationBreadcrumbs(categorySlug, subcategorySlug);
+  const pageBreadcrumbs = breadcrumbs.map((breadcrumb, index) => ({
+    label: breadcrumb.name,
+    href: index === breadcrumbs.length - 1 ? undefined : breadcrumb.href,
+  }));
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="border-b border-neutral-200 bg-gradient-to-br from-primary-50 to-white">
-        <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          {/* Breadcrumbs */}
-          <nav className="mb-6 text-sm text-neutral-700">
-            {breadcrumbs.map((crumb, index) => (
-              <span key={crumb.href}>
-                {index > 0 && <span className="mx-2">/</span>}
-                {index === breadcrumbs.length - 1 ? (
-                  <span className="font-medium text-neutral-900">{crumb.name}</span>
-                ) : (
-                  <Link href={crumb.href} className="hover:text-primary-600">
-                    {crumb.name}
-                  </Link>
-                )}
-              </span>
-            ))}
-          </nav>
-
-          <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
-            {subcategory.name}
-          </h1>
-          <p className="max-w-3xl text-lg text-neutral-700">{subcategory.description}</p>
-
-          {/* Application Context Badges */}
-          {subcategory.filters && Object.keys(subcategory.filters).length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-2">
+      <PageHeader
+        breadcrumbs={pageBreadcrumbs}
+        title={subcategory.name}
+        description={subcategory.description}
+      >
+        {subcategory.filters && Object.keys(subcategory.filters).length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-2">
               {Object.entries(subcategory.filters).map(([key, value]) => (
                 <span
                   key={key}
-                  className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800"
+                  className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white"
                 >
                   {key}: {value}
                 </span>
               ))}
-            </div>
-          )}
-        </div>
-      </section>
+          </div>
+        )}
+      </PageHeader>
 
       {/* Products Grid */}
       <section className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">

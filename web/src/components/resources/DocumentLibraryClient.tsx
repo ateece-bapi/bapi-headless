@@ -10,6 +10,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { useToast } from '@/components/ui/Toast';
 import logger from '@/lib/logger';
+import PageContainer from '@/components/layout/PageContainer';
 
 // Lazy load PDF preview modal (client-side only)
 const PDFPreviewModal = dynamic(() => import('./PDFPreviewModal'), { ssr: false });
@@ -202,7 +203,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
           return 0;
       }
     });
-  }, [documents, debouncedSearch, selectedType, sortBy]);
+  }, [documents, debouncedSearch, selectedType, sortBy, fuse]);
 
   // Paginated documents
   const paginatedDocuments = useMemo(() => {
@@ -320,8 +321,9 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
   
   // Track download analytics
   const handleDownload = useCallback((doc: Document) => {
-    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
-      (window as unknown as { gtag: Function }).gtag('event', 'document_download', {
+    if (typeof window !== 'undefined') {
+      const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+      gtag?.('event', 'document_download', {
         document_id: doc.id,
         document_title: doc.title,
         document_type: doc.documentType,
@@ -336,7 +338,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     <>
       {/* Search & Filter */}
       <section className="sticky top-0 z-10 border-b-2 border-neutral-200 bg-neutral-50 py-6">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           {/* Stats Bar */}
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm text-neutral-700">
@@ -437,12 +439,12 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
               </select>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Stats Bar with View Toggle & Bulk Actions */}
       <section className="border-b border-neutral-200 bg-neutral-50 py-4">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="flex items-center justify-between">
             <p className="text-sm text-neutral-600">
               {t('stats.showing', {
@@ -491,12 +493,12 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Documents Grid */}
       <section className="py-12">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           {filteredDocuments.length === 0 ? (
             <div className="py-16 text-center">
               <FileTextIcon className="mx-auto mb-4 h-16 w-16 text-neutral-300" />
@@ -608,7 +610,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="mt-12 flex items-center justify-center gap-2">
+                <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
@@ -656,7 +658,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
               )}
             </>
           )}
-        </div>
+        </PageContainer>
       </section>
       
       {/* PDF Preview Modal */}

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { PhoneIcon, MailIcon, GlobeIcon, MapPinIcon, SearchIcon } from '@/lib/icons';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 export default function WhereToBuyPage() {
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
@@ -588,19 +590,19 @@ export default function WhereToBuyPage() {
     europe: distributors.filter((d) => d.region === 'europe').length,
     international: distributors.filter((d) => d.region === 'international').length,
   };
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Where to Buy' },
+  ];
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Hero Section */}
-      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="mb-4 text-4xl font-bold lg:text-5xl">Where to Buy BAPI Products</h1>
-            <p className="mb-6 text-xl text-primary-50">
-              Connect with our trusted network of authorized distributors worldwide. Get expert
-              support, local inventory, and fast delivery for your building automation projects.
-            </p>
-            <div className="flex flex-wrap gap-4 text-sm">
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title="Where to Buy BAPI Products"
+        description="Connect with our trusted network of authorized distributors worldwide. Get expert support, local inventory, and fast delivery for your building automation projects."
+      >
+        <div className="mt-6 flex flex-wrap gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                 <span>50+ Authorized Distributors</span>
@@ -613,14 +615,12 @@ export default function WhereToBuyPage() {
                 <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                 <span>Same-Day Shipping Available</span>
               </div>
-            </div>
-          </div>
         </div>
-      </section>
+      </PageHeader>
 
       {/* Search & Filter Section */}
       <section className="sticky top-16 z-30 border-b border-neutral-200 bg-white shadow-sm">
-        <div className="mx-auto max-w-content px-4 py-6 sm:px-6 lg:px-8">
+        <PageContainer size="site" className="py-6">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             {/* Search Bar */}
             <div className="w-full lg:w-96">
@@ -680,12 +680,12 @@ export default function WhereToBuyPage() {
               </button>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Distributors Grid */}
       <section className="py-12 lg:py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           {filteredDistributors.length === 0 ? (
             <div className="py-16 text-center">
               <p className="text-xl text-neutral-700">
@@ -833,12 +833,12 @@ export default function WhereToBuyPage() {
               </div>
             </>
           )}
-        </div>
+        </PageContainer>
       </section>
 
       {/* CTA Section */}
       <section className="bg-linear-to-r from-primary-700 to-primary-600 py-12 text-white lg:py-16">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <PageContainer size="site" className="text-center">
           <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
             Interested in Becoming a Distributor?
           </h2>
@@ -860,7 +860,7 @@ export default function WhereToBuyPage() {
               Contact Sales Team
             </Link>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

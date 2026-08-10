@@ -3,6 +3,7 @@ import { Link } from '@/lib/navigation';
 import dynamic from 'next/dynamic';
 import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 import { GlobalPresenceDynamic as GlobalPresence } from '@/components/company/GlobalPresenceDynamic';
 import { generatePageMetadata } from '@/lib/metadata';
 import { getTranslations } from 'next-intl/server';
@@ -46,26 +47,21 @@ export default async function CompanyPage() {
   const t = await getTranslations('companyPages.about');
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-12 text-white lg:py-16">
-        <PageContainer size="prose">
-          <div className="text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Building2Icon className="h-4 w-4" />
-              {t('hero.badge')}
-            </div>
-            <h1 className="mb-6 text-balance text-5xl font-bold leading-tight sm:text-6xl">
-              {t('hero.title')}
-            </h1>
-            <p className="mx-auto mb-4 text-balance text-xl font-medium text-primary-50 sm:text-2xl">
-              {t('hero.subtitle')}
-            </p>
-            <p className="mx-auto text-balance text-lg leading-relaxed text-primary-100">
-              {t('hero.description')}
-            </p>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: t('hero.title') }]}
+        title={t('hero.title')}
+        description={t('hero.subtitle')}
+        eyebrow={
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+            <Building2Icon className="h-4 w-4" />
+            {t('hero.badge')}
           </div>
-        </PageContainer>
-      </section>
+        }
+      >
+        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-primary-100">
+          {t('hero.description')}
+        </p>
+      </PageHeader>
 
       {/* Company Overview */}
       <section className="py-20">

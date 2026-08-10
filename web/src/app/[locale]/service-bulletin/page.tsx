@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { AlertTriangleIcon, FileTextIcon, ClockIcon, SearchIcon } from '@/lib/icons';
+import { SearchIcon } from '@/lib/icons';
+import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Service Bulletins',
@@ -10,18 +11,11 @@ export const metadata: Metadata = {
 export default function ServiceBulletinPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <AlertTriangleIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Service Bulletins</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              Important technical updates and service information for BAPI products
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Service Bulletins' }]}
+        title="Service Bulletins"
+        description="Important technical updates and service information for BAPI products"
+      />
 
       {/* Search & Filter */}
       <section className="bg-neutral-50 py-8">

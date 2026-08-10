@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Real-World Installations | BAPI - Building Automation Products',
@@ -176,27 +178,20 @@ const installations = {
 export default function RealWorldInstallationsPage() {
   return (
     <div className="bg-linear-to-br min-h-screen from-neutral-50 to-white">
-      {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white sm:py-20">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-content text-center">
-            <h1 className="mb-6 text-balance text-4xl font-extrabold sm:text-5xl lg:text-6xl">
-              Real-World Installations
-            </h1>
-            <p className="mx-auto max-w-3xl text-balance text-xl text-primary-50 sm:text-2xl">
-              Proven building automation solutions across critical environments
-            </p>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-primary-100">
-              See BAPI sensors in action across data centers, industrial facilities, and retail
-              environments
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Real-World Installations' }]}
+        title="Real-World Installations"
+        description="Proven building automation solutions across critical environments"
+      >
+        <p className="mt-4 max-w-2xl text-base text-primary-100">
+          See BAPI sensors in action across data centers, industrial facilities, and retail
+          environments
+        </p>
+      </PageHeader>
 
       {/* Quick Navigation */}
       <section className="sticky top-0 z-10 border-b border-neutral-200 bg-white shadow-sm">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <nav className="flex flex-wrap items-center justify-center gap-6 py-4">
             <a
               href="#data-centers"
@@ -229,12 +224,12 @@ export default function RealWorldInstallationsPage() {
               </span>
             </a>
           </nav>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Installations Content */}
       <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="space-y-20">
             {Object.entries(installations).map(([key, category], categoryIndex) => (
               <div key={key} className="scroll-mt-24" id={key}>
@@ -352,7 +347,7 @@ export default function RealWorldInstallationsPage() {
               </div>
             ))}
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* CTA Section */}

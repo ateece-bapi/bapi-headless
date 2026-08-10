@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
 import { DownloadIcon, FileTextIcon, PrinterIcon, MailIcon } from '@/lib/icons';
+import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Catalog & Price Book',
@@ -11,18 +12,11 @@ export const metadata: Metadata = {
 export default function CatalogPricebookPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Catalog & Price Book</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              Download our complete product catalog and current pricing
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Catalog & Price Book' }]}
+        title="Catalog & Price Book"
+        description="Download our complete product catalog and current pricing"
+      />
 
       {/* Download Options */}
       <section className="py-16">

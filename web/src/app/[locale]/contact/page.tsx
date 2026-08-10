@@ -16,6 +16,8 @@ import {
   HeadphonesIcon,
 } from '@/lib/icons';
 import SalesTeamCard from '@/components/contact/SalesTeamCard';
+import PageContainer from '@/components/layout/PageContainer';
+import PageHeader from '@/components/layout/PageHeader';
 import {
   northAmericaTeam,
   ukTeam,
@@ -85,22 +87,15 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="mb-3 text-3xl font-bold lg:text-4xl">Contact Us</h1>
-            <p className="mx-auto max-w-2xl text-lg text-primary-50">
-              Connect with our expert sales team for building automation solutions, technical
-              support, and product information.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact Us' }]}
+        title="Contact Us"
+        description="Connect with our expert sales team for building automation solutions, technical support, and product information."
+      />
 
       {/* Contact Form + Info Section */}
       <section className="bg-neutral-50 py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Contact Form */}
             <div className="lg:col-span-2">
@@ -295,7 +290,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Sales Team Section */}

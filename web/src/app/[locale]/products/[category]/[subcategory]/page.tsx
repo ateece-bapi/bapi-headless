@@ -14,6 +14,7 @@ import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
+import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { getCategoryIcon } from '@/lib/constants/category-icons';
@@ -354,7 +355,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
       {/* Main Content: Filters + Products (leaf categories only) */}
       {hasProducts && (
-        <div className="mx-auto max-w-content px-4 py-8">
+        <PageContainer size="site" className="py-8">
           <div className={`grid grid-cols-1 gap-8 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[280px_1fr]'}`}>
             {/* Desktop Sidebar Filters (hidden for wireless receivers) */}
             {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
@@ -391,14 +392,14 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
               <FilteredProductGrid products={products} locale={locale} />
             </div>
           </div>
-        </div>
+        </PageContainer>
       )}
       
       {/* Fallback if no products */}
       {!hasProducts && !hasSubSubcategories && (
-        <div className="mx-auto max-w-container px-4 py-12 text-center">
+        <PageContainer size="site" className="py-12 text-center">
           <p className="text-neutral-700">{t('noProducts')}</p>
-        </div>
+        </PageContainer>
       )}
     </div>
   );

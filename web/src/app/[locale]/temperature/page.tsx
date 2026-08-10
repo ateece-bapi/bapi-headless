@@ -3,7 +3,8 @@ import { Link } from '@/lib/navigation';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
-import { ChevronRightIcon, CheckCircleIcon } from '@/lib/icons';
+import { CheckCircleIcon } from '@/lib/icons';
+import PageHeader from '@/components/layout/PageHeader';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -31,6 +32,11 @@ export default async function TemperaturePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'temperatureLandingPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const breadcrumbs = [
+    { label: t('breadcrumb.home'), href: '/' },
+    { label: t('breadcrumb.products'), href: '/products' },
+    { label: t('breadcrumb.temperature') },
+  ];
 
   // Room Temperature Sensors - 6 products
   const roomSensors = [
@@ -161,71 +167,41 @@ export default async function TemperaturePage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 pt-8 pb-4 text-white md:pt-10 md:pb-6 lg:pt-12 lg:pb-8 xl:pt-8 xl:pb-4 2xl:pt-6 2xl:pb-3">
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-
-        <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav
-            className="mb-4 flex items-center gap-2 text-sm text-primary-100 md:mb-6"
-            aria-label="Breadcrumb"
-          >
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('breadcrumb.home')}
+    <div className="min-h-screen bg-white">
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title={t('hero.title')}
+        description={t('hero.description')}
+        actions={
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="#room-sensors"
+              className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 font-bold text-[#08304b] transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+            >
+              {t('hero.cta')}
             </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <Link href="/products" className="transition-colors hover:text-white">
-              {t('breadcrumb.products')}
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-8 py-3 font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+            >
+              {tCommon('contactUs')}
             </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">{t('breadcrumb.temperature')}</span>
-          </nav>
-
-          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-6">
-            {/* Left Column - Content */}
-            <div>
-              <h1 className="mb-5 text-4xl font-bold leading-tight text-white drop-shadow-lg lg:text-5xl xl:mb-4">
-                {t('hero.title')}
-              </h1>
-              <p className="mb-6 max-w-2xl text-lg leading-relaxed text-primary-50 drop-shadow-md lg:text-xl xl:mb-5">
-                {t('hero.description')}
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="#room-sensors"
-                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                  style={{ color: '#08304B' }}
-                >
-                  {t('hero.cta')}
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
-                >
-                  {tCommon('contactUs')}
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Column - Hero Image */}
-            <div className="relative">
-              <div className="relative h-[450px] lg:h-[500px] xl:h-[480px]">
-                <Image
-                  src="/images/temperature/hero/Temperature_Family_2025_US_Plain.webp"
-                  alt={t('hero.title')}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
-                  priority
-                  quality={85}
-                />
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
+        }
+        media={
+          <div className="relative h-64 sm:h-72 lg:h-80">
+            <Image
+              src="/images/temperature/hero/Temperature_Family_2025_US_Plain.webp"
+              alt={t('hero.title')}
+              fill
+              className="object-contain"
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              priority
+              quality={85}
+            />
+          </div>
+        }
+      />
 
       {/* Room Temperature Sensors */}
       <section id="room-sensors" className="bg-white py-16 lg:py-20">
@@ -346,6 +322,6 @@ export default async function TemperaturePage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

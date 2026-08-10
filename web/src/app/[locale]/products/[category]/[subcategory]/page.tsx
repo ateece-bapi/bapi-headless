@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
@@ -15,9 +14,9 @@ import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import PageHeader from '@/components/layout/PageHeader';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
+import { getCategoryIcon } from '@/lib/constants/category-icons';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -127,34 +126,37 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const products: ProductNode[] = [];
 
   // For wireless receivers, combine both receivers AND output modules
-  const categoriesToFetch = subcategory === 'wireless-receivers-bluetooth-wireless'
+  const isCombinedWirelessCategory = subcategory === 'wireless-receivers-bluetooth-wireless';
+  const categoriesToFetch = isCombinedWirelessCategory
     ? ['wireless-receivers-bluetooth-wireless', 'wireless-output-modules-bluetooth-wireless']
     : [subcategory];
 
-  // Fetch products from all relevant categories
-  for (const categorySlug of categoriesToFetch) {
-    let after: string | null = null;
-    let hasNextPage = true;
+  // Middle-level categories are navigation hubs; leaf categories own product listings.
+  if (!hasSubSubcategories || isCombinedWirelessCategory) {
+    for (const categorySlug of categoriesToFetch) {
+      let after: string | null = null;
+      let hasNextPage = true;
 
-    while (hasNextPage && products.length < 1000) {
-      const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
-        GetProductsWithFiltersDocument,
-        {
-          categorySlug: categorySlug,
-          first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
-          after: after || undefined,
+      while (hasNextPage && products.length < 1000) {
+        const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
+          GetProductsWithFiltersDocument,
+          {
+            categorySlug: categorySlug,
+            first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
+            after: after || undefined,
+          }
+        );
+
+        const pageNodes = productsData.products?.nodes || [];
+        products.push(...pageNodes);
+
+        hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
+        after = productsData.products?.pageInfo?.endCursor ?? null;
+
+        // Safety guard: Stop if no valid cursor for next page
+        if (!hasNextPage || !after) {
+          break;
         }
-      );
-
-      const pageNodes = productsData.products?.nodes || [];
-      products.push(...pageNodes);
-
-      hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
-      after = productsData.products?.pageInfo?.endCursor ?? null;
-
-      // Safety guard: Stop if no valid cursor for next page
-      if (!hasNextPage || !after) {
-        break;
       }
     }
   }
@@ -209,78 +211,42 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumbs with Blue Gradient Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b border-primary-700">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-        
-        <div className="relative mx-auto max-w-container px-4 py-6">
-          <Breadcrumbs items={breadcrumbs} schema={schema} variant="gradient" />
-        </div>
-      </div>
-
-      {/* Category Header with BAPI Gradient */}
-      <div className="bg-linear-to-br relative border-b-4 border-accent-500 from-primary-700 via-primary-600 to-primary-500">
-        <div className="bg-linear-to-r absolute inset-0 from-transparent via-white/5 to-transparent" />
-        <div className="relative mx-auto max-w-container px-4 py-8">
-          <div className="max-w-4xl">
-            <h1 className="mb-4 text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
-              {translatedSubcategoryName}
-            </h1>
-            {subcategoryData.description && (
-              <p className="max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-md">
-                {subcategoryData.description}
-              </p>
-            )}
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              {/* BAPI Category Icon Badge */}
-              <div className="bg-linear-to-br inline-flex items-center gap-3 rounded-full border border-white/20 from-white/10 to-white/5 px-5 py-2.5 backdrop-blur-sm">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/20">
-                  <Image
-                    src={getCategoryIcon(parentCategory?.slug || category)}
-                    alt={`${getCategoryIconName(parentCategory?.slug || category)} icon`}
-                    width={16}
-                    height={16}
-                    className="object-contain"
-                  />
-                </div>
-                <span className="text-sm font-medium text-white">
-                  {translatedCategoryName || translatedSubcategoryName}
-                </span>
-              </div>
-              {parentCategory && (
-                <Link
-                  href={`/products/${parentCategory.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm transition-all hover:bg-white/20"
-                >
-                  <svg
-                    className="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                     
-                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                    />
-                  </svg>
-                  <span className="font-medium text-white">{t('backTo', { categoryName: translatedCategoryName })}</span>
-                </Link>
-              )}
-            </div>
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        breadcrumbSchema={schema}
+        title={translatedSubcategoryName}
+        description={subcategoryData.description || undefined}
+        eyebrow={
+          <div className="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+            <Image
+              src={getCategoryIcon(parentCategory?.slug || category)}
+              alt=""
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+            {translatedCategoryName || translatedSubcategoryName}
           </div>
-        </div>
-      </div>
+        }
+        actions={
+          parentCategory ? (
+            <Link
+              href={`/products/${parentCategory.slug}`}
+              className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-5 py-2.5 font-medium text-white backdrop-blur-sm hover:bg-white/20"
+            >
+              {t('backTo', { categoryName: translatedCategoryName })}
+            </Link>
+          ) : undefined
+        }
+      />
 
       {/* Sub-Subcategories Grid (middle-level categories like Room > BAPI-Stat, Delta Style…) */}
       {hasSubSubcategories && (
-        <div className="mx-auto max-w-content px-4 py-12">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('subcategories.title')}
           </h2>
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {subSubcategories
               .filter((subSub) => {
                 // For bluetooth-wireless subcategory, filter out specific sub-subcategories
@@ -386,7 +352,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
         </div>
       )}
 
-      {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
+      {/* Main Content: Filters + Products (leaf categories only) */}
       {hasProducts && (
         <div className="mx-auto max-w-content px-4 py-8">
           <div className={`grid grid-cols-1 gap-8 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[280px_1fr]'}`}>

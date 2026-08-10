@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getContactRepBio } from '@/lib/wordpress';
 import { ALL_TEAM_MEMBERS } from '@/lib/constants/team';
+import PageHeader from '@/components/layout/PageHeader';
 import {
   PhoneIcon,
   MailIcon,
@@ -47,25 +48,20 @@ export default async function ContactRepPage({ params }: Props) {
 
   // Fetch bio from WordPress at build time (SSG + ISR)
   const bio = await getContactRepBio(slug);
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Contact', href: '/contact' },
+    { label: member.name },
+  ];
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Breadcrumb */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-neutral-500">
-            <Link href={`/${locale}`} className="hover:text-primary-600">
-              Home
-            </Link>
-            <span>/</span>
-            <Link href={`/${locale}/contact`} className="hover:text-primary-600">
-              Contact
-            </Link>
-            <span>/</span>
-            <span className="text-neutral-900">{member.name}</span>
-          </nav>
-        </div>
-      </div>
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title={member.name}
+        description={member.title}
+        spacing="compact"
+      />
 
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
         {/* Back link */}

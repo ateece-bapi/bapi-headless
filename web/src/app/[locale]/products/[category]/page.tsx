@@ -11,7 +11,7 @@ import {
   GetProductsWithFiltersDocument,
   GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import PageHeader from '@/components/layout/PageHeader';
 import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
@@ -22,7 +22,6 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
-import WirelessCategoryHero from '@/components/category/WirelessCategoryHero';
 import WirelessBenefits from '@/components/category/WirelessBenefits';
 import WirelessCTA from '@/components/category/WirelessCTA';
 
@@ -254,63 +253,64 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumbs - Always shown */}
-      <div className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-        
-        <div className="relative mx-auto max-w-content px-4 py-6">
-          <Breadcrumbs items={breadcrumbs} schema={schema} variant="gradient" />
-        </div>
-      </div>
-
-      {/* Conditional Wireless Hero OR Standard Category Header */}
-      {isWirelessCategory && wirelessTranslations ? (
-        <>
-          {/* Enhanced Wireless Category Hero */}
-          <WirelessCategoryHero locale={locale} translations={wirelessTranslations.hero} />
-
-          {/* Wireless Benefits Bar */}
-          <WirelessBenefits translations={wirelessTranslations.benefits} />
-        </>
-      ) : (
-        /* Standard Category Header */
-        <div className="bg-linear-to-br relative border-b-4 border-accent-500 from-primary-700 via-primary-600 to-primary-500">
-          <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
-          <div className="relative mx-auto max-w-content px-4 py-8">
-            <div className="max-w-3xl">
-              <div className="mb-2 flex items-center gap-3">
-                {/* BAPI Category Icon Badge */}
-                <div className="bg-linear-to-br inline-flex shrink-0 items-center justify-center rounded-xl from-white/20 to-white/10 p-2.5 shadow-md backdrop-blur-sm">
-                  <Image
-                    src={getCategoryIcon(category)}
-                    alt={`${getCategoryIconName(category)} icon`}
-                    width={32}
-                    height={32}
-                    className="object-contain drop-shadow-md"
-                  />
-                </div>
-                <h1 className="text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
-                  {translatedCategoryName}
-                </h1>
-              </div>
-              {categoryData.description && (
-                <p className="text-lg leading-relaxed text-white/95 drop-shadow-md">
-                  {categoryData.description}
-                </p>
-              )}
-            </div>
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        breadcrumbSchema={schema}
+        title={
+          isWirelessCategory && wirelessTranslations
+            ? wirelessTranslations.hero.title
+            : translatedCategoryName
+        }
+        description={
+          isWirelessCategory && wirelessTranslations
+            ? wirelessTranslations.hero.description
+            : categoryData.description || undefined
+        }
+        eyebrow={
+          <div className="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-sm">
+            <Image
+              src={getCategoryIcon(category)}
+              alt=""
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+            {isWirelessCategory && wirelessTranslations
+              ? wirelessTranslations.hero.subtitle
+              : getCategoryIconName(category)}
           </div>
-        </div>
+        }
+        actions={
+          isWirelessCategory && wirelessTranslations ? (
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#categories"
+                className="rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 hover:bg-accent-600"
+              >
+                {wirelessTranslations.hero.browseCTA}
+              </a>
+              <Link
+                href="/request-quote"
+                className="rounded-xl border-2 border-white bg-white/10 px-6 py-3 font-bold text-white hover:bg-white/20"
+              >
+                {wirelessTranslations.hero.quoteCTA}
+              </Link>
+            </div>
+          ) : undefined
+        }
+      />
+
+      {isWirelessCategory && wirelessTranslations && (
+        <WirelessBenefits translations={wirelessTranslations.benefits} />
       )}
 
       {/* Subcategories Grid (shown for all categories with subcategories) */}
       {hasSubcategories && (
-        <div id="categories" className="mx-auto max-w-container px-4 py-12">
+        <div id="categories" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('categoryPage.subcategories.title')}
           </h2>
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {subcategories
               .filter((sub) => {
                 // For bluetooth-wireless category, filter out specific subcategories

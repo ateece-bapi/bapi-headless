@@ -2,6 +2,7 @@ import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import { ArrowRightIcon, SparklesIcon, AwardIcon } from '@/lib/icons';
 import { ProductCategoryGrid } from '@/components/products/ProductCategoryGrid';
+import PageHeader from '@/components/layout/PageHeader';
 
 // Mock data for product categories - BRAND STANDARD ORDER
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
@@ -65,54 +66,29 @@ const productCategories = [
   },
 ];
 
-export default async function MainProductPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default async function MainProductPage() {
   const t = await getTranslations();
+  const breadcrumbs = [
+    { label: t('productsPage.breadcrumb.home'), href: '/' },
+    { label: t('productsPage.breadcrumb.products') },
+  ];
 
   return (
     <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30"
     >
-      {/* Hero Section - Server Rendered for Fast LCP */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 border-b-4 border-accent-500">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-        <div className="h-150 w-150 absolute right-0 top-0 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          {/* Breadcrumb */}
-          <nav
-            className="mb-8 flex items-center gap-2 text-sm text-primary-100"
-            aria-label="Products page navigation"
-          >
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('productsPage.breadcrumb.home')}
-            </Link>
-            <span>/</span>
-            <span className="font-medium text-white">{t('productsPage.breadcrumb.products')}</span>
-          </nav>
-
-          {/* Header */}
-          <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white">
+      <PageHeader
+        breadcrumbs={breadcrumbs}
+        title={t('productsPage.hero.title')}
+        description={t('productsPage.hero.description')}
+        spacing="large"
+        eyebrow={
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white">
               <SparklesIcon className="h-4 w-4" />
               {t('productsPage.hero.badge')}
-            </div>
-
-            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              {t('productsPage.hero.title')}
-            </h1>
-
-            <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
-              {t('productsPage.hero.description')}
-            </p>
-
-            {/* Key Stats - Removed backdrop-blur for faster rendering */}
-            <div className="grid grid-cols-2 gap-6">
+          </div>
+        }
+      >
+        <div className="mt-8 grid max-w-2xl grid-cols-2 gap-6">
               <div className="rounded-xl bg-white/10 p-4">
                 <div className="mb-1 text-3xl font-bold text-white">
                   {t('productsPage.hero.stats.warrantyDuration')}
@@ -129,10 +105,8 @@ export default async function MainProductPage({
                   {t('productsPage.hero.stats.accuracyLabel')}
                 </div>
               </div>
-            </div>
-          </div>
         </div>
-      </section>
+      </PageHeader>
 
       {/* Category Grid - Client Component for Animations */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">

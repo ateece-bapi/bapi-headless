@@ -265,12 +265,12 @@
   --z-toast: 1080;
 
   /* Container Widths - Max widths for content areas */
-  --width-container: 1600px;
+  --width-container: 1280px;
   --width-content: 1200px;
   --width-narrow: 800px;
 
   /* Tailwind v4 sizing - Required for max-w-* utilities */
-  --size-container: 1600px;
+  --size-container: 1280px;
   --size-content: 1200px;
   --size-narrow: 800px;
 

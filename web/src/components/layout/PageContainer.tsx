@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-type PageContainerSize = 'container' | 'content' | 'narrow' | 'prose';
+type PageContainerSize = 'site' | 'container' | 'content' | 'narrow' | 'prose';
 
 type PageContainerProps = {
   children: ReactNode;
@@ -9,10 +9,19 @@ type PageContainerProps = {
 };
 
 const SIZE_CLASSES: Record<PageContainerSize, string> = {
-  container: 'max-w-container',
-  content: 'max-w-content',
-  narrow: 'max-w-narrow',
+  site: 'max-w-7xl',
+  container: 'max-w-7xl',
+  content: 'max-w-[1200px]',
+  narrow: 'max-w-[800px]',
   prose: 'max-w-prose',
+};
+
+const GUTTER_CLASSES: Record<PageContainerSize, string> = {
+  site: 'px-4 sm:px-6 lg:px-8',
+  container: 'px-4 sm:px-6 lg:px-8',
+  content: 'px-4 sm:px-6 lg:px-8',
+  narrow: 'px-4 sm:px-6 lg:px-8',
+  prose: 'px-4 sm:px-6 lg:px-8',
 };
 
 /**
@@ -28,9 +37,10 @@ export default function PageContainer({
   className = '',
 }: PageContainerProps) {
   const sizeClass = SIZE_CLASSES[size];
+  const gutterClass = GUTTER_CLASSES[size];
 
   return (
-    <div className={`${sizeClass} mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 ${className}`.trim()}>
+    <div className={`${sizeClass} ${gutterClass} mx-auto ${className}`.trim()}>
       {children}
     </div>
   );

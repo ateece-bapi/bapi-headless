@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { SearchIcon } from '@/lib/icons';
 import PageHeader from '@/components/layout/PageHeader';
+import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Service Bulletins',
@@ -19,7 +20,7 @@ export default function ServiceBulletinPage() {
 
       {/* Search & Filter */}
       <section className="bg-neutral-50 py-8">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="w-full flex-1 md:max-w-md">
               <div className="relative">
@@ -48,12 +49,12 @@ export default function ServiceBulletinPage() {
               </select>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Bulletins List */}
       <section className="py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+        <PageContainer size="site">
           <div className="space-y-4">
             {/* Sample Bulletin */}
             <div className="duration-normal rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary-500">
@@ -170,12 +171,12 @@ export default function ServiceBulletinPage() {
               Next
             </button>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Subscribe Section */}
       <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <PageContainer size="narrow" className="text-center">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Get Service Bulletin Notifications
           </h2>
@@ -192,7 +193,7 @@ export default function ServiceBulletinPage() {
               Subscribe
             </button>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </div>
   );

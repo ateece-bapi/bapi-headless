@@ -42,7 +42,7 @@ export default async function TemperaturePage({ params }: Props) {
   const roomSensors = [
     {
       name: t('roomSensors.bacnetGuardian.name'),
-      slug: 'bacnet-guardian-series',
+      slug: 'bapi-stat-quantum-temperature-sensor-with-display-and-pushbutton-setpoint',
       features: [
         t('roomSensors.bacnetGuardian.feature1'),
         t('roomSensors.bacnetGuardian.feature2'),
@@ -52,7 +52,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('roomSensors.bacnetSlim.name'),
-      slug: 'bacnet-guardian-slim',
+      slug: 'bapi-stat-quantum-slim-temperature-sensor-2',
       features: [
         t('roomSensors.bacnetSlim.feature1'),
         t('roomSensors.bacnetSlim.feature2'),
@@ -62,7 +62,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('roomSensors.bacWall4.name'),
-      slug: 'bac-wall-4',
+      slug: 'modbus-bapi-stat-4mb-temperature-sensor',
       features: [
         t('roomSensors.bacWall4.feature1'),
         t('roomSensors.bacWall4.feature2'),
@@ -72,7 +72,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('roomSensors.lowProfile.name'),
-      slug: 'low-profile-button-series',
+      slug: 'button-sensor-low-profile-room-temperature-sensor-2',
       features: [
         t('roomSensors.lowProfile.feature1'),
         t('roomSensors.lowProfile.feature2'),
@@ -82,7 +82,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('roomSensors.discreteStyle.name'),
-      slug: 'discrete-style-room-stat',
+      slug: 'decora-low-profile-room-temperature-sensor-2',
       features: [
         t('roomSensors.discreteStyle.feature1'),
         t('roomSensors.discreteStyle.feature2'),
@@ -92,7 +92,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('roomSensors.wallPlates.name'),
-      slug: 'wall-plates',
+      slug: 'aluminum-wall-plate-temperature-sensor-with-11k-2-ohm-thermistor',
       features: [
         t('roomSensors.wallPlates.feature1'),
         t('roomSensors.wallPlates.feature2'),
@@ -106,7 +106,7 @@ export default async function TemperaturePage({ params }: Props) {
   const nonRoomSensors = [
     {
       name: t('nonRoomSensors.ductSensors.name'),
-      slug: 'duct-sensors',
+      slug: 'duct-temperature-sensor-2',
       features: [
         t('nonRoomSensors.ductSensors.feature1'),
         t('nonRoomSensors.ductSensors.feature2'),
@@ -116,7 +116,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('nonRoomSensors.averaging.name'),
-      slug: 'averaging-sensors',
+      slug: 'duct-averaging-temperature-sensor-flexible-2',
       features: [
         t('nonRoomSensors.averaging.feature1'),
         t('nonRoomSensors.averaging.feature2'),
@@ -126,7 +126,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('nonRoomSensors.immersion.name'),
-      slug: 'immersion-sensors',
+      slug: 'immersion-temperature-sensor-stainless-steel-fitting-2',
       features: [
         t('nonRoomSensors.immersion.feature1'),
         t('nonRoomSensors.immersion.feature2'),
@@ -136,7 +136,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('nonRoomSensors.remoteProbes.name'),
-      slug: 'remote-probes',
+      slug: 'remote-probe-temperature-sensor-2',
       features: [
         t('nonRoomSensors.remoteProbes.feature1'),
         t('nonRoomSensors.remoteProbes.feature2'),
@@ -146,7 +146,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('nonRoomSensors.tempHumidity.name'),
-      slug: 'temperature-humidity-sensor',
+      slug: 'thermobuffer-temperature-sensor-2',
       features: [
         t('nonRoomSensors.tempHumidity.feature1'),
         t('nonRoomSensors.tempHumidity.feature2'),
@@ -156,7 +156,7 @@ export default async function TemperaturePage({ params }: Props) {
     },
     {
       name: t('nonRoomSensors.outsideAir.name'),
-      slug: 'outside-air-sensors',
+      slug: 'outside-air-temperature-sensor-2',
       features: [
         t('nonRoomSensors.outsideAir.feature1'),
         t('nonRoomSensors.outsideAir.feature2'),

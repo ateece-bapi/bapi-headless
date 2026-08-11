@@ -220,6 +220,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Check if this is the bluetooth-wireless category for enhanced layout
   const isWirelessCategory = category === 'bluetooth-wireless';
+  const showProductFilters = !['eta-line', 'accessories'].includes(category);
 
   // Prepare wireless-specific translations (only load if needed)
   const wirelessTranslations = isWirelessCategory
@@ -457,29 +458,35 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
       {/* Product Grid for Leaf Categories (no subcategories) */}
       {!hasSubcategories && (
-        <div className="mx-auto max-w-content px-4 py-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div
+            className={`grid grid-cols-1 gap-4 ${showProductFilters ? 'lg:grid-cols-[256px_minmax(0,1fr)]' : ''}`}
+          >
             {/* Desktop Sidebar Filters */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-4">
-                <ProductFilters
-                  categorySlug={category}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
-            </aside>
+            {showProductFilters && (
+              <aside className="hidden lg:block">
+                <div className="sticky top-24">
+                  <ProductFilters
+                    categorySlug={category}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              </aside>
+            )}
 
             {/* Main Content */}
             <div className="space-y-6">
               {/* Mobile Filter Button */}
-              <div className="lg:hidden">
-                <MobileFilterButton
-                  categorySlug={category}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </div>
+              {showProductFilters && (
+                <div className="lg:hidden">
+                  <MobileFilterButton
+                    categorySlug={category}
+                    products={products}
+                    currentFilters={filters}
+                  />
+                </div>
+              )}
 
               {/* Product Sort */}
               <div className="flex justify-end border-b border-neutral-200 pb-4">

@@ -1,34 +1,33 @@
 'use client';
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { useState, useCallback, useRef, useEffect } from 'react';
-import type { GetProductsWithFiltersQuery, GetProductsByCategoryQuery } from '@/lib/graphql/generated';
+import { useState, useCallback, useRef, useEffect, useId } from 'react';
+import type {
+  GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
+} from '@/lib/graphql/generated';
+import {
+  extractProductFilterOptions,
+  type ProductFilterKey,
+  type ProductFilterOption,
+} from '@/lib/productFilters';
 
 // Accept products from either query type
-type ProductFromFiltersQuery = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
-type ProductFromCategoryQuery = NonNullable<GetProductsByCategoryQuery['products']>['nodes'][number];
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
 type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 interface ProductFiltersProps {
   categorySlug: string;
   products: Product[];
-  currentFilters: {
-    application?: string;
-    enclosure?: string;
-    output?: string;
-    display?: string;
-    sort?: string;
-    page?: string;
-  };
+  currentFilters: Partial<Record<ProductFilterKey | 'sort' | 'page', string | undefined>>;
 }
 
-interface FilterOption {
-  slug: string;
-  name: string;
-  count: number;
-}
-
-export function ProductFilters({ categorySlug, products, currentFilters }: ProductFiltersProps) {
+export function ProductFilters({ products, currentFilters }: ProductFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -44,7 +43,7 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
   }, []);
 
   // Extract filter options from products
-  const filterOptions = extractFilterOptions(products);
+  const filterOptions = extractProductFilterOptions(products);
 
   // Parse active filters from URL
   const activeFilters: Record<string, string[]> = {};
@@ -53,7 +52,7 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
   });
 
   const hasActiveFilters = Object.values(activeFilters).some((arr) => arr.length > 0);
-  
+
   // Calculate total active filter count for live region announcements
   // Count from currentFilters (URL params) rather than filterOptions to catch all active filters
   const activeFilterCount = Object.entries(currentFilters).reduce((total, [key, value]) => {
@@ -102,15 +101,15 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
   }, [pathname, router]);
 
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <div className="rounded-lg border border-neutral-200 bg-white p-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:overscroll-contain">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between border-b border-neutral-100 pb-4">
-        <h2 className="text-xl font-bold text-neutral-900">Filters</h2>
+      <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-3">
+        <h2 className="text-lg font-bold text-neutral-900">Filters</h2>
         {hasActiveFilters && (
           <button
             type="button"
             onClick={clearAllFilters}
-            className="text-sm font-medium text-primary-500 transition-colors duration-200 hover:text-primary-600 hover:underline"
+            className="rounded px-1 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             Clear All
           </button>
@@ -124,7 +123,7 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
       </div>
 
       {/* Filter Groups */}
-      <div className="space-y-6">
+      <div>
         {Object.entries(filterOptions).map(([filterKey, options]) => (
           <FilterGroup
             key={filterKey}
@@ -139,10 +138,9 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
     </div>
   );
 }
-
 interface FilterGroupProps {
   title: string;
-  options: FilterOption[];
+  options: ProductFilterOption[];
   activeValues: string[];
   filterType: string;
   onChange: (filterType: string, value: string, checked: boolean) => void;
@@ -150,20 +148,23 @@ interface FilterGroupProps {
 
 function FilterGroup({ title, options, activeValues, filterType, onChange }: FilterGroupProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const contentId = useId();
 
   return (
-    <div className="border-b border-neutral-200 pb-6 last:border-0 last:pb-0">
+    <div className="border-b border-neutral-100 py-3 first:pt-1 last:border-0 last:pb-0">
       {/* Group Header */}
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group mb-4 flex w-full items-center justify-between text-left"
+        className="group flex min-h-9 w-full items-center justify-between gap-3 rounded px-1.5 text-left hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        aria-expanded={isExpanded}
+        aria-controls={contentId}
       >
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-900 transition-colors duration-200 group-hover:text-primary-600">
+        <h3 className="text-[13px] font-semibold leading-tight text-neutral-900 transition-colors group-hover:text-primary-700">
           {title}
         </h3>
         <svg
-          className={`h-5 w-5 text-neutral-500 transition-all duration-300 ease-out group-hover:text-primary-600 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+          className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-hover:text-primary-600 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -174,27 +175,27 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
 
       {/* Options */}
       {isExpanded && (
-        <div className="animate-[fade-in_200ms_ease-out] space-y-3">
+        <div id={contentId} className="mt-1 space-y-0.5">
           {options.map((option) => {
             const isActive = activeValues.includes(option.slug);
             return (
               <label
                 key={option.slug}
-                className="group -mx-2 flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-all duration-200 hover:bg-neutral-50"
+                className={`group flex min-h-10 cursor-pointer items-start gap-2.5 rounded px-2 py-2 transition-colors ${isActive ? 'bg-primary-50' : 'hover:bg-neutral-50'}`}
               >
                 <input
                   type="checkbox"
                   checked={isActive}
                   onChange={(e) => onChange(filterType, option.slug, e.target.checked)}
-                  className="h-4 w-4 cursor-pointer rounded border-neutral-300 text-primary-500 transition-colors duration-150 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
                 />
                 <span
-                  className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'font-medium text-neutral-900' : 'text-neutral-700 group-hover:text-neutral-900'}`}
+                  className={`min-w-0 flex-1 text-sm leading-5 ${isActive ? 'font-semibold text-primary-800' : 'text-neutral-700 group-hover:text-neutral-900'}`}
                 >
                   {option.name}
                 </span>
                 <span
-                  className={`rounded-full px-2 py-0.5 text-xs transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-700 group-hover:bg-neutral-200'}`}
+                  className={`mt-0.5 min-w-6 rounded-full px-1.5 py-0.5 text-center text-xs tabular-nums ${isActive ? 'bg-primary-100 font-semibold text-primary-800' : 'bg-neutral-100 text-neutral-700 group-hover:bg-neutral-200'}`}
                 >
                   {option.count}
                 </span>
@@ -205,101 +206,4 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
       )}
     </div>
   );
-}
-
-/**
- * Extract unique filter options from products with counts
- */
-function extractFilterOptions(products: Product[]) {
-  // Map attribute names to filter keys and titles
-  // NOTE: WooCommerce uses BOTH underscores and hyphens in attribute names
-  const attributeMap: Record<string, { key: string; title: string }> = {
-    // Temperature filters
-    'pa_application': { key: 'application', title: 'Temperature Application' },
-    'pa-application': { key: 'application', title: 'Temperature Application' },
-    'pa_room_enclosure_style': { key: 'roomEnclosure', title: 'Temperature Room Enclosure Style' },
-    'pa_room-enclosure-style': { key: 'roomEnclosure', title: 'Temperature Room Enclosure Style' },
-    'pa_temperature_sensor_output': { key: 'sensorOutput', title: 'Temperature Sensor/Output' },
-    'pa_temperature-sensor-output': { key: 'sensorOutput', title: 'Temperature Sensor/Output' },
-    'pa_display': { key: 'display', title: 'Display' },
-    'pa-display': { key: 'display', title: 'Display' },
-    'pa_temp_setpoint_and_override': { key: 'setpointOverride', title: 'Temperature Setpoint and Override' },
-    'pa_temp-setpoint-and-override': { key: 'setpointOverride', title: 'Temperature Setpoint and Override' },
-    'pa_optional_temp_humidity': { key: 'optionalTempHumidity', title: 'Optional Temp & Humidity' },
-    'pa_optional-temp-humidity': { key: 'optionalTempHumidity', title: 'Optional Temp & Humidity' },
-    'pa_optional_temp_sensor_output': { key: 'optionalSensorOutput', title: 'Optional Temp Sensor & Output' },
-    'pa_optional-temp-sensor-output': { key: 'optionalSensorOutput', title: 'Optional Temp Sensor & Output' },
-    // Humidity filters
-    'pa_humidity_application': { key: 'humidityApplication', title: 'Humidity Application' },
-    'pa_humidity-application': { key: 'humidityApplication', title: 'Humidity Application' },
-    'pa_humidity_room_enclosure': { key: 'humidityRoomEnclosure', title: 'Humidity Room Enclosure' },
-    'pa_humidity-room-enclosure': { key: 'humidityRoomEnclosure', title: 'Humidity Room Enclosure' },
-    'pa_humidity_sensor_output': { key: 'humiditySensorOutput', title: 'Humidity Sensor Output' },
-    'pa_humidity-sensor-output': { key: 'humiditySensorOutput', title: 'Humidity Sensor Output' },
-    // Pressure filters
-    'pa_pressure_application': { key: 'pressureApplication', title: 'Pressure Application' },
-    'pa_pressure-application': { key: 'pressureApplication', title: 'Pressure Application' },
-    'pa_pressure_sensor_style': { key: 'pressureSensorStyle', title: 'Pressure Sensor Style' },
-    'pa_pressure-sensor-style': { key: 'pressureSensorStyle', title: 'Pressure Sensor Style' },
-    // Air Quality filters
-    'pa_air_quality_application': { key: 'airQualityApplication', title: 'Air Quality Application' },
-    'pa_air-quality-application': { key: 'airQualityApplication', title: 'Air Quality Application' },
-    'pa_air_quality_sensor_type': { key: 'airQualitySensorType', title: 'Air Quality Sensor Type' },
-    'pa_air-quality-sensor-type': { key: 'airQualitySensorType', title: 'Air Quality Sensor Type' },
-    // Wireless filters
-    'pa_wireless_application': { key: 'wirelessApplication', title: 'Wireless Application' },
-    'pa_wireless-application': { key: 'wirelessApplication', title: 'Wireless Application' },
-  };
-
-  const filterMaps = new Map<string, Map<string, { name: string; count: number; title: string }>>();
-
-  // Extract attributes from all products using the optimized attributes field
-  products.forEach((product) => {
-    const p = product as any;
-    
-    // Use the generic attributes field (works for both Simple and Variable products)
-    const attributes = p.attributes?.nodes;
-    if (attributes && Array.isArray(attributes)) {
-      attributes.forEach((attr: any) => {
-        if (!attr || !attr.name || !attr.options) return;
-        
-        const mapping = attributeMap[attr.name];
-        if (!mapping) return;
-        
-        const { key, title } = mapping;
-        if (!filterMaps.has(key)) {
-          filterMaps.set(key, new Map());
-        }
-        
-        const map = filterMaps.get(key)!;
-        
-        // Process each option value
-        (attr.options as string[]).forEach((optionValue: string) => {
-          if (!optionValue) return;
-          
-          // Create slug from option value (lowercase, replace spaces/special chars with hyphens)
-          const slug = optionValue.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-          
-          const current = map.get(slug) || { name: optionValue, count: 0, title };
-          map.set(slug, { ...current, count: current.count + 1 });
-        });
-      });
-    }
-  });
-
-  // Convert maps to sorted arrays and build result object
-  const result: Record<
-    string,
-    Array<{ slug: string; name: string; count: number; title: string }>
-  > = {};
-
-  filterMaps.forEach((map, key) => {
-    if (map.size > 0) {
-      result[key] = Array.from(map.entries())
-        .map(([slug, data]) => ({ slug, ...data }))
-        .sort((a, b) => b.count - a.count);
-    }
-  });
-
-  return result;
 }

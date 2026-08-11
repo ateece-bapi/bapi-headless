@@ -798,10 +798,20 @@ describe('ProductFilters - Form Controls', () => {
       />
     );
 
-    const clearButton = screen.queryByText(/clear.*filter/i);
-    if (clearButton) {
-      expect(clearButton.closest('button')).toBeInTheDocument();
-    }
+    expect(screen.getByRole('button', { name: /clear all/i })).toBeInTheDocument();
+  });
+
+  it('shows Clear All for URL filters even when no filter options are available', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={[]}
+        currentFilters={{ application: ',hvac,,' }}
+      />
+    );
+
+    expect(screen.getByRole('button', { name: /clear all/i })).toBeInTheDocument();
+    expect(container.querySelector('[role="status"]')).toHaveTextContent('1 filter applied');
   });
 });
 

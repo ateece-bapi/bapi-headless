@@ -356,11 +356,11 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       {/* Main Content: Filters + Products (leaf categories only) */}
       {hasProducts && (
         <PageContainer size="site" className="py-8">
-          <div className={`grid grid-cols-1 gap-8 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[280px_1fr]'}`}>
+          <div className={`grid grid-cols-1 gap-4 ${subcategory === 'wireless-receivers-bluetooth-wireless' ? '' : 'lg:grid-cols-[256px_minmax(0,1fr)]'}`}>
             {/* Desktop Sidebar Filters (hidden for wireless receivers) */}
             {subcategory !== 'wireless-receivers-bluetooth-wireless' && (
               <aside className="hidden lg:block">
-                <div className="sticky top-4">
+                <div className="sticky top-24">
                   <ProductFilters
                     categorySlug={subcategory}
                     products={products}

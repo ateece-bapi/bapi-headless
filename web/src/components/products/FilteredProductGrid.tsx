@@ -12,6 +12,11 @@ import type {
 } from '@/lib/graphql/generated';
 import { useAuth } from '@/hooks/useAuth';
 import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
+import {
+  getProductFilterValues,
+  PRODUCT_FILTER_KEYS,
+  type ProductFilterKey,
+} from '@/lib/productFilters';
 
 type ProductFromFiltersQuery = NonNullable<
   GetProductsWithFiltersQuery['products']
@@ -30,70 +35,21 @@ interface FilteredProductGridProps {
 const PRODUCTS_PER_PAGE = 18;
 
 /**
- * Map of URL filter keys to GraphQL field names
- * Phase 1: Product Navigation - 15 filter taxonomies for mega-menu integration
+ * Type guard to check if a string is a valid ProductFilterKey
  */
-type FilterFieldKey =
-  | 'application'
-  | 'roomEnclosure'
-  | 'sensorOutput'
-  | 'display'
-  | 'setpointOverride'
-  | 'optionalTempHumidity'
-  | 'optionalSensorOutput'
-  | 'humidityApplication'
-  | 'humidityRoomEnclosure'
-  | 'humiditySensorOutput'
-  | 'pressureApplication'
-  | 'pressureSensorStyle'
-  | 'airQualityApplication'
-  | 'airQualitySensorType'
-  | 'wirelessApplication';
-
-type FilterFieldMap = Record<FilterFieldKey, string>;
-
-/**
- * Type guard to check if a string is a valid FilterFieldKey
- */
-function isFilterFieldKey(key: string): key is FilterFieldKey {
-  const validKeys: FilterFieldKey[] = [
-    'application',
-    'roomEnclosure',
-    'sensorOutput',
-    'display',
-    'setpointOverride',
-    'optionalTempHumidity',
-    'optionalSensorOutput',
-    'humidityApplication',
-    'humidityRoomEnclosure',
-    'humiditySensorOutput',
-    'pressureApplication',
-    'pressureSensorStyle',
-    'airQualityApplication',
-    'airQualitySensorType',
-    'wirelessApplication',
-  ];
-  return validKeys.includes(key as FilterFieldKey);
+function isProductFilterKey(key: string): key is ProductFilterKey {
+  return PRODUCT_FILTER_KEYS.includes(key as ProductFilterKey);
 }
 
-/**
- * Type for product with taxonomy fields
- * Uses intersection type instead of extends for GraphQL union type compatibility
- */
-type ProductWithTaxonomies = Product & {
+type ProductWithAttributes = Product & {
   [key: string]: unknown;
+  attributes?: {
+    nodes?: Array<{
+      name?: string | null;
+      options?: Array<string | null> | null;
+    } | null> | null;
+  } | null;
 };
-
-/**
- * Type for taxonomy node structure from GraphQL
- */
-interface TaxonomyNode {
-  slug?: string | null;
-}
-
-interface TaxonomyConnection {
-  nodes?: (TaxonomyNode | null)[] | null;
-}
 
 /**
  * Client component that filters, sorts, and paginates products
@@ -114,34 +70,11 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const currentPage = parseInt(searchParams?.get('page') || '1', 10);
   const { user } = useAuth();
 
-  // Define all possible filter keys and their corresponding GraphQL fields
-  // Wrapped in useMemo to prevent recreating on every render
-  const filterFieldMap = useMemo<FilterFieldMap>(
-    () => ({
-      application: 'allPaApplication',
-      roomEnclosure: 'allPaRoomEnclosureStyle',
-      sensorOutput: 'allPaTemperatureSensorOutput',
-      display: 'allPaDisplay',
-      setpointOverride: 'allPaTempSetpointAndOverride',
-      optionalTempHumidity: 'allPaOptionalTempHumidity',
-      optionalSensorOutput: 'allPaOptionalTempSensorOutput',
-      humidityApplication: 'allPaHumidityApplication',
-      humidityRoomEnclosure: 'allPaHumidityRoomEnclosure',
-      humiditySensorOutput: 'allPaHumiditySensorOutput',
-      pressureApplication: 'allPaPressureApplication',
-      pressureSensorStyle: 'allPaPressureSensorStyle',
-      airQualityApplication: 'allPaAirQualityApplication',
-      airQualitySensorType: 'allPaAirQualitySensorType',
-      wirelessApplication: 'allPaWirelessApplication',
-    }),
-    [] // Empty dependency array - this mapping never changes
-  );
-
   // Get active filters from URL (comma-separated values)
   const activeFilters = useMemo(() => {
-    const filters: Partial<Record<FilterFieldKey, string[]>> = {};
+    const filters: Partial<Record<ProductFilterKey, string[]>> = {};
 
-    (Object.keys(filterFieldMap) as FilterFieldKey[]).forEach((filterKey) => {
+    PRODUCT_FILTER_KEYS.forEach((filterKey) => {
       const values = searchParams?.get(filterKey)?.split(',').filter(Boolean) || [];
       if (values.length > 0) {
         filters[filterKey] = values;
@@ -149,14 +82,14 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
     });
 
     return filters;
-  }, [searchParams, filterFieldMap]);
+  }, [searchParams]);
 
   // Check if any filters are active
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
 
   // Helper to extract numeric price from product
   const getNumericPrice = (product: Product): number => {
-    const productData = product as ProductWithTaxonomies;
+    const productData = product as ProductWithAttributes;
 
     // Try multiple price fields in order of preference
     const price =
@@ -180,22 +113,14 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
     if (!hasActiveFilters) return customerGroupFiltered;
 
     return customerGroupFiltered.filter((product) => {
-      const p = product as ProductWithTaxonomies;
+      const productData = product as ProductWithAttributes;
 
       // Check each filter category
       for (const [filterKey, selectedValues] of Object.entries(activeFilters)) {
-        if (!isFilterFieldKey(filterKey) || !selectedValues || selectedValues.length === 0)
+        if (!isProductFilterKey(filterKey) || !selectedValues || selectedValues.length === 0)
           continue;
 
-        // Get the GraphQL field name for this filter
-        const fieldName = filterFieldMap[filterKey];
-        if (!fieldName) continue;
-
-        // Get the product's attributes for this filter type
-        const taxonomyField = p[fieldName] as TaxonomyConnection | undefined;
-        const productAttributes = (taxonomyField?.nodes || [])
-          .map((attr) => attr?.slug)
-          .filter((slug): slug is string => typeof slug === 'string');
+        const productAttributes = getProductFilterValues(productData, filterKey);
 
         // Check if product has ANY of the selected values for this filter
         const hasMatch = selectedValues.some((value) => productAttributes.includes(value));
@@ -207,7 +132,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       // Product matches all active filter categories
       return true;
     });
-  }, [products, user?.customerGroups, hasActiveFilters, activeFilters, filterFieldMap]);
+  }, [products, user?.customerGroups, hasActiveFilters, activeFilters]);
 
   // Sort products
   const sortedProducts = useMemo(() => {

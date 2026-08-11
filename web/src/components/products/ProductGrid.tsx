@@ -117,7 +117,7 @@ export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGrid
         className={`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 ${
           viewMode === 'list'
             ? 'flex flex-col gap-4'
-            : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'
+            : 'grid grid-cols-[repeat(auto-fill,minmax(min(100%,14rem),1fr))] gap-4'
         }`}
       >
         {products.map((product, index) => (

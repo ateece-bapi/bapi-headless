@@ -2,7 +2,15 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { XIcon, SendIcon, MessageCircleIcon, Loader2Icon, ThumbsUpIcon, ThumbsDownIcon, UserCircleIcon } from '@/lib/icons';
+import {
+  XIcon,
+  SendIcon,
+  MessageCircleIcon,
+  Loader2Icon,
+  ThumbsUpIcon,
+  ThumbsDownIcon,
+  UserCircleIcon,
+} from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface Message {
@@ -13,6 +21,16 @@ interface Message {
   feedbackGiven?: 'positive' | 'negative';
   isStreaming?: boolean;
 }
+
+/** Events emitted by the chat API's server-sent event stream. */
+interface ChatStreamEvent {
+  type: 'token' | 'done' | 'error';
+  text?: string;
+  message?: string;
+  conversationId?: string;
+}
+
+const CHAT_REQUEST_TIMEOUT_MS = 35_000;
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,6 +98,8 @@ export default function ChatWidget() {
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+    const abortController = new AbortController();
+    const timeoutId = window.setTimeout(() => abortController.abort(), CHAT_REQUEST_TIMEOUT_MS);
 
     try {
       const response = await fetch('/api/chat', {
@@ -93,11 +113,16 @@ export default function ChatWidget() {
           locale,
           pageContext: typeof window !== 'undefined' ? window.location.pathname : undefined,
         }),
+        signal: abortController.signal,
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        logger.error('Chat API Error', { status: response.status, error: errorData.error, details: errorData.details });
+        logger.error('Chat API Error', {
+          status: response.status,
+          error: errorData.error,
+          details: errorData.details,
+        });
         throw new Error(errorData.message || 'Failed to get response');
       }
 
@@ -127,36 +152,38 @@ export default function ChatWidget() {
 
         for (const part of parts) {
           if (!part.startsWith('data: ')) continue;
+          let data: ChatStreamEvent;
           try {
-            const data = JSON.parse(part.slice(6));
-
-            if (data.type === 'token') {
-              setMessages((prev) => {
-                const updated = [...prev];
-                const last = updated[updated.length - 1];
-                if (last?.role === 'assistant') {
-                  updated[updated.length - 1] = { ...last, content: last.content + data.text };
-                }
-                return updated;
-              });
-            } else if (data.type === 'done') {
-              setMessages((prev) => {
-                const updated = [...prev];
-                const last = updated[updated.length - 1];
-                if (last?.role === 'assistant') {
-                  updated[updated.length - 1] = {
-                    ...last,
-                    isStreaming: false,
-                    conversationId: data.conversationId,
-                  };
-                }
-                return updated;
-              });
-            } else if (data.type === 'error') {
-              throw new Error(data.message);
-            }
+            data = JSON.parse(part.slice(6)) as ChatStreamEvent;
           } catch {
             // Skip malformed SSE events
+            continue;
+          }
+
+          if (data.type === 'token' && data.text) {
+            setMessages((prev) => {
+              const updated = [...prev];
+              const last = updated[updated.length - 1];
+              if (last?.role === 'assistant') {
+                updated[updated.length - 1] = { ...last, content: last.content + data.text };
+              }
+              return updated;
+            });
+          } else if (data.type === 'done') {
+            setMessages((prev) => {
+              const updated = [...prev];
+              const last = updated[updated.length - 1];
+              if (last?.role === 'assistant') {
+                updated[updated.length - 1] = {
+                  ...last,
+                  isStreaming: false,
+                  conversationId: data.conversationId,
+                };
+              }
+              return updated;
+            });
+          } else if (data.type === 'error') {
+            throw new Error(data.message || 'Chat response failed');
           }
         }
       }
@@ -193,6 +220,7 @@ export default function ChatWidget() {
         ];
       });
     } finally {
+      window.clearTimeout(timeoutId);
       setIsLoading(false);
       setIsStreaming(false);
     }
@@ -500,12 +528,7 @@ export default function ChatWidget() {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                       
-                        d="M5 13l4 4L19 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <h4 className="mb-2 text-xl font-bold text-neutral-900">

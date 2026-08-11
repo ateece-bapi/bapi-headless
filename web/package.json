@@ -45,7 +45,8 @@
     "youtube:fetch": "tsx scripts/youtube-cli.ts fetch",
     "youtube:generate-json": "tsx scripts/youtube-cli.ts generate-json",
     "youtube:sync": "tsx scripts/youtube-cli.ts sync",
-    "youtube:help": "tsx scripts/youtube-cli.ts help"
+    "youtube:help": "tsx scripts/youtube-cli.ts help",
+    "index:pdfs": "tsx scripts/build-pdf-search-index.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.109.0",
@@ -136,6 +137,7 @@
     "lint-staged": "^16.2.7",
     "msw": "^2.12.3",
     "msw-storybook-addon": "^2.0.7",
+    "pdfjs-dist": "^6.2.108",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "puppeteer": "^24.40.0",

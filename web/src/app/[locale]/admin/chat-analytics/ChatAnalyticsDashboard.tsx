@@ -133,6 +133,58 @@ export default function ChatAnalyticsDashboard() {
         </div>
       </div>
 
+      {/* Reliability Metrics */}
+      <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+        <h3 className="mb-4 text-lg font-bold text-neutral-900">Response Reliability</h3>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+            <p className="text-sm text-neutral-700">Timeout Rate</p>
+            <p className="mt-1 text-2xl font-bold text-neutral-900">
+              {metrics.timeoutRate.toFixed(1)}%
+            </p>
+            <p className="mt-1 text-xs text-neutral-700">{metrics.timeoutCount} requests</p>
+          </div>
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+            <p className="text-sm text-neutral-700">Average Tool Rounds</p>
+            <p className="mt-1 text-2xl font-bold text-neutral-900">
+              {metrics.averageToolIterations.toFixed(2)}
+            </p>
+          </div>
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+            <p className="text-sm text-neutral-700">Empty Catalog Searches</p>
+            <p className="mt-1 text-2xl font-bold text-neutral-900">
+              {metrics.emptySearchCount.toLocaleString()}
+            </p>
+          </div>
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+            <p className="text-sm text-neutral-700">Unsupported Product Questions</p>
+            <p className="mt-1 text-2xl font-bold text-neutral-900">
+              {metrics.unsupportedProductQuestions.toLocaleString()}
+            </p>
+          </div>
+        </div>
+        {Object.keys(metrics.unsupportedProductBreakdown).length > 0 && (
+          <div className="mt-5 border-t border-neutral-200 pt-4">
+            <p className="mb-3 text-sm font-semibold text-neutral-900">
+              Unsupported Product Demand
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {Object.entries(metrics.unsupportedProductBreakdown)
+                .sort(([, firstCount], [, secondCount]) => secondCount - firstCount)
+                .map(([category, count]) => (
+                  <div
+                    key={category}
+                    className="rounded-lg border border-neutral-200 bg-white px-3 py-2"
+                  >
+                    <span className="text-sm font-medium text-neutral-900">{category}</span>
+                    <span className="ml-2 text-sm text-neutral-700">{count}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Language Breakdown & Top Products */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Language Breakdown */}

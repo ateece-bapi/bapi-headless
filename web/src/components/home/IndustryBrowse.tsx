@@ -15,10 +15,8 @@ import {
   GaugeIcon,
   DropletsIcon,
   RadioIcon,
-  WavesIcon,
   SettingsIcon,
   CableIcon,
-  ZapIcon,
 } from '@/lib/icons';
 
 type BrowseMode = 'industry' | 'sensor-type';
@@ -39,7 +37,12 @@ const industries: Card[] = [
     icon: UtensilsCrossedIcon,
     href: '/industries/food-service',
   },
-  { id: 'transportation', name: 'Transportation', icon: TruckIcon, href: '/industries/transportation' },
+  {
+    id: 'transportation',
+    name: 'Transportation',
+    icon: TruckIcon,
+    href: '/industries/transportation',
+  },
   { id: 'healthcare', name: 'Healthcare', icon: HeartPulseIcon, href: '/industries/healthcare' },
   { id: 'grocery', name: 'Grocery', icon: ShoppingCartIcon, href: '/industries/grocery' },
   {
@@ -52,12 +55,16 @@ const industries: Card[] = [
 ];
 
 const sensorTypes: Card[] = [
-  { id: 'temperature', name: 'Temperature', icon: ThermometerIcon, href: '/products/temperature-sensors' },
+  {
+    id: 'temperature',
+    name: 'Temperature',
+    icon: ThermometerIcon,
+    href: '/products/temperature-sensors',
+  },
   { id: 'humidity', name: 'Humidity', icon: DropletsIcon, href: '/products/humidity-sensors' },
   { id: 'pressure', name: 'Pressure', icon: GaugeIcon, href: '/products/pressure-sensors' },
   { id: 'air-quality', name: 'Air Quality', icon: WindIcon, href: '/products/air-quality-sensors' },
   { id: 'wireless', name: 'Wireless', icon: RadioIcon, href: '/products/bluetooth-wireless' },
-  { id: 'current', name: 'Current Sensors', icon: ZapIcon, href: '/products/current-sensors' },
   { id: 'controllers', name: 'Controllers', icon: SettingsIcon, href: '/products/controllers' },
   { id: 'accessories', name: 'Accessories', icon: CableIcon, href: '/products/accessories' },
 ];
@@ -115,10 +122,7 @@ export default function IndustryBrowse() {
                 >
                   {/* Icon - Top Right */}
                   <div className="absolute right-6 top-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 transition-colors group-hover:bg-primary-100 lg:h-20 lg:w-20">
-                    <IconComponent
-                      className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10"
-                     
-                    />
+                    <IconComponent className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10" />
                   </div>
 
                   {/* Title - Bottom Left */}
@@ -144,10 +148,7 @@ export default function IndustryBrowse() {
                 >
                   {/* Icon - Top Right */}
                   <div className="absolute right-6 top-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 transition-colors group-hover:bg-primary-100 lg:h-20 lg:w-20">
-                    <IconComponent
-                      className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10"
-                     
-                    />
+                    <IconComponent className="h-8 w-8 text-primary-500 lg:h-10 lg:w-10" />
                   </div>
 
                   {/* Title - Bottom Left */}

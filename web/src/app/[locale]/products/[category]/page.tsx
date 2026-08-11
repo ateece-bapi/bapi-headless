@@ -378,7 +378,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   )}
 
                   {/* Browse Button with Gradient */}
-                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-shadow duration-300 group-hover:shadow-lg">
                     <span>{t('categoryPage.subcategories.browseButton')}</span>
                     <svg
                       className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -403,7 +403,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {category === 'bluetooth-wireless' && (
               <Link
                 href={`/products/${category}`}
-                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
                 <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -433,7 +433,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </p>
 
                   {/* Browse Button with Gradient */}
-                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-shadow duration-300 group-hover:shadow-lg">
                     <span>{t('categoryPage.subcategories.browseButton')}</span>
                     <svg
                       className="h-4 w-4 transition-transform group-hover:translate-x-1"

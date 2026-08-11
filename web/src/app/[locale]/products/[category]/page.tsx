@@ -333,7 +333,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <Link
                 key={subcategory.id}
                 href={`/products/${category}/${subcategory.slug}`}
-                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
                 <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -348,7 +348,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                       src={subcategory.image.sourceUrl}
                       alt={subcategory.image.altText || translatedSubcategoryName}
                       fill
-                      className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
+                      className="object-contain p-3"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       priority={index < 2}
                     />

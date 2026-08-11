@@ -17,6 +17,7 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRegion } from '@/store/regionStore';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
 import type { QuickViewPerformanceTracker } from '@/lib/analytics/productCard';
+import { getProductImage } from '@/lib/productImageFallbacks';
 
 type ProductFromFiltersQuery = NonNullable<
   GetProductsWithFiltersQuery['products']
@@ -225,9 +226,10 @@ function ProductCard({
   const isVariableProduct = product.__typename === 'VariableProduct';
 
   // Get product image
-  const image =
+  const cmsImage =
     (product as SimpleProduct | VariableProduct).featuredImage?.node ||
     (product as SimpleProduct | VariableProduct).image;
+  const image = getProductImage(product.slug || '', cmsImage);
 
   // Get product price with currency conversion
   const price = getProductPrice(product as SimpleProduct | VariableProduct, region.currency);
@@ -255,7 +257,7 @@ function ProductCard({
       <Link
         ref={ref}
         href={`/product/${product.slug}`}
-        className={`group flex gap-6 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-px hover:border-primary-500 hover:shadow-lg motion-reduce:transform-none ${
+        className={`group flex gap-6 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-4 transition-all duration-300 hover:border-primary-500 hover:shadow-lg ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}
         onClick={analytics.trackClick}
@@ -291,9 +293,15 @@ function ProductCard({
         {/* Content */}
         <div className="flex flex-1 flex-col">
           <div className="mb-2 flex items-start justify-between gap-4">
-            <h3 className="text-xl font-bold text-neutral-900 group-hover:text-primary-600">
-              {product.name}
-            </h3>
+            <div>
+              <h3 className="text-xl font-bold text-neutral-900 group-hover:text-primary-600">
+                {product.name}
+              </h3>
+              <span
+                aria-hidden="true"
+                className="product-title-underline mt-1 block h-1 w-0 rounded bg-accent-500 transition-[width] duration-300 ease-in-out group-hover:w-full"
+              />
+            </div>
             {displayPartNumber && (
               <span className="rounded-lg bg-neutral-100 px-3 py-1.5 text-sm font-semibold text-neutral-700" title={partNumber ? 'Part Number' : 'SKU'}>
                 {displayPartNumber}
@@ -374,7 +382,7 @@ function ProductCard({
     <Link
       ref={ref}
       href={`/product/${product.slug}`}
-      className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:-translate-y-px hover:border-primary-500 hover:shadow-2xl motion-reduce:transform-none ${
+      className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:border-primary-500 hover:shadow-2xl ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
       style={{ transitionDuration: '500ms' }}
@@ -447,7 +455,7 @@ function ProductCard({
               src={image.sourceUrl}
               alt={image.altText || product.name || 'Product'}
               fill
-              className={`object-contain p-3 transition-all duration-500 ease-out group-hover:scale-110 ${
+              className={`object-contain p-3 transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
@@ -492,9 +500,15 @@ function ProductCard({
 
       {/* Product Info */}
       <div className="relative z-10 flex flex-1 flex-col p-4">
-        <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
-          {product.name}
-        </h3>
+        <div className="mb-2">
+          <h3 className="line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
+            {product.name}
+          </h3>
+          <span
+            aria-hidden="true"
+            className="product-title-underline mt-1 block h-1 w-0 rounded bg-accent-500 transition-[width] duration-300 ease-in-out group-hover:w-full"
+          />
+        </div>
 
         {/* Short Description */}
         {isSimpleProduct && (product as SimpleProduct).shortDescription && (
@@ -532,7 +546,7 @@ function ProductCard({
 
           {/* CTA Button with BAPI gradient */}
           <div className="flex items-center justify-between">
-            <span className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+            <span className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-shadow duration-300 group-hover:shadow-lg">
               View Details
               <svg
                 className="h-4 w-4 transition-transform group-hover:translate-x-1"

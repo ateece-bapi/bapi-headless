@@ -49,6 +49,7 @@ import {
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
 import { getProductVideos } from '@/lib/productVideos';
+import { getProductImage } from '@/lib/productImageFallbacks';
 import type { Metadata } from 'next';
 
 /**
@@ -351,12 +352,7 @@ export default async function ProductPage({
           onSale: (product as any).onSale || false,
           stockStatus: (product as any).stockStatus || null,
           sku: (product as any).sku || null,
-          image: product.image
-            ? {
-                sourceUrl: product.image.sourceUrl || '',
-                altText: product.image.altText || '',
-              }
-            : null,
+          image: getProductImage(product.slug || slug, product.image),
           gallery: ((product as any).galleryImages?.nodes || [])
             .filter((img: any) => img && img.sourceUrl) // Only include valid images
             .map((img: any) => ({

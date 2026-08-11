@@ -2,9 +2,298 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 5, 2026
-**Status:** Phase 1 Complete - Live in Production (67 days post-launch)
+**Updated:** August 11, 2026
+**Status:** Phase 1 Complete - Live in Production (73 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 11, 2026 — Product Overview Header Alignment
+
+**Status:** ✅ PR #665 merged — fix/center-overview-pages
+
+### What Was Done
+
+Standardized the Humidity, Pressure, Air Quality, and Accessories landing-page heroes against the approved Temperature overview layout.
+
+#### Shared Header Composition
+- Migrated all four legacy heroes to the shared `PageHeader` component
+- Replaced hand-built breadcrumbs with the shared accessible breadcrumb implementation
+- Aligned headings, descriptions, CTA sizing, responsive gutters, media columns, blue gradient treatment, and yellow bottom border
+- Preserved each page's translated content, CTA destinations, product sections, anchor navigation, and family imagery
+
+#### Semantic Structure
+- Removed duplicate page-level `<main>` landmarks from Humidity, Pressure, and Accessories
+- Preserved the single `main#main-content` landmark supplied by the localized layout
+
+### Validation
+- Confirmed Temperature, Humidity, Pressure, Air Quality, and Accessories use identical 1280px header and content bounds at a 1440px viewport
+- Verified all five pages at 390px with zero horizontal overflow
+- Confirmed one main landmark per page and successful rendering of all hero images, including the Pressure family image
+- Prettier and focused ESLint passed
+- Shared `PageHeader` tests passed: 2 tests
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed (4 files)
+- `web/src/app/[locale]/humidity/page.tsx` — shared centered header and corrected page landmark
+- `web/src/app/[locale]/pressure/page.tsx` — shared centered header and corrected page landmark
+- `web/src/app/[locale]/air-quality/page.tsx` — shared centered header and responsive media sizing
+- `web/src/app/[locale]/accessories/page.tsx` — shared centered header and corrected page landmark
+
+---
+
+## August 10, 2026 — Consistent Page Headers & Canonical Site Frame
+
+**Status:** ✅ PR #661 merged — feat/consistent-page-headers
+
+### What Was Done
+
+Introduced shared page-header and container architecture, then migrated localized routes to a consistent centered 1280px site frame.
+
+#### Shared Layout Architecture
+- Added `PageHeader` with accessible breadcrumbs, optional schema, title, description, actions, media, and flexible spacing
+- Added semantic `PageContainer` width presets with consistent responsive gutters
+- Standardized full-width blue gradient header bands with a BAPI yellow bottom stroke
+- Reused the product breadcrumb implementation across non-product routes
+
+#### Route & Taxonomy Alignment
+- Migrated legacy centered heroes and detached page sections across company, support, contact, resource, product, legal, and utility routes
+- Corrected product taxonomy behavior so middle levels act as navigation hubs and leaf levels render product listings
+- Aligned leaf category listings, empty states, controls, grids, and supporting sections to the canonical site frame
+- Standardized Service Bulletins, Application Notes, and Product Instructions & Manuals after visual QA identified remaining legacy body widths
+- Fixed mobile Datasheets pagination overflow
+
+#### Intentional Exception
+- Preserved the custom Figma-driven Blü-Test hero instead of forcing it into the generic header component
+- Left-aligned its headline within the centered site frame, retained the Blü-Test logo, restored the original probe and phone dimensions, and kept the yellow divider
+
+### Validation
+- Full test suite passed during the migration: 2,405 tests passed and 16 skipped
+- Production builds passed during the major migration batches
+- Browser-verified shared header/body alignment on desktop and mobile
+- Confirmed zero horizontal overflow on the final resource-page follow-up
+- Addressed PR review feedback on product containers and page landmarks
+- PR merged and both local and remote feature branches were removed
+
+### Key Files
+- `web/src/components/layout/PageHeader.tsx` — shared page-header composition
+- `web/src/components/layout/PageHeader.test.tsx` — shared header coverage
+- `web/src/components/layout/PageContainer.tsx` — canonical width and gutter presets
+- `web/src/components/products/ProductPage/Breadcrumbs.tsx` — reusable breadcrumb types and schema support
+- `web/src/app/[locale]/products/[category]/page.tsx` — middle-level taxonomy navigation behavior
+- `web/src/app/[locale]/products/[category]/[subcategory]/page.tsx` — aligned leaf product listings
+- `web/src/app/[locale]/application-notes/page.tsx` — shared header and centered content frame
+- `web/src/app/[locale]/service-bulletin/page.tsx` — centered controls and bulletin content
+- `web/src/components/resources/DocumentLibraryClient.tsx` — centered document library and responsive pagination
+- `web/src/app/[locale]/blu-test/page.tsx` — approved custom Figma hero treatment
+
+---
+
+## August 11, 2026 — Temperature Overview Product Link Fix
+
+**Status:** ✅ PR #663 merged — fix/temperature-product-links
+
+### What Was Done
+
+Corrected all 12 **Learn More** links on the localized Temperature Sensors Overview page so each card opens an actual WordPress product instead of returning a 404.
+
+#### Room Temperature Sensors
+- Updated the BAPI-Stat Quantum Series, BAPI-Stat Quantum Slim, BAPI-Stat 4, Low Profile Button Sensor, Decora Style Room Unit, and Wall Plates cards
+- Replaced placeholder aliases with canonical product slugs from the WordPress product export
+
+#### Non-Room Temperature Sensors
+- Updated the Duct Sensors, Averaging Sensors, Immersion Sensors, Remote Probes, Thermobuffer Sensor, and Outside Air Sensors cards
+- Preserved the existing localized `/product/{slug}` routing used by the other product overview pages
+
+### Root Cause
+- The page passed short placeholder or category-style aliases such as `bacnet-guardian-series`, `duct-sensors`, and `outside-air-sensors` to the product detail route
+- Those aliases did not correspond to WordPress product slugs, so the product query returned no result and the route displayed a 404
+
+### Validation
+- Confirmed all 12 replacement slugs exist in the exported WordPress product catalog
+- Focused ESLint completed with zero errors; four pre-existing JSDoc warnings remained unchanged
+- VS Code reported no TypeScript diagnostics in the modified page
+- `git diff --check` passed
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed (1 file)
+- `web/src/app/[locale]/temperature/page.tsx` — replaced invalid card aliases with canonical WordPress product slugs
+
+---
+
+## August 11, 2026 — Product Image Recovery & Card Hover Stabilization 🖼️
+
+**Status:** ✅ PR #668 merged — fix/co-duct-product-image
+
+### What Was Done
+
+Restored the missing image for the **CO - Duct and Rough Service Carbon Monoxide Sensor** and standardized stable hover behavior across product, category, and nested subcategory cards.
+
+#### Product Image Fallback
+- Added a slug-based fallback for `co-duct-and-rough-service-carbon-monoxide-sensor`
+- Applied the fallback to both product detail and product listing data paths
+- Preserved CMS precedence so a future WordPress featured image automatically replaces the fallback
+- Derived the upload URL from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` instead of hardcoding the staging hostname
+- Added safe behavior for missing or malformed WordPress endpoint configuration
+
+#### Product Card Hover Stability
+- Removed image scaling and card lift transforms that caused hover jitter
+- Removed **View Details** CTA scaling while retaining shadow and arrow feedback
+- Removed the global `.group:hover` transform that unintentionally moved all Tailwind group elements by 8px
+- Verified card, image, and CTA dimensions remain unchanged before, during, and after hover
+
+#### Category & Subcategory Cards
+- Removed card lift, image zoom, and CTA scaling from parent category cards
+- Applied the same stable behavior to nested subcategory and custom wireless Receiver/Output Modules cards
+- Retained border, shadow, title color, top accent, and arrow hover affordances
+
+#### BAPI Yellow Product Underline
+- Applied the homepage catalog's BAPI yellow title underline to product cards in grid and list layouts
+- Moved the underline outside clamped headings so it remains visible
+- Confirmed the underline animates without shifting the title, image, or CTA
+
+### Validation
+- Production build passed
+- 123 focused image, product-card, and category-card tests passed before merge
+- Copilot review comments addressed with environment-derived image URLs and environment-independent assertions
+- Browser geometry checks confirmed stationary card elements across hover states
+
+### Route Inventory
+- **108** total App Router page templates
+- **75** localized templates and **33** non-localized templates
+- **98** production-facing templates after excluding 10 obvious test, demo, and admin pages
+- Actual URL count is higher because dynamic CMS routes expand across products, categories, content slugs, and 11 supported locales
+
+### Files Changed (10 files)
+- `web/src/lib/productImageFallbacks.ts` — environment-aware fallback image resolver
+- `web/src/lib/productImageFallbacks.test.ts` — fallback, CMS precedence, and missing-endpoint tests
+- `web/src/app/[locale]/product/[slug]/page.tsx` — product detail fallback integration
+- `web/src/app/[locale]/products/[category]/page.tsx` — stable category-card interactions
+- `web/src/app/[locale]/products/[category]/[subcategory]/page.tsx` — stable nested subcategory-card interactions
+- `web/src/app/globals.css` — removed global group hover translation
+- `web/src/components/products/ProductGrid.tsx` — listing fallback, stable hover behavior, and yellow underline
+- `web/src/components/products/ProductCard.tsx` — basic card fallback and stable hover behavior
+- `web/src/components/products/ProductCard.a11y.test.tsx` — ProductCard fallback coverage
+- `web/src/components/products/__tests__/SearchResults.a11y.test.tsx` — ProductGrid fallback and interaction coverage
+
+---
+
+## August 11, 2026 — Where to Buy Distributor Asset Fixes
+
+**Status:** ✅ PR #667 merged — fix/comhas-distributor-links
+
+### What Was Done
+
+Corrected broken distributor assets and the Comhas Srl website destination on the localized **Where to Buy** page.
+
+#### Comhas Srl
+- Replaced the missing `Comhas.webp` reference with the existing `Comhas.jpg` logo
+- Replaced the broken `comhas.it` destination with the verified Alicat representative page for Comhas S.r.l.
+
+#### MRU d.o.o.
+- Replaced the `mru1.svg` reference with the available `mru.webp` logo
+
+### Validation
+- Confirmed both replacement image assets exist in `web/public/images/distributors/`
+- Verified the Alicat representative page identifies Comhas S.r.l. in Italy
+- Ran focused ESLint validation with zero errors
+- Confirmed the final diff contained only the three intended distributor field changes
+
+### Files Changed (1 file)
+- `web/src/app/[locale]/where-to-buy/page.tsx` — corrected Comhas and MRU logo paths and the Comhas website URL
+
+---
+
+## August 11, 2026 — Product Filter Recovery & Listing Layout Refinement
+
+**Status:** ✅ PR #666 merged — fix/product-filters-layout
+
+### What Was Done
+
+Restored product filtering across category and subcategory listings, improved the filter sidebar and product-card layout, and removed filter controls from product lines where they were not appropriate.
+
+#### Filter Root Cause & Repair
+- Traced the regression to the May GraphQL performance optimization that removed the expensive `allPa*` taxonomy fields
+- Confirmed the sidebar had been migrated to `attributes.nodes`, while `FilteredProductGrid` still matched against the removed fields
+- Added a shared 15-filter contract so option extraction and product matching use the same attribute definitions
+- Added support for WooCommerce underscore and hyphen variants such as `pa_pressure_application` and `pa_pressure-application`
+- Preserved OR matching within a filter group and AND matching across filter groups
+- Normalized URL values consistently and converted machine-shaped values into readable labels while preserving technical capitalization such as BAPI, HVAC, RTD, mA, and V
+
+#### Filter Sidebar UX
+- Increased the desktop sidebar to 256px and bounded long filter lists with viewport-relative internal scrolling
+- Replaced compressed uppercase headings with 13px title-case semibold headings
+- Improved spacing, wrapped-label alignment, count placement, hover states, and selected-row contrast
+- Added `aria-expanded` and `aria-controls` to collapsible filter groups
+- Kept the global Roboto typography while improving hierarchy and density
+
+#### Product Listing Layout
+- Replaced viewport-only card breakpoints with container-responsive `auto-fill` columns
+- Established a 224px minimum product-card width
+- Preserved four stable columns beside filtered sidebars and allowed five columns on full-width listings
+- Standardized leaf category listings on the shared 1280px site container
+- Removed desktop and mobile filter controls from ETA Line, Accessories, and the combined wireless receiver/output-module listing
+
+#### Copilot Review Follow-Up
+- Made **Clear All** derive from non-empty URL filter values so it remains available when products or filter options are absent
+- Ignored empty comma-separated URL entries when calculating active filters
+- Removed a duplicate product-attribute scan from filter-option extraction
+- Added regression coverage for the URL-driven Clear All state
+
+### Validation
+- 86 focused product-filter, label-formatting, and accessibility tests passed
+- Browser-tested desktop and mobile filter behavior on the BAPI-Stat Quantum listing
+- Confirmed the Thermistor/RTD filter returns four matching products instead of an empty state
+- Confirmed ETA Line and Accessories have no desktop sidebar or mobile filter trigger
+- Verified stable card dimensions and no horizontal overflow on desktop or mobile
+- Touched-file ESLint completed with zero errors
+- TypeScript union/nullability issues in the shared filter contract were resolved
+- A final production-build retry was blocked independently by 404 responses for generated Google Roboto font assets
+
+### Files Changed (9 files)
+- `web/src/lib/productFilters.ts` — shared filter definitions, normalization, label formatting, extraction, and matching
+- `web/src/lib/__tests__/productFilters.test.ts` — readable label and technical abbreviation coverage
+- `web/src/components/products/ProductFilters.tsx` — shared contract integration and sidebar UX/accessibility refinements
+- `web/src/components/products/FilteredProductGrid.tsx` — attribute-based product filtering
+- `web/src/components/products/ProductGrid.tsx` — container-responsive product columns
+- `web/src/components/products/__tests__/FilteredProductGrid.test.tsx` — production-shaped filtering regressions
+- `web/src/components/products/__tests__/SearchResults.a11y.test.tsx` — Clear All and URL-value regression coverage
+- `web/src/app/[locale]/products/[category]/page.tsx` — listing layout and ETA Line/Accessories exclusions
+- `web/src/app/[locale]/products/[category]/[subcategory]/page.tsx` — sidebar layout and combined wireless exclusion
+
+---
+
+## August 11, 2026 — Product Card Hover Motion Reduction
+
+**Status:** ✅ PR #664 merged — fix/reduce-hover-motion
+
+### What Was Done
+
+Reduced overly sensitive product-card hover movement reported by multiple team members while preserving clear visual feedback.
+
+#### Hover Interaction Tuning
+- Reduced product-card lift from 4px to 1px in grid and list layouts
+- Reduced Quick View and Compare control scaling from 5–10% to 2%
+- Retained hover border, color, gradient, and shadow feedback
+- Added `prefers-reduced-motion` handling so transformed targets remain stationary for motion-sensitive users
+
+#### Regression Coverage
+- Added assertions for both grid and list layouts
+- Verified cards use the subtle 1px lift instead of the previous 4px movement
+- Verified action controls use no more than 2% scaling
+- Verified all transformed elements include a reduced-motion opt-out
+
+### Validation
+- 77 focused search-results and ProductGrid tests passed
+- No TypeScript or editor diagnostics in the changed files
+- Touched-file ESLint completed with no errors; existing unrelated warnings remained unchanged
+
+### Follow-Up
+- PR #668 later removed geometry-changing card and image hover transforms entirely after additional hover-jitter review, while retaining non-moving visual affordances
+
+### Files Changed (2 files)
+- `web/src/components/products/ProductGrid.tsx` — reduced card and action-control hover motion
+- `web/src/components/products/__tests__/SearchResults.a11y.test.tsx` — grid/list hover-motion regression coverage
 
 ---
 

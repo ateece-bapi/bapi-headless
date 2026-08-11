@@ -255,7 +255,7 @@ function ProductCard({
       <Link
         ref={ref}
         href={`/product/${product.slug}`}
-        className={`group flex gap-6 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg ${
+        className={`group flex gap-6 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-px hover:border-primary-500 hover:shadow-lg motion-reduce:transform-none ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}
         onClick={analytics.trackClick}
@@ -340,7 +340,7 @@ function ProductCard({
                     analytics.trackComparisonLimitReached();
                   }
                 }}
-                className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow transition-all duration-200 hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 ${
+                className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none ${
                   canAddToComparison ? 'cursor-pointer bg-white hover:bg-primary-50' : 'cursor-not-allowed bg-neutral-100 opacity-50'
                 }`}
                 aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
@@ -356,7 +356,7 @@ function ProductCard({
                   const tracker = analytics.trackQuickViewOpen('button_click');
                   onQuickView(tracker);
                 }}
-                className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-primary-50 p-2.5 shadow transition-all duration-200 hover:scale-105 hover:bg-primary-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+                className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-primary-50 p-2.5 shadow transition-all duration-200 hover:scale-[1.02] hover:bg-primary-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none"
                 aria-label="Quick view"
                 title="View product details without leaving this page"
               >
@@ -374,7 +374,7 @@ function ProductCard({
     <Link
       ref={ref}
       href={`/product/${product.slug}`}
-      className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl ${
+      className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:-translate-y-px hover:border-primary-500 hover:shadow-2xl motion-reduce:transform-none ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
       style={{ transitionDuration: '500ms' }}
@@ -402,7 +402,7 @@ function ProductCard({
               analytics.trackComparisonLimitReached();
             }
           }}
-          className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2 ${
+          className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none sm:p-2 ${
             canAddToComparison
               ? 'cursor-pointer bg-white/90 hover:bg-white'
               : 'cursor-not-allowed bg-neutral-100/90 opacity-50'
@@ -426,7 +426,7 @@ function ProductCard({
             const tracker = analytics.trackQuickViewOpen('button_click');
             onQuickView(tracker);
           }}
-          className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2"
+          className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none sm:p-2"
           aria-label="Quick view"
           title="View product details without leaving this page"
         >

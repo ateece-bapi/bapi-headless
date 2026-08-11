@@ -9,6 +9,7 @@ type PageHeaderProps = {
   breadcrumbs: BreadcrumbItem[];
   breadcrumbSchema?: BreadcrumbSchema;
   title: string;
+  titleClassName?: string;
   description?: string;
   eyebrow?: ReactNode;
   actions?: ReactNode;
@@ -27,6 +28,7 @@ export default function PageHeader({
   breadcrumbs,
   breadcrumbSchema,
   title,
+  titleClassName = 'text-white',
   description,
   eyebrow,
   actions,
@@ -46,7 +48,7 @@ export default function PageHeader({
         >
           <div className="max-w-4xl">
             {eyebrow && <div className="mb-6">{eyebrow}</div>}
-            <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
+            <h1 className={`text-4xl font-bold leading-tight sm:text-5xl ${titleClassName}`}>
               {title}
             </h1>
             {description && (

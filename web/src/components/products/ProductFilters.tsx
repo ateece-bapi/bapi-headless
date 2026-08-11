@@ -48,10 +48,9 @@ export function ProductFilters({ products, currentFilters }: ProductFiltersProps
   // Parse active filters from URL
   const activeFilters: Record<string, string[]> = {};
   Object.keys(filterOptions).forEach((key) => {
-    activeFilters[key] = currentFilters[key as keyof typeof currentFilters]?.split(',') || [];
+    activeFilters[key] =
+      currentFilters[key as keyof typeof currentFilters]?.split(',').filter(Boolean) || [];
   });
-
-  const hasActiveFilters = Object.values(activeFilters).some((arr) => arr.length > 0);
 
   // Calculate total active filter count for live region announcements
   // Count from currentFilters (URL params) rather than filterOptions to catch all active filters
@@ -61,6 +60,7 @@ export function ProductFilters({ products, currentFilters }: ProductFiltersProps
     // Split comma-separated values and count them
     return total + value.split(',').filter(Boolean).length;
   }, 0);
+  const hasActiveFilters = activeFilterCount > 0;
 
   const handleFilterChange = useCallback(
     (filterType: string, value: string, checked: boolean) => {

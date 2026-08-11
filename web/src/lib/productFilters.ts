@@ -152,14 +152,13 @@ export function extractProductFilterOptions(
 
   for (const product of products) {
     for (const filterKey of PRODUCT_FILTER_KEYS) {
-      const values = getProductFilterValues(product, filterKey);
-      if (values.length === 0) continue;
-
-      const options = counts.get(filterKey) || new Map<string, { name: string; count: number }>();
       const attributeNames = PRODUCT_FILTERS[filterKey].attributeNames as readonly string[];
       const matchingAttributes = (product.attributes?.nodes || []).filter(
         (attribute) => !!attribute?.name && attributeNames.includes(attribute.name)
       );
+      if (matchingAttributes.length === 0) continue;
+
+      const options = counts.get(filterKey) || new Map<string, { name: string; count: number }>();
 
       for (const attribute of matchingAttributes) {
         for (const option of attribute?.options || []) {

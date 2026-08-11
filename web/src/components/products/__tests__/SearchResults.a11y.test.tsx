@@ -667,6 +667,28 @@ describe('ProductGrid - Product Cards', () => {
       expect(button.tagName).toBe('BUTTON');
     });
   });
+
+  it.each(['grid', 'list'] as const)(
+    'uses subtle, reduced-motion-safe hover movement in %s view',
+    (viewMode) => {
+      render(<ProductGrid products={mockProducts} locale="en" viewMode={viewMode} />);
+
+      const productCards = screen.getAllByRole('link');
+      productCards.forEach((card) => {
+        expect(card).toHaveClass('hover:-translate-y-px', 'motion-reduce:transform-none');
+        expect(card).not.toHaveClass('hover:-translate-y-1');
+      });
+
+      const actionButtons = [
+        ...screen.getAllByLabelText(/quick view/i),
+        ...screen.getAllByLabelText(/add to comparison|remove from comparison/i),
+      ];
+      actionButtons.forEach((button) => {
+        expect(button).toHaveClass('hover:scale-[1.02]', 'motion-reduce:transform-none');
+        expect(button).not.toHaveClass('hover:scale-105', 'hover:scale-110');
+      });
+    }
+  );
 });
 
 describe('ProductGrid - Skip Link Target (WCAG 2.4.1 Bypass Blocks)', () => {

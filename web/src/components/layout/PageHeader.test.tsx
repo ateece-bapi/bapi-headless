@@ -43,6 +43,7 @@ describe('PageHeader', () => {
         breadcrumbs={breadcrumbs}
         breadcrumbSchema={schema}
         title="Temperature Sensors"
+        titleClassName="text-accent-500"
         eyebrow={<span>Product family</span>}
         actions={<button type="button">Get started</button>}
         media={<div data-testid="header-media">Product image</div>}
@@ -52,6 +53,7 @@ describe('PageHeader', () => {
     );
 
     expect(screen.getByText('Product family')).toBeVisible();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveClass('text-accent-500');
     expect(screen.getByRole('button', { name: 'Get started' })).toBeVisible();
     expect(screen.getByTestId('header-media')).toBeVisible();
     expect(screen.getByText('Additional details')).toBeVisible();

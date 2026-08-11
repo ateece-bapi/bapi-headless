@@ -25,6 +25,7 @@ import {
   LightbulbIcon,
 } from '@/lib/icons';
 import { ProcessSteps } from '@/components/landing/ProcessSteps';
+import PageHeader from '@/components/layout/PageHeader';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -63,85 +64,58 @@ export default async function WAMPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white md:py-14 lg:py-16 xl:py-10 2xl:py-8">
-        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-
-        <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav
-            className="mb-6 flex items-center gap-2 text-sm text-primary-100 md:mb-8"
-            aria-label="Breadcrumb"
-          >
-            <Link href="/" className="transition-colors hover:text-white">
-              {t('breadcrumb.home')}
-            </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <Link href="/products" className="transition-colors hover:text-white">
-              {t('breadcrumb.products')}
-            </Link>
-            <ChevronRightIcon className="h-4 w-4" />
-            <span className="font-medium text-white">{t('breadcrumb.wam')}</span>
-          </nav>
-
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-12 2xl:gap-16">
-            {/* Left Column - Content */}
-            <div>
-              {/* WAM Logo */}
-              <div className="mb-6 xl:mb-5">
-                <Image
-                  src="/images/wam/dashboards/wam-logo.webp"
-                  alt="WAM Logo"
-                  width={120}
-                  height={60}
-                  className="h-auto w-32"
-                  priority
-                />
-              </div>
-
-              <h1 className="mb-5 text-4xl font-bold leading-tight text-accent-500 lg:text-5xl xl:mb-4 xl:text-6xl">
-                {t('hero.title')}
-              </h1>
-              <p className="mb-6 text-lg leading-relaxed text-white lg:text-xl xl:mb-5">
-                {t('hero.description')}
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <a
-                  href="#demo"
-                  className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
-                  style={{ color: '#08304B' }}
-                >
-                  {t('hero.cta')}
-                  <ArrowRightIcon className="h-5 w-5" />
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
-                >
-                  {t('hero.secondaryCta')}
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column - Hero Image */}
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-lg">
-                <Image
-                  src="/images/wam/dashboards/wam-hero-sensors-gateway.webp"
-                  alt="WAM wireless sensors with gateway - temperature and humidity monitoring system"
-                  width={640}
-                  height={411}
-                  className="h-auto w-full"
-                  sizes="(max-width: 1023px) 100vw, (max-width: 1600px) 50vw, 800px"
-                  priority
-                  quality={85}
-                />
-              </div>
-            </div>
+    <div className="min-h-screen bg-white">
+      <PageHeader
+        breadcrumbs={[
+          { label: t('breadcrumb.home'), href: '/' },
+          { label: t('breadcrumb.products'), href: '/products' },
+          { label: t('breadcrumb.wam') },
+        ]}
+        title={t('hero.title')}
+        titleClassName="text-accent-500"
+        description={t('hero.description')}
+        eyebrow={
+          <Image
+            src="/images/wam/dashboards/wam-logo.webp"
+            alt="WAM Logo"
+            width={120}
+            height={60}
+            className="h-auto w-32"
+            priority
+          />
+        }
+        actions={
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#demo"
+              className="bg-bapi-accent-gradient inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 font-bold text-[#08304b] transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-500/50"
+            >
+              {t('hero.cta')}
+              <ArrowRightIcon className="h-5 w-5" />
+            </a>
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-8 py-3 font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+            >
+              {t('hero.secondaryCta')}
+            </a>
           </div>
-        </div>
-      </section>
+        }
+        media={
+          <div className="overflow-hidden rounded-lg shadow-lg">
+            <Image
+              src="/images/blu-view/dashboard-hero-frame.png"
+              alt="WAM wireless sensors and monitoring dashboards in a building environment"
+              width={1232}
+              height={429}
+              className="h-auto w-full"
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              priority
+              quality={85}
+            />
+          </div>
+        }
+      />
 
       {/* What is WAM Section */}
       <section className="bg-neutral-50 py-16 lg:py-20">
@@ -927,6 +901,6 @@ export default async function WAMPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

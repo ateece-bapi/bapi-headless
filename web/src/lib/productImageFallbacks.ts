@@ -3,9 +3,13 @@ type ProductImage = {
   altText: string;
 };
 
-const productImageFallbacks: Record<string, ProductImage> = {
+type ProductImageFallback = Omit<ProductImage, 'sourceUrl'> & {
+  pathname: string;
+};
+
+const productImageFallbacks: Record<string, ProductImageFallback> = {
   'co-duct-and-rough-service-carbon-monoxide-sensor': {
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/CO-Duct-Rough-Main.png',
+    pathname: '/wp-content/uploads/CO-Duct-Rough-Main.png',
     altText: 'CO duct and rough service carbon monoxide sensor',
   },
 };
@@ -22,5 +26,17 @@ export function getProductImage(
     };
   }
 
-  return productImageFallbacks[slug] ?? null;
+  const fallback = productImageFallbacks[slug];
+  const wordpressEndpoint = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
+
+  if (!fallback || !wordpressEndpoint) return null;
+
+  try {
+    return {
+      sourceUrl: new URL(fallback.pathname, wordpressEndpoint).toString(),
+      altText: fallback.altText,
+    };
+  } catch {
+    return null;
+  }
 }

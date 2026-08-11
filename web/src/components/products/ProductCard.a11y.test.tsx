@@ -109,7 +109,7 @@ describe('ProductCard Accessibility', () => {
 
       const image = screen.getByAltText('CO duct and rough service carbon monoxide sensor');
       expect(decodeURIComponent(image.getAttribute('src') || '')).toContain(
-        'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/CO-Duct-Rough-Main.png'
+        '/wp-content/uploads/CO-Duct-Rough-Main.png'
       );
     });
 

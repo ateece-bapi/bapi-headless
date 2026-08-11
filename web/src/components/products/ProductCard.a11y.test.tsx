@@ -94,6 +94,25 @@ describe('ProductCard Accessibility', () => {
       expect(image).toBeInTheDocument();
     });
 
+    it('uses the known product image fallback when the CMS image is missing', () => {
+      render(
+        <ProductCard
+          product={{
+            ...mockProduct,
+            slug: 'co-duct-and-rough-service-carbon-monoxide-sensor',
+            image: null,
+          }}
+          locale="en"
+          index={0}
+        />
+      );
+
+      const image = screen.getByAltText('CO duct and rough service carbon monoxide sensor');
+      expect(decodeURIComponent(image.getAttribute('src') || '')).toContain(
+        '/wp-content/uploads/CO-Duct-Rough-Main.png'
+      );
+    });
+
     it('decorative icon is properly hidden from screen readers', () => {
       render(<ProductCard product={{...mockProduct, image: null}} locale="en" index={0} />);
       // Package icon should be decorative only when no image

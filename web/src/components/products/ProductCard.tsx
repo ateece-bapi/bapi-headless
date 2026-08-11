@@ -6,6 +6,7 @@ import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useTranslations } from 'next-intl';
+import { getProductImage } from '@/lib/productImageFallbacks';
 
 interface ProductCardProps {
   product: {
@@ -33,6 +34,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   const { id, name, slug, partNumber, price, image, shortDescription } = product;
   const t = useTranslations('products');
+  const resolvedImage = getProductImage(slug || '', image);
 
   // Analytics tracking
   const analytics = useProductCardAnalytics({
@@ -66,10 +68,10 @@ export default function ProductCard({
       >
         {/* Image */}
         <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
-          {image?.sourceUrl ? (
+          {resolvedImage ? (
             <Image
-              src={image.sourceUrl}
-              alt={image.altText || name || 'Product'}
+              src={resolvedImage.sourceUrl}
+              alt={resolvedImage.altText || name || 'Product'}
               fill
               className="object-contain p-2"
               sizes="128px"
@@ -130,12 +132,12 @@ export default function ProductCard({
 
       {/* Product Image */}
       <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-3">
-        {image?.sourceUrl ? (
+        {resolvedImage ? (
           <Image
-            src={image.sourceUrl}
-            alt={image.altText || name || 'Product'}
+            src={resolvedImage.sourceUrl}
+            alt={resolvedImage.altText || name || 'Product'}
             fill
-            className="object-contain p-3 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
+            className="object-contain p-3 drop-shadow-md"
             sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             quality={85}
           />
@@ -157,11 +159,15 @@ export default function ProductCard({
 
       {/* Content */}
       <div className="relative p-4">
-        <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-          {name || 'Untitled Product'}
-          {/* BAPI Yellow underline on hover */}
-          <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
-        </h3>
+        <div className="mb-2">
+          <h3 className="line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
+            {name || 'Untitled Product'}
+          </h3>
+          <span
+            aria-hidden="true"
+            className="product-title-underline mt-1 block h-1 w-0 rounded bg-accent-500 transition-[width] duration-300 ease-in-out group-hover:w-full"
+          />
+        </div>
 
         {cleanDescription && (
           <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600">

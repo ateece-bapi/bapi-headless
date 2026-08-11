@@ -647,6 +647,30 @@ describe('ProductGrid - Product Cards', () => {
     });
   });
 
+  it.each(['grid', 'list'] as const)(
+    'uses the BAPI yellow title underline in %s view',
+    (viewMode) => {
+      const { container } = render(
+        <ProductGrid products={mockProducts} locale="en" viewMode={viewMode} />
+      );
+
+      const underlines = container.querySelectorAll('.product-title-underline');
+      expect(underlines).toHaveLength(mockProducts.length);
+      underlines.forEach((underline) => {
+        expect(underline).toHaveClass('group-hover:w-full', 'transition-[width]');
+      });
+    }
+  );
+
+  it('keeps View Details CTAs stationary on hover', () => {
+    render(<ProductGrid products={mockProducts} locale="en" />);
+
+    screen.getAllByText('View Details').forEach((cta) => {
+      expect(cta).toHaveClass('transition-shadow', 'group-hover:shadow-lg');
+      expect(cta).not.toHaveClass('group-hover:scale-105', 'group-hover:scale-110');
+    });
+  });
+
   it('quick view buttons have accessible labels', () => {
     render(<ProductGrid products={mockProducts} locale="en" />);
 
@@ -669,14 +693,14 @@ describe('ProductGrid - Product Cards', () => {
   });
 
   it.each(['grid', 'list'] as const)(
-    'uses subtle, reduced-motion-safe hover movement in %s view',
+    'keeps product cards stationary on hover in %s view',
     (viewMode) => {
       render(<ProductGrid products={mockProducts} locale="en" viewMode={viewMode} />);
 
       const productCards = screen.getAllByRole('link');
       productCards.forEach((card) => {
-        expect(card).toHaveClass('hover:-translate-y-px', 'motion-reduce:transform-none');
-        expect(card).not.toHaveClass('hover:-translate-y-1');
+        expect(card).toHaveClass('hover:border-primary-500');
+        expect(card).not.toHaveClass('hover:-translate-y-px', 'hover:-translate-y-1');
       });
 
       const actionButtons = [
@@ -1387,6 +1411,24 @@ describe('Edge Cases - Search & Filter Components', () => {
     render(<ProductGrid products={[mockProduct]} locale="en" />);
 
     expect(screen.getByText('Temperature Sensor TS-100')).toBeInTheDocument();
+  });
+
+  it('uses the known product image fallback when the CMS image is missing', () => {
+    const productWithoutImage = {
+      ...mockProduct,
+      name: 'CO - Duct and Rough Service Carbon Monoxide Sensor',
+      slug: 'co-duct-and-rough-service-carbon-monoxide-sensor',
+      image: null,
+    } as Product;
+
+    render(<ProductGrid products={[productWithoutImage]} locale="en" />);
+
+    const image = screen.getByRole('img', {
+      name: 'CO duct and rough service carbon monoxide sensor',
+    });
+    expect(decodeURIComponent(image.getAttribute('src') || '')).toContain(
+      '/wp-content/uploads/CO-Duct-Rough-Main.png'
+    );
   });
 
   it('handles filters with no active filters', () => {

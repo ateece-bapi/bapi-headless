@@ -268,7 +268,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                 <Link
                   key={subSub.id}
                   href={`/products/${subcategory}/${subSub.slug}`}
-                  className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
+                  className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-2xl"
                 >
                   {/* BAPI Gradient Top Border */}
                   <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -280,7 +280,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                         src={subSub.image.sourceUrl}
                         alt={subSub.image.altText || translatedName}
                         fill
-                        className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
+                        className="object-contain p-3"
                         sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                         priority={index < 4}
                       />
@@ -301,7 +301,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                         {subSub.description}
                       </p>
                     )}
-                    <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                    <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-shadow duration-300 group-hover:shadow-lg">
                       <span>{t('subcategories.browseButton')}</span>
                       <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -316,7 +316,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
             {subcategory === 'bluetooth-wireless' && (
               <Link
                 href={`/products/${subcategory}/wireless-receivers-bluetooth-wireless`}
-                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
                 <div className="bg-linear-to-r absolute left-0 top-0 h-1 w-full from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -327,7 +327,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                     src="/images/wireless/wireless-receiver-with-output-modules.webp"
                     alt="Receiver and Output Modules"
                     fill
-                    className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
+                    className="object-contain p-3"
                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                   />
                 </div>
@@ -340,7 +340,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                   <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-neutral-700">
                     Wireless receivers, analog and digital output modules
                   </p>
-                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                  <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-shadow duration-300 group-hover:shadow-lg">
                     <span>{t('subcategories.browseButton')}</span>
                     <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />

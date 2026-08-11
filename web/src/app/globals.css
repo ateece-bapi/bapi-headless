@@ -93,11 +93,6 @@
   }
 }
 
-/* Smooth GPU-accelerated hover animations */
-.group:hover {
-  transform: translateY(-0.5rem) translateZ(0);
-}
-
 /* 10. Scroll animations - fade in on view */
 @keyframes fadeInUp {
   from {

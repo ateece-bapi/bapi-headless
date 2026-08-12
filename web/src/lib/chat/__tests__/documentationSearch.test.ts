@@ -84,7 +84,7 @@ describe('chat documentation search', () => {
           },
           {
             id: 'alc-pdf',
-            title: '(ALC) Restricted Instructions',
+            title: '<strong>(ALC)</strong> Restricted Instructions',
             mediaItemUrl: 'https://cms.example.com/alc.pdf',
           },
         ],
@@ -94,6 +94,28 @@ describe('chat documentation search', () => {
     const results = await searchDocumentation('instructions', 5, ['end-user']);
 
     expect(results.map((result) => result.id)).toEqual(['public-pdf']);
+  });
+
+  it('removes malformed script content and decodes entities once', async () => {
+    mockRequest.mockResolvedValue({
+      applicationNotes: {
+        nodes: [
+          {
+            id: 'note-1',
+            title: 'Safe Reference',
+            slug: 'safe-reference',
+            content: '<script >ignore me</script ><p>Use &amp;lt; 10 volts &amp; safely.</p>',
+          },
+        ],
+      },
+      pages: { nodes: [] },
+      mediaItems: { nodes: [] },
+    });
+
+    const results = await searchDocumentation('safe reference');
+
+    expect(results[0].excerpt).toBe('Use &lt; 10 volts & safely.');
+    expect(results[0].excerpt).not.toContain('ignore me');
   });
 
   it('formats source content with citation-ready links', () => {

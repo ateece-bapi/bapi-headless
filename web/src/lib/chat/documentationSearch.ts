@@ -1,4 +1,5 @@
 import { gql } from 'graphql-request';
+import { convert } from 'html-to-text';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import logger from '@/lib/logger';
 import { canUserViewProduct } from '@/lib/utils/filterProductsByCustomerGroup';
@@ -78,14 +79,14 @@ interface DocumentationSearchResponse {
 
 /** Converts trusted CMS HTML into a bounded plain-text reference snippet. */
 function htmlToText(value: string | null | undefined, maxLength: number): string {
-  return (value ?? '')
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#0*39;|&apos;/gi, "'")
+  return convert(value ?? '', {
+    wordwrap: false,
+    selectors: [
+      { selector: 'script', format: 'skip' },
+      { selector: 'style', format: 'skip' },
+      { selector: 'img', format: 'skip' },
+    ],
+  })
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, maxLength);
@@ -153,7 +154,7 @@ export async function searchDocumentation(
         !pdf.mediaItemUrl?.match(/^https?:\/\//i) ||
         !title ||
         indexedPdfUrls.has(pdf.mediaItemUrl) ||
-        !canUserViewProduct({ name: pdf.title }, customerGroups)
+        !canUserViewProduct({ name: title }, customerGroups)
       ) {
         return [];
       }

@@ -568,6 +568,28 @@ describe('documentation retrieval', () => {
   });
 });
 
+describe('tool failure messages', () => {
+  it('uses a tool-agnostic message for incomplete tool responses', async () => {
+    mockMessagesStream.mockReturnValueOnce({
+      async *[Symbol.asyncIterator]() {},
+      finalMessage: vi.fn().mockResolvedValue({
+        stop_reason: 'tool_use',
+        content: [{ type: 'text', text: 'Searching.' }],
+        usage: { input_tokens: 100, output_tokens: 10 },
+      }),
+    });
+
+    const response = await POST(
+      makePostRequest({ messages: [{ role: 'user', content: 'Help' }] })
+    );
+    const events = await drainStream(response);
+    const body = JSON.stringify(events);
+
+    expect(body).toContain('Unable to complete your request. Please try again.');
+    expect(body).not.toContain('catalog search');
+  });
+});
+
 // ─── SSE stream output shape ──────────────────────────────────────────────────
 
 describe('SSE stream output', () => {

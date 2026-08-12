@@ -420,7 +420,10 @@ export async function POST(request: NextRequest) {
           );
           if (!toolUse) {
             recordOutcome('error', 'Tool response was incomplete.');
-            enqueue({ type: 'error', message: 'Unable to complete the catalog search.' });
+            enqueue({
+              type: 'error',
+              message: 'Unable to complete your request. Please try again.',
+            });
             return;
           }
 
@@ -474,10 +477,10 @@ export async function POST(request: NextRequest) {
 
           // Safety: if we've exhausted iterations, signal done so client isn't left hanging
           if (i === MAX_TOOL_ITERATIONS - 1) {
-            recordOutcome('tool_limit', 'Catalog search exceeded the tool iteration limit.');
+            recordOutcome('tool_limit', 'Tool use exceeded the iteration limit.');
             enqueue({
               type: 'error',
-              message: 'Unable to complete the catalog search. Please try again.',
+              message: 'Unable to complete your request. Please try again.',
             });
             return;
           }

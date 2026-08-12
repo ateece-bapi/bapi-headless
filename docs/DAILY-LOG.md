@@ -2,9 +2,69 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 11, 2026
+**Updated:** August 12, 2026
 **Status:** Phase 1 Complete - Live in Production (73 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 12, 2026 — AI Chatbot Reliability & Authoritative Retrieval
+
+**Status:** ✅ PR #670 merged — fix/chatbot-response-reliability
+
+### What Was Done
+
+Improved the customer-facing chatbot's response reliability, catalog accuracy, technical grounding, and production observability following reports of an eight-minute request and an incorrect Current Sensors recommendation.
+
+#### Response Reliability
+- Added a 30-second overall server deadline, 25-second Anthropic request timeout, and 35-second browser timeout
+- Disabled Anthropic retries and propagated a shared abort signal through model and tool requests
+- Buffered model passes so internal tool-planning text is not streamed to customers
+- Corrected SSE error parsing and removed partial assistant messages after stream failures
+- Made incomplete-tool and tool-limit errors generic across product and documentation searches
+
+#### Catalog Accuracy & Governance
+- Removed Current Sensors from the chatbot prompt and homepage Industry Browse section
+- Added a curated unavailable-product taxonomy for electrical current sensors, switches, and transducers
+- Preserved NO2 as an available product family that must be verified through live WordPress product search
+- Added unsupported-product demand metrics without exposing customer message content in reliability logs
+
+#### Documentation Retrieval & Citations
+- Added the `search_documentation` tool for WordPress application notes, pages, and PDF metadata
+- Added a PDF.js ingestion pipeline and bundled page-level PDF body index
+- Generated the public pilot index from 73 documents and 339 pages; the index is approximately 933 KB
+- Added exact-query boosting, fuzzy retrieval, page-fragment citations, CMS-outage fallback, and result deduplication
+- Enforced customer-group filtering before PDF metadata or indexed pages enter retrieval results
+- Replaced custom HTML filtering with parser-based conversion and sanitized CMS titles before access checks
+
+#### Analytics & Administration
+- Added timeout rate, tool iteration, empty-search, unsupported-product, and outcome metrics
+- Extended the admin dashboard with reliability and unavailable-product demand reporting
+- Preserved compatibility with legacy analytics records
+
+### WordPress/Kinsta Verification
+- Confirmed the active backend URL is `https://bapiheadlessstaging.kinsta.cloud`
+- Confirmed `wp-content/mu-plugins/bapi-all-pdfs-endpoint.php` is installed and readable
+- Confirmed `/wp-json/bapi/v1/all-pdfs` returns all 918 PDF records
+- No WordPress database migration or additional Kinsta configuration is required for PR #670
+
+### Review Hardening
+- Addressed all Copilot and CodeQL findings before merge
+- Pinned `pdfjs-dist` to Node-20-compatible version `4.10.38`
+- Added `html-to-text` for structured HTML parsing and single-pass entity decoding
+- Added regression coverage for marked-up OEM titles, malformed script tags, access filtering, and tool-agnostic failures
+
+### Validation
+- 61 chatbot, catalog, analytics, documentation, and PDF-search tests passed
+- Production Next.js build passed
+- Focused ESLint completed with zero errors
+- Live Node 20 extraction succeeded against the NO2 installation PDF
+- PR merged, remote branch deleted, local `main` fast-forwarded, and local feature branch removed
+
+### Follow-Up
+- Added `docs/AI-CHATBOT-NEXT-STEPS.md` with the phased production roadmap
+- Highest priority is replacing local analytics JSONL with durable storage
+- PDF index externalization and automated refresh should happen before indexing the complete 918-document corpus
 
 ---
 

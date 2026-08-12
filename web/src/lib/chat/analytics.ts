@@ -19,6 +19,10 @@ export interface ChatAnalytics {
   toolsUsed?: string[]; // e.g., ['search_products']
   tokensUsed: number;
   responseTimeMs: number;
+  outcome?: 'success' | 'timeout' | 'error' | 'tool_limit';
+  toolIterations?: number;
+  emptySearches?: number;
+  unsupportedProductCategories?: string[];
   feedback?: 'positive' | 'negative';
   feedbackComment?: string;
 }
@@ -34,6 +38,12 @@ export interface ChatMetricsSummary {
   positiveFeedback: number;
   negativeFeedback: number;
   toolUsage: Record<string, number>;
+  timeoutCount: number;
+  timeoutRate: number;
+  averageToolIterations: number;
+  emptySearchCount: number;
+  unsupportedProductQuestions: number;
+  unsupportedProductBreakdown: Record<string, number>;
 }
 
 const ANALYTICS_DIR = path.join(process.cwd(), 'data', 'chat-analytics');
@@ -54,6 +64,15 @@ async function ensureAnalyticsDir() {
  * Logs a chat interaction to JSONL file (append-only for performance)
  */
 export async function logChatAnalytics(analytics: ChatAnalytics): Promise<void> {
+  logger.info('Chat reliability metric', {
+    conversationId: analytics.conversationId,
+    outcome: analytics.outcome ?? 'success',
+    responseTimeMs: analytics.responseTimeMs,
+    toolIterations: analytics.toolIterations ?? 0,
+    emptySearches: analytics.emptySearches ?? 0,
+    unsupportedProductCategories: analytics.unsupportedProductCategories,
+  });
+
   try {
     await ensureAnalyticsDir();
     const logLine = JSON.stringify(analytics) + '\n';
@@ -62,6 +81,75 @@ export async function logChatAnalytics(analytics: ChatAnalytics): Promise<void> 
     logger.error('Failed to log chat analytics', error);
     // Don't throw - analytics failure shouldn't break chat
   }
+}
+
+/** Aggregates stored chat events into dashboard metrics. */
+export function summarizeChatMetrics(conversations: ChatAnalytics[]): ChatMetricsSummary {
+  const languageBreakdown: Record<string, number> = {};
+  const productCounts: Record<string, number> = {};
+  const toolUsage: Record<string, number> = {};
+  const unsupportedProductBreakdown: Record<string, number> = {};
+  let totalResponseTime = 0;
+  let totalTokens = 0;
+  let positiveFeedback = 0;
+  let negativeFeedback = 0;
+  let timeoutCount = 0;
+  let totalToolIterations = 0;
+  let emptySearchCount = 0;
+  let unsupportedProductQuestions = 0;
+
+  conversations.forEach((conv) => {
+    languageBreakdown[conv.language] = (languageBreakdown[conv.language] || 0) + 1;
+
+    conv.productsRecommended?.forEach((slug) => {
+      productCounts[slug] = (productCounts[slug] || 0) + 1;
+    });
+
+    conv.toolsUsed?.forEach((tool) => {
+      toolUsage[tool] = (toolUsage[tool] || 0) + 1;
+    });
+
+    totalResponseTime += conv.responseTimeMs;
+    totalTokens += conv.tokensUsed;
+    totalToolIterations += conv.toolIterations ?? 0;
+    emptySearchCount += conv.emptySearches ?? 0;
+
+    if (conv.outcome === 'timeout') timeoutCount++;
+    if (conv.feedback === 'positive') positiveFeedback++;
+    if (conv.feedback === 'negative') negativeFeedback++;
+
+    if (conv.unsupportedProductCategories?.length) {
+      unsupportedProductQuestions++;
+      conv.unsupportedProductCategories.forEach((category) => {
+        unsupportedProductBreakdown[category] = (unsupportedProductBreakdown[category] || 0) + 1;
+      });
+    }
+  });
+
+  const topProducts = Object.entries(productCounts)
+    .map(([slug, count]) => ({ slug, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+  const conversationCount = conversations.length;
+
+  return {
+    totalConversations: conversationCount,
+    totalMessages: conversationCount,
+    averageResponseTime: conversationCount > 0 ? totalResponseTime / conversationCount : 0,
+    totalTokensUsed: totalTokens,
+    estimatedCost: (totalTokens / 1_000_000) * 0.75,
+    languageBreakdown,
+    topProducts,
+    positiveFeedback,
+    negativeFeedback,
+    toolUsage,
+    timeoutCount,
+    timeoutRate: conversationCount > 0 ? (timeoutCount / conversationCount) * 100 : 0,
+    averageToolIterations: conversationCount > 0 ? totalToolIterations / conversationCount : 0,
+    emptySearchCount,
+    unsupportedProductQuestions,
+    unsupportedProductBreakdown,
+  };
 }
 
 /**
@@ -122,60 +210,7 @@ export async function getChatMetrics(
       });
     }
 
-    // Calculate metrics
-    const languageBreakdown: Record<string, number> = {};
-    const productCounts: Record<string, number> = {};
-    const toolUsage: Record<string, number> = {};
-    let totalResponseTime = 0;
-    let totalTokens = 0;
-    let positiveFeedback = 0;
-    let negativeFeedback = 0;
-
-    conversations.forEach((conv) => {
-      // Language breakdown
-      languageBreakdown[conv.language] = (languageBreakdown[conv.language] || 0) + 1;
-
-      // Product recommendations
-      conv.productsRecommended?.forEach((slug) => {
-        productCounts[slug] = (productCounts[slug] || 0) + 1;
-      });
-
-      // Tool usage
-      conv.toolsUsed?.forEach((tool) => {
-        toolUsage[tool] = (toolUsage[tool] || 0) + 1;
-      });
-
-      // Response time and tokens
-      totalResponseTime += conv.responseTimeMs;
-      totalTokens += conv.tokensUsed;
-
-      // Feedback
-      if (conv.feedback === 'positive') positiveFeedback++;
-      if (conv.feedback === 'negative') negativeFeedback++;
-    });
-
-    // Sort products by count
-    const topProducts = Object.entries(productCounts)
-      .map(([slug, count]) => ({ slug, count }))
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 10);
-
-    // Calculate costs (Claude 3 Haiku pricing: ~$0.25/1M input tokens, ~$1.25/1M output tokens)
-    // Approximate 50/50 split for simplicity
-    const estimatedCost = (totalTokens / 1_000_000) * 0.75; // Average rate
-
-    return {
-      totalConversations: conversations.length,
-      totalMessages: conversations.length, // 1:1 for now (could track multi-turn later)
-      averageResponseTime: conversations.length > 0 ? totalResponseTime / conversations.length : 0,
-      totalTokensUsed: totalTokens,
-      estimatedCost,
-      languageBreakdown,
-      topProducts,
-      positiveFeedback,
-      negativeFeedback,
-      toolUsage,
-    };
+    return summarizeChatMetrics(conversations);
   } catch (error) {
     logger.error('Failed to get chat metrics', error);
     // Return empty metrics on error
@@ -190,6 +225,12 @@ export async function getChatMetrics(
       positiveFeedback: 0,
       negativeFeedback: 0,
       toolUsage: {},
+      timeoutCount: 0,
+      timeoutRate: 0,
+      averageToolIterations: 0,
+      emptySearchCount: 0,
+      unsupportedProductQuestions: 0,
+      unsupportedProductBreakdown: {},
     };
   }
 }

@@ -163,6 +163,37 @@ function makeDocumentationToolStream(query = 'installation instructions') {
   };
 }
 
+function makeProductAndDocumentationToolStream() {
+  return {
+    async *[Symbol.asyncIterator]() {
+      // Tool planning emits no customer-facing text.
+    },
+    finalMessage: vi.fn().mockResolvedValue({
+      stop_reason: 'tool_use',
+      content: [
+        {
+          type: 'tool_use',
+          id: 'tu_product',
+          name: 'search_products',
+          input: { query: 'NO2 sensors', limit: 5 },
+        },
+        {
+          type: 'tool_use',
+          id: 'tu_docs',
+          name: 'search_documentation',
+          input: { query: 'NO2 sensor wiring', limit: 5 },
+        },
+      ],
+      usage: {
+        input_tokens: 220,
+        output_tokens: 40,
+        cache_read_input_tokens: 0,
+        cache_creation_input_tokens: 0,
+      },
+    }),
+  };
+}
+
 function makePostRequest(body: object) {
   return new NextRequest('http://localhost/api/chat', {
     method: 'POST',
@@ -564,6 +595,88 @@ describe('documentation retrieval', () => {
     expect(mockFormatDocumentationForAI).toHaveBeenCalledWith(documents);
     expect(mockLogChatAnalytics).toHaveBeenCalledWith(
       expect.objectContaining({ toolsUsed: ['search_documentation'] })
+    );
+  });
+
+  it('returns results for every tool requested in the same turn', async () => {
+    mockMessagesStream
+      .mockReturnValueOnce(makeProductAndDocumentationToolStream())
+      .mockReturnValueOnce(makeTextStream('Use the cited NO2 sensor instructions.'));
+    mockSearchProducts.mockResolvedValue([
+      { name: 'NO2 Sensor', slug: 'no2-sensor', url: '/product/no2-sensor' },
+    ]);
+    mockFormatProductsForAI.mockReturnValue('1. **NO2 Sensor**');
+    mockSearchDocumentation.mockResolvedValue([
+      {
+        id: 'no2-page-3',
+        type: 'pdf',
+        title: 'Digital CO and NO2 Sensor Instructions',
+        url: 'https://cms.example.com/no2.pdf#page=3',
+        excerpt: 'Wiring instructions.',
+        page: 3,
+      },
+    ]);
+    mockFormatDocumentationForAI.mockReturnValue(
+      '[Digital CO and NO2 Sensor Instructions](https://cms.example.com/no2.pdf#page=3)'
+    );
+
+    const response = await POST(
+      makePostRequest({
+        messages: [
+          {
+            role: 'user',
+            content: 'Which BAPI NO2 sensor should I use, and how is it wired?',
+          },
+        ],
+        locale: 'en',
+      })
+    );
+    await drainStream(response);
+
+    const secondCallMessages = mockMessagesStream.mock.calls[1][0].messages;
+    const toolResultMessage = secondCallMessages[secondCallMessages.length - 1];
+    expect(toolResultMessage.content).toEqual([
+      expect.objectContaining({ type: 'tool_result', tool_use_id: 'tu_product' }),
+      expect.objectContaining({ type: 'tool_result', tool_use_id: 'tu_docs' }),
+    ]);
+    expect(mockSearchProducts).toHaveBeenCalledWith('NO2 sensors', 5, ['end-user']);
+    expect(mockSearchDocumentation).toHaveBeenCalledWith('NO2 sensor wiring', 5, ['end-user']);
+  });
+
+  it('uses a final tool-disabled pass after three tool rounds', async () => {
+    mockMessagesStream
+      .mockReturnValueOnce(makeProductAndDocumentationToolStream())
+      .mockReturnValueOnce(makeDocumentationToolStream('NO2 sensor wiring'))
+      .mockReturnValueOnce(makeDocumentationToolStream('digital NO2 wiring'))
+      .mockReturnValueOnce(makeTextStream('Use the NO2 instructions cited on page 3.'));
+    mockSearchProducts.mockResolvedValue([
+      { name: 'NO2 Sensor', slug: 'no2-sensor', url: '/product/no2-sensor' },
+    ]);
+    mockFormatProductsForAI.mockReturnValue('1. **NO2 Sensor**');
+    mockSearchDocumentation.mockResolvedValue([]);
+    mockFormatDocumentationForAI.mockReturnValue('No matching documentation found.');
+
+    const response = await POST(
+      makePostRequest({
+        messages: [
+          {
+            role: 'user',
+            content: 'Which BAPI NO2 sensor should I use, and how is it wired?',
+          },
+        ],
+        locale: 'en',
+      })
+    );
+    const events = (await drainStream(response)) as Array<{ type: string; text?: string }>;
+
+    expect(mockMessagesStream).toHaveBeenCalledTimes(4);
+    expect(mockMessagesStream.mock.calls[3][0].tools).toBeUndefined();
+    expect(events.some((event) => event.type === 'done')).toBe(true);
+    expect(events.map((event) => event.text ?? '').join('')).toContain(
+      'Use the NO2 instructions cited on page 3.'
+    );
+    expect(mockLogChatAnalytics).toHaveBeenCalledWith(
+      expect.objectContaining({ outcome: 'success', toolIterations: 3 })
     );
   });
 });

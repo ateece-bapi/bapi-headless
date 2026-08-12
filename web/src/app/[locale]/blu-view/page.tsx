@@ -190,10 +190,10 @@ export default async function BluViewPage({ params }: Props) {
                   </p>
                   <Link
                     href={feature.href}
-                    className="inline-flex w-fit items-center gap-3 font-bold text-primary-700 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="btn-bapi-primary inline-flex w-fit items-center gap-2 rounded-lg px-5 py-2.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                   >
                     {t('features.learnMore')}
-                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                    <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </article>
             ))}

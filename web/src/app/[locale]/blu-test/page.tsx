@@ -134,7 +134,7 @@ export default async function BluTestPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Banner - Clean blue background, text only */}
-      <section className="border-b-4 border-accent-500 bg-primary-700 py-8">
+      <section className="border-b-4 border-accent-500 bg-bapi-primary-gradient py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
             {t('hero.titleLine1')}
@@ -578,7 +578,7 @@ export default async function BluTestPage({ params }: Props) {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="bg-bapi-primary-gradient py-16 text-white lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="mb-6 text-4xl font-bold lg:text-5xl">{t('cta.title')}</h2>

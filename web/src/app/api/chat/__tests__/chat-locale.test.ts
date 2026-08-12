@@ -634,7 +634,12 @@ describe('documentation retrieval', () => {
     await drainStream(response);
 
     const secondCallMessages = mockMessagesStream.mock.calls[1][0].messages;
+    const toolUseMessage = secondCallMessages[secondCallMessages.length - 2];
     const toolResultMessage = secondCallMessages[secondCallMessages.length - 1];
+    expect(toolUseMessage.content).toEqual([
+      expect.objectContaining({ type: 'tool_use', id: 'tu_product' }),
+      expect.objectContaining({ type: 'tool_use', id: 'tu_docs' }),
+    ]);
     expect(toolResultMessage.content).toEqual([
       expect.objectContaining({ type: 'tool_result', tool_use_id: 'tu_product' }),
       expect.objectContaining({ type: 'tool_result', tool_use_id: 'tu_docs' }),
@@ -671,6 +676,14 @@ describe('documentation retrieval', () => {
 
     expect(mockMessagesStream).toHaveBeenCalledTimes(4);
     expect(mockMessagesStream.mock.calls[3][0].tools).toBeUndefined();
+    expect(mockMessagesStream.mock.calls[3][0].system).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          type: 'text',
+          text: expect.stringContaining('Tools are disabled for this final response'),
+        }),
+      ])
+    );
     expect(events.some((event) => event.type === 'done')).toBe(true);
     expect(events.map((event) => event.text ?? '').join('')).toContain(
       'Use the NO2 instructions cited on page 3.'
@@ -741,8 +754,14 @@ describe('SSE stream output', () => {
       .filter((event) => event.type === 'token')
       .map((event) => event.text)
       .join('');
+    const secondCallMessages = mockMessagesStream.mock.calls[1][0].messages;
+    const assistantToolMessage = secondCallMessages[secondCallMessages.length - 2];
 
     expect(responseText).toBe('No matching public products are available.');
+    expect(assistantToolMessage.content).toEqual([
+      expect.objectContaining({ type: 'tool_use', id: 'tu_1' }),
+    ]);
+    expect(JSON.stringify(assistantToolMessage)).not.toContain('Let me search the catalog.');
   });
 
   it('bounds each Anthropic stream request', async () => {

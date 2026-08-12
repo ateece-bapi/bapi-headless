@@ -23,6 +23,8 @@ const anthropic = new Anthropic({
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 const CHAT_RESPONSE_TIMEOUT_MS = 30_000;
 const ANTHROPIC_REQUEST_TIMEOUT_MS = 25_000;
+const FINAL_SYNTHESIS_PROMPT =
+  'Tools are disabled for this final response. Do not request or attempt to use tools. Answer using only the prior tool results. If those results are insufficient, say that you could not verify the answer and offer technical support.';
 
 /** Rejects pending work when the shared chat response deadline is exceeded. */
 function waitForWithSignal<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
@@ -360,11 +362,14 @@ export async function POST(request: NextRequest) {
         const MAX_TOOL_ITERATIONS = 3;
         for (let i = 0; i <= MAX_TOOL_ITERATIONS; i++) {
           const allowTools = i < MAX_TOOL_ITERATIONS;
+          const requestSystemPrompt = allowTools
+            ? systemPrompt
+            : [...systemPrompt, { type: 'text' as const, text: FINAL_SYNTHESIS_PROMPT }];
           const apiStream = anthropic.messages.stream(
             {
               model: 'claude-haiku-4-5',
               max_tokens: 1024,
-              system: systemPrompt,
+              system: requestSystemPrompt,
               ...(allowTools ? { tools } : {}),
               messages: currentMessages,
             },
@@ -487,7 +492,7 @@ export async function POST(request: NextRequest) {
 
           currentMessages = [
             ...currentMessages,
-            { role: 'assistant' as const, content: finalMessage.content },
+            { role: 'assistant' as const, content: toolUses },
             {
               role: 'user' as const,
               content: toolResults,

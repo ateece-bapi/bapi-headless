@@ -23,6 +23,8 @@ const anthropic = new Anthropic({
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 const CHAT_RESPONSE_TIMEOUT_MS = 30_000;
 const ANTHROPIC_REQUEST_TIMEOUT_MS = 25_000;
+const FINAL_SYNTHESIS_PROMPT =
+  'Tools are disabled for this final response. Do not request or attempt to use tools. Answer using only the prior tool results. If those results are insufficient, say that you could not verify the answer and offer technical support.';
 
 /** Rejects pending work when the shared chat response deadline is exceeded. */
 function waitForWithSignal<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
@@ -358,13 +360,17 @@ export async function POST(request: NextRequest) {
 
         // Resolve catalog tool calls before publishing the completed customer-facing response.
         const MAX_TOOL_ITERATIONS = 3;
-        for (let i = 0; i < MAX_TOOL_ITERATIONS; i++) {
+        for (let i = 0; i <= MAX_TOOL_ITERATIONS; i++) {
+          const allowTools = i < MAX_TOOL_ITERATIONS;
+          const requestSystemPrompt = allowTools
+            ? systemPrompt
+            : [...systemPrompt, { type: 'text' as const, text: FINAL_SYNTHESIS_PROMPT }];
           const apiStream = anthropic.messages.stream(
             {
               model: 'claude-haiku-4-5',
               max_tokens: 1024,
-              system: systemPrompt,
-              tools,
+              system: requestSystemPrompt,
+              ...(allowTools ? { tools } : {}),
               messages: currentMessages,
             },
             {
@@ -414,11 +420,20 @@ export async function POST(request: NextRequest) {
             break;
           }
 
+          if (!allowTools) {
+            recordOutcome('tool_limit', 'Tool use exceeded the iteration limit.');
+            enqueue({
+              type: 'error',
+              message: 'Unable to complete your request. Please try again.',
+            });
+            return;
+          }
+
           // Execute the tool call, then loop for the next streaming response
-          const toolUse = finalMessage.content.find(
+          const toolUses = finalMessage.content.filter(
             (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
           );
-          if (!toolUse) {
+          if (toolUses.length === 0) {
             recordOutcome('error', 'Tool response was incomplete.');
             enqueue({
               type: 'error',
@@ -428,62 +443,62 @@ export async function POST(request: NextRequest) {
           }
 
           toolIterations++;
-          toolsUsed.push(toolUse.name);
-          let toolResultContent = 'No results found.';
+          const toolResults: Anthropic.ToolResultBlockParam[] = [];
 
-          if (toolUse.name === 'search_products') {
-            const input = toolUse.input as { query: string; limit?: number };
-            const unavailableSearchProducts = findUnavailableCatalogProducts(input.query);
-            unavailableSearchProducts.forEach((product) =>
-              unsupportedProductCategories.add(product.id)
-            );
+          for (const toolUse of toolUses) {
+            toolsUsed.push(toolUse.name);
+            let toolResultContent = 'No results found.';
+            let isError = false;
 
-            if (unavailableSearchProducts.length > 0) {
-              toolResultContent = formatUnavailableCatalogProducts(unavailableSearchProducts);
-            } else {
-              const products = await waitForWithSignal(
-                searchProducts(input.query, input.limit ?? 5, customerGroups),
+            if (toolUse.name === 'search_products') {
+              const input = toolUse.input as { query: string; limit?: number };
+              const unavailableSearchProducts = findUnavailableCatalogProducts(input.query);
+              unavailableSearchProducts.forEach((product) =>
+                unsupportedProductCategories.add(product.id)
+              );
+
+              if (unavailableSearchProducts.length > 0) {
+                toolResultContent = formatUnavailableCatalogProducts(unavailableSearchProducts);
+              } else {
+                const products = await waitForWithSignal(
+                  searchProducts(input.query, input.limit ?? 5, customerGroups),
+                  abortController.signal
+                );
+                if (products.length === 0) emptySearches++;
+                products.forEach((product) => {
+                  if (product.slug) productsRecommended.push(product.slug);
+                });
+                toolResultContent = formatProductsForAI(products);
+              }
+            } else if (toolUse.name === 'search_documentation') {
+              const input = toolUse.input as { query: string; limit?: number };
+              const documents = await waitForWithSignal(
+                searchDocumentation(input.query, input.limit ?? 5, customerGroups),
                 abortController.signal
               );
-              if (products.length === 0) emptySearches++;
-              products.forEach((p) => {
-                if (p.slug) productsRecommended.push(p.slug);
-              });
-              toolResultContent = formatProductsForAI(products);
+              toolResultContent = formatDocumentationForAI(documents);
+            } else {
+              toolResultContent = `Unsupported tool: ${toolUse.name}`;
+              isError = true;
             }
-          } else if (toolUse.name === 'search_documentation') {
-            const input = toolUse.input as { query: string; limit?: number };
-            const documents = await waitForWithSignal(
-              searchDocumentation(input.query, input.limit ?? 5, customerGroups),
-              abortController.signal
-            );
-            toolResultContent = formatDocumentationForAI(documents);
+
+            toolResults.push({
+              type: 'tool_result',
+              tool_use_id: toolUse.id,
+              content: toolResultContent,
+              is_error: isError,
+            });
           }
 
           currentMessages = [
             ...currentMessages,
-            { role: 'assistant' as const, content: finalMessage.content },
+            { role: 'assistant' as const, content: toolUses },
             {
               role: 'user' as const,
-              content: [
-                {
-                  type: 'tool_result' as const,
-                  tool_use_id: toolUse.id,
-                  content: toolResultContent,
-                },
-              ],
+              content: toolResults,
             },
           ];
 
-          // Safety: if we've exhausted iterations, signal done so client isn't left hanging
-          if (i === MAX_TOOL_ITERATIONS - 1) {
-            recordOutcome('tool_limit', 'Tool use exceeded the iteration limit.');
-            enqueue({
-              type: 'error',
-              message: 'Unable to complete your request. Please try again.',
-            });
-            return;
-          }
         }
       } catch (error) {
         logger.error('Chat API Error', {

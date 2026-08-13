@@ -2,8 +2,8 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 12, 2026
-**Status:** Phase 1 Complete - Live in Production (73 days post-launch)
+**Updated:** August 13, 2026
+**Status:** Phase 1 Complete - Live in Production (74 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
 
 ---
@@ -65,6 +65,45 @@ Improved the customer-facing chatbot's response reliability, catalog accuracy, t
 - Added `docs/AI-CHATBOT-NEXT-STEPS.md` with the phased production roadmap
 - Highest priority is replacing local analytics JSONL with durable storage
 - PDF index externalization and automated refresh should happen before indexing the complete 918-document corpus
+
+---
+
+## August 13, 2026 — Company Page Content & Brand Refresh
+
+**Status:** ✅ PR #675 merged — feat/update-company-about-copy
+
+### What Was Done
+
+#### Company Messaging
+- Replaced the About BAPI overview with approved legacy-site wording covering product capabilities, global facilities, regional sales offices, and worldwide distribution
+- Added a localized link from the overview copy to `/where-to-buy`
+- Updated the hero tagline to "Changing the way you think about sensors since 1993"
+- Replaced the hero description with messaging focused on accurate, dependable sensors engineered for critical performance and long-term reliability
+
+#### Statistics & Global Accuracy
+- Replaced the Company statistics with the established homepage banner implementation
+- Standardized the banner on `30+ Years of Excellence`, `Global Reach & Support`, and `ISO 9001 Certified Quality`
+- Reused the homepage icons, gradient, grid pattern, spacing, radius, shadow, and localized `home.stats` messages
+- Removed the `600+ Product Models` card and the outdated `100% Made in USA` claim
+- Removed the related `made in USA sensors` metadata keyword because BAPI also manufactures in Poland and Vietnam
+
+#### BAPI Visual Identity
+- Added yellow accent rules and tightened section spacing to improve page hierarchy
+- Added a localized "The Extra Steps We Take" section using existing Why BAPI content for 100% testing, NIST traceability, computer-aided production stations, and the compatibility guarantee
+- Corrected the section badge to use `qualitySection.badge`
+- Added responsive grid-border handling that preserves mobile separators and removes the final desktop row border
+
+### Validation
+- Verified the updated hero, overview copy, distributor link, statistics banner, and BAPI Difference content at `/en/company`
+- Verified desktop layout at 1440px and mobile layout at 390px with no horizontal overflow
+- Confirmed localized rich text and reused translation keys render correctly
+- Focused ESLint completed with no new errors; JSON parsing, editor diagnostics, and `git diff --check` passed
+- Addressed both Copilot review comments before merge
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local feature branch removed
+
+### Files Changed
+- `web/messages/en.json`
+- `web/src/app/[locale]/company/page.tsx`
 
 ---
 

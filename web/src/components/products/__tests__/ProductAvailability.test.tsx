@@ -92,7 +92,7 @@ describe('ProductAvailability Component', () => {
       expect(screen.getByText('Contact us for availability')).toBeInTheDocument();
     });
 
-    it('displays error icon for out of stock', () => {
+    it('displays availability icon', () => {
       render(<ProductAvailability stockStatus="outofstock" />);
       const icon = screen.getByTestId('product-availability-icon');
       expect(icon).toBeInTheDocument();

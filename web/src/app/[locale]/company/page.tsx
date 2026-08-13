@@ -1,7 +1,19 @@
 import { Metadata } from 'next';
 import { Link } from '@/lib/navigation';
 import dynamic from 'next/dynamic';
-import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
+import {
+  Building2Icon,
+  UsersIcon,
+  TargetIcon,
+  AwardIcon,
+  MapPinIcon,
+  PhoneIcon,
+  MailIcon,
+  CheckCircleIcon,
+  GlobeIcon,
+  TrendingUpIcon,
+  ShieldCheckIcon,
+} from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
 import { GlobalPresenceDynamic as GlobalPresence } from '@/components/company/GlobalPresenceDynamic';
@@ -30,7 +42,6 @@ export async function generateMetadata(): Promise<Metadata> {
       'HVAC sensor company',
       'building automation products',
       'BAPI company history',
-      'made in USA sensors',
       'building controls manufacturer',
       'sensor manufacturer',
       'BACnet manufacturer',
@@ -45,6 +56,8 @@ export const revalidate = 3600;
 
 export default async function CompanyPage() {
   const t = await getTranslations('companyPages.about');
+  const differenceT = await getTranslations('companyPages.whyBapi');
+  const homeT = await getTranslations('home');
   return (
     <div className="min-h-screen bg-white">
       <PageHeader
@@ -64,36 +77,114 @@ export default async function CompanyPage() {
       </PageHeader>
 
       {/* Company Overview */}
-      <section className="py-20">
+      <section className="py-14 md:py-16">
         <PageContainer size="prose">
           <div className="mx-auto">
+            <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
             <h2 className="mb-8 text-center text-4xl font-bold text-neutral-900">
               {t('overview.title')}
             </h2>
             <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
               <p className="text-balance">{t('overview.paragraph1')}</p>
               <p className="text-balance">{t('overview.paragraph2')}</p>
+              {t.has('overview.paragraph3') && (
+                <p className="text-balance">
+                  {t.rich('overview.paragraph3', {
+                    distributorLink: (chunks) => (
+                      <Link
+                        href="/where-to-buy"
+                        className="font-semibold text-primary-600 underline"
+                      >
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
+                </p>
+              )}
             </div>
           </div>
-          <div className="mt-12 h-px bg-linear-to-r from-transparent via-neutral-300 to-transparent" />
         </PageContainer>
       </section>
 
       {/* Key Stats */}
-      <section className="bg-linear-to-b from-neutral-50 to-white py-16">
-        <PageContainer size="narrow">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {(['years', 'products', 'madeInUsa', 'distribution'] as const).map((statKey) => (
+      <section className="bg-neutral-50 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-700 via-primary-600 to-primary-500 p-8 shadow-xl">
+            <div className="bg-grid-pattern absolute inset-0" />
+
+            <div className="relative grid grid-cols-2 gap-6 md:grid-cols-3 lg:gap-8">
+              <div className="group text-center">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <TrendingUpIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
+                  {homeT('stats.yearsValue')}
+                </div>
+                <div className="text-sm font-medium text-white/90">
+                  {homeT('stats.yearsLabel')}
+                </div>
+              </div>
+
+              <div className="group text-center">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <GlobeIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
+                  {homeT('stats.globalValue')}
+                </div>
+                <div className="text-sm font-medium text-white/90">
+                  {homeT('stats.globalLabel')}
+                </div>
+              </div>
+
+              <div className="group text-center">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <ShieldCheckIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
+                  {homeT('stats.isoValue')}
+                </div>
+                <div className="text-sm font-medium text-white/90">
+                  {homeT('stats.isoLabel')}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BAPI Difference */}
+      <section className="bg-neutral-50 py-14 md:py-16">
+        <PageContainer size="prose">
+          <div className="mb-10 text-center">
+            <p className="mb-3 text-sm font-bold tracking-wide text-primary-600 uppercase">
+              {differenceT('hero.badge')}
+            </p>
+            <h2 className="mb-4 text-4xl font-bold text-neutral-900">
+              {differenceT('qualitySection.title')}
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-700">
+              {differenceT('qualitySection.description')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 border-y border-neutral-300 md:grid-cols-2">
+            {(
+              [
+                'differentiators.testing.title',
+                'qualitySection.features.nist',
+                'qualitySection.features.production',
+                'qualitySection.features.compatibility',
+              ] as const
+            ).map((messageKey) => (
               <div
-                key={statKey}
-                className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                key={messageKey}
+                className="flex items-center gap-4 border-b border-neutral-300 px-4 py-5 last:border-b-0 md:odd:border-r md:nth-last-2:border-b-0"
               >
-                <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
-                  {t(`stats.${statKey}.value`)}
-                </div>
-                <div className="text-sm font-semibold tracking-wide text-neutral-600">
-                  {t(`stats.${statKey}.label`)}
-                </div>
+                <CheckCircleIcon className="h-7 w-7 shrink-0 text-primary-600" />
+                <h3 className="text-lg font-bold text-neutral-900">
+                  {differenceT(messageKey)}
+                </h3>
               </div>
             ))}
           </div>
@@ -101,12 +192,13 @@ export default async function CompanyPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-20">
+      <section className="py-14 md:py-16">
         <PageContainer size="prose">
+          <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
           <h2 className="mb-4 text-balance text-center text-4xl font-bold text-neutral-900">
             {t('coreValues.title')}
           </h2>
-          <p className="mb-12 text-balance text-center text-lg text-neutral-600">
+          <p className="mb-10 text-balance text-center text-lg text-neutral-600">
             {t('coreValues.subtitle')}
           </p>
 

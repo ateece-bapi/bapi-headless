@@ -260,13 +260,14 @@
       "hero": {
         "badge": "Est. 1993",
         "title": "Building Automation Products Inc.",
-        "subtitle": "Precision Sensor Solutions for Building Automation",
-        "description": "For over 30 years, BAPI has been a leading manufacturer of precision sensors for building automation systems, trusted by engineers worldwide."
+        "subtitle": "Changing the way you think about sensors since 1993",
+        "description": "For over 30 years, BAPI has been a leading manufacturer of accurate and dependable sensors engineered for critical performance and long-term reliability for building automation systems worldwide."
       },
       "overview": {
         "title": "About BAPI",
-        "paragraph1": "Building Automation Products, Inc. (BAPI) was formed in 1993 from its parent company BEMCO, Inc., which was founded in 1983. Since then, BAPI has grown into a global manufacturer of precision sensors that improve building automation systems and are critical to saving energy. Every BAPI product is designed and manufactured at our headquarters in Gays Mills, Wisconsin, surrounded by the natural beauty of the rolling hills of the Driftless Region.",
-        "paragraph2": "At BAPI, quality and reliability are at the core of everything we do.  Our sensor products are trusted by engineers worldwide for mission-critical facilities including hospitals, data centers, clean rooms, laboratories, and commercial buildings. With over 600 product models, NIST-traceable calibration, BACnet® certification, and ISO 9001:2015 manufacturing standards, BAPI delivers precision you can depend on."
+        "paragraph1": "Building Automation Products, Inc. (BAPI) is a premier sensor manufacturer for HVAC/R. Specializing in sensors for temperature, relative humidity, pressure, wireless and air quality monitoring, plus test instruments, electronics technician assistants (ETA) and accessories.",
+        "paragraph2": "BAPI is based in Gays Mills, Wisconsin, and also has a manufacturing facility in Poland along with regional sales offices in Canada, United Kingdom, Australia and the United Arab Emirates.",
+        "paragraph3": "Our products are sold around the globe through BAPI directly or online, or through our distributor network found <distributorLink>here</distributorLink>."
       },
       "stats": {
         "years": {

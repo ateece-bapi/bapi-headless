@@ -210,10 +210,10 @@ export default function SupportPage() {
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">Phone Support</h3>
                 <p className="mb-2 text-neutral-700">Monday - Friday, 8am - 5pm CST</p>
                 <a
-                  href="tel:+17158561203"
+                  href="tel:+16087354800"
                   className="duration-normal text-2xl font-bold text-primary-500 transition-colors hover:text-primary-600"
                 >
-                  (715) 856-1203
+                  +1-608-735-4800
                 </a>
               </div>
 
@@ -222,10 +222,10 @@ export default function SupportPage() {
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">Email Support</h3>
                 <p className="mb-2 text-neutral-700">Technical questions and support</p>
                 <a
-                  href="mailto:sales@bapihvac.com"
+                  href="mailto:bapitechsupport@bapisensors.com"
                   className="duration-normal text-lg font-semibold text-primary-500 transition-colors hover:text-primary-600"
                 >
-                  sales@bapihvac.com
+                  bapitechsupport@bapisensors.com
                 </a>
               </div>
             </div>

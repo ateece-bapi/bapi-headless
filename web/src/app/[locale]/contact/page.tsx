@@ -256,6 +256,44 @@ export default function ContactPage() {
                 </div>
               </div>
 
+              {/* Technical Support */}
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <MailIcon className="h-5 w-5 text-primary-600" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">
+                      Contact Technical Support
+                    </h3>
+                    <a
+                      href="mailto:bapitechsupport@bapisensors.com"
+                      className="break-all text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
+                    >
+                      bapitechsupport@bapisensors.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Place an Order */}
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <MailIcon className="h-5 w-5 text-primary-600" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">Place an Order</h3>
+                    <a
+                      href="mailto:orders@bapisensors.com"
+                      className="break-all text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
+                    >
+                      orders@bapisensors.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Hours */}
               <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
                 <div className="flex items-start gap-3">

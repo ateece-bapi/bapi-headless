@@ -54,7 +54,7 @@ export default function CareersPage() {
               Contact us to learn about current career opportunities
             </p>
             <a
-              href="mailto:sales@bapihvac.com"
+              href="mailto:customerservice@bapisensors.com"
               className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
             >
               Contact HR

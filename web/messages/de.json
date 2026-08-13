@@ -446,11 +446,11 @@
     "contact": {
       "title": "Kontakt",
       "address": {
-        "street": "750 N Royal Ave",
+        "street": "750 North Royal Avenue",
         "city": "Gays Mills, WI 54631"
       },
       "phone": "(608) 735-4800",
-      "email": "sales@bapihvac.com"
+      "email": "customerservice@bapisensors.com"
     },
     "awards": {
       "title": "Auszeichnungen & Anerkennungen",
@@ -1141,9 +1141,9 @@
         "contactCard": {
           "title": "Kontaktieren Sie uns",
           "phoneLabel": "Telefon",
-          "phone": "(715) 856-1203",
+          "phone": "+1-608-735-4800",
           "emailLabel": "E-Mail",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "hoursLabel": "Öffnungszeiten",
           "hoursDays": "Montag - Freitag",
           "hoursTime": "8:00 Uhr - 17:00 Uhr CST"
@@ -1416,12 +1416,12 @@
         },
         "email": {
           "title": "E-Mail",
-          "details": "sales@bapihvac.com",
+          "details": "customerservice@bapisensors.com",
           "description": "Wir antworten in der Regel innerhalb von 24 Stunden"
         },
         "visit": {
           "title": "Besuchen Sie uns",
-          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "details": "750 North Royal Avenue, Gays Mills, WI 54631",
           "description": "USA"
         }
       },
@@ -1431,17 +1431,17 @@
         "description": "Wählen Sie die Abteilung aus, die am besten zu Ihren Bedürfnissen passt, und wir verbinden Sie mit dem richtigen Team.",
         "sales": {
           "title": "Vertrieb",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Produktanfragen, Angebote und allgemeine Vertriebsfragen"
         },
         "international": {
           "title": "Internationaler Vertrieb",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Globale Vertriebskanäle und internationale Partnerschaften"
         },
         "distribution": {
           "title": "Vertrieb",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Vertriebsanfragen und Partnerschaftsmöglichkeiten"
         },
         "technical": {
@@ -1574,12 +1574,12 @@
       "phone": {
         "title": "Telefon-Support",
         "hours": "Montag - Freitag, 8:00 - 17:00 Uhr CST",
-        "number": "(715) 856-1203"
+        "number": "+1-608-735-4800"
       },
       "email": {
         "title": "E-Mail-Support",
         "description": "Technische Fragen und Support",
-        "address": "sales@bapihvac.com"
+        "address": "bapitechsupport@bapisensors.com"
       },
       "cta": "Support-Team kontaktieren"
     }

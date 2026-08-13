@@ -491,11 +491,11 @@
     "contact": {
       "title": "Liên hệ",
       "address": {
-        "street": "750 N Royal Ave",
+        "street": "750 North Royal Avenue",
         "city": "Gays Mills, WI 54631"
       },
       "phone": "(608) 735-4800",
-      "email": "sales@bapihvac.com"
+      "email": "customerservice@bapisensors.com"
     },
     "awards": {
       "title": "Giải thưởng & Công nhận",
@@ -1186,9 +1186,9 @@
         "contactCard": {
           "title": "Liên Hệ Với Chúng Tôi",
           "phoneLabel": "Điện Thoại",
-          "phone": "(715) 856-1203",
+          "phone": "+1-608-735-4800",
           "emailLabel": "Email",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "hoursLabel": "Giờ Làm Việc",
           "hoursDays": "Thứ Hai - Thứ Sáu",
           "hoursTime": "8:00 sáng - 5:00 chiều CST"
@@ -1387,12 +1387,12 @@
         },
         "email": {
           "title": "Email",
-          "details": "sales@bapihvac.com",
+          "details": "customerservice@bapisensors.com",
           "description": "Chúng tôi thường phản hồi trong vòng 24 giờ"
         },
         "visit": {
           "title": "Đến thăm chúng tôi",
-          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "details": "750 North Royal Avenue, Gays Mills, WI 54631",
           "description": "Hoa Kỳ"
         }
       },
@@ -1402,17 +1402,17 @@
         "description": "Chọn bộ phận phù hợp nhất với nhu cầu của quý khách và chúng tôi sẽ kết nối quý khách với đội ngũ phù hợp.",
         "sales": {
           "title": "Bán hàng",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Các câu hỏi về sản phẩm, báo giá và bán hàng nói chung"
         },
         "international": {
           "title": "Bán hàng quốc tế",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Phân phối toàn cầu và các cơ hội hợp tác quốc tế"
         },
         "distribution": {
           "title": "Phân phối",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Các câu hỏi về nhà phân phối và cơ hội hợp tác"
         },
         "technical": {
@@ -1619,12 +1619,12 @@
       "phone": {
         "title": "Hỗ Trợ Qua Điện Thoại",
         "hours": "Thứ Hai - Thứ Sáu, 8am - 5pm CST",
-        "number": "(715) 856-1203"
+        "number": "+1-608-735-4800"
       },
       "email": {
         "title": "Hỗ Trợ Qua Email",
         "description": "Câu hỏi kỹ thuật và hỗ trợ",
-        "address": "sales@bapihvac.com"
+        "address": "bapitechsupport@bapisensors.com"
       },
       "cta": "Liên Hệ Đội Ngũ Hỗ Trợ"
     }

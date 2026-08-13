@@ -277,11 +277,11 @@
     "contact": {
       "title": "联系我们",
       "address": {
-        "street": "750 N Royal Ave",
+        "street": "750 North Royal Avenue",
         "city": "Gays Mills, WI 54631"
       },
       "phone": "(608) 735-4800",
-      "email": "sales@bapihvac.com"
+      "email": "customerservice@bapisensors.com"
     },
     "awards": {
       "title": "奖项与认可",
@@ -1225,9 +1225,9 @@
         "contactCard": {
           "title": "联系我们",
           "phoneLabel": "电话",
-          "phone": "(715) 856-1203",
+          "phone": "+1-608-735-4800",
           "emailLabel": "电子邮件",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "hoursLabel": "营业时间",
           "hoursDays": "周一至周五",
           "hoursTime": "上午 8:00 - 下午 5:00 CST"
@@ -1326,12 +1326,12 @@
         },
         "email": {
           "title": "电子邮件",
-          "details": "sales@bapihvac.com",
+          "details": "customerservice@bapisensors.com",
           "description": "我们通常在24小时内回复"
         },
         "visit": {
           "title": "访问我们",
-          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "details": "750 North Royal Avenue, Gays Mills, WI 54631",
           "description": "美国"
         }
       },
@@ -1341,17 +1341,17 @@
         "description": "选择最合适您需求的部门,我们将为您连线到合适的团队。",
         "sales": {
           "title": "销售",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "产品咨询、报价和一般销售问题"
         },
         "international": {
           "title": "国际销售",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "全球分销和国际合作伙伴关系"
         },
         "distribution": {
           "title": "分销",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "分销商查询和合作机会"
         },
         "technical": {
@@ -1658,12 +1658,12 @@
       "phone": {
         "title": "电话支持",
         "hours": "周一至周五，上午8点至下午5点 CST",
-        "number": "(715) 856-1203"
+        "number": "+1-608-735-4800"
       },
       "email": {
         "title": "电子邮件支持",
         "description": "技术问题和支持",
-        "address": "sales@bapihvac.com"
+        "address": "bapitechsupport@bapisensors.com"
       },
       "cta": "联系支持团队"
     }

@@ -319,9 +319,9 @@
         "contactCard": {
           "title": "Get in Touch",
           "phoneLabel": "Phone",
-          "phone": "(715) 856-1203",
+          "phone": "+1-608-735-4800",
           "emailLabel": "Email",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "hoursLabel": "Hours",
           "hoursDays": "Monday - Friday",
           "hoursTime": "8:00 AM - 5:00 PM CST"
@@ -446,19 +446,20 @@
     },
     "missionValues": {
       "metadata": {
-        "title": "Mission & Values",
+        "title": "Mission and Values",
         "description": "Learn about BAPI's mission, vision, and core values that drive our commitment to precision sensor solutions."
       },
       "breadcrumb": {
         "home": "Home",
         "company": "Company",
-        "missionValues": "Mission & Values"
+        "missionValues": "Mission and Values"
       },
       "hero": {
         "badge": "Our Purpose",
-        "title": "Mission & Values",
+        "title": "Mission and Values",
         "description": "For over 30 years, our mission and values have guided every decision we make, every product we design, and every customer relationship we build."
       },
+      "introduction": "Over the past 30 years BAPI has forged a place in the HVAC/R industry, with their area of expertise focused on advanced sensor technology for HVAC/R applications. Originating in Cross Plains, WI in 1993, BAPI's first facility was literally conducted out of a small two-car garage. Today, BAPI serves customers around the globe from their 52,000 sq. foot facility based in rural southwestern Wisconsin. BAPI continues the \"...it's in the details\" tradition, using the highest quality sensing elements paired with state of the art manufacturing, meticulous testing and quality assurance procedures to ensure a reliable product time after time.",
       "mission": {
         "title": "Mission",
         "description": "At BAPI, we design, manufacture and deliver high quality sensor solutions, as well as provide high quality services for our business partners to effectively save their customers money and energy, therefore reducing dependency on natural resources."
@@ -468,27 +469,27 @@
         "description": "To grow as a global, innovative leader by providing unique, customer driven solutions while inspiring our employees to be their best, delivering quality products and services that exceed our customers' expectations."
       },
       "coreValuesSection": {
-        "title": "Our Core Values",
+        "title": "Values",
         "description": "These principles guide everything we do and shape the way we serve our customers and support our team.",
         "quality": {
           "title": "Quality",
-          "description": "We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture."
+          "description": "We value processes and services that are metric driven to continually exceed our customers' expectations."
         },
         "innovation": {
-          "title": "Innovation",
-          "description": "We value processes and services that are metric driven to continually exceed our customers' expectations."
+          "title": "Innovative",
+          "description": "We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages."
         },
         "partnership": {
           "title": "Collaborative Partnership",
-          "description": "We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages."
+          "description": "We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments."
         },
         "integrity": {
           "title": "Integrity & Ethics",
-          "description": "We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments."
+          "description": "We value being deliberate, thoughtful and intentional with behaviors that match our every word."
         },
         "employees": {
           "title": "Employees",
-          "description": "We value being deliberate, thoughtful and intentional with behaviors that match our every word."
+          "description": "We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture."
         }
       },
       "cta": {
@@ -609,17 +610,17 @@
         "description": "Choose the department that best fits your needs and we'll connect you with the right team.",
         "sales": {
           "title": "Sales",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Product inquiries, quotes, and general sales questions"
         },
         "international": {
           "title": "International Sales",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Global distribution and international partnerships"
         },
         "distribution": {
           "title": "Distribution",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "Distributor inquiries and partnership opportunities"
         },
         "technical": {
@@ -999,11 +1000,11 @@
     "contact": {
       "title": "Contact",
       "address": {
-        "street": "750 N Royal Ave",
+        "street": "750 North Royal Avenue",
         "city": "Gays Mills, WI 54631"
       },
       "phone": "(608) 735-4800",
-      "email": "sales@bapihvac.com"
+      "email": "customerservice@bapisensors.com"
     },
     "awards": {
       "title": "Awards & Recognition",
@@ -2185,12 +2186,12 @@
       "phone": {
         "title": "Phone Support",
         "hours": "Monday - Friday, 8am - 5pm CST",
-        "number": "(715) 856-1203"
+        "number": "+1-608-735-4800"
       },
       "email": {
         "title": "Email Support",
         "description": "Technical questions and support",
-        "address": "sales@bapihvac.com"
+        "address": "bapitechsupport@bapisensors.com"
       },
       "cta": "Contact Support Team"
     }

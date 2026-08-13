@@ -170,10 +170,10 @@ export default function CatalogPricebookPage() {
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
-                href="tel:+17158561203"
+                href="tel:+16087354800"
                 className="inline-block rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
               >
-                Call (715) 856-1203
+                Call +1-608-735-4800
               </a>
               <Link
                 href="/request-quote"

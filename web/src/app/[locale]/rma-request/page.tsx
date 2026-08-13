@@ -370,17 +370,17 @@ export default function RMARequestPage() {
           <p className="mb-4 text-neutral-700">Contact our customer service team for assistance</p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href="tel:+17158561203"
+              href="tel:+16087354800"
               className="font-bold text-primary-500 hover:text-primary-600"
             >
-              (715) 856-1203
+              +1-608-735-4800
             </a>
             <span className="hidden text-neutral-300 sm:inline">|</span>
             <a
-              href="mailto:sales@bapihvac.com"
+              href="mailto:customerservice@bapisensors.com"
               className="font-bold text-primary-500 hover:text-primary-600"
             >
-              sales@bapihvac.com
+              customerservice@bapisensors.com
             </a>
           </div>
         </PageContainer>

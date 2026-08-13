@@ -76,7 +76,7 @@ export default function WebinarsPage() {
             Contact us to receive notifications about upcoming webinars
           </p>
           <a
-            href="mailto:sales@bapihvac.com"
+            href="mailto:customerservice@bapisensors.com"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
             Get Notified

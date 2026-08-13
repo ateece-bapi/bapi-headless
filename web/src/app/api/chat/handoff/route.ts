@@ -160,13 +160,13 @@ async function notifyTeam(handoff: HandoffRequest, testRecipient?: string): Prom
 function getTeamEmail(topic: string): string {
   switch (topic) {
     case 'technical':
-      return 'support@bapihvac.com';
+      return 'bapitechsupport@bapisensors.com';
     case 'sales':
-      return 'sales@bapihvac.com';
+      return 'customerservice@bapisensors.com';
     case 'quote':
-      return 'sales@bapihvac.com';
+      return 'customerservice@bapisensors.com';
     default:
-      return 'info@bapihvac.com';
+      return 'customerservice@bapisensors.com';
   }
 }
 

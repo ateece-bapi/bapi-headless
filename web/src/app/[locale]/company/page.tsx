@@ -3,9 +3,6 @@ import { Link } from '@/lib/navigation';
 import dynamic from 'next/dynamic';
 import {
   Building2Icon,
-  UsersIcon,
-  TargetIcon,
-  AwardIcon,
   MapPinIcon,
   PhoneIcon,
   MailIcon,
@@ -13,6 +10,7 @@ import {
   GlobeIcon,
   TrendingUpIcon,
   ShieldCheckIcon,
+  ArrowRightIcon,
 } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
@@ -57,6 +55,7 @@ export const revalidate = 3600;
 export default async function CompanyPage() {
   const t = await getTranslations('companyPages.about');
   const differenceT = await getTranslations('companyPages.whyBapi');
+  const missionValuesT = await getTranslations('companyPages.missionValues');
   const homeT = await getTranslations('home');
   return (
     <div className="min-h-screen bg-white">
@@ -191,65 +190,23 @@ export default async function CompanyPage() {
         </PageContainer>
       </section>
 
-      {/* Core Values */}
-      <section className="py-14 md:py-16">
-        <PageContainer size="prose">
-          <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
-          <h2 className="mb-4 text-balance text-center text-4xl font-bold text-neutral-900">
-            {t('coreValues.title')}
-          </h2>
-          <p className="mb-10 text-balance text-center text-lg text-neutral-600">
-            {t('coreValues.subtitle')}
-          </p>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
-              <TargetIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
-              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
-                {t('coreValues.qualityFirst.title')}
-              </h3>
-              <p className="leading-relaxed text-neutral-700">
-                {t('coreValues.qualityFirst.description')}
-              </p>
-            </div>
-
-            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
-              <UsersIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
-              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
-                {t('coreValues.customerFocus.title')}
-              </h3>
-              <p className="leading-relaxed text-neutral-700">
-                {t('coreValues.customerFocus.description')}
-              </p>
-            </div>
-
-            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl md:col-span-2">
-              <AwardIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
-              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
-                {t('coreValues.innovation.title')}
-              </h3>
-              <p className="leading-relaxed text-neutral-700">
-                {t('coreValues.innovation.description')}
-              </p>
-            </div>
-          </div>
-        </PageContainer>
-      </section>
-
       {/* Global Presence */}
       <GlobalPresence />
 
       {/* Location & Contact */}
-      <section className="bg-neutral-50 py-16">
-        <PageContainer size="prose">
-          <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
+      <section className="bg-neutral-50 py-14 lg:py-16">
+        <PageContainer size="narrow">
+          <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
+          <h2 className="mb-10 text-center text-3xl font-bold text-neutral-900">
             {t('location.title')}
           </h2>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Location */}
-            <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <MapPinIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+            <div className="duration-normal rounded-lg border border-neutral-200 border-t-4 border-t-accent-500 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:p-8">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary-50">
+                <MapPinIcon className="h-7 w-7 text-primary-600" />
+              </div>
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('location.locationCard.title')}
               </h3>
@@ -262,8 +219,10 @@ export default async function CompanyPage() {
             </div>
 
             {/* Contact */}
-            <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <PhoneIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+            <div className="duration-normal rounded-lg border border-neutral-200 border-t-4 border-t-accent-500 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:p-8">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary-50">
+                <PhoneIcon className="h-7 w-7 text-primary-600" />
+              </div>
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('location.contactCard.title')}
               </h3>
@@ -273,7 +232,7 @@ export default async function CompanyPage() {
                     {t('location.contactCard.phoneLabel')}
                   </p>
                   <a
-                    href="tel:+17158561203"
+                    href="tel:+16087354800"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
                   >
                     {t('location.contactCard.phone')}
@@ -284,8 +243,8 @@ export default async function CompanyPage() {
                     {t('location.contactCard.emailLabel')}
                   </p>
                   <a
-                    href="mailto:sales@bapihvac.com"
-                    className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
+                    href="mailto:customerservice@bapisensors.com"
+                    className="duration-normal block break-all text-base font-bold text-primary-600 transition-colors hover:text-primary-700"
                   >
                     {t('location.contactCard.email')}
                   </a>
@@ -304,41 +263,61 @@ export default async function CompanyPage() {
           <div className="mt-8 text-center">
             <Link
               href="/contact"
-              className="duration-normal inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-all hover:scale-105 hover:bg-accent-600 hover:shadow-lg focus-visible:ring-4 focus-visible:ring-accent-500/50"
+              className="btn-bapi-primary inline-flex items-center gap-2 rounded-lg px-7 py-3 font-bold focus-visible:ring-4 focus-visible:ring-primary-500/40"
             >
               {t('location.cta')}
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </PageContainer>
       </section>
 
       {/* Quick Links */}
-      <section className="py-12">
+      <section className="border-t border-neutral-200 py-12 lg:py-14">
         <PageContainer size="narrow">
-          <h3 className="mb-6 text-center text-2xl font-bold text-neutral-900">
+          <h3 className="mb-8 text-center text-2xl font-bold text-neutral-900">
             {t('quickLinks.title')}
           </h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Link
-              href="/company/why-bapi"
-              className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
+              href="/company/mission-values"
+              className="duration-normal group flex items-center justify-between gap-4 rounded-lg border border-neutral-200 border-l-4 border-l-accent-500 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
             >
-              <h4 className="font-bold text-neutral-900">{t('quickLinks.whyBapi.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.whyBapi.description')}</p>
+              <div>
+                <h4 className="font-bold text-neutral-900">{missionValuesT('hero.title')}</h4>
+                <p className="mt-1 text-sm text-neutral-700">{missionValuesT('hero.badge')}</p>
+              </div>
+              <ArrowRightIcon className="h-5 w-5 shrink-0 text-primary-600 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/company/why-bapi"
+              className="duration-normal group flex items-center justify-between gap-4 rounded-lg border border-neutral-200 border-l-4 border-l-accent-500 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
+            >
+              <div>
+                <h4 className="font-bold text-neutral-900">{t('quickLinks.whyBapi.title')}</h4>
+                <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.whyBapi.description')}</p>
+              </div>
+              <ArrowRightIcon className="h-5 w-5 shrink-0 text-primary-600 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/company/news"
-              className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
+              className="duration-normal group flex items-center justify-between gap-4 rounded-lg border border-neutral-200 border-l-4 border-l-accent-500 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
             >
-              <h4 className="font-bold text-neutral-900">{t('quickLinks.news.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.news.description')}</p>
+              <div>
+                <h4 className="font-bold text-neutral-900">{t('quickLinks.news.title')}</h4>
+                <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.news.description')}</p>
+              </div>
+              <ArrowRightIcon className="h-5 w-5 shrink-0 text-primary-600 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/company/careers"
-              className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
+              className="duration-normal group flex items-center justify-between gap-4 rounded-lg border border-neutral-200 border-l-4 border-l-accent-500 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
             >
-              <h4 className="font-bold text-neutral-900">{t('quickLinks.careers.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.careers.description')}</p>
+              <div>
+                <h4 className="font-bold text-neutral-900">{t('quickLinks.careers.title')}</h4>
+                <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.careers.description')}</p>
+              </div>
+              <ArrowRightIcon className="h-5 w-5 shrink-0 text-primary-600 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </PageContainer>

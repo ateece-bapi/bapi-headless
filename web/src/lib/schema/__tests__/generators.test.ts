@@ -45,6 +45,7 @@ describe('generateOrganizationSchema', () => {
   it('includes PostalAddress with required fields', () => {
     const schema = generateOrganizationSchema(SITE_URL);
     expect(schema.address?.['@type']).toBe('PostalAddress');
+    expect(schema.address?.streetAddress).toBe('750 North Royal Avenue');
     expect(schema.address?.addressLocality).toBe('Gays Mills');
     expect(schema.address?.addressRegion).toBe('WI');
     expect(schema.address?.addressCountry).toBe('US');
@@ -56,7 +57,8 @@ describe('generateOrganizationSchema', () => {
     expect(Array.isArray(schema.contactPoint)).toBe(true);
     expect(schema.contactPoint!.length).toBeGreaterThan(0);
     expect(schema.contactPoint![0]['@type']).toBe('ContactPoint');
-    expect(schema.contactPoint![0].telephone).toBeTruthy();
+    expect(schema.contactPoint![0].telephone).toBe('+1-608-735-4800');
+    expect(schema.contactPoint![0].email).toBe('customerservice@bapisensors.com');
   });
 
   it('includes LinkedIn in sameAs social links', () => {

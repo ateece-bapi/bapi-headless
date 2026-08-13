@@ -277,11 +277,11 @@
     "contact": {
       "title": "連絡先",
       "address": {
-        "street": "750 N Royal Ave",
+        "street": "750 North Royal Avenue",
         "city": "Gays Mills, WI 54631"
       },
       "phone": "(608) 735-4800",
-      "email": "sales@bapihvac.com"
+      "email": "customerservice@bapisensors.com"
     },
     "awards": {
       "title": "賞と認定",
@@ -1225,9 +1225,9 @@
         "contactCard": {
           "title": "お問い合わせ",
           "phoneLabel": "電話番号",
-          "phone": "(715) 856-1203",
+          "phone": "+1-608-735-4800",
           "emailLabel": "Eメール",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "hoursLabel": "営業時間",
           "hoursDays": "月曜日 - 金曜日",
           "hoursTime": "8:00 AM - 5:00 PM CST"
@@ -1500,12 +1500,12 @@
         },
         "email": {
           "title": "メール",
-          "details": "sales@bapihvac.com",
+          "details": "customerservice@bapisensors.com",
           "description": "通常 24 時間以内に返信いたします"
         },
         "visit": {
           "title": "訪問",
-          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "details": "750 North Royal Avenue, Gays Mills, WI 54631",
           "description": "アメリカ"
         }
       },
@@ -1515,17 +1515,17 @@
         "description": "ご要望に最適な部門をお選びいただき、適切な担当者がご対応させていただきます。",
         "sales": {
           "title": "営業",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "製品に関する問い合わせ、見積り、一般的な販売に関する質問"
         },
         "international": {
           "title": "国際営業",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "グローバル流通およびパートナーシップ"
         },
         "distribution": {
           "title": "流通",
-          "email": "sales@bapihvac.com",
+          "email": "customerservice@bapisensors.com",
           "description": "ディストリビューターの問い合わせおよびパートナーシップの機会"
         },
         "technical": {
@@ -1658,12 +1658,12 @@
       "phone": {
         "title": "電話サポート",
         "hours": "月曜日～金曜日、午前8時～午後5時 CST",
-        "number": "(715) 856-1203"
+        "number": "+1-608-735-4800"
       },
       "email": {
         "title": "メールサポート",
         "description": "技術的な質問とサポート",
-        "address": "sales@bapihvac.com"
+        "address": "bapitechsupport@bapisensors.com"
       },
       "cta": "サポートチームに連絡"
     }

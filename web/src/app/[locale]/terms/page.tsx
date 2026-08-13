@@ -57,9 +57,9 @@ export default function TermsPage() {
           <h2 className="mb-4 mt-8 text-2xl font-bold text-neutral-900">Contact Information</h2>
           <p className="text-neutral-700">Questions about these Terms should be sent to us at:</p>
           <p className="text-neutral-700">
-            Email: sales@bapihvac.com
+            Email: customerservice@bapisensors.com
             <br />
-            Phone: (715) 856-1203
+            Phone: +1-608-735-4800
             <br />
             Address: 750 North Royal Avenue, Gays Mills, WI 54631
           </p>

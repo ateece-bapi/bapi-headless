@@ -234,7 +234,7 @@ export default async function SupportPage() {
                 </h3>
                 <p className="mb-2 text-neutral-700">{t('contact.phone.hours')}</p>
                 <a
-                  href="tel:+17158561203"
+                  href="tel:+16087354800"
                   className="duration-normal text-2xl font-bold text-primary-500 transition-colors hover:text-primary-600"
                 >
                   {t('contact.phone.number')}
@@ -248,7 +248,7 @@ export default async function SupportPage() {
                 </h3>
                 <p className="mb-2 text-neutral-700">{t('contact.email.description')}</p>
                 <a
-                  href="mailto:sales@bapihvac.com"
+                  href="mailto:bapitechsupport@bapisensors.com"
                   className="duration-normal text-lg font-semibold text-primary-500 transition-colors hover:text-primary-600"
                 >
                   {t('contact.email.address')}

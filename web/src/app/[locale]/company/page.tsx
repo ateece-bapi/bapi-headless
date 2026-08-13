@@ -158,7 +158,7 @@ export default async function CompanyPage() {
         <PageContainer size="prose">
           <div className="mb-10 text-center">
             <p className="mb-3 text-sm font-bold tracking-wide text-primary-600 uppercase">
-              {differenceT('hero.badge')}
+              {differenceT('qualitySection.badge')}
             </p>
             <h2 className="mb-4 text-4xl font-bold text-neutral-900">
               {differenceT('qualitySection.title')}
@@ -179,7 +179,7 @@ export default async function CompanyPage() {
             ).map((messageKey) => (
               <div
                 key={messageKey}
-                className="flex items-center gap-4 border-b border-neutral-300 px-4 py-5 last:border-b-0 md:odd:border-r md:nth-last-2:border-b-0"
+                className="flex items-center gap-4 border-b border-neutral-300 px-4 py-5 last:border-b-0 md:odd:border-r md:[&:nth-last-child(-n+2)]:border-b-0"
               >
                 <CheckCircleIcon className="h-7 w-7 shrink-0 text-primary-600" />
                 <h3 className="text-lg font-bold text-neutral-900">

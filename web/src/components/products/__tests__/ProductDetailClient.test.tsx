@@ -198,6 +198,20 @@ describe('ProductDetailClient', () => {
       expect(screen.queryByLabelText(/Color/i)).not.toBeInTheDocument();
     });
 
+    it('does not show out-of-stock messaging for call-to-order products', () => {
+      const callToOrderProduct = {
+        ...baseProduct,
+        price: '',
+        stockStatus: 'OUT_OF_STOCK',
+        variations: [],
+      };
+
+      renderProductDetail(callToOrderProduct);
+
+      expect(screen.getByText('Please contact us for pricing information')).toBeInTheDocument();
+      expect(screen.queryByText(/out of stock/i)).not.toBeInTheDocument();
+    });
+
     it('shows fallback UI for invalid attribute selection', async () => {
       renderProductDetail();
       // ProductGallery shows all images (main + variation images)

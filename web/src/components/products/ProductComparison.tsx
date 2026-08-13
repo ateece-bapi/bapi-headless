@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
-import { XIcon, PackageIcon, DollarSignIcon, CheckCircleIcon, XCircleIcon } from '@/lib/icons';
+import { XIcon, PackageIcon, DollarSignIcon, CheckCircleIcon, AlertCircleIcon } from '@/lib/icons';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { useRegion } from '@/store/regionStore';
@@ -200,8 +200,8 @@ export default function ProductComparison({
                           </>
                         ) : (
                           <>
-                            <XCircleIcon className="h-4 w-4" />
-                            Out of Stock
+                            <AlertCircleIcon className="h-4 w-4" />
+                            Check Availability
                           </>
                         )}
                       </span>

@@ -54,9 +54,9 @@ export default function PrivacyPage() {
             If you have questions about this Privacy Policy, please contact us at:
           </p>
           <p className="text-neutral-700">
-            Email: sales@bapihvac.com
+            Email: customerservice@bapisensors.com
             <br />
-            Phone: (715) 856-1203
+            Phone: +1-608-735-4800
             <br />
             Address: 750 North Royal Avenue, Gays Mills, WI 54631
           </p>

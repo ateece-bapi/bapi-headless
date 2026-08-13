@@ -145,19 +145,19 @@ export default function CompanyPage() {
                 <div>
                   <p className="mb-1 text-sm text-neutral-700">Phone</p>
                   <a
-                    href="tel:+17158561203"
+                    href="tel:+16087354800"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
                   >
-                    (715) 856-1203
+                    +1-608-735-4800
                   </a>
                 </div>
                 <div>
                   <p className="mb-1 text-sm text-neutral-700">Email</p>
                   <a
-                    href="mailto:sales@bapihvac.com"
+                    href="mailto:customerservice@bapisensors.com"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
                   >
-                    sales@bapihvac.com
+                    customerservice@bapisensors.com
                   </a>
                 </div>
                 <div>

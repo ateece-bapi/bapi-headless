@@ -262,10 +262,10 @@ export default function RequestQuotePage() {
           <p className="mb-4 text-neutral-700">
             Call our sales team directly at{' '}
             <a
-              href="tel:+17158561203"
+              href="tel:+16087354800"
               className="font-bold text-primary-500 hover:text-primary-600"
             >
-              (715) 856-1203
+              +1-608-735-4800
             </a>
           </p>
           <p className="text-sm text-neutral-700">Monday - Friday, 8am - 5pm CST</p>

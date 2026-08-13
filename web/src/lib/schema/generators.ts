@@ -38,9 +38,9 @@ export function generateOrganizationSchema(siteUrl: string): SchemaOrganization 
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+1-715-538-2424',
+        telephone: '+1-608-735-4800',
         contactType: 'Customer Service',
-        email: 'sales@bapihvac.com',
+        email: 'customerservice@bapisensors.com',
         areaServed: 'US',
         availableLanguage: ['en', 'es'],
       },

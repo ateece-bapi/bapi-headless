@@ -85,7 +85,7 @@ export default async function WebinarsPage({ params }: Props) {
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('stayUpdated.heading')}</h2>
           <p className="mb-6 text-neutral-700">{t('stayUpdated.description')}</p>
           <a
-            href="mailto:sales@bapihvac.com"
+            href="mailto:customerservice@bapisensors.com"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
             {t('stayUpdated.button')}

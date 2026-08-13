@@ -53,10 +53,10 @@ export default async function ContactSupportPage({ params }: Props) {
                 <span>{t('phone.hours')}</span>
               </div>
               <a
-                href="tel:+17158561203"
+                href="tel:+16087354800"
                 className="text-2xl font-bold text-primary-500 hover:text-primary-600"
               >
-                (715) 856-1203
+                +1-608-735-4800
               </a>
             </div>
 
@@ -66,10 +66,10 @@ export default async function ContactSupportPage({ params }: Props) {
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('email.title')}</h2>
               <p className="mb-4 text-neutral-700">{t('email.description')}</p>
               <a
-                href="mailto:sales@bapihvac.com"
+                href="mailto:bapitechsupport@bapisensors.com"
                 className="text-xl font-bold text-primary-500 hover:text-primary-600"
               >
-                sales@bapihvac.com
+                bapitechsupport@bapisensors.com
               </a>
             </div>
           </div>

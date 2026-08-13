@@ -93,11 +93,18 @@ export default async function MissionValuesPage() {
         }
       />
 
+      {/* Legacy Company Introduction */}
+      {t.has('introduction') && (
+        <section className="mx-auto max-w-5xl px-4 pt-12 sm:px-6 lg:px-8">
+          <p className="text-lg leading-relaxed text-gray-700">{t('introduction')}</p>
+        </section>
+      )}
+
       {/* Mission & Vision Cards */}
-      <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+      <section className="relative mx-auto max-w-7xl px-4 pt-12 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Mission Card */}
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
+          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 border-t-4 border-t-accent-500 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <div className="bg-linear-to-br absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full from-primary-50 to-transparent" />
 
             <div className="relative">
@@ -112,7 +119,7 @@ export default async function MissionValuesPage() {
           </div>
 
           {/* Vision Card */}
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
+          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 border-t-4 border-t-accent-500 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <div className="bg-linear-to-br absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full from-primary-50 to-transparent" />
 
             <div className="relative">
@@ -129,6 +136,7 @@ export default async function MissionValuesPage() {
 
         {/* Core Values Section */}
         <div className="mb-16 text-center">
+          <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
           <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">
             {t('coreValuesSection.title')}
           </h2>
@@ -140,17 +148,17 @@ export default async function MissionValuesPage() {
         {/* Values Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
+            { key: 'employees', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
             { key: 'quality', icon: UsersIcon, gradient: 'from-primary-600 to-primary-700' },
             { key: 'innovation', icon: AwardIcon, gradient: 'from-primary-600 to-primary-400' },
             { key: 'partnership', icon: LightbulbIcon, gradient: 'from-primary-700 to-primary-500' },
             { key: 'integrity', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'employees', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
           ].map((value, index) => {
             const Icon = value.icon;
             return (
               <div
                 key={value.key}
-                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-transparent hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 border-t-4 border-t-accent-500 bg-white p-8 shadow-sm transition-all duration-500 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
                 {/* Gradient background on hover */}
@@ -186,7 +194,7 @@ export default async function MissionValuesPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-linear-to-br relative mt-20 overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-bapi-primary-gradient relative mt-20 overflow-hidden rounded-2xl border-t-4 border-accent-500 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">

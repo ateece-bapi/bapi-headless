@@ -157,17 +157,10 @@ async function notifyTeam(handoff: HandoffRequest, testRecipient?: string): Prom
 /**
  * Gets appropriate team email based on topic
  */
-function getTeamEmail(topic: string): string {
-  switch (topic) {
-    case 'technical':
-      return 'support@bapihvac.com';
-    case 'sales':
-      return 'sales@bapihvac.com';
-    case 'quote':
-      return 'sales@bapihvac.com';
-    default:
-      return 'info@bapihvac.com';
-  }
+function getTeamEmail(topic: HandoffRequest['topic']): string {
+  return topic === 'technical'
+    ? 'bapitechsupport@bapisensors.com'
+    : 'customerservice@bapisensors.com';
 }
 
 /**

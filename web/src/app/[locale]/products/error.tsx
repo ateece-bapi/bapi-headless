@@ -79,8 +79,8 @@ export default function ProductsErrorBoundary({
               (608) 735-4800
             </a>{' '}
             or{' '}
-            <a href="mailto:sales@bapihvac.com" className="underline hover:text-primary-800">
-              sales@bapihvac.com
+            <a href="mailto:customerservice@bapisensors.com" className="underline hover:text-primary-800">
+              customerservice@bapisensors.com
             </a>
           </p>
         </div>

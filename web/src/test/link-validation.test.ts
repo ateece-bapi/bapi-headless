@@ -128,7 +128,7 @@ describe('Link Validation', () => {
 
   describe('Contact Link Patterns', () => {
     it('should validate mailto link format', () => {
-      const validMailto = 'mailto:sales@bapihvac.com';
+      const validMailto = 'mailto:customerservice@bapisensors.com';
       const invalidMailto = 'mailto:';
       
       expect(validMailto).toMatch(/^mailto:.+@.+\..+/);
@@ -136,8 +136,8 @@ describe('Link Validation', () => {
     });
 
     it('should validate tel link format', () => {
-      const validTel = 'tel:+17158561203';
-      const validTelWithDashes = 'tel:+1-715-856-1203';
+      const validTel = 'tel:+16087354800';
+      const validTelWithDashes = 'tel:+1-608-735-4800';
       const invalidTel = 'tel:';
       
       expect(validTel).toMatch(/^tel:\+?\d/);

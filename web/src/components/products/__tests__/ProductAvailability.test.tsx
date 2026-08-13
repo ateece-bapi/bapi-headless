@@ -81,14 +81,15 @@ describe('ProductAvailability Component', () => {
   });
 
   describe('Out of Stock Status', () => {
-    it('renders out of stock badge', () => {
+    it('renders check availability badge', () => {
       render(<ProductAvailability stockStatus="outofstock" />);
-      expect(screen.getByText('Out of Stock')).toBeInTheDocument();
+      expect(screen.getByText('Check Availability')).toBeInTheDocument();
+      expect(screen.queryByText('Out of Stock')).not.toBeInTheDocument();
     });
 
-    it('shows currently unavailable message', () => {
+    it('shows contact availability message', () => {
       render(<ProductAvailability stockStatus="outofstock" />);
-      expect(screen.getByText('Currently unavailable')).toBeInTheDocument();
+      expect(screen.getByText('Contact us for availability')).toBeInTheDocument();
     });
 
     it('displays error icon for out of stock', () => {
@@ -108,9 +109,9 @@ describe('ProductAvailability Component', () => {
       expect(dateText.textContent).toMatch(/Expected back: \d{1,2}\/\d{1,2}\/\d{4}/);
     });
 
-    it('applies error styling colors', () => {
+    it('applies neutral styling colors', () => {
       const { container } = render(<ProductAvailability stockStatus="outofstock" />);
-      const badge = container.querySelector('.bg-error-50');
+      const badge = container.querySelector('.bg-neutral-50');
       expect(badge).toBeInTheDocument();
     });
   });
@@ -294,7 +295,7 @@ describe('ProductAvailability Component', () => {
       expect(screen.getByText('In Stock')).toBeInTheDocument();
 
       rerender(<ProductAvailability stockStatus="outofstock" stockQuantity={0} />);
-      expect(screen.getByText('Out of Stock')).toBeInTheDocument();
+      expect(screen.getByText('Check Availability')).toBeInTheDocument();
     });
 
     it('handles all status transitions', () => {
@@ -305,7 +306,7 @@ describe('ProductAvailability Component', () => {
       expect(screen.getByText('On Backorder')).toBeInTheDocument();
 
       rerender(<ProductAvailability stockStatus="outofstock" />);
-      expect(screen.getByText('Out of Stock')).toBeInTheDocument();
+      expect(screen.getByText('Check Availability')).toBeInTheDocument();
     });
   });
 });

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CheckCircleIcon, AlertCircleIcon, XCircleIcon, ClockIcon } from '@/lib/icons';
+import { CheckCircleIcon, AlertCircleIcon, ClockIcon } from '@/lib/icons';
 
 interface ProductAvailabilityProps {
   /** WooCommerce stock status */
@@ -78,15 +78,15 @@ export default function ProductAvailability({
 
       case 'outofstock':
         return {
-          icon: XCircleIcon,
-          label: 'Out of Stock',
-          color: 'error',
+          icon: AlertCircleIcon,
+          label: 'Check Availability',
+          color: 'neutral',
           message: restockDate
             ? `Expected back: ${new Date(restockDate).toLocaleDateString()}`
-            : 'Currently unavailable',
-          bgColor: 'bg-error-50',
-          textColor: 'text-error-700',
-          iconColor: 'text-error-600',
+            : 'Contact us for availability',
+          bgColor: 'bg-neutral-50',
+          textColor: 'text-neutral-700',
+          iconColor: 'text-neutral-700',
         };
 
       case 'onbackorder':

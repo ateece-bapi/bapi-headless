@@ -146,12 +146,12 @@ export default function ProductComponentsTestPage() {
               />
             </div>
 
-            {/* Out of stock */}
+            {/* Availability check */}
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-neutral-900">Out of Stock</h3>
+              <h3 className="mb-4 text-lg font-semibold text-neutral-900">Check Availability</h3>
               <QuantitySelector
                 initialQuantity={0}
-                onChange={(q) => console.log('Out of stock quantity:', q)}
+                onChange={(q) => console.log('Unavailable quantity:', q)}
                 stockStatus="outofstock"
               />
             </div>

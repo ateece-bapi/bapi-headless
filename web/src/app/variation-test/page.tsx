@@ -356,7 +356,7 @@ export default function ProductVariationTestPage() {
                           ? `${variation.stockQuantity} in stock`
                           : variation.stockStatus === 'ON_BACKORDER'
                             ? 'Backorder'
-                            : 'Out of Stock'}
+                            : 'Check Availability'}
                       </span>
                     </td>
                   </tr>

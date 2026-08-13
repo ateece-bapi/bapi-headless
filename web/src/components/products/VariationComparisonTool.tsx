@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon, GitCompareIcon, CheckIcon, XIcon } from '@/lib/icons';
+import { ChevronDownIcon, ChevronUpIcon, GitCompareIcon, CheckIcon, AlertCircleIcon } from '@/lib/icons';
 
 interface ProductVariation {
   id: string;
@@ -250,11 +250,11 @@ export default function VariationComparisonTool({
                         >
                           <span
                             className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold ${
-                              inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                              inStock ? 'bg-green-100 text-green-800' : 'bg-neutral-100 text-neutral-700'
                             }`}
                           >
-                            {inStock ? <CheckIcon className="h-3 w-3" /> : <XIcon className="h-3 w-3" />}
-                            {inStock ? 'In Stock' : 'Out of Stock'}
+                            {inStock ? <CheckIcon className="h-3 w-3" /> : <AlertCircleIcon className="h-3 w-3" />}
+                            {inStock ? 'In Stock' : 'Check Availability'}
                           </span>
                         </td>
                       );

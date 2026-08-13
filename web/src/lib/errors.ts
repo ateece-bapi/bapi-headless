@@ -50,8 +50,8 @@ export const ERROR_MESSAGES = {
     message: "We couldn't update your cart. Please try again.",
   },
   OUT_OF_STOCK: {
-    title: 'Out of Stock',
-    message: 'This product is currently out of stock. Please check back later.',
+    title: 'Check Availability',
+    message: 'Please contact us to confirm product availability.',
   },
 
   // Form errors

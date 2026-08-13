@@ -185,10 +185,6 @@ export default function ProductDetailClient({
                   </div>
                 )}
               </div>
-              
-              {product.stockStatus !== 'IN_STOCK' && (
-                <p className="mt-4 text-sm text-red-600">{tSummary('outOfStockMessage')}</p>
-              )}
             </div>
           )}
 

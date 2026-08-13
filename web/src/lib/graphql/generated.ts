@@ -39637,6 +39637,14 @@ export enum __TypeKind {
   NonNull = 'NON_NULL'
 }
 
+export type ChatDocumentationSearchQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ChatDocumentationSearchQuery = { __typename?: 'RootQuery', applicationNotes?: { __typename?: 'RootQueryToApplicationNoteConnection', nodes: Array<{ __typename?: 'ApplicationNote', id: string, title?: string | null | undefined, slug?: string | null | undefined, excerpt?: string | null | undefined, content?: string | null | undefined }> } | null | undefined, pages?: { __typename?: 'RootQueryToPageConnection', nodes: Array<{ __typename?: 'Page', id: string, title?: string | null | undefined, uri?: string | null | undefined, content?: string | null | undefined }> } | null | undefined, mediaItems?: { __typename?: 'RootQueryToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, title?: string | null | undefined, description?: string | null | undefined, caption?: string | null | undefined, mediaItemUrl?: string | null | undefined }> } | null | undefined };
+
 export type ChatProductSearchQueryVariables = Exact<{
   search: Scalars['String']['input'];
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -39646,12 +39654,12 @@ export type ChatProductSearchQueryVariables = Exact<{
 export type ChatProductSearchQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
       | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
       | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, price?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, sku?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+      | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, sku?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
             | { __typename?: 'LocalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
           > } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
       | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-      | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+      | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
             | { __typename?: 'LocalProductAttribute', name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
           > } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
@@ -40037,6 +40045,7 @@ export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplicatio
 
 export type GetProductsWithFiltersQueryVariables = Exact<{
   categorySlug: Scalars['String']['input'];
+  productSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -40184,9 +40193,42 @@ export type SearchProductsByVariationSkuPrefixQuery = { __typename?: 'RootQuery'
    | null | undefined> | null | undefined };
 
 
+export const ChatDocumentationSearchDocument = gql`
+    query ChatDocumentationSearch($search: String!, $first: Int = 5) {
+  applicationNotes(first: $first, where: {search: $search, status: PUBLISH}) {
+    nodes {
+      id
+      title
+      slug
+      excerpt
+      content
+    }
+  }
+  pages(first: $first, where: {search: $search, status: PUBLISH}) {
+    nodes {
+      id
+      title
+      uri
+      content
+    }
+  }
+  mediaItems(
+    first: $first
+    where: {search: $search, mimeType: APPLICATION_PDF, status: INHERIT}
+  ) {
+    nodes {
+      id
+      title
+      description
+      caption
+      mediaItemUrl
+    }
+  }
+}
+    `;
 export const ChatProductSearchDocument = gql`
     query ChatProductSearch($search: String!, $first: Int = 5) {
-  products(where: {search: $search}, first: $first) {
+  products(where: {search: $search, visibility: VISIBLE}, first: $first) {
     nodes {
       id
       databaseId
@@ -40206,6 +40248,9 @@ export const ChatProductSearchDocument = gql`
         regularPrice
         sku
         stockStatus
+        customerGroup1
+        customerGroup2
+        customerGroup3
         attributes {
           nodes {
             name
@@ -40223,6 +40268,9 @@ export const ChatProductSearchDocument = gql`
         price
         regularPrice
         stockStatus
+        customerGroup1
+        customerGroup2
+        customerGroup3
         attributes {
           nodes {
             name
@@ -42010,8 +42058,12 @@ export const GetProductAttributesDocument = gql`
 }
     `;
 export const GetProductsWithFiltersDocument = gql`
-    query GetProductsWithFilters($categorySlug: String!, $first: Int = 24, $after: String) {
-  products(where: {category: $categorySlug}, first: $first, after: $after) {
+    query GetProductsWithFilters($categorySlug: String!, $productSlugs: [String], $first: Int = 24, $after: String) {
+  products(
+    where: {category: $categorySlug, slugIn: $productSlugs}
+    first: $first
+    after: $after
+  ) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -42837,6 +42889,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    ChatDocumentationSearch(variables: ChatDocumentationSearchQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChatDocumentationSearchQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ChatDocumentationSearchQuery>({ document: ChatDocumentationSearchDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ChatDocumentationSearch', 'query', variables);
+    },
     ChatProductSearch(variables: ChatProductSearchQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChatProductSearchQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ChatProductSearchQuery>({ document: ChatProductSearchDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ChatProductSearch', 'query', variables);
     },

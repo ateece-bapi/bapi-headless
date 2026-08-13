@@ -22,6 +22,7 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
+import { getProductCategorySupplement } from '@/lib/productCategorySupplements';
 
 // ISR configuration - revalidate category pages every hour
 // Critical for performance: reduces GraphQL query latency on cached pages
@@ -128,13 +129,31 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   // For wireless receivers, combine both receivers AND output modules
   const isCombinedWirelessCategory = subcategory === 'wireless-receivers-bluetooth-wireless';
-  const categoriesToFetch = isCombinedWirelessCategory
-    ? ['wireless-receivers-bluetooth-wireless', 'wireless-output-modules-bluetooth-wireless']
-    : [subcategory];
+  const categorySupplement = getProductCategorySupplement(subcategory);
+  const categoriesToFetch: Array<{
+    slug: string;
+    allowedProductSlugs?: readonly string[];
+  }> = isCombinedWirelessCategory
+    ? [
+        { slug: 'wireless-receivers-bluetooth-wireless' },
+        { slug: 'wireless-output-modules-bluetooth-wireless' },
+      ]
+    : [
+        { slug: subcategory },
+        ...(categorySupplement
+          ? [
+              {
+                slug: categorySupplement.sourceCategorySlug,
+                allowedProductSlugs: categorySupplement.productSlugs,
+              },
+            ]
+          : []),
+      ];
+  const productIds = new Set<string>();
 
   // Middle-level categories are navigation hubs; leaf categories own product listings.
   if (!hasSubSubcategories || isCombinedWirelessCategory) {
-    for (const categorySlug of categoriesToFetch) {
+    for (const categoryToFetch of categoriesToFetch) {
       let after: string | null = null;
       let hasNextPage = true;
 
@@ -142,14 +161,27 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
         const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
           GetProductsWithFiltersDocument,
           {
-            categorySlug: categorySlug,
+            categorySlug: categoryToFetch.slug,
+            productSlugs: categoryToFetch.allowedProductSlugs,
             first: 24, // WooCommerce standard, safe with WP_MAX_MEMORY_LIMIT=512M
             after: after || undefined,
           }
         );
 
         const pageNodes = productsData.products?.nodes || [];
-        products.push(...pageNodes);
+        const matchingNodes = categoryToFetch.allowedProductSlugs
+          ? pageNodes.filter(
+              (product) =>
+                product.slug && categoryToFetch.allowedProductSlugs?.includes(product.slug)
+            )
+          : pageNodes;
+
+        for (const product of matchingNodes) {
+          if (!productIds.has(product.id)) {
+            products.push(product);
+            productIds.add(product.id);
+          }
+        }
 
         hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
         after = productsData.products?.pageInfo?.endCursor ?? null;

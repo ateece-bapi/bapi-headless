@@ -68,6 +68,27 @@ Improved the customer-facing chatbot's response reliability, catalog accuracy, t
 
 ---
 
+## August 13, 2026 — Blü-View Feature Card CTAs & Blü-Test Gradient Fix
+
+**Status:** ✅ PR merged — fix/blu-view-feature-card-buttons
+
+### What Was Done
+
+#### Blü-View landing page (`/en/blu-view`)
+- Converted the 6 feature card "Learn More" links (Blü-Test, WAM, BLE Scanner, BAPI Website, Tools, Settings) from plain text links to `btn-bapi-primary` BAPI gradient buttons
+- Applied standard sizing: `rounded-lg px-5 py-2.5 text-sm` with `focus-visible` ring
+
+#### Blü-Test landing page (`/en/blu-test`)
+- Hero banner: replaced `bg-primary-700` (flat color) with `bg-bapi-primary-gradient`
+- CTA section: replaced ad-hoc `bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500` with `bg-bapi-primary-gradient`
+- Both sections now use the canonical `--gradient-primary` token from `globals.css`
+
+### Files Changed
+- `web/src/app/[locale]/blu-view/page.tsx`
+- `web/src/app/[locale]/blu-test/page.tsx`
+
+---
+
 ## August 11, 2026 — Product Overview Header Alignment
 
 **Status:** ✅ PR #665 merged — fix/center-overview-pages

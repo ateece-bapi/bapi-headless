@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { DownloadIcon, FileTextIcon, MailIcon } from '@/lib/icons';
 import PageHeader from '@/components/layout/PageHeader';
 

@@ -1,208 +1,132 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import NextLink from 'next/link';
 import { Link } from '@/lib/navigation';
-import { DownloadIcon, FileTextIcon, PrinterIcon, MailIcon } from '@/lib/icons';
+import { DownloadIcon, FileTextIcon, MailIcon } from '@/lib/icons';
 import PageHeader from '@/components/layout/PageHeader';
 
+const wordpressGraphqlUrl =
+  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL ??
+  'https://bapiheadlessstaging.kinsta.cloud/graphql';
+const wordpressUrl = wordpressGraphqlUrl.replace(/\/graphql\/?$/, '');
+const CATALOG_URL = `${wordpressUrl}/wp-content/uploads/BAPI_Catalog_2026_Full_Web.pdf`;
+const CATALOG_COVER_URL = `${wordpressUrl}/wp-content/uploads/BAPI_Catalog_2026_Full_Web-pdf.jpg`;
+
 export const metadata: Metadata = {
-  title: 'Catalog & Price Book',
+  title: '2026 Product Catalog',
   description:
-    'Download the latest BAPI product catalog and price book for building automation sensors and controls.',
+    'View and download the 2026 BAPI product catalog for building automation sensors and controls.',
 };
 
+/** Displays the current BAPI product catalog and related sales resources. */
 export default function CatalogPricebookPage() {
   return (
     <div className="min-h-screen bg-white">
       <PageHeader
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Catalog & Price Book' }]}
-        title="Catalog & Price Book"
-        description="Download our complete product catalog and current pricing"
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Product Catalog' }]}
+        title="2026 Product Catalog"
+        description="Explore BAPI sensors, controls, accessories, specifications, and ordering information."
+        spacing="compact"
       />
 
-      {/* Download Options */}
-      <section className="py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {/* Product Catalog */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
-              <div className="mb-6 flex items-start gap-4">
-                <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                  <FileTextIcon className="h-10 w-10 text-primary-500" />
-                </div>
-                <div>
-                  <h2 className="mb-2 text-2xl font-bold text-neutral-900">Product Catalog 2026</h2>
-                  <p className="text-neutral-700">
-                    Complete catalog featuring all BAPI sensors, controls, and accessories with
-                    technical specifications, dimensions, and ordering information.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-6 space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Version:</span>
-                  <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Pages:</span>
-                  <span className="font-semibold text-neutral-900">124 pages</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">File Size:</span>
-                  <span className="font-semibold text-neutral-900">8.5 MB</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Format:</span>
-                  <span className="font-semibold text-neutral-900">PDF</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <DownloadIcon className="h-5 w-5" />
-                  Download Catalog (PDF)
-                </button>
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
-                  <PrinterIcon className="h-5 w-5" />
-                  Request Printed Copy
-                </button>
-              </div>
-            </div>
-
-            {/* Price Book */}
-            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
-              <div className="mb-6 flex items-start gap-4">
-                <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                  <FileTextIcon className="h-10 w-10 text-primary-500" />
-                </div>
-                <div>
-                  <h2 className="mb-2 text-2xl font-bold text-neutral-900">Price Book 2026</h2>
-                  <p className="text-neutral-700">
-                    Current list pricing for all BAPI products. Contact your sales representative
-                    for volume discounts and project pricing.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-6 space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Version:</span>
-                  <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Pages:</span>
-                  <span className="font-semibold text-neutral-900">32 pages</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">File Size:</span>
-                  <span className="font-semibold text-neutral-900">2.1 MB</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-700">Format:</span>
-                  <span className="font-semibold text-neutral-900">PDF</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <DownloadIcon className="h-5 w-5" />
-                  Download Price Book (PDF)
-                </button>
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
-                  <MailIcon className="h-5 w-5" />
-                  Request Quote
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Resources */}
-      <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-center text-2xl font-bold text-neutral-900">
-            Additional Resources
-          </h2>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-neutral-200 bg-white p-6">
-              <h3 className="mb-2 font-bold text-neutral-900">Product Selection Guide</h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Quick reference guide to help you select the right sensors for your application.
-              </p>
-              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
-                Download PDF →
-              </button>
-            </div>
-
-            <div className="rounded-xl border border-neutral-200 bg-white p-6">
-              <h3 className="mb-2 font-bold text-neutral-900">Technical Specifications</h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Detailed technical specs for all BAPI sensors and controls.
-              </p>
-              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
-                View Specs →
-              </button>
-            </div>
-
-            <div className="rounded-xl border border-neutral-200 bg-white p-6">
-              <h3 className="mb-2 font-bold text-neutral-900">Installation Guides</h3>
-              <p className="mb-4 text-sm text-neutral-700">
-                Step-by-step installation instructions for BAPI products.
-              </p>
-              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
-                View Guides →
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-12">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl bg-primary-50 p-8 text-center">
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-              Need Help Finding the Right Products?
-            </h2>
-            <p className="mb-6 text-neutral-700">
-              Our technical sales team can help you select the best sensors for your project
+      <section className="py-10 sm:py-12 lg:py-14">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 md:grid-cols-[minmax(18rem,26rem)_minmax(0,1fr)] md:items-center lg:gap-16 lg:px-8">
+          <div className="order-2 mx-auto w-full max-w-sm md:order-1 md:max-w-none">
+            <a
+              href={CATALOG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the 2026 BAPI product catalog PDF"
+              className="group block border border-neutral-200 bg-neutral-100 p-3 shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+            >
+              <Image
+                src={CATALOG_COVER_URL}
+                alt="Cover of the 2026 BAPI full product catalog"
+                width={1088}
+                height={1408}
+                priority
+                quality={85}
+                sizes="(min-width: 768px) 416px, calc(100vw - 56px)"
+                className="h-auto w-full transition-opacity group-hover:opacity-90"
+              />
+            </a>
+            <p className="mt-3 text-center text-sm text-neutral-600">
+              Select the cover to open the full catalog.
             </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          </div>
+
+          <div className="order-1 mx-auto w-full max-w-xl md:order-2">
+            <p className="mb-3 text-sm font-bold uppercase tracking-wide text-primary-600">
+              Latest edition
+            </p>
+            <h2 className="text-3xl font-bold text-neutral-900">BAPI Product Catalog 2026</h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-700">
+              Browse BAPI&apos;s complete product lineup, including temperature, humidity, air
+              quality, pressure, wireless, and accessory solutions.
+            </p>
+
+            <dl className="my-8 divide-y divide-neutral-200 border-y border-neutral-200">
+              <div className="flex justify-between gap-6 py-4">
+                <dt className="text-neutral-700">Edition</dt>
+                <dd className="font-semibold text-neutral-900">2026</dd>
+              </div>
+              <div className="flex justify-between gap-6 py-4">
+                <dt className="text-neutral-700">Format</dt>
+                <dd className="font-semibold text-neutral-900">PDF, 30.6 MB</dd>
+              </div>
+            </dl>
+
+            <div className="space-y-3">
+              <NextLink
+                href="/api/catalog/download"
+                prefetch={false}
+                className="flex w-full items-center justify-center gap-2 bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+              >
+                <DownloadIcon className="h-5 w-5" aria-hidden="true" />
+                Download 2026 Catalog
+              </NextLink>
               <a
-                href="tel:+16087354800"
-                className="inline-block rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
+                href={CATALOG_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 border-2 border-primary-500 px-6 py-3 font-bold text-primary-600 transition-colors hover:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
               >
-                Call +1-608-735-4800
+                <FileTextIcon className="h-5 w-5" aria-hidden="true" />
+                Open Catalog in New Tab
               </a>
+            </div>
+
+            <div className="mt-8 border-l-4 border-accent-500 bg-neutral-50 p-5">
+              <h3 className="font-bold text-neutral-900">Need pricing or a printed catalog?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-700">
+                Pricing is available from your BAPI sales representative. Contact our team for a
+                quote or to request a printed copy.
+              </p>
               <Link
-                href="/request-quote"
-                className="inline-block rounded-xl border-2 border-primary-500 px-6 py-3 font-bold text-primary-500 transition-colors hover:bg-primary-50"
+                href="/contact"
+                className="mt-4 inline-flex items-center gap-2 font-bold text-primary-600 hover:text-primary-700"
               >
-                Request a Quote
+                <MailIcon className="h-5 w-5" aria-hidden="true" />
+                Contact Sales
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="bg-neutral-50 py-12">
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h3 className="mb-3 text-xl font-bold text-neutral-900">Stay Updated</h3>
-          <p className="mb-6 text-neutral-700">
-            Get notified when we release new catalog versions and pricing updates
+          <h2 className="text-2xl font-bold text-neutral-900">Looking for product documents?</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-neutral-700">
+            Search installation instructions, technical drawings, and operation manuals in the
+            documentation library.
           </p>
-          <div className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 rounded-lg border border-neutral-300 px-4 py-3 focus:ring-2 focus:ring-primary-500"
-            />
-            <button className="whitespace-nowrap rounded-lg bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600">
-              Subscribe
-            </button>
-          </div>
+          <Link
+            href="/resources/datasheets"
+            className="mt-6 inline-flex items-center gap-2 bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"
+          >
+            Browse Product Documents
+          </Link>
         </div>
       </section>
     </div>

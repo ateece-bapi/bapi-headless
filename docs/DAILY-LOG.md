@@ -2,9 +2,52 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 13, 2026
-**Status:** Phase 1 Complete - Live in Production (74 days post-launch)
+**Updated:** August 14, 2026
+**Status:** Phase 1 Complete - Live in Production (75 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 14, 2026 — 2026 Product Catalog Download & Layout
+
+**Status:** ✅ PR #681 merged — fix/catalog-download-layout
+
+### What Was Done
+
+Replaced the nonfunctional Catalog & Price Book placeholder with a responsive, production-ready page for the newly uploaded 2026 BAPI Product Catalog.
+
+#### Catalog Content & Actions
+- Connected the page to `BAPI_Catalog_2026_Full_Web.pdf` and its WordPress-generated cover image
+- Replaced the oversized embedded PDF viewer with a bounded cover presentation and compact information/action column
+- Added working actions to download the catalog, open it in a new tab, contact Sales, and browse product documents
+- Removed the nonexistent price book, fabricated version/page metadata, dead buttons, newsletter form, and placeholder resource cards
+- Derived the WordPress asset origin from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` with the established staging fallback
+
+#### Routing & Download Reliability
+- Redirected the legacy nonlocalized `/catalogpricebook` route to `/en/catalogpricebook`
+- Preserved locale-aware navigation to the live Product Instructions & Manuals library
+- Added a fixed same-origin `/api/catalog/download` endpoint that streams the WordPress PDF with `Content-Disposition: attachment`
+- Added `noopener noreferrer` protection to catalog links that open in a new tab
+
+#### Responsive Layout
+- Used the WordPress-generated 1088×1408 catalog cover through Next.js image optimization
+- Kept the cover and primary download action together in the first desktop viewport
+- Prioritized catalog details and download actions before the cover on mobile
+- Confirmed the layout has no horizontal overflow at 1440px and 390px viewport widths
+
+### Validation
+- Confirmed the uploaded Kinsta PDF returns HTTP 200 as `application/pdf` and is 30,572,989 bytes
+- Confirmed the same-origin download endpoint returns the correct attachment filename, MIME type, and byte length
+- Verified `/catalogpricebook` redirects and `/en/catalogpricebook` renders successfully
+- Verified Product Documents resolves to `/en/resources/datasheets`, the live 267-document WordPress-backed library
+- Focused ESLint, editor diagnostics, `git diff --check`, and Playwright desktop/mobile checks passed
+- Addressed all four Copilot review comments before merge
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed
+- `web/src/app/[locale]/catalogpricebook/page.tsx`
+- `web/src/app/catalogpricebook/page.tsx`
+- `web/src/app/api/catalog/download/route.ts`
 
 ---
 
@@ -104,6 +147,80 @@ Improved the customer-facing chatbot's response reliability, catalog accuracy, t
 ### Files Changed
 - `web/messages/en.json`
 - `web/src/app/[locale]/company/page.tsx`
+
+---
+
+## August 13, 2026 — Temperature Wall Plates Category Products
+
+**Status:** ✅ PR #677 merged — fix/temp-wall-plates-products
+
+### What Was Done
+
+Fixed the Temperature > Room > Wall Plates category page, which incorrectly displayed "No products found in this category" instead of its two products.
+
+#### Root Cause
+- Confirmed both wall plate products were published and available through staging WPGraphQL
+- Found that the products were assigned to `temp-room` and `temperature-sensors`, but not directly to the `temp-wall-plates` leaf category
+- Confirmed the category page queried only direct WooCommerce category assignments, causing the empty result
+
+#### Category Compatibility Fix
+- Added a narrowly scoped supplemental product mapping for `temp-wall-plates`
+- Added the Wall Plate Temperature Sensor with Optional Override Pushbutton and Wall Plate Temperature Sensor with Rotary Setpoint by their published product slugs
+- Extended `GetProductsWithFilters` with an optional `slugIn` filter so the supplemental query retrieves only the two required products from `temp-room`
+- Merged direct and supplemental category results with GraphQL ID deduplication, preventing duplicate cards if the WordPress taxonomy is corrected later
+- Regenerated the GraphQL TypeScript types
+
+### Validation
+- Focused Vitest coverage passed: 2 tests
+- GraphQL code generation and focused ESLint completed with no new errors
+- Editor diagnostics and `git diff --check` passed
+- Verified the local route returned HTTP 200 and rendered both product names and links
+- Browser verification confirmed both cards, category filters based on two products, and "Showing 1 to 2 of 2 products"
+- Repository-wide TypeScript checking remains blocked by unrelated pre-existing test errors
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed
+- `web/src/app/[locale]/products/[category]/[subcategory]/page.tsx`
+- `web/src/lib/productCategorySupplements.ts`
+- `web/src/lib/__tests__/productCategorySupplements.test.ts`
+- `web/src/lib/graphql/queries/products.graphql`
+- `web/src/lib/graphql/generated.ts`
+
+---
+
+## August 13, 2026 — Call-to-Order Product Availability Messaging
+
+**Status:** ✅ PR #678 merged — fix/remove-out-of-stock-labels
+
+### What Was Done
+
+Removed customer-facing "Out of Stock" messaging across the product experience because it conflicted with the contact-for-pricing workflow used by call-to-order products.
+
+#### Root Cause & Product Detail Fix
+- Confirmed availability originates from the WooCommerce `stockStatus` field exposed through WPGraphQL
+- Identified that the simple product page treated every status other than `IN_STOCK` as out of stock, including no-price call-to-order products
+- Removed the unconditional out-of-stock paragraph from the product information panel
+- Preserved the existing "Please contact us for pricing information" message and Contact Us action
+
+#### Sitewide Availability Presentation
+- Replaced visible "Out of Stock" labels with neutral "Check Availability" messaging in product availability indicators, product comparison, and variation comparison
+- Replaced red error presentation with neutral styling and an availability icon
+- Updated shared fallback error copy and internal component test pages to use the same language
+- Preserved WooCommerce stock values, GraphQL enums, structured-data availability, quantity restrictions, and add-to-cart disabling
+
+#### Regression Coverage & Review
+- Added coverage proving an `OUT_OF_STOCK`, no-price simple product shows contact-for-pricing guidance without displaying out-of-stock messaging
+- Updated ProductAvailability assertions for the neutral label, contact message, icon, and styling
+- Addressed Copilot review feedback by renaming the icon test to match the neutral availability state
+
+### Validation
+- ProductDetailClient tests passed: 15 tests
+- ProductAvailability tests passed: 48 tests
+- Full CI suite passed: 2,457 tests across 99 test files, with 16 existing skipped tests
+- Focused ESLint completed with zero errors
+- Production Next.js build passed; existing unrelated missing location-translation warnings remain non-fatal
+- `git diff --check` passed
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
 
 ---
 

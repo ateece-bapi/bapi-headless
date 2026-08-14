@@ -50,7 +50,7 @@ vi.mock('next-intl', () => ({
 vi.mock('@/hooks/useIntersectionObserver', () => ({
   useIntersectionObserver: () => ({
     ref: { current: null },
-    isIntersecting: true,
+    isVisible: true,
   }),
 }));
 

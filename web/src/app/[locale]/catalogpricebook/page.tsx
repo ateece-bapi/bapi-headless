@@ -1,13 +1,16 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { Link } from '@/lib/navigation';
 import { DownloadIcon, FileTextIcon, MailIcon } from '@/lib/icons';
 import PageHeader from '@/components/layout/PageHeader';
 
-const CATALOG_URL =
-  'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/BAPI_Catalog_2026_Full_Web.pdf';
-const CATALOG_COVER_URL =
-  'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/BAPI_Catalog_2026_Full_Web-pdf.jpg';
+const wordpressGraphqlUrl =
+  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL ??
+  'https://bapiheadlessstaging.kinsta.cloud/graphql';
+const wordpressUrl = wordpressGraphqlUrl.replace(/\/graphql\/?$/, '');
+const CATALOG_URL = `${wordpressUrl}/wp-content/uploads/BAPI_Catalog_2026_Full_Web.pdf`;
+const CATALOG_COVER_URL = `${wordpressUrl}/wp-content/uploads/BAPI_Catalog_2026_Full_Web-pdf.jpg`;
 
 export const metadata: Metadata = {
   title: '2026 Product Catalog',
@@ -32,7 +35,7 @@ export default function CatalogPricebookPage() {
             <a
               href={CATALOG_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Open the 2026 BAPI product catalog PDF"
               className="group block border border-neutral-200 bg-neutral-100 p-3 shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
             >
@@ -74,18 +77,18 @@ export default function CatalogPricebookPage() {
             </dl>
 
             <div className="space-y-3">
-              <a
-                href={CATALOG_URL}
-                download
+              <NextLink
+                href="/api/catalog/download"
+                prefetch={false}
                 className="flex w-full items-center justify-center gap-2 bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
               >
                 <DownloadIcon className="h-5 w-5" aria-hidden="true" />
                 Download 2026 Catalog
-              </a>
+              </NextLink>
               <a
                 href={CATALOG_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex w-full items-center justify-center gap-2 border-2 border-primary-500 px-6 py-3 font-bold text-primary-600 transition-colors hover:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
               >
                 <FileTextIcon className="h-5 w-5" aria-hidden="true" />

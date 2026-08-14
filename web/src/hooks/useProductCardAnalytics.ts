@@ -25,14 +25,12 @@ import { useCallback, useMemo, useRef } from 'react';
 import {
   trackProductCardEvent,
   trackQuickView,
-  trackComparison,
   createProductCardEventData,
   trackViewModeChange as trackViewModeChangeFn,
   getViewport,
   QuickViewPerformanceTracker,
   type ProductCardEventData,
   type QuickViewEventData,
-  type ComparisonEventData,
 } from '@/lib/analytics/productCard';
 
 export interface UseProductCardAnalyticsProps {
@@ -49,9 +47,6 @@ export interface UseProductCardAnalyticsProps {
   viewMode: 'grid' | 'list';
   positionInGrid?: number;
   totalProducts?: number;
-  isInComparison?: boolean;
-  comparisonCount?: number;
-  maxComparisonLimit?: number;
 }
 
 export function useProductCardAnalytics({
@@ -60,9 +55,6 @@ export function useProductCardAnalytics({
   viewMode,
   positionInGrid,
   totalProducts,
-  isInComparison = false,
-  comparisonCount = 0,
-  maxComparisonLimit = 4,
 }: UseProductCardAnalyticsProps) {
   // Track hover start time for Quick View timing
   const hoverStartTime = useRef<number | null>(null);
@@ -154,33 +146,6 @@ export function useProductCardAnalytics({
   }, [baseEventData]);
 
   // ============================================================================
-  // Comparison Tracking
-  // ============================================================================
-
-  const trackComparisonToggle = useCallback(
-    (isAdding: boolean) => {
-      const comparisonData: ComparisonEventData = {
-        ...baseEventData,
-        comparison_count: isAdding ? comparisonCount + 1 : comparisonCount - 1,
-        max_comparison_limit: maxComparisonLimit,
-      };
-
-      trackComparison(isAdding ? 'added' : 'removed', comparisonData);
-    },
-    [baseEventData, comparisonCount, maxComparisonLimit]
-  );
-
-  const trackComparisonLimitReached = useCallback(() => {
-    const comparisonData: ComparisonEventData = {
-      ...baseEventData,
-      comparison_count: comparisonCount,
-      max_comparison_limit: maxComparisonLimit,
-    };
-
-    trackComparison('limit_reached', comparisonData);
-  }, [baseEventData, comparisonCount, maxComparisonLimit]);
-
-  // ============================================================================
   // Return API
   // ============================================================================
 
@@ -198,14 +163,6 @@ export function useProductCardAnalytics({
     // Quick View tracking
     trackQuickViewOpen,
     trackQuickViewClose,
-
-    // Comparison tracking
-    trackComparisonToggle,
-    trackComparisonLimitReached,
-
-    // Computed states
-    isInComparison,
-    canAddToComparison: comparisonCount < maxComparisonLimit,
   };
 }
 

@@ -47,20 +47,10 @@ vi.mock('next-intl', () => ({
 }));
 
 // Mock hooks
-vi.mock('@/hooks/useProductComparison', () => ({
-  useProductComparison: () => ({
-    isInComparison: vi.fn(() => false),
-    addToComparison: vi.fn(),
-    removeFromComparison: vi.fn(),
-    canAddMore: true,
-    comparisonProducts: [],
-  }),
-}));
-
 vi.mock('@/hooks/useIntersectionObserver', () => ({
   useIntersectionObserver: () => ({
     ref: { current: null },
-    isIntersecting: true,
+    isVisible: true,
   }),
 }));
 
@@ -681,17 +671,6 @@ describe('ProductGrid - Product Cards', () => {
     });
   });
 
-  it('comparison buttons have accessible labels', () => {
-    render(<ProductGrid products={mockProducts} locale="en" />);
-
-    // Comparison uses buttons with aria-label (not checkboxes)
-    const compareButtons = screen.getAllByLabelText(/add to comparison|remove from comparison/i);
-    compareButtons.forEach((button) => {
-      expect(button).toHaveAttribute('aria-label');
-      expect(button.tagName).toBe('BUTTON');
-    });
-  });
-
   it.each(['grid', 'list'] as const)(
     'keeps product cards stationary on hover in %s view',
     (viewMode) => {
@@ -703,10 +682,7 @@ describe('ProductGrid - Product Cards', () => {
         expect(card).not.toHaveClass('hover:-translate-y-px', 'hover:-translate-y-1');
       });
 
-      const actionButtons = [
-        ...screen.getAllByLabelText(/quick view/i),
-        ...screen.getAllByLabelText(/add to comparison|remove from comparison/i),
-      ];
+      const actionButtons = screen.getAllByLabelText(/quick view/i);
       actionButtons.forEach((button) => {
         expect(button).toHaveClass('hover:scale-[1.02]', 'motion-reduce:transform-none');
         expect(button).not.toHaveClass('hover:scale-105', 'hover:scale-110');

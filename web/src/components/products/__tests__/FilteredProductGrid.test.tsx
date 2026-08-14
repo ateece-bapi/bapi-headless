@@ -33,10 +33,6 @@ vi.mock('../Pagination', () => ({
   Pagination: () => null,
 }));
 
-vi.mock('../ComparisonButton', () => ({
-  default: () => null,
-}));
-
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
 function makeProduct(

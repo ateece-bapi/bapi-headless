@@ -9,9 +9,6 @@
  * - product_card_click: User clicks card to view product
  * - quick_view_opened: Quick View modal opened
  * - quick_view_closed: Quick View modal closed
- * - comparison_added: Product added to comparison
- * - comparison_removed: Product removed from comparison
- * - comparison_limit_reached: User tries to add when at max
  * - list_view_toggled: User switches between grid/list view
  */
 
@@ -27,9 +24,6 @@ export type ProductCardEvent =
   | 'product_card_hover'
   | 'quick_view_opened'
   | 'quick_view_closed'
-  | 'comparison_added'
-  | 'comparison_removed'
-  | 'comparison_limit_reached'
   | 'list_view_toggled';
 
 export interface ProductCardEventData {
@@ -65,11 +59,6 @@ export interface ProductCardEventData {
 export interface QuickViewEventData extends Omit<ProductCardEventData, 'view_mode'> {
   trigger: 'button_click' | 'keyboard_shortcut';
   time_to_open_ms?: number; // How long did user hover before opening?
-}
-
-export interface ComparisonEventData extends Omit<ProductCardEventData, 'view_mode'> {
-  comparison_count: number; // Current number of products in comparison
-  max_comparison_limit: number; // Max allowed (typically 4)
 }
 
 // ============================================================================
@@ -112,7 +101,7 @@ export function isTouchDevice(): boolean {
  */
 export function trackProductCardEvent(
   event: ProductCardEvent,
-  data: ProductCardEventData | QuickViewEventData | ComparisonEventData
+  data: ProductCardEventData | QuickViewEventData
 ): void {
   // Only track in production or if analytics explicitly enabled
   if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_ENABLE_DEV_ANALYTICS !== 'true') {
@@ -143,23 +132,6 @@ export function trackQuickView(
     action === 'opened' ? 'quick_view_opened' : 'quick_view_closed',
     data
   );
-}
-
-/**
- * Track Product Comparison interaction
- */
-export function trackComparison(
-  action: 'added' | 'removed' | 'limit_reached',
-  data: ComparisonEventData
-): void {
-  const event: ProductCardEvent =
-    action === 'added'
-      ? 'comparison_added'
-      : action === 'removed'
-        ? 'comparison_removed'
-        : 'comparison_limit_reached';
-
-  trackProductCardEvent(event, data);
 }
 
 /**
@@ -284,7 +256,6 @@ export class QuickViewPerformanceTracker {
 export default {
   trackProductCardEvent,
   trackQuickView,
-  trackComparison,
   trackViewModeChange,
   createProductCardEventData,
   getViewport,

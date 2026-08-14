@@ -5,7 +5,6 @@ import { useMemo, useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import { ProductGrid } from './ProductGrid';
 import { Pagination } from './Pagination';
-import ComparisonButton from './ComparisonButton';
 import type {
   GetProductsWithFiltersQuery,
   GetProductsByCategoryQuery,
@@ -200,8 +199,6 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
           totalProducts={totalProducts}
         />
       )}
-
-      <ComparisonButton locale={locale} />
     </>
   );
 }

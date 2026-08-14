@@ -3,7 +3,7 @@
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { useState } from 'react';
-import { EyeIcon, SquareIcon, CheckSquareIcon } from '@/lib/icons';
+import { EyeIcon } from '@/lib/icons';
 import type {
   GetProductsWithFiltersQuery,
   GetProductsByCategoryQuery,
@@ -12,7 +12,6 @@ import type {
 } from '@/lib/graphql/generated';
 import { getProductPrice } from '@/lib/graphql/types';
 import QuickViewModal from './QuickViewModal';
-import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRegion } from '@/store/regionStore';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
@@ -38,8 +37,6 @@ export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGrid
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [quickViewPerformanceTracker, setQuickViewPerformanceTracker] =
     useState<QuickViewPerformanceTracker | null>(null);
-  const { isInComparison, addToComparison, removeFromComparison, canAddMore, comparisonProducts } =
-    useProductComparison();
 
   if (products.length === 0) {
     return (
@@ -133,16 +130,6 @@ export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGrid
               setQuickViewProduct(product);
               setQuickViewPerformanceTracker(tracker);
             }}
-            isInComparison={isInComparison(product.id)}
-            comparisonCount={comparisonProducts.length}
-            onToggleComparison={() => {
-              if (isInComparison(product.id)) {
-                removeFromComparison(product.id);
-              } else if (canAddMore) {
-                addToComparison(product as any);
-              }
-            }}
-            canAddToComparison={canAddMore || isInComparison(product.id)}
           />
         ))}
       </div>
@@ -173,10 +160,6 @@ interface ProductCardProps {
   positionInGrid: number;
   totalProducts: number;
   onQuickView: (tracker: QuickViewPerformanceTracker) => void;
-  isInComparison: boolean;
-  comparisonCount: number;
-  onToggleComparison: () => void;
-  canAddToComparison: boolean;
 }
 
 function ProductCard({
@@ -186,10 +169,6 @@ function ProductCard({
   positionInGrid,
   totalProducts,
   onQuickView,
-  isInComparison,
-  comparisonCount,
-  onToggleComparison,
-  canAddToComparison,
 }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const region = useRegion();
@@ -209,9 +188,6 @@ function ProductCard({
     viewMode,
     positionInGrid,
     totalProducts,
-    isInComparison,
-    comparisonCount,
-    maxComparisonLimit: 4,
   });
   
   const { ref, isVisible } = useIntersectionObserver<HTMLAnchorElement>({
@@ -340,27 +316,6 @@ function ProductCard({
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  if (canAddToComparison) {
-                    const isAdding = !isInComparison;
-                    analytics.trackComparisonToggle(isAdding);
-                    onToggleComparison();
-                  } else {
-                    analytics.trackComparisonLimitReached();
-                  }
-                }}
-                className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none ${
-                  canAddToComparison ? 'cursor-pointer bg-white hover:bg-primary-50' : 'cursor-not-allowed bg-neutral-100 opacity-50'
-                }`}
-                aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
-                title={isInComparison ? 'Remove from comparison' : 'Add to comparison (max 4)'}
-                disabled={!canAddToComparison}
-              >
-                {isInComparison ? <CheckSquareIcon className="h-5 w-5 text-primary-600" /> : <SquareIcon className="h-5 w-5 text-neutral-700" />}
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
                   const tracker = analytics.trackQuickViewOpen('button_click');
                   onQuickView(tracker);
                 }}
@@ -393,40 +348,10 @@ function ProductCard({
       {/* Subtle gradient accent on hover */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 transition-all duration-300 group-hover:from-primary-50/30 group-hover:to-accent-50/20" />
 
-      {/* Quick View & Comparison Buttons */}
+      {/* Quick View Button */}
       {/* Mobile: Always visible with larger touch targets (44x44px)
           Desktop: Hover to reveal with smooth animation */}
       <div className="absolute right-3 top-3 z-10 flex gap-2 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
-        {/* Comparison Checkbox */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (canAddToComparison) {
-              const isAdding = !isInComparison;
-              analytics.trackComparisonToggle(isAdding);
-              onToggleComparison();
-            } else {
-              analytics.trackComparisonLimitReached();
-            }
-          }}
-          className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 motion-reduce:transform-none sm:p-2 ${
-            canAddToComparison
-              ? 'cursor-pointer bg-white/90 hover:bg-white'
-              : 'cursor-not-allowed bg-neutral-100/90 opacity-50'
-          }`}
-          aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
-          title={isInComparison ? 'Remove from comparison' : 'Add to comparison (max 4)'}
-          disabled={!canAddToComparison}
-        >
-          {isInComparison ? (
-            <CheckSquareIcon className="h-5 w-5 text-primary-600" />
-          ) : (
-            <SquareIcon className="h-5 w-5 text-neutral-700" />
-          )}
-        </button>
-
-        {/* Quick View Button */}
         <button
           onClick={(e) => {
             e.preventDefault();

@@ -8,6 +8,52 @@
 
 ---
 
+## August 17, 2026 — Sales Team Contact Bios & New Staff
+
+**Status:** ✅ PR #651 merged (Jan Zurawski bio fix) · ✅ PR #685 merged (8 sales bios + 3 new reps)
+
+### What Was Done
+
+Jan Zurawski's `/contact/jan-zurawski` page was missing its biography — the last team member not yet carried over to the headless site from the old WordPress-driven contact pages.
+
+#### Jan Zurawski Bio Fix (PR #651)
+- **Root cause:** Jan's WordPress page was published under the legacy slug `contact-sascha-stuckmann`, not the expected `contact-jan-zurawski`
+- Added a `CONTACT_REP_WP_SLUG_OVERRIDES` map in `web/src/lib/wordpress.ts` so `getContactRepBio()` can resolve legacy CMS slugs while keeping the public URL stable
+- **PR review fix:** the Next.js cache tag was still keyed on the frontend slug instead of the resolved WordPress slug, so on-demand revalidation of the real WP page wouldn't invalidate the cached bio — aligned the cache tag with `wpSlug`
+
+#### Sales Bio Backfill (PR #685)
+Five existing sales reps had frontend cards but no WordPress bio content — they were added to the site directly on the frontend and never had a corresponding CMS page:
+- Don Clark, Sharad Thakur, Shyam Krishnareddygari, Jacob Benson, Reggie Saucke
+- Bios entered directly in wp-admin under **Contact Rep Profile → Bio** (ACF field, not the main page editor) — no code change required, verified via the live GraphQL bio helper
+
+#### Three New Technical Sales Staff
+Added new reps who didn't exist in the frontend team data at all:
+| Name | Title | Region | Slug |
+|---|---|---|---|
+| Justin Hardaker | Technical Sales Specialist | North America | `justin-hardaker` |
+| Michal Jakuszewski | Technical Sales Engineer | Poland | `michal-jakuszewski` |
+| Kevin Doan | Technical Sales Specialist | Vietnam | `kevin-doan` |
+
+- Added all three to the correct regional arrays in `web/src/lib/constants/team.ts` (North America, Europe, Asia/Pacific)
+- Michal's WordPress page was published as `contact-michal` instead of `contact-michal-jakuszewski` — added the same slug-override pattern used for Jan
+- **PR review fix:** section member counts on `/contact` were hardcoded (e.g. `(11)`) and would drift whenever reps are added/removed — replaced all 9 section counts with `{team.length}` derived from the actual array
+
+#### Headshot Standardization
+- Standardized six existing headshots (Don Clark, Jacob Benson, Matt Holder, Reggie Saucke, Sharad Thakur, Steve Lindquist) to 810×1080 WebP, matching the optimal size for new uploads
+- New hires' photos were already correctly sized
+
+### Files Changed
+- `web/src/lib/wordpress.ts` — legacy slug override map, cache tag fix
+- `web/src/lib/constants/team.ts` — 3 new reps in correct regional arrays
+- `web/src/app/[locale]/contact/page.tsx` — dynamic section counts (all 9 sections)
+- `web/public/images/team/*.webp` — 3 new headshots, 6 standardized
+
+### Git & Deployment
+- Branch: `fix/jan-zurawski-bio-slug` → **MERGED** (PR #651)
+- Branch: `feat/sales-team-bios` → **MERGED** (PR #685)
+
+---
+
 ## August 14, 2026 — 2026 Product Catalog Download & Layout
 
 **Status:** ✅ PR #681 merged — fix/catalog-download-layout

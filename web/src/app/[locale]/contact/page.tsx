@@ -518,7 +518,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌎</span>North America{' '}
-                  <span className="text-lg font-normal text-neutral-700">(10)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({northAmericaTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('north-america') ? '▼' : '▶'}
@@ -557,7 +559,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇬🇧</span>United Kingdom{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">({ukTeam.length})</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('uk') ? '▼' : '▶'}
@@ -596,7 +598,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇪🇺</span>Europe{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({europeTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('europe') ? '▼' : '▶'}
@@ -635,7 +639,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌍</span>Middle East{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({middleEastTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('middle-east') ? '▼' : '▶'}
@@ -674,7 +680,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇮🇳</span>India{' '}
-                  <span className="text-lg font-normal text-neutral-700">(2)</span>
+                  <span className="text-lg font-normal text-neutral-700">({indiaTeam.length})</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('india') ? '▼' : '▶'}
@@ -713,7 +719,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌎</span>South America{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({southAmericaTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('south-america') ? '▼' : '▶'}
@@ -752,7 +760,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌍</span>Africa{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({africaTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('africa') ? '▼' : '▶'}
@@ -791,7 +801,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌏</span>Asia, Australia & Pacific{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({australiaTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('australia') ? '▼' : '▶'}
@@ -830,7 +842,9 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🛠️</span>Technical Support{' '}
-                  <span className="text-lg font-normal text-neutral-700">(2)</span>
+                  <span className="text-lg font-normal text-neutral-700">
+                    ({technicalTeam.length})
+                  </span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('technical') ? '▼' : '▶'}
@@ -893,7 +907,6 @@ export default function ContactPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                     
                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                   </svg>

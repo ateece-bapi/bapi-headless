@@ -103,6 +103,15 @@ export const northAmericaTeam: TeamMember[] = [
     phone: '+1-800-553-3027',
     photo: '/images/team/jacob-benson.webp',
   },
+  {
+    slug: 'justin-hardaker',
+    name: 'Justin Hardaker',
+    title: 'Technical Sales Specialist',
+    region: 'North America',
+    email: 'jhardaker@bapihvac.com',
+    phone: '+1-800-553-3027',
+    photo: '/images/team/justin-hardaker.webp',
+  },
 ];
 
 export const ukTeam: TeamMember[] = [
@@ -127,6 +136,15 @@ export const europeTeam: TeamMember[] = [
     phone: '+1-800-553-3027',
     photo: '/images/team/jan-zurawski.webp',
     video: 'https://www.youtube.com/embed/O5jwFOFAO0A',
+  },
+  {
+    slug: 'michal-jakuszewski',
+    name: 'Michal Jakuszewski',
+    title: 'Technical Sales Engineer',
+    region: 'Poland',
+    email: 'mjakuszewski@bapihvac.com',
+    phone: '+1-800-553-3027',
+    photo: '/images/team/michal-jakuszewski.webp',
   },
 ];
 
@@ -196,6 +214,15 @@ export const australiaTeam: TeamMember[] = [
     email: 'abrooks@bapihvac.com',
     phone: '+1-800-553-3027',
     photo: '/images/team/andy-brooks.webp',
+  },
+  {
+    slug: 'kevin-doan',
+    name: 'Kevin Doan',
+    title: 'Technical Sales Specialist',
+    region: 'Vietnam',
+    email: 'kdoan@bapihvac.com',
+    phone: '+1-800-553-3027',
+    photo: '/images/team/kevin-doan.webp',
   },
 ];
 

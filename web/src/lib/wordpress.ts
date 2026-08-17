@@ -33,6 +33,7 @@ export interface ContactRepBio {
 
 const CONTACT_REP_WP_SLUG_OVERRIDES: Record<string, string> = {
   'jan-zurawski': 'contact-sascha-stuckmann',
+  'michal-jakuszewski': 'contact-michal',
 };
 
 /**

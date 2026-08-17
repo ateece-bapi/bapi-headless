@@ -518,7 +518,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌎</span>North America{' '}
-                  <span className="text-lg font-normal text-neutral-700">(10)</span>
+                  <span className="text-lg font-normal text-neutral-700">(11)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('north-america') ? '▼' : '▶'}
@@ -596,7 +596,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇪🇺</span>Europe{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(2)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('europe') ? '▼' : '▶'}
@@ -791,7 +791,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌏</span>Asia, Australia & Pacific{' '}
-                  <span className="text-lg font-normal text-neutral-700">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(2)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('australia') ? '▼' : '▶'}

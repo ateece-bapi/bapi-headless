@@ -840,6 +840,7 @@
     "locations": {
       "title": "Our Global Presence",
       "subtitle": "From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.",
+      "directoryHeading": "Locations & offices",
       "mapLegend": {
         "headquarters": "BAPI Headquarters",
         "manufacturing": "Factory Distribution Center",

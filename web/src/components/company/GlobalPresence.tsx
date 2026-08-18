@@ -13,11 +13,19 @@ import {
   FACILITY_TYPE_LABELS,
   FACILITY_TYPE_COLORS,
   getActiveFacilityTypes,
+  getMapLocations,
 } from '@/lib/constants/locations';
 import type { Location, FacilityType } from '@/lib/constants/locations';
 import { getRegionForCountry } from '@/lib/constants/salesRegions';
 import type { SalesRep, SalesRegion } from '@/lib/constants/salesRegions';
-import { Building2Icon, MapPinIcon, UserIcon, MailIcon, PhoneIcon } from '@/lib/icons';
+import {
+  Building2Icon,
+  ChevronDownIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+  UserIcon,
+} from '@/lib/icons';
 import { useState, useRef, useEffect } from 'react';
 import { Link } from '@/lib/navigation';
 
@@ -33,6 +41,21 @@ const Geography = _Geography as React.ComponentType<
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const frenchGuianaOverlayUrl = '/data/french-guiana.geojson';
+const facilityTypeToLegendKey: Record<
+  FacilityType,
+  keyof LocationTranslations['mapLegend']
+> = {
+  headquarters: 'headquarters',
+  manufacturing: 'manufacturing',
+  sales: 'sales',
+  'distribution-partner': 'distributionPartner',
+};
+const locationGroupOrder: FacilityType[] = [
+  'headquarters',
+  'manufacturing',
+  'sales',
+  'distribution-partner',
+];
 
 // Type definitions for map data
 type GeoFeature = {
@@ -44,6 +67,7 @@ type GeoFeature = {
 };
 
 interface LocationTranslations {
+  directoryHeading?: string;
   mapLegend: {
     headquarters: string;
     manufacturing: string;
@@ -80,7 +104,7 @@ interface GlobalPresenceProps {
  * - Interactive SVG world map with location markers
  * - Hover tooltips showing facility details
  * - Color-coded markers by facility type
- * - Responsive layout with location cards
+ * - Responsive grouped location directory
  * - Zero runtime cost (no API calls)
  *
  * Updated February 2026 per Mike Moss feedback:
@@ -118,6 +142,7 @@ export function GlobalPresence({
     region: SalesRegion;
     rep: SalesRep;
   } | null>(null);
+  const [openLocationGroup, setOpenLocationGroup] = useState<FacilityType | null>(null);
 
   // Debounce timer — popup content only updates after the cursor has rested on a
   // country for ~220 ms, so moving quickly toward the popup doesn't change it.
@@ -282,7 +307,7 @@ export function GlobalPresence({
                 </Geographies>
 
 {/* Location Markers — icon style matches BAPI internal world map legend */}
-                {BAPI_LOCATIONS.map((location) => (
+                {getMapLocations().map((location) => (
                   <Marker
                     key={location.id}
                     coordinates={location.coordinates}
@@ -291,6 +316,11 @@ export function GlobalPresence({
                   >
                     <g
                       className="cursor-pointer"
+                      transform={
+                        location.markerOffset
+                          ? `translate(${location.markerOffset.join(' ')})`
+                          : undefined
+                      }
                       style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
                     >
                       {/* BAPI Headquarters — pulsing blue badge */}
@@ -447,18 +477,7 @@ export function GlobalPresence({
           <div className="mt-6 border-t border-neutral-200 pt-6">
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {activeFacilityTypes.map((type) => {
-                // Type-safe mapping from facility types to translation keys
-                const FACILITY_TYPE_TO_LEGEND_KEY: Record<
-                  FacilityType,
-                  keyof LocationTranslations['mapLegend']
-                > = {
-                  headquarters: 'headquarters',
-                  manufacturing: 'manufacturing',
-                  sales: 'sales',
-                  'distribution-partner': 'distributionPartner',
-                };
-
-                const translationKey = FACILITY_TYPE_TO_LEGEND_KEY[type];
+                const translationKey = facilityTypeToLegendKey[type];
 
                 return (
                   <div key={type} className="flex items-center gap-2">
@@ -495,56 +514,91 @@ export function GlobalPresence({
           </p>
         </div>
 
-        {/* Location Cards Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {BAPI_LOCATIONS.map((location) => {
-            const translation = locationTranslations?.facilities[location.id];
-            return (
-              <div
-                key={location.id}
-                className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
-              >
-                <div className="mb-4 flex items-start gap-3">
-                  <div
-                    className="mt-1 h-3 w-3 shrink-0 rounded-full"
-                    style={{ backgroundColor: FACILITY_TYPE_COLORS[location.type] }}
-                  />
-                  <div className="flex-1">
-                    <h3 className="mb-1 font-bold text-neutral-900">
-                      {translation?.name || location.name}
-                    </h3>
-                    <div className="flex items-center gap-1 text-sm text-neutral-700">
-                      <MapPinIcon className="h-4 w-4" />
-                      <span>
-                        {translation?.city || location.city},{' '}
-                        {translation?.country || location.country}
+        {/* Compact location directory */}
+        <div className="mx-auto max-w-4xl">
+          <h3 className="mb-4 text-xl font-semibold text-neutral-900">
+            {locationTranslations?.directoryHeading || 'Locations & offices'}
+          </h3>
+          <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+            {locationGroupOrder
+              .filter((type) => activeFacilityTypes.includes(type))
+              .map((type) => {
+                const locations = BAPI_LOCATIONS.filter((location) => location.type === type);
+                const isOpen = openLocationGroup === type;
+
+                return (
+                  <div key={type} className="border-b border-neutral-200 last:border-b-0">
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-600"
+                      aria-expanded={isOpen}
+                      aria-controls={`location-group-${type}`}
+                      onClick={() => setOpenLocationGroup(isOpen ? null : type)}
+                    >
+                      <span
+                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: FACILITY_TYPE_COLORS[type] }}
+                      />
+                      <span className="flex-1 font-semibold text-neutral-900">
+                        {locationTranslations?.mapLegend[facilityTypeToLegendKey[type]] ||
+                          FACILITY_TYPE_LABELS[type]}
                       </span>
+                      <span className="text-sm text-neutral-500">({locations.length})</span>
+                      <ChevronDownIcon
+                        className={`h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+
+                    <div
+                      id={`location-group-${type}`}
+                      className="border-t border-neutral-200"
+                      hidden={!isOpen}
+                    >
+                      {locations.map((location) => {
+                        const translation = locationTranslations?.facilities[location.id];
+                        return (
+                          <div
+                            key={location.id}
+                            className="grid gap-2 border-b border-neutral-100 px-5 py-4 last:border-b-0 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_auto] md:items-center md:gap-6"
+                          >
+                            <div>
+                              <p className="font-semibold text-neutral-900">
+                                {translation?.name || location.name}
+                              </p>
+                              <p className="mt-1 flex items-center gap-1 text-sm text-neutral-600">
+                                <MapPinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                                <span>
+                                  {translation?.city || location.city},{' '}
+                                  {translation?.country || location.country}
+                                </span>
+                              </p>
+                            </div>
+                            <p className="text-sm text-neutral-700">
+                              {translation?.description || location.description}
+                            </p>
+                            <div className="flex items-center gap-2 text-xs md:justify-end">
+                              {location.status === 'opening-soon' && (
+                                <span className="rounded bg-accent-50 px-2 py-1 font-medium text-neutral-900">
+                                  {translation?.status || 'Opening Soon'}
+                                </span>
+                              )}
+                              {location.established && (
+                                <span className="text-neutral-600">
+                                  {translation?.established || `Est. ${location.established}`}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
-                </div>
-
-                <p className="mb-3 text-sm text-neutral-700">
-                  {translation?.description || location.description}
-                </p>
-
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="rounded bg-primary-50 px-2 py-1 font-medium text-primary-700">
-                    {translation?.type || FACILITY_TYPE_LABELS[location.type]}
-                  </span>
-                  {location.status === 'opening-soon' && (
-                    <span className="rounded bg-accent-50 px-2 py-1 font-medium text-neutral-900">
-                      {translation?.status || 'Opening Soon'}
-                    </span>
-                  )}
-                  {location.established && (
-                    <span className="ml-auto text-neutral-700">
-                      {translation?.established || `Est. ${location.established}`}
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
+          </div>
         </div>
 
         {/* Call to Action */}

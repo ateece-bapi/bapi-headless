@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, unstable_rethrow } from 'next/navigation';
 import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import logger from '@/lib/logger';
@@ -50,7 +50,29 @@ import {
 } from '@/lib/categoryTranslations';
 import { getProductVideos } from '@/lib/productVideos';
 import { getProductImage } from '@/lib/productImageFallbacks';
+import { getServerAuth } from '@/lib/auth/server';
+import {
+  canUserViewProduct,
+  type ProductWithCustomerGroup,
+} from '@/lib/utils/filterProductsByCustomerGroup';
 import type { Metadata } from 'next';
+
+type ProductAccessSource = {
+  name?: string | null;
+  customerGroup1?: string | null;
+  customerGroup2?: string | null;
+  customerGroup3?: string | null;
+};
+
+/** Check the current request's customer groups against a product's access restrictions. */
+async function canCurrentUserViewProduct(product: ProductAccessSource): Promise<boolean> {
+  const { user } = await getServerAuth();
+  const userCustomerGroups = user?.customerGroups?.length
+    ? user.customerGroups
+    : ['end-user'];
+
+  return canUserViewProduct(product as ProductWithCustomerGroup, userCustomerGroups);
+}
 
 /**
  * Generate AI-optimized metadata for products and categories
@@ -112,6 +134,11 @@ export async function generateMetadata({
       if (parsed.success) {
         const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
         if (product) {
+          if (!(await canCurrentUserViewProduct(product))) {
+            logger.warn('[generateMetadata] Restricted product access denied', { slug });
+            notFound();
+          }
+
           logger.debug('[generateMetadata] Product found', { slug, name: product.name });
           logger.info('[generateMetadata] Returning product metadata');
           return generateProductMetadata(
@@ -171,6 +198,7 @@ export async function generateMetadata({
     logger.info('[generateMetadata] END - Returning empty metadata');
     return {};
   } catch (error) {
+    unstable_rethrow(error);
     logger.error('[generateMetadata] Unhandled error in catch block', error, {
       errorMessage: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
@@ -289,6 +317,11 @@ export default async function ProductPage({
 
         if (!product) {
           logger.warn('[ProductPage] Product not found', { slug });
+          notFound();
+        }
+
+        if (!(await canCurrentUserViewProduct(product))) {
+          logger.warn('[ProductPage] Restricted product access denied', { slug });
           notFound();
         }
 
@@ -628,6 +661,7 @@ export default async function ProductPage({
           </>
         );
       } catch (error) {
+        unstable_rethrow(error);
         // Product data invalid
         logger.error('[ProductPage] Error processing product data', error, {
           errorMessage: error instanceof Error ? error.message : 'Unknown error',
@@ -659,6 +693,7 @@ export default async function ProductPage({
     logger.warn('[ProductPage] Not found, calling notFound()', { slug });
     notFound();
   } catch (error) {
+    unstable_rethrow(error);
     // Top-level error handler
     logger.error('[ProductPage] Unhandled error in catch block', error, {
       errorMessage: error instanceof Error ? error.message : 'Unknown error',

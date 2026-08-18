@@ -71,7 +71,7 @@ export default async function AccessoriesPage({ params }: Props) {
   const accessories = [
     {
       name: t('accessories.vc350.name'),
-      slug: 'alc-vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2',
+      slug: 'vc350a-ez-ac-to-dc-voltage-converter-350-ma-ez-mount-2',
       features: [
         t('accessories.vc350.feature1'),
         t('accessories.vc350.feature2'),
@@ -97,7 +97,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.bapiGuard.feature2'),
         t('accessories.bapiGuard.feature3'),
       ],
-      image: '/images/accessories/accessories/BAPI-Guard-1.webp',
+      image: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/BAPI-Guard-1.png',
     },
     {
       name: t('accessories.flexibleProbe.name'),

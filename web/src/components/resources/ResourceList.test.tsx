@@ -1,0 +1,75 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { ResourceList } from './ResourceList';
+
+const { mockReplace, mockSearchParams } = vi.hoisted(() => ({
+  mockReplace: vi.fn(),
+  mockSearchParams: {
+    get: vi.fn(() => null),
+    toString: vi.fn(() => ''),
+  },
+}));
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/en/resources',
+  useRouter: () => ({ replace: mockReplace }),
+  useSearchParams: () => mockSearchParams,
+}));
+
+const resources = Array.from({ length: 25 }, (_, index) => {
+  const documentNumber = String(index + 1).padStart(3, '0');
+
+  return {
+    id: `resource-${documentNumber}`,
+    databaseId: index + 1,
+    title: `Document ${documentNumber}`,
+    description: null,
+    mediaItemUrl: `/documents/document-${documentNumber}.pdf`,
+    fileSize: 1024,
+    date: '2026-01-01',
+    sourceUrl: `/documents/document-${documentNumber}.pdf`,
+  };
+});
+
+describe('ResourceList', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    Object.defineProperty(Element.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: vi.fn(),
+    });
+  });
+
+  it('defaults to the compact list view and renders 24 documents per page', () => {
+    render(<ResourceList resources={resources} />);
+
+    expect(screen.getByRole('button', { name: 'List view' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    expect(screen.getAllByRole('link')).toHaveLength(24);
+    expect(screen.getByText('Document 001')).toBeInTheDocument();
+    expect(screen.queryByText('Document 025')).not.toBeInTheDocument();
+    expect(screen.getByText(/Page/).parentElement).toHaveTextContent('Page 1 of 2');
+  });
+
+  it('renders the remaining documents and updates the URL on the next page', () => {
+    render(<ResourceList resources={resources} />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+
+    expect(screen.getAllByRole('link')).toHaveLength(1);
+    expect(screen.getByText('Document 025')).toBeInTheDocument();
+    expect(mockReplace).toHaveBeenCalledWith('/en/resources?page=2', { scroll: false });
+  });
+
+  it('stores the selected document type in the URL and resets pagination', () => {
+    render(<ResourceList resources={resources} />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Filter by Installation Guides' }));
+
+    expect(mockReplace).toHaveBeenCalledWith('/en/resources?type=installation', {
+      scroll: false,
+    });
+  });
+});

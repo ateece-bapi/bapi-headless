@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   FileTextIcon,
   DownloadIcon,
@@ -10,13 +11,14 @@ import {
   HardDriveIcon,
   BookOpenIcon,
   FileSpreadsheetIcon,
-  ClipboardListIcon,
   BookIcon,
   FileIcon,
   SortAscIcon,
   Grid3x3Icon,
   ListIcon,
   XIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from '@/lib/icons';
 
 interface Resource {
@@ -37,6 +39,8 @@ interface ResourceListProps {
 type ResourceCategory = 'all' | 'installation' | 'datasheet' | 'catalog' | 'other';
 type SortOption = 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc' | 'size-desc' | 'size-asc';
 type ViewMode = 'grid' | 'list';
+
+const ITEMS_PER_PAGE = 24;
 
 function categorizeResource(resource: Resource): ResourceCategory {
   const title = resource.title.toLowerCase();
@@ -111,10 +115,44 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 ];
 
 export function ResourceList({ resources }: ResourceListProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>('all');
-  const [sortBy, setSortBy] = useState<SortOption>('date-desc');
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const categoryParam = searchParams?.get('type');
+  const sortParam = searchParams?.get('sort');
+  const pageParam = Number.parseInt(searchParams?.get('page') || '1', 10);
+  const viewParam = searchParams?.get('view');
+
+  const [searchQuery, setSearchQuery] = useState(searchParams?.get('search') || '');
+  const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>(
+    CATEGORIES.some((category) => category.value === categoryParam)
+      ? (categoryParam as ResourceCategory)
+      : 'all'
+  );
+  const [sortBy, setSortBy] = useState<SortOption>(
+    SORT_OPTIONS.some((option) => option.value === sortParam)
+      ? (sortParam as SortOption)
+      : 'name-asc'
+  );
+  const [viewMode, setViewMode] = useState<ViewMode>(viewParam === 'grid' ? 'grid' : 'list');
+  const [currentPage, setCurrentPage] = useState(
+    Number.isInteger(pageParam) && pageParam > 0 ? pageParam : 1
+  );
+
+  const updateUrl = (updates: Record<string, string | null>) => {
+    const params = new URLSearchParams(searchParams?.toString() || '');
+
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
+
+    const queryString = params.toString();
+    router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
+  };
 
   const filteredAndSortedResources = useMemo(() => {
     let filtered = resources;
@@ -176,11 +214,50 @@ export function ResourceList({ resources }: ResourceListProps) {
     return counts;
   }, [resources]);
 
+  const totalResults = filteredAndSortedResources.length;
+  const totalPages = Math.max(1, Math.ceil(totalResults / ITEMS_PER_PAGE));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const startIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalResults);
+  const paginatedResources = filteredAndSortedResources.slice(startIndex, endIndex);
+
+  const pageNumbers = useMemo(() => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, index) => index + 1);
+    }
+
+    const pages: Array<number | 'ellipsis'> = [1];
+
+    if (safeCurrentPage > 3) pages.push('ellipsis');
+
+    for (
+      let page = Math.max(2, safeCurrentPage - 1);
+      page <= Math.min(totalPages - 1, safeCurrentPage + 1);
+      page++
+    ) {
+      pages.push(page);
+    }
+
+    if (safeCurrentPage < totalPages - 2) pages.push('ellipsis');
+    pages.push(totalPages);
+
+    return pages;
+  }, [safeCurrentPage, totalPages]);
+
   const hasActiveFilters = searchQuery !== '' || selectedCategory !== 'all';
 
   const clearAllFilters = () => {
     setSearchQuery('');
     setSelectedCategory('all');
+    setCurrentPage(1);
+    updateUrl({ search: null, type: null, page: null });
+  };
+
+  const goToPage = (page: number) => {
+    const nextPage = Math.min(Math.max(page, 1), totalPages);
+    setCurrentPage(nextPage);
+    updateUrl({ page: nextPage === 1 ? null : nextPage.toString() });
+    document.getElementById('resource-results')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -194,13 +271,22 @@ export function ResourceList({ resources }: ResourceListProps) {
             type="text"
             placeholder="Search documents..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(event) => {
+              const value = event.target.value;
+              setSearchQuery(value);
+              setCurrentPage(1);
+              updateUrl({ search: value || null, page: null });
+            }}
             aria-label="Search documents"
             className="w-full rounded-lg border border-neutral-300 py-3 pl-12 pr-4 text-neutral-900 transition-shadow placeholder:text-neutral-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
           {searchQuery && (
             <button
-              onClick={() => setSearchQuery('')}
+              onClick={() => {
+                setSearchQuery('');
+                setCurrentPage(1);
+                updateUrl({ search: null, page: null });
+              }}
               aria-label="Clear search"
               className="absolute right-4 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-neutral-100"
             >
@@ -218,7 +304,14 @@ export function ResourceList({ resources }: ResourceListProps) {
           {CATEGORIES.map((category) => (
             <button
               key={category.value}
-              onClick={() => setSelectedCategory(category.value)}
+              onClick={() => {
+                setSelectedCategory(category.value);
+                setCurrentPage(1);
+                updateUrl({
+                  type: category.value === 'all' ? null : category.value,
+                  page: null,
+                });
+              }}
               aria-label={`Filter by ${category.label}`}
               aria-pressed={selectedCategory === category.value}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
@@ -240,9 +333,10 @@ export function ResourceList({ resources }: ResourceListProps) {
           <p className="text-sm text-neutral-700">
             Showing{' '}
             <span className="font-semibold text-neutral-900">
-              {filteredAndSortedResources.length}
-            </span>{' '}
-            of <span className="font-semibold text-neutral-900">{resources.length}</span> documents
+              {totalResults === 0 ? 0 : startIndex + 1}
+            </span>
+            –<span className="font-semibold text-neutral-900">{endIndex}</span> of{' '}
+            <span className="font-semibold text-neutral-900">{totalResults}</span> documents
           </p>
           {hasActiveFilters && (
             <button
@@ -264,7 +358,12 @@ export function ResourceList({ resources }: ResourceListProps) {
             <select
               id="sort-select"
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              onChange={(event) => {
+                const value = event.target.value as SortOption;
+                setSortBy(value);
+                setCurrentPage(1);
+                updateUrl({ sort: value === 'name-asc' ? null : value, page: null });
+              }}
               className="cursor-pointer appearance-none rounded-lg border border-neutral-300 bg-white py-2 pl-10 pr-10 text-sm text-neutral-700 transition-shadow focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               {SORT_OPTIONS.map((option) => (
@@ -279,7 +378,10 @@ export function ResourceList({ resources }: ResourceListProps) {
           {/* View Toggle */}
           <div className="flex items-center gap-1 rounded-lg border border-neutral-300 p-1">
             <button
-              onClick={() => setViewMode('grid')}
+              onClick={() => {
+                setViewMode('grid');
+                updateUrl({ view: 'grid' });
+              }}
               aria-label="Grid view"
               aria-pressed={viewMode === 'grid'}
               className={`rounded p-2 transition-colors ${
@@ -291,7 +393,10 @@ export function ResourceList({ resources }: ResourceListProps) {
               <Grid3x3Icon className="h-4 w-4" />
             </button>
             <button
-              onClick={() => setViewMode('list')}
+              onClick={() => {
+                setViewMode('list');
+                updateUrl({ view: null });
+              }}
               aria-label="List view"
               aria-pressed={viewMode === 'list'}
               className={`rounded p-2 transition-colors ${
@@ -304,6 +409,10 @@ export function ResourceList({ resources }: ResourceListProps) {
             </button>
           </div>
         </div>
+      </div>
+
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Showing {totalResults === 0 ? 0 : startIndex + 1} to {endIndex} of {totalResults} documents
       </div>
 
       {/* Resource Grid/List */}
@@ -336,8 +445,11 @@ export function ResourceList({ resources }: ResourceListProps) {
           </div>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredAndSortedResources.map((resource) => {
+        <div
+          id="resource-results"
+          className="grid scroll-mt-6 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {paginatedResources.map((resource) => {
             const category = categorizeResource(resource);
             const CategoryIcon = getCategoryIcon(category);
             const categoryLabel = CATEGORIES.find((c) => c.value === category)?.label || 'Document';
@@ -403,8 +515,8 @@ export function ResourceList({ resources }: ResourceListProps) {
           })}
         </div>
       ) : (
-        <div className="space-y-3">
-          {filteredAndSortedResources.map((resource) => {
+        <div id="resource-results" className="scroll-mt-6 space-y-3">
+          {paginatedResources.map((resource) => {
             const category = categorizeResource(resource);
             const CategoryIcon = getCategoryIcon(category);
             const categoryLabel = CATEGORIES.find((c) => c.value === category)?.label || 'Document';
@@ -458,6 +570,61 @@ export function ResourceList({ resources }: ResourceListProps) {
               </a>
             );
           })}
+        </div>
+      )}
+
+      {totalResults > 0 && totalPages > 1 && (
+        <div className="flex flex-col items-center gap-4 pt-4">
+          <p className="text-sm text-neutral-700">
+            Page <span className="font-semibold text-primary-600">{safeCurrentPage}</span> of{' '}
+            <span className="font-semibold text-neutral-900">{totalPages}</span>
+          </p>
+          <nav className="flex items-center gap-1 sm:gap-2" aria-label="Document pagination">
+            <button
+              type="button"
+              onClick={() => goToPage(safeCurrentPage - 1)}
+              disabled={safeCurrentPage === 1}
+              className="inline-flex h-10 items-center gap-2 rounded-lg border-2 border-neutral-200 bg-white px-3 text-sm font-medium text-neutral-700 transition-colors hover:border-primary-500 hover:text-primary-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-200 disabled:hover:text-neutral-700 sm:px-4"
+              aria-label="Previous page"
+            >
+              <ChevronLeftIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">Previous</span>
+            </button>
+
+            {pageNumbers.map((page, index) =>
+              page === 'ellipsis' ? (
+                <span key={`ellipsis-${index}`} className="px-1 text-neutral-400 sm:px-2">
+                  …
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => goToPage(page)}
+                  className={`h-10 min-w-10 rounded-lg border-2 px-2 text-sm font-semibold transition-colors ${
+                    page === safeCurrentPage
+                      ? 'border-primary-600 bg-primary-600 text-white shadow-sm'
+                      : 'border-neutral-200 bg-white text-neutral-700 hover:border-primary-500 hover:text-primary-600'
+                  }`}
+                  aria-label={`Go to page ${page}`}
+                  aria-current={page === safeCurrentPage ? 'page' : undefined}
+                >
+                  {page}
+                </button>
+              )
+            )}
+
+            <button
+              type="button"
+              onClick={() => goToPage(safeCurrentPage + 1)}
+              disabled={safeCurrentPage === totalPages}
+              className="inline-flex h-10 items-center gap-2 rounded-lg border-2 border-neutral-200 bg-white px-3 text-sm font-medium text-neutral-700 transition-colors hover:border-primary-500 hover:text-primary-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-200 disabled:hover:text-neutral-700 sm:px-4"
+              aria-label="Next page"
+            >
+              <span className="hidden sm:inline">Next</span>
+              <ChevronRightIcon className="h-4 w-4" />
+            </button>
+          </nav>
         </div>
       )}
     </div>

@@ -80,7 +80,6 @@ export default function PDFPreviewModal({ url, title, onClose }: PDFPreviewModal
             src={url}
             className="h-full w-full border-0"
             title={`PDF Preview: ${title}`}
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           />
         </div>
 

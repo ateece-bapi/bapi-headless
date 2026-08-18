@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './src/i18n';
+import { routing } from './i18n';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -69,6 +69,9 @@ const SUBCATEGORY_SLUG_REDIRECTS: Record<string, string> = {
 
 // Precompiled redirect regexes for performance (avoid creating on every request)
 const CATEGORIES_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/categories/(.+)$`);
+const NESTED_WIRELESS_REDIRECT_REGEX = new RegExp(
+  `^/(${LOCALE_PATTERN})/products/wireless-sensors/bluetooth-wireless/?$`
+);
 const SHORT_SLUG_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)(?:/(.*))?$`);
 const SUBCATEGORY_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)/([a-z-]+)$`);
 
@@ -81,7 +84,7 @@ function extractLocale(pathname: string): string {
   return localeMatch ? localeMatch[1] : routing.defaultLocale;
 }
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // RUNTIME DEBUG: Log incoming requests
@@ -103,6 +106,15 @@ export default function middleware(request: NextRequest) {
   // ============================================================================
   // LEGACY REDIRECTS - Category Routing Consolidation (April 2026)
   // ============================================================================
+
+  // Consolidate the duplicate Wireless catalog URL onto the enhanced category page.
+  const nestedWirelessMatch = pathname.match(NESTED_WIRELESS_REDIRECT_REGEX);
+  if (nestedWirelessMatch) {
+    const [, locale] = nestedWirelessMatch;
+    const newUrl = new URL(request.url);
+    newUrl.pathname = `/${locale}/products/bluetooth-wireless`;
+    return NextResponse.redirect(newUrl, { status: 301 });
+  }
   
   // 1. Redirect /categories/* → /products/* (301 permanent redirect)
   // Preserves remaining path segments and query strings for filtered/sorted URLs

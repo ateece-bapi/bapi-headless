@@ -170,7 +170,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {
                 name: t('categories.wireless.name'),
                 icon: '/images/icons/Wireless_Icon.webp',
-                href: '/products/wireless-sensors',
+                href: '/products/bluetooth-wireless',
                 description: t('categories.wireless.description'),
               },
               {

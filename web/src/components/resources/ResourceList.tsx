@@ -140,6 +140,8 @@ export function ResourceList({ resources }: ResourceListProps) {
   );
 
   const updateUrl = (updates: Record<string, string | null>) => {
+    if (!pathname) return;
+
     const params = new URLSearchParams(searchParams?.toString() || '');
 
     Object.entries(updates).forEach(([key, value]) => {

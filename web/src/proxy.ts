@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n';
+import { routing } from '@/i18n';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -15,7 +15,6 @@ import type { NextRequest } from 'next/server';
 
 // Supported locales - update this list when adding new languages
 const LOCALE_PATTERN = 'en|de|fr|es|ja|zh|vi|ar|th|pl|hi';
-const LOCALE_REGEX = new RegExp(`^/(${LOCALE_PATTERN})`);
 const LOCALE_WITH_END_REGEX = new RegExp(`^/(${LOCALE_PATTERN})(?:\/|$)`);
 const LOCALE_HOMEPAGE_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/?$`);
 
@@ -86,9 +85,10 @@ function extractLocale(pathname: string): string {
 
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
-  // RUNTIME DEBUG: Log incoming requests
-  console.log('[MIDDLEWARE] Incoming request:', pathname);
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('[MIDDLEWARE] Incoming request:', pathname);
+  }
 
   // Exempt Blu-View banner ad pages from locale middleware.
   // These are unlisted pages served directly to the Blu-View app by URL —

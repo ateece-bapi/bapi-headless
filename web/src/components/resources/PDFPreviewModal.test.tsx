@@ -20,4 +20,16 @@ describe('PDFPreviewModal', () => {
     );
     expect(preview).not.toHaveAttribute('sandbox');
   });
+
+  it.each([
+    'javascript:alert(document.domain)',
+    'https://example.com/not-a-pdf.html',
+    '/relative/document.pdf',
+  ])('does not embed an unsafe document URL: %s', (url) => {
+    render(<PDFPreviewModal url={url} title="Unsafe Document" onClose={vi.fn()} />);
+
+    expect(screen.queryByTitle('PDF Preview: Unsafe Document')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Download' })).not.toBeInTheDocument();
+    expect(screen.getByText('This document cannot be previewed safely.')).toBeInTheDocument();
+  });
 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   FileTextIcon,
@@ -114,10 +114,17 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'size-asc', label: 'Smallest First' },
 ];
 
-export function ResourceList({ resources }: ResourceListProps) {
+export function ResourceList(props: ResourceListProps) {
+  const searchParams = useSearchParams();
+
+  return <ResourceListContent key={searchParams?.toString() || ''} {...props} />;
+}
+
+function ResourceListContent({ resources }: ResourceListProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const searchParamsString = searchParams?.toString() || '';
   const categoryParam = searchParams?.get('type');
   const sortParam = searchParams?.get('sort');
   const pageParam = Number.parseInt(searchParams?.get('page') || '1', 10);
@@ -142,7 +149,7 @@ export function ResourceList({ resources }: ResourceListProps) {
   const updateUrl = (updates: Record<string, string | null>) => {
     if (!pathname) return;
 
-    const params = new URLSearchParams(searchParams?.toString() || '');
+    const params = new URLSearchParams(searchParamsString);
 
     Object.entries(updates).forEach(([key, value]) => {
       if (value) {

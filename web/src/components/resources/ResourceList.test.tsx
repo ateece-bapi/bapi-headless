@@ -1,14 +1,19 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ResourceList } from './ResourceList';
 
-const { mockReplace, mockSearchParams } = vi.hoisted(() => ({
-  mockReplace: vi.fn(),
-  mockSearchParams: {
-    get: vi.fn(() => null),
-    toString: vi.fn(() => ''),
-  },
-}));
+const { mockReplace, mockSearchParams, mockSearchParamsValue } = vi.hoisted(() => {
+  const value = { current: '' };
+
+  return {
+    mockReplace: vi.fn(),
+    mockSearchParamsValue: value,
+    mockSearchParams: {
+      get: vi.fn((key: string) => new URLSearchParams(value.current).get(key)),
+      toString: vi.fn(() => value.current),
+    },
+  };
+});
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/en/resources',
@@ -34,6 +39,7 @@ const resources = Array.from({ length: 25 }, (_, index) => {
 describe('ResourceList', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockSearchParamsValue.current = '';
     Object.defineProperty(Element.prototype, 'scrollIntoView', {
       configurable: true,
       value: vi.fn(),
@@ -70,6 +76,29 @@ describe('ResourceList', () => {
 
     expect(mockReplace).toHaveBeenCalledWith('/en/resources?type=installation', {
       scroll: false,
+    });
+  });
+
+  it('synchronizes every control when browser navigation changes the URL', async () => {
+    const { rerender } = render(<ResourceList resources={resources} />);
+
+    mockSearchParamsValue.current =
+      'search=Document&type=other&sort=date-desc&view=grid&page=2';
+    rerender(<ResourceList resources={resources} />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox', { name: 'Search documents' })).toHaveValue('Document');
+      expect(screen.getByRole('button', { name: 'Filter by Other Resources' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      expect(screen.getByRole('combobox', { name: 'Sort documents' })).toHaveValue('date-desc');
+      expect(screen.getByRole('button', { name: 'Grid view' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      expect(screen.getByText(/Page/).parentElement).toHaveTextContent('Page 2 of 2');
+      expect(screen.getByText('Document 025')).toBeInTheDocument();
     });
   });
 });

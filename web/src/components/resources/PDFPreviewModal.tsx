@@ -9,7 +9,19 @@ interface PDFPreviewModalProps {
   onClose: () => void;
 }
 
+function getSafePdfUrl(url: string): string | null {
+  try {
+    const parsedUrl = new URL(url);
+    const isHttp = parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
+    return isHttp && parsedUrl.pathname.toLowerCase().endsWith('.pdf') ? parsedUrl.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function PDFPreviewModal({ url, title, onClose }: PDFPreviewModalProps) {
+  const safePdfUrl = getSafePdfUrl(url);
+
   // Handle escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -53,16 +65,18 @@ export default function PDFPreviewModal({ url, title, onClose }: PDFPreviewModal
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4">
           <h2 id="pdf-preview-title" className="truncate text-lg font-bold text-neutral-900">{title}</h2>
           <div className="flex items-center gap-2">
-            <a
-              href={url}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-600"
-            >
-              <DownloadIcon className="h-4 w-4" />
-              Download
-            </a>
+            {safePdfUrl && (
+              <a
+                href={safePdfUrl}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-600"
+              >
+                <DownloadIcon className="h-4 w-4" />
+                Download
+              </a>
+            )}
             <button
               onClick={onClose}
               className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
@@ -76,11 +90,17 @@ export default function PDFPreviewModal({ url, title, onClose }: PDFPreviewModal
 
         {/* PDF Viewer - Using iframe for better compatibility */}
         <div className="flex-1 overflow-hidden">
-          <iframe
-            src={url}
-            className="h-full w-full border-0"
-            title={`PDF Preview: ${title}`}
-          />
+          {safePdfUrl ? (
+            <iframe
+              src={safePdfUrl}
+              className="h-full w-full border-0"
+              title={`PDF Preview: ${title}`}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center p-6 text-center text-neutral-700">
+              This document cannot be previewed safely.
+            </div>
+          )}
         </div>
 
         {/* Info Footer */}

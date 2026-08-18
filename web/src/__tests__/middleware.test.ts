@@ -26,7 +26,7 @@ vi.mock('next-intl/middleware', () => ({
   default: () => mockIntlMiddleware,
 }));
 
-vi.mock('@root/src/i18n', () => ({
+vi.mock('@/i18n', () => ({
   routing: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'],

@@ -32,6 +32,9 @@ export default async function AccessoriesPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'accessoriesLandingPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const wordpressBaseUrl =
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace(/\/graphql\/?$/, '') ||
+    'https://bapiheadlessstaging.kinsta.cloud';
 
   // Specialty Sensors - 3 products
   const specialtySensors = [
@@ -97,7 +100,7 @@ export default async function AccessoriesPage({ params }: Props) {
         t('accessories.bapiGuard.feature2'),
         t('accessories.bapiGuard.feature3'),
       ],
-      image: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/BAPI-Guard-1.png',
+      image: `${wordpressBaseUrl}/wp-content/uploads/BAPI-Guard-1.png`,
     },
     {
       name: t('accessories.flexibleProbe.name'),

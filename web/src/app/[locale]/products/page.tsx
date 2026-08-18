@@ -38,7 +38,7 @@ const productCategories = [
   },
   {
     nameKey: 'wirelessSensors',
-    slug: 'wireless-sensors',
+    slug: 'bluetooth-wireless',
     count: 24, // Note: Maps to 'bluetooth-wireless' in WordPress (24 products)
     image: '/products/wireless_sensors.webp',
     icon: '/images/icons/Wireless_Icon.webp',
@@ -130,7 +130,7 @@ export default async function MainProductPage() {
               </p>
 
               <Link
-                href="/products/featured/ba-series"
+                href="/products/temperature-sensors"
                 className="bg-linear-to-r inline-flex items-center gap-2 rounded-xl from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}

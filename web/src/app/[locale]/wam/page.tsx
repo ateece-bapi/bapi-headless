@@ -679,7 +679,7 @@ export default async function WAMPage({ params }: Props) {
 
           <div className="text-center">
             <Link
-              href="/products/wireless-sensors/bluetooth-wireless"
+              href="/products/bluetooth-wireless"
               className="bg-bapi-accent-gradient inline-flex items-center gap-3 rounded-full px-12 py-5 text-2xl font-bold transition-all duration-300 hover:shadow-xl"
               style={{ color: '#08304B' }}
             >
@@ -893,7 +893,7 @@ export default async function WAMPage({ params }: Props) {
               {t('finalCta.contactSupport')}
             </Link>
             <Link
-              href="/products/wireless-sensors/bluetooth-wireless"
+              href="/products/bluetooth-wireless"
               className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-primary-500 px-10 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-700 hover:shadow-lg"
             >
               {t('finalCta.browseProducts')}

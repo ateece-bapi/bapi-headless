@@ -26,7 +26,7 @@ vi.mock('next-intl/middleware', () => ({
   default: () => mockIntlMiddleware,
 }));
 
-vi.mock('@root/src/i18n', () => ({
+vi.mock('@/i18n', () => ({
   routing: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'],
@@ -34,7 +34,7 @@ vi.mock('@root/src/i18n', () => ({
 }));
 
 // Import after mocks
-import middleware from '@root/middleware';
+import proxy from '@/proxy';
 import { NextResponse } from 'next/server';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
@@ -56,6 +56,8 @@ const NO_AUTH = {};
 function setupIntlPass() {
   mockIntlMiddleware.mockImplementation((req: NextRequest) => NextResponse.next());
 }
+
+const middleware = proxy;
 
 // ─── Tests ─────────────────────────────────────────────────────────────────
 
@@ -235,6 +237,33 @@ describe('Middleware: Short category slug redirects', () => {
     const req = makeRequest('/en/products/temperature-sensors', NO_AUTH);
     middleware(req);
     // Should not be a redirect — intlMiddleware runs
+    expect(mockIntlMiddleware).toHaveBeenCalled();
+  });
+});
+
+describe('Middleware: Nested Wireless category redirect', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    setupIntlPass();
+  });
+
+  it('redirects the duplicate nested Wireless URL to the canonical catalog URL', () => {
+    const req = makeRequest(
+      '/de/products/wireless-sensors/bluetooth-wireless?sort=price',
+      NO_AUTH
+    );
+    const res = middleware(req);
+    const location = new URL(res.headers.get('location')!);
+
+    expect(res.status).toBe(301);
+    expect(location.pathname).toBe('/de/products/bluetooth-wireless');
+    expect(location.searchParams.get('sort')).toBe('price');
+  });
+
+  it('does not redirect canonical Wireless child category URLs', () => {
+    const req = makeRequest('/en/products/bluetooth-wireless/wireless-room', NO_AUTH);
+    middleware(req);
+
     expect(mockIntlMiddleware).toHaveBeenCalled();
   });
 });

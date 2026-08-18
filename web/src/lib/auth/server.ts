@@ -10,6 +10,22 @@ export interface User {
   displayName: string;
   username: string;
   roles?: string[];
+  customerGroups?: string[];
+}
+
+/** Normalize customer groups from the WordPress ACF viewer fields. */
+function getViewerCustomerGroups(viewer: GetCurrentUserResponse['viewer']): string[] {
+  const customerInformation = viewer.customerInformation;
+  const groups = [
+    ...(customerInformation?.customerGroup1 || []),
+    ...(customerInformation?.customerGroup2 || []),
+    ...(customerInformation?.customerGroup3 || []),
+  ]
+    .filter((group): group is string => typeof group === 'string')
+    .map((group) => group.trim().toLowerCase())
+    .filter((group) => group.length > 0 && group !== 'no access');
+
+  return [...new Set(groups)];
 }
 
 /**
@@ -74,6 +90,7 @@ export const getServerAuth = cache(
           displayName: viewer.name || viewer.username || '',
           username: viewer.username || '',
           roles,
+          customerGroups: getViewerCustomerGroups(viewer),
         },
       };
     } catch (error) {
@@ -133,6 +150,7 @@ export async function getCurrentUser(): Promise<User | null> {
       displayName: viewer.name || viewer.username || '',
       username: viewer.username || '',
       roles,
+      customerGroups: getViewerCustomerGroups(viewer),
     };
   } catch (error) {
     logger.error('getCurrentUser error', { error });

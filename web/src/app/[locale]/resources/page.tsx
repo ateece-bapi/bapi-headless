@@ -23,6 +23,16 @@ interface GetResourcesResponse {
   };
 }
 
+const PDF_SAMPLE_MEDIA_IDS = new Set([1897, 2826]);
+
+/** Identify obsolete PDF reader test attachments from the WordPress media library. */
+function isPdfSample(resource: MediaItemNode): boolean {
+  return (
+    PDF_SAMPLE_MEDIA_IDS.has(resource.databaseId) ||
+    /(?:^|\/)pdf_sample\.pdf(?:\?.*)?$/i.test(resource.mediaItemUrl)
+  );
+}
+
 async function fetchResources(): Promise<MediaItemNode[]> {
   const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
 
@@ -69,7 +79,7 @@ async function fetchResources(): Promise<MediaItemNode[]> {
   }
 
   const data: { data: GetResourcesResponse } = await response.json();
-  return data.data.mediaItems.nodes;
+  return data.data.mediaItems.nodes.filter((resource) => !isPdfSample(resource));
 }
 
 /**
@@ -106,25 +116,14 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-700 py-20 text-white">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 transform rounded-full bg-white blur-3xl" />
-          <div className="absolute bottom-0 left-0 h-96 w-96 -translate-x-1/2 translate-y-1/2 transform rounded-full bg-accent-400 blur-3xl" />
-        </div>
-        <div className="container relative mx-auto px-4">
+      <div className="bg-linear-to-r from-primary-700 via-primary-600 to-primary-700 py-10 text-white md:py-12">
+        <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-              {t('hero.title')}
-            </h1>
-            <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
+            <h1 className="mb-3 text-4xl font-bold leading-tight md:text-5xl">{t('hero.title')}</h1>
+            <p className="max-w-2xl text-lg leading-relaxed text-primary-50 md:text-xl">
               {t('hero.subtitle')}
             </p>
-            <div className="mt-6 flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-accent-400" />
-                <span>{t('stats.documents')}</span>
-              </div>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-400" />
                 <span>{t('stats.guides')}</span>
@@ -143,11 +142,13 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
       </div>
 
       {/* Resource List */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8 md:py-10">
+        <ResourceList resources={resources} />
+
         {/* Application Notes CTA Card */}
         <Link
           href="/application-notes"
-          className="bg-linear-to-br duration-250 group mb-8 block rounded-lg border-2 border-primary-200 from-primary-50 to-blue-50 p-6 transition-all hover:border-primary-300 hover:shadow-lg"
+          className="bg-linear-to-br duration-250 group mt-10 block rounded-lg border-2 border-primary-200 from-primary-50 to-blue-50 p-6 transition-all hover:border-primary-300 hover:shadow-lg"
         >
           <div className="flex items-center gap-4">
             <div className="bg-linear-to-br duration-250 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700 transition-transform group-hover:scale-110">
@@ -161,8 +162,6 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
             </div>
           </div>
         </Link>
-
-        <ResourceList resources={resources} />
       </div>
     </div>
   );

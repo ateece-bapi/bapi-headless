@@ -22,7 +22,6 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
-import WirelessBenefits from '@/components/category/WirelessBenefits';
 import WirelessCTA from '@/components/category/WirelessCTA';
 
 interface CategoryPageProps {
@@ -64,6 +63,9 @@ export async function generateMetadata({
       description:
         categoryData.description ||
         t('categoryPage.meta.descriptionTemplate', { name: categoryData.name || '' }),
+      alternates: {
+        canonical: `/${locale}/products/${category}`,
+      },
     };
   } catch {
     return {
@@ -233,16 +235,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           browseCTA: 'Browse Products',
           quoteCTA: 'Request Quote',
         },
-        benefits: {
-          benefit1Title: 'No Wiring',
-          benefit1Text: 'Install anywhere without running cables',
-          benefit2Title: '5+ Year Battery',
-          benefit2Text: 'Long-lasting power, low maintenance',
-          benefit3Title: 'Cloud Ready',
-          benefit3Text: 'Integrate with BMS and cloud platforms',
-          benefit4Title: 'Easy Install',
-          benefit4Text: 'Mount in minutes, configure remotely',
-        },
         cta: {
           title: 'Need help choosing the right wireless sensor?',
           description: "Talk to our technical experts. We'll help you find the perfect solution.",
@@ -300,10 +292,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           ) : undefined
         }
       />
-
-      {isWirelessCategory && wirelessTranslations && (
-        <WirelessBenefits translations={wirelessTranslations.benefits} />
-      )}
 
       {/* Subcategories Grid (shown for all categories with subcategories) */}
       {hasSubcategories && (
@@ -402,7 +390,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {/* Custom "Receiver and Output Modules" card for bluetooth-wireless */}
             {category === 'bluetooth-wireless' && (
               <Link
-                href={`/products/${category}`}
+                href={`/products/${category}/wireless-receivers-bluetooth-wireless`}
                 className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
@@ -411,11 +399,15 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {/* Subtle gradient overlay on hover */}
                 <div className="bg-linear-to-br pointer-events-none absolute inset-0 from-primary-50/0 to-primary-100/0 transition-all duration-300 group-hover:from-primary-50/20 group-hover:to-primary-100/10" />
 
-                {/* Placeholder Image */}
-                <div className="bg-linear-to-br relative flex aspect-[3/2] items-center justify-center from-primary-50 via-white to-primary-50">
-                  <span className="text-xl font-semibold text-primary-600">
-                    Receiver and Output Modules
-                  </span>
+                {/* Receiver and Output Modules Image */}
+                <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
+                  <Image
+                    src="/images/wireless/wireless-receiver-with-output-modules.webp"
+                    alt="BAPI wireless receiver with output modules"
+                    fill
+                    className="object-contain p-3"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 100vw"
+                  />
                 </div>
 
                 {/* Subcategory Info */}

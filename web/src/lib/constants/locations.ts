@@ -28,6 +28,8 @@ export interface Location {
   region: string;
   country: string;
   coordinates: [number, number]; // [longitude, latitude] for react-simple-maps
+  markerOffset?: [number, number]; // [x, y] pixels for colocated facilities
+  showOnMap?: boolean;
   type: FacilityType;
   status?: FacilityStatus;
   description: string;
@@ -74,6 +76,7 @@ export const BAPI_LOCATIONS: Location[] = [
     region: 'Wisconsin',
     country: 'USA',
     coordinates: [-90.8543, 43.3297], // [lng, lat]
+    showOnMap: false,
     type: 'sales',
     status: 'operational',
     description: 'North America regional sales',
@@ -92,6 +95,7 @@ export const BAPI_LOCATIONS: Location[] = [
     region: 'Podkarpackie',
     country: 'Poland',
     coordinates: [21.0333, 50.5833], // [lng, lat]
+    markerOffset: [0, -10],
     type: 'manufacturing',
     status: 'operational',
     description: 'European production facility, office, and customer service center',
@@ -104,6 +108,7 @@ export const BAPI_LOCATIONS: Location[] = [
     region: 'Podkarpackie',
     country: 'Poland',
     coordinates: [21.0333, 50.5833], // [lng, lat]
+    markerOffset: [0, 10],
     type: 'sales',
     status: 'operational',
     description: 'Central & Eastern Europe regional sales',
@@ -134,6 +139,7 @@ export const BAPI_LOCATIONS: Location[] = [
     region: 'Hampshire',
     country: 'United Kingdom',
     coordinates: [-0.7629, 51.2485], // [lng, lat]
+    markerOffset: [0, -10],
     type: 'manufacturing',
     status: 'operational',
     description: 'European factory distribution center',
@@ -145,6 +151,7 @@ export const BAPI_LOCATIONS: Location[] = [
     region: 'Hampshire',
     country: 'United Kingdom',
     coordinates: [-0.7629, 51.2485], // [lng, lat]
+    markerOffset: [0, 10],
     type: 'sales',
     status: 'operational',
     description: 'European sales and customer support hub',
@@ -172,7 +179,7 @@ export const BAPI_LOCATIONS: Location[] = [
   },
   {
     id: 'sales-rep-india',
-    name: 'South Asia Sales',
+    name: 'South India Sales',
     city: 'Mumbai',
     region: 'Maharashtra',
     country: 'India',
@@ -182,7 +189,22 @@ export const BAPI_LOCATIONS: Location[] = [
     description: 'South Asia regional sales',
     salesRep: {
       name: 'Murtaza Kalabhai',
-      territory: 'South Asia',
+      territory: 'South India',
+    },
+  },
+  {
+    id: 'sales-rep-north-india',
+    name: 'North India Sales',
+    city: 'New Delhi',
+    region: 'Delhi',
+    country: 'India',
+    coordinates: [77.209, 28.6139], // [lng, lat]
+    type: 'sales',
+    status: 'operational',
+    description: 'North India regional sales',
+    salesRep: {
+      name: 'Murtaza Kalabhai',
+      territory: 'North India',
     },
   },
   // BAPI map shows both a Factory Distribution Center AND a Business Dev marker here
@@ -290,4 +312,11 @@ export function getLocationById(id: string): Location | undefined {
 export function getActiveFacilityTypes(): FacilityType[] {
   const types = new Set(BAPI_LOCATIONS.map((loc) => loc.type));
   return Array.from(types);
+}
+
+/**
+ * Get locations that should render as map markers.
+ */
+export function getMapLocations(): Location[] {
+  return BAPI_LOCATIONS.filter((location) => location.showOnMap !== false);
 }

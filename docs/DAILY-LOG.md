@@ -8,6 +8,73 @@
 
 ---
 
+## August 18, 2026 — Asana Resource, Product Access & Wireless Updates
+
+**Status:** ✅ PR #688 merged — fix/asana-team-updates
+
+### What Was Done
+
+Completed a broad batch of Asana-driven fixes across Resources, restricted product access, Accessories, and the Wireless product experience.
+
+#### Resources Library
+- Added URL-backed document search, category filtering, sorting, grid/list selection, and pagination with 24 documents per page
+- Changed the default presentation to a compact alphabetical list and preserved controls in query parameters for refreshes, shared links, and browser back/forward navigation
+- Added null-safe pathname handling for Next.js compatibility and keyed list state to resynchronize controls when the URL changes
+- Moved the Application Notes CTA below the results, tightened the Resources hero and page spacing, and filtered obsolete `pdf_sample.pdf` WordPress attachments
+- Removed the iframe sandbox that prevented Chromium's built-in PDF viewer from loading, then constrained previews and downloads to absolute HTTP(S) URLs whose paths end in `.pdf`
+- Added regression coverage for list defaults, pagination, URL updates, history navigation, valid PDF previews, and rejected unsafe or non-PDF URLs
+
+#### Restricted Product Access
+- Added server-side customer-group data to the authenticated user model
+- Enforced customer-group restrictions during both product metadata generation and product detail rendering, preventing direct URL access to unavailable products
+- Defaulted unauthenticated visitors to the `end-user` customer group
+- Preserved Next.js navigation errors with `unstable_rethrow()` so restricted products correctly resolve through the standard not-found flow instead of being swallowed by broad error handlers
+
+#### Wireless Routing & Navigation
+- Consolidated homepage, Products overview, mega-menu, and WAM links onto the canonical `/products/bluetooth-wireless` catalog route
+- Added a locale-aware, query-preserving 301 redirect from the duplicate `/products/wireless-sensors/bluetooth-wireless` route
+- Added canonical metadata to category pages and migrated the active request boundary from root `middleware.ts` to the Next.js 16 `src/proxy.ts` convention
+- Preserved existing authentication, localization, legacy category redirects, and public cache behavior during the proxy migration
+
+#### Wireless Catalog & Overview
+- Removed the four-item benefits strip so Browse by Category follows the catalog hero directly
+- Added the missing Receiver and Output Modules family image and corrected that card's destination to the combined receiver/output-module listing
+- Replaced the custom `/wireless` hero with the shared BAPI `PageHeader`, restoring the standard gradient, grid texture, breadcrumbs, spacing, typography, and yellow bottom rule
+- Preserved the Wireless badge, CTAs, and family image while removing the duplicate page-level `<main>` landmark
+- Replaced the Wireless Receiver image with the high-resolution transparent asset and removed its white card background and shadow
+
+#### Accessories & Product Navigation
+- Corrected the VC350A product slug and the featured BA Series category destination
+- Restored the BAPI Guard image using a WordPress upload URL derived from `NEXT_PUBLIC_WORDPRESS_GRAPHQL` with the established staging fallback
+
+#### PR Review Hardening
+- Synchronized every Resource control when browser navigation changes the query string without using a cascading state effect
+- Rejected unsafe, non-HTTP(S), non-PDF, and relative iframe sources while preserving native PDF viewing for valid CMS documents
+- Replaced the proxy's relative i18n import with `@/i18n`, aligned the test mock, removed an unused regex, and limited per-request debug logging to non-production environments
+
+### Validation
+- Focused proxy, ResourceList, and PDF preview suites passed: 55 tests across 3 test files
+- Production Next.js build passed; existing unrelated missing location-translation warnings remained non-fatal
+- Focused ESLint completed with zero errors; existing JSDoc warnings remain
+- Browser-verified Wireless overview and catalog layouts at 1440px and 390px with decoded images, contained media, and no horizontal overflow
+- Confirmed the duplicate Wireless URL returns a query-preserving 301 redirect
+- Addressed all four published and two suppressed Copilot review comments before merge
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed
+- `web/src/app/[locale]/resources/page.tsx`
+- `web/src/components/resources/{ResourceList,PDFPreviewModal}.tsx` and focused tests
+- `web/src/app/[locale]/product/[slug]/page.tsx`
+- `web/src/lib/auth/server.ts`
+- `web/src/app/[locale]/wireless/page.tsx`
+- `web/src/app/[locale]/products/[category]/page.tsx`
+- `web/src/app/[locale]/{products,wam,accessories}/page.tsx`
+- `web/src/app/[locale]/(public)/page.tsx`
+- `web/src/components/layout/Header/config.ts`
+- `web/src/proxy.ts` and `web/src/__tests__/middleware.test.ts`
+
+---
+
 ## August 18, 2026 — Global Presence Map & Location Directory
 
 **Status:** ✅ PR #687 merged — fix/world-map-facility-markers

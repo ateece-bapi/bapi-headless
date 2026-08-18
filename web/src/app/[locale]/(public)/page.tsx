@@ -382,6 +382,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         title={t('locations.title')}
         subtitle={t('locations.subtitle')}
         locationTranslations={{
+          directoryHeading: t('locations.directoryHeading'),
           mapLegend: {
             headquarters: t('locations.mapLegend.headquarters'),
             manufacturing: t('locations.mapLegend.manufacturing'),

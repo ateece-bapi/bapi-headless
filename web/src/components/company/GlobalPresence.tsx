@@ -67,6 +67,7 @@ type GeoFeature = {
 };
 
 interface LocationTranslations {
+  directoryHeading?: string;
   mapLegend: {
     headquarters: string;
     manufacturing: string;
@@ -103,7 +104,7 @@ interface GlobalPresenceProps {
  * - Interactive SVG world map with location markers
  * - Hover tooltips showing facility details
  * - Color-coded markers by facility type
- * - Responsive layout with location cards
+ * - Responsive grouped location directory
  * - Zero runtime cost (no API calls)
  *
  * Updated February 2026 per Mike Moss feedback:
@@ -515,40 +516,47 @@ export function GlobalPresence({
 
         {/* Compact location directory */}
         <div className="mx-auto max-w-4xl">
-          <h3 className="mb-4 text-xl font-semibold text-neutral-900">Locations &amp; offices</h3>
+          <h3 className="mb-4 text-xl font-semibold text-neutral-900">
+            {locationTranslations?.directoryHeading || 'Locations & offices'}
+          </h3>
           <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
-            {locationGroupOrder.filter((type) => activeFacilityTypes.includes(type)).map((type) => {
-              const locations = BAPI_LOCATIONS.filter((location) => location.type === type);
-              const isOpen = openLocationGroup === type;
+            {locationGroupOrder
+              .filter((type) => activeFacilityTypes.includes(type))
+              .map((type) => {
+                const locations = BAPI_LOCATIONS.filter((location) => location.type === type);
+                const isOpen = openLocationGroup === type;
 
-              return (
-                <div key={type} className="border-b border-neutral-200 last:border-b-0">
-                  <button
-                    type="button"
-                    className="flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-600"
-                    aria-expanded={isOpen}
-                    aria-controls={`location-group-${type}`}
-                    onClick={() => setOpenLocationGroup(isOpen ? null : type)}
-                  >
-                    <span
-                      className="h-2.5 w-2.5 shrink-0 rounded-full"
-                      style={{ backgroundColor: FACILITY_TYPE_COLORS[type] }}
-                    />
-                    <span className="flex-1 font-semibold text-neutral-900">
-                      {locationTranslations?.mapLegend[facilityTypeToLegendKey[type]] ||
-                        FACILITY_TYPE_LABELS[type]}
-                    </span>
-                    <span className="text-sm text-neutral-500">({locations.length})</span>
-                    <ChevronDownIcon
-                      className={`h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </button>
+                return (
+                  <div key={type} className="border-b border-neutral-200 last:border-b-0">
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-600"
+                      aria-expanded={isOpen}
+                      aria-controls={`location-group-${type}`}
+                      onClick={() => setOpenLocationGroup(isOpen ? null : type)}
+                    >
+                      <span
+                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: FACILITY_TYPE_COLORS[type] }}
+                      />
+                      <span className="flex-1 font-semibold text-neutral-900">
+                        {locationTranslations?.mapLegend[facilityTypeToLegendKey[type]] ||
+                          FACILITY_TYPE_LABELS[type]}
+                      </span>
+                      <span className="text-sm text-neutral-500">({locations.length})</span>
+                      <ChevronDownIcon
+                        className={`h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
 
-                  {isOpen && (
-                    <div id={`location-group-${type}`} className="border-t border-neutral-200">
+                    <div
+                      id={`location-group-${type}`}
+                      className="border-t border-neutral-200"
+                      hidden={!isOpen}
+                    >
                       {locations.map((location) => {
                         const translation = locationTranslations?.facilities[location.id];
                         return (
@@ -587,10 +595,9 @@ export function GlobalPresence({
                         );
                       })}
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
           </div>
         </div>
 

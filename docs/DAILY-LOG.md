@@ -2,9 +2,57 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 14, 2026
+**Updated:** August 18, 2026
 **Status:** Phase 1 Complete - Live in Production (75 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 18, 2026 — Global Presence Map & Location Directory
+
+**Status:** ✅ PR #687 merged — fix/world-map-facility-markers
+
+### What Was Done
+
+Updated the Company and homepage Global Presence experience to match the annotated BAPI world map reference and reduce the visual density below the map.
+
+#### World Map Markers
+- Confirmed the missing headquarters and factory markers were caused by colocated sales markers rendering directly on top of them
+- Kept only the pulsing BAPI Headquarters marker at Gays Mills while retaining the North America sales record in the location directory
+- Added pixel-level marker offsets at the UK and Poland facilities so their factory and regional-sales markers remain independently visible without changing geographic coordinates
+- Added the missing North India sales marker in New Delhi and retained the South India marker in Mumbai
+- Confirmed factory distribution center markers for Aldershot, Nowa Wola, and Da Nang
+- Added `showOnMap`, `markerOffset`, and `getMapLocations()` to separate map presentation rules from the complete location directory data
+
+#### Compact Location Directory
+- Replaced the 13-card location grid with a compact grouped accordion to reduce page length and duplicated visual content
+- Grouped locations into BAPI Headquarters, Factory Distribution Centers, and Business Development & Regional Sales
+- All groups start collapsed, only one group opens at a time, and each heading displays its location count
+- Preserved location names, city/country, descriptions, opening status, established dates, and existing translated labels in compact rows
+- Kept accordion panels mounted with `hidden` so every `aria-controls` reference always resolves to a valid element
+- Added a localized `directoryHeading` key across all 11 supported locale catalogs
+
+#### PR Review Hardening
+- Replaced implicit `React.*` test types with explicit `ComponentProps`, `PropsWithChildren`, and `ReactNode` imports
+- Corrected the accordion accessibility relationship between controls and collapsed panels
+- Removed the hardcoded directory heading and wired it through the existing homepage translation object with an English fallback for callers that do not pass translations
+- Updated the component documentation to describe the grouped directory instead of the removed card grid
+
+### Validation
+- Focused Global Presence, location-data, and i18n suites passed: 9 tests across 3 test files
+- Confirmed all 11 locale catalogs parse and contain exactly one `home.locations.directoryHeading` value
+- Focused ESLint completed with zero errors; existing unrelated warnings remain
+- Browser-verified the accordion at 1440px and 390px with no horizontal overflow
+- Confirmed all collapsed controls point to existing hidden panels and North India renders in the sales directory
+- PR merged, remote branch deleted, local `main` fast-forwarded, and the local fix branch removed
+
+### Files Changed
+- `web/src/components/company/GlobalPresence.tsx`
+- `web/src/components/company/GlobalPresence.test.tsx`
+- `web/src/lib/constants/locations.ts`
+- `web/src/lib/constants/__tests__/locations.test.ts`
+- `web/src/app/[locale]/(public)/page.tsx`
+- `web/messages/{en,de,fr,es,ar,ja,zh,hi,pl,th,vi}.json`
 
 ---
 

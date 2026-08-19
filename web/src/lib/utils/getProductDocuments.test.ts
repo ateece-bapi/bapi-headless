@@ -1,11 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { getProductDocuments } from './getProductDocuments';
 
 const affectedSlug =
   'outside-air-humidity-sensor-with-temperature-transmitter-40-to-140f-range';
 
 describe('getProductDocuments', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
   it('returns the datasheet and instructions for the affected migrated product', () => {
+    vi.stubEnv('NEXT_PUBLIC_WORDPRESS_GRAPHQL', 'https://cms.example.com/graphql/');
+
     const documents = getProductDocuments(affectedSlug, []);
 
     expect(documents).toHaveLength(2);
@@ -13,6 +19,9 @@ describe('getProductDocuments', () => {
       'Datasheets',
       'Instructions',
     ]);
+    expect(documents.every((document) => document.url.startsWith('https://cms.example.com/'))).toBe(
+      true
+    );
     expect(documents.every((document) => document.url.endsWith('.pdf'))).toBe(true);
   });
 

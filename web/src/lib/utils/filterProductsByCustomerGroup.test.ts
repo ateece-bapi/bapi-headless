@@ -83,6 +83,16 @@ describe('getProductCustomerGroups', () => {
     expect(getProductCustomerGroups(product)).toEqual(['emc']);
   });
 
+  it('prefers CMS customer groups over the legacy slug fallback', () => {
+    const product: ProductWithCustomerGroup = {
+      name: 'EMC-REF-EL',
+      slug: 'emc-ref-el',
+      customerGroup1: 'alc',
+    };
+
+    expect(getProductCustomerGroups(product)).toEqual(['alc']);
+  });
+
   it('returns customer group from customerGroup1 field when available', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',

@@ -26,18 +26,40 @@ const DOCUMENTS_BY_PRODUCT_SLUG: Readonly<Record<string, readonly ProductDocumen
   ],
 };
 
+const DOCUMENT_CATEGORIES_BY_PRODUCT_SLUG: Readonly<
+  Record<string, Readonly<Record<string, string>>>
+> = {
+  'room-pressure-pickup-ports': {
+    'Zone Pressure Pickup Ports, Datasheet for Submittal': 'Datasheet for Submittal',
+  },
+};
+
 /** Return CMS documents, falling back to known links for incomplete migrated products. */
 export function getProductDocuments(
   slug: string | null | undefined,
   documents: ProductDocumentLink[]
 ): ProductDocumentLink[] {
-  if (documents.length > 0 || !slug) return documents;
+  if (!slug) return documents;
+
+  const normalizedSlug = slug.toLowerCase();
+
+  if (documents.length > 0) {
+    const categoryOverrides = DOCUMENT_CATEGORIES_BY_PRODUCT_SLUG[normalizedSlug];
+    if (!categoryOverrides) return documents;
+
+    return documents.map((document) => {
+      if (!Object.hasOwn(categoryOverrides, document.title)) return document;
+
+      const category = categoryOverrides[document.title];
+      return { ...document, category };
+    });
+  }
 
   const wordpressGraphqlUrl =
     process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL ?? DEFAULT_WORDPRESS_GRAPHQL_URL;
   const wordpressUrl = wordpressGraphqlUrl.replace(/\/graphql\/?$/, '');
 
-  return (DOCUMENTS_BY_PRODUCT_SLUG[slug.toLowerCase()] || []).map(
+  return (DOCUMENTS_BY_PRODUCT_SLUG[normalizedSlug] || []).map(
     ({ uploadPath, ...document }) => ({
       ...document,
       url: `${wordpressUrl}${uploadPath}`,

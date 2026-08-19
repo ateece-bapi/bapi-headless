@@ -38,6 +38,8 @@ import {
   CategoryPage,
 } from '@/components/products';
 import PageHeader from '@/components/layout/PageHeader';
+import { getProductDocuments } from '@/lib/utils/getProductDocuments';
+import { getVariationAttributeValue } from '@/lib/utils/getVariationAttributeValue';
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
@@ -59,6 +61,7 @@ import type { Metadata } from 'next';
 
 type ProductAccessSource = {
   name?: string | null;
+  slug?: string | null;
   customerGroup1?: string | null;
   customerGroup2?: string | null;
   customerGroup3?: string | null;
@@ -392,22 +395,25 @@ export default async function ProductPage({
               sourceUrl: img.sourceUrl,
               altText: img.altText || '',
             })),
-          documents: (product.productDocuments || [])
-            .filter(
-              (category): category is NonNullable<typeof category> =>
-                category !== null && category !== undefined
-            )
-            .flatMap((category) =>
-              (category.files || [])
-                .filter(
-                  (file): file is NonNullable<typeof file> => file !== null && file !== undefined
-                )
-                .map((file) => ({
-                  title: file.title || '',
-                  url: file.url || '',
-                  category: category.heading || 'Documents',
-                }))
-            ),
+          documents: getProductDocuments(
+            product.slug,
+            (product.productDocuments || [])
+              .filter(
+                (category): category is NonNullable<typeof category> =>
+                  category !== null && category !== undefined
+              )
+              .flatMap((category) =>
+                (category.files || [])
+                  .filter(
+                    (file): file is NonNullable<typeof file> => file !== null && file !== undefined
+                  )
+                  .map((file) => ({
+                    title: file.title || '',
+                    url: file.url || '',
+                    category: category.heading || 'Documents',
+                  }))
+              )
+          ),
           productCategories: (product.productCategories?.nodes || []).map((cat: any) => ({
             id: cat.id,
             name: cat.name || '',
@@ -430,8 +436,16 @@ export default async function ProductPage({
                       const varAttr = (variation.attributes?.nodes || []).find(
                         (a: any) => normalizeAttributeSlug(a.name) === attrSlug
                       );
-                      if (varAttr?.value) {
-                        actualValues.add(decodeHtmlEntities(varAttr.value));
+                      if (varAttr) {
+                        const value = getVariationAttributeValue(
+                          product.slug,
+                          variation.sku,
+                          varAttr.name,
+                          varAttr.value
+                        );
+                        if (value) {
+                          actualValues.add(decodeHtmlEntities(value));
+                        }
                       }
                     });
 
@@ -496,7 +510,15 @@ export default async function ProductPage({
                         // Use product attribute label as key (not variation attribute label)
                         // This ensures keys match the attributes array
                         if (productAttributeLabel) {
-                          acc[productAttributeLabel] = decodeHtmlEntities(attr.value);
+                          const value = getVariationAttributeValue(
+                            product.slug,
+                            variation.sku,
+                            attr.name,
+                            attr.value
+                          );
+                          if (value) {
+                            acc[productAttributeLabel] = decodeHtmlEntities(value);
+                          }
                         }
                         return acc;
                       },

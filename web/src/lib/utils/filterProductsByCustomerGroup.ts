@@ -22,10 +22,15 @@ import { slugify } from './slugify';
  */
 export interface ProductWithCustomerGroup {
   name?: string | null;
+  slug?: string | null;
   customerGroup1?: string | null;
   customerGroup2?: string | null;
   customerGroup3?: string | null;
 }
+
+const CUSTOMER_GROUPS_BY_PRODUCT_SLUG: Readonly<Record<string, readonly string[]>> = {
+  'emc-ref-el': ['emc'],
+};
 
 /**
  * Extract customer group from product title prefix
@@ -74,6 +79,10 @@ export function extractCustomerGroupFromTitle(
  */
 export function getProductCustomerGroups(product: ProductWithCustomerGroup): string[] {
   const groups: string[] = [];
+
+  if (product.slug) {
+    groups.push(...(CUSTOMER_GROUPS_BY_PRODUCT_SLUG[product.slug.toLowerCase()] || []));
+  }
 
   // Priority 1: Use ACF fields from GraphQL (proper implementation)
   const acfGroups = [

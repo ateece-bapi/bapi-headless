@@ -71,6 +71,28 @@ describe('extractCustomerGroupFromTitle', () => {
 });
 
 describe('getProductCustomerGroups', () => {
+  it('restricts the legacy EMC-REF-EL product by slug when CMS fields are empty', () => {
+    const product: ProductWithCustomerGroup = {
+      name: 'EMC-REF-EL',
+      slug: 'emc-ref-el',
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
+    };
+
+    expect(getProductCustomerGroups(product)).toEqual(['emc']);
+  });
+
+  it('prefers CMS customer groups over the legacy slug fallback', () => {
+    const product: ProductWithCustomerGroup = {
+      name: 'EMC-REF-EL',
+      slug: 'emc-ref-el',
+      customerGroup1: 'alc',
+    };
+
+    expect(getProductCustomerGroups(product)).toEqual(['alc']);
+  });
+
   it('returns customer group from customerGroup1 field when available', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',
@@ -134,6 +156,20 @@ describe('getProductCustomerGroups', () => {
 });
 
 describe('canUserViewProduct', () => {
+  it('shows EMC-REF-EL only to EMC customer accounts', () => {
+    const product: ProductWithCustomerGroup = {
+      name: 'EMC-REF-EL',
+      slug: 'emc-ref-el',
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
+    };
+
+    expect(canUserViewProduct(product, ['end-user'])).toBe(false);
+    expect(canUserViewProduct(product, ['alc'])).toBe(false);
+    expect(canUserViewProduct(product, ['emc'])).toBe(true);
+  });
+
   it('allows anyone to view standard products', () => {
     const product: ProductWithCustomerGroup = {
       name: 'BA/10K-3 Temperature Sensor',

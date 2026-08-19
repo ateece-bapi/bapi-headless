@@ -22,10 +22,15 @@ import { slugify } from './slugify';
  */
 export interface ProductWithCustomerGroup {
   name?: string | null;
+  slug?: string | null;
   customerGroup1?: string | null;
   customerGroup2?: string | null;
   customerGroup3?: string | null;
 }
+
+const CUSTOMER_GROUPS_BY_PRODUCT_SLUG: Readonly<Record<string, readonly string[]>> = {
+  'emc-ref-el': ['emc'],
+};
 
 /**
  * Extract customer group from product title prefix
@@ -86,10 +91,15 @@ export function getProductCustomerGroups(product: ProductWithCustomerGroup): str
     .filter((group) => group.length > 0);
 
   if (acfGroups.length > 0) {
-    groups.push(...acfGroups.map((g) => g.toLowerCase()));
+    return [...new Set(acfGroups.map((group) => group.toLowerCase()))];
   }
 
-  // Priority 2: Fallback to title parsing (defensive programming)
+  // Priority 2: Fallback for migrated products with missing ACF assignments
+  if (product.slug) {
+    groups.push(...(CUSTOMER_GROUPS_BY_PRODUCT_SLUG[product.slug.toLowerCase()] || []));
+  }
+
+  // Priority 3: Fallback to title parsing (defensive programming)
   if (groups.length === 0) {
     const groupFromTitle = extractCustomerGroupFromTitle(product.name);
     if (groupFromTitle) {

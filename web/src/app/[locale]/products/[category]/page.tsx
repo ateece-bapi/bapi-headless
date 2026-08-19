@@ -22,6 +22,8 @@ import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
 } from '@/lib/categoryTranslations';
+import { getServerAuth } from '@/lib/auth/server';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 import WirelessCTA from '@/components/category/WirelessCTA';
 
 interface CategoryPageProps {
@@ -188,6 +190,11 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       });
     }
   }
+
+  const userCustomerGroups = !hasSubcategories
+    ? (await getServerAuth()).user?.customerGroups || ['end-user']
+    : ['end-user'];
+  const visibleProducts = filterProductsByCustomerGroup(products, userCustomerGroups);
 
   // Generate breadcrumbs with i18n support
   const parent = categoryData.parent?.node
@@ -460,7 +467,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 <div className="sticky top-24">
                   <ProductFilters
                     categorySlug={category}
-                    products={products}
+                    products={visibleProducts}
                     currentFilters={filters}
                   />
                 </div>
@@ -474,7 +481,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 <div className="lg:hidden">
                   <MobileFilterButton
                     categorySlug={category}
-                    products={products}
+                    products={visibleProducts}
                     currentFilters={filters}
                   />
                 </div>
@@ -486,7 +493,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </div>
 
               {/* Product Grid */}
-              <FilteredProductGrid products={products} locale={locale} />
+              <FilteredProductGrid products={visibleProducts} locale={locale} />
             </div>
           </div>
         </div>

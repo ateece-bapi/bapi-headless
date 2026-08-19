@@ -57,6 +57,18 @@ describe('getProductDocuments', () => {
     ]);
   });
 
+  it('ignores document titles inherited from the override object prototype', () => {
+    const cmsDocument = {
+      title: 'toString',
+      url: 'https://example.com/document.pdf',
+      category: 'Documents',
+    };
+
+    expect(getProductDocuments('room-pressure-pickup-ports', [cmsDocument])).toEqual([
+      cmsDocument,
+    ]);
+  });
+
   it('does not add documents to unrelated products', () => {
     expect(getProductDocuments('unrelated-product', [])).toEqual([]);
   });

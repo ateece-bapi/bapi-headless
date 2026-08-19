@@ -48,8 +48,10 @@ export function getProductDocuments(
     if (!categoryOverrides) return documents;
 
     return documents.map((document) => {
+      if (!Object.hasOwn(categoryOverrides, document.title)) return document;
+
       const category = categoryOverrides[document.title];
-      return category ? { ...document, category } : document;
+      return { ...document, category };
     });
   }
 

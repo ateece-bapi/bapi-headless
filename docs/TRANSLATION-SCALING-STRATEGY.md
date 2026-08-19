@@ -785,7 +785,7 @@ BAPI brand personality:
 - **Trustworthy**: "Trusted by engineers worldwide"
 - **Quality-focused**: "NIST-traceable calibration as standard"
 - **Helpful**: "Engineers ready to help you succeed"
-- **American Heritage**: "Family-owned since 1984" (fact, not tone)
+- **American Heritage**: "Privately owned since 1984" (fact, not tone)
 
 ---
 

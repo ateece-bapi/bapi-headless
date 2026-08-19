@@ -30,6 +30,8 @@ export interface ProductWithCustomerGroup {
 
 const CUSTOMER_GROUPS_BY_PRODUCT_SLUG: Readonly<Record<string, readonly string[]>> = {
   'emc-ref-el': ['emc'],
+  'novar-uvc-compatible-aluminum-wall-plate-temperature-sensor': ['novar'],
+  'novar-uvc-compatible-duct-temperature-sensor-with-bapi-box-4-enclosure': ['novar'],
 };
 
 /**

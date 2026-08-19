@@ -71,6 +71,21 @@ describe('extractCustomerGroupFromTitle', () => {
 });
 
 describe('getProductCustomerGroups', () => {
+  it.each([
+    'novar-uvc-compatible-aluminum-wall-plate-temperature-sensor',
+    'novar-uvc-compatible-duct-temperature-sensor-with-bapi-box-4-enclosure',
+  ])('restricts the legacy Novar product %s by slug when CMS fields are empty', (slug) => {
+    const product: ProductWithCustomerGroup = {
+      name: 'Novar UVC Compatible Temperature Sensor',
+      slug,
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
+    };
+
+    expect(getProductCustomerGroups(product)).toEqual(['novar']);
+  });
+
   it('restricts the legacy EMC-REF-EL product by slug when CMS fields are empty', () => {
     const product: ProductWithCustomerGroup = {
       name: 'EMC-REF-EL',
@@ -156,6 +171,23 @@ describe('getProductCustomerGroups', () => {
 });
 
 describe('canUserViewProduct', () => {
+  it.each([
+    'novar-uvc-compatible-aluminum-wall-plate-temperature-sensor',
+    'novar-uvc-compatible-duct-temperature-sensor-with-bapi-box-4-enclosure',
+  ])('shows the legacy Novar product %s only to Novar customer accounts', (slug) => {
+    const product: ProductWithCustomerGroup = {
+      name: 'Novar UVC Compatible Temperature Sensor',
+      slug,
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
+    };
+
+    expect(canUserViewProduct(product, ['end-user'])).toBe(false);
+    expect(canUserViewProduct(product, ['alc'])).toBe(false);
+    expect(canUserViewProduct(product, ['novar'])).toBe(true);
+  });
+
   it('shows EMC-REF-EL only to EMC customer accounts', () => {
     const product: ProductWithCustomerGroup = {
       name: 'EMC-REF-EL',

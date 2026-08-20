@@ -28784,6 +28784,8 @@ export type RootQuery = {
   searchProductsByVariationSku?: Maybe<Array<Maybe<Product>>>;
   /** Search for variable products by variation SKU prefix (starts with, case-insensitive) */
   searchProductsByVariationSkuPrefix?: Maybe<Array<Maybe<Product>>>;
+  serviceBulletin?: Maybe<ServiceBulletin>;
+  serviceBulletins?: Maybe<RootQueryToServiceBulletinConnection>;
   /** A 0bject */
   shippingClass?: Maybe<ShippingClass>;
   /** Connection between the RootQuery type and the shippingClass type */
@@ -29652,6 +29654,21 @@ export type RootQuerySearchProductsByVariationSkuArgs = {
 export type RootQuerySearchProductsByVariationSkuPrefixArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   prefix: Scalars['String']['input'];
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryServiceBulletinArgs = {
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<ServiceBulletinIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryServiceBulletinsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToServiceBulletinConnectionWhereArgs>;
 };
 
 
@@ -32799,6 +32816,22 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type RootQueryToServiceBulletinConnection = {
+  __typename?: 'RootQueryToServiceBulletinConnection';
+  nodes: Array<ServiceBulletin>;
+  pageInfo: RootQueryToServiceBulletinConnectionPageInfo;
+};
+
+export type RootQueryToServiceBulletinConnectionPageInfo = {
+  __typename?: 'RootQueryToServiceBulletinConnectionPageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+};
+
+export type RootQueryToServiceBulletinConnectionWhereArgs = {
+  orderby?: InputMaybe<PostObjectsConnectionOrderbyInput>;
+};
+
 /** Connection between the RootQuery type and the shippingClass type */
 export type RootQueryToShippingClassConnection = Connection & ShippingClassConnection & {
   __typename?: 'RootQueryToShippingClassConnection';
@@ -33389,6 +33422,37 @@ export type SendPasswordResetEmailPayload = {
    * @deprecated This field will be removed in a future version of WPGraphQL
    */
   user?: Maybe<User>;
+};
+
+export type ServiceBulletin = {
+  __typename?: 'ServiceBulletin';
+  content?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['String']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  modified?: Maybe<Scalars['String']['output']>;
+  serviceBulletinCategories?: Maybe<ServiceBulletinToServiceBulletinCategoryConnection>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServiceBulletinCategory = {
+  __typename?: 'ServiceBulletinCategory';
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+};
+
+export enum ServiceBulletinIdType {
+  DatabaseId = 'DATABASE_ID',
+  Id = 'ID',
+  Slug = 'SLUG',
+  Uri = 'URI'
+}
+
+export type ServiceBulletinToServiceBulletinCategoryConnection = {
+  __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection';
+  nodes: Array<ServiceBulletinCategory>;
 };
 
 /** Input for the setDefaultPaymentMethod mutation. */
@@ -40192,6 +40256,21 @@ export type SearchProductsByVariationSkuPrefixQuery = { __typename?: 'RootQuery'
     | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
    | null | undefined> | null | undefined };
 
+export type GetServiceBulletinsV3QueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetServiceBulletinsV3Query = { __typename?: 'RootQuery', serviceBulletins?: { __typename?: 'RootQueryToServiceBulletinConnection', pageInfo: { __typename?: 'RootQueryToServiceBulletinConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null | undefined }, nodes: Array<{ __typename?: 'ServiceBulletin', id: string, title?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, excerpt?: string | null | undefined, serviceBulletinCategories?: { __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection', nodes: Array<{ __typename?: 'ServiceBulletinCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }> } | null | undefined };
+
+export type GetServiceBulletinBySlugQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetServiceBulletinBySlugQuery = { __typename?: 'RootQuery', serviceBulletin?: { __typename?: 'ServiceBulletin', id: string, title?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, excerpt?: string | null | undefined, content?: string | null | undefined, serviceBulletinCategories?: { __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection', nodes: Array<{ __typename?: 'ServiceBulletinCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined } | null | undefined };
+
 
 export const ChatDocumentationSearchDocument = gql`
     query ChatDocumentationSearch($search: String!, $first: Int = 5) {
@@ -42881,6 +42960,55 @@ export const SearchProductsByVariationSkuPrefixDocument = gql`
   }
 }
     `;
+export const GetServiceBulletinsV3Document = gql`
+    query GetServiceBulletinsV3($first: Int = 100, $after: String) {
+  serviceBulletins(
+    first: $first
+    after: $after
+    where: {orderby: {field: DATE, order: DESC}}
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      title
+      slug
+      date
+      modified
+      excerpt
+      serviceBulletinCategories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetServiceBulletinBySlugDocument = gql`
+    query GetServiceBulletinBySlug($slug: ID!) {
+  serviceBulletin(id: $slug, idType: SLUG) {
+    id
+    title
+    slug
+    date
+    modified
+    excerpt
+    content
+    serviceBulletinCategories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -43032,6 +43160,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SearchProductsByVariationSkuPrefix(variables: SearchProductsByVariationSkuPrefixQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchProductsByVariationSkuPrefixQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchProductsByVariationSkuPrefixQuery>({ document: SearchProductsByVariationSkuPrefixDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchProductsByVariationSkuPrefix', 'query', variables);
+    },
+    GetServiceBulletinsV3(variables?: GetServiceBulletinsV3QueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetServiceBulletinsV3Query> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetServiceBulletinsV3Query>({ document: GetServiceBulletinsV3Document, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetServiceBulletinsV3', 'query', variables);
+    },
+    GetServiceBulletinBySlug(variables: GetServiceBulletinBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetServiceBulletinBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetServiceBulletinBySlugQuery>({ document: GetServiceBulletinBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetServiceBulletinBySlug', 'query', variables);
     }
   };
 }

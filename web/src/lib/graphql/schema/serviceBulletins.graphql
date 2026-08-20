@@ -1,0 +1,50 @@
+enum ServiceBulletinIdType {
+  DATABASE_ID
+  ID
+  SLUG
+  URI
+}
+
+input RootQueryToServiceBulletinConnectionWhereArgs {
+  orderby: PostObjectsConnectionOrderbyInput
+}
+
+type RootQueryToServiceBulletinConnectionPageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+}
+
+type RootQueryToServiceBulletinConnection {
+  nodes: [ServiceBulletin!]!
+  pageInfo: RootQueryToServiceBulletinConnectionPageInfo!
+}
+
+type ServiceBulletinToServiceBulletinCategoryConnection {
+  nodes: [ServiceBulletinCategory!]!
+}
+
+type ServiceBulletinCategory {
+  id: ID!
+  name: String
+  slug: String
+}
+
+type ServiceBulletin {
+  content: String
+  date: String
+  excerpt: String
+  id: ID!
+  modified: String
+  serviceBulletinCategories: ServiceBulletinToServiceBulletinCategoryConnection
+  slug: String
+  title: String
+}
+
+extend type RootQuery {
+  serviceBulletin(id: ID!, idType: ServiceBulletinIdType): ServiceBulletin
+  serviceBulletins(
+    after: String
+    first: Int
+    where: RootQueryToServiceBulletinConnectionWhereArgs
+  ): RootQueryToServiceBulletinConnection
+}

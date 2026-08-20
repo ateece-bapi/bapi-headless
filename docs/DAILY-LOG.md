@@ -2,9 +2,61 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 19, 2026
+**Updated:** August 20, 2026
 **Status:** Phase 1 Complete - Live in Production (75 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 20, 2026 — WordPress-Managed Service Bulletins
+
+**Status:** ✅ PR #694 merged — fix/service-bulletin-links
+
+### What Was Done
+
+#### WordPress Content Management
+- Replaced the fictional hardcoded Service Bulletins content with a WordPress-managed editorial workflow
+- Added the `service_bulletin` custom post type and hierarchical `service_bulletin_category` taxonomy through a WordPress MU plugin
+- Retained the Classic Editor workflow and exposed bulletins, categories, content, and slugs through WPGraphQL
+- Deployed the MU plugin to Kinsta staging and verified the custom post type, taxonomy, and GraphQL schema
+- Migrated the two legacy service bulletins into WordPress and assigned both to the General category
+
+#### Directory & Detail Pages
+- Added localized GraphQL-backed directory and detail routes with working full-card “View Details” links
+- Added title/excerpt search, category and year filters, and functional Previous/Next pagination
+- Added localized breadcrumbs, dates, categories, metadata, back navigation, and standard not-found handling to bulletin detail pages
+- Added a permanent redirect from the legacy nonlocalized route to `/en/service-bulletin`
+- Reworked the directory with BAPI blue/yellow styling, responsive layouts, stable hover states, and accessible full-card links
+
+#### Content, Caching & Security
+- Normalized legacy upload URLs to the active WordPress origin so migrated images and PDFs render correctly
+- Sanitized WordPress HTML at the server boundary and changed entity decoding to a single pass to prevent double-unescaping
+- Added generated GraphQL documents and types with a focused local schema overlay to avoid unrelated schema snapshot churn
+- Traversed all WPGraphQL cursor pages so the directory is not capped at 100 bulletins
+- Added React request memoization to deduplicate metadata and page-detail fetches
+- Added list and per-bulletin cache tags plus WordPress-triggered on-demand revalidation support
+
+### Validation
+- Focused Service Bulletin and revalidation suites passed: 27 tests
+- GraphQL code generation and the production Next.js build passed
+- Browser-verified responsive directory/detail layouts, working pagination and links, corrected legacy media, and stable card hover behavior
+- Confirmed rendered bulletin content contains no scripts, event-handler attributes, or unsafe URL schemes
+- Addressed all GitHub Advanced Security and Copilot review findings before merge
+
+### Git & Deployment
+- Commits: `40edde53` — `feat(service-bulletins): connect WordPress content`; `7b2a585c` — `fix(service-bulletins): address review feedback`
+- PR #694 merged into `main`
+- WordPress MU plugin deployed to Kinsta staging
+- Remote and local feature branches deleted, remote references pruned, and local `main` fast-forwarded to `origin/main`
+
+### Files Changed
+- `cms/wp-content/mu-plugins/bapi-graphql-service-bulletins.php`
+- `web/src/app/[locale]/service-bulletin/`
+- `web/src/components/service-bulletins/`
+- `web/src/lib/serviceBulletins.ts` and `web/src/lib/serviceBulletins.server.ts`
+- `web/src/lib/graphql/queries/serviceBulletins.graphql`
+- `web/src/lib/graphql/schema/serviceBulletins.graphql`
+- `web/src/app/api/revalidate/route.ts` and focused tests
 
 ---
 

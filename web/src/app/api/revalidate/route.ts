@@ -57,17 +57,24 @@ export async function POST(request: Request) {
     }
 
     // Whitelist allowed tags for security
-    const allowedTags = ['products', 'product-list', 'categories', 'graphql'];
+    const allowedTags = [
+      'products',
+      'product-list',
+      'categories',
+      'graphql',
+      'service-bulletins',
+    ];
 
-    // Allow product-specific tags (product-{slug})
+    // Allow content-specific tags ({content-type}-{slug})
     const isProductTag = /^product-[a-z0-9-]+$/.test(tag);
+    const isServiceBulletinTag = /^service-bulletin-[a-z0-9-]+$/.test(tag);
 
-    if (!allowedTags.includes(tag) && !isProductTag) {
+    if (!allowedTags.includes(tag) && !isProductTag && !isServiceBulletinTag) {
       logger.warn('revalidate.invalid_tag', { tag, clientIP });
       return NextResponse.json(
         {
           error: 'Bad Request',
-          message: `Tag '${tag}' is not allowed. Allowed tags: ${allowedTags.join(', ')}, or product-{slug}.`,
+          message: `Tag '${tag}' is not allowed. Allowed tags: ${allowedTags.join(', ')}, product-{slug}, or service-bulletin-{slug}.`,
         },
         { status: 400 }
       );

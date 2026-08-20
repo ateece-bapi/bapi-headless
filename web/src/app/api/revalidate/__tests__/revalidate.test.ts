@@ -133,7 +133,7 @@ describe('POST /api/revalidate', () => {
 
   // ─── Allowed tags ─────────────────────────────────────────────────────────────
 
-  it.each(['products', 'product-list', 'categories', 'graphql'])(
+  it.each(['products', 'product-list', 'categories', 'graphql', 'service-bulletins'])(
     'accepts static whitelisted tag: %s',
     async (tag) => {
       const res = await POST(makeRequest({ secret: VALID_SECRET, tag }));
@@ -144,6 +144,13 @@ describe('POST /api/revalidate', () => {
 
   it('accepts a valid dynamic product-{slug} tag', async () => {
     const tag = 'product-humidity-transmitter-duct';
+    const res = await POST(makeRequest({ secret: VALID_SECRET, tag }));
+    expect(res.status).toBe(200);
+    expect(mockRevalidateTag).toHaveBeenCalledWith(tag);
+  });
+
+  it('accepts a valid dynamic service-bulletin-{slug} tag', async () => {
+    const tag = 'service-bulletin-water-leak-detector-installation';
     const res = await POST(makeRequest({ secret: VALID_SECRET, tag }));
     expect(res.status).toBe(200);
     expect(mockRevalidateTag).toHaveBeenCalledWith(tag);

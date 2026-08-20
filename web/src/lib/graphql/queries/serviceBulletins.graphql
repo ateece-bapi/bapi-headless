@@ -1,0 +1,42 @@
+query GetServiceBulletinsV3($first: Int = 100, $after: String) {
+  serviceBulletins(first: $first, after: $after, where: { orderby: { field: DATE, order: DESC } }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      title
+      slug
+      date
+      modified
+      excerpt
+      serviceBulletinCategories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+
+query GetServiceBulletinBySlug($slug: ID!) {
+  serviceBulletin(id: $slug, idType: SLUG) {
+    id
+    title
+    slug
+    date
+    modified
+    excerpt
+    content
+    serviceBulletinCategories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

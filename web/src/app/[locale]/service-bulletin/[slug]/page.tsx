@@ -5,7 +5,8 @@ import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
 import { ArrowLeftIcon } from '@/lib/icons';
 import { Link } from '@/lib/navigation';
-import { getServiceBulletinBySlug, getServiceBulletinPlainText } from '@/lib/serviceBulletins';
+import { getServiceBulletinPlainText } from '@/lib/serviceBulletins';
+import { getServiceBulletinBySlug } from '@/lib/serviceBulletins.server';
 
 interface ServiceBulletinDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;

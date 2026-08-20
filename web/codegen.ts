@@ -4,15 +4,11 @@ const config: CodegenConfig = {
   overwrite: true,
   // Using local schema.json for offline development
   // Run 'pnpm run schema:download' to update from staging
-  schema: 'schema.json',
+  schema: ['schema.json', 'src/lib/graphql/schema/*.graphql'],
   documents: 'src/**/*.{ts,tsx,graphql}',
   generates: {
     'src/lib/graphql/generated.ts': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-graphql-request',
-      ],
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
       config: {
         avoidOptionals: false,
         maybeValue: 'T | null | undefined',

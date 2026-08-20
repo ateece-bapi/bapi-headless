@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
 import { ServiceBulletinDirectory } from '@/components/service-bulletins/ServiceBulletinDirectory';
-import { getServiceBulletins } from '@/lib/serviceBulletins';
+import { getServiceBulletins } from '@/lib/serviceBulletins.server';
 
 export const metadata: Metadata = {
   title: 'Service Bulletins',

@@ -2,9 +2,44 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** August 18, 2026
+**Updated:** August 19, 2026
 **Status:** Phase 1 Complete - Live in Production (75 days post-launch)
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## August 19, 2026 — Novar Customer Access & Ownership Wording
+
+**Status:** ✅ PR #692 merged — fix/novar-customer-specific-products
+
+### What Was Done
+
+#### Novar Customer-Specific Products
+- Added slug-based customer-group fallbacks for the Novar UVC Compatible Aluminum Wall Plate Temperature Sensor and Novar UVC Compatible Duct Temperature Sensor with BAPI-Box 4 Enclosure
+- Assigned both products to the `novar` customer group when their WordPress customer-group fields are empty
+- Preserved the existing priority for explicit CMS customer-group assignments
+- Applied the restriction through the shared customer-group utility used by direct product pages, category listings, search results, and other filtered product surfaces
+
+#### Access Validation
+- Added parameterized regression coverage for both Novar product slugs
+- Confirmed guests, `end-user` accounts, and unrelated customer groups cannot view either product
+- Confirmed `novar` customer accounts can view both products
+- Focused customer-group suite passed: 39 tests in 1 test file
+
+#### Ownership Wording
+- Updated the translation strategy wording from “Family-owned since 1984” to “Privately owned since 1984”
+- Confirmed the headless Careers page contains only unrelated “family oriented employee benefits” language and does not make a family-ownership claim
+- Updated the legacy WordPress Careers page manually from “family-owned business” to “privately owned business”
+
+### Git & Deployment
+- Commit: `5b853b6b` — `fix: restrict Novar customer products`
+- PR #692 merged into `main`
+- Remote and local feature branches deleted, remote references pruned, and local `main` fast-forwarded to `origin/main`
+
+### Files Changed
+- `web/src/lib/utils/filterProductsByCustomerGroup.ts`
+- `web/src/lib/utils/filterProductsByCustomerGroup.test.ts`
+- `docs/TRANSLATION-SCALING-STRATEGY.md`
 
 ---
 

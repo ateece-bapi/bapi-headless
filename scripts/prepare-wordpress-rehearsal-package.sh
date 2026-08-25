@@ -134,13 +134,17 @@ awk -F '\t' 'NR > 1 && $2 != "" { count[$2]++; hash[$2]=$7 } END { for (sku in c
     FILENAME==ARGV[2] { headless_count[$1]=$2; headless_hash[$1]=$3; next }
     FILENAME==ARGV[3] {
       sku=$1; price=$2; lc=legacy_count[sku]+0; hc=headless_count[sku]+0
-      if (lc==0) disposition="reject-source-missing"
-      else if (lc!=1 || hc!=1) disposition="reject-ambiguous-key"
-      else if (legacy_hash[sku]==headless_hash[sku]) disposition="no-op"
+      if (lc==0 && hc==1) disposition="reject-source-missing"
+      else if (lc!=1 || hc!=1) {
+        print "ERROR: Ambiguous ETA key for SKU " sku ": legacy=" lc ", headless=" hc > "/dev/stderr"
+        invalid=1
+        next
+      }
       else disposition="candidate-update"
       equal=(lc==1 && hc==1 && legacy_hash[sku]==headless_hash[sku]) ? "yes" : "no"
       print sku "\t" price "\t" lc "\t" hc "\t" equal "\t" disposition
     }
+    END { if (invalid) exit 1 }
   ' "$WORK_DIR/legacy-prices.tsv" "$WORK_DIR/headless-prices.tsv" "$WORK_DIR/eta-targets.tsv"
 } > "$OUTPUT_DIR/eta-price-dry-run.tsv"
 

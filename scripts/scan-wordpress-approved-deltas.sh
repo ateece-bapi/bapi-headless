@@ -101,8 +101,8 @@ fi
 query() {
   local sql="$1"
   local destination="$2"
-  "${WP[@]}" db query "SET SESSION group_concat_max_len = 1048576;" --batch --raw >/dev/null
-  "${WP[@]}" db query "$sql" --batch --raw > "$OUTPUT_DIR/$destination"
+  "${WP[@]}" db query "SET SESSION group_concat_max_len = 1048576; $sql" --batch --raw \
+    > "$OUTPUT_DIR/$destination"
 }
 
 # Record keys intentionally include post type, SKU, and slug. SKU alone is not unique in this data.

@@ -557,16 +557,19 @@ function bapi_rehearsal_run_product_documents(
 
         foreach ($mappings as $mapping) {
             $pair_key = $mapping['heading'] . "\0" . $mapping['upload_path'];
-            if (isset($current_pairs[$pair_key])) {
-                $mapping_summary['unchanged']++;
-                continue;
-            }
             $attachment_count = count(bapi_rehearsal_attachment_ids_by_path($mapping['upload_path']));
-            if ($attachment_count !== 1 && !isset($approved_paths[$mapping['upload_path']])) {
+            if (
+                $attachment_count > 1 ||
+                ($attachment_count === 0 && !isset($approved_paths[$mapping['upload_path']]))
+            ) {
                 $mapping_summary['conflict']++;
                 WP_CLI::log(
                     "mapping-conflict\t{$slug}\t{$mapping['upload_path']}\tattachments={$attachment_count}"
                 );
+                continue;
+            }
+            if (isset($current_pairs[$pair_key])) {
+                $mapping_summary['unchanged']++;
                 continue;
             }
             $mapping_summary['add']++;

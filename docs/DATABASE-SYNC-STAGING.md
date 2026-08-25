@@ -1,5 +1,12 @@
 # Syncing Production Database to Kinsta Staging
 
+> [!CAUTION]
+> **Historical document only. Do not use this procedure on the active Headless WordPress database.**
+> This February 2026 proposal assumes a disposable staging database and performs a full overwrite.
+> It does not preserve Headless-owned records added since the November 2025 baseline, including
+> favorites, 2FA metadata, service bulletins, taxonomy cleanup, and environment-specific options.
+> Use [LEGACY-TO-HEADLESS-DATA-REFRESH.md](LEGACY-TO-HEADLESS-DATA-REFRESH.md) instead.
+
 **Goal**: Update Kinsta staging database (October 2025) with current SpinupWP production data (February 2026)
 
 **Current Date**: February 11, 2026  

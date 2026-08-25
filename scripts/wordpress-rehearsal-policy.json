@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "approvedAtUtc": "2026-08-21T00:00:00Z",
+  "rehearsalMarker": "bapi-data-refresh-20260821",
+  "prices": {
+    "approvedCandidateCount": 73,
+    "rejectedMissingCount": 26,
+    "manifestSha256": "109fb9dd071f9369f9fa66163aadb9c1e9b3d3b6fa0916d4d0da272b03db69bc",
+    "fields": ["_regular_price", "_price"],
+    "activePriceRule": "update-only-when-sale-price-empty"
+  },
+  "orders": {
+    "approvedCandidateCount": 669,
+    "manifestSha256": "ef44e4461cea7da6ea447a9cfaf4334abf42b3e247f3cf706ce35bd7117fad6b",
+    "existingHeadlessCustomer": "link-by-normalized-email",
+    "legacyOnlyCustomer": "import-as-guest",
+    "existingGuest": "preserve-as-guest",
+    "failedOrders": "include-with-source-status",
+    "sourceUserIds": "reject"
+  },
+  "productDocuments": {
+    "approvedAddCount": 9,
+    "approvedReplaceCount": 49,
+    "approvedMappingAddCount": 17,
+    "approvedMappingParentCount": 14,
+    "mediaManifestSha256": "0ebf8d1fd00ff5b29861b32e51a21637f578a2c1cc165323f34839809c7f885a",
+    "mappingManifestSha256": "2fd55994a9d7cc69531cc292678bbf58767dcaa69ec65ce1c8d3e48bab1103f9",
+    "requireSourceAndDestinationSha256": true,
+    "missingSource": "reject-until-recovered",
+    "excludedPath": "Wireless_QuantumSlim-v17.pdf"
+  },
+  "excluded": [
+    "plugins",
+    "themes",
+    "mu-plugins",
+    "options",
+    "plugin-tables",
+    "visual-composer",
+    "wpbakery",
+    "generated-builder-files",
+    "customer-groups",
+    "inventory",
+    "variation-product-documents"
+  ]
+}

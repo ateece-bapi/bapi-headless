@@ -8,6 +8,90 @@
 
 ---
 
+## August 21-24, 2026 — Legacy Data Refresh Rehearsal
+
+**Status:** Approved ETA, document, and order stages rehearsed on disposable Kinsta clone
+
+### Migration Safety and Discovery
+- Replaced the historical full-database overwrite plan with a fail-closed content ETL runbook
+- Captured read-only Legacy and Headless inventories, approved-field hashes, order relationships,
+  product-document hashes, and Visual Composer/WPBakery contamination reports
+- Explicitly excluded plugins, themes, options, plugin tables, page-builder data/files, customer
+  groups, inventory, and variation-level shared-document metadata
+- Confirmed both sites use classic WooCommerce order storage rather than HPOS
+
+### Approved Scope
+- Approved 73 ETA price updates and rejected 26 SKUs missing from Legacy
+- Approved nine PDF additions and 49 hash-different replacements; excluded the unresolved
+  `Wireless_QuantumSlim-v17.pdf` reference until recovery
+- Identified 669 Legacy-only orders: 358 processing, 308 pending, and three failed
+- Approved preserving 330 guest orders, importing 123 Legacy-account orders as guests, linking 216
+  orders to existing Headless users by normalized email, and retaining failed statuses
+
+### Rehearsal Tooling
+- Added deterministic inventory, comparison, contamination, approved-delta, and rehearsal-package
+  scripts
+- Added a machine-readable approved policy and embedded its SHA-256 in the generated package
+- Added an idempotent ETA price stage using WooCommerce product APIs
+- Required a clone-only WordPress marker and explicit apply environment variable
+- Verified the importer rejects the active Headless hostname and any unmarked environment
+- Made no writes to Legacy or active Headless during discovery or package generation
+
+### Clone Rehearsal Results
+- Created and baselined the isolated Kinsta `refresh0826` clone with a manual pre-ETL backup
+- Blocked clone mail, outbound HTTP, cron, webhooks, and payment gateways
+- Applied 73 ETA prices and proved a second run produced zero price writes
+- Applied nine PDF additions, 49 verified replacements, and 17 additive document mappings across 14
+  parent products; the second run reported 58 unchanged files and 17 unchanged mappings
+- Preserved all existing Headless document metadata and excluded 53 unapproved PDF differences
+- Removed two variation-only PDFs discovered during reconciliation and verified their files and
+  attachments are absent
+- Verified zero PDF hash mismatches, zero missing mapping pairs, zero inventory/customer-group
+  changes, and no order changes before the order stage
+- Captured a fresh 669-order Legacy manifest that was byte-for-byte identical to the approved v7
+  manifest, then exported a permission-restricted JSONL payload with SHA-256
+  `5c1752c80e045875c3772562f375a855dfdf987f0fc07bcd90cb5709db3e12ca`
+- Dry-ran and applied 669 orders on `refresh0826`: 358 processing, 308 pending, and three failed;
+  216 linked to existing Headless users and 453 remained guests
+- Resolved one duplicate SKU only through a unique exact product-title match; source numeric IDs were
+  not imported
+- Proved order idempotency with zero inserts, 669 unchanged, and zero conflicts
+- Reconciled 902 product lines, 669 shipping rows, 669 fees, 20 taxes, all 1,673 source notes, and
+  zero duplicate order keys
+- Verified all 5,446 users, protected usermeta, product prices, inventory, customer groups, product
+  documents, PDF hashes, and mappings remained unchanged; clone isolation stayed active
+- Ran the clone-backed application smoke suite: GraphQL health, product and PDF delivery, sign-in,
+  unauthenticated account/favorites/2FA guards, cart persistence, shipping validation, and checkout
+  entry passed. Playwright reported 13 passed and four discovery-based skips; direct clone-slug
+  checks covered the skipped product, document, add-to-cart, and checkout paths without selecting a
+  payment method or placing an order.
+- Created a dedicated clone-only E2E user after restore. Authenticated login, `/api/auth/me`, account
+  access, favorites add/read persistence/delete cleanup, and the new user's empty order-history query
+  and page all passed against the clone-backed frontend. The temporary favorite was removed.
+- The account dashboard expects `twoFactorEnabled`, but `/api/auth/me` does not currently return that
+  field, so 2FA state remains unverified. Imported-order detail could not be retested after the restore
+  intentionally removed all 669 rehearsed orders.
+- Restored the disposable clone from `Pre-ETL baseline 2026-08-21` and captured a fresh read-only
+  inventory. Order counts, users, protected usermeta, SKUs, plugins, themes, tables, and taxonomies
+  matched the captured baseline exactly; all 669 rehearsed orders were removed.
+- Restored catalog price/inventory/customer-group hashes matched the August 20 pre-ETL snapshot.
+  Product-document metadata, resolved mappings, attachment references, and referenced PDF hashes
+  matched the August 21 pre-document-apply snapshot byte-for-byte.
+- The only inventory exceptions were two empty-slug `auto-draft` pages omitted by the restore and
+  rotating WooCommerce log files. Stable content keys had zero differences and no shared upload had
+  a byte-size difference.
+- Reinstalled the clone-bound rehearsal marker and isolation MU-plugin after verification because
+  the baseline backup predated them. Cron is blocked and zero payment gateways are available again.
+
+### Next Gate
+- Accepted the exact pre-restore order reconciliation as sufficient imported-order evidence and
+  classified the missing 2FA-status response field as a separate application contract issue.
+- Added the production cutover run sheet with named approval gates, fresh-export/hash requirements,
+  a production-only runner requirement, side-effect suppression, staged reconciliation, and exact
+  rollback triggers. Cutover planning is authorized; active Headless remains unauthorized for apply.
+
+---
+
 ## August 20, 2026 — WordPress-Managed Service Bulletins
 
 **Status:** ✅ PR #694 merged — fix/service-bulletin-links

@@ -13,6 +13,7 @@ docs/FILEMAKER-ORDER-UPLOAD-FIX-PRIVATE.md
 # Temporary files
 cookies.txt
 **/cookies.txt
+migration-inventory/
 
 # WordPress
 cms/wp-content/plugins/

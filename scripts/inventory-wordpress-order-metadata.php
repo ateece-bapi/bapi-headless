@@ -116,31 +116,44 @@ function bapi_order_metadata_resolve_ids(array $order_key_hashes): array
 {
     global $wpdb;
 
+    $placeholders = implode(',', array_fill(0, count($order_key_hashes), '%s'));
+    $query = $wpdb->prepare(
+        "SELECT SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256) AS hash,
+                posts.ID
+         FROM {$wpdb->posts} posts
+         LEFT JOIN {$wpdb->postmeta} order_key
+           ON order_key.post_id = posts.ID AND order_key.meta_key = '_order_key'
+         WHERE posts.post_type = 'shop_order'
+           AND SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256) IN ({$placeholders})
+         ORDER BY posts.ID",
+        ...$order_key_hashes
+    );
+    $rows = $wpdb->get_results($query, ARRAY_A);
+    if ($wpdb->last_error !== '') {
+        bapi_order_metadata_fail('Database error while resolving the order manifest.');
+    }
+
+    // Index rows by hash; detect non-unique resolution.
+    $hash_to_ids = [];
+    foreach ($rows as $row) {
+        $hash_to_ids[$row['hash']][] = (int) $row['ID'];
+    }
+
     $order_ids = [];
+    $seen_ids = [];
     foreach ($order_key_hashes as $order_key_hash) {
-        $query = $wpdb->prepare(
-            "SELECT posts.ID
-             FROM {$wpdb->posts} posts
-             LEFT JOIN {$wpdb->postmeta} order_key
-               ON order_key.post_id = posts.ID AND order_key.meta_key = '_order_key'
-             WHERE posts.post_type = 'shop_order'
-               AND SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256) = %s
-             ORDER BY posts.ID",
-            $order_key_hash
-        );
-        $matches = array_map('intval', $wpdb->get_col($query));
-        if ($wpdb->last_error !== '') {
-            bapi_order_metadata_fail('Database error while resolving the order manifest.');
-        }
+        $matches = $hash_to_ids[$order_key_hash] ?? [];
         if (count($matches) !== 1) {
             bapi_order_metadata_fail(
                 "Order manifest key does not resolve uniquely: {$order_key_hash}; matches=" . count($matches)
             );
         }
-        if (in_array($matches[0], $order_ids, true)) {
+        $id = $matches[0];
+        if (isset($seen_ids[$id])) {
             bapi_order_metadata_fail('Multiple manifest keys resolve to the same source order.');
         }
-        $order_ids[] = $matches[0];
+        $seen_ids[$id] = true;
+        $order_ids[] = $id;
     }
     return $order_ids;
 }
@@ -242,10 +255,13 @@ $order_key_hashes = $manifest['hashes'];
 $order_ids = bapi_order_metadata_resolve_ids($order_key_hashes);
 
 $output_parent = realpath(dirname($output_dir));
-if ($output_parent === false || !is_dir($output_parent) || file_exists($output_dir)) {
+if ($output_parent === false || !is_dir($output_parent)) {
     bapi_order_metadata_fail('Output parent must exist and output directory must not already exist.');
 }
 $output_path = $output_parent . '/' . basename($output_dir);
+if (file_exists($output_path)) {
+    bapi_order_metadata_fail('Output parent must exist and output directory must not already exist.');
+}
 if (!mkdir($output_path, 0700) || !chmod($output_path, 0700)) {
     bapi_order_metadata_fail('Unable to create permission-restricted output directory.');
 }
@@ -386,7 +402,9 @@ if (
     bapi_order_metadata_fail('Unable to write metadata inventory summary.');
 }
 foreach (glob($output_path . '/*') ?: [] as $file_path) {
-    chmod($file_path, 0600);
+    if (!chmod($file_path, 0600)) {
+        bapi_order_metadata_fail('Unable to apply restricted permissions to output file; report has been removed.');
+    }
 }
 $cleanup_output = false;
 WP_CLI::log('summary\t' . wp_json_encode($summary));

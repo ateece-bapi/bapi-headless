@@ -116,33 +116,38 @@ function bapi_order_metadata_resolve_ids(array $order_key_hashes): array
 {
     global $wpdb;
 
-    $placeholders = implode(',', array_fill(0, count($order_key_hashes), '%s'));
-    $query = $wpdb->prepare(
-        "SELECT SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256) AS hash,
-                posts.ID
-         FROM {$wpdb->posts} posts
-         LEFT JOIN {$wpdb->postmeta} order_key
-           ON order_key.post_id = posts.ID AND order_key.meta_key = '_order_key'
-         WHERE posts.post_type = 'shop_order'
-           AND SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256) IN ({$placeholders})
-         ORDER BY posts.ID",
-        ...$order_key_hashes
-    );
-    $rows = $wpdb->get_results($query, ARRAY_A);
-    if ($wpdb->last_error !== '') {
-        bapi_order_metadata_fail('Database error while resolving the order manifest.');
-    }
-
-    // Index rows by hash; detect non-unique resolution.
-    $hash_to_ids = [];
-    foreach ($rows as $row) {
-        $hash_to_ids[$row['hash']][] = (int) $row['ID'];
+    $matches_by_hash = array_fill_keys($order_key_hashes, []);
+    foreach (array_chunk($order_key_hashes, 250) as $hash_chunk) {
+        $placeholders = implode(',', array_fill(0, count($hash_chunk), '%s'));
+        $hash_expression = "SHA2(COALESCE(order_key.meta_value, CONCAT('legacy-id:', posts.ID)), 256)";
+        $query = $wpdb->prepare(
+            "SELECT posts.ID, {$hash_expression} AS order_key_hash
+             FROM {$wpdb->posts} posts
+             LEFT JOIN {$wpdb->postmeta} order_key
+               ON order_key.post_id = posts.ID AND order_key.meta_key = '_order_key'
+             WHERE posts.post_type = 'shop_order'
+               AND {$hash_expression} IN ({$placeholders})
+             ORDER BY posts.ID",
+            ...$hash_chunk
+        );
+        $rows = $wpdb->get_results($query, ARRAY_A);
+        if ($wpdb->last_error !== '' || !is_array($rows)) {
+            bapi_order_metadata_fail('Database error while resolving the order manifest.');
+        }
+        foreach ($rows as $row) {
+            $order_key_hash = (string) ($row['order_key_hash'] ?? '');
+            if (!array_key_exists($order_key_hash, $matches_by_hash)) {
+                bapi_order_metadata_fail('Order resolution returned an unexpected manifest key.');
+            }
+            $order_id = (int) ($row['ID'] ?? 0);
+            $matches_by_hash[$order_key_hash][$order_id] = $order_id;
+        }
     }
 
     $order_ids = [];
     $seen_ids = [];
     foreach ($order_key_hashes as $order_key_hash) {
-        $matches = $hash_to_ids[$order_key_hash] ?? [];
+        $matches = array_values($matches_by_hash[$order_key_hash]);
         if (count($matches) !== 1) {
             bapi_order_metadata_fail(
                 "Order manifest key does not resolve uniquely: {$order_key_hash}; matches=" . count($matches)
@@ -256,14 +261,18 @@ $order_ids = bapi_order_metadata_resolve_ids($order_key_hashes);
 
 $output_parent = realpath(dirname($output_dir));
 if ($output_parent === false || !is_dir($output_parent)) {
-    bapi_order_metadata_fail('Output parent must exist and output directory must not already exist.');
+    bapi_order_metadata_fail('Output parent directory must exist.');
 }
-$output_path = $output_parent . '/' . basename($output_dir);
-if (file_exists($output_path)) {
-    bapi_order_metadata_fail('Output parent must exist and output directory must not already exist.');
+$output_name = basename($output_dir);
+if ($output_name === '' || $output_name === '.' || $output_name === '..') {
+    bapi_order_metadata_fail('Output directory must have a safe final path component.');
 }
-if (!mkdir($output_path, 0700) || !chmod($output_path, 0700)) {
-    bapi_order_metadata_fail('Unable to create permission-restricted output directory.');
+$output_path = $output_parent . '/' . $output_name;
+if (file_exists($output_path) || is_link($output_path)) {
+    bapi_order_metadata_fail('Canonical output directory must not already exist.');
+}
+if (!mkdir($output_path, 0700)) {
+    bapi_order_metadata_fail('Unable to create output directory.');
 }
 $cleanup_output = true;
 register_shutdown_function(
@@ -271,65 +280,91 @@ register_shutdown_function(
         if (!$cleanup_output || !is_dir($output_path)) {
             return;
         }
-        foreach (glob($output_path . '/*') ?: [] as $file_path) {
+        foreach (['order-meta-keys.tsv', 'order-item-meta-keys.tsv', 'summary.json'] as $output_file) {
+            $file_path = $output_path . '/' . $output_file;
             @unlink($file_path);
         }
         @rmdir($output_path);
     }
 );
+if (!chmod($output_path, 0700)) {
+    bapi_order_metadata_fail('Unable to restrict output directory permissions.');
+}
 
-$ids_sql = implode(',', array_map('intval', $order_ids));
 global $wpdb;
-$blank_order_key_count = $wpdb->get_var(
-    "SELECT COUNT(*)
-     FROM {$wpdb->postmeta}
-     WHERE post_id IN ({$ids_sql}) AND (meta_key IS NULL OR meta_key = '')"
-);
-if ($wpdb->last_error !== '' || !is_numeric($blank_order_key_count)) {
-    bapi_order_metadata_fail('Database error while checking blank order metadata keys.');
+$order_totals = [];
+$item_totals = [];
+foreach (array_chunk($order_ids, 250) as $id_chunk) {
+    $ids_sql = implode(',', array_map('intval', $id_chunk));
+    $blank_order_key_count = $wpdb->get_var(
+        "SELECT COUNT(*)
+         FROM {$wpdb->postmeta}
+         WHERE post_id IN ({$ids_sql}) AND (meta_key IS NULL OR meta_key = '')"
+    );
+    if ($wpdb->last_error !== '' || !is_numeric($blank_order_key_count)) {
+        bapi_order_metadata_fail('Database error while checking blank order metadata keys.');
+    }
+    if ((int) $blank_order_key_count !== 0) {
+        bapi_order_metadata_fail('Selected orders contain blank metadata keys.');
+    }
+    $blank_item_key_count = $wpdb->get_var(
+        "SELECT COUNT(*)
+         FROM {$wpdb->prefix}woocommerce_order_items items
+         INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta itemmeta
+           ON itemmeta.order_item_id = items.order_item_id
+         WHERE items.order_id IN ({$ids_sql}) AND (itemmeta.meta_key IS NULL OR itemmeta.meta_key = '')"
+    );
+    if ($wpdb->last_error !== '' || !is_numeric($blank_item_key_count)) {
+        bapi_order_metadata_fail('Database error while checking blank order-item metadata keys.');
+    }
+    if ((int) $blank_item_key_count !== 0) {
+        bapi_order_metadata_fail('Selected order items contain blank metadata keys.');
+    }
+    $order_chunk_rows = $wpdb->get_results(
+        "SELECT meta_key, COUNT(*) AS row_count, COUNT(DISTINCT post_id) AS order_count
+         FROM {$wpdb->postmeta}
+         WHERE post_id IN ({$ids_sql}) AND meta_key <> ''
+         GROUP BY meta_key",
+        ARRAY_A
+    );
+    if ($wpdb->last_error !== '' || !is_array($order_chunk_rows)) {
+        bapi_order_metadata_fail('Database error while aggregating order metadata keys.');
+    }
+    foreach ($order_chunk_rows as $row) {
+        $meta_key = (string) $row['meta_key'];
+        $order_totals[$meta_key]['row_count'] = ($order_totals[$meta_key]['row_count'] ?? 0) + (int) $row['row_count'];
+        $order_totals[$meta_key]['order_count'] = ($order_totals[$meta_key]['order_count'] ?? 0) + (int) $row['order_count'];
+    }
+    $item_chunk_rows = $wpdb->get_results(
+        "SELECT items.order_item_type, itemmeta.meta_key, COUNT(*) AS row_count,
+                COUNT(DISTINCT itemmeta.order_item_id) AS item_count,
+                COUNT(DISTINCT items.order_id) AS order_count
+         FROM {$wpdb->prefix}woocommerce_order_items items
+         INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta itemmeta
+           ON itemmeta.order_item_id = items.order_item_id
+         WHERE items.order_id IN ({$ids_sql}) AND itemmeta.meta_key <> ''
+         GROUP BY items.order_item_type, itemmeta.meta_key",
+        ARRAY_A
+    );
+    if ($wpdb->last_error !== '' || !is_array($item_chunk_rows)) {
+        bapi_order_metadata_fail('Database error while aggregating order-item metadata keys.');
+    }
+    foreach ($item_chunk_rows as $row) {
+        $item_key = (string) $row['order_item_type'] . "\0" . (string) $row['meta_key'];
+        $item_totals[$item_key]['order_item_type'] = (string) $row['order_item_type'];
+        $item_totals[$item_key]['meta_key'] = (string) $row['meta_key'];
+        foreach (['row_count', 'item_count', 'order_count'] as $count_key) {
+            $item_totals[$item_key][$count_key] = ($item_totals[$item_key][$count_key] ?? 0) + (int) $row[$count_key];
+        }
+    }
 }
-if ((int) $blank_order_key_count !== 0) {
-    bapi_order_metadata_fail('Selected orders contain blank metadata keys.');
+ksort($order_totals);
+$order_rows = [];
+foreach ($order_totals as $meta_key => $counts) {
+    $order_rows[] = ['meta_key' => $meta_key] + $counts;
 }
-$blank_item_key_count = $wpdb->get_var(
-    "SELECT COUNT(*)
-     FROM {$wpdb->prefix}woocommerce_order_items items
-     INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta itemmeta
-       ON itemmeta.order_item_id = items.order_item_id
-     WHERE items.order_id IN ({$ids_sql}) AND (itemmeta.meta_key IS NULL OR itemmeta.meta_key = '')"
-);
-if ($wpdb->last_error !== '' || !is_numeric($blank_item_key_count)) {
-    bapi_order_metadata_fail('Database error while checking blank order-item metadata keys.');
-}
-if ((int) $blank_item_key_count !== 0) {
-    bapi_order_metadata_fail('Selected order items contain blank metadata keys.');
-}
-$order_rows = $wpdb->get_results(
-    "SELECT meta_key, COUNT(*) AS row_count, COUNT(DISTINCT post_id) AS order_count
-     FROM {$wpdb->postmeta}
-     WHERE post_id IN ({$ids_sql}) AND meta_key <> ''
-     GROUP BY meta_key
-     ORDER BY meta_key",
-    ARRAY_A
-);
-if ($wpdb->last_error !== '' || !is_array($order_rows)) {
-    bapi_order_metadata_fail('Database error while aggregating order metadata keys.');
-}
-$item_rows = $wpdb->get_results(
-    "SELECT items.order_item_type, itemmeta.meta_key, COUNT(*) AS row_count,
-            COUNT(DISTINCT itemmeta.order_item_id) AS item_count,
-            COUNT(DISTINCT items.order_id) AS order_count
-     FROM {$wpdb->prefix}woocommerce_order_items items
-     INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta itemmeta
-       ON itemmeta.order_item_id = items.order_item_id
-     WHERE items.order_id IN ({$ids_sql}) AND itemmeta.meta_key <> ''
-     GROUP BY items.order_item_type, itemmeta.meta_key
-     ORDER BY items.order_item_type, itemmeta.meta_key",
-    ARRAY_A
-);
-if ($wpdb->last_error !== '' || !is_array($item_rows)) {
-    bapi_order_metadata_fail('Database error while aggregating order-item metadata keys.');
-}
+ksort($item_totals);
+$item_rows = array_values($item_totals);
 
 $order_review_count = 0;
 foreach ($order_rows as &$row) {
@@ -401,9 +436,9 @@ if (
 ) {
     bapi_order_metadata_fail('Unable to write metadata inventory summary.');
 }
-foreach (glob($output_path . '/*') ?: [] as $file_path) {
-    if (!chmod($file_path, 0600)) {
-        bapi_order_metadata_fail('Unable to apply restricted permissions to output file; report has been removed.');
+foreach (['order-meta-keys.tsv', 'order-item-meta-keys.tsv', 'summary.json'] as $output_file) {
+    if (!chmod($output_path . '/' . $output_file, 0600)) {
+        bapi_order_metadata_fail("Unable to restrict output permissions: {$output_file}");
     }
 }
 $cleanup_output = false;

@@ -56,7 +56,7 @@ the production requirement that protected usermeta and encryption configuration 
 
 ## Production Preconditions
 
-- [ ] Merge the rehearsal scripts, policy, and runbooks through the required branch and PR review.
+- [x] Merge the rehearsal scripts, policy, and runbooks through the required branch and PR review.
 - [ ] Create a separately reviewed production runner. The rehearsal runner must remain clone-only;
       it rejects the active hostname and requires the clone marker by design.
 - [ ] Require an exact active-target hostname allowlist, a production-only marker, and a distinct
@@ -78,6 +78,31 @@ the production requirement that protected usermeta and encryption configuration 
 - [ ] Create Kinsta database and files backups of active Headless and record their identifiers.
 - [ ] Verify the assigned operator can start the restore without waiting for new access.
 - [ ] Define the freeze window, customer communication, maintenance behavior, and rollback deadline.
+
+### Order Metadata Inventory Gate
+
+Before designing the production order mapping, run the key-only inventory against the exact fresh
+order manifest on Legacy WordPress:
+
+```bash
+wp eval-file scripts/inventory-wordpress-order-metadata.php \
+      /secure/final-order-dry-run.tsv \
+      /secure/final-order-metadata-inventory \
+      --path=/sites/www.bapihvac.com/files
+```
+
+The scanner is read-only and requires the Legacy hostname, loaded WooCommerce, classic order
+storage, a new output directory, and a one-to-one source order resolution for every manifest row.
+It outputs aggregate schema labels and counts only; metadata values, order IDs, known customer
+identity fields, and samples are excluded. Treat the permission-restricted report as sensitive:
+custom schema labels can contain unexpected dynamic text, and labels that fail the scanner's
+conservative structural checks stop the inventory rather than being written.
+
+Review both TSV files and explicitly disposition every `review-required` and
+`plugin-pattern-review` key. A key classification is inventory evidence, not transfer approval.
+Required variation/configuration data must receive a field-by-field destination mapping and test;
+plugin-owned, sensitive, derived, and source-ID fields must remain excluded. Any unresolved key is
+an automatic NO-GO for the order stage.
 
 ## Cutover Schedule
 

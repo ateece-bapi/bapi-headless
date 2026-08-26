@@ -368,9 +368,10 @@ Stop and restore or investigate when any of these occur:
 
 ## Immediate Next Step
 
-Review and merge the rehearsal tooling and runbooks through the required PR workflow. Assign the
-named cutover owners, schedule the freeze, and create a separately reviewed production runner and
-temporary side-effect guard. Rehearse both on a fresh disposable clone before requesting final
-production apply approval.
+Generate the key-only order and line-item metadata inventory for the exact fresh order manifest.
+Explicitly map required variation/configuration fields and reject plugin-owned or unapproved keys.
+In parallel, assign the named cutover owners and schedule the freeze. Only after the metadata gate
+is approved should a separate production runner and temporary side-effect guard be designed,
+reviewed, and rehearsed on a fresh disposable clone.
 
 Do not export full databases, migrate plugin data, or copy upload directories.

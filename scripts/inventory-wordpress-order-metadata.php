@@ -165,6 +165,9 @@ function bapi_order_metadata_resolve_ids(array $order_key_hashes): array
 
 function bapi_order_metadata_assert_schema_label(string $value, string $context): void
 {
+    if ($context === 'order-item metadata key' && $value === 'Package 1') {
+        return;
+    }
     if (
         preg_match('/^_?[A-Za-z][A-Za-z0-9_.:-]{0,190}$/', $value) !== 1 ||
         preg_match('/\d{6,}|[a-f0-9]{16,}/i', $value) === 1

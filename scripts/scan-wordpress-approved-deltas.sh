@@ -178,7 +178,42 @@ SELECT
     WHEN billing_email.meta_value IS NULL OR TRIM(billing_email.meta_value) = '' THEN ''
     ELSE SHA2(LOWER(TRIM(billing_email.meta_value)), 256)
   END AS billing_email_hash,
-  CASE WHEN u.ID IS NULL THEN 0 ELSE 1 END AS source_user_exists
+  CASE WHEN u.ID IS NULL THEN 0 ELSE 1 END AS source_user_exists,
+  SHA2(CONCAT_WS('|',
+    CONCAT('post=', o.ID, ':', o.post_type, ':', o.post_status, ':', o.post_date_gmt, ':', o.post_modified_gmt, ':', o.post_author),
+    CONCAT('postmeta=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(pm.meta_id, ':', HEX(pm.meta_key), ':', HEX(pm.meta_value)) ORDER BY pm.meta_id SEPARATOR '|')
+      FROM ${TABLE_PREFIX}postmeta pm WHERE pm.post_id = o.ID
+    ), ''), 256)),
+    CONCAT('items=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(oi.order_item_id, ':', HEX(oi.order_item_name), ':', oi.order_item_type) ORDER BY oi.order_item_id SEPARATOR '|')
+      FROM ${TABLE_PREFIX}woocommerce_order_items oi WHERE oi.order_id = o.ID
+    ), ''), 256)),
+    CONCAT('itemmeta=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(oim.meta_id, ':', oim.order_item_id, ':', HEX(oim.meta_key), ':', HEX(oim.meta_value)) ORDER BY oim.meta_id SEPARATOR '|')
+      FROM ${TABLE_PREFIX}woocommerce_order_itemmeta oim
+      INNER JOIN ${TABLE_PREFIX}woocommerce_order_items oi ON oi.order_item_id = oim.order_item_id
+      WHERE oi.order_id = o.ID
+    ), ''), 256)),
+    CONCAT('notes=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(c.comment_ID, ':', HEX(c.comment_author), ':', HEX(c.comment_content), ':', c.comment_date_gmt, ':', c.comment_approved, ':', c.comment_type) ORDER BY c.comment_ID SEPARATOR '|')
+      FROM ${TABLE_PREFIX}comments c WHERE c.comment_post_ID = o.ID AND c.comment_type = 'order_note'
+    ), ''), 256)),
+    CONCAT('notemeta=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(cm.meta_id, ':', cm.comment_id, ':', HEX(cm.meta_key), ':', HEX(cm.meta_value)) ORDER BY cm.meta_id SEPARATOR '|')
+      FROM ${TABLE_PREFIX}commentmeta cm
+      INNER JOIN ${TABLE_PREFIX}comments c ON c.comment_ID = cm.comment_id
+      WHERE c.comment_post_ID = o.ID AND c.comment_type = 'order_note'
+    ), ''), 256)),
+    CONCAT('line-skus=', SHA2(COALESCE((
+      SELECT GROUP_CONCAT(CONCAT(oi.order_item_id, ':', COALESCE(product_id.meta_value, ''), ':', COALESCE(variation_id.meta_value, ''), ':', HEX(COALESCE(sku.meta_value, ''))) ORDER BY oi.order_item_id SEPARATOR '|')
+      FROM ${TABLE_PREFIX}woocommerce_order_items oi
+      LEFT JOIN ${TABLE_PREFIX}woocommerce_order_itemmeta product_id ON product_id.order_item_id = oi.order_item_id AND product_id.meta_key = '_product_id'
+      LEFT JOIN ${TABLE_PREFIX}woocommerce_order_itemmeta variation_id ON variation_id.order_item_id = oi.order_item_id AND variation_id.meta_key = '_variation_id'
+      LEFT JOIN ${TABLE_PREFIX}postmeta sku ON sku.post_id = IF(CAST(COALESCE(variation_id.meta_value, '0') AS UNSIGNED) > 0, CAST(variation_id.meta_value AS UNSIGNED), CAST(COALESCE(product_id.meta_value, '0') AS UNSIGNED)) AND sku.meta_key = '_sku'
+      WHERE oi.order_id = o.ID AND oi.order_item_type = 'line_item'
+    ), ''), 256))
+  ), 256) AS source_state_hash
 FROM ${TABLE_PREFIX}posts o
 LEFT JOIN ${TABLE_PREFIX}postmeta order_key
   ON order_key.post_id = o.ID AND order_key.meta_key = '_order_key'

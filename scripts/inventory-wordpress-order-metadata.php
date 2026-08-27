@@ -70,7 +70,8 @@ function bapi_order_metadata_read_manifest(string $manifest_path): array
         'billing_email_hash',
         'account_resolution',
     ];
-    if ($headers !== $required_headers) {
+    $production_headers = [...$required_headers, 'source_state_hash'];
+    if ($headers !== $required_headers && $headers !== $production_headers) {
         fclose($handle);
         bapi_order_metadata_fail('Order manifest does not have the required column set.');
     }
@@ -89,6 +90,7 @@ function bapi_order_metadata_read_manifest(string $manifest_path): array
         if (
             !is_string($order_key_hash) ||
             preg_match('/^[a-f0-9]{64}$/', $order_key_hash) !== 1 ||
+            (isset($row['source_state_hash']) && preg_match('/^[a-f0-9]{64}$/', $row['source_state_hash']) !== 1) ||
             isset($hashes[$order_key_hash]) ||
             $row['post_type'] !== 'shop_order'
         ) {

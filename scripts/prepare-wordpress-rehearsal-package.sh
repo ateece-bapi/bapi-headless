@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -Eeuo pipefail
+umask 077
 
 LEGACY_DELTA=""
 HEADLESS_DELTA=""
@@ -12,6 +13,7 @@ APPROVED_MEDIA_PATHS=""
 ETA_SCRIPT="scripts/update-eta-prices-legacy.sh"
 POLICY_FILE="scripts/wordpress-rehearsal-policy.json"
 OUTPUT_DIR="migration-inventory/rehearsal-package"
+DEFER_POLICY=false
 
 usage() {
   cat <<'EOF'
@@ -25,6 +27,7 @@ Usage: prepare-wordpress-rehearsal-package.sh \
   [--approved-media-paths <file>] \
   [--eta-script <path>] \
   [--policy <path>] \
+  [--defer-policy] \
   [--output-dir <directory>]
 
 Generates a local dry-run package. It does not connect to WordPress or modify data.
@@ -42,6 +45,7 @@ while [[ $# -gt 0 ]]; do
     --approved-media-paths) APPROVED_MEDIA_PATHS="${2:-}"; shift 2 ;;
     --eta-script) ETA_SCRIPT="${2:-}"; shift 2 ;;
     --policy) POLICY_FILE="${2:-}"; shift 2 ;;
+    --defer-policy) DEFER_POLICY=true; shift ;;
     --output-dir) OUTPUT_DIR="${2:-}"; shift 2 ;;
     --help|-h) usage; exit 0 ;;
     *) echo "ERROR: Unknown argument: $1" >&2; usage >&2; exit 2 ;;
@@ -63,10 +67,12 @@ REQUIRED=(
   "$LEGACY_INVENTORY/user-hash-manifest.tsv"
   "$HEADLESS_INVENTORY/user-hash-manifest.tsv"
   "$ETA_SCRIPT"
-  "$POLICY_FILE"
   "$LEGACY_DOCUMENT_PAIRS"
   "$HEADLESS_DOCUMENT_PAIRS"
 )
+if [[ "$DEFER_POLICY" != true ]]; then
+  REQUIRED+=("$POLICY_FILE")
+fi
 if [[ -n "$APPROVED_MEDIA_PATHS" ]]; then
   REQUIRED+=("$APPROVED_MEDIA_PATHS")
 fi
@@ -76,6 +82,32 @@ for required_file in "${REQUIRED[@]}"; do
     exit 1
   fi
 done
+
+assert_header() {
+  local input_file="$1"
+  local expected_header="$2"
+  local actual_header
+  IFS= read -r actual_header < "$input_file" || true
+  if [[ "$actual_header" != "$expected_header" ]]; then
+    echo "ERROR: Unexpected TSV header: $input_file" >&2
+    exit 1
+  fi
+}
+
+catalog_header=$'post_type\tsku\tslug\tparent_sku\tpost_status\tpost_modified_gmt\tprice_hash\tinventory_hash\tcustomer_group_hash\tproduct_documents_hash'
+order_header=$'source_order_id\torder_key_hash\tpost_type\tpost_status\tpost_date_gmt\tpost_modified_gmt\tsource_user_id\tbilling_email_hash\tsource_user_exists\tsource_state_hash'
+media_header=$'upload_path\tbytes\tsha256\tstatus'
+user_header=$'user_id\temail_sha256\tuser_registered'
+document_pair_header=$'product_slug\tdocument_heading_hex\tupload_path_hex'
+assert_header "$LEGACY_DELTA/catalog-field-hashes.tsv" "$catalog_header"
+assert_header "$HEADLESS_DELTA/catalog-field-hashes.tsv" "$catalog_header"
+assert_header "$LEGACY_DELTA/order-user-relationships.tsv" "$order_header"
+assert_header "$LEGACY_DELTA/referenced-product-media-hashes.tsv" "$media_header"
+assert_header "$HEADLESS_DELTA/referenced-product-media-hashes.tsv" "$media_header"
+assert_header "$LEGACY_INVENTORY/user-hash-manifest.tsv" "$user_header"
+assert_header "$HEADLESS_INVENTORY/user-hash-manifest.tsv" "$user_header"
+assert_header "$LEGACY_DOCUMENT_PAIRS" "$document_pair_header"
+assert_header "$HEADLESS_DOCUMENT_PAIRS" "$document_pair_header"
 
 if [[ ! "$OUTPUT_DIR" =~ ^migration-inventory/[[:alnum:]_.-]+(/[[:alnum:]_.-]+)*$ ]]; then
   echo "ERROR: --output-dir must be a non-symlinked path below migration-inventory/." >&2
@@ -98,7 +130,9 @@ done
 rm -rf "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
 chmod 700 "$OUTPUT_DIR"
-cp "$POLICY_FILE" "$OUTPUT_DIR/approved-policy.json"
+if [[ "$DEFER_POLICY" != true ]]; then
+  cp "$POLICY_FILE" "$OUTPUT_DIR/approved-policy.json"
+fi
 WORK_DIR=$(mktemp -d)
 trap 'rm -rf "$WORK_DIR"' EXIT
 
@@ -128,13 +162,13 @@ awk -F '\t' 'NR > 1 && $2 != "" { count[$2]++; hash[$2]=$7 } END { for (sku in c
   "$HEADLESS_DELTA/catalog-field-hashes.tsv" | LC_ALL=C sort -t $'\t' -k1,1 > "$WORK_DIR/headless-prices.tsv"
 
 {
-  printf 'sku\ttarget_regular_price\tlegacy_records\theadless_records\tprice_hash_equal\tdisposition\n'
+  printf 'sku\ttarget_regular_price\tlegacy_records\theadless_records\tprice_hash_equal\theadless_price_hash\tdisposition\n'
   awk -F '\t' '
     FILENAME==ARGV[1] { legacy_count[$1]=$2; legacy_hash[$1]=$3; next }
     FILENAME==ARGV[2] { headless_count[$1]=$2; headless_hash[$1]=$3; next }
     FILENAME==ARGV[3] {
       sku=$1; price=$2; lc=legacy_count[sku]+0; hc=headless_count[sku]+0
-      if (lc==0 && hc==1) disposition="reject-source-missing"
+      if (lc==0 && hc<=1) disposition="reject-source-missing"
       else if (lc!=1 || hc!=1) {
         print "ERROR: Ambiguous ETA key for SKU " sku ": legacy=" lc ", headless=" hc > "/dev/stderr"
         invalid=1
@@ -142,7 +176,7 @@ awk -F '\t' 'NR > 1 && $2 != "" { count[$2]++; hash[$2]=$7 } END { for (sku in c
       }
       else disposition="candidate-update"
       equal=(lc==1 && hc==1 && legacy_hash[sku]==headless_hash[sku]) ? "yes" : "no"
-      print sku "\t" price "\t" lc "\t" hc "\t" equal "\t" disposition
+      print sku "\t" price "\t" lc "\t" hc "\t" equal "\t" headless_hash[sku] "\t" disposition
     }
     END { if (invalid) exit 1 }
   ' "$WORK_DIR/legacy-prices.tsv" "$WORK_DIR/headless-prices.tsv" "$WORK_DIR/eta-targets.tsv"
@@ -190,25 +224,31 @@ awk -F '\t' 'NR > 1 && $2 != "" { print $2 }' "$LEGACY_INVENTORY/user-hash-manif
 awk -F '\t' 'NR > 1 && $2 != "" { print $2 }' "$HEADLESS_INVENTORY/user-hash-manifest.tsv" | LC_ALL=C sort -u > "$WORK_DIR/headless-users"
 
 {
-  printf 'order_key_hash\tpost_type\tstatus\tcreated_gmt\tmodified_gmt\tbilling_email_hash\taccount_resolution\n'
-  awk -F '\t' '
+  if [[ "$DEFER_POLICY" == true ]]; then
+    printf 'order_key_hash\tpost_type\tstatus\tcreated_gmt\tmodified_gmt\tbilling_email_hash\taccount_resolution\tsource_state_hash\n'
+  else
+    printf 'order_key_hash\tpost_type\tstatus\tcreated_gmt\tmodified_gmt\tbilling_email_hash\taccount_resolution\n'
+  fi
+  awk -F '\t' -v include_source_hash="$DEFER_POLICY" '
     FILENAME==ARGV[1] { legacy_user[$1]=1; next }
     FILENAME==ARGV[2] { headless_user[$1]=1; next }
     FILENAME==ARGV[3] && FNR > 1 && $2!="" {
       billing=$8
-      if (billing=="") resolution="guest-no-email"
+      if (billing=="") resolution="guest-order"
       else if (billing in headless_user) resolution="link-existing-headless-user"
       else if (billing in legacy_user) resolution="legacy-account-review"
       else resolution="guest-order"
-      print $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" billing "\t" resolution
+      output=$2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" billing "\t" resolution
+      if (include_source_hash=="true") output=output "\t" $10
+      print output
     }
   ' "$WORK_DIR/legacy-users" "$WORK_DIR/headless-users" "$LEGACY_DELTA/order-user-relationships.tsv"
 } > "$OUTPUT_DIR/order-dry-run.tsv"
 
 eta_attempted=$(awk 'END { print NR+0 }' "$OUTPUT_DIR/eta-price-dry-run.tsv")
 eta_attempted=$((eta_attempted - 1))
-eta_candidates=$(awk -F '\t' 'NR > 1 && $6 == "candidate-update" { count++ } END { print count+0 }' "$OUTPUT_DIR/eta-price-dry-run.tsv")
-eta_missing=$(awk -F '\t' 'NR > 1 && $6 == "reject-source-missing" { count++ } END { print count+0 }' "$OUTPUT_DIR/eta-price-dry-run.tsv")
+eta_candidates=$(awk -F '\t' 'NR > 1 && $7 == "candidate-update" { count++ } END { print count+0 }' "$OUTPUT_DIR/eta-price-dry-run.tsv")
+eta_missing=$(awk -F '\t' 'NR > 1 && $7 == "reject-source-missing" { count++ } END { print count+0 }' "$OUTPUT_DIR/eta-price-dry-run.tsv")
 media_add=$(awk -F '\t' 'NR > 1 && $6 == "candidate-add" { count++ } END { print count+0 }' "$OUTPUT_DIR/product-document-media-dry-run.tsv")
 media_replace=$(awk -F '\t' 'NR > 1 && $6 == "candidate-replace" { count++ } END { print count+0 }' "$OUTPUT_DIR/product-document-media-dry-run.tsv")
 document_mapping_adds=$(awk 'END { print NR-1 }' "$OUTPUT_DIR/product-document-mapping-additions.tsv")
@@ -221,7 +261,11 @@ order_count=$(awk -F '\t' 'NR > 1 && $1 != "" { count++ } END { print count+0 }'
   echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
   echo
   echo "This package is a dry run. It contains no WordPress write commands."
-  echo "Approved policy SHA-256: $(sha256sum "$OUTPUT_DIR/approved-policy.json" | cut -d ' ' -f1)"
+  if [[ "$DEFER_POLICY" == true ]]; then
+    echo "Approved policy SHA-256: pending schema-v2 policy generation and review"
+  else
+    echo "Approved policy SHA-256: $(sha256sum "$OUTPUT_DIR/approved-policy.json" | cut -d ' ' -f1)"
+  fi
   echo
   echo "## ETA Prices"
   echo

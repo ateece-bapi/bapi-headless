@@ -1015,7 +1015,7 @@ function bapi_rehearsal_assert_inert_meta_value($value, string $context): void
     if (
         !is_string($value) ||
         is_serialized($value) ||
-        trim($value) !== wp_strip_all_tags($value) ||
+        trim($value) !== trim(wp_strip_all_tags($value)) ||
         ($shortcode_pattern !== '' && preg_match('/' . $shortcode_pattern . '/s', $value)) ||
         preg_match('/\[\/?(?:vc_|wpb_)|visual.?composer|wpbakery|js_composer|revslider|ess_grid/i', $value)
     ) {

@@ -77,7 +77,7 @@ bapi_test_assert(str_contains($rehearsal_runner, 'is_string($value) ? wp_slash($
 bapi_test_assert(str_contains($rehearsal_runner, 'bapi_rehearsal_assert_upload_target'), 'PDF destinations are not canonically confined');
 bapi_test_assert(str_contains($rehearsal_runner, 'bapi_rehearsal_assert_transactional_storage'), 'production transaction tables are not verified');
 bapi_test_assert(str_contains($rehearsal_runner, "DateTimeImmutable::createFromFormat('!Y-m-d\\TH:i:s\\Z'"), 'order UTC dates are not strictly parsed');
-bapi_test_assert(str_contains($rehearsal_runner, 'trim($value) !== wp_strip_all_tags($value)'), 'runner rejects harmless metadata whitespace');
+bapi_test_assert(str_contains($rehearsal_runner, 'trim($value) !== trim(wp_strip_all_tags($value))'), 'runner does not allow harmless metadata whitespace');
 bapi_test_assert(!str_contains($rehearsal_runner, '/\[[^\]]+\]|'), 'runner still rejects all bracketed metadata text');
 bapi_test_assert(str_contains($rehearsal_runner, "'payload_sha256' => get_post_meta"), 'order idempotency marker is not reconstructed');
 bapi_test_assert(str_contains($rehearsal_runner, 'must be a non-symlinked owner-only file'), 'production package permissions are not enforced');
@@ -88,9 +88,10 @@ bapi_test_assert(str_contains($package_builder, 'source_state_hash'), 'package b
 bapi_test_assert(str_contains($package_builder, 'assert_header'), 'package builder does not validate positional TSV headers');
 bapi_test_assert(str_contains($order_exporter, 'bapi_order_export_source_state_hash'), 'order exporter does not revalidate complete source state');
 bapi_test_assert(str_contains($order_exporter, 'Source order changed during payload extraction'), 'order exporter does not revalidate source state after payload extraction');
+bapi_test_assert(str_contains($order_exporter, "!isset(\$policy['orders'])"), 'order exporter dereferences malformed policy JSON before validating its shape');
 bapi_test_assert(str_contains($order_exporter, 'get_shortcode_regex()'), 'order exporter does not use registered shortcode detection');
 bapi_test_assert(!str_contains($order_exporter, '/\[[^\]]+\]|'), 'order exporter still rejects all bracketed product text');
-bapi_test_assert(str_contains($order_exporter, 'trim($value) !== wp_strip_all_tags($value)'), 'order exporter rejects harmless surrounding whitespace');
+bapi_test_assert(str_contains($order_exporter, 'trim($value) !== trim(wp_strip_all_tags($value))'), 'order exporter does not allow harmless surrounding whitespace');
 bapi_test_assert(str_contains($guard, "define('BAPI_PRODUCTION_REFRESH_GUARD_OPTION', 'bapi_data_refresh_guard_enabled')"), 'guard enable option changed');
 bapi_test_assert(str_contains($guard, "define('BAPI_PRODUCTION_REFRESH_HOST', 'bapiheadlessstaging.kinsta.cloud')"), 'guard host does not match production');
 bapi_test_assert(str_contains($guard, "add_filter('pre_schedule_event'"), 'cron enqueueing is not blocked');

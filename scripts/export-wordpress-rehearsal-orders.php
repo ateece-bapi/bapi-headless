@@ -56,10 +56,16 @@ function bapi_order_export_read_manifest(string $manifest_path): array
     }
     $policy = json_decode((string) file_get_contents($policy_path), true);
     $expected_schema = BAPI_ORDER_EXPORT_SCHEMA >= 2 ? 2 : 1;
-    $approved_candidate_count = $policy['orders']['approvedCandidateCount'] ?? null;
     if (
         !is_array($policy) ||
         ($policy['schemaVersion'] ?? null) !== $expected_schema ||
+        !isset($policy['orders']) ||
+        !is_array($policy['orders'])
+    ) {
+        bapi_order_export_fail('Approved order policy is malformed or has an unsupported schema or count.');
+    }
+    $approved_candidate_count = $policy['orders']['approvedCandidateCount'] ?? null;
+    if (
         !is_int($approved_candidate_count) ||
         $approved_candidate_count < 1
     ) {
@@ -209,7 +215,7 @@ function bapi_order_export_assert_clean_text(string $value, string $context): vo
 {
     $shortcode_pattern = get_shortcode_regex();
     if (
-        trim($value) !== wp_strip_all_tags($value) ||
+        trim($value) !== trim(wp_strip_all_tags($value)) ||
         ($shortcode_pattern !== '' && preg_match('/' . $shortcode_pattern . '/s', $value)) ||
         preg_match('/\[\/?(?:vc_|wpb_)|visual.?composer|wpbakery|js_composer|revslider|ess_grid/i', $value)
     ) {

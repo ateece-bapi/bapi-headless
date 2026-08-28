@@ -22,6 +22,25 @@ Repository history documents the completed November migration as DDEV to Kinsta 
 serialized replacements and a separate media transfer; no execution record was found for the
 February refresh proposal.
 
+## Refresh Objective and Baseline
+
+The refresh is limited to business-data changes since the original November 2025 Headless seed:
+
+1. Legacy-only WooCommerce orders (sales).
+2. Legacy-only products and variations required by the storefront.
+3. Approved price changes for existing SKUs.
+4. New or changed approved product documents.
+
+Use `2025-11-01 00:00:00` as the conservative discovery cutoff. The repository proves that the
+shared copy occurred in November 2025 and was complete by November 29, but it does not preserve the
+exact source snapshot timestamp. The cutoff therefore selects candidates; it does not prove that a
+record is absent from Headless or authorize a write. Determine the actual delta by comparing both
+systems with stable keys and field/file hashes.
+
+Existing Headless records win unless an approved field-level rule says otherwise. Do not refresh
+pages, posts, navigation, layout, styling, themes, plugins, options, or general media. No candidate
+outside the four business-data stages above may enter the production package.
+
 ## Non-Negotiable Controls
 
 1. Never import the Legacy SQL dump directly into the active Headless database.
@@ -83,9 +102,10 @@ record requires explicit conflict rules; it does not mean that all source fields
 
 | Dataset | Stable key | Proposed authority | Initial rule |
 |---|---|---|---|
-| Products | SKU | Legacy | Update approved commerce fields; preserve Headless-only metadata |
-| Variations | Variation SKU | Legacy | Resolve parent by parent SKU; never copy numeric parent IDs |
-| Prices and stock | SKU | Legacy | Confirm source-of-truth and freeze window with Product/Sales |
+| New products | SKU | Legacy for confirmed Legacy-only records | Insert allowlisted storefront fields only; never clone the source post or metadata set |
+| New variations | Variation SKU | Legacy for confirmed Legacy-only records | Resolve parent by parent SKU; never copy numeric parent IDs |
+| Prices | SKU | Legacy only for approved differences | Update only approved price fields; preserve stock and unrelated product data |
+| Stock | SKU | Headless | Outside this refresh; never change with a product or price stage |
 | Product categories | Taxonomy + slug | Merge | Preserve cleaned Headless hierarchy; map Legacy assignments by slug |
 | Product attributes | Taxonomy + slug | Merge | Reconcile definitions before assigning terms |
 | Customer-group product fields | SKU + meta key | Merge | Compare both sides; require Product owner approval for conflicts |
@@ -131,8 +151,8 @@ The first inventory comparison supports a narrow delta migration, not a general 
 
 | Area | Evidence | Disposition |
 |---|---|---|
-| Catalog identity | Both systems contain the same 5,577 unique nonblank SKU values | Do not copy products wholesale |
-| Duplicate SKUs | 53 duplicate nonblank SKU groups exist on both systems | Require an exception key for affected records |
+| Catalog identity | Both systems contain the same 5,576 unique usable SKU values; neither has a SKU absent from the other | No new SKU-addressable product was present in the August 20 snapshots |
+| Duplicate SKUs | 52 duplicate usable SKU groups exist on both systems | Require an exception key for affected records |
 | Orders | 689 keys only on Legacy and 3 only on Headless; 667 Legacy-only orders modified after November 1, 2025 | Separate WooCommerce order ETL and reconciliation |
 | Users | 188 unique email hashes only on Legacy; 183 registered after November 1, 2025 | Migrate only accounts required by approved order/account behavior |
 | Product changes | 9 products and 14 variations have newer Legacy timestamps | Compare approved fields by SKU; never copy post rows or all metadata |
@@ -148,6 +168,31 @@ The first inventory comparison supports a narrow delta migration, not a general 
 
 These findings do not prove product-field equality. WooCommerce metadata changes may not update the
 post modification timestamp, so a field-level hash comparison remains mandatory.
+
+### New Product Authority
+
+A post-November timestamp is candidate evidence only. A product or variation is eligible for the
+new-product stage only when its unique nonblank SKU is absent from Headless and Product approves it.
+For every eligible record:
+
+- Resolve variation parents, categories, and attributes by approved stable keys, never numeric IDs.
+- Map only the reviewed product, commerce, taxonomy, attribute, image, and document fields required
+  by the Headless storefront. Unmapped fields are rejected.
+- Sanitize descriptions and reject Visual Composer/WPBakery shortcodes, metadata, classes, generated
+  CSS/JavaScript, templates, and assets rather than attempting to preserve the Legacy design.
+- Reject plugin-defined fields or dependencies unless the business value has an explicit mapping
+  into a Headless-owned field.
+- Import only approved referenced original media after file-type validation and SHA-256 review.
+- Produce a preview plus insert/reject/conflict report and obtain Product/Content approval.
+
+An SKU already present in Headless is not a new product. Differences on existing products remain
+review-only unless separately authorized as a named field-level update.
+
+The exact August 20 manifest comparison found 5,702 product/variation rows on each system and zero
+Legacy-only nonblank SKUs. Of 24 Legacy rows modified on or after the discovery cutoff, all 20 with
+usable SKUs already exist in Headless; the remaining four have blank SKUs and are ineligible for
+automatic import. A fresh frozen-source comparison must repeat this check. If it remains unchanged,
+the production `new-products` stage is an approved zero-write stage, not an importer operation.
 
 ### ETA Price Authority
 
@@ -288,6 +333,8 @@ changes. Every proposed write must be classified as `insert`, `update`, `unchang
 Required conflict rules:
 
 - Products and variations map by SKU; blank or duplicate SKUs are manual exceptions.
+- New-product candidates must be absent from Headless by unique SKU; existing SKUs are never
+  overwritten by the new-product stage.
 - Users map by normalized email and retain their Headless IDs.
 - Posts map by post type and slug; content conflicts require editorial review.
 - Terms map by taxonomy and slug; numeric IDs never cross environments.
@@ -302,6 +349,8 @@ Required conflict rules:
 Run the merge against the disposable clone, then verify:
 
 - Product, variation, user, order, content, taxonomy, and media reconciliation totals.
+- Every approved new product/variation appears once by SKU and every pre-existing SKU is unchanged
+  outside separately approved price or document fields.
 - GraphQL schema and representative product/content queries.
 - Guest and customer-group product visibility.
 - Existing user login, token refresh, 2FA, and favorites.
@@ -368,10 +417,12 @@ Stop and restore or investigate when any of these occur:
 
 ## Immediate Next Step
 
-Generate the key-only order and line-item metadata inventory for the exact fresh order manifest.
-Explicitly map required variation/configuration fields and reject plugin-owned or unapproved keys.
-In parallel, assign the named cutover owners and schedule the freeze. Only after the metadata gate
-is approved should a separate production runner and temporary side-effect guard be designed,
-reviewed, and rehearsed on a fresh disposable clone.
+Obtain Customer Service/Finance, Product, and technical approval for the restricted August 26
+order-metadata disposition matrix. It proposes four business order-field mappings, 87 line-item
+configuration mappings, and explicit rejection of all remaining review keys, including plugin and
+payment state. The 669-order inventory is mapping evidence only; repeat it against the exact fresh
+frozen-source manifest before final approval. In parallel, assign the named cutover owners and
+schedule the freeze. Only after the metadata gate is approved should a separate production runner
+and temporary side-effect guard be designed, reviewed, and rehearsed on a fresh disposable clone.
 
 Do not export full databases, migrate plugin data, or copy upload directories.

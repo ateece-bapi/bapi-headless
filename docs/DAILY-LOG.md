@@ -8,6 +8,26 @@
 
 ---
 
+## August 27, 2026 — Selective Data Refresh Scope Approved
+
+**Status:** Business-data policy approved; production apply remains **NO-GO**
+
+- Confirmed `2025-11-01 00:00:00` as the conservative candidate-discovery cutoff for the November
+  2025 Headless seed; stable keys and hashes, not the date alone, determine the actual delta.
+- Approved new products as a zero-write stage unless the final frozen-source comparison finds a
+  Legacy-only unique nonblank SKU. The August 20 manifests contain the same 5,576 usable SKUs.
+- Approved the rehearsed 73-SKU ETA price scope, limited to `_regular_price` and conditional
+  `_price`; stock, customer groups, descriptions, and unrelated metadata remain excluded.
+- Approved the rehearsed 58 product-document file actions and 17 additive parent-product mappings;
+  `Wireless_QuantumSlim-v17.pdf` remains excluded because the source file is missing.
+- Approved mapping four business order fields and 87 line-item configuration keys, with all 31
+  remaining order review keys and two remaining item review keys excluded.
+- Reaffirmed that no plugins, themes, options, tables, Visual Composer/WPBakery data or files,
+  generated design assets, payment-plugin state, or broad uploads copy may transfer.
+- Final frozen-source inventories and hashes, production-runner review, fresh-clone rehearsal,
+  Kinsta backups, freeze scheduling, and written final GO remain required before any production
+  write.
+
 ## August 21-24, 2026 — Legacy Data Refresh Rehearsal
 
 **Status:** Approved ETA, document, and order stages rehearsed on disposable Kinsta clone

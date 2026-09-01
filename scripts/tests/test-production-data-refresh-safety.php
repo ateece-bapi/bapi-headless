@@ -16,6 +16,9 @@ function bapi_test_write(string $path, string $content): void
     if (file_put_contents($path, $content) !== strlen($content)) {
         throw new RuntimeException("Unable to write fixture: {$path}");
     }
+    if (!chmod($path, 0600)) {
+        throw new RuntimeException("Unable to enforce owner-only fixture permissions: {$path}");
+    }
 }
 
 function bapi_test_remove_tree(string $directory): void
@@ -107,7 +110,7 @@ if (!mkdir($temporary_dir, 0700)) {
     throw new RuntimeException('Unable to create temporary test directory.');
 }
 try {
-    foreach (['legacy-delta', 'headless-delta', 'legacy-inventory', 'headless-inventory'] as $fixture_dir) {
+    foreach (['legacy-delta', 'headless-delta', 'legacy-inventory', 'headless-inventory', 'monitor-baseline', 'monitor-current'] as $fixture_dir) {
         if (!mkdir($temporary_dir . '/' . $fixture_dir, 0700)) {
             throw new RuntimeException("Unable to create fixture directory: {$fixture_dir}");
         }
@@ -205,6 +208,86 @@ try {
         'schema-v2 package did not report the duplicated target ETA cardinality'
     );
     bapi_test_write($temporary_dir . '/headless-delta/catalog-field-hashes.tsv', $headless_catalog);
+
+    $monitor_catalog_row = "product\tETA-1\teta-1\t\tpublish\t2026-08-27 00:00:00\t{$legacy_price_hash}\t" .
+        str_repeat('5', 64) . "\t" . str_repeat('6', 64) . "\t" . str_repeat('7', 64) . "\n";
+    $monitor_order_header = "source_order_id\torder_key_hash\tpost_type\tpost_status\tpost_date_gmt\tpost_modified_gmt\tsource_user_id\tbilling_email_hash\tsource_user_exists\tsource_state_hash\n";
+    $monitor_order_row = "1\t" . str_repeat('9', 64) . "\tshop_order\twc-processing\t2026-08-27 00:00:00\t2026-08-27 00:00:00\t0\t\t0\t{$source_state_hash}\n";
+    $monitor_exact_reports = [
+        'referenced-product-media.tsv' => "product_source_id\tsku\tproduct_slug\tattachment_source_id\tupload_path\tpost_mime_type\tpost_modified_gmt\n",
+        'product-document-metadata.tsv' => "product_slug\tmeta_key\tnormalized_value_hex\n",
+        'product-document-resolved-pairs.tsv' => "product_slug\tdocument_heading_hex\tupload_path_hex\n",
+        'referenced-product-media-hashes.tsv' => "upload_path\tbytes\tsha256\tstatus\n",
+    ];
+    foreach (['monitor-baseline', 'monitor-current'] as $fixture_dir) {
+        $captured_at = $fixture_dir === 'monitor-baseline' ? '20260827T000000Z' : '20260827T010000Z';
+        bapi_test_write(
+            $temporary_dir . "/{$fixture_dir}/summary.txt",
+            "label=legacy\ncaptured_at_utc={$captured_at}\nsince=2025-11-01 00:00:00\n"
+        );
+        bapi_test_write($temporary_dir . "/{$fixture_dir}/catalog-field-hashes.tsv", $catalog_header . $monitor_catalog_row);
+        bapi_test_write($temporary_dir . "/{$fixture_dir}/order-user-relationships.tsv", $monitor_order_header . $monitor_order_row);
+        foreach ($monitor_exact_reports as $filename => $content) {
+            bapi_test_write($temporary_dir . "/{$fixture_dir}/{$filename}", $content);
+        }
+    }
+    $monitor_ledger = $temporary_dir . '/monitor-clean.json';
+    $monitor_command = implode(' ', array_map('escapeshellarg', [
+        PHP_BINARY,
+        $root . '/scripts/compare-wordpress-approved-scans.php',
+        '--baseline', $temporary_dir . '/monitor-baseline',
+        '--current', $temporary_dir . '/monitor-current',
+        '--output', $monitor_ledger,
+    ]));
+    $monitor_result = bapi_test_run($monitor_command, $root);
+    bapi_test_assert($monitor_result['exit_code'] === 0, 'identical monitor scans did not report clean');
+    bapi_test_assert((fileperms($monitor_ledger) & 0777) === 0600, 'monitor ledger permissions are not 0600');
+
+    $duplicate_ledger = $temporary_dir . '/monitor-duplicate-argument.json';
+    $duplicate_argument_command = implode(' ', array_map('escapeshellarg', [
+        PHP_BINARY,
+        $root . '/scripts/compare-wordpress-approved-scans.php',
+        '--baseline', $temporary_dir . '/monitor-baseline',
+        '--baseline', $temporary_dir . '/monitor-current',
+        '--current', $temporary_dir . '/monitor-current',
+        '--output', $duplicate_ledger,
+    ]));
+    $duplicate_argument_result = bapi_test_run($duplicate_argument_command, $root);
+    bapi_test_assert($duplicate_argument_result['exit_code'] === 2, 'monitor accepted a duplicated argument');
+    bapi_test_assert(
+        str_contains(implode("\n", $duplicate_argument_result['output']), 'Duplicate argument: --baseline'),
+        'monitor did not identify the duplicated argument'
+    );
+    bapi_test_assert(!file_exists($duplicate_ledger), 'monitor wrote a ledger for an ambiguous invocation');
+
+    $modified_order_row = str_replace($source_state_hash, str_repeat('d', 64), $monitor_order_row);
+    $added_order_row = "2\t" . str_repeat('a', 64) . "\tshop_order\twc-processing\t2026-08-27 00:30:00\t2026-08-27 00:30:00\t0\t\t0\t" . str_repeat('b', 64) . "\n";
+    bapi_test_write(
+        $temporary_dir . '/monitor-current/order-user-relationships.tsv',
+        $monitor_order_header . $modified_order_row . $added_order_row
+    );
+    $monitor_ledger = $temporary_dir . '/monitor-catch-up.json';
+    $monitor_result = bapi_test_run(str_replace('monitor-clean.json', 'monitor-catch-up.json', $monitor_command), $root);
+    bapi_test_assert($monitor_result['exit_code'] === 10, 'new source order did not require a catch-up batch');
+    $monitor_decision = json_decode(file_get_contents($monitor_ledger), true, 512, JSON_THROW_ON_ERROR);
+    bapi_test_assert($monitor_decision['status'] === 'catch-up-required', 'catch-up ledger status is incorrect');
+    bapi_test_assert(count($monitor_decision['orders']['added']) === 1, 'catch-up ledger omitted the new order');
+    bapi_test_assert(count($monitor_decision['orders']['modified']) === 1, 'catch-up ledger omitted the modified order');
+
+    $changed_inventory_row = str_replace(str_repeat('5', 64), str_repeat('c', 64), $monitor_catalog_row);
+    bapi_test_write(
+        $temporary_dir . '/monitor-current/catalog-field-hashes.tsv',
+        $catalog_header . $changed_inventory_row
+    );
+    $monitor_ledger = $temporary_dir . '/monitor-no-go.json';
+    $monitor_result = bapi_test_run(str_replace('monitor-clean.json', 'monitor-no-go.json', $monitor_command), $root);
+    bapi_test_assert($monitor_result['exit_code'] === 20, 'excluded inventory mutation did not produce NO-GO');
+    $monitor_decision = json_decode(file_get_contents($monitor_ledger), true, 512, JSON_THROW_ON_ERROR);
+    bapi_test_assert(
+        in_array('catalog_inventory_changed', $monitor_decision['no_go_reasons'], true),
+        'NO-GO ledger omitted the excluded inventory mutation'
+    );
+
     bapi_test_write(
         $temporary_dir . '/eta.sh',
         "update_price 'ETA-1' \"10.00\"\nupdate_price 'ETA-MISSING' \"20.00\"\n"

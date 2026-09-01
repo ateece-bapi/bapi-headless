@@ -33,6 +33,9 @@ function parse_arguments(array $arguments): array
         if (!in_array($name, ['--baseline', '--current', '--output'], true) || $value === '') {
             fail('Usage: compare-wordpress-approved-scans.php --baseline <scan-dir> --current <scan-dir> --output <ledger.json>');
         }
+        if (isset($options[$name])) {
+            fail("Duplicate argument: {$name}");
+        }
         $options[$name] = $value;
     }
 
@@ -222,11 +225,6 @@ function compare_catalog(array $baseline_rows, array $current_rows): array
     }
 
     return $changes;
-}
-
-function count_changes(array $groups): int
-{
-    return array_sum(array_map('count', $groups));
 }
 
 $options = parse_arguments($argv);

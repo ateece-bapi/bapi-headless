@@ -16,7 +16,9 @@ function bapi_test_write(string $path, string $content): void
     if (file_put_contents($path, $content) !== strlen($content)) {
         throw new RuntimeException("Unable to write fixture: {$path}");
     }
-    chmod($path, 0600);
+    if (!chmod($path, 0600)) {
+        throw new RuntimeException("Unable to enforce owner-only fixture permissions: {$path}");
+    }
 }
 
 function bapi_test_remove_tree(string $directory): void
@@ -240,6 +242,23 @@ try {
     $monitor_result = bapi_test_run($monitor_command, $root);
     bapi_test_assert($monitor_result['exit_code'] === 0, 'identical monitor scans did not report clean');
     bapi_test_assert((fileperms($monitor_ledger) & 0777) === 0600, 'monitor ledger permissions are not 0600');
+
+    $duplicate_ledger = $temporary_dir . '/monitor-duplicate-argument.json';
+    $duplicate_argument_command = implode(' ', array_map('escapeshellarg', [
+        PHP_BINARY,
+        $root . '/scripts/compare-wordpress-approved-scans.php',
+        '--baseline', $temporary_dir . '/monitor-baseline',
+        '--baseline', $temporary_dir . '/monitor-current',
+        '--current', $temporary_dir . '/monitor-current',
+        '--output', $duplicate_ledger,
+    ]));
+    $duplicate_argument_result = bapi_test_run($duplicate_argument_command, $root);
+    bapi_test_assert($duplicate_argument_result['exit_code'] === 2, 'monitor accepted a duplicated argument');
+    bapi_test_assert(
+        str_contains(implode("\n", $duplicate_argument_result['output']), 'Duplicate argument: --baseline'),
+        'monitor did not identify the duplicated argument'
+    );
+    bapi_test_assert(!file_exists($duplicate_ledger), 'monitor wrote a ledger for an ambiguous invocation');
 
     $modified_order_row = str_replace($source_state_hash, str_repeat('d', 64), $monitor_order_row);
     $added_order_row = "2\t" . str_repeat('a', 64) . "\tshop_order\twc-processing\t2026-08-27 00:30:00\t2026-08-27 00:30:00\t0\t\t0\t" . str_repeat('b', 64) . "\n";

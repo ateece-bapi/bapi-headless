@@ -369,18 +369,25 @@ The timed execution, approval, side-effect, and rollback gates are defined in
 `WORDPRESS-DATA-REFRESH-PRODUCTION-CUTOVER.md`. The current importer is rehearsal-only and must not
 be modified ad hoc or run against active Headless.
 
-1. Announce a short Legacy editing and commerce freeze appropriate to the approved order strategy.
-2. Capture final Legacy database and uploads snapshots.
-3. Generate and review the delta from the rehearsed snapshot.
-4. Back up the active Headless database and uploads; record restore identifiers.
-5. Run the separately reviewed production runner that preserves the rehearsed transformations and
+1. Start a soft freeze that prohibits ETA, product/SKU, and product-document edits while Legacy
+  order entry continues.
+2. Establish an accepted Legacy scan baseline using an immutable candidate-discovery floor. Run the
+  hash comparator on a schedule; manual observation is not monitoring evidence.
+3. Process each set of new or modified orders as an independently built, hash-pinned, approved,
+  applied, and reconciled catch-up batch. Advance the accepted baseline only after exact success.
+4. Start a short final freeze of all relevant Legacy writes and capture final Legacy database and
+  uploads snapshots.
+5. Generate and review any final delta, then back up active Headless and record restore identifiers.
+6. Run the separately reviewed production runner that preserves the rehearsed transformations and
   reconciliation behavior while enforcing production-only target and approval controls. Never
   adapt or bypass the clone-only runner during cutover.
-6. Copy only approved missing/changed media and verify hashes.
-7. Run automated reconciliation and the critical-path smoke suite.
-8. Clear/rebuild caches and trigger required Next.js revalidation.
-9. Obtain business sign-off before lifting the freeze.
-10. Retain backups and reports according to the agreed rollback window, then securely delete dumps.
+7. Copy only approved missing/changed media and verify hashes.
+8. Rescan and repeat the final batch until the comparator reports `clean` and all dry runs propose
+  zero writes with zero conflicts.
+9. Run automated reconciliation and the critical-path smoke suite.
+10. Move write authority to Headless, clear/rebuild caches, and trigger required Next.js revalidation.
+11. Obtain business sign-off before lifting the final freeze.
+12. Retain backups and reports according to the agreed rollback window, then securely delete dumps.
 
 ## Stop Conditions
 
@@ -417,12 +424,11 @@ Stop and restore or investigate when any of these occur:
 
 ## Immediate Next Step
 
-Obtain Customer Service/Finance, Product, and technical approval for the restricted August 26
-order-metadata disposition matrix. It proposes four business order-field mappings, 87 line-item
-configuration mappings, and explicit rejection of all remaining review keys, including plugin and
-payment state. The 669-order inventory is mapping evidence only; repeat it against the exact fresh
-frozen-source manifest before final approval. In parallel, assign the named cutover owners and
-schedule the freeze. Only after the metadata gate is approved should a separate production runner
-and temporary side-effect guard be designed, reviewed, and rehearsed on a fresh disposable clone.
+Assign the monitoring scheduler, alert destination, catch-up reviewers, and final-freeze owners.
+Capture the first production Legacy baseline with the immutable November 1 discovery floor, then
+exercise `compare-wordpress-approved-scans.php` without applying production changes. Customer
+Service/Finance must still approve each fresh order batch and its exact metadata inventory. The
+merged production runner and guard have passed clone contract rehearsal, but production apply
+remains NO-GO until all runbook approvals and final preconditions are complete.
 
 Do not export full databases, migrate plugin data, or copy upload directories.

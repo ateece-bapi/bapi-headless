@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { getPageBySlug } from '@/lib/wordpress';
 import PageHeader from '@/components/layout/PageHeader';
 import {
   BriefcaseIcon,
@@ -75,9 +74,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Force dynamic rendering to ensure locale-specific translations load correctly
-export const dynamic = 'force-dynamic';
-
 const benefitCards = [
   { key: 'healthInsurance', icon: ShieldIcon },
   { key: 'compensation', icon: DollarSignIcon },
@@ -88,7 +84,6 @@ const benefitCards = [
 ];
 
 export default async function CareersPage() {
-  const page = await getPageBySlug('careers');
   const t = await getTranslations('companyPages.careers');
   const breadcrumbs = [
     { label: t('breadcrumb.home'), href: '/' },

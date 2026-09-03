@@ -2046,13 +2046,13 @@
         "or": "หรือโทร"
       },
       "howToApply": {
-        "title": "How to Apply",
-        "intro": "We ONLY accept and consider complete electronic applications submitted directly through the www.bapihvac.com/careers webpage.",
-        "noteLabel": "Please Note:",
-        "note": "Most positions will require a Resume and a separate Cover Letter to be considered a \"complete\" electronic application. Cover Letters should detail how you are a fit for the specific qualifications we have listed.",
-        "citizenship": "Candidates must be US Citizens or Green Card Holders (Perm. Resident).",
-        "viewOpenings": "View Current Openings",
-        "eoeStatement": "BAPI is an Equal Opportunity Employer (EOE) and we are committed to creating an inclusive work environment for all employees. We will not discriminate against any applicant for employment on the basis of race, color, age, religion, sex, sexual orientation, gender identity, national origin, disability, or veteran status. If you are unable to apply online and/or require alternative methods of application or screening, please contact us."
+        "title": "วิธีการสมัคร",
+        "intro": "เรารับพิจารณาเฉพาะใบสมัครอิเล็กทรอนิกส์ที่สมบูรณ์ซึ่งส่งโดยตรงผ่านเว็บไซต์ www.bapihvac.com/careers เท่านั้น",
+        "noteLabel": "โปรดทราบ:",
+        "note": "ตำแหน่งงานส่วนใหญ่จะต้องใช้ประวัติย่อและจดหมายสมัครงานแยกต่างหากจะถือเป็นใบสมัครอิเล็กทรอนิกส์ที่ \"สมบูรณ์\" จดหมายสมัครงานควรระบุรายละเอียดว่าคุณมีคุณสมบัติตรงตามที่เราระบุไว้อย่างไร",
+        "citizenship": "ผู้สมัครต้องเป็นพลเมืองสหรัฐฉมี หรือผู้ถือกรีนการ์ด (ผู้มีถิ่นที่อยู่ถาวร)",
+        "viewOpenings": "ดูตำแหน่งงานที่เปิดรับสมัคร",
+        "eoeStatement": "BAPI เป็นนายจ้างที่ให้โอกาสเท่าเทียมกัน (EOE) และมุ่งมั่นที่จะสร้างสภาพแวดล้อมการทำงานที่ครอบคลุมสำหรับพนักงานทุกคน เราจะไม่เลือกปฏิบัติต่อผู้สมัครงานโดยพิจารณาจากเชื้อชาติ สีผิว อายุ ศาสนา เพศ รสนิยมทางเพศ อัตลักษณ์ทางเพศ ถิ่นกำเนิด ความพิการ หรือสถานะทหารผ่านศึก หากคุณไม่สามารถสมัครออนไลน์และ/หรือต้องการวิธีการสมัครหรือคัดกรองทางเลือกอื่น กรุณาติดต่อเรา"
       },
       "cta": {
         "title": "พร้อมที่จะเข้าร่วมภารกิจของเราหรือไม่?",

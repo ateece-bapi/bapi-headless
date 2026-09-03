@@ -1306,6 +1306,15 @@
         "phone": "(800) 753-4400",
         "or": "hoặc gọi"
       },
+      "howToApply": {
+        "title": "Cách thức Ứng tuyển",
+        "intro": "Chúng tôi CHỈ chấp nhận và xem xét các đơn ứng tuyển điện tử đầy đủ được gửi trực tiếp qua trang web www.bapihvac.com/careers.",
+        "noteLabel": "Xin lưu ý:",
+        "note": "Hầu hết các vị trí đều yêu cầu Sơ yếu lý lịch và một Thư xin việc riêng để được coi là đơn ứng tuyển điện tử \"đầy đủ\". Thư xin việc nên nêu rõ bạn phù hợp như thế nào với các yêu cầu cụ thể mà chúng tôi đã liệt kê.",
+        "citizenship": "Ứng viên phải là công dân Hoa Kỳ hoặc người có Thẻ Xanh (Thường trú nhân).",
+        "viewOpenings": "Xem Vị Trí Đang Tuyển",
+        "eoeStatement": "BAPI là nhà tuyển dụng bình đẳng cơ hội (EOE) và cam kết xây dựng môi trường làm việc hòa nhập cho tất cả nhân viên. Chúng tôi sẽ không phân biệt đối xử với bất kỳ ứng viên nào dựa trên chủng tộc, màu da, tuổi tác, tôn giáo, giới tính, xu hướng tính dục, bản dạng giới, nguồn gốc quốc gia, khuyết tật hoặc tình trạng cựu chiến binh. Nếu bạn không thể ứng tuyển trực tuyến và/hoặc cần phương thức ứng tuyển hoặc sàng lọc thay thế, vui lòng liên hệ với chúng tôi."
+      },
       "cta": {
         "title": "Sẵn Sàng Tham Gia Sứ Mệnh Của Chúng Tôi?",
         "description": "Khám phá các vị trí hiện có và thực hiện bước đầu tiên hướng tới một sự nghiệp thú vị tại BAPI. Chúng tôi mong được nghe từ bạn!",

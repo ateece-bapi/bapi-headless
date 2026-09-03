@@ -1,26 +1,62 @@
 import { Metadata } from 'next';
-import { getPageBySlug } from '@/lib/wordpress';
+import Image from 'next/image';
 import PageHeader from '@/components/layout/PageHeader';
-import { Link } from '@/lib/navigation';
 import {
   BriefcaseIcon,
   HeartIcon,
-  UsersIcon,
   TrendingUpIcon,
   ShieldIcon,
-  GiftIcon,
   PlaneIcon,
   GraduationCapIcon,
-  DumbbellIcon,
   DollarSignIcon,
-  FileTextIcon,
   MailIcon,
-  ArrowRightIcon,
-  CheckCircle2Icon,
+  ExternalLinkIcon,
   SparklesIcon,
 } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
+
+const CAREERS_PORTAL_URL =
+  'https://recruiting.paylocity.com/recruiting/jobs/All/4a238b5c-6067-4d66-a2a9-c9e0cf5b58c9/Building-Automation-Products-Inc';
+
+// Photo collage shown beneath the hero, ordered/positioned to match the approved Figma layout
+const galleryImages = [
+  {
+    src: '/images/careers/Production_WaveSoldering_1 2.png',
+    alt: 'BAPI production technician working with wave soldering equipment',
+    className: 'sm:col-start-1 sm:row-start-1 sm:row-span-2',
+  },
+  {
+    src: '/images/careers/Cross_Functional_1 4.png',
+    alt: 'Cross-functional BAPI team collaborating in a conference room',
+    className: 'sm:col-start-2 sm:col-span-2 sm:row-start-1',
+  },
+  {
+    src: '/images/careers/Techs_2 4.png',
+    alt: 'BAPI technicians reviewing equipment together',
+    className: 'sm:col-start-4 sm:row-start-1',
+  },
+  {
+    src: '/images/careers/IT_Dept_1 3.png',
+    alt: 'BAPI IT department staff collaborating',
+    className: 'sm:col-start-5 sm:row-start-1',
+  },
+  {
+    src: '/images/careers/Engineering_2 3.png',
+    alt: 'BAPI engineering team reviewing data on monitors',
+    className: 'sm:col-start-2 sm:row-start-2',
+  },
+  {
+    src: '/images/careers/Customer_Service_2 2.png',
+    alt: 'BAPI customer service representatives assisting customers',
+    className: 'sm:col-start-3 sm:row-start-2',
+  },
+  {
+    src: '/images/careers/Mechanical_Engineering_1 3.png',
+    alt: 'BAPI mechanical engineers inspecting a circuit board assembly',
+    className: 'sm:col-start-4 sm:col-span-2 sm:row-start-2',
+  },
+];
 
 // Generate static params for all locales - ensures each locale is built separately
 export function generateStaticParams() {
@@ -38,79 +74,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Force dynamic rendering to ensure locale-specific translations load correctly
-export const dynamic = 'force-dynamic';
-
-const benefits = [
-  {
-    icon: ShieldIcon,
-    title: 'Health Insurance',
-    description: 'Comprehensive health, dental, and vision coverage for you and your family.',
-    gradient: 'from-primary-600 to-primary-700',
-  },
-  {
-    icon: DollarSignIcon,
-    title: 'Competitive Compensation',
-    description: 'Industry-leading salaries with regular performance reviews and merit increases.',
-    gradient: 'from-primary-600 to-primary-700',
-  },
-  {
-    icon: PlaneIcon,
-    title: 'Paid Holidays',
-    description: 'Generous paid time off including holidays, vacation days, and personal time.',
-    gradient: 'from-primary-600 to-primary-400',
-  },
-  {
-    icon: TrendingUpIcon,
-    title: '401(k) Match',
-    description: 'Company match on retirement contributions to help secure your future.',
-    gradient: 'from-primary-700 to-primary-500',
-  },
-  {
-    icon: HeartIcon,
-    title: 'Life Insurance',
-    description: 'Company-paid life insurance coverage with options for additional coverage.',
-    gradient: 'from-primary-500 to-primary-700',
-  },
-  {
-    icon: GraduationCapIcon,
-    title: 'Professional Development',
-    description: 'Continuous learning opportunities, training programs, and career advancement.',
-    gradient: 'from-primary-700 to-primary-500',
-  },
-];
-
-const cultureValues = [
-  {
-    title: 'BAPI Offers',
-    items: [
-      'Competitive Compensation',
-      'Health Insurance',
-      'Vision & Dental',
-      'Health Savings Account',
-      '401(k) with company match',
-    ],
-  },
-  {
-    title: 'Time Off',
-    items: [
-      'Paid company holidays',
-      'Short and Long-Term Disability through AFLAC',
-      'Life Insurance',
-    ],
-  },
-  {
-    title: 'Work Environment',
-    items: [
-      'A board seat awaits open facility',
-      'Positive, inclusive culture',
-      'Work-life balance with family oriented employee benefits',
-    ],
-  },
+const benefitCards = [
+  { key: 'healthInsurance', icon: ShieldIcon },
+  { key: 'compensation', icon: DollarSignIcon },
+  { key: 'paidHolidays', icon: PlaneIcon },
+  { key: 'retirement', icon: TrendingUpIcon },
+  { key: 'lifeInsurance', icon: HeartIcon },
+  { key: 'development', icon: GraduationCapIcon },
 ];
 
 export default async function CareersPage() {
-  const page = await getPageBySlug('careers');
   const t = await getTranslations('companyPages.careers');
   const breadcrumbs = [
     { label: t('breadcrumb.home'), href: '/' },
@@ -138,203 +111,93 @@ export default async function CareersPage() {
         </div>
       </PageHeader>
 
-      {/* Benefits Grid */}
-      <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            { key: 'healthInsurance', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'compensation', icon: DollarSignIcon, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'paidHolidays', icon: PlaneIcon, gradient: 'from-primary-600 to-primary-400' },
-            { key: 'retirement', icon: TrendingUpIcon, gradient: 'from-primary-700 to-primary-500' },
-            { key: 'lifeInsurance', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
-            {
-              key: 'development',
-              icon: GraduationCapIcon,
-              gradient: 'from-primary-700 to-primary-500',
-            },
-          ].map((benefit, index) => {
-            const Icon = benefit.icon;
-            return (
-              <div
-                key={benefit.key}
-                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl"
-                style={{ animationDelay: `${index * 75}ms` }}
-              >
-                {/* Gradient background on hover */}
-                <div
-                  className={`bg-linear-to-br absolute inset-0 ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
-                />
+      {/* Photo Collage */}
+      <div className="relative z-10 mx-auto -mt-16 max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-2 overflow-hidden rounded-2xl border-4 border-primary-500 bg-white shadow-2xl sm:h-[420px] sm:grid-cols-5 sm:grid-rows-2">
+          {galleryImages.map((image) => (
+            <div
+              key={image.src}
+              className={`relative aspect-square sm:aspect-auto ${image.className}`}
+            >
+              <Image
+                src={encodeURI(image.src)}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 640px) 20vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-                {/* Icon */}
-                <div className="relative mb-6">
-                  <div
-                    className={`bg-linear-to-br inline-flex h-14 w-14 items-center justify-center rounded-xl ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                  >
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-                </div>
+      <section className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8">
+        {/* How to Apply */}
+        <div className="mb-20 rounded-2xl bg-primary-50/70 p-6 sm:p-10 lg:p-12">
+          <div className="mx-auto max-w-3xl rounded-2xl bg-white p-8 text-center shadow-lg lg:p-12">
+            <h2 className="mb-6 text-4xl font-bold text-gray-900">{t('howToApply.title')}</h2>
+            <p className="mb-6 leading-relaxed text-gray-700">{t('howToApply.intro')}</p>
+            <p className="mb-6 leading-relaxed text-gray-700">
+              <strong>{t('howToApply.noteLabel')}</strong> {t('howToApply.note')}
+            </p>
+            <p className="mb-8 leading-relaxed text-gray-700">{t('howToApply.citizenship')}</p>
 
-                {/* Content */}
-                <div className="relative">
-                  <h3 className="mb-3 text-2xl font-bold text-gray-900">
-                    {t(`benefits.${benefit.key}.title`)}
-                  </h3>
+            <a
+              href={CAREERS_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-8 inline-flex items-center gap-2 rounded-lg bg-primary-600 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-primary-700"
+            >
+              {t('howToApply.viewOpenings')}
+              <ExternalLinkIcon className="h-5 w-5" />
+            </a>
 
-                  <p className="leading-relaxed text-gray-600">
-                    {t(`benefits.${benefit.key}.description`)}
-                  </p>
-                </div>
-
-                {/* Decorative corner */}
-                <div className="bg-linear-to-br absolute right-0 top-0 h-24 w-24 rounded-bl-full from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </div>
-            );
-          })}
+            <p className="text-sm leading-relaxed text-gray-500">{t('howToApply.eoeStatement')}</p>
+          </div>
         </div>
 
-        {/* Culture & Benefits Details */}
-        <div className="bg-linear-to-br mb-20 rounded-2xl from-gray-50 to-white p-10 shadow-lg lg:p-16">
+        {/* More Than Just a Job */}
+        <div className="mb-20">
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
-              <GiftIcon className="h-4 w-4" />
-              {t('cultureSection.badge')}
-            </div>
             <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('cultureSection.title')}</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
               {t('cultureSection.description')}
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                key: 'bapiOffers',
-                items: ['compensation', 'health', 'vision', 'hsa', 'retirement'],
-              },
-              { key: 'timeOff', items: ['holidays', 'shortTerm', 'life'] },
-              { key: 'environment', items: ['facility', 'culture', 'balance'] },
-            ].map((category, categoryIndex) => (
-              <div
-                key={category.key}
-                className="rounded-xl bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
-                style={{ animationDelay: `${categoryIndex * 100}ms` }}
-              >
-                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
-                  <div className="bg-linear-to-r h-2 w-2 rounded-full from-primary-500 to-primary-600" />
-                  {t(`cultureSection.${category.key}.title`)}
-                </h3>
-                <ul className="space-y-3">
-                  {category.items.map((itemKey, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-3">
-                      <CheckCircle2Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
-                      <span className="text-gray-700">
-                        {t(`cultureSection.${category.key}.items.${itemKey}`)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {benefitCards.map((benefit) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={benefit.key}
+                  className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+                >
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary-600">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-gray-900">
+                    {t(`benefits.${benefit.key}.title`)}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-600">
+                    {t(`benefits.${benefit.key}.description`)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* How to Apply Section */}
-        <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">
-          <div className="mx-auto max-w-3xl">
-            <div className="mb-10 text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
-                <FileTextIcon className="h-4 w-4" />
-                {t('applicationProcess.badge')}
-              </div>
-              <h2 className="mb-4 text-4xl font-bold text-gray-900">
-                {t('applicationProcess.title')}
-              </h2>
-              <p className="text-lg text-gray-700">{t('applicationProcess.description')}</p>
-            </div>
-
-            <div className="mb-8 rounded-xl bg-white p-8 shadow-md">
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-600 to-primary-700 font-bold text-white">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-bold text-gray-900">
-                      {t('applicationProcess.step1.title')}
-                    </h3>
-                    <p className="text-gray-600">{t('applicationProcess.step1.description')}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-600 to-primary-400 font-bold text-white">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-bold text-gray-900">
-                      {t('applicationProcess.step2.title')}
-                    </h3>
-                    <p className="text-gray-600">{t('applicationProcess.step2.description')}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-700 to-primary-500 font-bold text-white">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-bold text-gray-900">
-                      {t('applicationProcess.step3.title')}
-                    </h3>
-                    <p className="text-gray-600">{t('applicationProcess.step3.description')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-xl bg-primary-600 p-6 text-center text-white">
-              <p className="mb-4">
-                <strong>{t('applicationProcess.contactTitle')}</strong>
-              </p>
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href="mailto:careers@bapihvac.com"
-                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-all duration-300 hover:shadow-lg"
-                >
-                  <MailIcon className="h-5 w-5" />
-                  {t('applicationProcess.email')}
-                </a>
-                <span className="text-primary-100">{t('applicationProcess.or')}</span>
-                <a
-                  href="tel:+16087534400"
-                  className="font-bold transition-colors hover:text-primary-100"
-                >
-                  {t('applicationProcess.phone')}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
-          <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
-
-          <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
-            <div className="text-center lg:text-left">
-              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
-              <p className="max-w-2xl text-lg text-primary-50">{t('cta.description')}</p>
-            </div>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              {t('cta.button')}
-              <ArrowRightIcon className="h-5 w-5" />
-            </Link>
-          </div>
+        {/* Contact CTA */}
+        <div className="rounded-2xl bg-primary-600 p-8 text-center text-white lg:p-12">
+          <p className="mb-4 text-lg font-semibold">{t('applicationProcess.contactTitle')}</p>
+          <a
+            href="mailto:careers@bapihvac.com"
+            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-all duration-300 hover:shadow-lg"
+          >
+            <MailIcon className="h-5 w-5" />
+            {t('applicationProcess.email')}
+          </a>
         </div>
       </section>
     </div>

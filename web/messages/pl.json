@@ -1796,6 +1796,15 @@
         "phone": "(800) 753-4400",
         "or": "lub zadzwoń"
       },
+      "howToApply": {
+        "title": "Jak aplikować",
+        "intro": "Akceptujemy i rozpatrujemy WYŁĄCZNIE kompletne elektroniczne aplikacje przesyłane bezpośrednio przez stronę internetową www.bapihvac.com/careers.",
+        "noteLabel": "Uwaga:",
+        "note": "Większość stanowisk wymaga CV oraz osobnego listu motywacyjnego, aby aplikacja elektroniczna została uznana za \"kompletną\". List motywacyjny powinien szczegółowo opisywać, w jaki sposób spełniasz wskazane wymagania.",
+        "citizenship": "Kandydaci muszą być obywatelami USA lub posiadaczami Zielonej Karty (stałymi rezydentami).",
+        "viewOpenings": "Zobacz aktualne oferty pracy",
+        "eoeStatement": "BAPI jest pracodawcą zapewniającym równe szanse (EOE) i jest zaangażowany w tworzenie integracyjnego środowiska pracy dla wszystkich pracowników. Nie będziemy dyskryminować żadnego kandydata do pracy ze względu na rasę, kolor skóry, wiek, religię, płeć, orientację seksualną, tożsamość płciową, pochodzenie narodowe, niepełnosprawność lub status weterana. Jeśli nie możesz aplikować online i/lub potrzebujesz alternatywnych metod aplikacji lub selekcji, skontaktuj się z nami."
+      },
       "cta": {
         "title": "Gotowy, aby dołączyć do naszej misji?",
         "description": "Przeglądaj aktualne oferty i zrób pierwszy krok w stronę ekscytującej kariery w BAPI. Nie możemy się doczekać, aby usłyszeć od Ciebie!",

@@ -60,8 +60,8 @@ export default async function MissionValuesPage() {
         spacing="default"
         eyebrow={
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <StarIcon className="h-4 w-4" />
-              {t('hero.badge')}
+            <StarIcon className="h-4 w-4" />
+            {t('hero.badge')}
           </div>
         }
       />
@@ -108,7 +108,7 @@ export default async function MissionValuesPage() {
             {/* Single flattened collage exported from Figma (801x404) — pixel-perfect match */}
             <div className="relative aspect-[801/404] overflow-hidden rounded-2xl lg:col-span-3">
               <Image
-                src="/images/mission/Frame 1692.png"
+                src="/images/mission/Frame_1692.png"
                 alt="BAPI team members across departments"
                 fill
                 className="object-cover"
@@ -117,9 +117,11 @@ export default async function MissionValuesPage() {
             </div>
 
             <div className="lg:col-span-2">
-              <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
-                {t('peopleBuildingSensors.title')}
-              </h2>
+              {t.has('peopleBuildingSensors.title') && (
+                <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+                  {t('peopleBuildingSensors.title')}
+                </h2>
+              )}
               <p className="text-lg leading-relaxed text-gray-700">{t('introduction')}</p>
             </div>
           </div>

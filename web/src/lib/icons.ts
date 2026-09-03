@@ -77,6 +77,7 @@ const Person = createMaterialSymbolIcon('person', 'Person');
 
 // Business & Location
 const Business = createMaterialSymbolIcon('business', 'Business');
+const Handshake = createMaterialSymbolIcon('handshake', 'Handshake');
 const LocationOn = createMaterialSymbolIcon('location_on', 'LocationOn');
 const Inventory = createMaterialSymbolIcon('inventory', 'Inventory');
 const ViewModule = createMaterialSymbolIcon('view_module', 'ViewModule');
@@ -469,6 +470,9 @@ export { HumidityPercentage as HumidityPercentageIcon };
 export { Speed as SpeedIcon };
 export { WaterDamage as WaterDamageIcon };
 // Note: FileDownIcon already exported in Content & Media Icons section (line 248)
+
+// Batch 20 Icons (Mission & Values Page)
+export { Handshake as HandshakeIcon };
 
 // ========================================
 // Type Definitions

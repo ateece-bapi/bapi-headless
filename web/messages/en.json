@@ -446,14 +446,17 @@
       "breadcrumb": {
         "home": "Home",
         "company": "Company",
-        "missionValues": "Mission and Values"
+        "missionValues": "Mission & Values"
       },
       "hero": {
         "badge": "Our Purpose",
-        "title": "Mission and Values",
+        "title": "Mission & Values",
         "description": "For over 30 years, our mission and values have guided every decision we make, every product we design, and every customer relationship we build."
       },
       "introduction": "Over the past 30 years BAPI has forged a place in the HVAC/R industry, with their area of expertise focused on advanced sensor technology for HVAC/R applications. Originating in Cross Plains, WI in 1993, BAPI's first facility was literally conducted out of a small two-car garage. Today, BAPI serves customers around the globe from their 52,000 sq. foot facility based in rural southwestern Wisconsin. BAPI continues the \"...it's in the details\" tradition, using the highest quality sensing elements paired with state of the art manufacturing, meticulous testing and quality assurance procedures to ensure a reliable product time after time.",
+      "peopleBuildingSensors": {
+        "title": "People. Building. Sensors."
+      },
       "mission": {
         "title": "Mission",
         "description": "At BAPI, we design, manufacture and deliver high quality sensor solutions, as well as provide high quality services for our business partners to effectively save their customers money and energy, therefore reducing dependency on natural resources."

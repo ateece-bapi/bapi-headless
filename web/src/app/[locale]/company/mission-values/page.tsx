@@ -1,8 +1,19 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { getPageBySlug } from '@/lib/wordpress';
 import PageHeader from '@/components/layout/PageHeader';
 import { Link } from '@/lib/navigation';
-import { TargetIcon, EyeIcon, AwardIcon, UsersIcon, LightbulbIcon, ShieldIcon, HeartIcon, ArrowRightIcon } from '@/lib/icons';
+import {
+  TargetIcon,
+  EyeIcon,
+  UsersIcon,
+  SettingsIcon,
+  LightbulbIcon,
+  HandshakeIcon,
+  ShieldIcon,
+  ArrowRightIcon,
+  StarIcon,
+} from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
 
@@ -21,44 +32,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // ISR with 1-hour revalidation for mission/values page (rarely updated)
 export const revalidate = 3600;
-
-const coreValues = [
-  {
-    icon: UsersIcon,
-    title: 'Quality',
-    description:
-      'We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture.',
-    gradient: 'from-primary-600 to-primary-700',
-  },
-  {
-    icon: AwardIcon,
-    title: 'Innovation',
-    description:
-      "We value processes and services that are metric driven to continually exceed our customers' expectations.",
-    gradient: 'from-primary-600 to-primary-400',
-  },
-  {
-    icon: LightbulbIcon,
-    title: 'Collaborative Partnership',
-    description:
-      'We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages.',
-    gradient: 'from-primary-700 to-primary-500',
-  },
-  {
-    icon: ShieldIcon,
-    title: 'Integrity & Ethics',
-    description:
-      'We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments.',
-    gradient: 'from-primary-600 to-primary-700',
-  },
-  {
-    icon: HeartIcon,
-    title: 'Employees',
-    description:
-      'We value being deliberate, thoughtful and intentional with behaviors that match our every word.',
-    gradient: 'from-primary-500 to-primary-700',
-  },
-];
 
 export default async function MissionValuesPage() {
   const page = await getPageBySlug('mission-and-values');
@@ -84,24 +57,17 @@ export default async function MissionValuesPage() {
         breadcrumbs={breadcrumbs}
         title={t('hero.title')}
         description={t('hero.description')}
-        spacing="large"
+        spacing="default"
         eyebrow={
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <TargetIcon className="h-4 w-4" />
+              <StarIcon className="h-4 w-4" />
               {t('hero.badge')}
           </div>
         }
       />
 
-      {/* Legacy Company Introduction */}
-      {t.has('introduction') && (
-        <section className="mx-auto max-w-5xl px-4 pt-12 sm:px-6 lg:px-8">
-          <p className="text-lg leading-relaxed text-gray-700">{t('introduction')}</p>
-        </section>
-      )}
-
-      {/* Mission & Vision Cards */}
-      <section className="relative mx-auto max-w-7xl px-4 pt-12 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+      {/* Mission & Vision Cards - overlaps hero bottom edge, matching Figma */}
+      <section className="relative z-10 mx-auto -mt-8 max-w-7xl px-4 pb-20 sm:px-6 lg:-mt-12 lg:px-8 lg:pb-28">
         <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Mission Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 border-t-4 border-t-accent-500 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
@@ -133,25 +99,42 @@ export default async function MissionValuesPage() {
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Core Values Section */}
-        <div className="mb-16 text-center">
-          <div className="mx-auto mb-4 h-1 w-16 bg-accent-500" />
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">
-            {t('coreValuesSection.title')}
-          </h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600">
-            {t('coreValuesSection.description')}
-          </p>
-        </div>
+      {/* People. Building. Sensors. */}
+      {t.has('introduction') && (
+        <section className="bg-gray-50 py-20">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:items-center lg:px-8">
+            {/* Single flattened collage exported from Figma (801x404) — pixel-perfect match */}
+            <div className="relative aspect-[801/404] overflow-hidden rounded-2xl lg:col-span-3">
+              <Image
+                src="/images/mission/Frame 1692.png"
+                alt="BAPI team members across departments"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </div>
 
+            <div className="lg:col-span-2">
+              <h2 className="mb-4 text-3xl font-bold text-primary-600 lg:text-4xl">
+                {t('peopleBuildingSensors.title')}
+              </h2>
+              <p className="text-lg leading-relaxed text-gray-700">{t('introduction')}</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Core Values Section */}
+      <section className="relative mx-auto max-w-7xl px-4 pt-20 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         {/* Values Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'employees', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
-            { key: 'quality', icon: UsersIcon, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'innovation', icon: AwardIcon, gradient: 'from-primary-600 to-primary-400' },
-            { key: 'partnership', icon: LightbulbIcon, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'employees', icon: UsersIcon, gradient: 'from-primary-500 to-primary-700' },
+            { key: 'quality', icon: SettingsIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'innovation', icon: LightbulbIcon, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'partnership', icon: HandshakeIcon, gradient: 'from-primary-700 to-primary-500' },
             { key: 'integrity', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
           ].map((value, index) => {
             const Icon = value.icon;

@@ -11,9 +11,11 @@ import {
   Building2Icon,
   MapPinIcon,
   CreditCardIcon,
+  ClipboardListIcon,
 } from '@/lib/icons';
 import { Link } from '@/lib/navigation';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
+import { canUseEasyOrderForm } from '@/lib/constants/easyOrderForm';
 import AccountDashboardClient from '@/components/account/AccountDashboardClient';
 import { getTranslations } from 'next-intl/server';
 
@@ -73,6 +75,17 @@ export default async function AccountPage({ params }: AccountPageProps) {
       href: '/cart',
       color: 'primary',
     },
+    ...(canUseEasyOrderForm(user.customerGroups)
+      ? [
+          {
+            title: t('sections.easyOrder.title'),
+            description: t('sections.easyOrder.description'),
+            icon: ClipboardListIcon,
+            href: '/account/easy-order',
+            color: 'accent' as const,
+          },
+        ]
+      : []),
     {
       title: t('sections.accountSettings.title'),
       description: t('sections.accountSettings.description'),

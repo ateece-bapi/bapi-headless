@@ -1212,6 +1212,10 @@
           "title": "Shopping Cart",
           "description": "View and manage items in your cart"
         },
+        "easyOrder": {
+          "title": "Easy Order Form",
+          "description": "Quickly reorder your frequently purchased parts by part number"
+        },
         "accountSettings": {
           "title": "Account Settings",
           "description": "Update your password and security settings"

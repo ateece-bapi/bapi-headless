@@ -2259,14 +2259,18 @@
         "foundAndNotFound": "تم العثور على {found} · لم يتم العثور على {notFound}"
       },
       "table": {
+        "status": "الحالة",
         "product": "المنتج",
         "partNumber": "رقم القطعة",
         "price": "السعر",
-        "qty": "الكمية"
+        "qty": "الكمية",
+        "remove": "إزالة"
       },
       "contactForPricing": "اتصل بنا للحصول على السعر",
       "outOfStock": "غير متوفر",
       "notAvailableYet": "غير متوفر بعد على الموقع",
+      "foundStatus": "تم العثور عليه",
+      "notFoundStatus": "غير موجود",
       "removeAriaLabel": "إزالة {sku}",
       "quantityAriaLabel": "الكمية لـ {name}",
       "toasts": {

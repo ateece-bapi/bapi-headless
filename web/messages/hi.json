@@ -814,14 +814,18 @@
         "foundAndNotFound": "{found} मिले · {notFound} नहीं मिले"
       },
       "table": {
+        "status": "स्थिति",
         "product": "उत्पाद",
         "partNumber": "पार्ट नंबर",
         "price": "मूल्य",
-        "qty": "मात्रा"
+        "qty": "मात्रा",
+        "remove": "हटाएं"
       },
       "contactForPricing": "मूल्य के लिए संपर्क करें",
       "outOfStock": "स्टॉक में नहीं",
       "notAvailableYet": "अभी साइट पर उपलब्ध नहीं है",
+      "foundStatus": "मिला",
+      "notFoundStatus": "नहीं मिला",
       "removeAriaLabel": "{sku} हटाएं",
       "quantityAriaLabel": "{name} के लिए मात्रा",
       "toasts": {

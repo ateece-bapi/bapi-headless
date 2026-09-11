@@ -42,9 +42,11 @@ function mockMatch(overrides: Record<string, unknown> = {}) {
     databaseId: 1,
     parentDatabaseId: 1,
     isVariation: false,
+    canonicalId: 'cHJvZHVjdDox',
     name: 'Duct Temperature Sensor',
     slug: 'duct-temp-sensor',
     sku: 'BA/10K-2-AP',
+    partNumber: null,
     price: '$49.99',
     stockStatus: 'INSTOCK',
     imageUrl: 'https://example.com/img.jpg',
@@ -98,6 +100,34 @@ describe('GET /api/easy-order/order-list', () => {
 
     expect(json.products[0].databaseId).toBe(137579);
     expect(json.products[0].variationId).toBe(137609);
+  });
+
+  it('uses the canonical global id for cart merge consistency, falling back to a synthetic id', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ canonicalId: 'cHJvZHVjdDox' })] });
+
+    const res = await getOrderList();
+    const json = await res.json();
+    expect(json.products[0].id).toBe('cHJvZHVjdDox');
+
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ databaseId: 42, canonicalId: null })] });
+    const res2 = await getOrderList();
+    const json2 = await res2.json();
+    expect(json2.products[0].id).toBe('easy_order_sku:42');
+  });
+
+  it('preserves the custom partNumber field, falling back to SKU only when unset', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ partNumber: 'PN-CUSTOM-123' })] });
+
+    const res = await getOrderList();
+    const json = await res.json();
+    expect(json.products[0].partNumber).toBe('PN-CUSTOM-123');
+
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ partNumber: null })] });
+    const res2 = await getOrderList();
+    const json2 = await res2.json();
+    expect(json2.products[0].partNumber).toBe('BA/10K-2-AP');
   });
 
   it('returns an empty list when the resolver returns no matches', async () => {

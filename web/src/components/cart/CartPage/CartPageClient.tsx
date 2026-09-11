@@ -127,14 +127,12 @@ export default function CartPageClient() {
         isEmpty: items.length === 0,
         total: items
           .reduce((sum: number, item: any) => {
-            const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-            return sum + price * item.quantity;
+            return sum + item.numericPrice * item.quantity;
           }, 0)
           .toFixed(2),
         subtotal: items
           .reduce((sum: number, item: any) => {
-            const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-            return sum + price * item.quantity;
+            return sum + item.numericPrice * item.quantity;
           }, 0)
           .toFixed(2),
         contentsTax: '0.00',
@@ -149,8 +147,8 @@ export default function CartPageClient() {
             // Use composite key for variations, simple id for simple products (matches Zustand store)
             key: item.variationId ? `${item.id}-${item.variationId}` : item.id,
             quantity: item.quantity,
-            subtotal: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
-            total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
+            subtotal: `$${(item.numericPrice * item.quantity).toFixed(2)}`,
+            total: `$${(item.numericPrice * item.quantity).toFixed(2)}`,
             tax: '$0.00',
             product: {
               node: {

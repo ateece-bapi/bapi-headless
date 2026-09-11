@@ -299,7 +299,9 @@ export default function EasyOrderForm() {
                             {product.partNumber ?? product.sku ?? '—'}
                           </td>
                           <td className="px-6 py-4 text-sm text-neutral-900">
-                            {product.price ?? t('contactForPricing')}
+                            {product.price
+                              ? convertWooCommercePrice(product.price, region.currency)
+                              : t('contactForPricing')}
                             {product.price && !isOrderable(product.price, product.stockStatus) && (
                               <span className="ml-2 text-xs font-medium text-error-600">{t('outOfStock')}</span>
                             )}
@@ -379,12 +381,12 @@ export default function EasyOrderForm() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-neutral-200 text-sm text-neutral-700">
-                      <th className="px-6 py-3 font-medium">Status</th>
+                      <th className="px-6 py-3 font-medium">{t('table.status')}</th>
                       <th className="px-6 py-3 font-medium">{t('table.partNumber')}</th>
                       <th className="px-6 py-3 font-medium">{t('table.product')}</th>
                       <th className="px-6 py-3 font-medium">{t('table.price')}</th>
                       <th className="px-6 py-3 font-medium">{t('table.qty')}</th>
-                      <th className="px-6 py-3 font-medium sr-only">Remove</th>
+                      <th className="px-6 py-3 font-medium sr-only">{t('table.remove')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-neutral-100">
@@ -392,9 +394,9 @@ export default function EasyOrderForm() {
                       <tr key={row.key}>
                         <td className="px-6 py-4">
                           {row.status === 'found' ? (
-                            <CheckCircleIcon className="h-5 w-5 text-success-700" aria-label="Found" />
+                            <CheckCircleIcon className="h-5 w-5 text-success-700" aria-label={t('foundStatus')} />
                           ) : (
-                            <XCircleIcon className="h-5 w-5 text-error-600" aria-label="Not found" />
+                            <XCircleIcon className="h-5 w-5 text-error-600" aria-label={t('notFoundStatus')} />
                           )}
                         </td>
                         <td className="px-6 py-4 font-mono text-sm">{row.sku}</td>
@@ -404,7 +406,7 @@ export default function EasyOrderForm() {
                           )}
                         </td>
                         <td className="px-6 py-4 text-sm text-neutral-900">
-                          {row.result?.price ?? '—'}
+                          {row.result?.price ? convertWooCommercePrice(row.result.price, region.currency) : '—'}
                           {row.result?.price && !isOrderable(row.result.price, row.result.stockStatus) && (
                             <span className="ml-2 text-xs font-medium text-error-600">{t('outOfStock')}</span>
                           )}

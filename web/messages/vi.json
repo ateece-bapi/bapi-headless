@@ -2259,14 +2259,18 @@
         "foundAndNotFound": "Tìm thấy {found} · Không tìm thấy {notFound}"
       },
       "table": {
+        "status": "Trạng Thái",
         "product": "Sản Phẩm",
         "partNumber": "Mã Số Phụ Tùng",
         "price": "Giá",
-        "qty": "SL"
+        "qty": "SL",
+        "remove": "Xóa"
       },
       "contactForPricing": "Liên hệ để biết giá",
       "outOfStock": "Hết hàng",
       "notAvailableYet": "Chưa có trên trang web",
+      "foundStatus": "Đã tìm thấy",
+      "notFoundStatus": "Không tìm thấy",
       "removeAriaLabel": "Xóa {sku}",
       "quantityAriaLabel": "Số lượng cho {name}",
       "toasts": {

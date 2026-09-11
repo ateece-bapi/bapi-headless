@@ -1317,14 +1317,18 @@
         "foundAndNotFound": "{found} found · {notFound} not found"
       },
       "table": {
+        "status": "Status",
         "product": "Product",
         "partNumber": "Part Number",
         "price": "Price",
-        "qty": "Qty"
+        "qty": "Qty",
+        "remove": "Remove"
       },
       "contactForPricing": "Contact for pricing",
       "outOfStock": "Out of stock",
       "notAvailableYet": "Not available on the site yet",
+      "foundStatus": "Found",
+      "notFoundStatus": "Not found",
       "removeAriaLabel": "Remove {sku}",
       "quantityAriaLabel": "Quantity for {name}",
       "toasts": {

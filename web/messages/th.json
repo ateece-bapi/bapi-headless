@@ -814,14 +814,18 @@
         "foundAndNotFound": "พบ {found} รายการ · ไม่พบ {notFound} รายการ"
       },
       "table": {
+        "status": "สถานะ",
         "product": "สินค้า",
         "partNumber": "หมายเลขชิ้นส่วน",
         "price": "ราคา",
-        "qty": "จำนวน"
+        "qty": "จำนวน",
+        "remove": "ลบ"
       },
       "contactForPricing": "ติดต่อสอบถามราคา",
       "outOfStock": "สินค้าหมด",
       "notAvailableYet": "ยังไม่มีจำหน่ายบนเว็บไซต์",
+      "foundStatus": "พบแล้ว",
+      "notFoundStatus": "ไม่พบ",
       "removeAriaLabel": "ลบ {sku}",
       "quantityAriaLabel": "จำนวนสำหรับ {name}",
       "toasts": {

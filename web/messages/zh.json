@@ -2259,14 +2259,18 @@
         "foundAndNotFound": "找到 {found} 项 · 未找到 {notFound} 项"
       },
       "table": {
+        "status": "状态",
         "product": "产品",
         "partNumber": "零件编号",
         "price": "价格",
-        "qty": "数量"
+        "qty": "数量",
+        "remove": "移除"
       },
       "contactForPricing": "请联系我们询价",
       "outOfStock": "缺货",
       "notAvailableYet": "网站上暂未提供",
+      "foundStatus": "已找到",
+      "notFoundStatus": "未找到",
       "removeAriaLabel": "移除 {sku}",
       "quantityAriaLabel": "{name} 的数量",
       "toasts": {

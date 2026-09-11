@@ -2257,14 +2257,18 @@
         "foundAndNotFound": "{found} encontrados · {notFound} no encontrados"
       },
       "table": {
+        "status": "Estado",
         "product": "Producto",
         "partNumber": "Número de Pieza",
         "price": "Precio",
-        "qty": "Cant."
+        "qty": "Cant.",
+        "remove": "Eliminar"
       },
       "contactForPricing": "Contactar para precio",
       "outOfStock": "Agotado",
       "notAvailableYet": "Aún no disponible en el sitio",
+      "foundStatus": "Encontrado",
+      "notFoundStatus": "No encontrado",
       "removeAriaLabel": "Eliminar {sku}",
       "quantityAriaLabel": "Cantidad para {name}",
       "toasts": {

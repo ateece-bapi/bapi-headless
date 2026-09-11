@@ -65,26 +65,46 @@ add_action('init', function () {
  * result. Verified against the live schema: unauthenticated requests referencing
  * ORDER_LIST get an empty connection; authenticated (valid JWT) requests and any
  * query that doesn't reference ORDER_LIST are unaffected.
+ *
+ * Signature must match WPGraphQL's actual `graphql_request_results` order —
+ * (response, schema, operation, variables, query) — as used elsewhere in this
+ * codebase (see bapi-graphql-fixes.php); an earlier version of this guard used
+ * the wrong argument order, so `$query` was actually the variables array and
+ * the guard silently never matched.
  */
-add_filter('graphql_request_results', function ($response, $schema, $operation, $query, $variables, $request, $query_id) {
+add_filter('graphql_request_results', function ($response, $schema, $operation, $variables, $query) {
     if (is_user_logged_in()) {
         return $response;
     }
 
-    if (empty($query) || stripos($query, 'ORDER_LIST') === false) {
+    if (empty($query) || !is_string($query) || stripos($query, 'ORDER_LIST') === false) {
         return $response;
     }
 
-    // Unauthenticated request referencing the private order_list taxonomy filter — strip results.
-    if (is_array($response)) {
-        if (isset($response['data']['products'])) {
-            $response['data']['products']['nodes'] = [];
-            $response['data']['products']['edges'] = [];
+    if (is_array($response) && isset($response['data']) && is_array($response['data'])) {
+        $data = &$response['data'];
+    } elseif (is_object($response) && isset($response->data) && is_array($response->data)) {
+        $data = &$response->data;
+    } else {
+        return $response;
+    }
+
+    // Aliasing (e.g. `p: products(...)`) stores the result under the alias key,
+    // not "products" — find every alias used for a `products(...)` selection so
+    // it can't be used to bypass the "products" key check below.
+    $keys = ['products'];
+    if (preg_match_all('/([A-Za-z_][A-Za-z0-9_]*)\s*:\s*products\s*\(/', $query, $matches)) {
+        $keys = array_merge($keys, $matches[1]);
+    }
+
+    foreach (array_unique($keys) as $key) {
+        if (isset($data[$key]['nodes'])) {
+            $data[$key]['nodes'] = [];
         }
-    } elseif (is_object($response) && isset($response->data['products'])) {
-        $response->data['products']['nodes'] = [];
-        $response->data['products']['edges'] = [];
+        if (isset($data[$key]['edges'])) {
+            $data[$key]['edges'] = [];
+        }
     }
 
     return $response;
-}, 10, 7);
+}, 10, 5);

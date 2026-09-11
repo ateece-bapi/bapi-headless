@@ -51,9 +51,11 @@ function mockMatch(overrides: Record<string, unknown> = {}) {
     databaseId: 1,
     parentDatabaseId: 1,
     isVariation: false,
+    canonicalId: 'cHJvZHVjdDox',
     name: 'Duct Temperature Sensor',
     slug: 'duct-temp-sensor',
     sku: 'BA/10K-2-AP',
+    partNumber: null,
     price: '$49.99',
     stockStatus: 'INSTOCK',
     imageUrl: 'https://example.com/img.jpg',
@@ -121,6 +123,34 @@ describe('POST /api/easy-order/lookup', () => {
     expect(json.results[0].product.variationId).toBe(137609);
   });
 
+  it('uses the canonical global id for cart merge consistency, falling back to a synthetic id', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ canonicalId: 'cHJvZHVjdDox' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+    expect(json.results[0].product.id).toBe('cHJvZHVjdDox');
+
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ databaseId: 42, canonicalId: null }) });
+    const res2 = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json2 = await res2.json();
+    expect(json2.results[0].product.id).toBe('easy_order_sku:42');
+  });
+
+  it('preserves the custom partNumber field, falling back to SKU only when unset', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ partNumber: 'PN-CUSTOM-123' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+    expect(json.results[0].product.partNumber).toBe('PN-CUSTOM-123');
+
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ partNumber: null }) });
+    const res2 = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json2 = await res2.json();
+    expect(json2.results[0].product.partNumber).toBe('BA/10K-2-AP');
+  });
+
   it('returns found:false when no product matches the SKU', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
     mockRequest.mockResolvedValue({ easyOrderSkuLookup: null });
@@ -165,7 +195,7 @@ describe('POST /api/easy-order/lookup', () => {
     expect(mockRequest).toHaveBeenCalledTimes(1);
   });
 
-  it('bounds concurrency instead of firing one request per SKU simultaneously', async () => {
+  it('bounds concurrency to the configured limit of 8', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
     let inFlight = 0;
     let maxInFlight = 0;
@@ -180,7 +210,7 @@ describe('POST /api/easy-order/lookup', () => {
     const skus = Array.from({ length: 20 }, (_, i) => `SKU-${i}`);
     await lookup(makePost({ skus }));
 
-    expect(maxInFlight).toBeLessThan(20);
+    expect(maxInFlight).toBe(8);
     expect(mockRequest).toHaveBeenCalledTimes(20);
   });
 

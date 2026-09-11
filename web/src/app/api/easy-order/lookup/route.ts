@@ -46,6 +46,8 @@ const SKU_LOOKUP_QUERY = gql`
       name
       slug
       sku
+      partNumber
+      canonicalId
       price
       stockStatus
       imageUrl
@@ -64,6 +66,8 @@ interface SkuLookupMatch {
   name: string;
   slug: string;
   sku: string | null;
+  partNumber: string | null;
+  canonicalId: string | null;
   price: string | null;
   stockStatus: string | null;
   imageUrl: string | null;
@@ -145,7 +149,10 @@ export async function POST(request: NextRequest) {
     const authToken = cookieStore.get('auth_token')?.value;
     const customHeaders = authToken ? { Authorization: `Bearer ${authToken}` } : undefined;
 
-    const client = getGraphQLClient(['products'], true, customHeaders);
+    // useGetMethod: false — this result is viewer-specific (auth + customer
+    // group dependent); a GET request would be eligible for Smart Cache's
+    // shared CDN cache and could leak one user's lookup to another.
+    const client = getGraphQLClient(['products'], false, customHeaders);
 
     const results = await mapWithConcurrencyLimit(
       uniqueSkus,
@@ -180,13 +187,13 @@ export async function POST(request: NextRequest) {
             sku,
             found: true,
             product: {
-              id: `easy_order_sku:${match.databaseId}`,
+              id: match.canonicalId ?? `easy_order_sku:${match.databaseId}`,
               databaseId: match.parentDatabaseId,
               variationId: match.isVariation ? match.databaseId : null,
               name: match.name,
               slug: match.slug,
               sku: match.sku,
-              partNumber: match.sku,
+              partNumber: match.partNumber ?? match.sku,
               price: match.price,
               stockStatus: match.stockStatus,
               image: match.imageUrl ? { sourceUrl: match.imageUrl, altText: match.imageAltText } : null,

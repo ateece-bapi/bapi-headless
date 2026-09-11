@@ -2259,14 +2259,18 @@
         "foundAndNotFound": "{found} 件見つかりました · {notFound} 件見つかりませんでした"
       },
       "table": {
+        "status": "ステータス",
         "product": "製品",
         "partNumber": "部品番号",
         "price": "価格",
-        "qty": "数量"
+        "qty": "数量",
+        "remove": "削除"
       },
       "contactForPricing": "価格についてはお問い合わせください",
       "outOfStock": "在庫切れ",
       "notAvailableYet": "サイトにまだ掲載されていません",
+      "foundStatus": "見つかりました",
+      "notFoundStatus": "見つかりません",
       "removeAriaLabel": "{sku} を削除",
       "quantityAriaLabel": "{name} の数量",
       "toasts": {

@@ -36,6 +36,8 @@ const CURATED_LIST_QUERY = gql`
       name
       slug
       sku
+      partNumber
+      canonicalId
       price
       stockStatus
       imageUrl
@@ -54,6 +56,8 @@ interface CuratedMatch {
   name: string;
   slug: string;
   sku: string | null;
+  partNumber: string | null;
+  canonicalId: string | null;
   price: string | null;
   stockStatus: string | null;
   imageUrl: string | null;
@@ -97,20 +101,23 @@ export async function GET() {
     const authToken = cookieStore.get('auth_token')?.value;
     const customHeaders = authToken ? { Authorization: `Bearer ${authToken}` } : undefined;
 
-    const client = getGraphQLClient(['products', 'order-list'], true, customHeaders);
+    // useGetMethod: false — this result is viewer-specific (auth + customer
+    // group dependent); a GET request would be eligible for Smart Cache's
+    // shared CDN cache and could leak one user's curated list to another.
+    const client = getGraphQLClient(['products', 'order-list'], false, customHeaders);
     const data = await client.request<CuratedListResponse>(CURATED_LIST_QUERY, { term });
 
     const matches = data.easyOrderCuratedList ?? [];
     const visibleMatches = filterProductsByCustomerGroup(matches, user.customerGroups ?? ['end-user']);
 
     const products = visibleMatches.map((p) => ({
-      id: `easy_order_sku:${p.databaseId}`,
+      id: p.canonicalId ?? `easy_order_sku:${p.databaseId}`,
       databaseId: p.parentDatabaseId,
       variationId: p.isVariation ? p.databaseId : null,
       name: p.name,
       slug: p.slug,
       sku: p.sku ?? null,
-      partNumber: p.sku ?? null,
+      partNumber: p.partNumber ?? p.sku ?? null,
       price: p.price ?? null,
       stockStatus: p.stockStatus ?? null,
       image: p.imageUrl ? { sourceUrl: p.imageUrl, altText: p.imageAltText ?? undefined } : null,

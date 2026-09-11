@@ -2240,6 +2240,48 @@
       "noImage": "无图片",
       "viewProduct": "查看产品"
     },
+    "easyOrder": {
+      "backToDashboard": "返回仪表盘",
+      "title": "快捷订购表",
+      "description": "请在下方粘贴您的零件编号，每行一个。可在逗号或制表符后添加数量（例如 <code>BA/10K-2-AP, 5</code>），留空则默认数量为 1。",
+      "loadingCuratedList": "正在加载您的标准订购清单...",
+      "standardOrderList": {
+        "title": "您的标准订购清单",
+        "description": "为您想订购的商品输入数量 —— 其余保持为 0。"
+      },
+      "otherPartNumbers": "其他零件编号",
+      "checkAvailability": "查询库存",
+      "checking": "查询中...",
+      "addAllToCart": "全部加入购物车",
+      "orderPreview": {
+        "title": "订单预览",
+        "found": "找到 {count} 项",
+        "foundAndNotFound": "找到 {found} 项 · 未找到 {notFound} 项"
+      },
+      "table": {
+        "product": "产品",
+        "partNumber": "零件编号",
+        "price": "价格",
+        "qty": "数量"
+      },
+      "contactForPricing": "请联系我们询价",
+      "outOfStock": "缺货",
+      "notAvailableYet": "网站上暂未提供",
+      "removeAriaLabel": "移除 {sku}",
+      "quantityAriaLabel": "{name} 的数量",
+      "toasts": {
+        "nothingToCheckTitle": "没有可查询的内容",
+        "nothingToCheckMessage": "请至少输入一个零件编号。",
+        "availabilityCheckedTitle": "库存查询完成",
+        "availabilityCheckedMessage": "在 {total} 个零件编号中找到 {found} 个。",
+        "checkFailedTitle": "查询失败",
+        "checkFailedMessage": "无法查询零件编号的库存情况，请重试。",
+        "nothingToAddTitle": "没有可添加的内容",
+        "nothingToAddMessage": "请为有库存的标准商品输入数量，或查询已粘贴零件编号的库存情况。",
+        "addedToCartTitle": "已加入购物车",
+        "addedToCartMessage": "已将 {count} 件商品加入您的购物车。"
+      }
+    },
     "quotes": {
       "title": "报价请求",
       "subtitle": "跟踪和管理您的自定义报价请求",

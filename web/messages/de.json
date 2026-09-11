@@ -2240,6 +2240,48 @@
       "noImage": "Kein Bild",
       "viewProduct": "Produkt anzeigen"
     },
+    "easyOrder": {
+      "backToDashboard": "Zurück zum Dashboard",
+      "title": "Einfaches Bestellformular",
+      "description": "Fügen Sie unten Ihre Teilenummern ein, eine pro Zeile. Fügen Sie nach einem Komma oder Tabulator eine Menge hinzu (z. B. <code>BA/10K-2-AP, 5</code>) oder lassen Sie das Feld leer, um standardmäßig 1 zu verwenden.",
+      "loadingCuratedList": "Ihre Standardbestellliste wird geladen...",
+      "standardOrderList": {
+        "title": "Ihre Standardbestellliste",
+        "description": "Geben Sie eine Menge für alles ein, was Sie bestellen möchten — lassen Sie den Rest bei 0."
+      },
+      "otherPartNumbers": "Weitere Teilenummern",
+      "checkAvailability": "Verfügbarkeit prüfen",
+      "checking": "Wird geprüft...",
+      "addAllToCart": "Alles in den Warenkorb",
+      "orderPreview": {
+        "title": "Bestellvorschau",
+        "found": "{count} gefunden",
+        "foundAndNotFound": "{found} gefunden · {notFound} nicht gefunden"
+      },
+      "table": {
+        "product": "Produkt",
+        "partNumber": "Teilenummer",
+        "price": "Preis",
+        "qty": "Menge"
+      },
+      "contactForPricing": "Preis auf Anfrage",
+      "outOfStock": "Nicht vorrätig",
+      "notAvailableYet": "Noch nicht auf der Website verfügbar",
+      "removeAriaLabel": "{sku} entfernen",
+      "quantityAriaLabel": "Menge für {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Nichts zu prüfen",
+        "nothingToCheckMessage": "Geben Sie mindestens eine Teilenummer ein.",
+        "availabilityCheckedTitle": "Verfügbarkeit geprüft",
+        "availabilityCheckedMessage": "{found} von {total} Teilenummern gefunden.",
+        "checkFailedTitle": "Prüfung fehlgeschlagen",
+        "checkFailedMessage": "Die Verfügbarkeit der Teilenummer konnte nicht geprüft werden. Bitte versuchen Sie es erneut.",
+        "nothingToAddTitle": "Nichts hinzuzufügen",
+        "nothingToAddMessage": "Geben Sie eine Menge für einen vorrätigen Standardartikel ein oder prüfen Sie die Verfügbarkeit einer eingefügten Teilenummer.",
+        "addedToCartTitle": "Zum Warenkorb hinzugefügt",
+        "addedToCartMessage": "{count} Artikel wurden Ihrem Warenkorb hinzugefügt."
+      }
+    },
     "quotes": {
       "title": "Angebotsanfragen",
       "subtitle": "Verfolgen und verwalten Sie Ihre individuellen Angebotsanfragen",

@@ -11,7 +11,11 @@
  * Terms represent a customer/account, e.g. "lennox". A product can belong to
  * multiple terms if it's a standard reorder item for more than one customer.
  *
- * Installation: copy to wp-content/mu-plugins/wpgraphql-order-list.php on
+ * Registered against both 'product' and 'product_variation' so individual
+ * variations (not just their parent) can be tagged directly, preserving
+ * exact-SKU identity for curated reorder lists.
+ *
+ * Installation: copy to wp-content/mu-plugins/bapi-graphql-order-list.php on
  * the Headless WordPress (Kinsta) environment.
  *
  * @package BAPI_Headless
@@ -19,7 +23,7 @@
  */
 
 add_action('init', function () {
-    register_taxonomy('order_list', ['product'], [
+    register_taxonomy('order_list', ['product', 'product_variation'], [
         'label' => __('Order List', 'bapi'),
         'labels' => [
             'name' => __('Order Lists', 'bapi'),
@@ -44,3 +48,43 @@ add_action('init', function () {
         'graphql_plural_name' => 'orderListTags',
     ]);
 });
+
+/**
+ * SECURITY: `show_in_graphql` alone does not make this taxonomy private — the
+ * `public`/`publicly_queryable`/`show_in_rest` flags above only affect the REST
+ * API and frontend theme, not WPGraphQL field-level read access. Without this
+ * guard, any unauthenticated caller could query
+ * products(where: { taxonomyFilter: { filters: [{ taxonomy: ORDER_LIST, ... }] } })
+ * directly against the public GraphQL endpoint and enumerate a customer's
+ * curated product list.
+ *
+ * This strips the response at the very last filter point (`graphql_request_results`,
+ * operating on the fully-executed response) rather than trying to short-circuit
+ * field resolution — an earlier `graphql_pre_resolve_field`-based guard proved
+ * unreliable to override once WPGraphQL Smart Cache had already populated the
+ * result. Verified against the live schema: unauthenticated requests referencing
+ * ORDER_LIST get an empty connection; authenticated (valid JWT) requests and any
+ * query that doesn't reference ORDER_LIST are unaffected.
+ */
+add_filter('graphql_request_results', function ($response, $schema, $operation, $query, $variables, $request, $query_id) {
+    if (is_user_logged_in()) {
+        return $response;
+    }
+
+    if (empty($query) || stripos($query, 'ORDER_LIST') === false) {
+        return $response;
+    }
+
+    // Unauthenticated request referencing the private order_list taxonomy filter — strip results.
+    if (is_array($response)) {
+        if (isset($response['data']['products'])) {
+            $response['data']['products']['nodes'] = [];
+            $response['data']['products']['edges'] = [];
+        }
+    } elseif (is_object($response) && isset($response->data['products'])) {
+        $response->data['products']['nodes'] = [];
+        $response->data['products']['edges'] = [];
+    }
+
+    return $response;
+}, 10, 7);

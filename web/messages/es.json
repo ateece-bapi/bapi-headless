@@ -2238,6 +2238,48 @@
       "noImage": "Sin imagen",
       "viewProduct": "Ver Producto"
     },
+    "easyOrder": {
+      "backToDashboard": "Volver al panel de control",
+      "title": "Formulario de Pedido Fácil",
+      "description": "Pegue sus números de pieza a continuación, uno por línea. Agregue una cantidad después de una coma o tabulación (p. ej. <code>BA/10K-2-AP, 5</code>) o déjelo en blanco para usar 1 de forma predeterminada.",
+      "loadingCuratedList": "Cargando su lista de pedido estándar...",
+      "standardOrderList": {
+        "title": "Su Lista de Pedido Estándar",
+        "description": "Ingrese una cantidad para lo que desee pedir; deje el resto en 0."
+      },
+      "otherPartNumbers": "Otros Números de Pieza",
+      "checkAvailability": "Verificar Disponibilidad",
+      "checking": "Verificando...",
+      "addAllToCart": "Agregar Todo al Carrito",
+      "orderPreview": {
+        "title": "Vista Previa del Pedido",
+        "found": "{count} encontrados",
+        "foundAndNotFound": "{found} encontrados · {notFound} no encontrados"
+      },
+      "table": {
+        "product": "Producto",
+        "partNumber": "Número de Pieza",
+        "price": "Precio",
+        "qty": "Cant."
+      },
+      "contactForPricing": "Contactar para precio",
+      "outOfStock": "Agotado",
+      "notAvailableYet": "Aún no disponible en el sitio",
+      "removeAriaLabel": "Eliminar {sku}",
+      "quantityAriaLabel": "Cantidad para {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Nada que verificar",
+        "nothingToCheckMessage": "Ingrese al menos un número de pieza.",
+        "availabilityCheckedTitle": "Disponibilidad verificada",
+        "availabilityCheckedMessage": "{found} de {total} números de pieza encontrados.",
+        "checkFailedTitle": "Error al verificar",
+        "checkFailedMessage": "No se pudo verificar la disponibilidad del número de pieza. Inténtelo de nuevo.",
+        "nothingToAddTitle": "Nada que agregar",
+        "nothingToAddMessage": "Ingrese una cantidad para un artículo estándar en stock, o verifique la disponibilidad de un número de pieza pegado.",
+        "addedToCartTitle": "Agregado al carrito",
+        "addedToCartMessage": "{count} artículo(s) agregado(s) a su carrito."
+      }
+    },
     "quotes": {
       "title": "Solicitudes de Cotización",
       "subtitle": "Realiza un seguimiento y gestiona tus solicitudes de cotización personalizada",

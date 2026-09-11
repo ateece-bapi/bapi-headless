@@ -2240,6 +2240,48 @@
       "noImage": "Không có hình ảnh",
       "viewProduct": "Xem sản phẩm"
     },
+    "easyOrder": {
+      "backToDashboard": "Quay lại Bảng điều khiển",
+      "title": "Mẫu Đặt Hàng Dễ Dàng",
+      "description": "Dán các mã số phụ tùng của bạn bên dưới, mỗi dòng một mã. Thêm số lượng sau dấu phẩy hoặc tab (ví dụ: <code>BA/10K-2-AP, 5</code>) hoặc để trống để mặc định là 1.",
+      "loadingCuratedList": "Đang tải danh sách đặt hàng tiêu chuẩn của bạn...",
+      "standardOrderList": {
+        "title": "Danh Sách Đặt Hàng Tiêu Chuẩn Của Bạn",
+        "description": "Nhập số lượng cho những gì bạn muốn đặt hàng — để phần còn lại là 0."
+      },
+      "otherPartNumbers": "Các Mã Số Phụ Tùng Khác",
+      "checkAvailability": "Kiểm Tra Tình Trạng Còn Hàng",
+      "checking": "Đang kiểm tra...",
+      "addAllToCart": "Thêm Tất Cả Vào Giỏ Hàng",
+      "orderPreview": {
+        "title": "Xem Trước Đơn Hàng",
+        "found": "Tìm thấy {count}",
+        "foundAndNotFound": "Tìm thấy {found} · Không tìm thấy {notFound}"
+      },
+      "table": {
+        "product": "Sản Phẩm",
+        "partNumber": "Mã Số Phụ Tùng",
+        "price": "Giá",
+        "qty": "SL"
+      },
+      "contactForPricing": "Liên hệ để biết giá",
+      "outOfStock": "Hết hàng",
+      "notAvailableYet": "Chưa có trên trang web",
+      "removeAriaLabel": "Xóa {sku}",
+      "quantityAriaLabel": "Số lượng cho {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Không có gì để kiểm tra",
+        "nothingToCheckMessage": "Nhập ít nhất một mã số phụ tùng.",
+        "availabilityCheckedTitle": "Đã kiểm tra tình trạng còn hàng",
+        "availabilityCheckedMessage": "Tìm thấy {found} trong số {total} mã số phụ tùng.",
+        "checkFailedTitle": "Kiểm tra thất bại",
+        "checkFailedMessage": "Không thể kiểm tra tình trạng còn hàng của mã số phụ tùng. Vui lòng thử lại.",
+        "nothingToAddTitle": "Không có gì để thêm",
+        "nothingToAddMessage": "Nhập số lượng cho một mặt hàng tiêu chuẩn còn hàng, hoặc kiểm tra tình trạng còn hàng của mã số phụ tùng đã dán.",
+        "addedToCartTitle": "Đã thêm vào giỏ hàng",
+        "addedToCartMessage": "Đã thêm {count} mặt hàng vào giỏ hàng của bạn."
+      }
+    },
     "quotes": {
       "title": "Yêu Cầu Báo Giá",
       "subtitle": "Theo dõi và quản lý các yêu cầu báo giá tùy chỉnh của bạn",

@@ -795,6 +795,48 @@
       "noImage": "Brak obrazu",
       "viewProduct": "Wyświetl produkt"
     },
+    "easyOrder": {
+      "backToDashboard": "Wróć do pulpitu",
+      "title": "Formularz Łatwego Zamówienia",
+      "description": "Wklej poniżej swoje numery części, jeden w każdej linii. Dodaj ilość po przecinku lub tabulatorze (np. <code>BA/10K-2-AP, 5</code>) lub zostaw puste, aby domyślnie ustawić 1.",
+      "loadingCuratedList": "Ładowanie listy standardowych zamówień...",
+      "standardOrderList": {
+        "title": "Twoja Lista Standardowych Zamówień",
+        "description": "Wprowadź ilość dla wszystkiego, co chcesz zamówić — resztę pozostaw na 0."
+      },
+      "otherPartNumbers": "Inne Numery Części",
+      "checkAvailability": "Sprawdź Dostępność",
+      "checking": "Sprawdzanie...",
+      "addAllToCart": "Dodaj Wszystko do Koszyka",
+      "orderPreview": {
+        "title": "Podgląd Zamówienia",
+        "found": "Znaleziono {count}",
+        "foundAndNotFound": "Znaleziono {found} · Nie znaleziono {notFound}"
+      },
+      "table": {
+        "product": "Produkt",
+        "partNumber": "Numer Części",
+        "price": "Cena",
+        "qty": "Ilość"
+      },
+      "contactForPricing": "Skontaktuj się w sprawie ceny",
+      "outOfStock": "Brak w magazynie",
+      "notAvailableYet": "Jeszcze niedostępne na stronie",
+      "removeAriaLabel": "Usuń {sku}",
+      "quantityAriaLabel": "Ilość dla {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Nic do sprawdzenia",
+        "nothingToCheckMessage": "Wprowadź co najmniej jeden numer części.",
+        "availabilityCheckedTitle": "Sprawdzono dostępność",
+        "availabilityCheckedMessage": "Znaleziono {found} z {total} numerów części.",
+        "checkFailedTitle": "Sprawdzanie nie powiodło się",
+        "checkFailedMessage": "Nie można sprawdzić dostępności numeru części. Spróbuj ponownie.",
+        "nothingToAddTitle": "Nic do dodania",
+        "nothingToAddMessage": "Wprowadź ilość dla dostępnego standardowego produktu lub sprawdź dostępność wklejonego numeru części.",
+        "addedToCartTitle": "Dodano do koszyka",
+        "addedToCartMessage": "Dodano {count} produkt(ów) do koszyka."
+      }
+    },
     "quotes": {
       "title": "Zapytania ofertowe",
       "subtitle": "Śledź i zarządzaj swoimi indywidualnymi zapytaniami ofertowymi",

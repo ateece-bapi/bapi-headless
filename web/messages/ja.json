@@ -2240,6 +2240,48 @@
       "noImage": "画像なし",
       "viewProduct": "製品を表示する"
     },
+    "easyOrder": {
+      "backToDashboard": "ダッシュボードに戻る",
+      "title": "簡単注文フォーム",
+      "description": "下に部品番号を1行ずつ貼り付けてください。カンマまたはタブの後に数量を追加できます（例：<code>BA/10K-2-AP, 5</code>）。空欄の場合は数量1として扱われます。",
+      "loadingCuratedList": "標準注文リストを読み込んでいます...",
+      "standardOrderList": {
+        "title": "標準注文リスト",
+        "description": "注文したい商品の数量を入力してください。それ以外は0のままにしてください。"
+      },
+      "otherPartNumbers": "その他の部品番号",
+      "checkAvailability": "在庫を確認",
+      "checking": "確認中...",
+      "addAllToCart": "すべてカートに追加",
+      "orderPreview": {
+        "title": "注文プレビュー",
+        "found": "{count} 件見つかりました",
+        "foundAndNotFound": "{found} 件見つかりました · {notFound} 件見つかりませんでした"
+      },
+      "table": {
+        "product": "製品",
+        "partNumber": "部品番号",
+        "price": "価格",
+        "qty": "数量"
+      },
+      "contactForPricing": "価格についてはお問い合わせください",
+      "outOfStock": "在庫切れ",
+      "notAvailableYet": "サイトにまだ掲載されていません",
+      "removeAriaLabel": "{sku} を削除",
+      "quantityAriaLabel": "{name} の数量",
+      "toasts": {
+        "nothingToCheckTitle": "確認する項目がありません",
+        "nothingToCheckMessage": "少なくとも1つの部品番号を入力してください。",
+        "availabilityCheckedTitle": "在庫を確認しました",
+        "availabilityCheckedMessage": "{total} 件中 {found} 件の部品番号が見つかりました。",
+        "checkFailedTitle": "確認に失敗しました",
+        "checkFailedMessage": "部品番号の在庫を確認できませんでした。もう一度お試しください。",
+        "nothingToAddTitle": "追加する項目がありません",
+        "nothingToAddMessage": "在庫のある標準商品の数量を入力するか、貼り付けた部品番号の在庫を確認してください。",
+        "addedToCartTitle": "カートに追加しました",
+        "addedToCartMessage": "{count} 件の商品がカートに追加されました。"
+      }
+    },
     "quotes": {
       "title": "見積依頼",
       "subtitle": "カスタム見積依頼の追跡と管理",

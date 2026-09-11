@@ -2240,6 +2240,48 @@
       "noImage": "لا توجد صورة",
       "viewProduct": "عرض المنتج"
     },
+    "easyOrder": {
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "title": "نموذج الطلب السهل",
+      "description": "الصق أرقام القطع أدناه، رقم واحد في كل سطر. أضف الكمية بعد فاصلة أو علامة جدولة (مثل: <code>BA/10K-2-AP, 5</code>) أو اتركه فارغًا لاستخدام 1 افتراضيًا.",
+      "loadingCuratedList": "جارٍ تحميل قائمة الطلب القياسية الخاصة بك...",
+      "standardOrderList": {
+        "title": "قائمة الطلب القياسية الخاصة بك",
+        "description": "أدخل كمية لكل ما تريد طلبه — اترك الباقي عند 0."
+      },
+      "otherPartNumbers": "أرقام قطع أخرى",
+      "checkAvailability": "تحقق من التوفر",
+      "checking": "جارٍ التحقق...",
+      "addAllToCart": "أضف الكل إلى السلة",
+      "orderPreview": {
+        "title": "معاينة الطلب",
+        "found": "تم العثور على {count}",
+        "foundAndNotFound": "تم العثور على {found} · لم يتم العثور على {notFound}"
+      },
+      "table": {
+        "product": "المنتج",
+        "partNumber": "رقم القطعة",
+        "price": "السعر",
+        "qty": "الكمية"
+      },
+      "contactForPricing": "اتصل بنا للحصول على السعر",
+      "outOfStock": "غير متوفر",
+      "notAvailableYet": "غير متوفر بعد على الموقع",
+      "removeAriaLabel": "إزالة {sku}",
+      "quantityAriaLabel": "الكمية لـ {name}",
+      "toasts": {
+        "nothingToCheckTitle": "لا شيء للتحقق منه",
+        "nothingToCheckMessage": "أدخل رقم قطعة واحد على الأقل.",
+        "availabilityCheckedTitle": "تم التحقق من التوفر",
+        "availabilityCheckedMessage": "تم العثور على {found} من أصل {total} من أرقام القطع.",
+        "checkFailedTitle": "فشل التحقق",
+        "checkFailedMessage": "تعذر التحقق من توفر رقم القطعة. يرجى المحاولة مرة أخرى.",
+        "nothingToAddTitle": "لا شيء لإضافته",
+        "nothingToAddMessage": "أدخل كمية لعنصر قياسي متوفر، أو تحقق من توفر رقم قطعة تم لصقه.",
+        "addedToCartTitle": "تمت الإضافة إلى السلة",
+        "addedToCartMessage": "تمت إضافة {count} عنصر إلى سلتك."
+      }
+    },
     "quotes": {
       "title": "طلبات العرض السعري",
       "subtitle": "تتبع وإدارة طلبات العروض السعرية المخصصة الخاصة بك",

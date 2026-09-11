@@ -7,71 +7,64 @@
  * customer group (e.g. Lennox's frequently-reordered parts), tagged via the
  * private `order_list` WordPress taxonomy (see cms/files/wpgraphql-order-list.php).
  *
- * This query targets a taxonomy that only exists on the Headless WordPress
- * instance, not in the shared committed schema.json — it's written directly
- * against the live schema here (rather than as a codegen-tracked .graphql
- * file) so it doesn't block `pnpm run codegen` for the rest of the team.
+ * Uses the custom `easyOrderCuratedList` resolver (see
+ * cms/files/wpgraphql-easy-order-sku-lookup.php) rather than a generic
+ * `products(where: { taxonomyFilter: ... })` query, since the taxonomy is
+ * assigned at both the product and variation level — the custom resolver
+ * returns the exact variation identity/price when applicable and dedupes
+ * redundant parent-level entries. This query targets fields that only exist
+ * on the Headless WordPress instance, not in the shared committed
+ * schema.json — it's written directly against the live schema here (rather
+ * than as a codegen-tracked .graphql file) so it doesn't block
+ * `pnpm run codegen` for the rest of the team.
  */
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import { gql } from 'graphql-request';
 import { getServerAuth } from '@/lib/auth/server';
 import { canUseEasyOrderForm, EASY_ORDER_FORM_CUSTOMER_GROUPS } from '@/lib/constants/easyOrderForm';
 import { getGraphQLClient } from '@/lib/graphql/client';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 import { logError } from '@/lib/errors';
 
-const ORDER_LIST_QUERY = gql`
-  query GetOrderListProducts($term: String!, $first: Int!) {
-    products(
-      where: {
-        taxonomyFilter: { filters: [{ taxonomy: ORDER_LIST, terms: [$term], operator: IN }] }
-        visibility: VISIBLE
-      }
-      first: $first
-    ) {
-      nodes {
-        id
-        databaseId
-        name
-        slug
-        ... on SimpleProduct {
-          sku
-          partNumber
-          price
-          stockStatus
-          image {
-            sourceUrl
-            altText
-          }
-        }
-        ... on VariableProduct {
-          sku
-          partNumber
-          price
-          stockStatus
-          image {
-            sourceUrl
-            altText
-          }
-        }
-      }
+const CURATED_LIST_QUERY = gql`
+  query EasyOrderCuratedList($term: String!) {
+    easyOrderCuratedList(term: $term) {
+      databaseId
+      parentDatabaseId
+      isVariation
+      name
+      slug
+      sku
+      price
+      stockStatus
+      imageUrl
+      imageAltText
+      customerGroup1
+      customerGroup2
+      customerGroup3
     }
   }
 `;
 
-interface OrderListProduct {
-  id: string;
+interface CuratedMatch {
   databaseId: number;
+  parentDatabaseId: number;
+  isVariation: boolean;
   name: string;
   slug: string;
-  sku?: string | null;
-  partNumber?: string | null;
-  price?: string | null;
-  stockStatus?: string | null;
-  image?: { sourceUrl?: string | null; altText?: string | null } | null;
+  sku: string | null;
+  price: string | null;
+  stockStatus: string | null;
+  imageUrl: string | null;
+  imageAltText: string | null;
+  customerGroup1: string | null;
+  customerGroup2: string | null;
+  customerGroup3: string | null;
 }
 
-interface OrderListResponse {
-  products: { nodes: OrderListProduct[] };
+interface CuratedListResponse {
+  easyOrderCuratedList: CuratedMatch[];
 }
 
 /** The Easy Order Form customer group doubles as the order_list taxonomy term for now. */
@@ -98,19 +91,29 @@ export async function GET() {
       return NextResponse.json({ products: [] });
     }
 
-    const client = getGraphQLClient(['products', 'order-list'], true);
-    const data = await client.request<OrderListResponse>(ORDER_LIST_QUERY, { term, first: 100 });
+    // Forward the caller's JWT — easyOrderCuratedList requires an
+    // authenticated viewer server-side, independent of this route's own check.
+    const cookieStore = await cookies();
+    const authToken = cookieStore.get('auth_token')?.value;
+    const customHeaders = authToken ? { Authorization: `Bearer ${authToken}` } : undefined;
 
-    const products = (data.products?.nodes ?? []).map((p) => ({
-      id: p.id,
-      databaseId: p.databaseId,
+    const client = getGraphQLClient(['products', 'order-list'], true, customHeaders);
+    const data = await client.request<CuratedListResponse>(CURATED_LIST_QUERY, { term });
+
+    const matches = data.easyOrderCuratedList ?? [];
+    const visibleMatches = filterProductsByCustomerGroup(matches, user.customerGroups ?? ['end-user']);
+
+    const products = visibleMatches.map((p) => ({
+      id: `easy_order_sku:${p.databaseId}`,
+      databaseId: p.parentDatabaseId,
+      variationId: p.isVariation ? p.databaseId : null,
       name: p.name,
       slug: p.slug,
       sku: p.sku ?? null,
-      partNumber: p.partNumber ?? null,
+      partNumber: p.sku ?? null,
       price: p.price ?? null,
       stockStatus: p.stockStatus ?? null,
-      image: p.image?.sourceUrl ? { sourceUrl: p.image.sourceUrl, altText: p.image.altText ?? undefined } : null,
+      image: p.imageUrl ? { sourceUrl: p.imageUrl, altText: p.imageAltText ?? undefined } : null,
     }));
 
     return NextResponse.json({ products });

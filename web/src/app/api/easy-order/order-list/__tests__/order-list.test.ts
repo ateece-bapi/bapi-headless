@@ -5,14 +5,16 @@
  * - 401 when unauthenticated
  * - 403 when authenticated but not in an allowed customer group
  * - 200 with the curated product list for an allowed customer group
- * - 200 with an empty list when the user has no matching order-list term
+ * - 200 with an empty list when the GraphQL resolver returns no matches
+ * - restricted-product entries are filtered out by customer group
  * - 500 when the GraphQL client throws
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const { mockGetServerAuth, mockRequest } = vi.hoisted(() => ({
+const { mockGetServerAuth, mockRequest, mockCookieGet } = vi.hoisted(() => ({
   mockGetServerAuth: vi.fn(),
   mockRequest: vi.fn(),
+  mockCookieGet: vi.fn(),
 }));
 
 vi.mock('@/lib/auth/server', () => ({
@@ -23,6 +25,10 @@ vi.mock('@/lib/graphql/client', () => ({
   getGraphQLClient: vi.fn(() => ({ request: mockRequest })),
 }));
 
+vi.mock('next/headers', () => ({
+  cookies: vi.fn(async () => ({ get: mockCookieGet })),
+}));
+
 vi.mock('@/lib/logger', () => ({
   default: { info: vi.fn(), error: vi.fn(), debug: vi.fn(), warn: vi.fn() },
 }));
@@ -31,9 +37,31 @@ import { GET as getOrderList } from '../route';
 
 const LENNOX_USER = { id: '1', customerGroups: ['lennox'] };
 
+function mockMatch(overrides: Record<string, unknown> = {}) {
+  return {
+    databaseId: 1,
+    parentDatabaseId: 1,
+    isVariation: false,
+    canonicalId: 'cHJvZHVjdDox',
+    name: 'Duct Temperature Sensor',
+    slug: 'duct-temp-sensor',
+    sku: 'BA/10K-2-AP',
+    partNumber: null,
+    price: '$49.99',
+    stockStatus: 'INSTOCK',
+    imageUrl: 'https://example.com/img.jpg',
+    imageAltText: 'Sensor',
+    customerGroup1: null,
+    customerGroup2: null,
+    customerGroup3: null,
+    ...overrides,
+  };
+}
+
 describe('GET /api/easy-order/order-list', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCookieGet.mockReturnValue(undefined);
   });
 
   it('returns 401 when not authenticated', async () => {
@@ -50,23 +78,7 @@ describe('GET /api/easy-order/order-list', () => {
 
   it('returns the curated product list for an allowed customer group', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
-    mockRequest.mockResolvedValue({
-      products: {
-        nodes: [
-          {
-            id: 'prod-1',
-            databaseId: 1,
-            name: 'Duct Temperature Sensor',
-            slug: 'duct-temp-sensor',
-            sku: 'BA/10K-2-AP',
-            partNumber: 'BA/10K-2-AP',
-            price: '$49.99',
-            stockStatus: 'IN_STOCK',
-            image: { sourceUrl: 'https://example.com/img.jpg', altText: 'Sensor' },
-          },
-        ],
-      },
-    });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch()] });
 
     const res = await getOrderList();
     const json = await res.json();
@@ -74,20 +86,72 @@ describe('GET /api/easy-order/order-list', () => {
     expect(res.status).toBe(200);
     expect(json.products).toHaveLength(1);
     expect(json.products[0].name).toBe('Duct Temperature Sensor');
-    expect(mockRequest).toHaveBeenCalledWith(expect.any(String), { term: 'lennox', first: 100 });
+    expect(mockRequest).toHaveBeenCalledWith(expect.any(String), { term: 'lennox' });
   });
 
-  it('returns an empty list when the user has no matching order-list term', async () => {
-    mockGetServerAuth.mockResolvedValue({ user: { id: '1', customerGroups: [] } });
-    // Not in an allowed group, so 403 — but simulate an allowed group with no term mapping
-    mockGetServerAuth.mockResolvedValue({ user: { id: '1', customerGroups: ['lennox'] } });
-    mockRequest.mockResolvedValue({ products: { nodes: [] } });
+  it('includes variationId when a curated match is a variation', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({
+      easyOrderCuratedList: [mockMatch({ databaseId: 137609, parentDatabaseId: 137579, isVariation: true })],
+    });
+
+    const res = await getOrderList();
+    const json = await res.json();
+
+    expect(json.products[0].databaseId).toBe(137579);
+    expect(json.products[0].variationId).toBe(137609);
+  });
+
+  it('uses the canonical global id for cart merge consistency, falling back to a synthetic id', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ canonicalId: 'cHJvZHVjdDox' })] });
+
+    const res = await getOrderList();
+    const json = await res.json();
+    expect(json.products[0].id).toBe('cHJvZHVjdDox');
+
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ databaseId: 42, canonicalId: null })] });
+    const res2 = await getOrderList();
+    const json2 = await res2.json();
+    expect(json2.products[0].id).toBe('easy_order_sku:42');
+  });
+
+  it('preserves the custom partNumber field, falling back to SKU only when unset', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ partNumber: 'PN-CUSTOM-123' })] });
+
+    const res = await getOrderList();
+    const json = await res.json();
+    expect(json.products[0].partNumber).toBe('PN-CUSTOM-123');
+
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [mockMatch({ partNumber: null })] });
+    const res2 = await getOrderList();
+    const json2 = await res2.json();
+    expect(json2.products[0].partNumber).toBe('BA/10K-2-AP');
+  });
+
+  it('returns an empty list when the resolver returns no matches', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderCuratedList: [] });
 
     const res = await getOrderList();
     const json = await res.json();
 
     expect(res.status).toBe(200);
     expect(json.products).toEqual([]);
+  });
+
+  it('filters out curated matches restricted to a different customer group', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({
+      easyOrderCuratedList: [mockMatch({ databaseId: 1 }), mockMatch({ databaseId: 2, customerGroup1: 'alc' })],
+    });
+
+    const res = await getOrderList();
+    const json = await res.json();
+
+    expect(json.products).toHaveLength(1);
+    expect(json.products[0].databaseId).toBe(1);
   });
 
   it('returns 500 when the GraphQL client throws', async () => {
@@ -98,3 +162,4 @@ describe('GET /api/easy-order/order-list', () => {
     expect(res.status).toBe(500);
   });
 });
+

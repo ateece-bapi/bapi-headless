@@ -6,15 +6,16 @@
  * - 403 when authenticated but not in an allowed customer group
  * - 400 on invalid/empty request body
  * - 200 with found/not-found results, de-duped and customer-group filtered
+ * - 200 with found:false when a matched product is restricted to a different customer group
  * - 500 when the GraphQL client throws
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest } from 'next/server';
 
-const { mockGetServerAuth, mockSearchProductsBySKU, mockGetSdk } = vi.hoisted(() => ({
+const { mockGetServerAuth, mockRequest, mockCookieGet } = vi.hoisted(() => ({
   mockGetServerAuth: vi.fn(),
-  mockSearchProductsBySKU: vi.fn(),
-  mockGetSdk: vi.fn(),
+  mockRequest: vi.fn(),
+  mockCookieGet: vi.fn(),
 }));
 
 vi.mock('@/lib/auth/server', () => ({
@@ -22,11 +23,11 @@ vi.mock('@/lib/auth/server', () => ({
 }));
 
 vi.mock('@/lib/graphql/client', () => ({
-  getGraphQLClient: vi.fn(() => ({})),
+  getGraphQLClient: vi.fn(() => ({ request: mockRequest })),
 }));
 
-vi.mock('@/lib/graphql/generated', () => ({
-  getSdk: mockGetSdk,
+vi.mock('next/headers', () => ({
+  cookies: vi.fn(async () => ({ get: mockCookieGet })),
 }));
 
 vi.mock('@/lib/logger', () => ({
@@ -45,10 +46,31 @@ function makePost(body: unknown) {
 
 const LENNOX_USER = { id: '1', customerGroups: ['lennox'] };
 
+function mockMatch(overrides: Record<string, unknown> = {}) {
+  return {
+    databaseId: 1,
+    parentDatabaseId: 1,
+    isVariation: false,
+    canonicalId: 'cHJvZHVjdDox',
+    name: 'Duct Temperature Sensor',
+    slug: 'duct-temp-sensor',
+    sku: 'BA/10K-2-AP',
+    partNumber: null,
+    price: '$49.99',
+    stockStatus: 'INSTOCK',
+    imageUrl: 'https://example.com/img.jpg',
+    imageAltText: 'Sensor',
+    customerGroup1: null,
+    customerGroup2: null,
+    customerGroup3: null,
+    ...overrides,
+  };
+}
+
 describe('POST /api/easy-order/lookup', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetSdk.mockReturnValue({ SearchProductsBySKU: mockSearchProductsBySKU });
+    mockCookieGet.mockReturnValue(undefined);
   });
 
   it('returns 401 when not authenticated', async () => {
@@ -77,22 +99,7 @@ describe('POST /api/easy-order/lookup', () => {
 
   it('returns found:true with product data for a matching SKU', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
-    mockSearchProductsBySKU.mockResolvedValue({
-      products: {
-        nodes: [
-          {
-            id: 'prod-1',
-            databaseId: 1,
-            name: 'Duct Temperature Sensor',
-            slug: 'duct-temp-sensor',
-            sku: 'BA/10K-2-AP',
-            partNumber: 'BA/10K-2-AP',
-            price: '$49.99',
-            image: { sourceUrl: 'https://example.com/img.jpg', altText: 'Sensor' },
-          },
-        ],
-      },
-    });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch() });
 
     const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
     const json = await res.json();
@@ -103,9 +110,50 @@ describe('POST /api/easy-order/lookup', () => {
     expect(json.results[0].product.name).toBe('Duct Temperature Sensor');
   });
 
+  it('returns found:true with variationId set when the match is a variation', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({
+      easyOrderSkuLookup: mockMatch({ databaseId: 137609, parentDatabaseId: 137579, isVariation: true }),
+    });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+
+    expect(json.results[0].product.databaseId).toBe(137579);
+    expect(json.results[0].product.variationId).toBe(137609);
+  });
+
+  it('uses the canonical global id for cart merge consistency, falling back to a synthetic id', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ canonicalId: 'cHJvZHVjdDox' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+    expect(json.results[0].product.id).toBe('cHJvZHVjdDox');
+
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ databaseId: 42, canonicalId: null }) });
+    const res2 = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json2 = await res2.json();
+    expect(json2.results[0].product.id).toBe('easy_order_sku:42');
+  });
+
+  it('preserves the custom partNumber field, falling back to SKU only when unset', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ partNumber: 'PN-CUSTOM-123' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+    expect(json.results[0].product.partNumber).toBe('PN-CUSTOM-123');
+
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ partNumber: null }) });
+    const res2 = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json2 = await res2.json();
+    expect(json2.results[0].product.partNumber).toBe('BA/10K-2-AP');
+  });
+
   it('returns found:false when no product matches the SKU', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
-    mockSearchProductsBySKU.mockResolvedValue({ products: { nodes: [] } });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: null });
 
     const res = await lookup(makePost({ skus: ['BA/UNKNOWN'] }));
     const json = await res.json();
@@ -114,21 +162,61 @@ describe('POST /api/easy-order/lookup', () => {
     expect(json.results[0]).toEqual({ sku: 'BA/UNKNOWN', found: false });
   });
 
+  it('returns found:false when the match is restricted to a different customer group', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ customerGroup1: 'alc' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(json.results[0].found).toBe(false);
+  });
+
+  it('returns found:true when a restricted match is visible to the user\'s customer group', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: { id: '1', customerGroups: ['lennox', 'alc'] } });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: mockMatch({ customerGroup1: 'alc' }) });
+
+    const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
+    const json = await res.json();
+
+    expect(json.results[0].found).toBe(true);
+  });
+
   it('de-duplicates repeated SKUs into a single lookup', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
-    mockSearchProductsBySKU.mockResolvedValue({ products: { nodes: [] } });
+    mockRequest.mockResolvedValue({ easyOrderSkuLookup: null });
 
     const res = await lookup(makePost({ skus: ['BA/10K-2-AP', 'BA/10K-2-AP'] }));
     const json = await res.json();
 
     expect(res.status).toBe(200);
     expect(json.results).toHaveLength(1);
-    expect(mockSearchProductsBySKU).toHaveBeenCalledTimes(1);
+    expect(mockRequest).toHaveBeenCalledTimes(1);
+  });
+
+  it('bounds concurrency to the configured limit of 8', async () => {
+    mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
+    let inFlight = 0;
+    let maxInFlight = 0;
+    mockRequest.mockImplementation(async () => {
+      inFlight++;
+      maxInFlight = Math.max(maxInFlight, inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      inFlight--;
+      return { easyOrderSkuLookup: null };
+    });
+
+    const skus = Array.from({ length: 20 }, (_, i) => `SKU-${i}`);
+    await lookup(makePost({ skus }));
+
+    expect(maxInFlight).toBe(8);
+    expect(mockRequest).toHaveBeenCalledTimes(20);
   });
 
   it('returns found:false for a SKU when the lookup throws', async () => {
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
-    mockSearchProductsBySKU.mockRejectedValue(new Error('GraphQL error'));
+    mockRequest.mockRejectedValue(new Error('GraphQL error'));
 
     const res = await lookup(makePost({ skus: ['BA/10K-2-AP'] }));
     const json = await res.json();
@@ -143,3 +231,4 @@ describe('POST /api/easy-order/lookup', () => {
     expect(res.status).toBe(500);
   });
 });
+

@@ -795,6 +795,52 @@
       "noImage": "कोई छवि नहीं",
       "viewProduct": "उत्पाद देखें"
     },
+    "easyOrder": {
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "title": "आसान ऑर्डर फॉर्म",
+      "description": "अपने पार्ट नंबर नीचे पेस्ट करें, प्रति पंक्ति एक। कॉमा या टैब के बाद मात्रा जोड़ें (उदा. <code>BA/10K-2-AP, 5</code>) या डिफ़ॉल्ट 1 के लिए खाली छोड़ दें।",
+      "loadingCuratedList": "आपकी मानक ऑर्डर सूची लोड हो रही है...",
+      "standardOrderList": {
+        "title": "आपकी मानक ऑर्डर सूची",
+        "description": "आप जो ऑर्डर करना चाहते हैं उसके लिए मात्रा दर्ज करें — बाकी को 0 पर छोड़ दें।"
+      },
+      "otherPartNumbers": "अन्य पार्ट नंबर",
+      "checkAvailability": "उपलब्धता जांचें",
+      "checking": "जांच हो रही है...",
+      "addAllToCart": "सभी को कार्ट में जोड़ें",
+      "orderPreview": {
+        "title": "ऑर्डर पूर्वावलोकन",
+        "found": "{count} मिले",
+        "foundAndNotFound": "{found} मिले · {notFound} नहीं मिले"
+      },
+      "table": {
+        "status": "स्थिति",
+        "product": "उत्पाद",
+        "partNumber": "पार्ट नंबर",
+        "price": "मूल्य",
+        "qty": "मात्रा",
+        "remove": "हटाएं"
+      },
+      "contactForPricing": "मूल्य के लिए संपर्क करें",
+      "outOfStock": "स्टॉक में नहीं",
+      "notAvailableYet": "अभी साइट पर उपलब्ध नहीं है",
+      "foundStatus": "मिला",
+      "notFoundStatus": "नहीं मिला",
+      "removeAriaLabel": "{sku} हटाएं",
+      "quantityAriaLabel": "{name} के लिए मात्रा",
+      "toasts": {
+        "nothingToCheckTitle": "जांचने के लिए कुछ नहीं",
+        "nothingToCheckMessage": "कम से कम एक पार्ट नंबर दर्ज करें।",
+        "availabilityCheckedTitle": "उपलब्धता जांची गई",
+        "availabilityCheckedMessage": "{total} में से {found} पार्ट नंबर मिले।",
+        "checkFailedTitle": "जांच विय़ल",
+        "checkFailedMessage": "पार्ट नंबर की उपलब्धता जांची नहीं जा सकी। कृपया पुनः प्रयास करें।",
+        "nothingToAddTitle": "जोड़ने के लिए कुछ नहीं",
+        "nothingToAddMessage": "स्टॉक में मौजूद मानक आइटम के लिए मात्रा दर्ज करें, या पेस्ट किए गए पार्ट नंबर की उपलब्धता जांचें।",
+        "addedToCartTitle": "कार्ट में जोड़ा गया",
+        "addedToCartMessage": "{count} आइटम आपके कार्ट में जोड़े गए।"
+      }
+    },
     "quotes": {
       "title": "कोट अनुरोध",
       "subtitle": "अपने कस्टम कोट अनुरोधों को ट्रैक और प्रबंधित करें",

@@ -2240,6 +2240,52 @@
       "noImage": "Pas d'image",
       "viewProduct": "Voir le produit"
     },
+    "easyOrder": {
+      "backToDashboard": "Retour au tableau de bord",
+      "title": "Formulaire de Commande Facile",
+      "description": "Collez vos numéros de pièce ci-dessous, un par ligne. Ajoutez une quantité après une virgule ou une tabulation (ex. <code>BA/10K-2-AP, 5</code>) ou laissez vide pour utiliser 1 par défaut.",
+      "loadingCuratedList": "Chargement de votre liste de commande standard...",
+      "standardOrderList": {
+        "title": "Votre Liste de Commande Standard",
+        "description": "Saisissez une quantité pour tout ce que vous souhaitez commander — laissez le reste à 0."
+      },
+      "otherPartNumbers": "Autres Numéros de Pièce",
+      "checkAvailability": "Vérifier la Disponibilité",
+      "checking": "Vérification...",
+      "addAllToCart": "Tout Ajouter au Panier",
+      "orderPreview": {
+        "title": "Aperçu de la Commande",
+        "found": "{count} trouvé(s)",
+        "foundAndNotFound": "{found} trouvé(s) · {notFound} non trouvé(s)"
+      },
+      "table": {
+        "status": "Statut",
+        "product": "Produit",
+        "partNumber": "Numéro de Pièce",
+        "price": "Prix",
+        "qty": "Qté",
+        "remove": "Supprimer"
+      },
+      "contactForPricing": "Nous contacter pour le prix",
+      "outOfStock": "En rupture de stock",
+      "notAvailableYet": "Pas encore disponible sur le site",
+      "foundStatus": "Trouvé",
+      "notFoundStatus": "Introuvable",
+      "removeAriaLabel": "Supprimer {sku}",
+      "quantityAriaLabel": "Quantité pour {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Rien à vérifier",
+        "nothingToCheckMessage": "Saisissez au moins un numéro de pièce.",
+        "availabilityCheckedTitle": "Disponibilité vérifiée",
+        "availabilityCheckedMessage": "{found} numéro(s) de pièce trouvé(s) sur {total}.",
+        "checkFailedTitle": "Échec de la vérification",
+        "checkFailedMessage": "Impossible de vérifier la disponibilité du numéro de pièce. Veuillez réessayer.",
+        "nothingToAddTitle": "Rien à ajouter",
+        "nothingToAddMessage": "Saisissez une quantité pour un article standard en stock, ou vérifiez la disponibilité d'un numéro de pièce collé.",
+        "addedToCartTitle": "Ajouté au panier",
+        "addedToCartMessage": "{count} article(s) ajouté(s) à votre panier."
+      }
+    },
     "quotes": {
       "title": "Demandes de devis",
       "subtitle": "Suivez et gérez vos demandes de devis personnalisées",

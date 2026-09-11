@@ -1298,6 +1298,52 @@
       "noImage": "No image",
       "viewProduct": "View Product"
     },
+    "easyOrder": {
+      "backToDashboard": "Back to Dashboard",
+      "title": "Easy Order Form",
+      "description": "Paste your part numbers below, one per line. Add a quantity after a comma or tab (e.g. <code>BA/10K-2-AP, 5</code>) or leave it blank to default to 1.",
+      "loadingCuratedList": "Loading your standard order list...",
+      "standardOrderList": {
+        "title": "Your Standard Order List",
+        "description": "Enter a quantity for anything you want to order — leave the rest at 0."
+      },
+      "otherPartNumbers": "Other Part Numbers",
+      "checkAvailability": "Check Availability",
+      "checking": "Checking...",
+      "addAllToCart": "Add All to Cart",
+      "orderPreview": {
+        "title": "Order Preview",
+        "found": "{count} found",
+        "foundAndNotFound": "{found} found · {notFound} not found"
+      },
+      "table": {
+        "status": "Status",
+        "product": "Product",
+        "partNumber": "Part Number",
+        "price": "Price",
+        "qty": "Qty",
+        "remove": "Remove"
+      },
+      "contactForPricing": "Contact for pricing",
+      "outOfStock": "Out of stock",
+      "notAvailableYet": "Not available on the site yet",
+      "foundStatus": "Found",
+      "notFoundStatus": "Not found",
+      "removeAriaLabel": "Remove {sku}",
+      "quantityAriaLabel": "Quantity for {name}",
+      "toasts": {
+        "nothingToCheckTitle": "Nothing to check",
+        "nothingToCheckMessage": "Enter at least one part number.",
+        "availabilityCheckedTitle": "Availability checked",
+        "availabilityCheckedMessage": "{found} of {total} part numbers found.",
+        "checkFailedTitle": "Check failed",
+        "checkFailedMessage": "Could not check part number availability. Please try again.",
+        "nothingToAddTitle": "Nothing to add",
+        "nothingToAddMessage": "Enter a quantity for an in-stock standard item, or check availability for a pasted part number.",
+        "addedToCartTitle": "Added to cart",
+        "addedToCartMessage": "{count} item(s) added to your cart."
+      }
+    },
     "quotes": {
       "title": "Quote Requests",
       "subtitle": "Track and manage your custom quote requests",

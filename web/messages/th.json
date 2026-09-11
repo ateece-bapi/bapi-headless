@@ -795,6 +795,52 @@
       "noImage": "ไม่มีรูปภาพ",
       "viewProduct": "ดูผลิตภัณฑ์"
     },
+    "easyOrder": {
+      "backToDashboard": "กลับไปยังแดชบอร์ด",
+      "title": "แบบฟอร์มสั่งซื้อง่าย",
+      "description": "วางหมายเลขชิ้นส่วนของคุณด้านล่าง บรรทัดละหนึ่งรายการ เพิ่มจำนวนหลังเครื่องหมายจุลภาคหรือแท็บ (เช่น <code>BA/10K-2-AP, 5</code>) หรือปล่อยว่างไว้เพื่อใช้ค่าเริ่มต้นเป็น 1",
+      "loadingCuratedList": "กำลังโหลดรายการสั่งซื้อมาตรฐานของคุณ...",
+      "standardOrderList": {
+        "title": "รายการสั่งซื้อมาตรฐานของคุณ",
+        "description": "ป้อนจำนวนสำหรับสิ่งที่คุณต้องการสั่งซื้อ — ปล่อยให้ส่วนที่เหลือเป็น 0"
+      },
+      "otherPartNumbers": "หมายเลขชิ้นส่วนอื่นๆ",
+      "checkAvailability": "ตรวจสอบสินค้าคงคลัง",
+      "checking": "กำลังตรวจสอบ...",
+      "addAllToCart": "เพิ่มทั้งหมดลงตะกร้า",
+      "orderPreview": {
+        "title": "ตัวอย่างคำสั่งซื้อ",
+        "found": "พบ {count} รายการ",
+        "foundAndNotFound": "พบ {found} รายการ · ไม่พบ {notFound} รายการ"
+      },
+      "table": {
+        "status": "สถานะ",
+        "product": "สินค้า",
+        "partNumber": "หมายเลขชิ้นส่วน",
+        "price": "ราคา",
+        "qty": "จำนวน",
+        "remove": "ลบ"
+      },
+      "contactForPricing": "ติดต่อสอบถามราคา",
+      "outOfStock": "สินค้าหมด",
+      "notAvailableYet": "ยังไม่มีจำหน่ายบนเว็บไซต์",
+      "foundStatus": "พบแล้ว",
+      "notFoundStatus": "ไม่พบ",
+      "removeAriaLabel": "ลบ {sku}",
+      "quantityAriaLabel": "จำนวนสำหรับ {name}",
+      "toasts": {
+        "nothingToCheckTitle": "ไม่มีรายการให้ตรวจสอบ",
+        "nothingToCheckMessage": "กรุณาป้อนหมายเลขชิ้นส่วนอย่างน้อยหนึ่งรายการ",
+        "availabilityCheckedTitle": "ตรวจสอบสินค้าคงคลังแล้ว",
+        "availabilityCheckedMessage": "พบ {found} จาก {total} หมายเลขชิ้นส่วน",
+        "checkFailedTitle": "การตรวจสอบล้มเหลว",
+        "checkFailedMessage": "ไม่สามารถตรวจสอบสินค้าคงคลังของหมายเลขชิ้นส่วนได้ กรุณาลองอีกครั้ง",
+        "nothingToAddTitle": "ไม่มีรายการให้เพิ่ม",
+        "nothingToAddMessage": "ป้อนจำนวนสำหรับสินค้ามาตรฐานที่มีในสต็อก หรือตรวจสอบสินค้าคงคลังของหมายเลขชิ้นส่วนที่วาง",
+        "addedToCartTitle": "เพิ่มลงตะกร้าแล้ว",
+        "addedToCartMessage": "เพิ่มสินค้า {count} รายการลงในตะกร้าของคุณแล้ว"
+      }
+    },
     "quotes": {
       "title": "ใบเสนอราคา",
       "subtitle": "ติดตามและจัดการคำขอใบเสนอราคาของคุณ",

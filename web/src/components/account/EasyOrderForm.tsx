@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowLeftIcon,
   ShoppingCartIcon,
@@ -24,6 +24,18 @@ interface OrderRow {
   quantity: number;
   status: 'idle' | 'found' | 'not-found';
   result?: EasyOrderLookupResult['product'];
+}
+
+interface CuratedProduct {
+  id: string;
+  databaseId: number;
+  name: string;
+  slug: string;
+  sku: string | null;
+  partNumber: string | null;
+  price: string | null;
+  stockStatus: string | null;
+  image: { sourceUrl: string; altText?: string } | null;
 }
 
 /** Parses pasted "SKU, Qty" text (newline-separated; comma/tab/space-delimited per line). */
@@ -52,6 +64,36 @@ export default function EasyOrderForm() {
   const [rows, setRows] = useState<OrderRow[]>([]);
   const [isChecking, setIsChecking] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+
+  const [curatedProducts, setCuratedProducts] = useState<CuratedProduct[]>([]);
+  const [curatedQuantities, setCuratedQuantities] = useState<Record<string, number>>({});
+  const [isLoadingCurated, setIsLoadingCurated] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadCuratedList() {
+      try {
+        const response = await fetch('/api/easy-order/order-list');
+        if (!response.ok) return;
+        const data: { products: CuratedProduct[] } = await response.json();
+        if (isMounted) setCuratedProducts(data.products ?? []);
+      } catch (error) {
+        logError('easy_order.curated_list_load_failed', error);
+      } finally {
+        if (isMounted) setIsLoadingCurated(false);
+      }
+    }
+
+    loadCuratedList();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleCuratedQuantityChange = (id: string, quantity: number) => {
+    setCuratedQuantities((prev) => ({ ...prev, [id]: Math.max(0, quantity) }));
+  };
 
   const handleCheckAvailability = async () => {
     const parsedRows = parseOrderText(pasteText);
@@ -117,15 +159,32 @@ export default function EasyOrderForm() {
 
   const handleAddAllToCart = async () => {
     const foundRows = rows.filter((row) => row.status === 'found' && row.result);
+    const curatedSelections = curatedProducts.filter((p) => (curatedQuantities[p.id] ?? 0) > 0);
 
-    if (foundRows.length === 0) {
-      showToast('warning', 'Nothing to add', 'Check availability first, then add found items to your cart.', 4000);
+    if (foundRows.length === 0 && curatedSelections.length === 0) {
+      showToast('warning', 'Nothing to add', 'Enter a quantity for a standard item, or check availability for a pasted part number.', 4000);
       return;
     }
 
     setIsAdding(true);
 
     try {
+      curatedSelections.forEach((product) => {
+        addItem(
+          {
+            id: product.id,
+            databaseId: product.databaseId,
+            name: product.name,
+            slug: product.slug,
+            price: product.price ?? '',
+            numericPrice: convertWooCommercePriceNumeric(product.price ?? '', region.currency),
+            image: product.image,
+            partNumber: product.partNumber ?? product.sku ?? undefined,
+          },
+          curatedQuantities[product.id]
+        );
+      });
+
       foundRows.forEach((row) => {
         const product = row.result!;
         addItem(
@@ -145,7 +204,9 @@ export default function EasyOrderForm() {
         );
       });
 
-      showToast('success', 'Added to cart', `${foundRows.length} item(s) added to your cart.`, 3000);
+      const totalAdded = foundRows.length + curatedSelections.length;
+      showToast('success', 'Added to cart', `${totalAdded} item(s) added to your cart.`, 3000);
+      setCuratedQuantities({});
       setTimeout(() => openCart(), 300);
     } finally {
       setIsAdding(false);
@@ -154,6 +215,7 @@ export default function EasyOrderForm() {
 
   const foundCount = rows.filter((r) => r.status === 'found').length;
   const notFoundCount = rows.filter((r) => r.status === 'not-found').length;
+  const curatedSelectedCount = curatedProducts.filter((p) => (curatedQuantities[p.id] ?? 0) > 0).length;
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -177,9 +239,76 @@ export default function EasyOrderForm() {
 
       <section className="w-full py-8">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+          {isLoadingCurated ? (
+            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-2 text-neutral-700">
+                <Loader2Icon className="h-5 w-5 animate-spin" />
+                <span>Loading your standard order list...</span>
+              </div>
+            </div>
+          ) : (
+            curatedProducts.length > 0 && (
+              <div className="rounded-xl border border-neutral-200 bg-white shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 p-6">
+                  <div>
+                    <h2 className="text-xl font-bold text-neutral-900">Your Standard Order List</h2>
+                    <p className="text-sm text-neutral-700">
+                      Enter a quantity for anything you want to order — leave the rest at 0.
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleAddAllToCart}
+                    disabled={isAdding || (foundCount === 0 && curatedSelectedCount === 0)}
+                    className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <ShoppingCartIcon className="h-5 w-5" />
+                    Add All to Cart
+                  </button>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="border-b border-neutral-200 text-sm text-neutral-700">
+                        <th className="px-6 py-3 font-medium">Product</th>
+                        <th className="px-6 py-3 font-medium">Part Number</th>
+                        <th className="px-6 py-3 font-medium">Price</th>
+                        <th className="px-6 py-3 font-medium">Qty</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      {curatedProducts.map((product) => (
+                        <tr key={product.id}>
+                          <td className="px-6 py-4 text-sm text-neutral-900">{product.name}</td>
+                          <td className="px-6 py-4 font-mono text-sm">
+                            {product.partNumber ?? product.sku ?? '—'}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-neutral-900">
+                            {product.price ?? 'Contact for pricing'}
+                          </td>
+                          <td className="px-6 py-4">
+                            <input
+                              type="number"
+                              min={0}
+                              value={curatedQuantities[product.id] ?? 0}
+                              disabled={!product.price}
+                              onChange={(e) =>
+                                handleCuratedQuantityChange(product.id, parseInt(e.target.value, 10) || 0)
+                              }
+                              className="w-20 rounded-lg border border-neutral-300 px-3 py-2 text-center focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:bg-neutral-100"
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )
+          )}
+
+          <div className="mt-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
             <label htmlFor="easy-order-paste" className="mb-2 block font-semibold text-neutral-900">
-              Part Numbers
+              Other Part Numbers
             </label>
             <textarea
               id="easy-order-paste"
@@ -216,7 +345,7 @@ export default function EasyOrderForm() {
                 </div>
                 <button
                   onClick={handleAddAllToCart}
-                  disabled={isAdding || foundCount === 0}
+                  disabled={isAdding || (foundCount === 0 && curatedSelectedCount === 0)}
                   className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <ShoppingCartIcon className="h-5 w-5" />

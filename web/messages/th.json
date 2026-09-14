@@ -827,7 +827,13 @@
       "foundStatus": "พบแล้ว",
       "notFoundStatus": "ไม่พบ",
       "removeAriaLabel": "ลบ {sku}",
-      "quantityAriaLabel": "จำนวนสำหรับ {name}",
+      "quantityDecreaseAriaLabel": "ลดจำนวนสำหรับ {name}",
+      "quantityIncreaseAriaLabel": "เพิ่มจำนวนสำหรับ {name}",
+      "noImage": "ไม่มีรูปภาพ",
+      "summary": {
+        "itemsSelected": "เลือก {count} รายการ",
+        "subtotal": "ยอดรวมโดยประมาณ"
+      },
       "toasts": {
         "nothingToCheckTitle": "ไม่มีรายการให้ตรวจสอบ",
         "nothingToCheckMessage": "กรุณาป้อนหมายเลขชิ้นส่วนอย่างน้อยหนึ่งรายการ",
@@ -838,7 +844,9 @@
         "nothingToAddTitle": "ไม่มีรายการให้เพิ่ม",
         "nothingToAddMessage": "ป้อนจำนวนสำหรับสินค้ามาตรฐานที่มีในสต็อก หรือตรวจสอบสินค้าคงคลังของหมายเลขชิ้นส่วนที่วาง",
         "addedToCartTitle": "เพิ่มลงตะกร้าแล้ว",
-        "addedToCartMessage": "เพิ่มสินค้า {count} รายการลงในตะกร้าของคุณแล้ว"
+        "addedToCartMessage": "เพิ่มสินค้า {count} รายการลงในตะกร้าของคุณแล้ว",
+        "curatedListFailedTitle": "ไม่สามารถโหลดรายการสั่งซื้อมาตรฐานของคุณได้",
+        "curatedListFailedMessage": "กรุณารีเฟรชหน้าหรือลองใหม่อีกครั้งภายหลัง"
       }
     },
     "quotes": {

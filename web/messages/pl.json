@@ -827,7 +827,13 @@
       "foundStatus": "Znaleziono",
       "notFoundStatus": "Nie znaleziono",
       "removeAriaLabel": "Usuń {sku}",
-      "quantityAriaLabel": "Ilość dla {name}",
+      "quantityDecreaseAriaLabel": "Zmniejsz ilość dla {name}",
+      "quantityIncreaseAriaLabel": "Zwiększ ilość dla {name}",
+      "noImage": "Brak zdjęcia",
+      "summary": {
+        "itemsSelected": "Wybrano {count} pozycji",
+        "subtotal": "Szacowana suma częściowa"
+      },
       "toasts": {
         "nothingToCheckTitle": "Nic do sprawdzenia",
         "nothingToCheckMessage": "Wprowadź co najmniej jeden numer części.",
@@ -838,7 +844,9 @@
         "nothingToAddTitle": "Nic do dodania",
         "nothingToAddMessage": "Wprowadź ilość dla dostępnego standardowego produktu lub sprawdź dostępność wklejonego numeru części.",
         "addedToCartTitle": "Dodano do koszyka",
-        "addedToCartMessage": "Dodano {count} produkt(ów) do koszyka."
+        "addedToCartMessage": "Dodano {count} produkt(ów) do koszyka.",
+        "curatedListFailedTitle": "Nie można załadować standardowej listy zamówień",
+        "curatedListFailedMessage": "Odśwież stronę lub spróbuj ponownie później."
       }
     },
     "quotes": {

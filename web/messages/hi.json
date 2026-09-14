@@ -827,7 +827,13 @@
       "foundStatus": "मिला",
       "notFoundStatus": "नहीं मिला",
       "removeAriaLabel": "{sku} हटाएं",
-      "quantityAriaLabel": "{name} के लिए मात्रा",
+      "quantityDecreaseAriaLabel": "{name} के लिए मात्रा घटाएं",
+      "quantityIncreaseAriaLabel": "{name} के लिए मात्रा बढ़ाएं",
+      "noImage": "कोई छवि नहीं",
+      "summary": {
+        "itemsSelected": "{count} आइटम चुने गए",
+        "subtotal": "अनुमानित उप-कुल"
+      },
       "toasts": {
         "nothingToCheckTitle": "जांचने के लिए कुछ नहीं",
         "nothingToCheckMessage": "कम से कम एक पार्ट नंबर दर्ज करें।",
@@ -838,7 +844,9 @@
         "nothingToAddTitle": "जोड़ने के लिए कुछ नहीं",
         "nothingToAddMessage": "स्टॉक में मौजूद मानक आइटम के लिए मात्रा दर्ज करें, या पेस्ट किए गए पार्ट नंबर की उपलब्धता जांचें।",
         "addedToCartTitle": "कार्ट में जोड़ा गया",
-        "addedToCartMessage": "{count} आइटम आपके कार्ट में जोड़े गए।"
+        "addedToCartMessage": "{count} आइटम आपके कार्ट में जोड़े गए।",
+        "curatedListFailedTitle": "आपकी मानक ऑर्डर सूची लोड नहीं हो सकी",
+        "curatedListFailedMessage": "कृपया पेज रीलोड करें या बाद में पुन: प्रयास करें।"
       }
     },
     "quotes": {

@@ -2272,7 +2272,13 @@
       "foundStatus": "見つかりました",
       "notFoundStatus": "見つかりません",
       "removeAriaLabel": "{sku} を削除",
-      "quantityAriaLabel": "{name} の数量",
+      "quantityDecreaseAriaLabel": "{name} の数量を減らす",
+      "quantityIncreaseAriaLabel": "{name} の数量を増やす",
+      "noImage": "画像なし",
+      "summary": {
+        "itemsSelected": "{count} 件選択中",
+        "subtotal": "推定小計"
+      },
       "toasts": {
         "nothingToCheckTitle": "確認する項目がありません",
         "nothingToCheckMessage": "少なくとも1つの部品番号を入力してください。",
@@ -2283,7 +2289,9 @@
         "nothingToAddTitle": "追加する項目がありません",
         "nothingToAddMessage": "在庫のある標準商品の数量を入力するか、貼り付けた部品番号の在庫を確認してください。",
         "addedToCartTitle": "カートに追加しました",
-        "addedToCartMessage": "{count} 件の商品がカートに追加されました。"
+        "addedToCartMessage": "{count} 件の商品がカートに追加されました。",
+        "curatedListFailedTitle": "標準注文リストを読み込めませんでした",
+        "curatedListFailedMessage": "ページを更新するか、後でもう一度お試しください。"
       }
     },
     "quotes": {

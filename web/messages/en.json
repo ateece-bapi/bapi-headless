@@ -1346,7 +1346,9 @@
         "nothingToAddTitle": "Nothing to add",
         "nothingToAddMessage": "Enter a quantity for an in-stock standard item, or check availability for a pasted part number.",
         "addedToCartTitle": "Added to cart",
-        "addedToCartMessage": "{count} item(s) added to your cart."
+        "addedToCartMessage": "{count} item(s) added to your cart.",
+        "curatedListFailedTitle": "Couldn't load your standard order list",
+        "curatedListFailedMessage": "Please refresh the page or try again later."
       }
     },
     "quotes": {

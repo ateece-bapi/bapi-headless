@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "没有可添加的内容",
         "nothingToAddMessage": "请为有库存的标准商品输入数量，或查询已粘贴零件编号的库存情况。",
         "addedToCartTitle": "已加入购物车",
-        "addedToCartMessage": "已将 {count} 件商品加入您的购物车。"
+        "addedToCartMessage": "已将 {count} 件商品加入您的购物车。",
+        "curatedListFailedTitle": "无法加载您的标准订单列表",
+        "curatedListFailedMessage": "请刷新页面或稍后重试。"
       }
     },
     "quotes": {

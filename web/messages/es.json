@@ -2286,7 +2286,9 @@
         "nothingToAddTitle": "Nada que agregar",
         "nothingToAddMessage": "Ingrese una cantidad para un artículo estándar en stock, o verifique la disponibilidad de un número de pieza pegado.",
         "addedToCartTitle": "Agregado al carrito",
-        "addedToCartMessage": "{count} artículo(s) agregado(s) a su carrito."
+        "addedToCartMessage": "{count} artículo(s) agregado(s) a su carrito.",
+        "curatedListFailedTitle": "No se pudo cargar su lista de pedido estándar",
+        "curatedListFailedMessage": "Actualice la página o inténtelo de nuevo más tarde."
       }
     },
     "quotes": {

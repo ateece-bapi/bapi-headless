@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "Rien à ajouter",
         "nothingToAddMessage": "Saisissez une quantité pour un article standard en stock, ou vérifiez la disponibilité d'un numéro de pièce collé.",
         "addedToCartTitle": "Ajouté au panier",
-        "addedToCartMessage": "{count} article(s) ajouté(s) à votre panier."
+        "addedToCartMessage": "{count} article(s) ajouté(s) à votre panier.",
+        "curatedListFailedTitle": "Impossible de charger votre liste de commande standard",
+        "curatedListFailedMessage": "Veuillez actualiser la page ou réessayer plus tard."
       }
     },
     "quotes": {

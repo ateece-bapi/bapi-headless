@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "لا شيء لإضافته",
         "nothingToAddMessage": "أدخل كمية لعنصر قياسي متوفر، أو تحقق من توفر رقم قطعة تم لصقه.",
         "addedToCartTitle": "تمت الإضافة إلى السلة",
-        "addedToCartMessage": "تمت إضافة {count} عنصر إلى سلتك."
+        "addedToCartMessage": "تمت إضافة {count} عنصر إلى سلتك.",
+        "curatedListFailedTitle": "تعذر تحميل قائمة الطلب القياسية",
+        "curatedListFailedMessage": "يرجى تحديث الصفحة أو المحاولة لاحقًا."
       }
     },
     "quotes": {

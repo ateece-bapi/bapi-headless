@@ -160,11 +160,16 @@ export default function EasyOrderForm() {
     async function loadCuratedList() {
       try {
         const response = await fetch('/api/easy-order/order-list');
-        if (!response.ok) return;
+        if (!response.ok) {
+          throw new Error(`Curated list load failed with status ${response.status}`);
+        }
         const data: { products: CuratedProduct[] } = await response.json();
         if (isMounted) setCuratedProducts(data.products ?? []);
       } catch (error) {
         logError('easy_order.curated_list_load_failed', error);
+        if (isMounted) {
+          showToast('error', t('toasts.curatedListFailedTitle'), t('toasts.curatedListFailedMessage'), 5000);
+        }
       } finally {
         if (isMounted) setIsLoadingCurated(false);
       }
@@ -174,7 +179,7 @@ export default function EasyOrderForm() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [showToast, t]);
 
   const handleCuratedQuantityChange = (id: string, quantity: number) => {
     setCuratedQuantities((prev) => ({ ...prev, [id]: Math.max(0, quantity) }));

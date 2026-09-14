@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "Nichts hinzuzufügen",
         "nothingToAddMessage": "Geben Sie eine Menge für einen vorrätigen Standardartikel ein oder prüfen Sie die Verfügbarkeit einer eingefügten Teilenummer.",
         "addedToCartTitle": "Zum Warenkorb hinzugefügt",
-        "addedToCartMessage": "{count} Artikel wurden Ihrem Warenkorb hinzugefügt."
+        "addedToCartMessage": "{count} Artikel wurden Ihrem Warenkorb hinzugefügt.",
+        "curatedListFailedTitle": "Standard-Bestellliste konnte nicht geladen werden",
+        "curatedListFailedMessage": "Bitte laden Sie die Seite neu oder versuchen Sie es später erneut."
       }
     },
     "quotes": {

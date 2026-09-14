@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "Không có gì để thêm",
         "nothingToAddMessage": "Nhập số lượng cho một mặt hàng tiêu chuẩn còn hàng, hoặc kiểm tra tình trạng còn hàng của mã số phụ tùng đã dán.",
         "addedToCartTitle": "Đã thêm vào giỏ hàng",
-        "addedToCartMessage": "Đã thêm {count} mặt hàng vào giỏ hàng của bạn."
+        "addedToCartMessage": "Đã thêm {count} mặt hàng vào giỏ hàng của bạn.",
+        "curatedListFailedTitle": "Không thể tải danh sách đặt hàng tiêu chuẩn",
+        "curatedListFailedMessage": "Vui lòng làm mới trang hoặc thử lại sau."
       }
     },
     "quotes": {

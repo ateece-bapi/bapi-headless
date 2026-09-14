@@ -843,7 +843,9 @@
         "nothingToAddTitle": "जोड़ने के लिए कुछ नहीं",
         "nothingToAddMessage": "स्टॉक में मौजूद मानक आइटम के लिए मात्रा दर्ज करें, या पेस्ट किए गए पार्ट नंबर की उपलब्धता जांचें।",
         "addedToCartTitle": "कार्ट में जोड़ा गया",
-        "addedToCartMessage": "{count} आइटम आपके कार्ट में जोड़े गए।"
+        "addedToCartMessage": "{count} आइटम आपके कार्ट में जोड़े गए।",
+        "curatedListFailedTitle": "आपकी मानक ऑर्डर सूची लोड नहीं हो सकी",
+        "curatedListFailedMessage": "कृपया पेज रीलोड करें या बाद में पुन: प्रयास करें।"
       }
     },
     "quotes": {

@@ -843,7 +843,9 @@
         "nothingToAddTitle": "Nic do dodania",
         "nothingToAddMessage": "Wprowadź ilość dla dostępnego standardowego produktu lub sprawdź dostępność wklejonego numeru części.",
         "addedToCartTitle": "Dodano do koszyka",
-        "addedToCartMessage": "Dodano {count} produkt(ów) do koszyka."
+        "addedToCartMessage": "Dodano {count} produkt(ów) do koszyka.",
+        "curatedListFailedTitle": "Nie można załadować standardowej listy zamówień",
+        "curatedListFailedMessage": "Odśwież stronę lub spróbuj ponownie później."
       }
     },
     "quotes": {

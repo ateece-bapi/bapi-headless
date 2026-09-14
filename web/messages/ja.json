@@ -2288,7 +2288,9 @@
         "nothingToAddTitle": "追加する項目がありません",
         "nothingToAddMessage": "在庫のある標準商品の数量を入力するか、貼り付けた部品番号の在庫を確認してください。",
         "addedToCartTitle": "カートに追加しました",
-        "addedToCartMessage": "{count} 件の商品がカートに追加されました。"
+        "addedToCartMessage": "{count} 件の商品がカートに追加されました。",
+        "curatedListFailedTitle": "標準注文リストを読み込めませんでした",
+        "curatedListFailedMessage": "ページを更新するか、後でもう一度お試しください。"
       }
     },
     "quotes": {

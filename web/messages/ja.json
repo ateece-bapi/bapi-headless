@@ -2272,7 +2272,8 @@
       "foundStatus": "見つかりました",
       "notFoundStatus": "見つかりません",
       "removeAriaLabel": "{sku} を削除",
-      "quantityAriaLabel": "{name} の数量",
+      "quantityDecreaseAriaLabel": "{name} の数量を減らす",
+      "quantityIncreaseAriaLabel": "{name} の数量を増やす",
       "noImage": "画像なし",
       "summary": {
         "itemsSelected": "{count} 件選択中",

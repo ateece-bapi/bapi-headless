@@ -827,7 +827,8 @@
       "foundStatus": "Znaleziono",
       "notFoundStatus": "Nie znaleziono",
       "removeAriaLabel": "Usuń {sku}",
-      "quantityAriaLabel": "Ilość dla {name}",
+      "quantityDecreaseAriaLabel": "Zmniejsz ilość dla {name}",
+      "quantityIncreaseAriaLabel": "Zwiększ ilość dla {name}",
       "noImage": "Brak zdjęcia",
       "summary": {
         "itemsSelected": "Wybrano {count} pozycji",

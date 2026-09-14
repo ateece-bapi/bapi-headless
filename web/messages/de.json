@@ -2272,7 +2272,8 @@
       "foundStatus": "Gefunden",
       "notFoundStatus": "Nicht gefunden",
       "removeAriaLabel": "{sku} entfernen",
-      "quantityAriaLabel": "Menge für {name}",
+      "quantityDecreaseAriaLabel": "Menge für {name} verringern",
+      "quantityIncreaseAriaLabel": "Menge für {name} erhöhen",
       "noImage": "Kein Bild",
       "summary": {
         "itemsSelected": "{count} Artikel ausgewählt",

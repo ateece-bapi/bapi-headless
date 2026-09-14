@@ -2272,7 +2272,8 @@
       "foundStatus": "تم العثور عليه",
       "notFoundStatus": "غير موجود",
       "removeAriaLabel": "إزالة {sku}",
-      "quantityAriaLabel": "الكمية لـ {name}",
+      "quantityDecreaseAriaLabel": "تقليل الكمية لـ {name}",
+      "quantityIncreaseAriaLabel": "زيادة الكمية لـ {name}",
       "noImage": "لا توجد صورة",
       "summary": {
         "itemsSelected": "{count} عنصر محدد",

@@ -88,7 +88,7 @@ function ProductThumbnail({
           className="h-full w-full object-cover"
         />
       ) : (
-        <PackageIcon className="h-6 w-6 text-neutral-300" aria-label={noImageLabel} />
+        <PackageIcon className="h-6 w-6 text-neutral-300" role="img" aria-hidden={false} aria-label={noImageLabel} />
       )}
     </div>
   );
@@ -99,13 +99,15 @@ function QuantityStepper({
   value,
   min,
   disabled,
-  ariaLabel,
+  decreaseAriaLabel,
+  increaseAriaLabel,
   onChange,
 }: {
   value: number;
   min: number;
   disabled?: boolean;
-  ariaLabel: string;
+  decreaseAriaLabel: string;
+  increaseAriaLabel: string;
   onChange: (next: number) => void;
 }) {
   const stepperButtonClass =
@@ -118,19 +120,17 @@ function QuantityStepper({
         onClick={() => onChange(Math.max(min, value - 1))}
         disabled={disabled || value <= min}
         className={stepperButtonClass}
-        aria-label={ariaLabel}
+        aria-label={decreaseAriaLabel}
       >
         <MinusIcon className="h-4 w-4" />
       </button>
-      <span className="w-8 text-center text-base font-bold text-neutral-900" aria-hidden="true">
-        {value}
-      </span>
+      <span className="w-8 text-center text-base font-bold text-neutral-900">{value}</span>
       <button
         type="button"
         onClick={() => onChange(value + 1)}
         disabled={disabled}
         className={stepperButtonClass}
-        aria-label={ariaLabel}
+        aria-label={increaseAriaLabel}
       >
         <PlusIcon className="h-4 w-4" />
       </button>
@@ -357,7 +357,7 @@ export default function EasyOrderForm() {
         </div>
       </section>
 
-      <section className={`w-full py-8 ${selectionSummary.itemCount > 0 ? 'pb-28' : ''}`}>
+      <section className={`w-full py-8 ${selectionSummary.itemCount > 0 ? 'pb-44 sm:pb-28' : ''}`}>
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
           {isLoadingCurated ? (
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
@@ -430,7 +430,8 @@ export default function EasyOrderForm() {
                                 value={curatedQuantities[product.id] ?? 0}
                                 min={0}
                                 disabled={!isOrderable(product.price, product.stockStatus)}
-                                ariaLabel={t('quantityAriaLabel', { name: product.name })}
+                                decreaseAriaLabel={t('quantityDecreaseAriaLabel', { name: product.name })}
+                                increaseAriaLabel={t('quantityIncreaseAriaLabel', { name: product.name })}
                                 onChange={(next) => handleCuratedQuantityChange(product.id, next)}
                               />
                             </td>
@@ -549,7 +550,8 @@ export default function EasyOrderForm() {
                               value={row.quantity}
                               min={1}
                               disabled={!orderable}
-                              ariaLabel={t('quantityAriaLabel', { name: row.result?.name ?? row.sku })}
+                              decreaseAriaLabel={t('quantityDecreaseAriaLabel', { name: row.result?.name ?? row.sku })}
+                              increaseAriaLabel={t('quantityIncreaseAriaLabel', { name: row.result?.name ?? row.sku })}
                               onChange={(next) => handleQuantityChange(row.key, next)}
                             />
                           </td>
@@ -575,9 +577,9 @@ export default function EasyOrderForm() {
 
       {selectionSummary.itemCount > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] backdrop-blur">
-          <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="mx-auto flex max-w-container flex-col items-stretch gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-12">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-50 font-bold text-primary-600">
+              <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-50 font-bold text-primary-600">
                 {selectionSummary.itemCount}
               </span>
               <div>
@@ -595,7 +597,7 @@ export default function EasyOrderForm() {
             <button
               onClick={handleAddAllToCart}
               disabled={isAdding}
-              className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
             >
               {isAdding ? <Loader2Icon className="h-5 w-5 animate-spin" /> : <ShoppingCartIcon className="h-5 w-5" />}
               {t('addAllToCart')}

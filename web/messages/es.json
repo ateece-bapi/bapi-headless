@@ -2270,7 +2270,8 @@
       "foundStatus": "Encontrado",
       "notFoundStatus": "No encontrado",
       "removeAriaLabel": "Eliminar {sku}",
-      "quantityAriaLabel": "Cantidad para {name}",
+      "quantityDecreaseAriaLabel": "Disminuir cantidad para {name}",
+      "quantityIncreaseAriaLabel": "Aumentar cantidad para {name}",
       "noImage": "Sin imagen",
       "summary": {
         "itemsSelected": "{count} artículo(s) seleccionado(s)",

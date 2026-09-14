@@ -827,7 +827,8 @@
       "foundStatus": "พบแล้ว",
       "notFoundStatus": "ไม่พบ",
       "removeAriaLabel": "ลบ {sku}",
-      "quantityAriaLabel": "จำนวนสำหรับ {name}",
+      "quantityDecreaseAriaLabel": "ลดจำนวนสำหรับ {name}",
+      "quantityIncreaseAriaLabel": "เพิ่มจำนวนสำหรับ {name}",
       "noImage": "ไม่มีรูปภาพ",
       "summary": {
         "itemsSelected": "เลือก {count} รายการ",

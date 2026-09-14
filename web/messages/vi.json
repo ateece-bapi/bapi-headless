@@ -2272,7 +2272,8 @@
       "foundStatus": "Đã tìm thấy",
       "notFoundStatus": "Không tìm thấy",
       "removeAriaLabel": "Xóa {sku}",
-      "quantityAriaLabel": "Số lượng cho {name}",
+      "quantityDecreaseAriaLabel": "Giảm số lượng cho {name}",
+      "quantityIncreaseAriaLabel": "Tăng số lượng cho {name}",
       "noImage": "Không có hình ảnh",
       "summary": {
         "itemsSelected": "Đã chọn {count} mặt hàng",

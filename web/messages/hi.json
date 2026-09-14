@@ -827,11 +827,12 @@
       "foundStatus": "मिला",
       "notFoundStatus": "नहीं मिला",
       "removeAriaLabel": "{sku} हटाएं",
-      "quantityAriaLabel": "{name} के लिए मात्रा",
+      "quantityDecreaseAriaLabel": "{name} के लिए मात्रा घटाएं",
+      "quantityIncreaseAriaLabel": "{name} के लिए मात्रा बढ़ाएं",
       "noImage": "कोई छवि नहीं",
       "summary": {
         "itemsSelected": "{count} आइटम चुने गए",
-        "subtotal": "अनुमानित उपयोग"
+        "subtotal": "अनुमानित उप-कुल"
       },
       "toasts": {
         "nothingToCheckTitle": "जांचने के लिए कुछ नहीं",

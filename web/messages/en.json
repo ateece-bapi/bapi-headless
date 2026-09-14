@@ -1330,7 +1330,8 @@
       "foundStatus": "Found",
       "notFoundStatus": "Not found",
       "removeAriaLabel": "Remove {sku}",
-      "quantityAriaLabel": "Quantity for {name}",
+      "quantityDecreaseAriaLabel": "Decrease quantity for {name}",
+      "quantityIncreaseAriaLabel": "Increase quantity for {name}",
       "noImage": "No image",
       "summary": {
         "itemsSelected": "{count} item(s) selected",

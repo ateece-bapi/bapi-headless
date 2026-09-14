@@ -2272,7 +2272,8 @@
       "foundStatus": "已找到",
       "notFoundStatus": "未找到",
       "removeAriaLabel": "移除 {sku}",
-      "quantityAriaLabel": "{name} 的数量",
+      "quantityDecreaseAriaLabel": "减少 {name} 的数量",
+      "quantityIncreaseAriaLabel": "增加 {name} 的数量",
       "noImage": "无图片",
       "summary": {
         "itemsSelected": "已选择 {count} 件商品",

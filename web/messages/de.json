@@ -2273,6 +2273,11 @@
       "notFoundStatus": "Nicht gefunden",
       "removeAriaLabel": "{sku} entfernen",
       "quantityAriaLabel": "Menge für {name}",
+      "noImage": "Kein Bild",
+      "summary": {
+        "itemsSelected": "{count} Artikel ausgewählt",
+        "subtotal": "Geschätzte Zwischensumme"
+      },
       "toasts": {
         "nothingToCheckTitle": "Nichts zu prüfen",
         "nothingToCheckMessage": "Geben Sie mindestens eine Teilenummer ein.",

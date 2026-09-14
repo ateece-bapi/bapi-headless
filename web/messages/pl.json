@@ -828,6 +828,11 @@
       "notFoundStatus": "Nie znaleziono",
       "removeAriaLabel": "Usuń {sku}",
       "quantityAriaLabel": "Ilość dla {name}",
+      "noImage": "Brak zdjęcia",
+      "summary": {
+        "itemsSelected": "Wybrano {count} pozycji",
+        "subtotal": "Szacowana suma częściowa"
+      },
       "toasts": {
         "nothingToCheckTitle": "Nic do sprawdzenia",
         "nothingToCheckMessage": "Wprowadź co najmniej jeden numer części.",

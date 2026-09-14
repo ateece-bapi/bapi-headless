@@ -828,6 +828,11 @@
       "notFoundStatus": "नहीं मिला",
       "removeAriaLabel": "{sku} हटाएं",
       "quantityAriaLabel": "{name} के लिए मात्रा",
+      "noImage": "कोई छवि नहीं",
+      "summary": {
+        "itemsSelected": "{count} आइटम चुने गए",
+        "subtotal": "अनुमानित उपयोग"
+      },
       "toasts": {
         "nothingToCheckTitle": "जांचने के लिए कुछ नहीं",
         "nothingToCheckMessage": "कम से कम एक पार्ट नंबर दर्ज करें।",

@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import {
   ArrowLeftIcon,
@@ -10,12 +11,15 @@ import {
   Loader2Icon,
   SearchIcon,
   Trash2Icon,
+  PlusIcon,
+  MinusIcon,
+  PackageIcon,
 } from '@/lib/icons';
 import { Link } from '@/lib/navigation';
 import { useCart, useCartDrawer } from '@/store';
 import { useRegion } from '@/store/regionStore';
 import { useToast } from '@/components/ui/Toast';
-import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric, formatPrice } from '@/lib/utils/currency';
 import { logError } from '@/lib/errors';
 import type { EasyOrderLookupResult } from '@/app/api/easy-order/lookup/route';
 
@@ -61,6 +65,77 @@ function parseOrderText(text: string): { sku: string; quantity: number }[] {
       return { sku, quantity };
     })
     .filter((row) => row.sku.length > 0);
+}
+
+/** Small product thumbnail with a consistent fallback when no image is available. */
+function ProductThumbnail({
+  image,
+  name,
+  noImageLabel,
+}: {
+  image: { sourceUrl?: string | null; altText?: string | null } | null | undefined;
+  name: string;
+  noImageLabel: string;
+}) {
+  return (
+    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-100">
+      {image?.sourceUrl ? (
+        <Image
+          src={image.sourceUrl}
+          alt={image.altText || name}
+          width={56}
+          height={56}
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <PackageIcon className="h-6 w-6 text-neutral-300" aria-label={noImageLabel} />
+      )}
+    </div>
+  );
+}
+
+/** Brand-consistent +/- quantity stepper, matching the cart page's control pattern. */
+function QuantityStepper({
+  value,
+  min,
+  disabled,
+  ariaLabel,
+  onChange,
+}: {
+  value: number;
+  min: number;
+  disabled?: boolean;
+  ariaLabel: string;
+  onChange: (next: number) => void;
+}) {
+  const stepperButtonClass =
+    'flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100';
+
+  return (
+    <div className="flex items-center gap-2">
+      <button
+        type="button"
+        onClick={() => onChange(Math.max(min, value - 1))}
+        disabled={disabled || value <= min}
+        className={stepperButtonClass}
+        aria-label={ariaLabel}
+      >
+        <MinusIcon className="h-4 w-4" />
+      </button>
+      <span className="w-8 text-center text-base font-bold text-neutral-900" aria-hidden="true">
+        {value}
+      </span>
+      <button
+        type="button"
+        onClick={() => onChange(value + 1)}
+        disabled={disabled}
+        className={stepperButtonClass}
+        aria-label={ariaLabel}
+      >
+        <PlusIcon className="h-4 w-4" />
+      </button>
+    </div>
+  );
 }
 
 export default function EasyOrderForm() {
@@ -233,6 +308,28 @@ export default function EasyOrderForm() {
   const notFoundCount = rows.filter((r) => r.status === 'not-found').length;
   const curatedSelectedCount = curatedProducts.filter((p) => (curatedQuantities[p.id] ?? 0) > 0).length;
 
+  const selectionSummary = useMemo(() => {
+    let itemCount = 0;
+    let subtotal = 0;
+
+    curatedProducts.forEach((product) => {
+      const qty = curatedQuantities[product.id] ?? 0;
+      if (qty > 0 && isOrderable(product.price, product.stockStatus)) {
+        itemCount += qty;
+        subtotal += convertWooCommercePriceNumeric(product.price, region.currency) * qty;
+      }
+    });
+
+    rows.forEach((row) => {
+      if (row.status === 'found' && row.result && isOrderable(row.result.price, row.result.stockStatus)) {
+        itemCount += row.quantity;
+        subtotal += convertWooCommercePriceNumeric(row.result.price, region.currency) * row.quantity;
+      }
+    });
+
+    return { itemCount, subtotal };
+  }, [curatedProducts, curatedQuantities, rows, region.currency]);
+
   return (
     <div className="min-h-screen bg-neutral-50">
       <section className="w-full border-b border-neutral-200 bg-white">
@@ -255,7 +352,7 @@ export default function EasyOrderForm() {
         </div>
       </section>
 
-      <section className="w-full py-8">
+      <section className={`w-full py-8 ${selectionSummary.itemCount > 0 ? 'pb-28' : ''}`}>
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
           {isLoadingCurated ? (
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
@@ -268,14 +365,19 @@ export default function EasyOrderForm() {
             curatedProducts.length > 0 && (
               <div className="rounded-xl border border-neutral-200 bg-white shadow-sm">
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 p-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-neutral-900">{t('standardOrderList.title')}</h2>
-                    <p className="text-sm text-neutral-700">{t('standardOrderList.description')}</p>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+                      <PackageIcon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h2 className="text-xl font-bold text-neutral-900">{t('standardOrderList.title')}</h2>
+                      <p className="text-sm text-neutral-700">{t('standardOrderList.description')}</p>
+                    </div>
                   </div>
                   <button
                     onClick={handleAddAllToCart}
                     disabled={isAdding || (foundCount === 0 && curatedSelectedCount === 0)}
-                    className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <ShoppingCartIcon className="h-5 w-5" />
                     {t('addAllToCart')}
@@ -292,35 +394,44 @@ export default function EasyOrderForm() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-neutral-100">
-                      {curatedProducts.map((product) => (
-                        <tr key={product.id}>
-                          <td className="px-6 py-4 text-sm text-neutral-900">{product.name}</td>
-                          <td className="px-6 py-4 font-mono text-sm">
-                            {product.partNumber ?? product.sku ?? '—'}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-neutral-900">
-                            {product.price
-                              ? convertWooCommercePrice(product.price, region.currency)
-                              : t('contactForPricing')}
-                            {product.price && !isOrderable(product.price, product.stockStatus) && (
-                              <span className="ml-2 text-xs font-medium text-error-600">{t('outOfStock')}</span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4">
-                            <input
-                              type="number"
-                              min={0}
-                              value={curatedQuantities[product.id] ?? 0}
-                              disabled={!isOrderable(product.price, product.stockStatus)}
-                              aria-label={t('quantityAriaLabel', { name: product.name })}
-                              onChange={(e) =>
-                                handleCuratedQuantityChange(product.id, parseInt(e.target.value, 10) || 0)
-                              }
-                              className="w-20 rounded-lg border border-neutral-300 px-3 py-2 text-center focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:bg-neutral-100"
-                            />
-                          </td>
-                        </tr>
-                      ))}
+                      {curatedProducts.map((product) => {
+                        const selected = (curatedQuantities[product.id] ?? 0) > 0;
+                        return (
+                          <tr
+                            key={product.id}
+                            className={`transition-colors ${selected ? 'bg-primary-50/60' : 'hover:bg-neutral-50'}`}
+                          >
+                            <td className="px-6 py-3">
+                              <div className="flex items-center gap-3">
+                                <ProductThumbnail image={product.image} name={product.name} noImageLabel={t('noImage')} />
+                                <span className="text-sm font-medium text-neutral-900">{product.name}</span>
+                              </div>
+                            </td>
+                            <td className="px-6 py-3 font-mono text-sm text-neutral-700">
+                              {product.partNumber ?? product.sku ?? '—'}
+                            </td>
+                            <td className="px-6 py-3 text-sm text-neutral-900">
+                              {product.price
+                                ? convertWooCommercePrice(product.price, region.currency)
+                                : t('contactForPricing')}
+                              {product.price && !isOrderable(product.price, product.stockStatus) && (
+                                <span className="ml-2 inline-block rounded-full bg-error-50 px-2 py-0.5 text-xs font-medium text-error-700">
+                                  {t('outOfStock')}
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-6 py-3">
+                              <QuantityStepper
+                                value={curatedQuantities[product.id] ?? 0}
+                                min={0}
+                                disabled={!isOrderable(product.price, product.stockStatus)}
+                                ariaLabel={t('quantityAriaLabel', { name: product.name })}
+                                onChange={(next) => handleCuratedQuantityChange(product.id, next)}
+                              />
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -359,18 +470,23 @@ export default function EasyOrderForm() {
           {rows.length > 0 && (
             <div className="mt-8 rounded-xl border border-neutral-200 bg-white shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 p-6">
-                <div>
-                  <h2 className="text-xl font-bold text-neutral-900">{t('orderPreview.title')}</h2>
-                  <p className="text-sm text-neutral-700">
-                    {notFoundCount > 0
-                      ? t('orderPreview.foundAndNotFound', { found: foundCount, notFound: notFoundCount })
-                      : t('orderPreview.found', { count: foundCount })}
-                  </p>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+                    <SearchIcon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-bold text-neutral-900">{t('orderPreview.title')}</h2>
+                    <p className="text-sm text-neutral-700">
+                      {notFoundCount > 0
+                        ? t('orderPreview.foundAndNotFound', { found: foundCount, notFound: notFoundCount })
+                        : t('orderPreview.found', { count: foundCount })}
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={handleAddAllToCart}
                   disabled={isAdding || (foundCount === 0 && curatedSelectedCount === 0)}
-                  className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <ShoppingCartIcon className="h-5 w-5" />
                   {t('addAllToCart')}
@@ -390,49 +506,60 @@ export default function EasyOrderForm() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-neutral-100">
-                    {rows.map((row) => (
-                      <tr key={row.key}>
-                        <td className="px-6 py-4">
-                          {row.status === 'found' ? (
-                            <CheckCircleIcon className="h-5 w-5 text-success-700" aria-label={t('foundStatus')} />
-                          ) : (
-                            <XCircleIcon className="h-5 w-5 text-error-600" aria-label={t('notFoundStatus')} />
-                          )}
-                        </td>
-                        <td className="px-6 py-4 font-mono text-sm">{row.sku}</td>
-                        <td className="px-6 py-4 text-sm text-neutral-900">
-                          {row.result?.name ?? (
-                            <span className="text-neutral-700">{t('notAvailableYet')}</span>
-                          )}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-neutral-900">
-                          {row.result?.price ? convertWooCommercePrice(row.result.price, region.currency) : '—'}
-                          {row.result?.price && !isOrderable(row.result.price, row.result.stockStatus) && (
-                            <span className="ml-2 text-xs font-medium text-error-600">{t('outOfStock')}</span>
-                          )}
-                        </td>
-                        <td className="px-6 py-4">
-                          <input
-                            type="number"
-                            min={1}
-                            value={row.quantity}
-                            disabled={row.status !== 'found' || !isOrderable(row.result?.price, row.result?.stockStatus)}
-                            aria-label={t('quantityAriaLabel', { name: row.result?.name ?? row.sku })}
-                            onChange={(e) => handleQuantityChange(row.key, parseInt(e.target.value, 10) || 1)}
-                            className="w-20 rounded-lg border border-neutral-300 px-3 py-2 text-center focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:bg-neutral-100"
-                          />
-                        </td>
-                        <td className="px-6 py-4">
-                          <button
-                            onClick={() => handleRemoveRow(row.key)}
-                            aria-label={t('removeAriaLabel', { sku: row.sku })}
-                            className="text-neutral-700 transition-colors hover:text-error-600"
-                          >
-                            <Trash2Icon className="h-5 w-5" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {rows.map((row) => {
+                      const orderable =
+                        row.status === 'found' && isOrderable(row.result?.price, row.result?.stockStatus);
+                      return (
+                        <tr key={row.key} className={`transition-colors ${orderable ? 'bg-primary-50/60' : 'hover:bg-neutral-50'}`}>
+                          <td className="px-6 py-3">
+                            {row.status === 'found' ? (
+                              <CheckCircleIcon className="h-5 w-5 text-success-700" aria-label={t('foundStatus')} />
+                            ) : (
+                              <XCircleIcon className="h-5 w-5 text-error-600" aria-label={t('notFoundStatus')} />
+                            )}
+                          </td>
+                          <td className="px-6 py-3 font-mono text-sm text-neutral-700">{row.sku}</td>
+                          <td className="px-6 py-3">
+                            <div className="flex items-center gap-3">
+                              {row.result && (
+                                <ProductThumbnail image={row.result.image} name={row.result.name} noImageLabel={t('noImage')} />
+                              )}
+                              <span className="text-sm font-medium text-neutral-900">
+                                {row.result?.name ?? (
+                                  <span className="font-normal text-neutral-700">{t('notAvailableYet')}</span>
+                                )}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-3 text-sm text-neutral-900">
+                            {row.result?.price ? convertWooCommercePrice(row.result.price, region.currency) : '—'}
+                            {row.result?.price && !isOrderable(row.result.price, row.result.stockStatus) && (
+                              <span className="ml-2 inline-block rounded-full bg-error-50 px-2 py-0.5 text-xs font-medium text-error-700">
+                                {t('outOfStock')}
+                              </span>
+                            )}
+                          </td>
+                          <td className="px-6 py-3">
+                            <QuantityStepper
+                              value={row.quantity}
+                              min={1}
+                              disabled={!orderable}
+                              ariaLabel={t('quantityAriaLabel', { name: row.result?.name ?? row.sku })}
+                              onChange={(next) => handleQuantityChange(row.key, next)}
+                            />
+                          </td>
+                          <td className="px-6 py-3">
+                            <button
+                              onClick={() => handleRemoveRow(row.key)}
+                              aria-label={t('removeAriaLabel', { sku: row.sku })}
+                              className="text-neutral-700 transition-colors hover:text-error-600"
+                            >
+                              <Trash2Icon className="h-5 w-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -440,6 +567,37 @@ export default function EasyOrderForm() {
           )}
         </div>
       </section>
+
+      {selectionSummary.itemCount > 0 && (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] backdrop-blur">
+          <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-50 font-bold text-primary-600">
+                {selectionSummary.itemCount}
+              </span>
+              <div>
+                <p className="font-semibold text-neutral-900">
+                  {t('summary.itemsSelected', { count: selectionSummary.itemCount })}
+                </p>
+                <p className="text-sm text-neutral-700">
+                  {t('summary.subtotal')}:{' '}
+                  <span className="font-semibold text-neutral-900">
+                    {formatPrice(selectionSummary.subtotal, region.currency)}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={handleAddAllToCart}
+              disabled={isAdding}
+              className="flex items-center gap-2 rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all hover:bg-accent-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isAdding ? <Loader2Icon className="h-5 w-5 animate-spin" /> : <ShoppingCartIcon className="h-5 w-5" />}
+              {t('addAllToCart')}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

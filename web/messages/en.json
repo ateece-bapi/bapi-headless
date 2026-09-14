@@ -1331,6 +1331,11 @@
       "notFoundStatus": "Not found",
       "removeAriaLabel": "Remove {sku}",
       "quantityAriaLabel": "Quantity for {name}",
+      "noImage": "No image",
+      "summary": {
+        "itemsSelected": "{count} item(s) selected",
+        "subtotal": "Estimated subtotal"
+      },
       "toasts": {
         "nothingToCheckTitle": "Nothing to check",
         "nothingToCheckMessage": "Enter at least one part number.",

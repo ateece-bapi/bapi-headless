@@ -24,7 +24,6 @@ import { gql } from 'graphql-request';
 import { getServerAuth } from '@/lib/auth/server';
 import { canUseEasyOrderForm, EASY_ORDER_FORM_CUSTOMER_GROUPS } from '@/lib/constants/easyOrderForm';
 import { getGraphQLClient } from '@/lib/graphql/client';
-import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 import { logError } from '@/lib/errors';
 
 const CURATED_LIST_QUERY = gql`
@@ -108,9 +107,16 @@ export async function GET() {
     const data = await client.request<CuratedListResponse>(CURATED_LIST_QUERY, { term });
 
     const matches = data.easyOrderCuratedList ?? [];
-    const visibleMatches = filterProductsByCustomerGroup(matches, user.customerGroups ?? ['end-user']);
 
-    const products = visibleMatches.map((p) => ({
+    // No JS-side filterProductsByCustomerGroup() here: results are already
+    // scoped to this customer's own order_list taxonomy term, and the
+    // easyOrderCuratedList resolver enforces real ACF customerGroup1/2/3
+    // restrictions server-side. Applying the JS filter's legacy slug/title
+    // fallback here caused false-positive restrictions (e.g. products whose
+    // slug happens to match CUSTOMER_GROUPS_BY_PRODUCT_SLUG) to be dropped
+    // even though they carry no actual ACF restriction and were explicitly
+    // curated for this customer.
+    const products = matches.map((p) => ({
       id: p.canonicalId ?? `easy_order_sku:${p.databaseId}`,
       databaseId: p.parentDatabaseId,
       variationId: p.isVariation ? p.databaseId : null,

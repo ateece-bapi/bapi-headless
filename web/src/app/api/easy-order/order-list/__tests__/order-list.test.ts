@@ -141,10 +141,17 @@ describe('GET /api/easy-order/order-list', () => {
     expect(json.products).toEqual([]);
   });
 
-  it('filters out curated matches restricted to a different customer group', async () => {
+  it('does not re-filter by customer group client-side (the resolver is the authorization boundary)', async () => {
+    // A product whose slug happens to collide with the legacy
+    // CUSTOMER_GROUPS_BY_PRODUCT_SLUG fallback (but has no real ACF
+    // customerGroup restriction) must still be returned — the resolver
+    // already enforces real ACF-based restrictions server-side, and
+    // curated-list membership itself is the authorization signal.
     mockGetServerAuth.mockResolvedValue({ user: LENNOX_USER });
     mockRequest.mockResolvedValue({
-      easyOrderCuratedList: [mockMatch({ databaseId: 1 }), mockMatch({ databaseId: 2, customerGroup1: 'alc' })],
+      easyOrderCuratedList: [
+        mockMatch({ databaseId: 1, slug: 'novar-uvc-compatible-aluminum-wall-plate-temperature-sensor' }),
+      ],
     });
 
     const res = await getOrderList();

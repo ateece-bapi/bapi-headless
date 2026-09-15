@@ -97,11 +97,12 @@ add_filter('graphql_request_results', function ($response, $schema, $operation, 
 // ---------------------------------------------------------------------------
 
 /**
- * Detect bearer-authenticated GraphQL requests before JWT resolution runs.
+ * Detect authenticated GraphQL requests before cache lookup.
  */
-function bapi_graphql_has_bearer_token() {
+function bapi_graphql_is_authenticated_request() {
     $authorization = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '';
-    return is_string($authorization) && preg_match('/^Bearer\s+\S+/i', trim($authorization)) === 1;
+    $has_bearer_token = is_string($authorization) && preg_match('/^Bearer\s+\S+/i', trim($authorization)) === 1;
+    return $has_bearer_token || is_user_logged_in();
 }
 
 /**
@@ -111,13 +112,13 @@ function bapi_graphql_has_bearer_token() {
  * request before WPGraphQL JWT Authentication has populated the viewer.
  */
 add_filter('graphql_cache_is_object_cache_enabled', function ($enabled) {
-    return bapi_graphql_has_bearer_token() ? false : $enabled;
+    return bapi_graphql_is_authenticated_request() ? false : $enabled;
 }, PHP_INT_MAX, 1);
 
 // Register after normal plugins so this header wins over Smart Cache's max-age.
 add_action('plugins_loaded', function () {
     add_filter('graphql_response_headers_to_send', function ($headers) {
-        if (bapi_graphql_has_bearer_token()) {
+        if (bapi_graphql_is_authenticated_request()) {
             $headers['Cache-Control'] = 'private, no-store, no-cache, must-revalidate, max-age=0';
         }
         return $headers;

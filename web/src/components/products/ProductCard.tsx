@@ -61,20 +61,20 @@ export default function ProductCard({
       <Link
         ref={visibilityRef}
         href={`/product/${slug || 'unknown'}`}
-        className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
+        className="group flex gap-3 overflow-hidden rounded-lg border border-neutral-200 bg-white p-3 transition-all hover:border-primary-500 hover:shadow-lg sm:gap-6 sm:p-4"
         onClick={analytics.trackClick}
         onMouseEnter={analytics.trackHoverStart}
         onMouseLeave={analytics.trackHoverEnd}
       >
         {/* Image */}
-        <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
+        <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50 sm:h-32 sm:w-32">
           {resolvedImage ? (
             <Image
               src={resolvedImage.sourceUrl}
               alt={resolvedImage.altText || name || 'Product'}
               fill
               className="object-contain p-2"
-              sizes="128px"
+              sizes="(min-width: 640px) 128px, 96px"
             />
           ) : (
             <div className="flex h-full items-center justify-center">
@@ -86,7 +86,7 @@ export default function ProductCard({
         {/* Content */}
         <div className="flex flex-1 flex-col">
           <div className="mb-2 flex items-start justify-between gap-4">
-            <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600">
+            <h3 className="line-clamp-3 text-sm font-bold text-neutral-900 group-hover:text-primary-600 sm:text-lg">
               {name || 'Untitled Product'}
             </h3>
             {partNumber && (

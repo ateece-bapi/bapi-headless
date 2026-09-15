@@ -100,9 +100,17 @@ add_filter('graphql_request_results', function ($response, $schema, $operation, 
  * Detect authenticated GraphQL requests before cache lookup.
  */
 function bapi_graphql_is_authenticated_request() {
-    $authorization = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '';
-    $has_bearer_token = is_string($authorization) && preg_match('/^Bearer\s+\S+/i', trim($authorization)) === 1;
-    return $has_bearer_token || is_user_logged_in();
+    $authorization = is_string($_SERVER['HTTP_AUTHORIZATION'] ?? null)
+        ? trim($_SERVER['HTTP_AUTHORIZATION'])
+        : '';
+
+    if ($authorization === '') {
+        $authorization = is_string($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null)
+            ? trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])
+            : '';
+    }
+
+    return $authorization !== '' || is_user_logged_in();
 }
 
 /**

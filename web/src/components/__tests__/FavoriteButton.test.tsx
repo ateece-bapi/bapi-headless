@@ -172,6 +172,41 @@ describe('FavoriteButton', () => {
     await waitFor(() => expect(mockFetch).toHaveBeenCalledWith('/api/favorites'));
   });
 
+  it('uses a known initial status without fetching favorites', () => {
+    mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
+    render(<FavoriteButton {...DEFAULT_PROPS} initialIsFavorited />);
+
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true');
+    expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it('removes a known favorite immediately without a status fetch', async () => {
+    mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
+    mockFetch.mockReturnValue(mockFetchResponse({ success: true }));
+
+    render(<FavoriteButton {...DEFAULT_PROPS} initialIsFavorited />);
+    await userEvent.click(screen.getByRole('button'));
+
+    await waitFor(() =>
+      expect(mockFetch).toHaveBeenCalledWith(
+        '/api/favorites?productId=prod-1',
+        expect.objectContaining({ method: 'DELETE' }),
+      ),
+    );
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not allow toggling before favorite status is loaded', async () => {
+    mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
+    mockFetch.mockReturnValue(new Promise<Response>(() => {}));
+
+    render(<FavoriteButton {...DEFAULT_PROPS} />);
+    expect(screen.getByRole('button')).toBeDisabled();
+
+    await userEvent.click(screen.getByRole('button'));
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
   it('sets isFavorited=true when product is in favorites list', async () => {
     mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
     mockFetch.mockReturnValue(

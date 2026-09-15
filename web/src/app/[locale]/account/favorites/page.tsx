@@ -145,9 +145,9 @@ export default function FavoritesPage() {
                     : t('count.products', { count: favorites.length })}
                 </h2>
               </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 lg:grid-cols-2">
                 {favorites.map((favorite, index) => (
-                  <div key={favorite.id} className="relative">
+                  <div key={favorite.id} className="relative [&>a>div:last-child]:pr-8">
                     {/* Remove-from-favorites button — overlaid top-right */}
                     <div className="absolute right-3 top-3 z-10">
                       <FavoriteButton
@@ -156,6 +156,7 @@ export default function FavoritesPage() {
                         productSlug={favorite.productSlug}
                         productImage={favorite.productImage}
                         productPrice={favorite.productPrice}
+                        initialIsFavorited
                         size="sm"
                         variant="icon"
                         onToggle={(isFavorited) =>
@@ -176,6 +177,7 @@ export default function FavoritesPage() {
                         shortDescription: null,
                       }}
                       locale={locale}
+                      viewMode="list"
                       index={index}
                     />
                   </div>

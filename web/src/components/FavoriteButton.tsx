@@ -13,6 +13,7 @@ interface FavoriteButtonProps {
   productSlug: string;
   productImage?: string;
   productPrice?: string;
+  initialIsFavorited?: boolean;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'icon' | 'button';
   onToggle?: (isFavorited: boolean) => void;
@@ -24,6 +25,7 @@ export default function FavoriteButton({
   productSlug,
   productImage,
   productPrice,
+  initialIsFavorited,
   size = 'md',
   variant = 'icon',
   onToggle,
@@ -31,12 +33,25 @@ export default function FavoriteButton({
   const { user, isLoaded } = useAuth();
   const router = useRouter();
   const { showToast } = useToast();
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(initialIsFavorited ?? false);
+  const [isCheckingStatus, setIsCheckingStatus] = useState(initialIsFavorited === undefined);
   const [isLoading, setIsLoading] = useState(false);
 
   // Check if product is already favorited on mount
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      setIsCheckingStatus(false);
+      return;
+    }
+
+    if (initialIsFavorited !== undefined) {
+      setIsFavorited(initialIsFavorited);
+      setIsCheckingStatus(false);
+      return;
+    }
+
+    let isCurrent = true;
+    setIsCheckingStatus(true);
 
     const checkFavoriteStatus = async () => {
       try {
@@ -46,15 +61,20 @@ export default function FavoriteButton({
           const favorited = data.favorites?.some(
             (fav: { productId: string }) => fav.productId === productId
           );
-          setIsFavorited(favorited);
+          if (isCurrent) setIsFavorited(Boolean(favorited));
         }
       } catch (error) {
         logger.error('Error checking favorite status', error);
+      } finally {
+        if (isCurrent) setIsCheckingStatus(false);
       }
     };
 
     checkFavoriteStatus();
-  }, [user, productId]);
+    return () => {
+      isCurrent = false;
+    };
+  }, [user, productId, initialIsFavorited]);
 
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
@@ -69,6 +89,8 @@ export default function FavoriteButton({
       router.push(`/${locale}/sign-in`);
       return;
     }
+
+    if (isCheckingStatus || isLoading) return;
 
     // Store previous state for rollback
     const previousState = isFavorited;
@@ -163,7 +185,7 @@ export default function FavoriteButton({
       <button
         type="button"
         onClick={handleToggle}
-        disabled={isLoading}
+        disabled={isLoading || (Boolean(user) && isCheckingStatus)}
         aria-label={
           isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`
         }
@@ -188,7 +210,7 @@ export default function FavoriteButton({
     <button
       type="button"
       onClick={handleToggle}
-      disabled={isLoading}
+      disabled={isLoading || (Boolean(user) && isCheckingStatus)}
       aria-label={
         isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`
       }

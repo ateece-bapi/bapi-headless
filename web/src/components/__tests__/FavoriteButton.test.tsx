@@ -164,6 +164,20 @@ describe('FavoriteButton', () => {
     expect(mockPush).toHaveBeenCalledWith('/de/sign-in');
   });
 
+  it('clears favorite state when the user logs out', async () => {
+    mockUseAuth.mockReturnValue({ user: AUTHED_USER, isLoaded: true });
+    const { rerender } = render(<FavoriteButton {...DEFAULT_PROPS} initialIsFavorited />);
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true');
+
+    mockUseAuth.mockReturnValue({ user: null, isLoaded: true });
+    rerender(<FavoriteButton {...DEFAULT_PROPS} initialIsFavorited />);
+
+    await waitFor(() =>
+      expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false'),
+    );
+    expect(screen.getByRole('button')).toHaveAccessibleName('Add BAPI-Stat 4 to favorites');
+  });
+
   // ── Authenticated: checking status on mount ────────────────────────────────
 
   it('fetches favorites on mount when authenticated', async () => {

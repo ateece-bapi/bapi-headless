@@ -203,6 +203,24 @@ describe('ProductCard Accessibility', () => {
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
+
+    it('keeps long product names compact in list mode', () => {
+      const longName = 'ZPM Standard Accuracy Pressure Sensor in a BAPI-Box with Field Selected Range and Output';
+      render(
+        <ProductCard
+          product={{ ...mockProduct, name: longName }}
+          locale="en"
+          index={0}
+          viewMode="list"
+        />
+      );
+
+      const heading = screen.getByRole('heading', { name: longName });
+      const imageContainer = screen.getByAltText(mockProduct.image.altText).parentElement;
+
+      expect(heading).toHaveClass('line-clamp-3', 'text-sm', 'sm:text-lg');
+      expect(imageContainer).toHaveClass('h-24', 'w-24', 'sm:h-32', 'sm:w-32');
+    });
   });
 
   describe('Edge Cases', () => {

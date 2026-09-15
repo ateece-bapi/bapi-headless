@@ -40,6 +40,7 @@ export default function FavoriteButton({
   // Check if product is already favorited on mount
   useEffect(() => {
     if (!user) {
+      setIsFavorited(false);
       setIsCheckingStatus(false);
       return;
     }

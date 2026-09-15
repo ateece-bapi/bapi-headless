@@ -26,3 +26,12 @@ web/2026-approved-images/
 
 # Internal/confidential PDFs — keep local only
 docs/*.pdf
+
+# Customer sales data exports and derived analysis — keep local only
+docs/Lennox*.xlsx
+docs/lennox-*.csv
+docs/lennox-*.xlsx
+docs/products-to-import.xlsx
+web/website-products-export.csv
+web/website-products-export.xlsx
+web/website-products-export.json

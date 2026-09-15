@@ -34,3 +34,4 @@ docs/lennox-*.xlsx
 docs/products-to-import.xlsx
 web/website-products-export.csv
 web/website-products-export.xlsx
+web/website-products-export.json

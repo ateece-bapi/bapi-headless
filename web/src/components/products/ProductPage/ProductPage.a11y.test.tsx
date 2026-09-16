@@ -434,10 +434,8 @@ describe('ProductTabs - Tab Navigation Accessibility', () => {
   it('shows documents content by default', () => {
     render(<ProductTabs product={mockProduct} />);
 
-    // Documents tab content should be visible (updated from Description in redesign)
-    // Check for document links or "No documents" message
-    const tabpanel = screen.getByRole('tabpanel');
-    expect(tabpanel).toHaveAttribute('id', 'product-tabpanel');
+    const installationGuide = screen.getByRole('link', { name: /Installation Guide PDF Document/ });
+    expect(installationGuide).toHaveAttribute('href', '/docs/ps500-install.pdf');
   });
 
 });

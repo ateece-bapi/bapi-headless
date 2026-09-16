@@ -1,9 +1,8 @@
 'use client';
 import React, { useState, useMemo } from 'react';
-import { FileTextIcon, VideoIcon, BookOpenIcon, ExternalLinkIcon } from '@/lib/icons';
+import { FileTextIcon, VideoIcon, ExternalLinkIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
-import { sanitizeDescription } from '@/lib/sanitizeDescription';
 import YouTubeEmbed from '@/components/shared/YouTubeEmbed';
 import { extractYouTubeId } from '@/lib/youtube/client';
 import { getProductVideos } from '@/lib/productVideos';
@@ -71,7 +70,6 @@ interface ProductTabsProps {
 
 const TAB_LIST = [
   { key: 'documents', labelKey: 'productPage.tabs.documents', icon: FileTextIcon },
-  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpenIcon },
   { key: 'videos', labelKey: 'productPage.tabs.videos', icon: VideoIcon },
 ] as const;
 
@@ -102,15 +100,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
     return videos;
   }, [jsonVideos, product.videos]);
   
-  // Smart default tab: prefer documents if available, else fallback to description
-  const defaultTab = useMemo((): TabType => {
-    if (product.documents && product.documents.length > 0) {
-      return 'documents';
-    }
-    return 'description';
-  }, [product.documents]);
-  
-  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
+  const [activeTab, setActiveTab] = useState<TabType>('documents');
 
   // Debug: Log what data we're receiving
   React.useEffect(() => {
@@ -164,49 +154,6 @@ export default function ProductTabs({ product }: ProductTabsProps) {
 
       {/* Tab Content Panels */}
       <div className="p-8" role="tabpanel" id="product-tabpanel" aria-labelledby={`tab-${activeTab}`}>
-        {/* Description Tab */}
-        {activeTab === 'description' && (
-          <div className="px-4 py-8">
-            {product.description ? (
-              <div
-                className="prose prose-neutral mx-auto max-w-none
-                  [&_ul]:my-6 [&_ul]:list-disc [&_ul]:space-y-2.5 [&_ul]:pl-10
-                  [&_ul_li]:text-base [&_ul_li]:leading-relaxed [&_ul_li]:text-neutral-800 [&_ul_li::marker]:text-primary-500
-                  [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:space-y-2.5 [&_ol]:pl-10
-                  [&_ol_li]:text-base [&_ol_li]:leading-relaxed [&_ol_li]:text-neutral-800 [&_ol_li::marker]:font-semibold [&_ol_li::marker]:text-primary-600
-                  prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 
-                  prose-h1:mb-10 prose-h1:mt-0 prose-h1:text-4xl prose-h1:leading-tight 
-                  prose-h2:mb-8 prose-h2:mt-12 prose-h2:border-b prose-h2:border-neutral-200 prose-h2:pb-3 prose-h2:text-2xl 
-                  prose-h3:mb-6 prose-h3:mt-10 prose-h3:text-xl 
-                  prose-p:mb-6 prose-p:leading-relaxed prose-p:text-neutral-900 
-                  prose-p:first-of-type:mb-8 prose-p:first-of-type:text-xl prose-p:first-of-type:leading-relaxed prose-p:first-of-type:text-neutral-800 
-                  prose-a:font-medium prose-a:text-primary-600 prose-a:no-underline prose-a:transition-all hover:prose-a:text-primary-700 hover:prose-a:underline hover:prose-a:underline-offset-4 
-                  prose-strong:font-bold prose-strong:text-neutral-900 
-                  prose-hr:my-10 prose-hr:border-neutral-300
-                  prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md
-                  **:text-neutral-900"
-                dangerouslySetInnerHTML={{ __html: sanitizeDescription(product.description) }}
-              />
-            ) : (
-              <div className="py-16 text-center text-neutral-700">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100">
-                    <BookOpenIcon className="h-8 w-8 text-neutral-400" />
-                  </div>
-                  <div>
-                    <p className="mb-1 text-lg font-semibold text-neutral-700">
-                      No Description Available
-                    </p>
-                    <p className="text-sm text-neutral-700">
-                      {t('productPage.tabs.descriptionPlaceholder')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
         {/* Documents Tab */}
         {activeTab === 'documents' && (
           <div>

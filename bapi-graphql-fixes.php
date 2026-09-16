@@ -93,6 +93,47 @@ add_filter('graphql_request_results', function ($response, $schema, $operation, 
 }, 10, 5);
 
 // ---------------------------------------------------------------------------
+// Authenticated GraphQL Cache Safety
+// ---------------------------------------------------------------------------
+
+/**
+ * Detect authenticated GraphQL requests before cache lookup.
+ */
+function bapi_graphql_is_authenticated_request() {
+    $authorization = is_string($_SERVER['HTTP_AUTHORIZATION'] ?? null)
+        ? trim($_SERVER['HTTP_AUTHORIZATION'])
+        : '';
+
+    if ($authorization === '') {
+        $authorization = is_string($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null)
+            ? trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])
+            : '';
+    }
+
+    return $authorization !== '' || is_user_logged_in();
+}
+
+/**
+ * User-specific responses must never use WPGraphQL Smart Cache.
+ *
+ * Checking the raw header avoids the timing gap where Smart Cache checks the
+ * request before WPGraphQL JWT Authentication has populated the viewer.
+ */
+add_filter('graphql_cache_is_object_cache_enabled', function ($enabled) {
+    return bapi_graphql_is_authenticated_request() ? false : $enabled;
+}, PHP_INT_MAX, 1);
+
+// Register after normal plugins so this header wins over Smart Cache's max-age.
+add_action('plugins_loaded', function () {
+    add_filter('graphql_response_headers_to_send', function ($headers) {
+        if (bapi_graphql_is_authenticated_request()) {
+            $headers['Cache-Control'] = 'private, no-store, no-cache, must-revalidate, max-age=0';
+        }
+        return $headers;
+    }, PHP_INT_MAX, 1);
+});
+
+// ---------------------------------------------------------------------------
 // BAPI Favorites — stored as JSON in WordPress user meta (bapi_favorites)
 // ---------------------------------------------------------------------------
 

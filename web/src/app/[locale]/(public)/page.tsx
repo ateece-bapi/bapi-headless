@@ -524,7 +524,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         src={post.featuredImage}
                         alt={post.title || 'News article'}
                         fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                        className="object-contain"
                         loading="lazy"
                       />
                     </div>

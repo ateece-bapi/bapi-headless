@@ -146,13 +146,13 @@ export default function NewsListClient({ initialPosts, initialPageInfo, translat
           {/* Featured Image */}
           {post.featuredImage && (
             <>
-              <div className="relative h-40 overflow-hidden bg-neutral-50">
+              <div className="relative aspect-video overflow-hidden bg-neutral-50">
                 <Image
                   src={post.featuredImage}
                   alt={post.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-contain transition-transform duration-500 group-hover:scale-105"
                   priority={index < 3}
                 />
               </div>

@@ -519,16 +519,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 >
                   {/* Featured Image */}
                   {post.featuredImage && (
-                    <div className="bg-linear-to-br relative h-48 overflow-hidden from-neutral-100 to-neutral-200">
+                    <div className="bg-linear-to-br relative aspect-video overflow-hidden from-neutral-100 to-neutral-200">
                       <Image
                         src={post.featuredImage}
                         alt={post.title || 'News article'}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
-                      {/* Overlay gradient */}
-                      <div className="bg-linear-to-t absolute inset-0 from-black/30 to-transparent" />
                     </div>
                   )}
 

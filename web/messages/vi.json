@@ -1233,9 +1233,9 @@
           "title": "Bảo hiểm Y tế",
           "description": "Bảo hiểm y tế, nha khoa và thị giác toàn diện cho bạn và gia đình."
         },
-        "compensation": {
-          "title": "Mức Lương Cạnh Tranh",
-          "description": "Mức lương dẫn đầu ngành với các đánh giá hiệu suất thường xuyên và tăng lương xứng đáng."
+        "employeeEngagement": {
+          "title": "Gắn Kết Nhân Viên",
+          "description": "Các sự kiện gia đình, hoạt động tại chỗ, sinh tố, bắn cung, nhóm đi bộ và nhiều hơn nữa để tôn vinh văn hóa của chúng tôi."
         },
         "paidHolidays": {
           "title": "Nghỉ Phép Có Lương",
@@ -1243,11 +1243,11 @@
         },
         "retirement": {
           "title": "Đóng Góp 401(k)",
-          "description": "Đóng góp của công ty vào khoản đóng góp hưu trí để bảo đảm tương lai của bạn."
+          "description": "Đóng góp của công ty vào khoản đóng góp hưu trí, được hưởng quyền lợi 100% ngay khi đủ điều kiện, để bảo đảm tương lai của bạn."
         },
-        "lifeInsurance": {
-          "title": "Bảo Hiểm Nhân Thọ",
-          "description": "Bảo hiểm nhân thọ do công ty trả phí với các tùy chọn bảo hiểm bổ sung."
+        "fitnessRoom": {
+          "title": "Phòng Tập Thể Dục Tại Chỗ",
+          "description": "Miễn phí sử dụng phòng tập thể dục tại chỗ để giúp bạn duy trì hoạt động trong ngày làm việc."
         },
         "development": {
           "title": "Phát Triển Chuyên Nghiệp",
@@ -1311,7 +1311,11 @@
         "intro": "Chúng tôi CHỈ chấp nhận và xem xét các đơn ứng tuyển điện tử đầy đủ được gửi trực tiếp qua trang web www.bapihvac.com/careers.",
         "noteLabel": "Xin lưu ý:",
         "note": "Hầu hết các vị trí đều yêu cầu Sơ yếu lý lịch và một Thư xin việc riêng để được coi là đơn ứng tuyển điện tử \"đầy đủ\". Thư xin việc nên nêu rõ bạn phù hợp như thế nào với các yêu cầu cụ thể mà chúng tôi đã liệt kê.",
-        "citizenship": "Ứng viên phải là công dân Hoa Kỳ hoặc người có Thẻ Xanh (Thường trú nhân).",
+        "workAuthorization": {
+          "label": "Ứng viên phải:",
+          "item1": "Có đủ điều kiện pháp lý để làm việc tại Hoa Kỳ",
+          "item2": "Sẽ không cần bảo lãnh nhập cư hiện tại hoặc trong tương lai"
+        },
         "viewOpenings": "Xem Vị Trí Đang Tuyển",
         "eoeStatement": "BAPI là nhà tuyển dụng bình đẳng cơ hội (EOE) và cam kết xây dựng môi trường làm việc hòa nhập cho tất cả nhân viên. Chúng tôi sẽ không phân biệt đối xử với bất kỳ ứng viên nào dựa trên chủng tộc, màu da, tuổi tác, tôn giáo, giới tính, xu hướng tính dục, bản dạng giới, nguồn gốc quốc gia, khuyết tật hoặc tình trạng cựu chiến binh. Nếu bạn không thể ứng tuyển trực tuyến và/hoặc cần phương thức ứng tuyển hoặc sàng lọc thay thế, vui lòng liên hệ với chúng tôi."
       },

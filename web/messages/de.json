@@ -1188,9 +1188,9 @@
           "title": "Krankenversicherung",
           "description": "Umfassende Kranken-, Zahn- und Sehversicherung für Sie und Ihre Familie."
         },
-        "compensation": {
-          "title": "Wettbewerbsfähige Vergütung",
-          "description": "Branchenführende Gehälter mit regelmäßigen Leistungsbeurteilungen und Gehaltserhöhungen."
+        "employeeEngagement": {
+          "title": "Mitarbeiterengagement",
+          "description": "Familienevents, Aktivitäten vor Ort, Smoothies, Bogenschießen, Wandergruppen und mehr, die unsere Unternehmenskultur feiern."
         },
         "paidHolidays": {
           "title": "Bezahlte Feiertage",
@@ -1198,11 +1198,11 @@
         },
         "retirement": {
           "title": "401(k)-Arbeitgeberunterstützung",
-          "description": "Arbeitgeberunterstützung für Rentenbeiträge, um Ihre Zukunft abzusichern."
+          "description": "Arbeitgeberzuschuss zu Ihren Rentenbeiträgen – ab Anspruchsberechtigung zu 100 % unverfallbar."
         },
-        "lifeInsurance": {
-          "title": "Lebensversicherung",
-          "description": "Vom Unternehmen bezahlte Lebensversicherungsabdeckung mit Optionen für zusätzlichen Versicherungsschutz."
+        "fitnessRoom": {
+          "title": "Firmeneigenes Fitnessstudio",
+          "description": "Kostenloser Zugang zu unserem betriebseigenen Fitnessstudio, damit Sie während des Arbeitstages aktiv bleiben."
         },
         "development": {
           "title": "Berufliche Entwicklung",
@@ -1266,7 +1266,11 @@
         "intro": "Wir akzeptieren und berücksichtigen NUR vollständige elektronische Bewerbungen, die direkt über die Website www.bapihvac.com/careers eingereicht werden.",
         "noteLabel": "Bitte beachten Sie:",
         "note": "Für die meisten Stellen sind ein Lebenslauf und ein separates Anschreiben erforderlich, damit eine elektronische Bewerbung als \"vollständig\" gilt. Das Anschreiben sollte darlegen, wie Sie zu den genannten Qualifikationsanforderungen passen.",
-        "citizenship": "Bewerber müssen US-Bürger oder Inhaber einer Green Card (ständiger Wohnsitz) sein.",
+        "workAuthorization": {
+          "label": "Bewerber müssen:",
+          "item1": "Gesetzlich zur Arbeit in den Vereinigten Staaten berechtigt sein",
+          "item2": "Benötigt aktuell oder künftig kein Einwanderungssponsoring"
+        },
         "viewOpenings": "Aktuelle Stellenangebote ansehen",
         "eoeStatement": "BAPI ist ein Arbeitgeber, der Chancengleichheit gewährleistet (EOE), und setzt sich für ein integratives Arbeitsumfeld für alle Mitarbeiter ein. Wir diskriminieren keinen Bewerber aufgrund von Rasse, Hautfarbe, Alter, Religion, Geschlecht, sexueller Orientierung, Geschlechtsidentität, nationaler Herkunft, Behinderung oder Veteranenstatus. Wenn Sie sich nicht online bewerben können und/oder alternative Bewerbungs- oder Auswahlverfahren benötigen, kontaktieren Sie uns bitte."
       },

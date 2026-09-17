@@ -3,12 +3,12 @@ import Image from 'next/image';
 import PageHeader from '@/components/layout/PageHeader';
 import {
   BriefcaseIcon,
-  HeartIcon,
   TrendingUpIcon,
   ShieldIcon,
   PlaneIcon,
   GraduationCapIcon,
-  DollarSignIcon,
+  UsersIcon,
+  DumbbellIcon,
   MailIcon,
   ExternalLinkIcon,
   SparklesIcon,
@@ -76,10 +76,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const benefitCards = [
   { key: 'healthInsurance', icon: ShieldIcon },
-  { key: 'compensation', icon: DollarSignIcon },
+  { key: 'employeeEngagement', icon: UsersIcon },
   { key: 'paidHolidays', icon: PlaneIcon },
   { key: 'retirement', icon: TrendingUpIcon },
-  { key: 'lifeInsurance', icon: HeartIcon },
+  { key: 'fitnessRoom', icon: DumbbellIcon },
   { key: 'development', icon: GraduationCapIcon },
 ];
 
@@ -99,15 +99,20 @@ export default async function CareersPage() {
         description={t('hero.description')}
         spacing="large"
         eyebrow={
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+          <a
+            href={CAREERS_PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
+          >
               <BriefcaseIcon className="h-4 w-4" />
               {t('hero.badge')}
-          </div>
+          </a>
         }
       >
-        <div className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
+        <div className="mt-8 inline-flex items-center gap-2 text-white">
               <SparklesIcon className="h-5 w-5 text-yellow-300" />
-              <span className="font-medium text-white">{t('hero.tagline')}</span>
+              <span className="font-medium">{t('hero.tagline')}</span>
         </div>
       </PageHeader>
 
@@ -140,7 +145,15 @@ export default async function CareersPage() {
             <p className="mb-6 leading-relaxed text-gray-700">
               <strong>{t('howToApply.noteLabel')}</strong> {t('howToApply.note')}
             </p>
-            <p className="mb-8 leading-relaxed text-gray-700">{t('howToApply.citizenship')}</p>
+            <div className="mx-auto mb-8 max-w-md text-left text-gray-700">
+              <p className="mb-2 font-semibold text-gray-900">
+                {t('howToApply.workAuthorization.label')}
+              </p>
+              <ul className="list-disc space-y-1 pl-5 leading-relaxed">
+                <li>{t('howToApply.workAuthorization.item1')}</li>
+                <li>{t('howToApply.workAuthorization.item2')}</li>
+              </ul>
+            </div>
 
             <a
               href={CAREERS_PORTAL_URL}

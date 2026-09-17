@@ -1858,7 +1858,7 @@
         "workAuthorization": {
           "label": "Kandydaci muszą:",
           "item1": "Posiadać prawo do legalnej pracy w Stanach Zjednoczonych",
-          "item2": "Nie wymagać obecnego ani przyszłego sponsorowania imigracyjnego"
+          "item2": "Nie będzie wymagać obecnego ani przyszłego sponsorowania imigracyjnego"
         },
         "viewOpenings": "Zobacz aktualne oferty pracy",
         "eoeStatement": "BAPI jest pracodawcą zapewniającym równe szanse (EOE) i jest zaangażowany w tworzenie integracyjnego środowiska pracy dla wszystkich pracowników. Nie będziemy dyskryminować żadnego kandydata do pracy ze względu na rasę, kolor skóry, wiek, religię, płeć, orientację seksualną, tożsamość płciową, pochodzenie narodowe, niepełnosprawność lub status weterana. Jeśli nie możesz aplikować online i/lub potrzebujesz alternatywnych metod aplikacji lub selekcji, skontaktuj się z nami."

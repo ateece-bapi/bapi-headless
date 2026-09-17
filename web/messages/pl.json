@@ -1777,9 +1777,9 @@
           "title": "Ubezpieczenie zdrowotne",
           "description": "Kompleksowe ubezpieczenie zdrowotne, stomatologiczne i na wzrok dla ciebie i twojej rodziny."
         },
-        "compensation": {
-          "title": "Konkurencyjne wynagrodzenie",
-          "description": "Wiodące w branży wynagrodzenia z regularnymi przeglądami wyników i podwyżkami."
+        "employeeEngagement": {
+          "title": "Zaangażowanie pracowników",
+          "description": "Wydarzenia rodzinne, zajęcia na miejscu, smoothie, łucznictwo, grupy spacerowe i więcej, które celebrują naszą kulturę."
         },
         "paidHolidays": {
           "title": "Płatne urlopy",
@@ -1787,11 +1787,11 @@
         },
         "retirement": {
           "title": "Dopasowanie 401(k)",
-          "description": "Dopasowanie firmy do składek emerytalnych, aby zapewnić twoją przyszłość."
+          "description": "Dopasowanie firmy do składek emerytalnych, w 100% nabyte od razu po uzyskaniu uprawnień, aby zapewnić twoją przyszłość."
         },
-        "lifeInsurance": {
-          "title": "Ubezpieczenie na życie",
-          "description": "Opłacane przez firmę ubezpieczenie na życie z opcjami dodatkowego pokrycia."
+        "fitnessRoom": {
+          "title": "Siłownia na miejscu",
+          "description": "Bezpłatny dostęp do naszej siłowni na miejscu, aby pomóc ci zachować aktywność w ciągu dnia pracy."
         },
         "development": {
           "title": "Rozwój zawodowy",
@@ -1855,7 +1855,11 @@
         "intro": "Akceptujemy i rozpatrujemy WYŁĄCZNIE kompletne elektroniczne aplikacje przesyłane bezpośrednio przez stronę internetową www.bapihvac.com/careers.",
         "noteLabel": "Uwaga:",
         "note": "Większość stanowisk wymaga CV oraz osobnego listu motywacyjnego, aby aplikacja elektroniczna została uznana za \"kompletną\". List motywacyjny powinien szczegółowo opisywać, w jaki sposób spełniasz wskazane wymagania.",
-        "citizenship": "Kandydaci muszą być obywatelami USA lub posiadaczami Zielonej Karty (stałymi rezydentami).",
+        "workAuthorization": {
+          "label": "Kandydaci muszą:",
+          "item1": "Posiadać prawo do legalnej pracy w Stanach Zjednoczonych",
+          "item2": "Nie wymagać obecnego ani przyszłego sponsorowania imigracyjnego"
+        },
         "viewOpenings": "Zobacz aktualne oferty pracy",
         "eoeStatement": "BAPI jest pracodawcą zapewniającym równe szanse (EOE) i jest zaangażowany w tworzenie integracyjnego środowiska pracy dla wszystkich pracowników. Nie będziemy dyskryminować żadnego kandydata do pracy ze względu na rasę, kolor skóry, wiek, religię, płeć, orientację seksualną, tożsamość płciową, pochodzenie narodowe, niepełnosprawność lub status weterana. Jeśli nie możesz aplikować online i/lub potrzebujesz alternatywnych metod aplikacji lub selekcji, skontaktuj się z nami."
       },

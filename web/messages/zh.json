@@ -1447,9 +1447,9 @@
           "title": "健康保险",
           "description": "为您和您的家人提供全面的健康、牙科和视力保险。"
         },
-        "compensation": {
-          "title": "有竞争力的薪酬",
-          "description": "行业领先的薪资,定期绩效评估和晋升。"
+        "employeeEngagement": {
+          "title": "员工参与",
+          "description": "家庭活动、现场活动、冰沙、射箭、徒步小组等,彰显我们的企业文化。"
         },
         "paidHolidays": {
           "title": "带薪假期",
@@ -1457,11 +1457,11 @@
         },
         "retirement": {
           "title": "401(k)匹配",
-          "description": "公司对退休金缴款提供匹配,帮助您的未来。"
+          "description": "公司对退休金缴款提供匹配,符合资格后立即100%归属,帮助您的未来。"
         },
-        "lifeInsurance": {
-          "title": "人寿保险",
-          "description": "公司支付的人寿保险,可选择额外的保险。"
+        "fitnessRoom": {
+          "title": "厂内健身房",
+          "description": "免费使用厂内健身房,帮助您在工作日保持活力。"
         },
         "development": {
           "title": "专业发展",
@@ -1525,7 +1525,11 @@
         "intro": "我们只接受并考虑通过 www.bapihvac.com/careers 网页直接提交的完整电子申请。",
         "noteLabel": "请注意:",
         "note": "大多数职位需要提供简历和单独的求职信，才能被视为“完整”的电子申请。求职信应详细说明您如何符合我们列出的具体资格要求。",
-        "citizenship": "候选人必须是美国公民或绿卡持有者（永久居民）。",
+        "workAuthorization": {
+          "label": "候选人必须:",
+          "item1": "拥有在美国合法工作的资格",
+          "item2": "不需要当前或未来的移民担保"
+        },
         "viewOpenings": "查看当前职位空缺",
         "eoeStatement": "BAPI 是一家机会均等雇主（EOE），我们致力于为所有员工创造包容的工作环境。我们不会因种族、肤色、年龄、宗教、性别、性取向、性别认同、国籍、残疾或退伍军人身份而歧视任何求职者。如果您无法在线申请和/或需要其他申请或筛选方式，请与我们联系。"
       },

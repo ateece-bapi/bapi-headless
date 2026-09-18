@@ -56,7 +56,7 @@ export default function CatalogPricebookPage() {
 
       <section className="py-10 sm:py-12 lg:py-14">
         <div className="mx-auto max-w-6xl space-y-16 px-4 sm:px-6 lg:px-8">
-          {CATALOGS.map((catalog) => (
+          {CATALOGS.map((catalog, index) => (
             <div
               key={catalog.id}
               className="grid gap-10 md:grid-cols-[minmax(18rem,26rem)_minmax(0,1fr)] md:items-center lg:gap-16"
@@ -74,6 +74,7 @@ export default function CatalogPricebookPage() {
                     alt={catalog.coverAlt}
                     width={1088}
                     height={1408}
+                    priority={index === 0}
                     quality={85}
                     sizes="(min-width: 768px) 416px, calc(100vw - 56px)"
                     className="h-auto w-full transition-opacity group-hover:opacity-90"

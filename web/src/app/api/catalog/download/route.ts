@@ -10,7 +10,6 @@ function isCatalogVariant(value: string | null): value is CatalogVariant {
   return value === 'standard' || value === 'metric';
 }
 
-
 /** Proxies the current catalog through the app so browsers reliably download it. */
 export async function GET(request: Request): Promise<Response> {
   const requestedVariant = new URL(request.url).searchParams.get('variant');

@@ -374,7 +374,7 @@ export default async function BluTestPage({ params }: Props) {
               <div className="flex flex-wrap items-center gap-4">
                 {/* Google Play */}
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.bapi.bluview"
+                  href="https://play.google.com/store/apps/details?id=com.bapi.main&hl=en_US"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={t('bluView.googlePlay')}
@@ -391,7 +391,7 @@ export default async function BluTestPage({ params }: Props) {
 
                 {/* App Store */}
                 <a
-                  href="https://apps.apple.com/us/app/blu-view/id6478835493"
+                  href="https://apps.apple.com/us/app/bapi-ble-scanner/id6474557847"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={t('bluView.appStore')}

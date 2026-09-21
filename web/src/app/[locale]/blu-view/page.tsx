@@ -18,8 +18,8 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.bapi.bluview';
-const APP_STORE_URL = 'https://apps.apple.com/us/app/blu-view/id6478835493';
+const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.bapi.main&hl=en_US';
+const APP_STORE_URL = 'https://apps.apple.com/us/app/bapi-ble-scanner/id6474557847';
 
 /** Build localized metadata for the Blu-View landing page. */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -702,8 +702,6 @@ export type ApplicationNoteCategoryToApplicationNoteConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -740,8 +738,6 @@ export type ApplicationNoteCategoryToApplicationNoteConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -791,8 +787,6 @@ export type ApplicationNoteCategoryToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -817,8 +811,6 @@ export type ApplicationNoteCategoryToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -994,9 +986,15 @@ export type ApplicationNoteToApplicationNoteConnection = ApplicationNoteConnecti
 /** An edge in a connection */
 export type ApplicationNoteToApplicationNoteConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
   __typename?: 'ApplicationNoteToApplicationNoteConnectionEdge';
-  /** A cursor for use in pagination */
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   node: ApplicationNote;
 };
 
@@ -1095,7 +1093,10 @@ export type ApplicationNoteToParentConnectionEdge = ApplicationNoteConnectionEdg
   __typename?: 'ApplicationNoteToParentConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
   node: ApplicationNote;
 };
 
@@ -1159,8 +1160,6 @@ export type ApplicationNoteToRevisionConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -1197,8 +1196,6 @@ export type ApplicationNoteToRevisionConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2251,8 +2248,6 @@ export type CategoryToApplicationNoteConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -2289,8 +2284,6 @@ export type CategoryToApplicationNoteConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2417,8 +2410,6 @@ export type CategoryToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -2443,8 +2434,6 @@ export type CategoryToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2517,8 +2506,6 @@ export type CategoryToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -2555,8 +2542,6 @@ export type CategoryToPostConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3366,12 +3351,6 @@ export type ContentTemplate = {
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
-/** The templates that can be assigned to content. Used to filter a connection by the template its content uses. */
-export enum ContentTemplateEnum {
-  /** The default template, applied when no specific template is assigned. */
-  DefaultTemplate = 'DEFAULT_TEMPLATE'
-}
-
 /** An Post Type object */
 export type ContentType = Node & UniformResourceIdentifiable & {
   __typename?: 'ContentType';
@@ -3505,9 +3484,7 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   Post = 'POST',
   /** The Type of Content object */
-  Product = 'PRODUCT',
-  /** The Type of Content object */
-  ServiceBulletin = 'SERVICE_BULLETIN'
+  Product = 'PRODUCT'
 }
 
 /** Identifier types for retrieving a specific content type definition. Determines whether to look up content types by ID or name. */
@@ -3563,8 +3540,6 @@ export type ContentTypeToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -3589,8 +3564,6 @@ export type ContentTypeToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3646,12 +3619,6 @@ export enum ContentTypesOfCategoryEnum {
 export enum ContentTypesOfGraphqlDocumentGroupEnum {
   /** The Type of Content object */
   GraphqlDocument = 'GRAPHQL_DOCUMENT'
-}
-
-/** Allowed Content Types of the OrderListTag taxonomy. */
-export enum ContentTypesOfOrderListTagEnum {
-  /** The Type of Content object */
-  Product = 'PRODUCT'
 }
 
 /** Allowed Content Types of the PaAirQualityApplication taxonomy. */
@@ -3766,12 +3733,6 @@ export enum ContentTypesOfProductTagEnum {
 export enum ContentTypesOfProductTypeEnum {
   /** The Type of Content object */
   Product = 'PRODUCT'
-}
-
-/** Allowed Content Types of the ServiceBulletinCategory taxonomy. */
-export enum ContentTypesOfServiceBulletinCategoryEnum {
-  /** The Type of Content object */
-  ServiceBulletin = 'SERVICE_BULLETIN'
 }
 
 /** Allowed Content Types of the ShippingClass taxonomy. */
@@ -4926,8 +4887,6 @@ export type CreateGraphqlDocumentGroupPayload = {
 export type CreateGraphqlDocumentInput = {
   /** Alias names for saved GraphQL query documents */
   alias?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** The userId to assign as the author of the object */
-  authorId?: InputMaybe<Scalars['ID']['input']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The content of the object */
@@ -4936,14 +4895,10 @@ export type CreateGraphqlDocumentInput = {
   date?: InputMaybe<Scalars['String']['input']>;
   /** Description for the saved GraphQL document */
   description?: InputMaybe<Scalars['String']['input']>;
-  /** The excerpt of the object */
-  excerpt?: InputMaybe<Scalars['String']['input']>;
   /** Allow, deny or default access grant for specific query */
   grant?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the graphqlDocument and graphqlDocumentGroups */
   graphqlDocumentGroups?: InputMaybe<GraphqlDocumentGraphqlDocumentGroupsInput>;
-  /** JSON-encoded HTTP headers to send with this query (IDE execution context). */
-  headers?: InputMaybe<Scalars['String']['input']>;
   /** HTTP Cache-Control max-age directive for a saved GraphQL document */
   maxAgeHeader?: InputMaybe<Scalars['Int']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
@@ -4956,8 +4911,6 @@ export type CreateGraphqlDocumentInput = {
   status?: InputMaybe<PostStatusEnum>;
   /** The title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
-  /** JSON-encoded variables to send with this query (IDE execution context). */
-  variables?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The payload for the createGraphqlDocument mutation. */
@@ -5048,29 +5001,6 @@ export type CreateOrderInput = {
   status?: InputMaybe<OrderStatusEnum>;
   /** Order transaction ID */
   transactionId?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Input for the createOrderListTag mutation. */
-export type CreateOrderListTagInput = {
-  /** The slug that the order_list will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the order_list object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the order_list object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createOrderListTag mutation. */
-export type CreateOrderListTagPayload = {
-  __typename?: 'CreateOrderListTagPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created order_list */
-  orderListTag?: Maybe<OrderListTag>;
 };
 
 /** The payload for the createOrder mutation. */
@@ -5603,8 +5533,6 @@ export type CreateProductInput = {
   excerpt?: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** Set connections between the Product and orderListTags */
-  orderListTags?: InputMaybe<ProductOrderListTagsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -5678,66 +5606,6 @@ export type CreateProductTypePayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The created product_type */
   productType?: Maybe<ProductType>;
-};
-
-/** Input for the createServiceBulletinCategory mutation. */
-export type CreateServiceBulletinCategoryInput = {
-  /** The slug that the service_bulletin_category will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the service_bulletin_category object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the service_bulletin_category object to mutate */
-  name: Scalars['String']['input'];
-  /** The database ID of the service_bulletin_category that should be set as the parent. This field cannot be used in conjunction with parentId */
-  parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
-  /** The ID of the service_bulletin_category that should be set as the parent. This field cannot be used in conjunction with parentDatabaseId */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createServiceBulletinCategory mutation. */
-export type CreateServiceBulletinCategoryPayload = {
-  __typename?: 'CreateServiceBulletinCategoryPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created service_bulletin_category */
-  serviceBulletinCategory?: Maybe<ServiceBulletinCategory>;
-};
-
-/** Input for the createServiceBulletin mutation. */
-export type CreateServiceBulletinInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content?: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** The excerpt of the object */
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the serviceBulletin and serviceBulletinCategories */
-  serviceBulletinCategories?: InputMaybe<ServiceBulletinServiceBulletinCategoriesInput>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createServiceBulletin mutation. */
-export type CreateServiceBulletinPayload = {
-  __typename?: 'CreateServiceBulletinPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  serviceBulletin?: Maybe<ServiceBulletin>;
 };
 
 /** Input for the createShippingClass mutation. */
@@ -6780,14 +6648,8 @@ export type DatabaseIdentifier = {
 export type DateInput = {
   /** Day of the month (from 1 to 31) */
   day?: InputMaybe<Scalars['Int']['input']>;
-  /** Hour of the day (from 0 to 23) */
-  hour?: InputMaybe<Scalars['Int']['input']>;
-  /** Minute of the hour (from 0 to 59) */
-  minute?: InputMaybe<Scalars['Int']['input']>;
   /** Month number (from 1 to 12) */
   month?: InputMaybe<Scalars['Int']['input']>;
-  /** Second of the minute (from 0 to 59) */
-  second?: InputMaybe<Scalars['Int']['input']>;
   /** 4 digit year (e.g. 2017) */
   year?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -7023,25 +6885,6 @@ export type DeleteOrderItemsPayload = {
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Order>;
-};
-
-/** Input for the deleteOrderListTag mutation. */
-export type DeleteOrderListTagInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the orderListTag to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deleteOrderListTag mutation. */
-export type DeleteOrderListTagPayload = {
-  __typename?: 'DeleteOrderListTagPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  orderListTag?: Maybe<OrderListTag>;
 };
 
 /** The payload for the deleteOrder mutation. */
@@ -7522,48 +7365,6 @@ export type DeleteReviewPayload = {
   review?: Maybe<Comment>;
 };
 
-/** Input for the deleteServiceBulletinCategory mutation. */
-export type DeleteServiceBulletinCategoryInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the serviceBulletinCategory to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deleteServiceBulletinCategory mutation. */
-export type DeleteServiceBulletinCategoryPayload = {
-  __typename?: 'DeleteServiceBulletinCategoryPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  serviceBulletinCategory?: Maybe<ServiceBulletinCategory>;
-};
-
-/** Input for the deleteServiceBulletin mutation. */
-export type DeleteServiceBulletinInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Whether the object should be force deleted instead of being moved to the trash */
-  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The ID of the serviceBulletin to delete */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** The payload for the deleteServiceBulletin mutation. */
-export type DeleteServiceBulletinPayload = {
-  __typename?: 'DeleteServiceBulletinPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The object before it was deleted */
-  serviceBulletin?: Maybe<ServiceBulletin>;
-};
-
 /** Input for the deleteShippingClass mutation. */
 export type DeleteShippingClassInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -7653,14 +7454,12 @@ export enum DiscountTypeEnum {
 }
 
 /** The discussion setting type */
-export type DiscussionSettings = Node & {
+export type DiscussionSettings = {
   __typename?: 'DiscussionSettings';
   /** Allow people to submit comments on new posts. */
   defaultCommentStatus?: Maybe<Scalars['String']['output']>;
   /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
   defaultPingStatus?: Maybe<Scalars['String']['output']>;
-  /** The globally unique identifier of the settings group. */
-  id: Scalars['ID']['output'];
 };
 
 /** A downloadable item */
@@ -7730,33 +7529,6 @@ export type DownloadableProduct = {
   id: Scalars['ID']['output'];
   /** Is product virtual? */
   virtual?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** Exact SKU match (product or variation) for Easy Order Form bulk lookup. */
-export type EasyOrderSkuMatch = {
-  __typename?: 'EasyOrderSkuMatch';
-  /** The same Relay global ID WPGraphQL exposes as `id` on Product/ProductVariation, for cart merge consistency with other add-to-cart flows. Null if unresolvable. */
-  canonicalId?: Maybe<Scalars['String']['output']>;
-  customerGroup1?: Maybe<Scalars['String']['output']>;
-  customerGroup2?: Maybe<Scalars['String']['output']>;
-  customerGroup3?: Maybe<Scalars['String']['output']>;
-  /** The exact matched post ID (product or variation). */
-  databaseId?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  imageAltText?: Maybe<Scalars['String']['output']>;
-  imageUrl?: Maybe<Scalars['String']['output']>;
-  isVariation?: Maybe<Scalars['Boolean']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  /** The parent product ID (same as databaseId for non-variations). */
-  parentDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Custom part_number meta field, falling back to null when unset (SKU is used as the display fallback client-side). */
-  partNumber?: Maybe<Scalars['String']['output']>;
-  /** Formatted price string (e.g. &quot;$49.99&quot;), matching the standard WPGraphQL product price format. */
-  price?: Maybe<Scalars['String']['output']>;
-  sku?: Maybe<Scalars['String']['output']>;
-  /** Parent product slug, for linking to the product page. */
-  slug?: Maybe<Scalars['String']['output']>;
-  stockStatus?: Maybe<Scalars['String']['output']>;
 };
 
 /** Represents a connection between two objects. Contains both the related object (node) and metadata about the relationship (cursor). */
@@ -8092,8 +7864,6 @@ export type ExternalProduct = ContentNode & DatabaseIdentifier & MenuItemLinkabl
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** Connection between the Product type and the orderListTag type */
-  orderListTags?: Maybe<ProductToOrderListTagConnection>;
   /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
@@ -8422,16 +8192,6 @@ export type ExternalProductMetaDataArgs = {
 
 
 /** A external product object */
-export type ExternalProductOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToOrderListTagConnectionWhereArgs>;
-};
-
-
-/** A external product object */
 export type ExternalProductPriceArgs = {
   format?: InputMaybe<PricingFieldFormatEnum>;
 };
@@ -8656,7 +8416,7 @@ export type FillCartPayload = {
 };
 
 /** The general setting type */
-export type GeneralSettings = Node & {
+export type GeneralSettings = {
   __typename?: 'GeneralSettings';
   /** A date format for all date strings. */
   dateFormat?: Maybe<Scalars['String']['output']>;
@@ -8664,10 +8424,6 @@ export type GeneralSettings = Node & {
   description?: Maybe<Scalars['String']['output']>;
   /** This address is used for admin purposes, like new user notification. */
   email?: Maybe<Scalars['String']['output']>;
-  /** The address at which visitors reach the site&#039;s front end. Can differ from the `url` field when the front end and the content management backend are served from different addresses, such as on headless or decoupled installs. */
-  homeUrl?: Maybe<Scalars['String']['output']>;
-  /** The globally unique identifier of the settings group. */
-  id: Scalars['ID']['output'];
   /** WordPress locale code. */
   language?: Maybe<Scalars['String']['output']>;
   /** The media item representing the site icon configured in site settings, used as the site&#039;s favicon and app icon. */
@@ -8873,7 +8629,7 @@ export type GlobalSiteSettings_Fields = {
 };
 
 /** Saved GraphQL Documents */
-export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWithContentEditor & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
   __typename?: 'GraphqlDocument';
   /** Alias names for saved GraphQL query documents */
   alias?: Maybe<Array<Scalars['String']['output']>>;
@@ -8882,12 +8638,6 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
    * @deprecated This content type is not hierarchical and typically will not have ancestors
    */
   ancestors?: Maybe<GraphqlDocumentToGraphqlDocumentConnection>;
-  /** Connection between the NodeWithAuthor type and the User type */
-  author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
-  /** The database identifier of the author of the node */
-  authorDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** The globally unique identifier of the author of the node */
-  authorId?: Maybe<Scalars['ID']['output']>;
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
@@ -8912,8 +8662,6 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
   /** Connection between the ContentNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-  /** The excerpt of the post. */
-  excerpt?: Maybe<Scalars['String']['output']>;
   /** Allow, deny or default access grant for specific query */
   grant?: Maybe<Scalars['String']['output']>;
   /** Connection between the GraphqlDocument type and the graphqlDocumentGroup type */
@@ -8927,8 +8675,6 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   guid?: Maybe<Scalars['String']['output']>;
   /** Whether the graphql_document object is password protected. */
   hasPassword?: Maybe<Scalars['Boolean']['output']>;
-  /** JSON-encoded HTTP headers to send with this query (IDE execution context). */
-  headers?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the graphql_document object. */
   id: Scalars['ID']['output'];
   /** Whether the node is a Comment */
@@ -8951,8 +8697,6 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   link?: Maybe<Scalars['String']['output']>;
   /** HTTP Cache-Control max-age directive for a saved GraphQL document */
   maxAgeHeader?: Maybe<Scalars['Int']['output']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: Maybe<Scalars['Int']['output']>;
   /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
@@ -8985,8 +8729,6 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   title?: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
-  /** JSON-encoded variables to send with this query (IDE execution context). */
-  variables?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -9020,12 +8762,6 @@ export type GraphqlDocumentEnqueuedStylesheetsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** Saved GraphQL Documents */
-export type GraphqlDocumentExcerptArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
@@ -9285,8 +9021,6 @@ export type GraphqlDocumentGroupToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -9311,8 +9045,6 @@ export type GraphqlDocumentGroupToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -9352,14 +9084,6 @@ export type GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo = GraphqlDoc
 
 /** Arguments for filtering the GraphqlDocumentGroupToGraphqlDocumentConnection connection */
 export type GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs = {
-  /** The user that's connected as the author of the object. Use the userId for the author object. */
-  author?: InputMaybe<Scalars['Int']['input']>;
-  /** Find objects connected to author(s) in the array of author's userIds */
-  authorIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Find objects connected to the author by the author's nicename */
-  authorName?: InputMaybe<Scalars['String']['input']>;
-  /** Find objects NOT connected to author(s) in the array of author's userIds */
-  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -9368,8 +9092,6 @@ export type GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -9394,8 +9116,6 @@ export type GraphqlDocumentGroupToGraphqlDocumentConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -9435,9 +9155,15 @@ export type GraphqlDocumentToGraphqlDocumentConnection = Connection & GraphqlDoc
 /** An edge in a connection */
 export type GraphqlDocumentToGraphqlDocumentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & {
   __typename?: 'GraphqlDocumentToGraphqlDocumentConnectionEdge';
-  /** A cursor for use in pagination */
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   node: GraphqlDocument;
 };
 
@@ -9536,7 +9262,10 @@ export type GraphqlDocumentToParentConnectionEdge = Edge & GraphqlDocumentConnec
   __typename?: 'GraphqlDocumentToParentConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
   node: GraphqlDocument;
 };
 
@@ -9545,7 +9274,10 @@ export type GraphqlDocumentToPreviewConnectionEdge = Edge & GraphqlDocumentConne
   __typename?: 'GraphqlDocumentToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
+  /**
+   * The node of the connection, without the edges
+   * @deprecated The &quot;GraphqlDocument&quot; Type is not publicly queryable and does not support previews. This field will be removed in the future.
+   */
   node: GraphqlDocument;
 };
 
@@ -9761,8 +9493,6 @@ export type GroupProduct = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** Connection between the Product type and the orderListTag type */
-  orderListTags?: Maybe<ProductToOrderListTagConnection>;
   /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
@@ -10089,16 +9819,6 @@ export type GroupProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A group product object */
-export type GroupProductOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToOrderListTagConnectionWhereArgs>;
 };
 
 
@@ -10505,8 +10225,6 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -10531,8 +10249,6 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -10582,8 +10298,6 @@ export type HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -10608,8 +10322,6 @@ export type HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -11684,7 +11396,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkable Interface */
-export type MenuItemObjectUnion = ApplicationNote | ApplicationNoteCategory | Category | Page | Post | ProductCategory | ProductTag | ServiceBulletin | ServiceBulletinCategory | Tag;
+export type MenuItemObjectUnion = ApplicationNote | ApplicationNoteCategory | Category | Page | Post | ProductCategory | ProductTag | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -12481,345 +12193,6 @@ export type OrderItemTax = {
   total?: Maybe<Scalars['Float']['output']>;
 };
 
-/** The orderListTag type */
-export type OrderListTag = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
-  __typename?: 'OrderListTag';
-  /** Connection between the OrderListTag type and the ContentNode type */
-  contentNodes?: Maybe<OrderListTagToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  orderListTagId?: Maybe<Scalars['Int']['output']>;
-  /** Connection between the OrderListTag type and the Product type */
-  products?: Maybe<OrderListTagToProductConnection>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the OrderListTag type and the Taxonomy type */
-  taxonomy?: Maybe<OrderListTagToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The orderListTag type */
-export type OrderListTagContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<OrderListTagToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The orderListTag type */
-export type OrderListTagEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The orderListTag type */
-export type OrderListTagEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The orderListTag type */
-export type OrderListTagProductsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<OrderListTagToProductConnectionWhereArgs>;
-};
-
-/** A paginated collection of orderListTag Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of orderListTag Nodes */
-export type OrderListTagConnection = {
-  /** A list of edges (relational context) between RootQuery and connected orderListTag Nodes */
-  edges: Array<OrderListTagConnectionEdge>;
-  /** A list of connected orderListTag Nodes */
-  nodes: Array<OrderListTag>;
-  /** Information about pagination in a connection. */
-  pageInfo: OrderListTagConnectionPageInfo;
-};
-
-/** Represents a connection to a orderListTag. Contains both the orderListTag Node and metadata about the relationship. */
-export type OrderListTagConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected orderListTag Node */
-  node: OrderListTag;
-};
-
-/** Pagination metadata specific to &quot;OrderListTagConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;OrderListTagConnectionEdge&quot; Nodes. */
-export type OrderListTagConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Identifier types for retrieving a specific OrderListTag. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the OrderListTag. */
-export enum OrderListTagIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the OrderListTag type and the ContentNode type */
-export type OrderListTagToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'OrderListTagToContentNodeConnection';
-  /** Edges for the OrderListTagToContentNodeConnection connection */
-  edges: Array<OrderListTagToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: OrderListTagToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type OrderListTagToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'OrderListTagToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Pagination metadata specific to &quot;OrderListTagToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of OrderListTagToContentNodeConnection Nodes. */
-export type OrderListTagToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'OrderListTagToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the OrderListTagToContentNodeConnection connection */
-export type OrderListTagToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfOrderListTagEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the OrderListTag type and the Product type */
-export type OrderListTagToProductConnection = Connection & ProductConnection & {
-  __typename?: 'OrderListTagToProductConnection';
-  /** Edges for the OrderListTagToProductConnection connection */
-  edges: Array<OrderListTagToProductConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Product>;
-  /** Information about pagination in a connection. */
-  pageInfo: OrderListTagToProductConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type OrderListTagToProductConnectionEdge = Edge & ProductConnectionEdge & {
-  __typename?: 'OrderListTagToProductConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Product;
-};
-
-/** Pagination metadata specific to &quot;OrderListTagToProductConnection&quot; collections. Provides cursors and flags for navigating through sets of OrderListTagToProductConnection Nodes. */
-export type OrderListTagToProductConnectionPageInfo = PageInfo & ProductConnectionPageInfo & WpPageInfo & {
-  __typename?: 'OrderListTagToProductConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the OrderListTagToProductConnection connection */
-export type OrderListTagToProductConnectionWhereArgs = {
-  /** Limit result set to products with a specific attribute. Use the taxonomy name/attribute slug. */
-  attribute?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products with a specific attribute term ID (required an assigned attribute). */
-  attributeTerm?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific category name. */
-  category?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific category name. */
-  categoryId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products assigned to a specific group of category IDs. */
-  categoryIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of category IDs. */
-  categoryIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products assigned to a group of specific categories by name. */
-  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products not assigned to a group of specific categories by name. */
-  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection based on dates. */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** Ensure result set excludes specific IDs. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to featured products. */
-  featured?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to specific ids. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Include variations in the result set. */
-  includeVariations?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to products based on a maximum price. */
-  maxPrice?: InputMaybe<Scalars['Float']['input']>;
-  /** Limit result set to products based on a minimum price. */
-  minPrice?: InputMaybe<Scalars['Float']['input']>;
-  /** Limit result set to products on sale. */
-  onSale?: InputMaybe<Scalars['Boolean']['input']>;
-  /** What paramater to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<ProductsOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Specify objects whose parent is in an array. */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Specify objects whose parent is not in an array. */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products with a specific average rating. Must be between 1 and 5 */
-  rating?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products based on a keyword search. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific shipping class ID. */
-  shippingClassId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products with specific SKU(s). Use commas to separate. */
-  sku?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products with specific slugs. */
-  slugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products assigned a specific status. */
-  status?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products in stock or out of stock. */
-  stockStatus?: InputMaybe<Array<InputMaybe<StockStatusEnum>>>;
-  /** Limit result types to types supported by WooGraphQL. */
-  supportedTypesOnly?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to products assigned a specific tag name. */
-  tag?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific tag ID. */
-  tagId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products assigned to a specific group of tag IDs. */
-  tagIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of tag IDs. */
-  tagIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products assigned to a specific group of tags by name. */
-  tagIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of tags by name. */
-  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products with a specific tax class. */
-  taxClass?: InputMaybe<TaxClassEnum>;
-  /** Limit result set with complex set of taxonomy filters. */
-  taxonomyFilter?: InputMaybe<ProductTaxonomyInput>;
-  /** Limit result set to products assigned a specific type. */
-  type?: InputMaybe<ProductTypesEnum>;
-  /** Limit result set to products assigned to a group of specific types. */
-  typeIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
-  /** Limit result set to products not assigned to a group of specific types. */
-  typeNotIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
-  /** Limit result set to products with a specific visibility level. */
-  visibility?: InputMaybe<CatalogVisibilityEnum>;
-};
-
-/** Connection between the OrderListTag type and the Taxonomy type */
-export type OrderListTagToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'OrderListTagToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
 /** Order status enumeration */
 export enum OrderStatusEnum {
   /** Cancelled */
@@ -13433,8 +12806,6 @@ export type PaAirQualityApplicationToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -13459,8 +12830,6 @@ export type PaAirQualityApplicationToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -13903,8 +13272,6 @@ export type PaAirQualitySensorTypeToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -13929,8 +13296,6 @@ export type PaAirQualitySensorTypeToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -14373,8 +13738,6 @@ export type PaApplicationToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -14399,8 +13762,6 @@ export type PaApplicationToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -14843,8 +14204,6 @@ export type PaDisplayToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -14869,8 +14228,6 @@ export type PaDisplayToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -15313,8 +14670,6 @@ export type PaHumidityApplicationToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -15339,8 +14694,6 @@ export type PaHumidityApplicationToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -15783,8 +15136,6 @@ export type PaHumidityRoomEnclosureToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -15809,8 +15160,6 @@ export type PaHumidityRoomEnclosureToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -16253,8 +15602,6 @@ export type PaHumiditySensorOutputToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -16279,8 +15626,6 @@ export type PaHumiditySensorOutputToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -16723,8 +16068,6 @@ export type PaOptionalTempHumidityToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -16749,8 +16092,6 @@ export type PaOptionalTempHumidityToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -17193,8 +16534,6 @@ export type PaOptionalTempSensorOutputToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -17219,8 +16558,6 @@ export type PaOptionalTempSensorOutputToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -17663,8 +17000,6 @@ export type PaPressureApplicationToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -17689,8 +17024,6 @@ export type PaPressureApplicationToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -18133,8 +17466,6 @@ export type PaPressureSensorStyleToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -18159,8 +17490,6 @@ export type PaPressureSensorStyleToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -18603,8 +17932,6 @@ export type PaRoomEnclosureStyleToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -18629,8 +17956,6 @@ export type PaRoomEnclosureStyleToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -19073,8 +18398,6 @@ export type PaTempSetpointAndOverrideToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -19099,8 +18422,6 @@ export type PaTempSetpointAndOverrideToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -19543,8 +18864,6 @@ export type PaTemperatureSensorOutputToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -19569,8 +18888,6 @@ export type PaTemperatureSensorOutputToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -20013,8 +19330,6 @@ export type PaWirelessApplicationToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -20039,8 +19354,6 @@ export type PaWirelessApplicationToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -20710,8 +20023,6 @@ export type PageToRevisionConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -20736,8 +20047,6 @@ export type PageToRevisionConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -20837,19 +20146,6 @@ export type PaymentTokenECheck = Node & PaymentToken & {
   tokenId: Scalars['Int']['output'];
   /** Token type */
   type: Scalars['String']['output'];
-};
-
-/** The permalink setting type */
-export type PermalinkSettings = Node & {
-  __typename?: 'PermalinkSettings';
-  /** The prefix used in the URLs of category archive pages. */
-  categoryBase?: Maybe<Scalars['String']['output']>;
-  /** The globally unique identifier of the settings group. */
-  id: Scalars['ID']['output'];
-  /** The structure used to build the URLs for content on the site. */
-  structure?: Maybe<Scalars['String']['output']>;
-  /** The prefix used in the URLs of tag archive pages. */
-  tagBase?: Maybe<Scalars['String']['output']>;
 };
 
 /** An plugin object */
@@ -21389,8 +20685,6 @@ export type PostFormatToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -21415,8 +20709,6 @@ export type PostFormatToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -21480,8 +20772,6 @@ export type PostFormatToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -21518,8 +20808,6 @@ export type PostFormatToPostConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -21856,7 +21144,10 @@ export type PostToParentConnectionEdge = Edge & OneToOneConnection & PostConnect
   __typename?: 'PostToParentConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
   node: Post;
 };
 
@@ -21874,9 +21165,15 @@ export type PostToPostConnection = Connection & PostConnection & {
 /** An edge in a connection */
 export type PostToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'PostToPostConnectionEdge';
-  /** A cursor for use in pagination */
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
   node: Post;
 };
 
@@ -22038,8 +21335,6 @@ export type PostToRevisionConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -22076,8 +21371,6 @@ export type PostToRevisionConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -22482,8 +21775,6 @@ export type Product = {
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** Connection between the Product type and the orderListTag type */
-  orderListTags?: Maybe<ProductToOrderListTagConnection>;
   /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
@@ -22789,16 +22080,6 @@ export type ProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** This is where you can browse products in this store. */
-export type ProductOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToOrderListTagConnectionWhereArgs>;
 };
 
 
@@ -23572,8 +22853,6 @@ export type ProductCategoryToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -23598,8 +22877,6 @@ export type ProductCategoryToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -24049,26 +23326,6 @@ export enum ProductIdTypeEnum {
   Slug = 'SLUG'
 }
 
-/** Set relationships between the Product to orderListTags */
-export type ProductOrderListTagsInput = {
-  /** If true, this will append the orderListTag to existing related orderListTags. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<ProductOrderListTagsNodeInput>>>;
-};
-
-/** List of orderListTags to connect the Product to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type ProductOrderListTagsNodeInput = {
-  /** The description of the orderListTag. This field is used to set a description of the orderListTag if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the orderListTag. If present, this will be used to connect to the Product. If no existing orderListTag exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the orderListTag. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the orderListTag. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Set relationships between the Product to productCategories */
 export type ProductProductCategoriesInput = {
   /** If true, this will append the productCategory to existing related productCategories. If false, this will replace existing relationships. Default true. */
@@ -24330,8 +23587,6 @@ export type ProductTagToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -24356,8 +23611,6 @@ export type ProductTagToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -24490,7 +23743,6 @@ export type ProductTagToTaxonomyConnectionEdge = Edge & OneToOneConnection & Tax
 
 /** Product taxonomies */
 export enum ProductTaxonomyEnum {
-  OrderList = 'ORDER_LIST',
   PaAirQualityApplication = 'PA_AIR_QUALITY_APPLICATION',
   PaAirQualitySensorType = 'PA_AIR_QUALITY_SENSOR_TYPE',
   PaApplication = 'PA_APPLICATION',
@@ -24844,8 +24096,6 @@ export type ProductToMediaItemConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -24870,87 +24120,8 @@ export type ProductToMediaItemConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Product type and the orderListTag type */
-export type ProductToOrderListTagConnection = Connection & OrderListTagConnection & {
-  __typename?: 'ProductToOrderListTagConnection';
-  /** Edges for the ProductToOrderListTagConnection connection */
-  edges: Array<ProductToOrderListTagConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<OrderListTag>;
-  /** Information about pagination in a connection. */
-  pageInfo: ProductToOrderListTagConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ProductToOrderListTagConnectionEdge = Edge & OrderListTagConnectionEdge & {
-  __typename?: 'ProductToOrderListTagConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: OrderListTag;
-};
-
-/** Pagination metadata specific to &quot;ProductToOrderListTagConnection&quot; collections. Provides cursors and flags for navigating through sets of ProductToOrderListTagConnection Nodes. */
-export type ProductToOrderListTagConnectionPageInfo = OrderListTagConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'ProductToOrderListTagConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ProductToOrderListTagConnection connection */
-export type ProductToOrderListTagConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the Product type and the paAirQualityApplication type */
@@ -27032,8 +26203,6 @@ export type ProductTypeToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -27058,8 +26227,6 @@ export type ProductTypeToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -27941,10 +27108,8 @@ export type RatingCount = {
 };
 
 /** The reading setting type */
-export type ReadingSettings = Node & {
+export type ReadingSettings = {
   __typename?: 'ReadingSettings';
-  /** The globally unique identifier of the settings group. */
-  id: Scalars['ID']['output'];
   /** The ID of the page that should display the latest posts */
   pageForPosts?: Maybe<Scalars['Int']['output']>;
   /** The ID of the page that should be displayed on the front page */
@@ -28319,8 +27484,6 @@ export type RootMutation = {
   createMediaItem?: Maybe<CreateMediaItemPayload>;
   /** The createOrder mutation */
   createOrder?: Maybe<CreateOrderPayload>;
-  /** The createOrderListTag mutation */
-  createOrderListTag?: Maybe<CreateOrderListTagPayload>;
   /** The createPaAirQualityApplication mutation */
   createPaAirQualityApplication?: Maybe<CreatePaAirQualityApplicationPayload>;
   /** The createPaAirQualitySensorType mutation */
@@ -28365,10 +27528,6 @@ export type RootMutation = {
   createProductTag?: Maybe<CreateProductTagPayload>;
   /** The createProductType mutation */
   createProductType?: Maybe<CreateProductTypePayload>;
-  /** The createServiceBulletin mutation */
-  createServiceBulletin?: Maybe<CreateServiceBulletinPayload>;
-  /** The createServiceBulletinCategory mutation */
-  createServiceBulletinCategory?: Maybe<CreateServiceBulletinCategoryPayload>;
   /** The createShippingClass mutation */
   createShippingClass?: Maybe<CreateShippingClassPayload>;
   /** The createTag mutation */
@@ -28397,8 +27556,6 @@ export type RootMutation = {
   deleteOrder?: Maybe<DeleteOrderPayload>;
   /** The deleteOrderItems mutation */
   deleteOrderItems?: Maybe<DeleteOrderItemsPayload>;
-  /** The deleteOrderListTag mutation */
-  deleteOrderListTag?: Maybe<DeleteOrderListTagPayload>;
   /** The deletePaAirQualityApplication mutation */
   deletePaAirQualityApplication?: Maybe<DeletePaAirQualityApplicationPayload>;
   /** The deletePaAirQualitySensorType mutation */
@@ -28447,10 +27604,6 @@ export type RootMutation = {
   deleteProductType?: Maybe<DeleteProductTypePayload>;
   /** The deleteReview mutation */
   deleteReview?: Maybe<DeleteReviewPayload>;
-  /** The deleteServiceBulletin mutation */
-  deleteServiceBulletin?: Maybe<DeleteServiceBulletinPayload>;
-  /** The deleteServiceBulletinCategory mutation */
-  deleteServiceBulletinCategory?: Maybe<DeleteServiceBulletinCategoryPayload>;
   /** The deleteShippingClass mutation */
   deleteShippingClass?: Maybe<DeleteShippingClassPayload>;
   /** The deleteTag mutation */
@@ -28507,16 +27660,12 @@ export type RootMutation = {
   updateGraphqlDocument?: Maybe<UpdateGraphqlDocumentPayload>;
   /** The updateGraphqlDocumentGroup mutation */
   updateGraphqlDocumentGroup?: Maybe<UpdateGraphqlDocumentGroupPayload>;
-  /** Updates a single WPGraphQL setting field. Requires the manage-settings capability. */
-  updateGraphqlSetting?: Maybe<UpdateGraphqlSettingPayload>;
   /** The updateItemQuantities mutation */
   updateItemQuantities?: Maybe<UpdateItemQuantitiesPayload>;
   /** The updateMediaItem mutation */
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
   /** The updateOrder mutation */
   updateOrder?: Maybe<UpdateOrderPayload>;
-  /** The updateOrderListTag mutation */
-  updateOrderListTag?: Maybe<UpdateOrderListTagPayload>;
   /** The updatePaAirQualityApplication mutation */
   updatePaAirQualityApplication?: Maybe<UpdatePaAirQualityApplicationPayload>;
   /** The updatePaAirQualitySensorType mutation */
@@ -28563,10 +27712,6 @@ export type RootMutation = {
   updateProductType?: Maybe<UpdateProductTypePayload>;
   /** The updateReview mutation */
   updateReview?: Maybe<UpdateReviewPayload>;
-  /** The updateServiceBulletin mutation */
-  updateServiceBulletin?: Maybe<UpdateServiceBulletinPayload>;
-  /** The updateServiceBulletinCategory mutation */
-  updateServiceBulletinCategory?: Maybe<UpdateServiceBulletinCategoryPayload>;
   /** The updateSession mutation */
   updateSession?: Maybe<UpdateSessionPayload>;
   /** The updateSettings mutation */
@@ -28673,12 +27818,6 @@ export type RootMutationCreateMediaItemArgs = {
 /** The root mutation */
 export type RootMutationCreateOrderArgs = {
   input: CreateOrderInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreateOrderListTagArgs = {
-  input: CreateOrderListTagInput;
 };
 
 
@@ -28815,18 +27954,6 @@ export type RootMutationCreateProductTypeArgs = {
 
 
 /** The root mutation */
-export type RootMutationCreateServiceBulletinArgs = {
-  input: CreateServiceBulletinInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreateServiceBulletinCategoryArgs = {
-  input: CreateServiceBulletinCategoryInput;
-};
-
-
-/** The root mutation */
 export type RootMutationCreateShippingClassArgs = {
   input: CreateShippingClassInput;
 };
@@ -28907,12 +28034,6 @@ export type RootMutationDeleteOrderArgs = {
 /** The root mutation */
 export type RootMutationDeleteOrderItemsArgs = {
   input: DeleteOrderItemsInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteOrderListTagArgs = {
-  input: DeleteOrderListTagInput;
 };
 
 
@@ -29057,18 +28178,6 @@ export type RootMutationDeleteProductTypeArgs = {
 /** The root mutation */
 export type RootMutationDeleteReviewArgs = {
   input: DeleteReviewInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteServiceBulletinArgs = {
-  input: DeleteServiceBulletinInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteServiceBulletinCategoryArgs = {
-  input: DeleteServiceBulletinCategoryInput;
 };
 
 
@@ -29241,12 +28350,6 @@ export type RootMutationUpdateGraphqlDocumentGroupArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdateGraphqlSettingArgs = {
-  input: UpdateGraphqlSettingInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdateItemQuantitiesArgs = {
   input: UpdateItemQuantitiesInput;
 };
@@ -29261,12 +28364,6 @@ export type RootMutationUpdateMediaItemArgs = {
 /** The root mutation */
 export type RootMutationUpdateOrderArgs = {
   input: UpdateOrderInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateOrderListTagArgs = {
-  input: UpdateOrderListTagInput;
 };
 
 
@@ -29409,18 +28506,6 @@ export type RootMutationUpdateReviewArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdateServiceBulletinArgs = {
-  input: UpdateServiceBulletinInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateServiceBulletinCategoryArgs = {
-  input: UpdateServiceBulletinCategoryInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdateSessionArgs = {
   input: UpdateSessionInput;
 };
@@ -29555,10 +28640,6 @@ export type RootQuery = {
   customers?: Maybe<RootQueryToCustomerConnection>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
-  /** Resolves the curated Easy Order Form list (order_list taxonomy term) to exact product/variation matches. Requires authentication and the viewer to belong to the requested customer-group term. */
-  easyOrderCuratedList?: Maybe<Array<Maybe<EasyOrderSkuMatch>>>;
-  /** Resolves an exact SKU (product or variation) for Easy Order Form bulk add-to-cart. Requires authentication and viewer customer-group visibility. */
-  easyOrderSkuLookup?: Maybe<EasyOrderSkuMatch>;
   /**
    * A external product object
    * @deprecated Use &quot;product&quot; instead.
@@ -29609,10 +28690,6 @@ export type RootQuery = {
   nodeByUri?: Maybe<UniformResourceIdentifiable>;
   /** A order object */
   order?: Maybe<Order>;
-  /** A 0bject */
-  orderListTag?: Maybe<OrderListTag>;
-  /** Connection between the RootQuery type and the orderListTag type */
-  orderListTags?: Maybe<RootQueryToOrderListTagConnection>;
   /** Connection between the RootQuery type and the Order type */
   orders?: Maybe<RootQueryToOrderConnection>;
   /** A 0bject */
@@ -29656,8 +28733,6 @@ export type RootQuery = {
   pages?: Maybe<RootQueryToPageConnection>;
   /** Connection between the RootQuery type and the PaymentGateway type */
   paymentGateways?: Maybe<RootQueryToPaymentGatewayConnection>;
-  /** Fields of the &#039;PermalinkSettings&#039; settings group */
-  permalinkSettings?: Maybe<PermalinkSettings>;
   /** A WordPress plugin */
   plugin?: Maybe<Plugin>;
   /** Connection between the RootQuery type and the Plugin type */
@@ -29709,18 +28784,7 @@ export type RootQuery = {
   searchProductsByVariationSku?: Maybe<Array<Maybe<Product>>>;
   /** Search for variable products by variation SKU prefix (starts with, case-insensitive) */
   searchProductsByVariationSkuPrefix?: Maybe<Array<Maybe<Product>>>;
-  /** An object of the serviceBulletin Type.  */
   serviceBulletin?: Maybe<ServiceBulletin>;
-  /**
-   * A serviceBulletin object
-   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
-   */
-  serviceBulletinBy?: Maybe<ServiceBulletin>;
-  /** Connection between the RootQuery type and the serviceBulletinCategory type */
-  serviceBulletinCategories?: Maybe<RootQueryToServiceBulletinCategoryConnection>;
-  /** A 0bject */
-  serviceBulletinCategory?: Maybe<ServiceBulletinCategory>;
-  /** Connection between the RootQuery type and the serviceBulletin type */
   serviceBulletins?: Maybe<RootQueryToServiceBulletinConnection>;
   /** A 0bject */
   shippingClass?: Maybe<ShippingClass>;
@@ -30111,18 +29175,6 @@ export type RootQueryCustomersArgs = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryEasyOrderCuratedListArgs = {
-  term: Scalars['String']['input'];
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryEasyOrderSkuLookupArgs = {
-  sku: Scalars['String']['input'];
-};
-
-
-/** The root entry point into the Graph */
 export type RootQueryExternalProductArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   idType?: InputMaybe<ProductIdTypeEnum>;
@@ -30257,23 +29309,6 @@ export type RootQueryNodeByUriArgs = {
 export type RootQueryOrderArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   idType?: InputMaybe<OrderIdTypeEnum>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryOrderListTagArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<OrderListTagIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToOrderListTagConnectionWhereArgs>;
 };
 
 
@@ -30624,44 +29659,15 @@ export type RootQuerySearchProductsByVariationSkuPrefixArgs = {
 
 /** The root entry point into the Graph */
 export type RootQueryServiceBulletinArgs = {
-  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['ID']['input'];
   idType?: InputMaybe<ServiceBulletinIdType>;
 };
 
 
 /** The root entry point into the Graph */
-export type RootQueryServiceBulletinByArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  serviceBulletinId?: InputMaybe<Scalars['Int']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  uri?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryServiceBulletinCategoriesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToServiceBulletinCategoryConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryServiceBulletinCategoryArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<ServiceBulletinCategoryIdType>;
-};
-
-
-/** The root entry point into the Graph */
 export type RootQueryServiceBulletinsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToServiceBulletinConnectionWhereArgs>;
 };
 
@@ -30972,8 +29978,6 @@ export type RootQueryToApplicationNoteConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -31010,8 +30014,6 @@ export type RootQueryToApplicationNoteConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -31233,8 +30235,6 @@ export type RootQueryToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -31259,8 +30259,6 @@ export type RootQueryToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -31503,14 +30501,6 @@ export type RootQueryToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnec
 
 /** Arguments for filtering the RootQueryToGraphqlDocumentConnection connection */
 export type RootQueryToGraphqlDocumentConnectionWhereArgs = {
-  /** The user that's connected as the author of the object. Use the userId for the author object. */
-  author?: InputMaybe<Scalars['Int']['input']>;
-  /** Find objects connected to author(s) in the array of author's userIds */
-  authorIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Find objects connected to the author by the author's nicename */
-  authorName?: InputMaybe<Scalars['String']['input']>;
-  /** Find objects NOT connected to author(s) in the array of author's userIds */
-  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -31519,8 +30509,6 @@ export type RootQueryToGraphqlDocumentConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -31545,8 +30533,6 @@ export type RootQueryToGraphqlDocumentConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -31679,8 +30665,6 @@ export type RootQueryToMediaItemConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -31705,8 +30689,6 @@ export type RootQueryToMediaItemConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -31860,83 +30842,6 @@ export type RootQueryToOrderConnectionWhereArgs = {
   search?: InputMaybe<Scalars['String']['input']>;
   /** Limit result set to orders assigned a specific status. */
   statuses?: InputMaybe<Array<InputMaybe<OrderStatusEnum>>>;
-};
-
-/** Connection between the RootQuery type and the orderListTag type */
-export type RootQueryToOrderListTagConnection = Connection & OrderListTagConnection & {
-  __typename?: 'RootQueryToOrderListTagConnection';
-  /** Edges for the RootQueryToOrderListTagConnection connection */
-  edges: Array<RootQueryToOrderListTagConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<OrderListTag>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToOrderListTagConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToOrderListTagConnectionEdge = Edge & OrderListTagConnectionEdge & {
-  __typename?: 'RootQueryToOrderListTagConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: OrderListTag;
-};
-
-/** Pagination metadata specific to &quot;RootQueryToOrderListTagConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToOrderListTagConnection Nodes. */
-export type RootQueryToOrderListTagConnectionPageInfo = OrderListTagConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToOrderListTagConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToOrderListTagConnection connection */
-export type RootQueryToOrderListTagConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the RootQuery type and the paAirQualityApplication type */
@@ -33145,8 +32050,6 @@ export type RootQueryToPageConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -33171,8 +32074,6 @@ export type RootQueryToPageConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -33318,8 +32219,6 @@ export type RootQueryToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -33356,8 +32255,6 @@ export type RootQueryToPostConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -33891,8 +32788,6 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -33917,162 +32812,24 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the RootQuery type and the serviceBulletinCategory type */
-export type RootQueryToServiceBulletinCategoryConnection = Connection & ServiceBulletinCategoryConnection & {
-  __typename?: 'RootQueryToServiceBulletinCategoryConnection';
-  /** Edges for the RootQueryToServiceBulletinCategoryConnection connection */
-  edges: Array<RootQueryToServiceBulletinCategoryConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletinCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToServiceBulletinCategoryConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToServiceBulletinCategoryConnectionEdge = Edge & ServiceBulletinCategoryConnectionEdge & {
-  __typename?: 'RootQueryToServiceBulletinCategoryConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletinCategory;
-};
-
-/** Pagination metadata specific to &quot;RootQueryToServiceBulletinCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToServiceBulletinCategoryConnection Nodes. */
-export type RootQueryToServiceBulletinCategoryConnectionPageInfo = PageInfo & ServiceBulletinCategoryConnectionPageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToServiceBulletinCategoryConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToServiceBulletinCategoryConnection connection */
-export type RootQueryToServiceBulletinCategoryConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the RootQuery type and the serviceBulletin type */
-export type RootQueryToServiceBulletinConnection = Connection & ServiceBulletinConnection & {
+export type RootQueryToServiceBulletinConnection = {
   __typename?: 'RootQueryToServiceBulletinConnection';
-  /** Edges for the RootQueryToServiceBulletinConnection connection */
-  edges: Array<RootQueryToServiceBulletinConnectionEdge>;
-  /** The nodes of the connection, without the edges */
   nodes: Array<ServiceBulletin>;
-  /** Information about pagination in a connection. */
   pageInfo: RootQueryToServiceBulletinConnectionPageInfo;
 };
 
-/** An edge in a connection */
-export type RootQueryToServiceBulletinConnectionEdge = Edge & ServiceBulletinConnectionEdge & {
-  __typename?: 'RootQueryToServiceBulletinConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletin;
-};
-
-/** Pagination metadata specific to &quot;RootQueryToServiceBulletinConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToServiceBulletinConnection Nodes. */
-export type RootQueryToServiceBulletinConnectionPageInfo = PageInfo & ServiceBulletinConnectionPageInfo & WpPageInfo & {
+export type RootQueryToServiceBulletinConnectionPageInfo = {
   __typename?: 'RootQueryToServiceBulletinConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
   hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Arguments for filtering the RootQueryToServiceBulletinConnection connection */
 export type RootQueryToServiceBulletinConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
+  orderby?: InputMaybe<PostObjectsConnectionOrderbyInput>;
 };
 
 /** Connection between the RootQuery type and the shippingClass type */
@@ -34667,974 +33424,35 @@ export type SendPasswordResetEmailPayload = {
   user?: Maybe<User>;
 };
 
-/** The serviceBulletin type */
-export type ServiceBulletin = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type ServiceBulletin = {
   __typename?: 'ServiceBulletin';
-  /**
-   * The ancestors of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have ancestors
-   */
-  ancestors?: Maybe<ServiceBulletinToServiceBulletinConnection>;
-  /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the ContentType type */
-  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-  /** The name of the Content Type the node belongs to */
-  contentTypeName: Scalars['String']['output'];
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** Post publishing date. */
   date?: Maybe<Scalars['String']['output']>;
-  /** The publishing date set in GMT. */
-  dateGmt?: Maybe<Scalars['String']['output']>;
-  /** The desired slug of the post */
-  desiredSlug?: Maybe<Scalars['String']['output']>;
-  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** The RSS enclosure for the object */
-  enclosure?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-  /** The excerpt of the post. */
   excerpt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-  /** The database identifier for the featured image node assigned to the content node */
-  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Globally unique ID of the featured image assigned to the node */
-  featuredImageId?: Maybe<Scalars['ID']['output']>;
-  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-  guid?: Maybe<Scalars['String']['output']>;
-  /** Whether the service_bulletin object is password protected. */
-  hasPassword?: Maybe<Scalars['Boolean']['output']>;
-  /** The globally unique identifier of the service_bulletin object. */
   id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is a node in the preview state */
-  isPreview?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** True if the node is a revision of another node */
-  isRevision?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** The user that most recently edited the node */
-  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /** The permalink of the post */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
   modified?: Maybe<Scalars['String']['output']>;
-  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-  modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /**
-   * The parent of the content node.
-   * @deprecated This content type is not hierarchical and typically will not have a parent
-   */
-  parent?: Maybe<ServiceBulletinToParentConnectionEdge>;
-  /** The password for the service_bulletin object. */
-  password?: Maybe<Scalars['String']['output']>;
-  /** Connection between the serviceBulletin type and the serviceBulletin type */
-  preview?: Maybe<ServiceBulletinToPreviewConnectionEdge>;
-  /** The database id of the preview node */
-  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** Whether the object is a node in the preview state */
-  previewRevisionId?: Maybe<Scalars['ID']['output']>;
-  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-  /** Connection between the ServiceBulletin type and the serviceBulletin type */
-  revisions?: Maybe<ServiceBulletinToRevisionConnection>;
-  /** Connection between the ServiceBulletin type and the serviceBulletinCategory type */
   serviceBulletinCategories?: Maybe<ServiceBulletinToServiceBulletinCategoryConnection>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of the databaseId field
-   */
-  serviceBulletinId: Scalars['Int']['output'];
-  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
-  /** The current status of the object */
-  status?: Maybe<Scalars['String']['output']>;
-  /** The template assigned to the node */
-  template?: Maybe<ContentTemplate>;
-  /** Connection between the ServiceBulletin type and the TermNode type */
-  terms?: Maybe<ServiceBulletinToTermNodeConnection>;
-  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']['output']>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
 };
 
-
-/** The serviceBulletin type */
-export type ServiceBulletinAncestorsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinContentArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinExcerptArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinRevisionsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinToRevisionConnectionWhereArgs>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinServiceBulletinCategoriesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinToServiceBulletinCategoryConnectionWhereArgs>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinTermsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinToTermNodeConnectionWhereArgs>;
-};
-
-
-/** The serviceBulletin type */
-export type ServiceBulletinTitleArgs = {
-  format?: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategory = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+export type ServiceBulletinCategory = {
   __typename?: 'ServiceBulletinCategory';
-  /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-  ancestors?: Maybe<ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection>;
-  /** Connection between the serviceBulletinCategory type and its children serviceBulletinCategories. */
-  children?: Maybe<ServiceBulletinCategoryToServiceBulletinCategoryConnection>;
-  /** Connection between the ServiceBulletinCategory type and the ContentNode type */
-  contentNodes?: Maybe<ServiceBulletinCategoryToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /** The human friendly name of the object. */
   name?: Maybe<Scalars['String']['output']>;
-  /** Connection between the serviceBulletinCategory type and its parent serviceBulletinCategory. */
-  parent?: Maybe<ServiceBulletinCategoryToParentServiceBulletinCategoryConnectionEdge>;
-  /** Database id of the parent node */
-  parentDatabaseId?: Maybe<Scalars['Int']['output']>;
-  /** The globally unique identifier of the parent node. */
-  parentId?: Maybe<Scalars['ID']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  serviceBulletinCategoryId?: Maybe<Scalars['Int']['output']>;
-  /** Connection between the ServiceBulletinCategory type and the serviceBulletin type */
-  serviceBulletins?: Maybe<ServiceBulletinCategoryToServiceBulletinConnection>;
-  /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the ServiceBulletinCategory type and the Taxonomy type */
-  taxonomy?: Maybe<ServiceBulletinCategoryToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
 };
 
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryAncestorsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryChildrenArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinCategoryToServiceBulletinCategoryConnectionWhereArgs>;
-};
-
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinCategoryToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The serviceBulletinCategory type */
-export type ServiceBulletinCategoryServiceBulletinsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ServiceBulletinCategoryToServiceBulletinConnectionWhereArgs>;
-};
-
-/** A paginated collection of serviceBulletinCategory Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of serviceBulletinCategory Nodes */
-export type ServiceBulletinCategoryConnection = {
-  /** A list of edges (relational context) between RootQuery and connected serviceBulletinCategory Nodes */
-  edges: Array<ServiceBulletinCategoryConnectionEdge>;
-  /** A list of connected serviceBulletinCategory Nodes */
-  nodes: Array<ServiceBulletinCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinCategoryConnectionPageInfo;
-};
-
-/** Represents a connection to a serviceBulletinCategory. Contains both the serviceBulletinCategory Node and metadata about the relationship. */
-export type ServiceBulletinCategoryConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected serviceBulletinCategory Node */
-  node: ServiceBulletinCategory;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinCategoryConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ServiceBulletinCategoryConnectionEdge&quot; Nodes. */
-export type ServiceBulletinCategoryConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Identifier types for retrieving a specific ServiceBulletinCategory. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the ServiceBulletinCategory. */
-export enum ServiceBulletinCategoryIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the ServiceBulletinCategory type and the serviceBulletinCategory type */
-export type ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection = Connection & ServiceBulletinCategoryConnection & {
-  __typename?: 'ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection';
-  /** Edges for the ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection connection */
-  edges: Array<ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletinCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionEdge = Edge & ServiceBulletinCategoryConnectionEdge & {
-  __typename?: 'ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletinCategory;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnection Nodes. */
-export type ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionPageInfo = PageInfo & ServiceBulletinCategoryConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinCategoryToAncestorsServiceBulletinCategoryConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Connection between the ServiceBulletinCategory type and the ContentNode type */
-export type ServiceBulletinCategoryToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'ServiceBulletinCategoryToContentNodeConnection';
-  /** Edges for the ServiceBulletinCategoryToContentNodeConnection connection */
-  edges: Array<ServiceBulletinCategoryToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinCategoryToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinCategoryToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'ServiceBulletinCategoryToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinCategoryToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinCategoryToContentNodeConnection Nodes. */
-export type ServiceBulletinCategoryToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinCategoryToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinCategoryToContentNodeConnection connection */
-export type ServiceBulletinCategoryToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfServiceBulletinCategoryEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the ServiceBulletinCategory type and the serviceBulletinCategory type */
-export type ServiceBulletinCategoryToParentServiceBulletinCategoryConnectionEdge = Edge & OneToOneConnection & ServiceBulletinCategoryConnectionEdge & {
-  __typename?: 'ServiceBulletinCategoryToParentServiceBulletinCategoryConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: ServiceBulletinCategory;
-};
-
-/** Connection between the ServiceBulletinCategory type and the serviceBulletinCategory type */
-export type ServiceBulletinCategoryToServiceBulletinCategoryConnection = Connection & ServiceBulletinCategoryConnection & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinCategoryConnection';
-  /** Edges for the ServiceBulletinCategoryToServiceBulletinCategoryConnection connection */
-  edges: Array<ServiceBulletinCategoryToServiceBulletinCategoryConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletinCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinCategoryToServiceBulletinCategoryConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinCategoryToServiceBulletinCategoryConnectionEdge = Edge & ServiceBulletinCategoryConnectionEdge & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinCategoryConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletinCategory;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinCategoryToServiceBulletinCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinCategoryToServiceBulletinCategoryConnection Nodes. */
-export type ServiceBulletinCategoryToServiceBulletinCategoryConnectionPageInfo = PageInfo & ServiceBulletinCategoryConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinCategoryConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinCategoryToServiceBulletinCategoryConnection connection */
-export type ServiceBulletinCategoryToServiceBulletinCategoryConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the ServiceBulletinCategory type and the serviceBulletin type */
-export type ServiceBulletinCategoryToServiceBulletinConnection = Connection & ServiceBulletinConnection & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinConnection';
-  /** Edges for the ServiceBulletinCategoryToServiceBulletinConnection connection */
-  edges: Array<ServiceBulletinCategoryToServiceBulletinConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletin>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinCategoryToServiceBulletinConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinCategoryToServiceBulletinConnectionEdge = Edge & ServiceBulletinConnectionEdge & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletin;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinCategoryToServiceBulletinConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinCategoryToServiceBulletinConnection Nodes. */
-export type ServiceBulletinCategoryToServiceBulletinConnectionPageInfo = PageInfo & ServiceBulletinConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinCategoryToServiceBulletinConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinCategoryToServiceBulletinConnection connection */
-export type ServiceBulletinCategoryToServiceBulletinConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the ServiceBulletinCategory type and the Taxonomy type */
-export type ServiceBulletinCategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'ServiceBulletinCategoryToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
-
-/** A paginated collection of serviceBulletin Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of serviceBulletin Nodes */
-export type ServiceBulletinConnection = {
-  /** A list of edges (relational context) between RootQuery and connected serviceBulletin Nodes */
-  edges: Array<ServiceBulletinConnectionEdge>;
-  /** A list of connected serviceBulletin Nodes */
-  nodes: Array<ServiceBulletin>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinConnectionPageInfo;
-};
-
-/** Represents a connection to a serviceBulletin. Contains both the serviceBulletin Node and metadata about the relationship. */
-export type ServiceBulletinConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected serviceBulletin Node */
-  node: ServiceBulletin;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ServiceBulletinConnectionEdge&quot; Nodes. */
-export type ServiceBulletinConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Identifier types for retrieving a specific ServiceBulletin. Specifies which unique attribute is used to find an exact ServiceBulletin. */
 export enum ServiceBulletinIdType {
-  /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
-  /** Identify a resource by the (hashed) Global ID. */
   Id = 'ID',
-  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
-  /** Identify a resource by the URI. */
   Uri = 'URI'
 }
 
-/** Set relationships between the serviceBulletin to serviceBulletinCategories */
-export type ServiceBulletinServiceBulletinCategoriesInput = {
-  /** If true, this will append the serviceBulletinCategory to existing related serviceBulletinCategories. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<ServiceBulletinServiceBulletinCategoriesNodeInput>>>;
-};
-
-/** List of serviceBulletinCategories to connect the serviceBulletin to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type ServiceBulletinServiceBulletinCategoriesNodeInput = {
-  /** The description of the serviceBulletinCategory. This field is used to set a description of the serviceBulletinCategory if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the serviceBulletinCategory. If present, this will be used to connect to the serviceBulletin. If no existing serviceBulletinCategory exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the serviceBulletinCategory. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the serviceBulletinCategory. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the serviceBulletin type and the serviceBulletin type */
-export type ServiceBulletinToParentConnectionEdge = Edge & OneToOneConnection & ServiceBulletinConnectionEdge & {
-  __typename?: 'ServiceBulletinToParentConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: ServiceBulletin;
-};
-
-/** Connection between the serviceBulletin type and the serviceBulletin type */
-export type ServiceBulletinToPreviewConnectionEdge = Edge & OneToOneConnection & ServiceBulletinConnectionEdge & {
-  __typename?: 'ServiceBulletinToPreviewConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: ServiceBulletin;
-};
-
-/** Connection between the ServiceBulletin type and the serviceBulletin type */
-export type ServiceBulletinToRevisionConnection = Connection & ServiceBulletinConnection & {
-  __typename?: 'ServiceBulletinToRevisionConnection';
-  /** Edges for the ServiceBulletinToRevisionConnection connection */
-  edges: Array<ServiceBulletinToRevisionConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletin>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinToRevisionConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinToRevisionConnectionEdge = Edge & ServiceBulletinConnectionEdge & {
-  __typename?: 'ServiceBulletinToRevisionConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletin;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinToRevisionConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinToRevisionConnection Nodes. */
-export type ServiceBulletinToRevisionConnectionPageInfo = PageInfo & ServiceBulletinConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinToRevisionConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinToRevisionConnection connection */
-export type ServiceBulletinToRevisionConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the ServiceBulletin type and the serviceBulletinCategory type */
-export type ServiceBulletinToServiceBulletinCategoryConnection = Connection & ServiceBulletinCategoryConnection & {
+export type ServiceBulletinToServiceBulletinCategoryConnection = {
   __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection';
-  /** Edges for the ServiceBulletinToServiceBulletinCategoryConnection connection */
-  edges: Array<ServiceBulletinToServiceBulletinCategoryConnectionEdge>;
-  /** The nodes of the connection, without the edges */
   nodes: Array<ServiceBulletinCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinToServiceBulletinCategoryConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinToServiceBulletinCategoryConnectionEdge = Edge & ServiceBulletinCategoryConnectionEdge & {
-  __typename?: 'ServiceBulletinToServiceBulletinCategoryConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletinCategory;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinToServiceBulletinCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinToServiceBulletinCategoryConnection Nodes. */
-export type ServiceBulletinToServiceBulletinCategoryConnectionPageInfo = PageInfo & ServiceBulletinCategoryConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinToServiceBulletinCategoryConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinToServiceBulletinCategoryConnection connection */
-export type ServiceBulletinToServiceBulletinCategoryConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the serviceBulletin type and the serviceBulletin type */
-export type ServiceBulletinToServiceBulletinConnection = Connection & ServiceBulletinConnection & {
-  __typename?: 'ServiceBulletinToServiceBulletinConnection';
-  /** Edges for the ServiceBulletinToServiceBulletinConnection connection */
-  edges: Array<ServiceBulletinToServiceBulletinConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ServiceBulletin>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinToServiceBulletinConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinToServiceBulletinConnectionEdge = Edge & ServiceBulletinConnectionEdge & {
-  __typename?: 'ServiceBulletinToServiceBulletinConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ServiceBulletin;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinToServiceBulletinConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinToServiceBulletinConnection Nodes. */
-export type ServiceBulletinToServiceBulletinConnectionPageInfo = PageInfo & ServiceBulletinConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinToServiceBulletinConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Connection between the ServiceBulletin type and the TermNode type */
-export type ServiceBulletinToTermNodeConnection = Connection & TermNodeConnection & {
-  __typename?: 'ServiceBulletinToTermNodeConnection';
-  /** Edges for the ServiceBulletinToTermNodeConnection connection */
-  edges: Array<ServiceBulletinToTermNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<TermNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: ServiceBulletinToTermNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ServiceBulletinToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
-  __typename?: 'ServiceBulletinToTermNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: TermNode;
-};
-
-/** Pagination metadata specific to &quot;ServiceBulletinToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of ServiceBulletinToTermNodeConnection Nodes. */
-export type ServiceBulletinToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
-  __typename?: 'ServiceBulletinToTermNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ServiceBulletinToTermNodeConnection connection */
-export type ServiceBulletinToTermNodeConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** The Taxonomy to filter terms by */
-  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Input for the setDefaultPaymentMethod mutation. */
@@ -35659,49 +33477,41 @@ export type SetDefaultPaymentMethodPayload = {
 /** All of the registered settings */
 export type Settings = {
   __typename?: 'Settings';
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   discussionSettingsDefaultCommentStatus?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   discussionSettingsDefaultPingStatus?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsDateFormat?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsDescription?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsEmail?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
-  generalSettingsHomeUrl?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsLanguage?: Maybe<Scalars['String']['output']>;
-  /** Settings of the integer Settings Group */
+  /** Settings of the the integer Settings Group */
   generalSettingsStartOfWeek?: Maybe<Scalars['Int']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsTimeFormat?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsTimezone?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsTitle?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   generalSettingsUrl?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
-  permalinkSettingsCategoryBase?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
-  permalinkSettingsStructure?: Maybe<Scalars['String']['output']>;
-  /** Settings of the string Settings Group */
-  permalinkSettingsTagBase?: Maybe<Scalars['String']['output']>;
-  /** Settings of the integer Settings Group */
+  /** Settings of the the integer Settings Group */
   readingSettingsPageForPosts?: Maybe<Scalars['Int']['output']>;
-  /** Settings of the integer Settings Group */
+  /** Settings of the the integer Settings Group */
   readingSettingsPageOnFront?: Maybe<Scalars['Int']['output']>;
-  /** Settings of the integer Settings Group */
+  /** Settings of the the integer Settings Group */
   readingSettingsPostsPerPage?: Maybe<Scalars['Int']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   readingSettingsShowOnFront?: Maybe<Scalars['String']['output']>;
-  /** Settings of the integer Settings Group */
+  /** Settings of the the integer Settings Group */
   writingSettingsDefaultCategory?: Maybe<Scalars['Int']['output']>;
-  /** Settings of the string Settings Group */
+  /** Settings of the the string Settings Group */
   writingSettingsDefaultPostFormat?: Maybe<Scalars['String']['output']>;
-  /** Settings of the boolean Settings Group */
+  /** Settings of the the boolean Settings Group */
   writingSettingsUseSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
@@ -35886,8 +33696,6 @@ export type ShippingClassToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -35912,8 +33720,6 @@ export type ShippingClassToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -36430,8 +34236,6 @@ export type SimpleProduct = ContentNode & DatabaseIdentifier & DownloadableProdu
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** Connection between the Product type and the orderListTag type */
-  orderListTags?: Maybe<ProductToOrderListTagConnection>;
   /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
@@ -36784,16 +34588,6 @@ export type SimpleProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A simple product object */
-export type SimpleProductOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToOrderListTagConnectionWhereArgs>;
 };
 
 
@@ -37489,8 +35283,6 @@ export type TagToApplicationNoteConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -37527,8 +35319,6 @@ export type TagToApplicationNoteConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -37578,8 +35368,6 @@ export type TagToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -37604,8 +35392,6 @@ export type TagToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -37669,8 +35455,6 @@ export type TagToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -37707,8 +35491,6 @@ export type TagToPostConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -37986,8 +35768,6 @@ export enum TaxonomyEnum {
   Category = 'CATEGORY',
   /** Taxonomy enum graphql_document_group */
   Graphqldocumentgroup = 'GRAPHQLDOCUMENTGROUP',
-  /** Taxonomy enum order_list */
-  Orderlisttag = 'ORDERLISTTAG',
   /** Taxonomy enum pa_air-quality-application */
   Paairqualityapplication = 'PAAIRQUALITYAPPLICATION',
   /** Taxonomy enum pa_air-quality-sensor-type */
@@ -38026,8 +35806,6 @@ export enum TaxonomyEnum {
   Producttag = 'PRODUCTTAG',
   /** Taxonomy enum product_type */
   Producttype = 'PRODUCTTYPE',
-  /** Taxonomy enum service_bulletin_category */
-  Servicebulletincategory = 'SERVICEBULLETINCATEGORY',
   /** Taxonomy enum product_shipping_class */
   Shippingclass = 'SHIPPINGCLASS',
   /** Taxonomy enum post_tag */
@@ -38664,8 +36442,6 @@ export type UpdateGraphqlDocumentGroupPayload = {
 export type UpdateGraphqlDocumentInput = {
   /** Alias names for saved GraphQL query documents */
   alias?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** The userId to assign as the author of the object */
-  authorId?: InputMaybe<Scalars['ID']['input']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The content of the object */
@@ -38674,14 +36450,10 @@ export type UpdateGraphqlDocumentInput = {
   date?: InputMaybe<Scalars['String']['input']>;
   /** Description for the saved GraphQL document */
   description?: InputMaybe<Scalars['String']['input']>;
-  /** The excerpt of the object */
-  excerpt?: InputMaybe<Scalars['String']['input']>;
   /** Allow, deny or default access grant for specific query */
   grant?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the graphqlDocument and graphqlDocumentGroups */
   graphqlDocumentGroups?: InputMaybe<GraphqlDocumentGraphqlDocumentGroupsInput>;
-  /** JSON-encoded HTTP headers to send with this query (IDE execution context). */
-  headers?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the graphqlDocument object */
   id: Scalars['ID']['input'];
   /** Override the edit lock when another user is editing the post */
@@ -38698,8 +36470,6 @@ export type UpdateGraphqlDocumentInput = {
   status?: InputMaybe<PostStatusEnum>;
   /** The title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
-  /** JSON-encoded variables to send with this query (IDE execution context). */
-  variables?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The payload for the updateGraphqlDocument mutation. */
@@ -38709,86 +36479,6 @@ export type UpdateGraphqlDocumentPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The Post object mutation type. */
   graphqlDocument?: Maybe<GraphqlDocument>;
-};
-
-/** Input for the updateGraphqlSetting mutation. */
-export type UpdateGraphqlSettingInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The field name within the section. */
-  field: Scalars['String']['input'];
-  /** The settings section slug (e.g. "graphql_general_settings"). */
-  section: Scalars['String']['input'];
-  /** The new value. The variant key must match the field's registered type (text → text, checkbox → checkbox, etc). */
-  value: UpdateGraphqlSettingValueInput;
-};
-
-/** The payload for the updateGraphqlSetting mutation. */
-export type UpdateGraphqlSettingPayload = {
-  __typename?: 'UpdateGraphqlSettingPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The field name that was updated. */
-  field: Scalars['String']['output'];
-  /** The registered type of the field, so the client knows which `value` variant to read. */
-  fieldType: Scalars['String']['output'];
-  /** Optional human-readable status message. */
-  message?: Maybe<Scalars['String']['output']>;
-  /** The section slug that was updated. */
-  section: Scalars['String']['output'];
-  /** Whether the setting was persisted. */
-  success: Scalars['Boolean']['output'];
-  /** The persisted value, in the variant matching the field type. */
-  value: UpdateGraphqlSettingValue;
-};
-
-/** The current value of a WPGraphQL setting, surfaced in the variant that matches the registered field type. Other variants are null. */
-export type UpdateGraphqlSettingValue = {
-  __typename?: 'UpdateGraphqlSettingValue';
-  /** Boolean value (checkbox-typed setting). */
-  checkbox?: Maybe<Scalars['Boolean']['output']>;
-  /** CSS color value. */
-  color?: Maybe<Scalars['String']['output']>;
-  /** Array of string values matching the registered multicheck options. */
-  multicheck?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Numeric value. */
-  number?: Maybe<Scalars['Float']['output']>;
-  /** String value matching one of the registered radio options. */
-  radio?: Maybe<Scalars['String']['output']>;
-  /** String value matching one of the registered select options. */
-  select?: Maybe<Scalars['String']['output']>;
-  /** Plain text value. */
-  text?: Maybe<Scalars['String']['output']>;
-  /** Multi-line text value. */
-  textarea?: Maybe<Scalars['String']['output']>;
-  /** URL value. */
-  url?: Maybe<Scalars['String']['output']>;
-  /** WordPress user role slug. */
-  userRoleSelect?: Maybe<Scalars['String']['output']>;
-};
-
-/** Value to set for a WPGraphQL setting. Exactly one variant must be provided, matching the registered field type. */
-export type UpdateGraphqlSettingValueInput = {
-  /** Boolean value (checkbox-typed setting). */
-  checkbox?: InputMaybe<Scalars['Boolean']['input']>;
-  /** CSS color value. */
-  color?: InputMaybe<Scalars['String']['input']>;
-  /** Array of string values matching the registered multicheck options. */
-  multicheck?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Numeric value. */
-  number?: InputMaybe<Scalars['Float']['input']>;
-  /** String value matching one of the registered radio options. */
-  radio?: InputMaybe<Scalars['String']['input']>;
-  /** String value matching one of the registered select options. */
-  select?: InputMaybe<Scalars['String']['input']>;
-  /** Plain text value. */
-  text?: InputMaybe<Scalars['String']['input']>;
-  /** Multi-line text value. */
-  textarea?: InputMaybe<Scalars['String']['input']>;
-  /** URL value. */
-  url?: InputMaybe<Scalars['String']['input']>;
-  /** WordPress user role slug. */
-  userRoleSelect?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Input for the updateItemQuantities mutation. */
@@ -38895,31 +36585,6 @@ export type UpdateOrderInput = {
   status?: InputMaybe<OrderStatusEnum>;
   /** Order transaction ID */
   transactionId?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Input for the updateOrderListTag mutation. */
-export type UpdateOrderListTagInput = {
-  /** The slug that the order_list will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the order_list object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the orderListTag object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the order_list object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateOrderListTag mutation. */
-export type UpdateOrderListTagPayload = {
-  __typename?: 'UpdateOrderListTagPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created order_list */
-  orderListTag?: Maybe<OrderListTag>;
 };
 
 /** The payload for the updateOrder mutation. */
@@ -39497,8 +37162,6 @@ export type UpdateProductInput = {
   ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** Set connections between the Product and orderListTags */
-  orderListTags?: InputMaybe<ProductOrderListTagsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -39615,72 +37278,6 @@ export type UpdateReviewPayload = {
   review?: Maybe<Comment>;
 };
 
-/** Input for the updateServiceBulletinCategory mutation. */
-export type UpdateServiceBulletinCategoryInput = {
-  /** The slug that the service_bulletin_category will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the service_bulletin_category object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the serviceBulletinCategory object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the service_bulletin_category object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The database ID of the service_bulletin_category that should be set as the parent. This field cannot be used in conjunction with parentId */
-  parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
-  /** The ID of the service_bulletin_category that should be set as the parent. This field cannot be used in conjunction with parentDatabaseId */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateServiceBulletinCategory mutation. */
-export type UpdateServiceBulletinCategoryPayload = {
-  __typename?: 'UpdateServiceBulletinCategoryPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created service_bulletin_category */
-  serviceBulletinCategory?: Maybe<ServiceBulletinCategory>;
-};
-
-/** Input for the updateServiceBulletin mutation. */
-export type UpdateServiceBulletinInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content?: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** The excerpt of the object */
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the serviceBulletin object */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the serviceBulletin and serviceBulletinCategories */
-  serviceBulletinCategories?: InputMaybe<ServiceBulletinServiceBulletinCategoriesInput>;
-  /** The slug of the object */
-  slug?: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status?: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateServiceBulletin mutation. */
-export type UpdateServiceBulletinPayload = {
-  __typename?: 'UpdateServiceBulletinPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  serviceBulletin?: Maybe<ServiceBulletin>;
-};
-
 /** Input for the updateSession mutation. */
 export type UpdateSessionInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -39722,6 +37319,8 @@ export type UpdateSettingsInput = {
   generalSettingsTimezone?: InputMaybe<Scalars['String']['input']>;
   /** Site title. */
   generalSettingsTitle?: InputMaybe<Scalars['String']['input']>;
+  /** Site URL. */
+  generalSettingsUrl?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the page that should display the latest posts */
   readingSettingsPageForPosts?: InputMaybe<Scalars['Int']['input']>;
   /** The ID of the page that should be displayed on the front page */
@@ -39749,8 +37348,6 @@ export type UpdateSettingsPayload = {
   discussionSettings?: Maybe<DiscussionSettings>;
   /** Update the GeneralSettings setting. */
   generalSettings?: Maybe<GeneralSettings>;
-  /** Update the PermalinkSettings setting. */
-  permalinkSettings?: Maybe<PermalinkSettings>;
   /** Update the ReadingSettings setting. */
   readingSettings?: Maybe<ReadingSettings>;
   /** Update the WritingSettings setting. */
@@ -39929,8 +37526,6 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   extraCapabilities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** First name of the user. This is equivalent to the WP_User-&gt;user_first_name property. */
   firstName?: Maybe<Scalars['String']['output']>;
-  /** Connection between the User type and the graphqlDocument type */
-  graphqlDocuments?: Maybe<UserToGraphqlDocumentConnection>;
   /** Whether the user has enabled keyboard shortcuts for comment moderation. Defaults to false. */
   hasCommentShortcutsEnabled?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the user has enabled the visual editor. When enabled, the WYSIWYG editor is used for content editing. Defaults to true. */
@@ -40036,16 +37631,6 @@ export type UserEnqueuedStylesheetsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
-export type UserGraphqlDocumentsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<UserToGraphqlDocumentConnectionWhereArgs>;
 };
 
 
@@ -40190,15 +37775,15 @@ export type UserRoleConnectionPageInfo = {
 
 /** Permission levels for user accounts. Defines the standard access levels that control what actions users can perform within the system. */
 export enum UserRoleEnum {
-  /** Full system access with ability to manage all aspects of the site. */
+  /** User role with specific capabilities */
   Administrator = 'ADMINISTRATOR',
-  /** Can publish and manage their own content. */
+  /** User role with specific capabilities */
   Author = 'AUTHOR',
-  /** Can write and manage their own content but cannot publish. */
+  /** User role with specific capabilities */
   Contributor = 'CONTRIBUTOR',
   /** User role with specific capabilities */
   Customer = 'CUSTOMER',
-  /** Content management access without administrative capabilities. */
+  /** User role with specific capabilities */
   Editor = 'EDITOR',
   /** User role with specific capabilities */
   ExpressAccount = 'EXPRESS_ACCOUNT',
@@ -40210,7 +37795,7 @@ export enum UserRoleEnum {
   SeoManager = 'SEO_MANAGER',
   /** User role with specific capabilities */
   ShopManager = 'SHOP_MANAGER',
-  /** Can only manage their profile and read content. */
+  /** User role with specific capabilities */
   Subscriber = 'SUBSCRIBER'
 }
 
@@ -40375,89 +37960,6 @@ export type UserToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConne
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection between the User type and the graphqlDocument type */
-export type UserToGraphqlDocumentConnection = Connection & GraphqlDocumentConnection & {
-  __typename?: 'UserToGraphqlDocumentConnection';
-  /** Edges for the UserToGraphqlDocumentConnection connection */
-  edges: Array<UserToGraphqlDocumentConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<GraphqlDocument>;
-  /** Information about pagination in a connection. */
-  pageInfo: UserToGraphqlDocumentConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type UserToGraphqlDocumentConnectionEdge = Edge & GraphqlDocumentConnectionEdge & {
-  __typename?: 'UserToGraphqlDocumentConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: GraphqlDocument;
-};
-
-/** Pagination metadata specific to &quot;UserToGraphqlDocumentConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToGraphqlDocumentConnection Nodes. */
-export type UserToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'UserToGraphqlDocumentConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the UserToGraphqlDocumentConnection connection */
-export type UserToGraphqlDocumentConnectionWhereArgs = {
-  /** The user that's connected as the author of the object. Use the userId for the author object. */
-  author?: InputMaybe<Scalars['Int']['input']>;
-  /** Find objects connected to author(s) in the array of author's userIds */
-  authorIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Find objects connected to the author by the author's nicename */
-  authorName?: InputMaybe<Scalars['String']['input']>;
-  /** Find objects NOT connected to author(s) in the array of author's userIds */
-  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Connection between the User type and the mediaItem type */
 export type UserToMediaItemConnection = Connection & MediaItemConnection & {
   __typename?: 'UserToMediaItemConnection';
@@ -40509,8 +38011,6 @@ export type UserToMediaItemConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -40535,8 +38035,6 @@ export type UserToMediaItemConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -40592,8 +38090,6 @@ export type UserToPageConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -40618,8 +38114,6 @@ export type UserToPageConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -40683,8 +38177,6 @@ export type UserToPostConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -40721,8 +38213,6 @@ export type UserToPostConnectionWhereArgs = {
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -40772,8 +38262,6 @@ export type UserToRevisionsConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -40798,8 +38286,6 @@ export type UserToRevisionsConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -41028,8 +38514,6 @@ export type VariableProduct = ContentNode & DatabaseIdentifier & InventoriedProd
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** Connection between the Product type and the orderListTag type */
-  orderListTags?: Maybe<ProductToOrderListTagConnection>;
   /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
@@ -41382,16 +38866,6 @@ export type VariableProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A variable product object */
-export type VariableProductOrderListTagsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToOrderListTagConnectionWhereArgs>;
 };
 
 
@@ -41877,8 +39351,6 @@ export type VisibleProductToContentNodeConnectionWhereArgs = {
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** True to limit the results to sticky posts; false to exclude sticky posts. Note: this filters the result set, it does not float sticky posts to the top of the results. */
-  isSticky?: InputMaybe<Scalars['Boolean']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -41903,8 +39375,6 @@ export type VisibleProductToContentNodeConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
   status?: InputMaybe<PostStatusEnum>;
-  /** Filter the connection to content assigned a specific template. */
-  template?: InputMaybe<ContentTemplateEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -42113,14 +39583,12 @@ export type WriteReviewPayload = {
 };
 
 /** The writing setting type */
-export type WritingSettings = Node & {
+export type WritingSettings = {
   __typename?: 'WritingSettings';
   /** Default post category. */
   defaultCategory?: Maybe<Scalars['Int']['output']>;
   /** Default post format. */
   defaultPostFormat?: Maybe<Scalars['String']['output']>;
-  /** The globally unique identifier of the settings group. */
-  id: Scalars['ID']['output'];
   /** Convert emoticons like :-) and :-P to graphics on display. */
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
@@ -42232,20 +39700,6 @@ export enum __TypeKind {
   /** Indicates this type is a non-null. `ofType` is a valid field. */
   NonNull = 'NON_NULL'
 }
-
-export type EasyOrderSkuLookupQueryVariables = Exact<{
-  sku: Scalars['String']['input'];
-}>;
-
-
-export type EasyOrderSkuLookupQuery = { __typename?: 'RootQuery', easyOrderSkuLookup?: { __typename?: 'EasyOrderSkuMatch', databaseId?: number | null | undefined, parentDatabaseId?: number | null | undefined, isVariation?: boolean | null | undefined, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, partNumber?: string | null | undefined, canonicalId?: string | null | undefined, price?: string | null | undefined, stockStatus?: string | null | undefined, imageUrl?: string | null | undefined, imageAltText?: string | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined } | null | undefined };
-
-export type EasyOrderCuratedListQueryVariables = Exact<{
-  term: Scalars['String']['input'];
-}>;
-
-
-export type EasyOrderCuratedListQuery = { __typename?: 'RootQuery', easyOrderCuratedList?: Array<{ __typename?: 'EasyOrderSkuMatch', databaseId?: number | null | undefined, parentDatabaseId?: number | null | undefined, isVariation?: boolean | null | undefined, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, partNumber?: string | null | undefined, canonicalId?: string | null | undefined, price?: string | null | undefined, stockStatus?: string | null | undefined, imageUrl?: string | null | undefined, imageAltText?: string | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined } | null | undefined> | null | undefined };
 
 export type ChatDocumentationSearchQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -42818,48 +40272,6 @@ export type GetServiceBulletinBySlugQueryVariables = Exact<{
 export type GetServiceBulletinBySlugQuery = { __typename?: 'RootQuery', serviceBulletin?: { __typename?: 'ServiceBulletin', id: string, title?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, excerpt?: string | null | undefined, content?: string | null | undefined, serviceBulletinCategories?: { __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection', nodes: Array<{ __typename?: 'ServiceBulletinCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined } | null | undefined };
 
 
-export const EasyOrderSkuLookupDocument = gql`
-    query EasyOrderSkuLookup($sku: String!) {
-  easyOrderSkuLookup(sku: $sku) {
-    databaseId
-    parentDatabaseId
-    isVariation
-    name
-    slug
-    sku
-    partNumber
-    canonicalId
-    price
-    stockStatus
-    imageUrl
-    imageAltText
-    customerGroup1
-    customerGroup2
-    customerGroup3
-  }
-}
-    `;
-export const EasyOrderCuratedListDocument = gql`
-    query EasyOrderCuratedList($term: String!) {
-  easyOrderCuratedList(term: $term) {
-    databaseId
-    parentDatabaseId
-    isVariation
-    name
-    slug
-    sku
-    partNumber
-    canonicalId
-    price
-    stockStatus
-    imageUrl
-    imageAltText
-    customerGroup1
-    customerGroup2
-    customerGroup3
-  }
-}
-    `;
 export const ChatDocumentationSearchDocument = gql`
     query ChatDocumentationSearch($search: String!, $first: Int = 5) {
   applicationNotes(first: $first, where: {search: $search, status: PUBLISH}) {
@@ -45605,12 +43017,6 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    EasyOrderSkuLookup(variables: EasyOrderSkuLookupQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EasyOrderSkuLookupQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<EasyOrderSkuLookupQuery>({ document: EasyOrderSkuLookupDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'EasyOrderSkuLookup', 'query', variables);
-    },
-    EasyOrderCuratedList(variables: EasyOrderCuratedListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EasyOrderCuratedListQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<EasyOrderCuratedListQuery>({ document: EasyOrderCuratedListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'EasyOrderCuratedList', 'query', variables);
-    },
     ChatDocumentationSearch(variables: ChatDocumentationSearchQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChatDocumentationSearchQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ChatDocumentationSearchQuery>({ document: ChatDocumentationSearchDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ChatDocumentationSearch', 'query', variables);
     },

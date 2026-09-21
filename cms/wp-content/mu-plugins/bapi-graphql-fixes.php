@@ -167,13 +167,12 @@ function bapi_get_user_favorites($user_id) {
         throw new \GraphQL\Error\UserError('Saved products data is unreadable');
     }
 
-    foreach ($favorites as $favorite) {
-        if (!is_array($favorite)) {
-            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
-        }
+    $valid_favorites = array_values(array_filter($favorites, 'is_array'));
+    if ($favorites !== [] && $valid_favorites === []) {
+        throw new \GraphQL\Error\UserError('Saved products data is unreadable');
     }
 
-    return $favorites;
+    return $valid_favorites;
 }
 
 /**

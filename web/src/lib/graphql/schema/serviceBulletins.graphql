@@ -6,7 +6,7 @@ enum ServiceBulletinIdType {
 }
 
 input RootQueryToServiceBulletinConnectionWhereArgs {
-  orderby: [PostObjectsConnectionOrderbyInput]
+  orderby: PostObjectsConnectionOrderbyInput
 }
 
 type RootQueryToServiceBulletinConnectionPageInfo {

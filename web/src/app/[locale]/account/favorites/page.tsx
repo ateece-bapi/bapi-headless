@@ -29,6 +29,7 @@ export default function FavoritesPage() {
   const locale = (params?.locale as string) || 'en';
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<Error | null>(null);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -43,13 +44,21 @@ export default function FavoritesPage() {
 
   const fetchFavorites = async () => {
     try {
+      setLoadError(null);
       const response = await fetch('/api/favorites');
-      if (response.ok) {
-        const data = await response.json();
-        setFavorites(data.favorites || []);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch favorites: ${response.status}`);
       }
+
+      const data = await response.json();
+      if (!Array.isArray(data.favorites)) {
+        throw new Error('Favorites response is invalid');
+      }
+
+      setFavorites(data.favorites);
     } catch (error) {
       logger.error('Error fetching favorites', error);
+      setLoadError(error instanceof Error ? error : new Error('Failed to fetch favorites'));
     } finally {
       setIsLoading(false);
     }
@@ -61,6 +70,10 @@ export default function FavoritesPage() {
       setFavorites((prev) => prev.filter((fav) => fav.productId !== productId));
     }
   };
+
+  if (loadError) {
+    throw loadError;
+  }
 
   if (!isLoaded || isLoading) {
     return (

@@ -137,6 +137,64 @@ add_action('plugins_loaded', function () {
 // BAPI Favorites — stored as JSON in WordPress user meta (bapi_favorites)
 // ---------------------------------------------------------------------------
 
+/**
+ * Read favorites without silently converting unreadable data into an empty list.
+ */
+function bapi_get_user_favorites($user_id) {
+    $raw = get_user_meta($user_id, 'bapi_favorites', true);
+
+    if ($raw === '' || $raw === null) {
+        return [];
+    }
+
+    if (is_array($raw)) {
+        $favorites = $raw;
+    } elseif (is_string($raw)) {
+        $trimmed = ltrim($raw);
+        if ($trimmed === '' || $trimmed[0] !== '[') {
+            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+        }
+
+        $favorites = json_decode($raw, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+        }
+    } else {
+        throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+    }
+
+    if (!is_array($favorites) || !array_is_list($favorites)) {
+        throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+    }
+
+    $valid_favorites = array_values(array_filter($favorites, 'is_array'));
+    if ($favorites !== [] && $valid_favorites === []) {
+        throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+    }
+
+    return $valid_favorites;
+}
+
+/**
+ * Persist and read back the complete collection before reporting success.
+ */
+function bapi_save_user_favorites($user_id, $favorites) {
+    $encoded = wp_json_encode(array_values($favorites));
+    if (!is_string($encoded)) {
+        throw new \GraphQL\Error\UserError('Failed to encode saved products');
+    }
+
+    // WordPress strips slashes from metadata values before storage. Add them
+    // first so JSON escapes (for example, quoted inch dimensions) survive.
+    update_user_meta($user_id, 'bapi_favorites', wp_slash($encoded));
+    clean_user_cache($user_id);
+
+    $persisted = bapi_get_user_favorites($user_id);
+    if ($persisted !== array_values($favorites)) {
+        throw new \GraphQL\Error\UserError('Failed to verify saved products');
+    }
+}
+
 add_action('graphql_register_types', function () {
 
     // ── Shared object type ─────────────────────────────────────────────────
@@ -163,14 +221,7 @@ add_action('graphql_register_types', function () {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }
 
-            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
-            $favs = $raw ? json_decode($raw, true) : [];
-            if (!is_array($favs)) {
-                return [];
-            }
-
-            // Filter out any corrupted/non-array entries before sorting
-            $favs = array_values(array_filter($favs, fn($f) => is_array($f)));
+            $favs = bapi_get_user_favorites($user_id);
             usort($favs, function ($a, $b) {
                 $ta = strtotime($a['createdAt'] ?? '') ?: 0;
                 $tb = strtotime($b['createdAt'] ?? '') ?: 0;
@@ -203,12 +254,7 @@ add_action('graphql_register_types', function () {
             // NOTE: This is a read-modify-write on a shared JSON blob. Concurrent writes from
             // multiple tabs could overwrite each other (last-write-wins). Accepted limitation
             // for Phase 1 given the low probability of simultaneous favorites saves.
-            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
-            $favs = $raw ? json_decode($raw, true) : [];
-            if (!is_array($favs)) {
-                $favs = [];
-            }
-            $favs = array_values(array_filter($favs, 'is_array'));
+            $favs = bapi_get_user_favorites($user_id);
 
             // Sanitize input first, then check for duplicates against stored (already-sanitized) values
             $sanitized_id = sanitize_text_field($input['productId']);
@@ -235,10 +281,7 @@ add_action('graphql_register_types', function () {
             ];
 
             $favs[] = $new_fav;
-            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
-            if ($saved === false) {
-                throw new \GraphQL\Error\UserError('Failed to persist favorites');
-            }
+            bapi_save_user_favorites($user_id, $favs);
 
             return ['favorite' => $new_fav, 'alreadyExists' => false, 'success' => true];
         },
@@ -259,11 +302,7 @@ add_action('graphql_register_types', function () {
                 throw new \GraphQL\Error\UserError('Unauthorized');
             }
 
-            $raw  = get_user_meta($user_id, 'bapi_favorites', true);
-            $favs = $raw ? json_decode($raw, true) : [];
-            if (!is_array($favs)) {
-                $favs = [];
-            }
+            $favs = bapi_get_user_favorites($user_id);
 
             $sanitized_id = sanitize_text_field($input['productId']);
             $found = false;
@@ -282,10 +321,7 @@ add_action('graphql_register_types', function () {
                 return ['success' => false, 'notFound' => true];
             }
 
-            $saved = update_user_meta($user_id, 'bapi_favorites', wp_json_encode($favs));
-            if ($saved === false) {
-                throw new \GraphQL\Error\UserError('Failed to persist favorites');
-            }
+            bapi_save_user_favorites($user_id, $favs);
             return ['success' => true, 'notFound' => false];
         },
     ]);

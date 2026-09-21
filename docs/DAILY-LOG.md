@@ -8,6 +8,32 @@
 
 ---
 
+## September 21, 2026 — Saved Products Persistence Integrity Fix
+
+**Status:** Resolved and deployed to Kinsta staging
+
+- Investigated reports that users could save products successfully, receive a success toast, and
+  later see an empty Saved Products page.
+- Root cause was invalid JSON in the WordPress `bapi_favorites` user-meta value. Product names with
+  quoted dimensions such as `18"` were corrupted because WordPress unslashes metadata writes.
+- Restored all three affected saved products for `lennox.test` after backing up the original raw
+  metadata and verifying a three-item recovery.
+- Updated both copies of `bapi-graphql-fixes.php` to use `wp_slash()` for JSON writes, centralize
+  metadata parsing, verify complete collections after writes, and reject invalid collection roots.
+- Valid list data is preserved, malformed inner entries are filtered and reindexed, and all-invalid
+  collections fail closed instead of appearing as an empty favorites list.
+- Updated the Saved Products page to show a retryable error when the favorites API fails rather than
+  displaying a misleading empty state.
+- Deployed the MU-plugin to Kinsta, created a timestamped backup, and flushed WordPress caches.
+- Audited all stored favorites records: two valid records and zero invalid records.
+- Verified live persistence with quoted dimensions, mixed valid/malformed entries, invalid roots, and
+  the recovered `lennox.test` collection.
+- Added focused validation coverage: 65 favorites tests passing, PHP syntax checks passing, and no
+  diagnostics in changed files.
+- Merged PR #746; local cleanup completed by returning to `main` and deleting the feature branch.
+
+---
+
 ## August 27, 2026 — Selective Data Refresh Scope Approved
 
 **Status:** Business-data policy approved; production apply remains **NO-GO**

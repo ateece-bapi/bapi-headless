@@ -148,19 +148,32 @@ function bapi_get_user_favorites($user_id) {
     }
 
     if (is_array($raw)) {
-        return array_values(array_filter($raw, 'is_array'));
-    }
+        $favorites = $raw;
+    } elseif (is_string($raw)) {
+        $trimmed = ltrim($raw);
+        if ($trimmed === '' || $trimmed[0] !== '[') {
+            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+        }
 
-    if (!is_string($raw)) {
+        $favorites = json_decode($raw, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+        }
+    } else {
         throw new \GraphQL\Error\UserError('Saved products data is unreadable');
     }
 
-    $favorites = json_decode($raw, true);
-    if (!is_array($favorites) || json_last_error() !== JSON_ERROR_NONE) {
+    if (!is_array($favorites) || !array_is_list($favorites)) {
         throw new \GraphQL\Error\UserError('Saved products data is unreadable');
     }
 
-    return array_values(array_filter($favorites, 'is_array'));
+    foreach ($favorites as $favorite) {
+        if (!is_array($favorite)) {
+            throw new \GraphQL\Error\UserError('Saved products data is unreadable');
+        }
+    }
+
+    return $favorites;
 }
 
 /**

@@ -8,6 +8,42 @@
 
 ---
 
+## September 22, 2026 — Pressure Sensor Datasheet/Instruction Sync from Legacy Site
+
+**Status:** Deployed to Kinsta staging; PR merged to main
+
+- Confirmed the legacy site (bapihvac.com) had newer datasheet and instruction revisions than the
+  headless site for 4 pressure sensor products (ZPM Standard Accuracy, ZPM Precision Accuracy, EZ,
+  and standalone ZPM), starting from a legacy Rev. 06/30/26 datasheet spotted by comparing cover-page
+  revision dates.
+- Confirmed via WP-CLI over SSH that the legacy site (bapihvac.com) blocks automated/scripted file
+  fetches with a CAPTCHA, so the 19 updated PDFs were downloaded manually through a browser rather
+  than scripted, then uploaded to the Kinsta staging server via `scp`.
+- Added `scripts/update-pressure-sensor-datasheets.sh`, modeled on the existing
+  `scripts/attach-eta-datasheets.sh` pattern, with `--dry-run` support and two WP-CLI-backed helpers:
+  `replace_file_in_place()` (overwrites an existing attachment's file content, preserving the
+  WordPress attachment ID and ACF `product_documents` references) and `attach_new_document()`
+  (imports a new PDF and appends an ACF repeater row for renamed/new files).
+- Fixed a bug found during the first real run where the script printed `OK Overwrote ...` even when
+  the underlying `cp` failed (missing source file) because the code never checked `cp`'s exit status;
+  added explicit source-file and target-file existence checks plus a `cp` exit-code check so failures
+  are now reported as `ERROR` instead of silently claiming success.
+- Ran the script against Kinsta staging: all 19 datasheet/instruction files across the 4 products
+  overwritten in place (`Updated: 19 | Skipped: 0 | Warnings: 0`), followed by `wp cache flush`.
+- Addressed a high-severity Copilot PR review finding ("Basename lookup can overwrite the wrong
+  attachment") by replacing the filesystem `find "$uploads_dir" -name "$filename" | head -n1` lookup
+  with a `resolve_attachment_path()` helper that queries WordPress's own `_wp_attached_file` postmeta
+  via `wp db query`, aborting the file if there isn't exactly one matching attachment; re-verified all
+  19 files still resolve correctly with the safer lookup before merging.
+- PR merged to `main`; remote and local feature branches deleted, local `main` fast-forwarded.
+- Manual follow-up remaining: trigger `/api/revalidate` for the 4 affected `product-{slug}` tags with
+  the real `REVALIDATE_SECRET` to bust the Next.js cache for the updated product pages.
+
+### Files Changed
+- `scripts/update-pressure-sensor-datasheets.sh` (new)
+
+---
+
 ## September 21, 2026 — Saved Products Persistence Integrity Fix
 
 **Status:** Resolved and deployed to Kinsta staging

@@ -1210,6 +1210,8 @@
       "madeInUSA": "Wyprodukowano w USA",
       "madeInUSADesc": "Wysoka jakość",
       "warranty": "5-letnia gwarancja",
+      "warrantyLifetime": "Gwarancja dożywotnia",
+      "warrantyTwoYear": "2-letnia gwarancja",
       "warrantyDesc": "Pełna ochrona",
       "returns": "Zwroty przez 30 dni",
       "returnsDesc": "Bez zbędnych formalności",
@@ -1982,10 +1984,9 @@
         "title": "Dodatkowe kroki, które podejmujemy",
         "description": "Oprócz naszych wyjątkowych ludzi, BAPI używa tylko najwyższej jakości elementów pomiarowych oraz skrupulatnych procesów produkcyjnych, testowania i zapewnienia jakości.",
         "features": {
-          "compatibility": "Gwarancja 100% kompatybilności",
           "certified": "Certyfikat CE i zgodność z RoHS",
           "nist": "Precyzyjne przyrządy z certyfikatem NIST",
-          "production": "Zautomatyzowane stanowiska produkcyjne",
+          "production": "Stanowiska produkcyjne wspomagane robotami",
           "experience": "Ponad 30 lat doświadczenia",
           "distribution": "Globalna sieć dystrybucji"
         }

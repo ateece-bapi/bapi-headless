@@ -394,3 +394,38 @@ describe('Accessibility', () => {
     });
   });
 });
+
+describe('Warranty and compliance trust badge overrides', () => {
+  it('shows the default 5-year warranty and CE/RoHS badge for an unmapped product', () => {
+    renderProductDetail({ ...baseProduct, slug: 'some-other-product', variations: [] });
+    expect(screen.getByText('5-Year Warranty')).toBeInTheDocument();
+    expect(screen.getByText('CE/RoHS Certified')).toBeInTheDocument();
+  });
+
+  it('shows the lifetime warranty badge for a mapped slug', () => {
+    renderProductDetail({ ...baseProduct, slug: 'surface-temperature-sensor', variations: [] });
+    expect(screen.getByText('Lifetime Warranty')).toBeInTheDocument();
+    expect(screen.queryByText('5-Year Warranty')).not.toBeInTheDocument();
+  });
+
+  it('hides the CE/RoHS badge for a product mapped to a non-certified category', () => {
+    renderProductDetail({
+      ...baseProduct,
+      slug: 'some-accessory',
+      variations: [],
+      productCategories: [{ id: 'cat-1', name: 'Wireless Accessories', slug: 'wireless-accessories' }],
+    } as ProductForClient);
+    expect(screen.queryByText('CE/RoHS Certified')).not.toBeInTheDocument();
+  });
+
+  it('keeps the CE/RoHS badge for a certified exception within a hidden category', () => {
+    renderProductDetail({
+      ...baseProduct,
+      slug: 'water-leak-detector-with-a-rope-sensor',
+      variations: [],
+      productCategories: [{ id: 'cat-1', name: 'Wireless Accessories', slug: 'wireless-accessories' }],
+    } as ProductForClient);
+    expect(screen.getByText('CE/RoHS Certified')).toBeInTheDocument();
+  });
+});
+

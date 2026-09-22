@@ -282,7 +282,7 @@ export default function SensorsPage() {
               {
                 title: '5-Year Warranty',
                 description:
-                  'Comprehensive coverage on all sensors demonstrates our confidence in quality',
+                  'Comprehensive coverage on our sensors, with lifetime warranty available on select models, demonstrates our confidence in quality',
               },
               {
                 title: 'Made in USA',

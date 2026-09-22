@@ -3,9 +3,14 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon, VerifiedIcon, ShieldIcon } from '@/lib/icons';
+import type { WarrantyType } from '@/lib/utils/getProductWarranty';
 
 interface TrustBadgesProps {
   className?: string;
+  /** Per-product warranty override; defaults to the sitewide 5-year warranty. */
+  warrantyType?: WarrantyType;
+  /** Hides the CE/RoHS badge for products that aren't actually CE/RoHS certified. */
+  hideComplianceBadge?: boolean;
 }
 
 /**
@@ -13,15 +18,26 @@ interface TrustBadgesProps {
  *
  * Displays key trust signals to improve conversion:
  * - Made in USA
- * - 5-Year Warranty
+ * - Warranty (5-year by default, overridable to Lifetime or 2-year per product)
  * - 30-Day Returns
  * - Expert Support
  * - 100% Testing
- * - CE/RoHS Certified
+ * - CE/RoHS Certified (hidden for non-certified products)
  */
-export default function TrustBadges({ className = '' }: TrustBadgesProps) {
+export default function TrustBadges({
+  className = '',
+  warrantyType = 'standard',
+  hideComplianceBadge = false,
+}: TrustBadgesProps) {
   const t = useTranslations('productPage.trustBadges');
-  
+
+  const warrantyLabel =
+    warrantyType === 'lifetime'
+      ? t('warrantyLifetime')
+      : warrantyType === 'two-year'
+        ? t('warrantyTwoYear')
+        : t('warranty');
+
   const badges = [
     {
       icon: PackageIcon,
@@ -31,7 +47,7 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
     },
     {
       icon: ClockIcon,
-      label: t('warranty'),
+      label: warrantyLabel,
       description: t('warrantyDesc'),
       color: 'text-green-600',
     },
@@ -53,12 +69,16 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
       description: t('testingDesc'),
       color: 'text-primary-600',
     },
-    {
-      icon: ShieldIcon,
-      label: t('certified'),
-      description: t('certifiedDesc'),
-      color: 'text-green-600',
-    },
+    ...(hideComplianceBadge
+      ? []
+      : [
+          {
+            icon: ShieldIcon,
+            label: t('certified'),
+            description: t('certifiedDesc'),
+            color: 'text-green-600',
+          },
+        ]),
   ];
 
   return (
@@ -66,7 +86,10 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
       <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-700">
         {t('heading')}
       </h3>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+      <div
+        className={`grid grid-cols-2 gap-4 md:grid-cols-3 ${hideComplianceBadge ? 'lg:grid-cols-5' : 'lg:grid-cols-6'}`}
+      >
+
         {badges.map((badge) => {
           const Icon = badge.icon;
           return (

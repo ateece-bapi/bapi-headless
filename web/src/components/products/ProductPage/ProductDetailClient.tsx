@@ -13,6 +13,8 @@ import { ProductVariationSelector, RecentlyViewed } from '@/components/products'
 import { useRecentlyViewed, useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import { getProductWarrantyType } from '@/lib/utils/getProductWarranty';
+import { shouldHideComplianceBadge } from '@/lib/utils/getProductCompliance';
 import type { CartItem } from '@/store';
 import { Link } from '@/lib/navigation';
 
@@ -49,6 +51,17 @@ export default function ProductDetailClient({
 
   // Determine if this is a simple product (no variations)
   const isSimpleProduct = !product?.variations || product.variations.length === 0;
+
+  const warrantyType = getProductWarrantyType(product?.slug);
+  // page.tsx flattens productCategories to a plain array; fall back to raw GraphQL `.nodes`
+  // shape defensively so this keeps working if a caller passes the unflattened query result.
+  const productCategoryNodes = Array.isArray(product?.productCategories)
+    ? product.productCategories
+    : (product?.productCategories?.nodes ?? []);
+  const hideComplianceBadge = shouldHideComplianceBadge(
+    product?.slug,
+    productCategoryNodes.map((category: { slug?: string }) => category?.slug)
+  );
 
   // Handle variation change with loading state
   const handleVariationChange = (variation: any) => {
@@ -115,7 +128,7 @@ export default function ProductDetailClient({
 
         {/* Trust badges full width */}
         <div className="container mx-auto px-4 pb-8">
-          <TrustBadges />
+          <TrustBadges warrantyType={warrantyType} hideComplianceBadge={hideComplianceBadge} />
         </div>
 
         <div className="container mx-auto px-4 py-8">

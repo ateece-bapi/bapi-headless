@@ -705,6 +705,8 @@
       "madeInUSA": "米国製造",
       "madeInUSADesc": "高品質",
       "warranty": "5年保証",
+      "warrantyLifetime": "生涯保証",
+      "warrantyTwoYear": "2年保証",
       "warrantyDesc": "完全保証",
       "returns": "30日返品",
       "returnsDesc": "簡単返品",
@@ -1477,10 +1479,9 @@
         "title": "私たちが行う追加的な取り組み",
         "description": "優れた人材に加え、BAPIは最高品質のセンシング要素と徹底した製造、テスト、品質保証の手順を使用しています。",
         "features": {
-          "compatibility": "100%互換性保証",
           "certified": "CE認証およびRoHS指令対応",
           "nist": "NIST traceableの精密機器",
-          "production": "コンピューター支援生産ステーション",
+          "production": "ロボット支援生産ステーション",
           "experience": "30年以上の経験",
           "distribution": "グローバル流通ネットワーク"
         }

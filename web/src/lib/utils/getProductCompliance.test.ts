@@ -21,4 +21,13 @@ describe('shouldHideComplianceBadge', () => {
   it('returns false when neither the slug nor categories match', () => {
     expect(shouldHideComplianceBadge('some-other-product', ['temperature-sensors'])).toBe(false);
   });
+
+  it('returns false for CE-certified accessories even when the category is otherwise hidden', () => {
+    expect(
+      shouldHideComplianceBadge('water-leak-detector-with-a-rope-sensor', ['wireless-accessories'])
+    ).toBe(false);
+    expect(
+      shouldHideComplianceBadge('DOOR-MONITOR-ALARM-DMA', ['wireless-accessories'])
+    ).toBe(false);
+  });
 });

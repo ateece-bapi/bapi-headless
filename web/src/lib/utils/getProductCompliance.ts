@@ -44,12 +44,27 @@ const HIDE_COMPLIANCE_BADGE_CATEGORY_SLUGS: ReadonlySet<string> = new Set([
   'eta-line',
 ]);
 
+/**
+ * Exceptions within a hidden category: these Wireless Accessories products ARE actually
+ * CE certified, so the badge must still show even though the rest of the category hides it.
+ */
+const SHOW_COMPLIANCE_BADGE_SLUGS: ReadonlySet<string> = new Set([
+  'water-leak-detector-with-a-rope-sensor',
+  'blu-test-wireless-remote-temperature-piercing-tip',
+  'door-monitor-alarm-dma',
+  'blu-test-bluetooth-testing-probe-suite',
+  'water-leak-detector-in-a-bapi-box-2',
+]);
+
 /** Determine whether the sitewide CE/RoHS trust badge should be hidden for this product. */
 export function shouldHideComplianceBadge(
   slug: string | null | undefined,
   categorySlugs: ReadonlyArray<string | null | undefined> = []
 ): boolean {
-  if (slug && HIDE_COMPLIANCE_BADGE_SLUGS.has(slug.toLowerCase())) return true;
+  const normalizedSlug = slug?.toLowerCase();
+
+  if (normalizedSlug && SHOW_COMPLIANCE_BADGE_SLUGS.has(normalizedSlug)) return false;
+  if (normalizedSlug && HIDE_COMPLIANCE_BADGE_SLUGS.has(normalizedSlug)) return true;
 
   return categorySlugs.some(
     (categorySlug) => !!categorySlug && HIDE_COMPLIANCE_BADGE_CATEGORY_SLUGS.has(categorySlug.toLowerCase())

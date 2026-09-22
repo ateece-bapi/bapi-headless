@@ -1479,10 +1479,9 @@
         "title": "Les Étapes Supplémentaires que Nous Prenons",
         "description": "En plus de nos employés exceptionnels, BAPI n'utilise que les éléments de détection de la plus haute qualité et des procédures de fabrication, de test et d'assurance qualité méticuleuses.",
         "features": {
-          "compatibility": "Garantie de 100% de Compatibilité",
           "certified": "Certifié CE et Conforme à la Norme RoHS",
           "nist": "Instruments de Précision Traçables NIST",
-          "production": "Postes de Production Assistés par Ordinateur",
+          "production": "Postes de Production Assistés par Robot",
           "experience": "Plus de 30 Ans d'Expérience",
           "distribution": "Réseau de Distribution Mondial"
         }

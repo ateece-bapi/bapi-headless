@@ -1601,10 +1601,9 @@
         "title": "我们采取的额外措施",
         "description": "除了优秀的员工,BAPI还使用最高质量的传感元件,并采用精密的制造、测试和质量保证程序。",
         "features": {
-          "compatibility": "100%兼容性保证",
           "certified": "CE认证和RoHS合规",
           "nist": "NIST可追溯精密仪器",
-          "production": "计算机辅助生产站",
+          "production": "机器人辅助生产站",
           "experience": "30多年经验",
           "distribution": "全球分销网络"
         }

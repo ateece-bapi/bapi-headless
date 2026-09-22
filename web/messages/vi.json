@@ -1562,10 +1562,9 @@
         "title": "Những Bước Thêm Chúng Tôi Thực Hiện",
         "description": "Ngoài những người tuyệt vời của mình, BAPI chỉ sử dụng các bộ phận cảm biến chất lượng cao nhất và các quy trình sản xuất, kiểm tra và đảm bảo chất lượng tỉ mỉ.",
         "features": {
-          "compatibility": "Bảo Đảm 100% Tương Thích",
           "certified": "Chứng Nhận CE & Tuân Thủ RoHS",
           "nist": "Các Công Cụ Đo Chính Xác Truy Nguyên NIST",
-          "production": "Trạm Sản Xuất Được Hỗ Trợ Máy Tính",
+          "production": "Trạm Sản Xuất Được Hỗ Trợ Robot",
           "experience": "Hơn 30 Năm Kinh Nghiệm",
           "distribution": "Mạng Lưới Phân Phối Toàn Cầu"
         }

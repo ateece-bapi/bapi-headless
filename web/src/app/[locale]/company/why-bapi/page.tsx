@@ -153,7 +153,6 @@ export default async function WhyBapiPage() {
 
             <div className="grid gap-4">
               {[
-                'compatibility',
                 'certified',
                 'nist',
                 'production',

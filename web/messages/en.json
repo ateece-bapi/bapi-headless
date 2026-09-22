@@ -559,10 +559,9 @@
         "title": "The Extra Steps We Take",
         "description": "In addition to our exceptional people, BAPI uses only the highest quality sensing elements and meticulous manufacturing, testing and quality assurance procedures.",
         "features": {
-          "compatibility": "100% Compatibility Guarantee",
           "certified": "CE Certified & RoHS Compliant",
           "nist": "NIST Traceable Precision Instruments",
-          "production": "Computer Aided Production Stations",
+          "production": "Robot Aided Production Stations",
           "experience": "Over 30 Years of Experience",
           "distribution": "Global Distribution Network"
         }

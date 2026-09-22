@@ -1395,10 +1395,9 @@
         "title": "Die zusätzlichen Schritte, die wir unternehmen",
         "description": "Zusätzlich zu unserem außergewöhnlichen Personal verwendet BAPI nur hochwertigste Messfühler und sorgfältige Fertigungs-, Prüf- und Qualitätssicherungsverfahren.",
         "features": {
-          "compatibility": "100% Kompatibilitätsgarantie",
           "certified": "CE-zertifiziert und RoHS-konform",
           "nist": "NIST-rückführbare Präzisionsinstrumente",
-          "production": "Computergesteuerte Produktionsstationen",
+          "production": "Roboterunterstützte Produktionsstationen",
           "experience": "Über 30 Jahre Erfahrung",
           "distribution": "Globales Vertriebsnetzwerk"
         }

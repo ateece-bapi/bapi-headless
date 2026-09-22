@@ -173,7 +173,6 @@ export default async function CompanyPage() {
                 'differentiators.testing.title',
                 'qualitySection.features.nist',
                 'qualitySection.features.production',
-                'qualitySection.features.compatibility',
               ] as const
             ).map((messageKey) => (
               <div

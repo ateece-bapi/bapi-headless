@@ -53,9 +53,14 @@ export default function ProductDetailClient({
   const isSimpleProduct = !product?.variations || product.variations.length === 0;
 
   const warrantyType = getProductWarrantyType(product?.slug);
+  // page.tsx flattens productCategories to a plain array; fall back to raw GraphQL `.nodes`
+  // shape defensively so this keeps working if a caller passes the unflattened query result.
+  const productCategoryNodes = Array.isArray(product?.productCategories)
+    ? product.productCategories
+    : (product?.productCategories?.nodes ?? []);
   const hideComplianceBadge = shouldHideComplianceBadge(
     product?.slug,
-    (product?.productCategories?.nodes ?? []).map((category: { slug?: string }) => category?.slug)
+    productCategoryNodes.map((category: { slug?: string }) => category?.slug)
   );
 
   // Handle variation change with loading state

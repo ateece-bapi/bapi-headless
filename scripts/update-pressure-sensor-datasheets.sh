@@ -42,6 +42,32 @@ get_post_id_by_slug() {
 }
 
 # ----------------------------------------------------------------
+# Helper: resolve the on-disk path for the attachment whose
+# _wp_attached_file postmeta ends with the given filename. Uses
+# WordPress's own attachment metadata (not a filesystem search) so
+# a duplicate filename elsewhere in uploads/ can't be matched
+# instead of the real attachment. Aborts (returns empty) unless
+# there is exactly one match.
+# ----------------------------------------------------------------
+resolve_attachment_path() {
+  local filename="$1"
+  local uploads_dir="$2"
+  local matches
+  matches=$(wp db query \
+    "SELECT meta_value FROM wp_postmeta WHERE meta_key='_wp_attached_file' AND (meta_value = '${filename}' OR meta_value LIKE '%/${filename}');" \
+    --skip-column-names --path="$WP_PATH" 2>/dev/null)
+  local count
+  count=$(grep -c . <<< "$matches")
+
+  if [[ "$count" -ne 1 ]]; then
+    echo "  ERROR  Expected exactly 1 attachment for $filename, found $count — aborting this file" >&2
+    return 1
+  fi
+
+  echo "$uploads_dir/$(tr -d '[:space:]' <<< "$matches")"
+}
+
+# ----------------------------------------------------------------
 # Helper: replace an existing attachment's file content in place,
 # preserving attachment ID + all ACF references (used when the
 # new PDF has the same filename as the currently attached one).
@@ -53,10 +79,16 @@ replace_file_in_place() {
   local uploads_dir
   uploads_dir=$(wp eval 'echo wp_upload_dir()["basedir"];' --path="$WP_PATH" 2>/dev/null)
   local target
-  target=$(find "$uploads_dir" -type f -name "$filename" 2>/dev/null | head -n1)
+  target=$(resolve_attachment_path "$filename" "$uploads_dir")
 
   if [[ -z "$target" ]]; then
-    echo "  WARN  No existing upload found matching $filename — will import as new instead"
+    (( WARN_COUNT++ ))
+    return 1
+  fi
+
+  if [[ ! -f "$target" ]]; then
+    echo "  ERROR  Resolved attachment path does not exist on disk: $target"
+    (( WARN_COUNT++ ))
     return 1
   fi
 

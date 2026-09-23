@@ -195,6 +195,22 @@ function bapi_save_user_favorites($user_id, $favorites) {
     }
 }
 
+/**
+ * Keep saved favorite URLs constrained to same-site product paths.
+ */
+function bapi_sanitize_favorite_product_url($product_url) {
+    if (!is_string($product_url)) {
+        return null;
+    }
+
+    $product_url = trim($product_url);
+    if (strpos($product_url, '/product/') !== 0) {
+        return null;
+    }
+
+    return sanitize_text_field($product_url);
+}
+
 add_action('graphql_register_types', function () {
 
     // ── Shared object type ─────────────────────────────────────────────────
@@ -205,6 +221,7 @@ add_action('graphql_register_types', function () {
             'productId'    => ['type' => 'String', 'description' => 'WordPress product database ID'],
             'productName'  => ['type' => 'String', 'description' => 'Product display name'],
             'productSlug'  => ['type' => 'String', 'description' => 'Product URL slug'],
+            'productUrl'   => ['type' => 'String', 'description' => 'Configured product URL path'],
             'productImage' => ['type' => 'String', 'description' => 'Product image URL'],
             'productPrice' => ['type' => 'String', 'description' => 'Product price string'],
             'createdAt'    => ['type' => 'String', 'description' => 'ISO 8601 creation timestamp'],
@@ -237,6 +254,7 @@ add_action('graphql_register_types', function () {
             'productId'    => ['type' => ['non_null' => 'String']],
             'productName'  => ['type' => ['non_null' => 'String']],
             'productSlug'  => ['type' => ['non_null' => 'String']],
+            'productUrl'   => ['type' => 'String'],
             'productImage' => ['type' => 'String'],
             'productPrice' => ['type' => 'String'],
         ],
@@ -275,6 +293,7 @@ add_action('graphql_register_types', function () {
                 'productId'    => $sanitized_id,
                 'productName'  => sanitize_text_field($input['productName']),
                 'productSlug'  => sanitize_text_field($input['productSlug']),
+                'productUrl'   => isset($input['productUrl']) ? bapi_sanitize_favorite_product_url($input['productUrl']) : null,
                 'productImage' => isset($input['productImage']) ? esc_url_raw($input['productImage']) : null,
                 'productPrice' => isset($input['productPrice']) ? sanitize_text_field($input['productPrice']) : null,
                 'createdAt'    => gmdate('c'),

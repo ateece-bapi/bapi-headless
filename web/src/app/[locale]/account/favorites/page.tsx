@@ -16,6 +16,7 @@ interface Favorite {
   productId: string;
   productName: string;
   productSlug: string;
+  productUrl?: string;
   productImage?: string;
   productPrice?: string;
   createdAt: string;
@@ -169,6 +170,7 @@ export default function FavoritesPage() {
                         productSlug={favorite.productSlug}
                         productImage={favorite.productImage}
                         productPrice={favorite.productPrice}
+                        productUrl={favorite.productUrl}
                         initialIsFavorited
                         size="sm"
                         variant="icon"
@@ -182,6 +184,7 @@ export default function FavoritesPage() {
                         id: favorite.productId,
                         name: favorite.productName,
                         slug: favorite.productSlug,
+                        url: favorite.productUrl,
                         image: favorite.productImage
                           ? { sourceUrl: favorite.productImage, altText: favorite.productName }
                           : null,

@@ -277,14 +277,26 @@ export default function VariationSelector({
     }
   }, [availableOptionsMap, selectedAttributes]);
 
-  if (variationAttributes.length === 0) {
-    return null;
-  }
-
   // Calculate progress
   const selectedCount = Object.keys(selectedAttributes).filter((k) => selectedAttributes[k]).length;
   const totalCount = variationAttributes.length;
   const progressPercent = (selectedCount / totalCount) * 100;
+
+  const configuredProductUrl = useMemo(() => {
+    if (!product || Object.keys(selectedAttributes).length === 0) return undefined;
+
+    const params = new URLSearchParams();
+    Object.entries(selectedAttributes).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+
+    const query = params.toString();
+    return `/product/${product.slug}${query ? `?${query}` : ''}`;
+  }, [product, selectedAttributes]);
+
+  if (variationAttributes.length === 0) {
+    return null;
+  }
 
   return (
     <section className={`mb-12 ${className}`} data-product-configurator>
@@ -406,10 +418,11 @@ export default function VariationSelector({
                     {/* Real FavoriteButton — persists to /account/favorites */}
                     {product && (
                       <FavoriteButton
-                        productId={String(product.databaseId)}
+                        productId={String(matchedVariation.databaseId)}
                         productName={`${product.name} (${matchedVariation.partNumber || matchedVariation.sku})`}
                         productSlug={product.slug}
                         productImage={matchedVariation.image?.sourceUrl || product.image?.sourceUrl}
+                        productUrl={configuredProductUrl}
                         size="sm"
                         variant="button"
                       />

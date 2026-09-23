@@ -15,6 +15,7 @@ interface ProductCardProps {
     slug?: string | null;
     partNumber?: string | null;
     price?: string | null;
+    url?: string | null;
     image?: {
       sourceUrl?: string | null;
       altText?: string | null;
@@ -35,6 +36,7 @@ export default function ProductCard({
   const { id, name, slug, partNumber, price, image, shortDescription } = product;
   const t = useTranslations('products');
   const resolvedImage = getProductImage(slug || '', image);
+  const href = product.url || `/product/${slug || 'unknown'}`;
 
   // Analytics tracking
   const analytics = useProductCardAnalytics({
@@ -60,7 +62,7 @@ export default function ProductCard({
     return (
       <Link
         ref={visibilityRef}
-        href={`/product/${slug || 'unknown'}`}
+        href={href}
         className="group flex gap-3 overflow-hidden rounded-lg border border-neutral-200 bg-white p-3 transition-all hover:border-primary-500 hover:shadow-lg sm:gap-6 sm:p-4"
         onClick={analytics.trackClick}
         onMouseEnter={analytics.trackHoverStart}
@@ -118,7 +120,7 @@ export default function ProductCard({
   return (
     <Link
       ref={visibilityRef}
-      href={`/product/${slug || 'unknown'}`}
+      href={href}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

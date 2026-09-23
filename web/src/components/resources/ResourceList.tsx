@@ -20,6 +20,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@/lib/icons';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 interface Resource {
   id: string;
@@ -266,7 +267,7 @@ function ResourceListContent({ resources }: ResourceListProps) {
     const nextPage = Math.min(Math.max(page, 1), totalPages);
     setCurrentPage(nextPage);
     updateUrl({ page: nextPage === 1 ? null : nextPage.toString() });
-    document.getElementById('resource-results')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('resource-results')?.scrollIntoView({ behavior: getScrollBehavior() });
   };
 
   return (

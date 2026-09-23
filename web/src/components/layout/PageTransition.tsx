@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import NProgress from 'nprogress';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 // Configure NProgress
 NProgress.configure({
@@ -30,7 +31,7 @@ export function PageTransition() {
     // Enable View Transitions API if supported
     if ('startViewTransition' in document) {
       // Smooth scroll to top on route change
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: getScrollBehavior() });
     }
 
     // Complete progress after short delay

@@ -12,6 +12,7 @@ import {
   UserCircleIcon,
 } from '@/lib/icons';
 import logger from '@/lib/logger';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -59,7 +60,7 @@ export default function ChatWidget() {
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: getScrollBehavior() });
   };
 
   useEffect(() => {

@@ -39,7 +39,7 @@ type ContactFormErrors = {
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_REGEX = /^[0-9()+\-.\s]{7,20}$/;
+const PHONE_REGEX = /^(?=.*\d)[0-9()+\-.\s]{7,20}$/;
 
 function validateContactForm(formData: FormData): ContactFormErrors {
   const errors: ContactFormErrors = {};
@@ -82,6 +82,8 @@ export default function ContactPage() {
   // Contact form validation state
   const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
   const contactFormRef = useRef<HTMLFormElement>(null);
+  // Only move focus after a submit-triggered validation, not on per-field error clears
+  const shouldFocusInvalidFieldRef = useRef(false);
 
   const clearFieldError = (field: keyof ContactFormErrors) => {
     setFormErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
@@ -89,11 +91,14 @@ export default function ContactPage() {
 
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    shouldFocusInvalidFieldRef.current = true;
     setFormErrors(validateContactForm(new FormData(e.currentTarget)));
   };
 
-  // Move focus to the first invalid field once validation errors render
+  // Move focus to the first invalid field once validation errors render from a submit
   useEffect(() => {
+    if (!shouldFocusInvalidFieldRef.current) return;
+    shouldFocusInvalidFieldRef.current = false;
     if (Object.keys(formErrors).length === 0) return;
     const firstInvalidField = contactFormRef.current?.querySelector<HTMLElement>(
       '[aria-invalid="true"]'

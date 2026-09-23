@@ -53,6 +53,7 @@ const DEFAULT_PROPS = {
   productSlug: 'bapi-stat-4',
   productImage: 'https://example.com/img.jpg',
   productPrice: '$99.00',
+  productUrl: '/product/bapi-stat-4?output=4-20ma',
 };
 
 function mockFetchResponse(data: object, ok = true, status = 200) {
@@ -259,7 +260,10 @@ describe('FavoriteButton', () => {
     await waitFor(() =>
       expect(mockFetch).toHaveBeenCalledWith(
         '/api/favorites',
-        expect.objectContaining({ method: 'POST' }),
+        expect.objectContaining({
+          method: 'POST',
+          body: expect.stringContaining('/product/bapi-stat-4?output=4-20ma'),
+        }),
       ),
     );
   });

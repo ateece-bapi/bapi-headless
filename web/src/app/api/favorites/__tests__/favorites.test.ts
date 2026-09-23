@@ -67,6 +67,7 @@ const fakeFav = (overrides = {}) => ({
   productId: 'prod-1',
   productName: 'Sensor A',
   productSlug: 'sensor-a',
+  productUrl: '/product/sensor-a',
   productImage: 'https://example.com/img.jpg',
   productPrice: '$99.00',
   createdAt: '2026-06-01T10:00:00.000Z',
@@ -203,6 +204,7 @@ describe('POST /api/favorites', () => {
     productSlug: 'new-sensor',
     productImage: 'https://example.com/img.jpg',
     productPrice: '$149.00',
+    productUrl: '/product/new-sensor?probe=18inch%20%28450mm%29',
   };
 
   beforeEach(() => {
@@ -211,7 +213,12 @@ describe('POST /api/favorites', () => {
     withAuth();
     mockGraphQL({
       addFavorite: {
-        favorite: fakeFav({ productId: 'prod-new', productName: 'New Sensor', productSlug: 'new-sensor' }),
+        favorite: fakeFav({
+          productId: 'prod-new',
+          productName: 'New Sensor',
+          productSlug: 'new-sensor',
+          productUrl: '/product/new-sensor?probe=18inch%20%28450mm%29',
+        }),
         alreadyExists: false,
         success: true,
       },
@@ -268,7 +275,15 @@ describe('POST /api/favorites', () => {
       productId: 'prod-new',
       productName: 'New Sensor',
       productSlug: 'new-sensor',
+      productUrl: '/product/new-sensor?probe=18inch%20%28450mm%29',
     });
+  });
+
+  it('does not forward unsafe productUrl values', async () => {
+    await POST(makePostRequest({ ...validBody, productUrl: 'https://example.com/product/new-sensor' }));
+    const [, options] = mockFetch.mock.calls[0];
+    const { variables } = JSON.parse(options.body as string);
+    expect(variables.input.productUrl).toBeUndefined();
   });
 
   it('sends product fields as GraphQL mutation variables', async () => {

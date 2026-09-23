@@ -13,6 +13,7 @@ interface FavoriteButtonProps {
   productSlug: string;
   productImage?: string;
   productPrice?: string;
+  productUrl?: string;
   initialIsFavorited?: boolean;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'icon' | 'button';
@@ -25,6 +26,7 @@ export default function FavoriteButton({
   productSlug,
   productImage,
   productPrice,
+  productUrl,
   initialIsFavorited,
   size = 'md',
   variant = 'icon',
@@ -126,6 +128,7 @@ export default function FavoriteButton({
             productSlug,
             productImage,
             productPrice,
+            productUrl,
           }),
         });
 

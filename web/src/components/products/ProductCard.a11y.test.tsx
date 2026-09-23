@@ -128,6 +128,20 @@ describe('ProductCard Accessibility', () => {
       expect(link).toHaveAttribute('href', '/product/temperature-sensor-ts-101');
     });
 
+    it('uses configured product URL when provided', () => {
+      render(
+        <ProductCard
+          product={{ ...mockProduct, url: '/product/temperature-sensor-ts-101?probe=18inch' }}
+          locale="en"
+          index={0}
+        />
+      );
+      expect(screen.getByRole('link')).toHaveAttribute(
+        'href',
+        '/product/temperature-sensor-ts-101?probe=18inch'
+      );
+    });
+
     it('link has accessible name from product name', () => {
       render(<ProductCard product={mockProduct} locale="en" index={0} />);
       const link = screen.getByRole('link');

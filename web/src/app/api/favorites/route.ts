@@ -11,6 +11,7 @@ interface Favorite {
   productId: string;
   productName: string;
   productSlug: string;
+  productUrl?: string;
   productImage?: string;
   productPrice?: string;
   createdAt: string;
@@ -89,6 +90,7 @@ export async function GET(_request: NextRequest) {
       `query GetMyFavorites {
         myFavorites {
           id productId productName productSlug productImage productPrice createdAt
+          productUrl
         }
       }`
     );
@@ -130,7 +132,7 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
     }
-    const { productId, productName, productSlug, productImage, productPrice } = body;
+    const { productId, productName, productSlug, productImage, productPrice, productUrl } = body;
 
     if (
       typeof productId !== 'string' || !productId ||
@@ -143,6 +145,7 @@ export async function POST(request: NextRequest) {
     // Only forward strings for optional fields
     const imageStr = typeof productImage === 'string' ? productImage : undefined;
     const priceStr = typeof productPrice === 'string' ? productPrice : undefined;
+    const urlStr = typeof productUrl === 'string' && productUrl.startsWith('/product/') ? productUrl : undefined;
 
     const { data, errors } = await wpGraphQL<{
       addFavorite: { favorite: Favorite; alreadyExists: boolean; success: boolean };
@@ -150,12 +153,12 @@ export async function POST(request: NextRequest) {
       token,
       `mutation AddFavorite($input: AddFavoriteInput!) {
         addFavorite(input: $input) {
-          favorite { id productId productName productSlug productImage productPrice createdAt }
+          favorite { id productId productName productSlug productUrl productImage productPrice createdAt }
           alreadyExists
           success
         }
       }`,
-      { input: { productId, productName, productSlug, productImage: imageStr, productPrice: priceStr } }
+      { input: { productId, productName, productSlug, productUrl: urlStr, productImage: imageStr, productPrice: priceStr } }
     );
 
     if (errors?.length) {

@@ -1,0 +1,26 @@
+type EasyOrderSkuMatch {
+  databaseId: Int
+  parentDatabaseId: Int
+  canonicalId: ID
+  name: String
+  slug: String
+  sku: String
+  partNumber: String
+  price: String
+  stockStatus: String
+  imageUrl: String
+  imageAltText: String
+  customerGroup1: String
+  customerGroup2: String
+  customerGroup3: String
+  isVariation: Boolean
+}
+
+extend type BapiFavorite {
+  productUrl: String
+}
+
+extend type RootQuery {
+  easyOrderSkuLookup(sku: String!): EasyOrderSkuMatch
+  easyOrderCuratedList(term: String!): [EasyOrderSkuMatch]
+}

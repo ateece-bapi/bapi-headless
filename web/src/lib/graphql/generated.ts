@@ -1515,6 +1515,7 @@ export type BapiFavorite = {
   productPrice?: Maybe<Scalars['String']['output']>;
   /** Product URL slug */
   productSlug?: Maybe<Scalars['String']['output']>;
+  productUrl?: Maybe<Scalars['String']['output']>;
 };
 
 /** The cart object */
@@ -7529,6 +7530,25 @@ export type DownloadableProduct = {
   id: Scalars['ID']['output'];
   /** Is product virtual? */
   virtual?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type EasyOrderSkuMatch = {
+  __typename?: 'EasyOrderSkuMatch';
+  canonicalId?: Maybe<Scalars['ID']['output']>;
+  customerGroup1?: Maybe<Scalars['String']['output']>;
+  customerGroup2?: Maybe<Scalars['String']['output']>;
+  customerGroup3?: Maybe<Scalars['String']['output']>;
+  databaseId?: Maybe<Scalars['Int']['output']>;
+  imageAltText?: Maybe<Scalars['String']['output']>;
+  imageUrl?: Maybe<Scalars['String']['output']>;
+  isVariation?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  parentDatabaseId?: Maybe<Scalars['Int']['output']>;
+  partNumber?: Maybe<Scalars['String']['output']>;
+  price?: Maybe<Scalars['String']['output']>;
+  sku?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  stockStatus?: Maybe<Scalars['String']['output']>;
 };
 
 /** Represents a connection between two objects. Contains both the related object (node) and metadata about the relationship (cursor). */
@@ -28640,6 +28660,8 @@ export type RootQuery = {
   customers?: Maybe<RootQueryToCustomerConnection>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
+  easyOrderCuratedList?: Maybe<Array<Maybe<EasyOrderSkuMatch>>>;
+  easyOrderSkuLookup?: Maybe<EasyOrderSkuMatch>;
   /**
    * A external product object
    * @deprecated Use &quot;product&quot; instead.
@@ -29171,6 +29193,18 @@ export type RootQueryCustomersArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToCustomerConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryEasyOrderCuratedListArgs = {
+  term: Scalars['String']['input'];
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryEasyOrderSkuLookupArgs = {
+  sku: Scalars['String']['input'];
 };
 
 
@@ -39701,6 +39735,20 @@ export enum __TypeKind {
   NonNull = 'NON_NULL'
 }
 
+export type EasyOrderSkuLookupQueryVariables = Exact<{
+  sku: Scalars['String']['input'];
+}>;
+
+
+export type EasyOrderSkuLookupQuery = { __typename?: 'RootQuery', easyOrderSkuLookup?: { __typename?: 'EasyOrderSkuMatch', databaseId?: number | null | undefined, parentDatabaseId?: number | null | undefined, isVariation?: boolean | null | undefined, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, partNumber?: string | null | undefined, canonicalId?: string | null | undefined, price?: string | null | undefined, stockStatus?: string | null | undefined, imageUrl?: string | null | undefined, imageAltText?: string | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined } | null | undefined };
+
+export type EasyOrderCuratedListQueryVariables = Exact<{
+  term: Scalars['String']['input'];
+}>;
+
+
+export type EasyOrderCuratedListQuery = { __typename?: 'RootQuery', easyOrderCuratedList?: Array<{ __typename?: 'EasyOrderSkuMatch', databaseId?: number | null | undefined, parentDatabaseId?: number | null | undefined, isVariation?: boolean | null | undefined, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, partNumber?: string | null | undefined, canonicalId?: string | null | undefined, price?: string | null | undefined, stockStatus?: string | null | undefined, imageUrl?: string | null | undefined, imageAltText?: string | null | undefined, customerGroup1?: string | null | undefined, customerGroup2?: string | null | undefined, customerGroup3?: string | null | undefined } | null | undefined> | null | undefined };
+
 export type ChatDocumentationSearchQueryVariables = Exact<{
   search: Scalars['String']['input'];
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -40272,6 +40320,48 @@ export type GetServiceBulletinBySlugQueryVariables = Exact<{
 export type GetServiceBulletinBySlugQuery = { __typename?: 'RootQuery', serviceBulletin?: { __typename?: 'ServiceBulletin', id: string, title?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, excerpt?: string | null | undefined, content?: string | null | undefined, serviceBulletinCategories?: { __typename?: 'ServiceBulletinToServiceBulletinCategoryConnection', nodes: Array<{ __typename?: 'ServiceBulletinCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined } | null | undefined };
 
 
+export const EasyOrderSkuLookupDocument = gql`
+    query EasyOrderSkuLookup($sku: String!) {
+  easyOrderSkuLookup(sku: $sku) {
+    databaseId
+    parentDatabaseId
+    isVariation
+    name
+    slug
+    sku
+    partNumber
+    canonicalId
+    price
+    stockStatus
+    imageUrl
+    imageAltText
+    customerGroup1
+    customerGroup2
+    customerGroup3
+  }
+}
+    `;
+export const EasyOrderCuratedListDocument = gql`
+    query EasyOrderCuratedList($term: String!) {
+  easyOrderCuratedList(term: $term) {
+    databaseId
+    parentDatabaseId
+    isVariation
+    name
+    slug
+    sku
+    partNumber
+    canonicalId
+    price
+    stockStatus
+    imageUrl
+    imageAltText
+    customerGroup1
+    customerGroup2
+    customerGroup3
+  }
+}
+    `;
 export const ChatDocumentationSearchDocument = gql`
     query ChatDocumentationSearch($search: String!, $first: Int = 5) {
   applicationNotes(first: $first, where: {search: $search, status: PUBLISH}) {
@@ -43017,6 +43107,12 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    EasyOrderSkuLookup(variables: EasyOrderSkuLookupQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EasyOrderSkuLookupQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EasyOrderSkuLookupQuery>({ document: EasyOrderSkuLookupDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'EasyOrderSkuLookup', 'query', variables);
+    },
+    EasyOrderCuratedList(variables: EasyOrderCuratedListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EasyOrderCuratedListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EasyOrderCuratedListQuery>({ document: EasyOrderCuratedListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'EasyOrderCuratedList', 'query', variables);
+    },
     ChatDocumentationSearch(variables: ChatDocumentationSearchQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChatDocumentationSearchQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ChatDocumentationSearchQuery>({ document: ChatDocumentationSearchDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ChatDocumentationSearch', 'query', variables);
     },

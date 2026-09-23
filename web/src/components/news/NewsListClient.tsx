@@ -177,8 +177,8 @@ export default function NewsListClient({ initialPosts, initialPageInfo, translat
               </div>
             )}
 
-            {/* Meta Info: Date, Author, Read Time */}
-            <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
+            {/* Meta Info: Date, Author, Read Time - centered below the category badge */}
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-center text-sm text-neutral-600">
               {/* Date */}
               <div className="flex items-center gap-1.5">
                 <CalendarIcon className="h-4 w-4 text-primary-500" />

@@ -18,6 +18,8 @@ import {
 import SalesTeamCard from '@/components/contact/SalesTeamCard';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
+import { useToast } from '@/components/ui/Toast';
+import { getUserErrorMessage, logError } from '@/lib/errors';
 import {
   northAmericaTeam,
   ukTeam,
@@ -81,18 +83,57 @@ export default function ContactPage() {
 
   // Contact form validation state
   const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const contactFormRef = useRef<HTMLFormElement>(null);
   // Only move focus after a submit-triggered validation, not on per-field error clears
   const shouldFocusInvalidFieldRef = useRef(false);
+  const { showToast } = useToast();
 
   const clearFieldError = (field: keyof ContactFormErrors) => {
     setFormErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
   };
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const errors = validateContactForm(formData);
     shouldFocusInvalidFieldRef.current = true;
-    setFormErrors(validateContactForm(new FormData(e.currentTarget)));
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          company: formData.get('company'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => null);
+        throw new Error(errorBody?.error || `HTTP ${response.status}`);
+      }
+
+      showToast('success', 'Message Sent', "We'll get back to you within 24 hours.", 6000);
+      form.reset();
+    } catch (error) {
+      const { title, message } = getUserErrorMessage(error);
+      logError('contact.submit_failed', error);
+      showToast('error', title, message, 6000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Move focus to the first invalid field once validation errors render from a submit
@@ -311,10 +352,11 @@ export default function ContactPage() {
                   <div className="flex items-center justify-between pt-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:bg-accent-600 hover:shadow-md"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:bg-accent-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <SendIcon className="h-4 w-4" />
-                      Send Message
+                      {isSubmitting ? 'Sending…' : 'Send Message'}
                     </button>
                     <p className="text-xs text-neutral-700">* Required fields</p>
                   </div>

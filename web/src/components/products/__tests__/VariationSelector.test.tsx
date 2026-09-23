@@ -293,6 +293,7 @@ describe('VariationSelector - Component Smoke Tests', () => {
 
   it('passes matched variation ID and configured URL to FavoriteButton', () => {
     mockFavoriteButton.mockClear();
+    window.history.replaceState({}, '', '/en/product/zpm-standard-accuracy-%c2%b11-pressure-sensor');
 
     const attributes: ProductAttribute[] = [
       {
@@ -340,7 +341,7 @@ describe('VariationSelector - Component Smoke Tests', () => {
           id: 'product-1',
           databaseId: 100,
           name: 'Duct Temperature Transmitter',
-          slug: 'duct-temperature-transmitter-2',
+          slug: 'stale-product-data-slug',
           image: { sourceUrl: 'https://example.com/product.webp', altText: 'Product' },
         }}
       />
@@ -353,7 +354,7 @@ describe('VariationSelector - Component Smoke Tests', () => {
       expect.objectContaining({
         productId: '501',
         productUrl:
-          '/product/duct-temperature-transmitter-2?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
+          '/product/zpm-standard-accuracy-±1-pressure-sensor?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
       })
     );
   });

@@ -291,8 +291,14 @@ export default function VariationSelector({
     });
 
     const query = params.toString();
-    return `/product/${product.slug}${query ? `?${query}` : ''}`;
-  }, [product, selectedAttributes]);
+    const currentPath = typeof window === 'undefined' ? `/product/${product.slug}` : window.location.pathname;
+    const localePrefix = `/${locale}`;
+    const productPath = currentPath.startsWith(`${localePrefix}/`)
+      ? currentPath.slice(localePrefix.length)
+      : currentPath;
+
+    return `${decodeURI(productPath)}${query ? `?${query}` : ''}`;
+  }, [locale, product, selectedAttributes]);
 
   if (variationAttributes.length === 0) {
     return null;

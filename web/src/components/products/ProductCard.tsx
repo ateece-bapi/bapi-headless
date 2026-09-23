@@ -27,6 +27,15 @@ interface ProductCardProps {
   index?: number;
 }
 
+function normalizeProductHref(url: string): string {
+  const [path, query] = url.split('?');
+  try {
+    return `${decodeURI(path)}${query ? `?${query}` : ''}`;
+  } catch {
+    return url;
+  }
+}
+
 export default function ProductCard({
   product,
   locale,
@@ -36,7 +45,7 @@ export default function ProductCard({
   const { id, name, slug, partNumber, price, image, shortDescription } = product;
   const t = useTranslations('products');
   const resolvedImage = getProductImage(slug || '', image);
-  const href = product.url || `/product/${slug || 'unknown'}`;
+  const href = product.url ? normalizeProductHref(product.url) : `/product/${slug || 'unknown'}`;
 
   // Analytics tracking
   const analytics = useProductCardAnalytics({

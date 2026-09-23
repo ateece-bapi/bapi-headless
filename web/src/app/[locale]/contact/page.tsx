@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import {
   PhoneIcon,
@@ -18,6 +18,8 @@ import {
 import SalesTeamCard from '@/components/contact/SalesTeamCard';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeader from '@/components/layout/PageHeader';
+import { useToast } from '@/components/ui/Toast';
+import { getUserErrorMessage, logError } from '@/lib/errors';
 import {
   northAmericaTeam,
   ukTeam,
@@ -30,6 +32,43 @@ import {
   technicalTeam,
 } from '@/lib/constants/team';
 
+type ContactFormErrors = {
+  name?: string;
+  email?: string;
+  phone?: string;
+  subject?: string;
+  message?: string;
+};
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_REGEX = /^(?=.*\d)[0-9()+\-.\s]{7,20}$/;
+
+function validateContactForm(formData: FormData): ContactFormErrors {
+  const errors: ContactFormErrors = {};
+  const name = (formData.get('name') as string)?.trim();
+  const email = (formData.get('email') as string)?.trim();
+  const phone = (formData.get('phone') as string)?.trim();
+  const subject = (formData.get('subject') as string)?.trim();
+  const message = (formData.get('message') as string)?.trim();
+
+  if (!name) errors.name = 'Please enter your name.';
+
+  if (!email) {
+    errors.email = 'Please enter your email address.';
+  } else if (!EMAIL_REGEX.test(email)) {
+    errors.email = 'Please enter a valid email address.';
+  }
+
+  if (phone && !PHONE_REGEX.test(phone)) {
+    errors.phone = 'Please enter a valid phone number.';
+  }
+
+  if (!subject) errors.subject = 'Please enter a subject.';
+  if (!message) errors.message = 'Please enter a message.';
+
+  return errors;
+}
+
 export default function ContactPage() {
   const params = useParams<{ locale: string }>();
   const locale = params?.locale ?? 'en';
@@ -41,6 +80,72 @@ export default function ContactPage() {
 
   // Active section tracking for navigation
   const [activeSection, setActiveSection] = useState<string>('north-america');
+
+  // Contact form validation state
+  const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const contactFormRef = useRef<HTMLFormElement>(null);
+  // Only move focus after a submit-triggered validation, not on per-field error clears
+  const shouldFocusInvalidFieldRef = useRef(false);
+  const { showToast } = useToast();
+
+  const clearFieldError = (field: keyof ContactFormErrors) => {
+    setFormErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const errors = validateContactForm(formData);
+    shouldFocusInvalidFieldRef.current = true;
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          company: formData.get('company'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => null);
+        throw new Error(errorBody?.error || `HTTP ${response.status}`);
+      }
+
+      showToast('success', 'Message Sent', "We'll get back to you within 24 hours.", 6000);
+      form.reset();
+    } catch (error) {
+      const { title, message } = getUserErrorMessage(error);
+      logError('contact.submit_failed', error);
+      showToast('error', title, message, 6000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Move focus to the first invalid field once validation errors render from a submit
+  useEffect(() => {
+    if (!shouldFocusInvalidFieldRef.current) return;
+    shouldFocusInvalidFieldRef.current = false;
+    if (Object.keys(formErrors).length === 0) return;
+    const firstInvalidField = contactFormRef.current?.querySelector<HTMLElement>(
+      '[aria-invalid="true"]'
+    );
+    firstInvalidField?.focus();
+  }, [formErrors]);
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections((prev) => {
@@ -101,7 +206,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm lg:p-8">
                 <h2 className="mb-6 text-2xl font-bold text-neutral-900">Send Us a Message</h2>
-                <form className="space-y-5">
+                <form ref={contactFormRef} noValidate onSubmit={handleContactSubmit} className="space-y-5">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label
@@ -115,9 +220,17 @@ export default function ContactPage() {
                         id="name"
                         name="name"
                         required
-                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                        onChange={() => clearFieldError('name')}
+                        aria-invalid={formErrors.name ? 'true' : undefined}
+                        aria-describedby={formErrors.name ? 'name-error' : undefined}
+                        className={`w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors focus:ring-2 ${formErrors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500'}`}
                         placeholder="Your name"
                       />
+                      {formErrors.name && (
+                        <p id="name-error" role="alert" className="mt-1.5 text-sm text-red-600">
+                          {formErrors.name}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label
@@ -149,9 +262,17 @@ export default function ContactPage() {
                         id="email"
                         name="email"
                         required
-                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                        onChange={() => clearFieldError('email')}
+                        aria-invalid={formErrors.email ? 'true' : undefined}
+                        aria-describedby={formErrors.email ? 'email-error' : undefined}
+                        className={`w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors focus:ring-2 ${formErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500'}`}
                         placeholder="your@email.com"
                       />
+                      {formErrors.email && (
+                        <p id="email-error" role="alert" className="mt-1.5 text-sm text-red-600">
+                          {formErrors.email}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label
@@ -164,9 +285,17 @@ export default function ContactPage() {
                         type="tel"
                         id="phone"
                         name="phone"
-                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                        onChange={() => clearFieldError('phone')}
+                        aria-invalid={formErrors.phone ? 'true' : undefined}
+                        aria-describedby={formErrors.phone ? 'phone-error' : undefined}
+                        className={`w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors focus:ring-2 ${formErrors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500'}`}
                         placeholder="(555) 123-4567"
                       />
+                      {formErrors.phone && (
+                        <p id="phone-error" role="alert" className="mt-1.5 text-sm text-red-600">
+                          {formErrors.phone}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -182,9 +311,17 @@ export default function ContactPage() {
                       id="subject"
                       name="subject"
                       required
-                      className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                      onChange={() => clearFieldError('subject')}
+                      aria-invalid={formErrors.subject ? 'true' : undefined}
+                      aria-describedby={formErrors.subject ? 'subject-error' : undefined}
+                      className={`w-full rounded-lg border px-3.5 py-2.5 text-sm transition-colors focus:ring-2 ${formErrors.subject ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500'}`}
                       placeholder="How can we help?"
                     />
+                    {formErrors.subject && (
+                      <p id="subject-error" role="alert" className="mt-1.5 text-sm text-red-600">
+                        {formErrors.subject}
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -199,18 +336,27 @@ export default function ContactPage() {
                       name="message"
                       rows={5}
                       required
-                      className="w-full resize-none rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                      onChange={() => clearFieldError('message')}
+                      aria-invalid={formErrors.message ? 'true' : undefined}
+                      aria-describedby={formErrors.message ? 'message-error' : undefined}
+                      className={`w-full resize-none rounded-lg border px-3.5 py-2.5 text-sm transition-colors focus:ring-2 ${formErrors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500'}`}
                       placeholder="Tell us about your project or question..."
                     />
+                    {formErrors.message && (
+                      <p id="message-error" role="alert" className="mt-1.5 text-sm text-red-600">
+                        {formErrors.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:bg-accent-600 hover:shadow-md"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:bg-accent-600 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <SendIcon className="h-4 w-4" />
-                      Send Message
+                      {isSubmitting ? 'Sending…' : 'Send Message'}
                     </button>
                     <p className="text-xs text-neutral-700">* Required fields</p>
                   </div>
@@ -396,8 +542,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Quick Jump Navigation */}
-          <div className="sticky top-20 z-40 mb-8 rounded-2xl border border-neutral-200/60 bg-gradient-to-r from-white via-neutral-50 to-white p-5 shadow-lg backdrop-blur-sm">
+          {/* Quick Jump Navigation - sticky only on larger screens to avoid obscuring cards while scrolling on mobile */}
+          <div className="relative z-40 mb-8 rounded-2xl border border-neutral-200/60 bg-gradient-to-r from-white via-neutral-50 to-white p-5 shadow-lg backdrop-blur-sm lg:sticky lg:top-20">
             <div className="flex flex-wrap justify-center gap-2">
               <a
                 href="#north-america"

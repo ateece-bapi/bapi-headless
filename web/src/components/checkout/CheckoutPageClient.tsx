@@ -26,6 +26,7 @@ import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
 import { schedulePendingToast } from '@/components/ui/PendingToastFlush';
 import { useCartStore } from '@/store/cart';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 export interface ShippingAddress {
   firstName: string;
@@ -245,14 +246,14 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
   const handleNext = () => {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: getScrollBehavior() });
     }
   };
 
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: getScrollBehavior() });
     }
   };
 

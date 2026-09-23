@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ArrowUpIcon } from '@/lib/icons';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -35,7 +36,7 @@ export default function BackToTop() {
   const handleClick = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: getScrollBehavior(),
     });
   };
 

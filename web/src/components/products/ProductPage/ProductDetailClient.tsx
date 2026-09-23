@@ -17,6 +17,7 @@ import { getProductWarrantyType } from '@/lib/utils/getProductWarranty';
 import { shouldHideComplianceBadge } from '@/lib/utils/getProductCompliance';
 import type { CartItem } from '@/store';
 import { Link } from '@/lib/navigation';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 // Lazy load ProductTabs to avoid i18n SSR issues
 const ProductTabs = dynamic(
@@ -112,7 +113,7 @@ export default function ProductDetailClient({
     if (configurator) {
       const elementPosition = configurator.getBoundingClientRect().top + window.scrollY;
       const offset = 100;
-      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      window.scrollTo({ top: elementPosition - offset, behavior: getScrollBehavior() });
     }
   };
 

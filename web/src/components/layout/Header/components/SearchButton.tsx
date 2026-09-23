@@ -6,7 +6,7 @@ interface SearchButtonProps {
 
 const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => (
   <button
-    className="group flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200 hover:bg-neutral-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
+    className="group flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 hover:bg-neutral-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
     aria-label="Search"
     type="button"
     onClick={onClick}

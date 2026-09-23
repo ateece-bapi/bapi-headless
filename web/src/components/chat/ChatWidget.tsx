@@ -12,6 +12,7 @@ import {
   UserCircleIcon,
 } from '@/lib/icons';
 import logger from '@/lib/logger';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -59,7 +60,7 @@ export default function ChatWidget() {
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: getScrollBehavior() });
   };
 
   useEffect(() => {
@@ -311,9 +312,10 @@ export default function ChatWidget() {
     <>
       {/* Floating Button */}
       {!isOpen && (
+        // Sits above the fixed BackToTop button (bottom-6) to avoid overlapping tap targets
         <button
           onClick={() => setIsOpen(true)}
-          className="z-modal duration-base fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary-500 text-white shadow-lg transition-all hover:scale-110 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+          className="z-modal duration-base fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary-500 text-white shadow-lg transition-all hover:scale-110 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
           aria-label="Open chat"
         >
           <MessageCircleIcon className="h-6 w-6" />

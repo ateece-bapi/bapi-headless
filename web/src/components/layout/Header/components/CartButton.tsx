@@ -8,7 +8,7 @@ interface CartButtonProps {
 const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
   <Link
     href="/cart"
-    className="group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200 hover:bg-neutral-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
+    className="group relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 hover:bg-neutral-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
     aria-label={`Cart${itemCount > 0 ? ` (${itemCount} ${itemCount === 1 ? 'item' : 'items'})` : ' (empty)'}`}
     suppressHydrationWarning
   >

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { getScrollBehavior } from '@/lib/utils/motion';
 
 type ProductCard = 'leak-detector' | 'pressure' | 'temperature';
 
@@ -51,7 +52,7 @@ export function InteractiveServerRoom() {
     
     // Scroll to card on mobile
     if (window.innerWidth < 1024) {
-      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      cardRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: 'nearest' });
     }
   };
 
@@ -125,7 +126,7 @@ export function InteractiveServerRoom() {
                   onClick={() => {
                     setActiveCard('pressure');
                     if (window.innerWidth < 1024) {
-                      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      cardRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
                     }
                   }}
                   onMouseEnter={() => setHoveredCard('pressure')}
@@ -157,7 +158,7 @@ export function InteractiveServerRoom() {
                   onClick={() => {
                     setActiveCard('leak-detector');
                     if (window.innerWidth < 1024) {
-                      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      cardRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
                     }
                   }}
                   onMouseEnter={() => setHoveredCard('leak-detector')}
@@ -189,7 +190,7 @@ export function InteractiveServerRoom() {
                   onClick={() => {
                     setActiveCard('pressure');
                     if (window.innerWidth < 1024) {
-                      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      cardRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
                     }
                   }}
                   onMouseEnter={() => setHoveredCard('pressure')}

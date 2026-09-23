@@ -78,7 +78,7 @@ const SignInButton: React.FC = () => {
       <div className="relative">
         <button
           onClick={() => setShowMenu(!showMenu)}
-          className="group flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
+          className="group flex min-h-11 items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
           aria-label="User menu"
         >
           <UserIcon className="h-5 w-5" />
@@ -131,7 +131,7 @@ const SignInButton: React.FC = () => {
   return (
     <Link
       href="/sign-in"
-      className="group relative flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
+      className="group relative flex min-h-11 items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
       aria-label="Sign in to your account"
     >
       <UserIcon className="h-5 w-5" />

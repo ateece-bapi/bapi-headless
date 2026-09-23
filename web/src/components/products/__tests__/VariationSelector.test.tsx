@@ -11,9 +11,13 @@
  */
 
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import VariationSelector from '../VariationSelector';
 import type { ProductAttribute, ProductVariation } from '@/types/variations';
+
+const { mockFavoriteButton } = vi.hoisted(() => ({
+  mockFavoriteButton: vi.fn(),
+}));
 
 // Mock next-intl
 vi.mock('next-intl', () => ({
@@ -40,6 +44,13 @@ vi.mock('@/lib/logger', () => ({
 
 vi.mock('@/components/ui/Toast', () => ({
   useToast: () => ({ showToast: vi.fn() }),
+}));
+
+vi.mock('@/components/FavoriteButton', () => ({
+  default: (props: Record<string, unknown>) => {
+    mockFavoriteButton(props);
+    return <button type="button">Favorite</button>;
+  },
 }));
 
 describe('VariationSelector - Component Smoke Tests', () => {
@@ -278,5 +289,72 @@ describe('VariationSelector - Component Smoke Tests', () => {
     // Verify unavailable options are filtered out
     expect(options).not.toContain('Model G');
     expect(options).not.toContain('Model J');
+  });
+
+  it('passes matched variation ID and configured URL to FavoriteButton', () => {
+    mockFavoriteButton.mockClear();
+
+    const attributes: ProductAttribute[] = [
+      {
+        id: '1',
+        name: 'temperature-sensor',
+        label: 'Temperature Sensor',
+        options: ['1K RTD', '10K-2 Thermistor'],
+        variation: true,
+      },
+      {
+        id: '2',
+        name: 'probe',
+        label: 'Probe',
+        options: ['18inch (450mm)', '8inch (200mm)'],
+        variation: true,
+      },
+    ];
+
+    const variations: ProductVariation[] = [
+      {
+        id: 'var-501',
+        databaseId: 501,
+        name: 'Configured Variation',
+        price: '$44.00',
+        regularPrice: '$44.00',
+        stockStatus: 'IN_STOCK',
+        sku: 'BA/1K-D-18-BB',
+        partNumber: 'BA/1K-D-18-BB',
+        image: { sourceUrl: 'https://example.com/configured.webp', altText: 'Configured' },
+        attributes: {
+          nodes: [
+            { name: 'temperature-sensor', value: '1K RTD', label: 'Temperature Sensor' },
+            { name: 'probe', value: '18inch (450mm)', label: 'Probe' },
+          ],
+        },
+      },
+    ];
+
+    render(
+      <VariationSelector
+        attributes={attributes}
+        variations={variations}
+        onVariationChange={vi.fn()}
+        product={{
+          id: 'product-1',
+          databaseId: 100,
+          name: 'Duct Temperature Transmitter',
+          slug: 'duct-temperature-transmitter-2',
+          image: { sourceUrl: 'https://example.com/product.webp', altText: 'Product' },
+        }}
+      />
+    );
+
+    fireEvent.click(screen.getByText('1K RTD'));
+    fireEvent.click(screen.getByText('18inch (450mm)'));
+
+    expect(mockFavoriteButton).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        productId: '501',
+        productUrl:
+          '/product/duct-temperature-transmitter-2?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
+      })
+    );
   });
 });

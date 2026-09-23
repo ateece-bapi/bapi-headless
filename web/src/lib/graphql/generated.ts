@@ -71,6 +71,7 @@ export type AddFavoriteInput = {
   productName: Scalars['String']['input'];
   productPrice?: InputMaybe<Scalars['String']['input']>;
   productSlug: Scalars['String']['input'];
+  productUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The payload for the addFavorite mutation. */

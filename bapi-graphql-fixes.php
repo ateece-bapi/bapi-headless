@@ -195,6 +195,22 @@ function bapi_save_user_favorites($user_id, $favorites) {
     }
 }
 
+/**
+ * Keep saved favorite URLs constrained to same-site product paths.
+ */
+function bapi_sanitize_favorite_product_url($product_url) {
+    if (!is_string($product_url)) {
+        return null;
+    }
+
+    $product_url = trim($product_url);
+    if (strpos($product_url, '/product/') !== 0) {
+        return null;
+    }
+
+    return sanitize_text_field($product_url);
+}
+
 add_action('graphql_register_types', function () {
 
     // ── Shared object type ─────────────────────────────────────────────────
@@ -277,7 +293,7 @@ add_action('graphql_register_types', function () {
                 'productId'    => $sanitized_id,
                 'productName'  => sanitize_text_field($input['productName']),
                 'productSlug'  => sanitize_text_field($input['productSlug']),
-                'productUrl'   => isset($input['productUrl']) ? sanitize_text_field($input['productUrl']) : null,
+                'productUrl'   => isset($input['productUrl']) ? bapi_sanitize_favorite_product_url($input['productUrl']) : null,
                 'productImage' => isset($input['productImage']) ? esc_url_raw($input['productImage']) : null,
                 'productPrice' => isset($input['productPrice']) ? sanitize_text_field($input['productPrice']) : null,
                 'createdAt'    => gmdate('c'),

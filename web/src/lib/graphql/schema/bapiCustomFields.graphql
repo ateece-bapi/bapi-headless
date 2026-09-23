@@ -20,6 +20,10 @@ extend type BapiFavorite {
   productUrl: String
 }
 
+extend input AddFavoriteInput {
+  productUrl: String
+}
+
 extend type RootQuery {
   easyOrderSkuLookup(sku: String!): EasyOrderSkuMatch
   easyOrderCuratedList(term: String!): [EasyOrderSkuMatch]

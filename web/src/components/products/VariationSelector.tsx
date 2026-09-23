@@ -291,11 +291,12 @@ export default function VariationSelector({
     });
 
     const query = params.toString();
-    const currentPath = typeof window === 'undefined' ? `/product/${product.slug}` : window.location.pathname;
     const localePrefix = `/${locale}`;
-    const productPath = currentPath.startsWith(`${localePrefix}/`)
+    const fallbackPath = `/product/${product.slug}`;
+    const currentPath = typeof window === 'undefined' ? fallbackPath : window.location.pathname;
+    const productPath = currentPath.startsWith(`${localePrefix}/product/`)
       ? currentPath.slice(localePrefix.length)
-      : currentPath;
+      : fallbackPath;
 
     return `${decodeURI(productPath)}${query ? `?${query}` : ''}`;
   }, [locale, product, selectedAttributes]);

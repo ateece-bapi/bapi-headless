@@ -54,6 +54,56 @@ vi.mock('@/components/FavoriteButton', () => ({
 }));
 
 describe('VariationSelector - Component Smoke Tests', () => {
+  const completeConfigurationAttributes: ProductAttribute[] = [
+    {
+      id: '1',
+      name: 'temperature-sensor',
+      label: 'Temperature Sensor',
+      options: ['1K RTD', '10K-2 Thermistor'],
+      variation: true,
+    },
+    {
+      id: '2',
+      name: 'probe',
+      label: 'Probe',
+      options: ['18inch (450mm)', '8inch (200mm)'],
+      variation: true,
+    },
+  ];
+
+  const completeConfigurationVariations: ProductVariation[] = [
+    {
+      id: 'var-501',
+      databaseId: 501,
+      name: 'Configured Variation',
+      price: '$44.00',
+      regularPrice: '$44.00',
+      stockStatus: 'IN_STOCK',
+      sku: 'BA/1K-D-18-BB',
+      partNumber: 'BA/1K-D-18-BB',
+      image: { sourceUrl: 'https://example.com/configured.webp', altText: 'Configured' },
+      attributes: {
+        nodes: [
+          { name: 'temperature-sensor', value: '1K RTD', label: 'Temperature Sensor' },
+          { name: 'probe', value: '18inch (450mm)', label: 'Probe' },
+        ],
+      },
+    },
+  ];
+
+  const product = {
+    id: 'product-1',
+    databaseId: 100,
+    name: 'Duct Temperature Transmitter',
+    slug: 'fallback-product-slug',
+    image: { sourceUrl: 'https://example.com/product.webp', altText: 'Product' },
+  };
+
+  const selectCompleteConfiguration = () => {
+    fireEvent.click(screen.getByText('1K RTD'));
+    fireEvent.click(screen.getByText('18inch (450mm)'));
+  };
+
   it('renders without crashing with empty data', () => {
     expect(() => {
       render(
@@ -293,67 +343,48 @@ describe('VariationSelector - Component Smoke Tests', () => {
 
   it('passes matched variation ID and configured URL to FavoriteButton', () => {
     mockFavoriteButton.mockClear();
-
-    const attributes: ProductAttribute[] = [
-      {
-        id: '1',
-        name: 'temperature-sensor',
-        label: 'Temperature Sensor',
-        options: ['1K RTD', '10K-2 Thermistor'],
-        variation: true,
-      },
-      {
-        id: '2',
-        name: 'probe',
-        label: 'Probe',
-        options: ['18inch (450mm)', '8inch (200mm)'],
-        variation: true,
-      },
-    ];
-
-    const variations: ProductVariation[] = [
-      {
-        id: 'var-501',
-        databaseId: 501,
-        name: 'Configured Variation',
-        price: '$44.00',
-        regularPrice: '$44.00',
-        stockStatus: 'IN_STOCK',
-        sku: 'BA/1K-D-18-BB',
-        partNumber: 'BA/1K-D-18-BB',
-        image: { sourceUrl: 'https://example.com/configured.webp', altText: 'Configured' },
-        attributes: {
-          nodes: [
-            { name: 'temperature-sensor', value: '1K RTD', label: 'Temperature Sensor' },
-            { name: 'probe', value: '18inch (450mm)', label: 'Probe' },
-          ],
-        },
-      },
-    ];
+    window.history.replaceState({}, '', '/en/product/zpm-standard-accuracy-%c2%b11-pressure-sensor');
 
     render(
       <VariationSelector
-        attributes={attributes}
-        variations={variations}
+        attributes={completeConfigurationAttributes}
+        variations={completeConfigurationVariations}
         onVariationChange={vi.fn()}
-        product={{
-          id: 'product-1',
-          databaseId: 100,
-          name: 'Duct Temperature Transmitter',
-          slug: 'duct-temperature-transmitter-2',
-          image: { sourceUrl: 'https://example.com/product.webp', altText: 'Product' },
-        }}
+        product={product}
       />
     );
 
-    fireEvent.click(screen.getByText('1K RTD'));
-    fireEvent.click(screen.getByText('18inch (450mm)'));
+    selectCompleteConfiguration();
 
     expect(mockFavoriteButton).toHaveBeenLastCalledWith(
       expect.objectContaining({
         productId: '501',
         productUrl:
-          '/product/duct-temperature-transmitter-2?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
+          '/product/zpm-standard-accuracy-±1-pressure-sensor?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
+      })
+    );
+  });
+
+  it('falls back to product slug outside localized product routes', () => {
+    mockFavoriteButton.mockClear();
+    window.history.replaceState({}, '', '/variation-test');
+
+    render(
+      <VariationSelector
+        attributes={completeConfigurationAttributes}
+        variations={completeConfigurationVariations}
+        onVariationChange={vi.fn()}
+        product={product}
+      />
+    );
+
+    selectCompleteConfiguration();
+
+    expect(mockFavoriteButton).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        productId: '501',
+        productUrl:
+          '/product/fallback-product-slug?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29',
       })
     );
   });

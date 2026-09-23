@@ -142,6 +142,21 @@ describe('ProductCard Accessibility', () => {
       );
     });
 
+    it('normalizes encoded product URL paths before linking', () => {
+      render(
+        <ProductCard
+          product={{ ...mockProduct, url: '/product/zpm-standard-accuracy-%c2%b11-pressure-sensor?probe=18inch' }}
+          locale="en"
+          index={0}
+        />
+      );
+
+      expect(screen.getByRole('link')).toHaveAttribute(
+        'href',
+        '/product/zpm-standard-accuracy-±1-pressure-sensor?probe=18inch'
+      );
+    });
+
     it('link has accessible name from product name', () => {
       render(<ProductCard product={mockProduct} locale="en" index={0} />);
       const link = screen.getByRole('link');

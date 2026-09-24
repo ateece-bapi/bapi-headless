@@ -1034,6 +1034,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "Thanh toán bằng tài khoản PayPal của bạn"
+        },
+        "bankAccount": {
+          "title": "Tài khoản ngân hàng",
+          "description": "Thanh toán qua chuyển khoản ngân hàng ACH"
         }
       },
       "cardDetails": {
@@ -1041,13 +1045,12 @@
         "settingUp": "Đang thiết lập thanh toán...",
         "loadError": "Không thể tải biểu mẫu thanh toán. Vui lòng làm mới và thử lại."
       },
+      "bankDetails": {
+        "title": "Thông tin ngân hàng"
+      },
       "security": {
         "title": "Thanh toán của bạn an toàn",
         "description": "Được cung cấp bởi Stripe với mã hóa SSL 256-bit"
-      },
-      "paypal": {
-        "redirectMessage": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất việc mua hàng an toàn sau khi xem lại đơn hàng của mình.",
-        "continueButton": "Tiếp tục đến Xem lại"
       },
       "back": "Quay lại",
       "toasts": {
@@ -1073,7 +1076,7 @@
       "email": "Email",
       "paymentNotes": {
         "creditCard": "Thẻ của bạn sẽ bị tính phí sau khi xác nhận đơn hàng",
-        "paypal": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất thanh toán"
+        "bankAccount": "Tài khoản ngân hàng của bạn sẽ bị tính phí sau khi xác nhận đơn hàng"
       },
       "orderNotes": {
         "label": "Ghi chú Đơn hàng (Tùy chọn)",

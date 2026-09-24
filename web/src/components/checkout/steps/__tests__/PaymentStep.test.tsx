@@ -3,7 +3,7 @@
  *
  * Tests the payment method selection (step 2 of checkout):
  * - Payment method rendering
- * - Method selection (Credit Card, PayPal)
+ * - Method selection (Credit Card, Bank Account)
  * - Stripe Elements integration
  * - Navigation (back/next)
  * - Loading states
@@ -133,7 +133,7 @@ describe('PaymentStep', () => {
       expect(screen.getByText('Pay with credit or debit card')).toBeInTheDocument();
     });
 
-    it('renders PayPal option', () => {
+    it('renders Bank Account option', () => {
       render(
         <PaymentStep
           data={mockData}
@@ -142,8 +142,8 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      expect(screen.getByText('PayPal')).toBeInTheDocument();
-      expect(screen.getByText('Pay with your PayPal account')).toBeInTheDocument();
+      expect(screen.getByText('Bank Account')).toBeInTheDocument();
+      expect(screen.getByText('Pay via ACH bank transfer')).toBeInTheDocument();
     });
 
     it('renders payment method icons', () => {
@@ -157,9 +157,9 @@ describe('PaymentStep', () => {
       );
       // Check for specific method icons instead of generic selector
       const creditCardIcon = screen.getByTestId('payment-method-credit_card-icon');
-      const paypalIcon = screen.getByTestId('payment-method-paypal-icon');
+      const bankAccountIcon = screen.getByTestId('payment-method-bank_account-icon');
       expect(creditCardIcon).toBeInTheDocument();
-      expect(paypalIcon).toBeInTheDocument();
+      expect(bankAccountIcon).toBeInTheDocument();
     });
 
     it('renders both payment methods in grid layout', () => {
@@ -197,7 +197,7 @@ describe('PaymentStep', () => {
       );
     });
 
-    it('selects PayPal when clicked', () => {
+    it('selects Bank Account when clicked', () => {
       render(
         <PaymentStep
           data={mockData}
@@ -206,12 +206,12 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
       expect(mockOnUpdateData).toHaveBeenCalledWith(
         expect.objectContaining({
-          paymentMethod: { id: 'paypal', title: 'PayPal' },
+          paymentMethod: { id: 'bank_account', title: 'Bank Account' },
         })
       );
     });
@@ -256,17 +256,17 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      const icon = screen.getByTestId('payment-method-paypal-icon');
+      const icon = screen.getByTestId('payment-method-bank_account-icon');
       expect(icon).toBeInTheDocument();
     });
 
     it('pre-selects payment method from data', () => {
       const dataWithPayment: CheckoutData = {
         ...mockData,
-        paymentMethod: { id: 'paypal', title: 'PayPal' },
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
       };
       render(
         <PaymentStep
@@ -276,8 +276,8 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      expect(paypalButton).toHaveClass('border-primary-500');
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      expect(bankAccountButton).toHaveClass('border-primary-500');
     });
   });
 
@@ -434,9 +434,9 @@ describe('PaymentStep', () => {
     });
   });
 
-  // PayPal Integration Tests
-  describe('PayPal Integration', () => {
-    it('shows PayPal info when PayPal selected', () => {
+  // Bank Account Integration Tests
+  describe('Bank Account Integration', () => {
+    it('creates a scoped payment intent when Bank Account selected', async () => {
       render(
         <PaymentStep
           data={mockData}
@@ -445,13 +445,21 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText(/You will be redirected to PayPal/)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalledWith(
+          '/api/payment/create-intent',
+          expect.objectContaining({
+            method: 'POST',
+            body: expect.stringContaining('"paymentMethodType":"bank_account"'),
+          })
+        );
+      });
     });
 
-    it('shows Continue to Review button for PayPal', () => {
+    it('shows Bank Details heading with bank account', async () => {
       render(
         <PaymentStep
           data={mockData}
@@ -460,13 +468,15 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText('Continue to Review')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+      });
     });
 
-    it('calls onNext when Continue to Review clicked', () => {
+    it('renders Stripe payment form for Bank Account', async () => {
       render(
         <PaymentStep
           data={mockData}
@@ -475,13 +485,13 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      const continueButton = screen.getByText('Continue to Review');
-      fireEvent.click(continueButton);
-
-      expect(mockOnNext).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-provider')).toBeInTheDocument();
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
     });
   });
 
@@ -514,7 +524,7 @@ describe('PaymentStep', () => {
       expect(mockOnBack).toHaveBeenCalled();
     });
 
-    it('shows Back button with PayPal selected', () => {
+    it('hides Back button with bank account selected', async () => {
       render(
         <PaymentStep
           data={mockData}
@@ -523,10 +533,12 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText('Back')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.queryByText('Back')).not.toBeInTheDocument();
+      });
     });
 
     it('hides Back button with credit card selected', async () => {
@@ -611,10 +623,10 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(paypalButton).toHaveClass('border-primary-500', 'bg-primary-50');
+      expect(bankAccountButton).toHaveClass('border-primary-500', 'bg-primary-50');
     });
   });
 

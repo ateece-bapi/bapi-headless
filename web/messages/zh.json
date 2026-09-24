@@ -1073,6 +1073,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "使用您的PayPal账户付款"
+        },
+        "bankAccount": {
+          "title": "银行账户",
+          "description": "通过ACH银行转账付款"
         }
       },
       "cardDetails": {
@@ -1080,13 +1084,12 @@
         "settingUp": "设置付款中...",
         "loadError": "无法加载付款表单。请刷新并重试。"
       },
+      "bankDetails": {
+        "title": "银行信息"
+      },
       "security": {
         "title": "您的付款是安全的",
         "description": "由Stripe提供,采用256位SSL加密"
-      },
-      "paypal": {
-        "redirectMessage": "您将被重定向到PayPal,在查看您的订单后完成安全支付。",
-        "continueButton": "继续审查"
       },
       "back": "返回",
       "toasts": {
@@ -1112,7 +1115,7 @@
       "email": "电子邮箱",
       "paymentNotes": {
         "creditCard": "订单确认后,您的卡将被扣款",
-        "paypal": "您将被重定向到PayPal以完成付款"
+        "bankAccount": "订单确认后,您的银行账户将被扣款"
       },
       "orderNotes": {
         "label": "订单备注(可选)",

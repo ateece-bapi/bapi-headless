@@ -4,16 +4,16 @@
  * Payment Step Component
  *
  * Step 2 of checkout: Select payment method and process payment
- * - Payment method selection (Credit Card via Stripe, PayPal)
- * - Integrated Stripe Elements for card payment
+ * - Payment method selection (Credit Card or Bank Account, both via Stripe)
+ * - Integrated Stripe Elements for card/bank payment
  * - Back and Next navigation
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
-import { ArrowRightIcon, ArrowLeftIcon, CreditCardIcon, BanknoteIcon, Loader2Icon } from '@/lib/icons';
+import { ArrowLeftIcon, CreditCardIcon, BanknoteIcon, Loader2Icon } from '@/lib/icons';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
 
@@ -57,6 +57,8 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
   const [clientSecret, setClientSecret] = useState<string>('');
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  // Guards against a slower, stale request (e.g. Credit Card) overwriting a newer one (e.g. Bank Account)
+  const latestRequestIdRef = useRef(0);
 
   const paymentMethods = [
     {
@@ -66,9 +68,9 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       icon: CreditCardIcon,
     },
     {
-      id: 'paypal',
-      title: t('methods.paypal.title'),
-      description: t('methods.paypal.description'),
+      id: 'bank_account',
+      title: t('methods.bankAccount.title'),
+      description: t('methods.bankAccount.description'),
       icon: BanknoteIcon,
     },
   ];
@@ -108,15 +110,20 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
     fetchCartTotal();
   }, []);
 
-  // Create payment intent when credit card is selected
+  // Both tiles are powered by Stripe, scoped to a single payment method type each
+  const isStripeMethod = (methodId: string) => methodId === 'credit_card' || methodId === 'bank_account';
+
+  // Create a payment intent (scoped to the selected method) whenever the user picks a Stripe tile
   useEffect(() => {
-    if (selectedMethod === 'credit_card' && !clientSecret && cartTotal > 0) {
-      createPaymentIntent();
+    if (isStripeMethod(selectedMethod) && cartTotal > 0) {
+      createPaymentIntent(selectedMethod);
     }
   }, [selectedMethod, cartTotal]);
 
-  const createPaymentIntent = async () => {
+  const createPaymentIntent = async (paymentMethodType: string) => {
+    const requestId = ++latestRequestIdRef.current;
     setIsLoadingIntent(true);
+    setClientSecret('');
 
     try {
       const response = await fetch('/api/payment/create-intent', {
@@ -125,6 +132,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         body: JSON.stringify({
           amount: cartTotal,
           currency: 'usd',
+          paymentMethodType,
           metadata: {
             checkoutFlow: 'bapi-headless',
           },
@@ -133,15 +141,25 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
 
       const result = await response.json();
 
+      // Ignore this response if a newer request has since been made (e.g. user switched tiles)
+      if (requestId !== latestRequestIdRef.current) {
+        return;
+      }
+
       if (result.success && result.clientSecret) {
         setClientSecret(result.clientSecret);
       } else {
         showToast('error', t('toasts.setupFailed'), result.message || t('toasts.setupError'));
       }
     } catch (error) {
+      if (requestId !== latestRequestIdRef.current) {
+        return;
+      }
       showToast('error', t('toasts.setupFailed'), t('toasts.setupError'));
     } finally {
-      setIsLoadingIntent(false);
+      if (requestId === latestRequestIdRef.current) {
+        setIsLoadingIntent(false);
+      }
     }
   };
 
@@ -170,16 +188,6 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
 
   const handleStripeError = (error: string) => {
     showToast('error', t('toasts.paymentFailed'), error);
-  };
-
-  const handlePayPalNext = () => {
-    if (!selectedMethod) {
-      showToast('warning', t('toasts.selectMethod'), t('toasts.selectMethodMessage'));
-      return;
-    }
-
-    // For PayPal, just proceed to review (payment happens after order placement)
-    onNext();
   };
 
   return (
@@ -235,10 +243,12 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         </div>
       </div>
 
-      {/* Stripe Credit Card Form */}
-      {selectedMethod === 'credit_card' && (
+      {/* Stripe Payment Form (Credit Card or Bank Account) */}
+      {isStripeMethod(selectedMethod) && (
         <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <h3 className="mb-4 text-lg font-semibold text-neutral-900">{t('cardDetails.title')}</h3>
+          <h3 className="mb-4 text-lg font-semibold text-neutral-900">
+            {selectedMethod === 'credit_card' ? t('cardDetails.title') : t('bankDetails.title')}
+          </h3>
 
           {isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
@@ -246,7 +256,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
               <span className="ml-3 text-neutral-700">{t('cardDetails.settingUp')}</span>
             </div>
           ) : clientSecret ? (
-            <StripeProvider clientSecret={clientSecret}>
+            <StripeProvider key={clientSecret} clientSecret={clientSecret}>
               <StripePaymentForm onSuccess={handleStripeSuccess} onError={handleStripeError} />
             </StripeProvider>
           ) : (
@@ -264,24 +274,8 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         </div>
       )}
 
-      {/* PayPal Info */}
-      {selectedMethod === 'paypal' && (
-        <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <p className="text-sm text-neutral-700">{t('paypal.redirectMessage')}</p>
-
-          <button
-            type="button"
-            onClick={handlePayPalNext}
-            className="btn-bapi-primary flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3"
-          >
-            {t('paypal.continueButton')}
-            <ArrowRightIcon className="h-5 w-5" />
-          </button>
-        </div>
-      )}
-
       {/* Back Button (only show if not in Stripe payment) */}
-      {selectedMethod !== 'credit_card' && (
+      {!isStripeMethod(selectedMethod) && (
         <div className="flex justify-between border-t border-neutral-200 pt-6">
           <button
             type="button"

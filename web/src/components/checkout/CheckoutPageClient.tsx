@@ -301,9 +301,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
         schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
         router.push(`/${locale}/order-confirmation/${result.order.id}`);
       } else {
-        // PayPal or other payment methods
-        // Phase 2: Implement PayPal order creation via WooCommerce API
-        // For now, create mock order (Stripe is primary payment method for launch)
+        // Fallback path if no payment intent was created (should not happen for Card/Bank tiles)
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         const mockOrderId = Math.floor(Math.random() * 100000);

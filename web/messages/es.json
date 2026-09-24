@@ -1071,6 +1071,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "Pagar con tu cuenta de PayPal"
+        },
+        "bankAccount": {
+          "title": "Cuenta bancaria",
+          "description": "Pagar mediante transferencia bancaria ACH"
         }
       },
       "cardDetails": {
@@ -1078,13 +1082,12 @@
         "settingUp": "Configurando el pago...",
         "loadError": "No se pudo cargar el formulario de pago. Actualiza la página y vuelve a intentarlo."
       },
+      "bankDetails": {
+        "title": "Datos bancarios"
+      },
       "security": {
         "title": "Tu pago es seguro",
         "description": "Respaldado por Stripe con cifrado SSL de 256 bits"
-      },
-      "paypal": {
-        "redirectMessage": "Serás redirigido a PayPal para completar tu compra de manera segura después de revisar tu pedido.",
-        "continueButton": "Continuar a Revisión"
       },
       "back": "Atrás",
       "toasts": {
@@ -1110,7 +1113,7 @@
       "email": "Correo electrónico",
       "paymentNotes": {
         "creditCard": "Tu tarjeta será cobrada después de la confirmación del pedido",
-        "paypal": "Serás redirigido a PayPal para completar el pago"
+        "bankAccount": "Se cobrará a tu cuenta bancaria después de la confirmación del pedido"
       },
       "orderNotes": {
         "label": "Notas del pedido (opcional)",

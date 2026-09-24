@@ -1578,6 +1578,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "Zapłać za pomocą konta PayPal"
+        },
+        "bankAccount": {
+          "title": "Konto bankowe",
+          "description": "Zapłać przelewem bankowym ACH"
         }
       },
       "cardDetails": {
@@ -1585,13 +1589,12 @@
         "settingUp": "Ustawianie płatności...",
         "loadError": "Nie można załadować formularza płatności. Odśwież i spróbuj ponownie."
       },
+      "bankDetails": {
+        "title": "Dane bankowe"
+      },
       "security": {
         "title": "Twoja płatność jest bezpieczna",
         "description": "Obsługiwana przez Stripe z 256-bitowym szyfrowaniem SSL"
-      },
-      "paypal": {
-        "redirectMessage": "Zostaniesz przekierowany do PayPal, aby bezpiecznie ukończyć zakup po przejrzeniu zamówienia.",
-        "continueButton": "Przejdź do Przeglądu"
       },
       "back": "Wstecz",
       "toasts": {
@@ -1617,7 +1620,7 @@
       "email": "E-mail",
       "paymentNotes": {
         "creditCard": "Twoja karta zostanie obciążona po potwierdzeniu zamówienia",
-        "paypal": "Zostaniesz przekierowany do PayPal, aby dokończyć płatność"
+        "bankAccount": "Twoje konto bankowe zostanie obciążone po potwierdzeniu zamówienia"
       },
       "orderNotes": {
         "label": "Uwagi do zamówienia (opcjonalnie)",

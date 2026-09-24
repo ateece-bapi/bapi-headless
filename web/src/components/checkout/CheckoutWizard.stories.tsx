@@ -8,7 +8,7 @@ import type { CheckoutData } from './CheckoutPageClient';
  *
  * Multi-step checkout wizard with progress indicator:
  * - Step 1: Shipping Information (address form with validation)
- * - Step 2: Payment Method (credit card via Stripe or PayPal)
+ * - Step 2: Payment Method (credit card or bank account via Stripe)
  * - Step 3: Review & Place Order (summary with T&C checkbox)
  *
  * Stories demonstrate:
@@ -232,7 +232,7 @@ export const Step2PaymentSelection: Story = {
     docs: {
       description: {
         story:
-          'Step 2 showing payment method selection. Two options: Credit Card (Stripe Elements) and PayPal. Progress indicator shows steps 1 completed (green checkmark), step 2 active.',
+          'Step 2 showing payment method selection. Two options: Credit Card and Bank Account (both via Stripe Elements). Progress indicator shows steps 1 completed (green checkmark), step 2 active.',
       },
     },
   },

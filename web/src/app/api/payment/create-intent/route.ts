@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   try {
     const stripe = getStripeInstance();
     const body = await request.json();
-    const { amount, currency = 'usd', metadata = {}, paymentMethodType } = body;
+    const { amount, currency = 'usd', paymentMethodType } = body;
 
     // Validate amount
     if (!amount || amount <= 0) {
@@ -51,10 +51,13 @@ export async function POST(request: NextRequest) {
       ALLOWED_PAYMENT_METHOD_TYPES[paymentMethodType] ?? ['card', 'us_bank_account'];
 
     // Create Payment Intent
+    // metadata is fixed server-side (never taken from the request body) — the webhook trusts
+    // wc_order_id in PaymentIntent metadata to reconcile ACH settlement, so a client-controlled
+    // metadata field here would let a caller redirect that reconciliation to an arbitrary order.
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert to cents
       currency,
-      metadata,
+      metadata: { checkoutFlow: 'bapi-headless' },
       payment_method_types: paymentMethodTypes,
     });
 

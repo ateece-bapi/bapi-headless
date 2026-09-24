@@ -73,6 +73,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
         amount: 5000,
         currency: 'usd',
         metadata: {},
+        payment_method: { type: 'card' },
       });
 
       // Mock WooCommerce order creation
@@ -296,6 +297,57 @@ describe('Payment Confirmation API - Integration Tests', () => {
       );
     });
 
+    it('should reject a resolved payment method that is neither card nor us_bank_account', async () => {
+      // e.g. a PaymentIntent created directly against the Stripe API with Klarna, bypassing
+      // the checkout UI's create-intent allow-list entirely
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_klarna123',
+        status: 'succeeded',
+        amount: 5000,
+        currency: 'usd',
+        metadata: {},
+        payment_method: { type: 'klarna' },
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_klarna123',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+
+      expect(response.status).toBe(400);
+      expect(mockFetch).not.toHaveBeenCalled();
+    });
+
     it('should return 400 if payment intent not found', async () => {
       // Arrange
       const Stripe = (await import('stripe')).default;
@@ -360,6 +412,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
         amount: 5000,
         currency: 'usd',
         metadata: {},
+        payment_method: { type: 'card' },
       } as any);
 
       mockFetch.mockResolvedValue({

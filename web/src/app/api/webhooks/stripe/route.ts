@@ -50,6 +50,58 @@ async function updateWooCommerceOrder(orderId: string, data: Record<string, unkn
   return response.json();
 }
 
+async function getWooCommerceOrder(orderId: string) {
+  const auth = Buffer.from(
+    `${process.env.WORDPRESS_API_USER}:${process.env.WORDPRESS_API_PASSWORD}`
+  ).toString('base64');
+
+  const response = await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders/${orderId}`, {
+    method: 'GET',
+    headers: { Authorization: `Basic ${auth}` },
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`WooCommerce order fetch failed: ${response.status} ${errorText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Applies `updateData` to the order linked via PaymentIntent metadata, but only after
+ * confirming the order's own `transaction_id` (set server-side in /api/payment/confirm,
+ * never client-controlled) matches this exact PaymentIntent — a signed webhook event still
+ * shouldn't let a forged/mismatched `wc_order_id` update an unrelated order.
+ */
+async function reconcileOrderForPaymentIntent(
+  paymentIntent: Stripe.PaymentIntent,
+  updateData: Record<string, unknown>,
+  successLogMessage: string
+) {
+  const wcOrderId = paymentIntent.metadata?.wc_order_id;
+  if (!wcOrderId) {
+    return;
+  }
+
+  const order = await getWooCommerceOrder(wcOrderId);
+
+  if (order.transaction_id !== paymentIntent.id) {
+    logger.error('[Stripe Webhook] wc_order_id/transaction_id mismatch — refusing to update order', {
+      orderId: wcOrderId,
+      expectedTransactionId: paymentIntent.id,
+      actualTransactionId: order.transaction_id,
+    });
+    return;
+  }
+
+  await updateWooCommerceOrder(wcOrderId, updateData);
+  logger.info(`[Stripe Webhook] ${successLogMessage}`, {
+    orderId: wcOrderId,
+    paymentIntentId: paymentIntent.id,
+  });
+}
+
 export async function POST(request: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -78,33 +130,22 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        const wcOrderId = paymentIntent.metadata?.wc_order_id;
-
         // Card orders are already marked paid synchronously in /api/payment/confirm; only
         // orders left "on-hold" (ACH awaiting settlement) carry a wc_order_id here.
-        if (wcOrderId) {
-          await updateWooCommerceOrder(wcOrderId, {
-            set_paid: true,
-            status: 'processing',
-          });
-          logger.info('[Stripe Webhook] Marked order paid after ACH settlement', {
-            orderId: wcOrderId,
-            paymentIntentId: paymentIntent.id,
-          });
-        }
+        await reconcileOrderForPaymentIntent(
+          paymentIntent,
+          { set_paid: true, status: 'processing' },
+          'Marked order paid after ACH settlement'
+        );
         break;
       }
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        const wcOrderId = paymentIntent.metadata?.wc_order_id;
-
-        if (wcOrderId) {
-          await updateWooCommerceOrder(wcOrderId, { status: 'failed' });
-          logger.info('[Stripe Webhook] Marked order failed after ACH settlement failure', {
-            orderId: wcOrderId,
-            paymentIntentId: paymentIntent.id,
-          });
-        }
+        await reconcileOrderForPaymentIntent(
+          paymentIntent,
+          { status: 'failed' },
+          'Marked order failed after ACH settlement failure'
+        );
         break;
       }
       default:

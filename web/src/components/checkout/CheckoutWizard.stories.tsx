@@ -449,6 +449,7 @@ export const AllStepsPreview: Story = {
             onBack={() => console.log('Back')}
             onUpdateData={() => console.log('Update')}
             onPlaceOrder={() => console.log('Place order')}
+            onConfirmPayment={async () => ({ success: true, orderId: 99999 })}
             isProcessing={false}
           />
         </div>
@@ -461,6 +462,7 @@ export const AllStepsPreview: Story = {
             onBack={() => console.log('Back')}
             onUpdateData={() => console.log('Update')}
             onPlaceOrder={() => console.log('Place order')}
+            onConfirmPayment={async () => ({ success: true, orderId: 99999 })}
             isProcessing={false}
           />
         </div>
@@ -473,6 +475,7 @@ export const AllStepsPreview: Story = {
             onBack={() => console.log('Back')}
             onUpdateData={() => console.log('Update')}
             onPlaceOrder={() => console.log('Place order')}
+            onConfirmPayment={async () => ({ success: true, orderId: 99999 })}
             isProcessing={false}
           />
         </div>

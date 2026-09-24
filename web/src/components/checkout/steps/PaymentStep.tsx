@@ -48,9 +48,21 @@ interface PaymentStepProps {
   onNext: () => void;
   onBack: () => void;
   onUpdateData: (data: Partial<CheckoutData>) => void;
+  // Confirms a PaymentIntent and creates the WooCommerce order; called immediately for Bank
+  // Account (ACH) since that settlement is asynchronous and must not depend on the customer
+  // ever reaching the Review step.
+  onConfirmPayment: (
+    paymentIntentId: string
+  ) => Promise<{ success: boolean; orderId?: number; message?: string }>;
 }
 
-export default function PaymentStep({ data, onNext, onBack, onUpdateData }: PaymentStepProps) {
+export default function PaymentStep({
+  data,
+  onNext,
+  onBack,
+  onUpdateData,
+  onConfirmPayment,
+}: PaymentStepProps) {
   const { showToast } = useToast();
   const t = useTranslations('checkoutPage.payment');
   const [selectedMethod, setSelectedMethod] = useState<string>(data.paymentMethod?.id || '');
@@ -133,9 +145,6 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
           amount: cartTotal,
           currency: 'usd',
           paymentMethodType,
-          metadata: {
-            checkoutFlow: 'bapi-headless',
-          },
         }),
       });
 
@@ -176,11 +185,25 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
     }
   };
 
-  const handleStripeSuccess = (paymentIntentId: string) => {
+  const handleStripeSuccess = async (paymentIntentId: string) => {
     // Store payment intent ID for order creation
     onUpdateData({
       paymentIntentId,
     });
+
+    if (selectedMethod === 'bank_account') {
+      // ACH settles asynchronously (days later) via the Stripe webhook, which can only
+      // reconcile an order that already exists — create it now instead of deferring to
+      // Review/Place Order, which the customer might never reach.
+      const result = await onConfirmPayment(paymentIntentId);
+
+      if (!result.success) {
+        showToast('error', t('toasts.paymentFailed'), result.message || t('toasts.paymentFailed'));
+        return;
+      }
+
+      onUpdateData({ orderId: result.orderId });
+    }
 
     showToast('success', t('toasts.paymentConfirmed'), t('toasts.paymentConfirmedMessage'));
     onNext();

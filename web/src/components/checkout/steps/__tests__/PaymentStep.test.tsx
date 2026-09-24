@@ -28,8 +28,10 @@ vi.mock('@/components/ui/Toast', () => ({
 
 // Mock Stripe components
 vi.mock('@/components/payment', () => ({
-  StripeProvider: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="stripe-provider">{children}</div>
+  StripeProvider: ({ children, clientSecret }: { children: React.ReactNode; clientSecret?: string }) => (
+    <div data-testid="stripe-provider" data-client-secret={clientSecret}>
+      {children}
+    </div>
   ),
   StripePaymentForm: ({ onSuccess, onError }: any) => (
     <div data-testid="stripe-payment-form">
@@ -43,6 +45,7 @@ describe('PaymentStep', () => {
   const mockOnNext = vi.fn();
   const mockOnBack = vi.fn();
   const mockOnUpdateData = vi.fn();
+  const mockOnConfirmPayment = vi.fn();
 
   // Create mock fetch function
   const mockFetch = vi.fn();
@@ -96,6 +99,9 @@ describe('PaymentStep', () => {
     };
     localStorage.setItem('bapi-cart-storage', JSON.stringify(mockCart));
 
+    // Order creation is only invoked for the Bank Account (ACH) path
+    mockOnConfirmPayment.mockResolvedValue({ success: true, orderId: 99999 });
+
     // Set up fetch mock
     mockFetch.mockResolvedValue({
       json: async () => ({
@@ -115,6 +121,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Payment Method')).toBeInTheDocument();
@@ -127,6 +134,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Credit Card')).toBeInTheDocument();
@@ -140,6 +148,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Bank Account')).toBeInTheDocument();
@@ -153,6 +162,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       // Check for specific method icons instead of generic selector
@@ -169,6 +179,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const grid = container.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
@@ -185,6 +196,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -204,6 +216,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -223,6 +236,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -238,6 +252,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -254,6 +269,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -274,6 +290,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -290,6 +307,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -311,6 +329,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -334,6 +353,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -352,6 +372,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -369,6 +390,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -389,6 +411,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -409,6 +432,10 @@ describe('PaymentStep', () => {
         );
         expect(mockOnNext).toHaveBeenCalled();
       });
+
+      // Credit Card settles synchronously — order creation stays deferred to Review/Place
+      // Order, unlike Bank Account which must create the order immediately (see below).
+      expect(mockOnConfirmPayment).not.toHaveBeenCalled();
     });
 
     it('handles Stripe payment error', async () => {
@@ -418,6 +445,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -443,6 +471,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -466,6 +495,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -483,6 +513,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -492,6 +523,67 @@ describe('PaymentStep', () => {
         expect(screen.getByTestId('stripe-provider')).toBeInTheDocument();
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
       });
+    });
+
+    it('creates the WooCommerce order immediately when the ACH PaymentIntent confirms', async () => {
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText('Submit Payment'));
+
+      // ACH settlement is asynchronous and reconciled only via a webhook that requires an
+      // existing order — the order must be created right away, not deferred to Review.
+      await waitFor(() => {
+        expect(mockOnConfirmPayment).toHaveBeenCalledWith('pi_test_123');
+        expect(mockOnUpdateData).toHaveBeenCalledWith(
+          expect.objectContaining({ orderId: 99999 })
+        );
+        expect(mockOnNext).toHaveBeenCalled();
+      });
+    });
+
+    it('does not advance if immediate ACH order creation fails', async () => {
+      mockOnConfirmPayment.mockResolvedValueOnce({
+        success: false,
+        message: 'Unable to create order',
+      });
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText('Submit Payment'));
+
+      await waitFor(() => {
+        expect(mockOnConfirmPayment).toHaveBeenCalled();
+      });
+
+      expect(mockOnNext).not.toHaveBeenCalled();
     });
 
     it('ignores a stale Credit Card response that resolves after a later Bank Account request', async () => {
@@ -517,6 +609,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
 
@@ -535,7 +628,10 @@ describe('PaymentStep', () => {
         json: async () => ({ success: true, clientSecret: 'bank_client_secret' }),
       });
       await waitFor(() => {
-        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+        expect(screen.getByTestId('stripe-provider')).toHaveAttribute(
+          'data-client-secret',
+          'bank_client_secret'
+        );
       });
 
       // ...then the stale Credit Card request finally resolves
@@ -543,10 +639,17 @@ describe('PaymentStep', () => {
         json: async () => ({ success: true, clientSecret: 'card_client_secret' }),
       });
 
-      // The stale card response must not overwrite the correct bank client secret/form
+      // The stale card response must not overwrite the correct bank client secret/form —
+      // assert on the actual clientSecret the mounted Stripe provider received, not just the
+      // heading text (which is derived from `selectedMethod` and would stay "Bank Details"
+      // even if the wrong clientSecret silently won the race).
       await waitFor(() => {
         expect(screen.getByText('Bank Details')).toBeInTheDocument();
       });
+      expect(screen.getByTestId('stripe-provider')).toHaveAttribute(
+        'data-client-secret',
+        'bank_client_secret'
+      );
       expect(screen.queryByText('Card Details')).not.toBeInTheDocument();
     });
   });
@@ -560,6 +663,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Back')).toBeInTheDocument();
@@ -572,6 +676,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const backButton = screen.getByText('Back');
@@ -587,6 +692,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -604,6 +710,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -621,6 +728,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const backButton = screen.getByText('Back');
@@ -638,6 +746,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const grid = container.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
@@ -651,6 +760,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -664,6 +774,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -677,6 +788,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
@@ -697,6 +809,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
 
@@ -712,6 +825,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
 
@@ -732,6 +846,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -753,6 +868,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');

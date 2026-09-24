@@ -23,6 +23,9 @@ interface CheckoutWizardProps {
   onBack: () => void;
   onUpdateData: (data: Partial<CheckoutData>) => void;
   onPlaceOrder: () => void;
+  onConfirmPayment: (
+    paymentIntentId: string
+  ) => Promise<{ success: boolean; orderId?: number; message?: string }>;
   isProcessing: boolean;
 }
 
@@ -33,6 +36,7 @@ export default function CheckoutWizard({
   onBack,
   onUpdateData,
   onPlaceOrder,
+  onConfirmPayment,
   isProcessing,
 }: CheckoutWizardProps) {
   const t = useTranslations('checkoutPage.wizard.steps');
@@ -104,6 +108,7 @@ export default function CheckoutWizard({
             onNext={onNext}
             onBack={onBack}
             onUpdateData={onUpdateData}
+            onConfirmPayment={onConfirmPayment}
           />
         )}
 

@@ -90,6 +90,20 @@ export async function POST(request: NextRequest) {
       typeof paymentIntent.payment_method === 'object' && paymentIntent.payment_method
         ? paymentIntent.payment_method.type
         : paymentIntent.payment_method_types?.[0];
+
+    // Only Card and Bank Account are offered by the checkout UI — reject anything else
+    // (e.g. a PaymentIntent created directly against the Stripe API with Klarna/crypto/etc.)
+    // rather than silently recording it as a card order.
+    if (paymentMethodType !== 'card' && paymentMethodType !== 'us_bank_account') {
+      return NextResponse.json(
+        {
+          error: 'Unsupported Payment Method',
+          message: 'This payment method is not supported for checkout.',
+        },
+        { status: 400 }
+      );
+    }
+
     const isBankTransfer = paymentMethodType === 'us_bank_account';
     const paymentMethodTitle = isBankTransfer ? 'Bank Account (ACH - Stripe)' : 'Credit Card (Stripe)';
 
@@ -171,9 +185,19 @@ export async function POST(request: NextRequest) {
       // Link the PaymentIntent to this order so the Stripe webhook (payment_intent.succeeded)
       // can mark it paid once the ACH transfer actually clears — otherwise the order would
       // stay "on-hold" forever, since nothing else re-checks it after this request.
-      await stripe.paymentIntents.update(paymentIntent.id, {
-        metadata: { ...paymentIntent.metadata, wc_order_id: String(order.id) },
-      });
+      // The order was already created successfully at this point, so a transient failure here
+      // must not surface as a request failure (that would strand the order and risk the
+      // customer retrying and creating a duplicate) — log loudly for manual reconciliation.
+      try {
+        await stripe.paymentIntents.update(paymentIntent.id, {
+          metadata: { ...paymentIntent.metadata, wc_order_id: String(order.id) },
+        });
+      } catch (linkError) {
+        logError('payment.confirm_ach_link_failed', linkError, {
+          orderId: order.id,
+          paymentIntentId: paymentIntent.id,
+        });
+      }
     }
 
     // Return order details with clearCart flag

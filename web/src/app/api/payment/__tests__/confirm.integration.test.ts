@@ -297,6 +297,134 @@ describe('Payment Confirmation API - Integration Tests', () => {
       );
     });
 
+    it('should retry linking the PaymentIntent to the order if the first attempt fails', async () => {
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_ach_retry',
+        status: 'processing',
+        amount: 5000,
+        currency: 'usd',
+        metadata: {},
+        payment_method: { type: 'us_bank_account' },
+      });
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ id: 421999, number: '421999', status: 'on-hold' }),
+      } as any);
+      mockUpdate
+        .mockRejectedValueOnce(new Error('transient Stripe error'))
+        .mockResolvedValueOnce({});
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_ach_retry',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+
+      expect(response.status).toBe(200);
+      expect(mockUpdate).toHaveBeenCalledTimes(2);
+      // Only the order-creation POST should have happened — no reconciliation-flag PUT needed
+      // since the retry succeeded
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should flag the order for manual reconciliation if linking fails after all retries', async () => {
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_ach_fail',
+        status: 'processing',
+        amount: 5000,
+        currency: 'usd',
+        metadata: {},
+        payment_method: { type: 'us_bank_account' },
+      });
+      mockFetch.mockImplementation(async (url: string) => {
+        if (String(url).endsWith('/orders')) {
+          return {
+            ok: true,
+            json: async () => ({ id: 422000, number: '422000', status: 'on-hold' }),
+          } as any;
+        }
+        // The manual-reconciliation flag PUT to /orders/{id}
+        return { ok: true, json: async () => ({}) } as any;
+      });
+      mockUpdate.mockRejectedValue(new Error('Stripe is unreachable'));
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_ach_fail',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+
+      // The order was already created successfully — a linking failure must not surface as a
+      // request failure (that would prompt a customer retry and a duplicate order)
+      expect(response.status).toBe(200);
+      expect(mockUpdate).toHaveBeenCalledTimes(3);
+
+      const flagCall = mockFetch.mock.calls.find(([url]) => String(url).endsWith('/orders/422000'));
+      expect(flagCall).toBeDefined();
+      const [, options] = flagCall!;
+      const body = JSON.parse(options.body);
+      expect(body.customer_note).toContain('pi_ach_fail');
+      expect(body.customer_note).toContain('manual follow-up');
+    });
+
     it('should reject a resolved payment method that is neither card nor us_bank_account', async () => {
       // e.g. a PaymentIntent created directly against the Stripe API with Klarna, bypassing
       // the checkout UI's create-intent allow-list entirely

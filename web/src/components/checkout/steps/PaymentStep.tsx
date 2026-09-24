@@ -65,12 +65,17 @@ export default function PaymentStep({
 }: PaymentStepProps) {
   const { showToast } = useToast();
   const t = useTranslations('checkoutPage.payment');
+  const tReview = useTranslations('checkoutPage.review');
   const [selectedMethod, setSelectedMethod] = useState<string>(data.paymentMethod?.id || '');
   const [clientSecret, setClientSecret] = useState<string>('');
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  const [bankTermsAccepted, setBankTermsAccepted] = useState(false);
   // Guards against a slower, stale request (e.g. Credit Card) overwriting a newer one (e.g. Bank Account)
   const latestRequestIdRef = useRef(0);
+  // Guards against a stale success callback from a Stripe form that's no longer the active
+  // selection (e.g. the customer switched tiles while confirmPayment() was still in flight)
+  const activePaymentIntentIdRef = useRef<string | null>(null);
 
   const paymentMethods = [
     {
@@ -136,6 +141,9 @@ export default function PaymentStep({
     const requestId = ++latestRequestIdRef.current;
     setIsLoadingIntent(true);
     setClientSecret('');
+    // Clear immediately (not just on success) so a stale in-flight success callback from the
+    // previous intent can't match this now-cleared value while the new one is still loading.
+    activePaymentIntentIdRef.current = null;
 
     try {
       const response = await fetch('/api/payment/create-intent', {
@@ -157,6 +165,7 @@ export default function PaymentStep({
 
       if (result.success && result.clientSecret) {
         setClientSecret(result.clientSecret);
+        activePaymentIntentIdRef.current = result.paymentIntentId;
       } else {
         showToast('error', t('toasts.setupFailed'), result.message || t('toasts.setupError'));
       }
@@ -186,6 +195,13 @@ export default function PaymentStep({
   };
 
   const handleStripeSuccess = async (paymentIntentId: string) => {
+    // Ignore a stale callback: e.g. the customer switched away from this tile (or back to a
+    // newer intent for the same tile) while Stripe's confirmPayment() was still resolving.
+    if (paymentIntentId !== activePaymentIntentIdRef.current) {
+      logger.debug('[PaymentStep] Ignoring stale Stripe success callback', { paymentIntentId });
+      return;
+    }
+
     // Store payment intent ID for order creation
     onUpdateData({
       paymentIntentId,
@@ -273,7 +289,39 @@ export default function PaymentStep({
             {selectedMethod === 'credit_card' ? t('cardDetails.title') : t('bankDetails.title')}
           </h3>
 
-          {isLoadingIntent ? (
+          {selectedMethod === 'bank_account' && !bankTermsAccepted ? (
+            <div className="space-y-3 rounded-lg border border-neutral-200 bg-white p-4">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={bankTermsAccepted}
+                  onChange={(e) => setBankTermsAccepted(e.target.checked)}
+                  className="mt-1 h-5 w-5 flex-shrink-0 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500"
+                />
+                <span className="text-sm text-neutral-700">
+                  {tReview('terms.agree')}{' '}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary-700 underline hover:text-primary-800"
+                  >
+                    {tReview('terms.termsLink')}
+                  </a>{' '}
+                  {tReview('terms.and')}{' '}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary-700 underline hover:text-primary-800"
+                  >
+                    {tReview('terms.privacyLink')}
+                  </a>
+                </span>
+              </label>
+              <p className="text-xs text-neutral-700">{t('bankTerms.gate')}</p>
+            </div>
+          ) : isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
               <Loader2Icon className="h-8 w-8 animate-spin text-primary-500" />
               <span className="ml-3 text-neutral-700">{t('cardDetails.settingUp')}</span>
@@ -297,8 +345,10 @@ export default function PaymentStep({
         </div>
       )}
 
-      {/* Back Button (only show if not in Stripe payment) */}
-      {!isStripeMethod(selectedMethod) && (
+      {/* Back Button (only show if not in the Credit Card Stripe form, which handles its own
+          submission) — Bank Account still needs Back available in case Financial Connections
+          fails or the customer needs to revisit shipping info before authorizing the debit. */}
+      {selectedMethod !== 'credit_card' && (
         <div className="flex justify-between border-t border-neutral-200 pt-6">
           <button
             type="button"

@@ -26,6 +26,11 @@ vi.mock('@/components/ui/Toast', () => ({
   }),
 }));
 
+// Captures every onSuccess callback the mocked StripePaymentForm receives, in mount order,
+// so tests can invoke a stale (already-unmounted) instance's callback directly to simulate
+// a Stripe confirmPayment() promise resolving after the customer switched tiles.
+const capturedOnSuccessCallbacks: Array<(id: string) => void | Promise<void>> = [];
+
 // Mock Stripe components
 vi.mock('@/components/payment', () => ({
   StripeProvider: ({ children, clientSecret }: { children: React.ReactNode; clientSecret?: string }) => (
@@ -33,12 +38,15 @@ vi.mock('@/components/payment', () => ({
       {children}
     </div>
   ),
-  StripePaymentForm: ({ onSuccess, onError }: any) => (
-    <div data-testid="stripe-payment-form">
-      <button onClick={() => onSuccess('pi_test_123')}>Submit Payment</button>
-      <button onClick={() => onError('Test error')}>Trigger Error</button>
-    </div>
-  ),
+  StripePaymentForm: ({ onSuccess, onError }: any) => {
+    capturedOnSuccessCallbacks.push(onSuccess);
+    return (
+      <div data-testid="stripe-payment-form">
+        <button onClick={() => onSuccess('pi_test_123')}>Submit Payment</button>
+        <button onClick={() => onError('Test error')}>Trigger Error</button>
+      </div>
+    );
+  },
 }));
 
 describe('PaymentStep', () => {
@@ -99,6 +107,8 @@ describe('PaymentStep', () => {
     };
     localStorage.setItem('bapi-cart-storage', JSON.stringify(mockCart));
 
+    capturedOnSuccessCallbacks.length = 0;
+
     // Order creation is only invoked for the Bank Account (ACH) path
     mockOnConfirmPayment.mockResolvedValue({ success: true, orderId: 99999 });
 
@@ -107,6 +117,7 @@ describe('PaymentStep', () => {
       json: async () => ({
         success: true,
         clientSecret: 'test_client_secret',
+        paymentIntentId: 'pi_test_123',
       }),
     });
     global.fetch = mockFetch as any;
@@ -506,6 +517,77 @@ describe('PaymentStep', () => {
       });
     });
 
+    it('gates the Bank Account Stripe form behind terms acceptance', async () => {
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      // Terms checkbox appears, but the Stripe form (which authorizes the actual bank debit)
+      // must not render until the customer accepts it — Bank Account creates the WooCommerce
+      // order immediately on success, so this is its final-confirmation gate (Card's equivalent
+      // is the Review step's terms checkbox).
+      await waitFor(() => {
+        expect(screen.getByRole('checkbox')).toBeInTheDocument();
+      });
+      expect(screen.queryByTestId('stripe-payment-form')).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+    });
+
+    it('ignores a stale success callback from a Stripe form no longer active', async () => {
+      // Each create-intent call must return a distinct PaymentIntent id (as Stripe would in
+      // reality) so the guard is actually exercised rather than coincidentally matching.
+      let callCount = 0;
+      mockFetch.mockImplementation(async () => ({
+        json: async () => ({
+          success: true,
+          clientSecret: `client_secret_${++callCount}`,
+          paymentIntentId: `pi_intent_${callCount}`,
+        }),
+      }));
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Select Bank Account, accept terms, and let its Stripe form mount (captured onSuccess #1)
+      fireEvent.click(screen.getByText('Bank Account').closest('button')!);
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
+      await waitFor(() => expect(capturedOnSuccessCallbacks).toHaveLength(1));
+      const staleBankOnSuccess = capturedOnSuccessCallbacks[0];
+
+      // Switch to Credit Card before Stripe's confirmPayment() for Bank Account "resolves" —
+      // this mounts a new intent/form with its own onSuccess (captured #2)
+      fireEvent.click(screen.getByText('Credit Card').closest('button')!);
+      await waitFor(() => expect(capturedOnSuccessCallbacks).toHaveLength(2));
+
+      // The stale Bank Account promise now "resolves" with its own (now-superseded) intent id —
+      // this must be ignored entirely, not treated as a fresh ACH confirmation
+      await staleBankOnSuccess('pi_intent_1');
+
+      expect(mockOnConfirmPayment).not.toHaveBeenCalled();
+      expect(mockOnNext).not.toHaveBeenCalled();
+    });
+
     it('renders Stripe payment form for Bank Account', async () => {
       render(
         <PaymentStep
@@ -518,6 +600,9 @@ describe('PaymentStep', () => {
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
       fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
 
       await waitFor(() => {
         expect(screen.getByTestId('stripe-provider')).toBeInTheDocument();
@@ -537,6 +622,9 @@ describe('PaymentStep', () => {
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
       fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
 
       await waitFor(() => {
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
@@ -572,6 +660,9 @@ describe('PaymentStep', () => {
       );
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
       fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
 
       await waitFor(() => {
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
@@ -623,9 +714,17 @@ describe('PaymentStep', () => {
       fireEvent.click(bankAccountButton!);
       await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(2));
 
+      // Terms gate is independent of intent loading — accept it now so the Stripe form can
+      // render as soon as the (still in-flight) bank intent resolves
+      fireEvent.click(screen.getByRole('checkbox'));
+
       // Bank Account's request resolves first...
       resolveBankRequest({
-        json: async () => ({ success: true, clientSecret: 'bank_client_secret' }),
+        json: async () => ({
+          success: true,
+          clientSecret: 'bank_client_secret',
+          paymentIntentId: 'pi_bank_123',
+        }),
       });
       await waitFor(() => {
         expect(screen.getByTestId('stripe-provider')).toHaveAttribute(
@@ -636,7 +735,11 @@ describe('PaymentStep', () => {
 
       // ...then the stale Credit Card request finally resolves
       resolveCardRequest({
-        json: async () => ({ success: true, clientSecret: 'card_client_secret' }),
+        json: async () => ({
+          success: true,
+          clientSecret: 'card_client_secret',
+          paymentIntentId: 'pi_card_123',
+        }),
       });
 
       // The stale card response must not overwrite the correct bank client secret/form —
@@ -685,7 +788,7 @@ describe('PaymentStep', () => {
       expect(mockOnBack).toHaveBeenCalled();
     });
 
-    it('hides Back button with bank account selected', async () => {
+    it('keeps Back button visible with bank account selected', async () => {
       render(
         <PaymentStep
           data={mockData}
@@ -698,8 +801,10 @@ describe('PaymentStep', () => {
       const bankAccountButton = screen.getByText('Bank Account').closest('button');
       fireEvent.click(bankAccountButton!);
 
+      // Unlike Credit Card, Bank Account keeps Back available in case Financial Connections
+      // fails or the customer needs to revisit shipping info before authorizing the debit.
       await waitFor(() => {
-        expect(screen.queryByText('Back')).not.toBeInTheDocument();
+        expect(screen.getByText('Back')).toBeInTheDocument();
       });
     });
 

@@ -1003,6 +1003,9 @@
       "bankDetails": {
         "title": "Bankdaten"
       },
+      "bankTerms": {
+        "gate": "Bitte akzeptieren Sie oben die Allgemeinen Geschäftsbedingungen, um mit Ihrer Bankzahlung fortzufahren."
+      },
       "security": {
         "title": "Ihre Zahlung ist sicher",
         "description": "Betrieben von Stripe mit 256-Bit-SSL-Verschlüsselung"

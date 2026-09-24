@@ -28,6 +28,38 @@ function getStripeInstance() {
   });
 }
 
+/**
+ * Links a settling PaymentIntent to its WooCommerce order (via metadata) so the Stripe
+ * webhook can find and reconcile it later. Retries a few times before giving up, since
+ * Stripe won't redeliver a successfully-acknowledged settlement event just because the
+ * metadata arrives late — a permanently unlinked order would otherwise stay on-hold forever.
+ */
+async function linkPaymentIntentToOrder(
+  stripe: Stripe,
+  paymentIntent: Stripe.PaymentIntent,
+  orderId: number,
+  maxAttempts = 3
+): Promise<boolean> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      await stripe.paymentIntents.update(paymentIntent.id, {
+        metadata: { ...paymentIntent.metadata, wc_order_id: String(orderId) },
+      });
+      return true;
+    } catch (linkError) {
+      logError('payment.confirm_ach_link_attempt_failed', linkError, {
+        orderId,
+        paymentIntentId: paymentIntent.id,
+        attempt,
+      });
+      if (attempt < maxAttempts) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 300));
+      }
+    }
+  }
+  return false;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const stripe = getStripeInstance();
@@ -187,16 +219,41 @@ export async function POST(request: NextRequest) {
       // stay "on-hold" forever, since nothing else re-checks it after this request.
       // The order was already created successfully at this point, so a transient failure here
       // must not surface as a request failure (that would strand the order and risk the
-      // customer retrying and creating a duplicate) — log loudly for manual reconciliation.
-      try {
-        await stripe.paymentIntents.update(paymentIntent.id, {
-          metadata: { ...paymentIntent.metadata, wc_order_id: String(order.id) },
-        });
-      } catch (linkError) {
-        logError('payment.confirm_ach_link_failed', linkError, {
-          orderId: order.id,
-          paymentIntentId: paymentIntent.id,
-        });
+      // customer retrying and creating a duplicate).
+      const linked = await linkPaymentIntentToOrder(stripe, paymentIntent, order.id);
+
+      if (!linked) {
+        // All retries exhausted — persist a visible flag on the order itself (not just logs)
+        // so support/ops can find and manually reconcile it; the webhook has no other way to
+        // locate this order once wc_order_id metadata couldn't be attached.
+        logError(
+          'payment.confirm_ach_link_failed',
+          new Error('Exhausted retries linking PaymentIntent to order'),
+          { orderId: order.id, paymentIntentId: paymentIntent.id }
+        );
+
+        try {
+          await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Basic ${auth}`,
+            },
+            body: JSON.stringify({
+              customer_note: [
+                orderData.orderNotes,
+                `[SYSTEM] ACH reconciliation link failed for PaymentIntent ${paymentIntent.id} — requires manual follow-up to mark this order paid once the bank transfer settles.`,
+              ]
+                .filter(Boolean)
+                .join('\n'),
+            }),
+          });
+        } catch (noteError) {
+          logError('payment.confirm_ach_link_flag_failed', noteError, {
+            orderId: order.id,
+            paymentIntentId: paymentIntent.id,
+          });
+        }
       }
     }
 

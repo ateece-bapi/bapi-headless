@@ -1592,6 +1592,9 @@
       "bankDetails": {
         "title": "Dane bankowe"
       },
+      "bankTerms": {
+        "gate": "Zaakceptuj powyższe Warunki korzystania, aby kontynuować płatność bankową."
+      },
       "security": {
         "title": "Twoja płatność jest bezpieczna",
         "description": "Obsługiwana przez Stripe z 256-bitowym szyfrowaniem SSL"

@@ -186,6 +186,9 @@ const mockMessages = {
       bankDetails: {
         title: 'Bank Details',
       },
+      bankTerms: {
+        gate: 'Please accept the Terms & Conditions above to continue with your bank payment.',
+      },
       security: {
         title: 'Your payment is secure',
         description: 'Powered by Stripe with 256-bit SSL encryption',

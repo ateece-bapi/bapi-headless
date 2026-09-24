@@ -1048,6 +1048,9 @@
       "bankDetails": {
         "title": "Thông tin ngân hàng"
       },
+      "bankTerms": {
+        "gate": "Vui lòng chấp nhận Điều khoản ở trên để tiếp tục thanh toán qua ngân hàng của bạn."
+      },
       "security": {
         "title": "Thanh toán của bạn an toàn",
         "description": "Được cung cấp bởi Stripe với mã hóa SSL 256-bit"

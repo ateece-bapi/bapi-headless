@@ -1085,6 +1085,9 @@
       "bankDetails": {
         "title": "Datos bancarios"
       },
+      "bankTerms": {
+        "gate": "Acepta los Términos y Condiciones anteriores para continuar con tu pago bancario."
+      },
       "security": {
         "title": "Tu pago es seguro",
         "description": "Respaldado por Stripe con cifrado SSL de 256 bits"

@@ -1087,6 +1087,9 @@
       "bankDetails": {
         "title": "Coordonnées bancaires"
       },
+      "bankTerms": {
+        "gate": "Veuillez accepter les Conditions générales ci-dessus pour continuer votre paiement bancaire."
+      },
       "security": {
         "title": "Votre paiement est sécurisé",
         "description": "Alimenté par Stripe avec un chiffrement SSL 256 bits"

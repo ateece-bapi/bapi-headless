@@ -1087,6 +1087,9 @@
       "bankDetails": {
         "title": "銀行情報"
       },
+      "bankTerms": {
+        "gate": "銀行お支払いを続けるには、上記の利用規約に同意してください。"
+      },
       "security": {
         "title": "支払いは安全です",
         "description": "Stripeによる256ビットSSL暗号化で保護されています"

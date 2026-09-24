@@ -64,8 +64,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Retrieve payment intent to verify status
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    // Retrieve payment intent (expanded to get the actual PaymentMethod used, not just the
+    // list of allowed types) to verify status
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+      expand: ['payment_method'],
+    });
 
     // ACH (us_bank_account) settles asynchronously and stays "processing" for 1-4 business days —
     // that's an expected, valid state for creating the order, not a failure.
@@ -80,7 +83,14 @@ export async function POST(request: NextRequest) {
     }
 
     const isSettled = paymentIntent.status === 'succeeded';
-    const isBankTransfer = paymentIntent.payment_method_types?.[0] === 'us_bank_account';
+    // payment_method_types lists every type the intent *allowed*, not the one actually used
+    // (e.g. the unscoped fallback allows both card and us_bank_account) — the resolved
+    // PaymentMethod object is the only reliable source for which one the customer used.
+    const paymentMethodType =
+      typeof paymentIntent.payment_method === 'object' && paymentIntent.payment_method
+        ? paymentIntent.payment_method.type
+        : paymentIntent.payment_method_types?.[0];
+    const isBankTransfer = paymentMethodType === 'us_bank_account';
     const paymentMethodTitle = isBankTransfer ? 'Bank Account (ACH - Stripe)' : 'Credit Card (Stripe)';
 
     logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', {
@@ -156,6 +166,15 @@ export async function POST(request: NextRequest) {
 
     const order = await wcResponse.json();
     logger.info('[Payment Confirm] Order created successfully', { orderId: order.id });
+
+    if (!isSettled) {
+      // Link the PaymentIntent to this order so the Stripe webhook (payment_intent.succeeded)
+      // can mark it paid once the ACH transfer actually clears — otherwise the order would
+      // stay "on-hold" forever, since nothing else re-checks it after this request.
+      await stripe.paymentIntents.update(paymentIntent.id, {
+        metadata: { ...paymentIntent.metadata, wc_order_id: String(order.id) },
+      });
+    }
 
     // Return order details with clearCart flag
     return NextResponse.json({

@@ -126,30 +126,40 @@ test.describe('Multi-Locale Checkout Flow', () => {
         // automated (Bank Account requires linking a real/test bank via Stripe Financial
         // Connections), so use it here to reach the Review step.
         const creditCardButton = page.getByRole('button', { name: /credit card|tarjeta|carte|kreditkarte|クレジットカード/i });
-        if (await creditCardButton.isVisible({ timeout: 3000 })) {
-          await safeClick(creditCardButton);
-          await waitAfterNavigation(page);
-
-          const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
-          await stripeIframe.first().waitFor({ state: 'attached', timeout: 10000 }).catch(() => {});
-
-          const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]').first();
-          await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill('4242424242424242').catch(() => {});
-          await stripeFrame.getByPlaceholder('MM / YY').fill('12/34').catch(() => {});
-          await stripeFrame.getByPlaceholder('CVC').fill('123').catch(() => {});
-
-          // Pay Now is hardcoded in English regardless of locale
-          const payNowButton = page.getByRole('button', { name: /pay now/i });
-          if (await payNowButton.isVisible({ timeout: 5000 }).catch(() => false)) {
-            await safeClick(payNowButton);
-
-            // Should reach review step
-            const reviewHeading = page.getByRole('heading', { name: /review|place|revisar|revoir|überprüfen|確認/i });
-            await expect(reviewHeading).toBeVisible({ timeout: 15000 }).catch(() => {
-              // Review step may not be fully implemented
-            });
-          }
+        if (!(await creditCardButton.isVisible({ timeout: 3000 }).catch(() => false))) {
+          test.skip(true, `Credit Card option not found for ${locale.name} locale — skipping full checkout completion`);
+          return;
         }
+
+        await safeClick(creditCardButton);
+        await waitAfterNavigation(page);
+
+        const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+        const iframeAttached = await stripeIframe
+          .first()
+          .waitFor({ state: 'attached', timeout: 10000 })
+          .then(() => true)
+          .catch(() => false);
+        if (!iframeAttached) {
+          test.skip(true, `Stripe Payment Element did not mount for ${locale.name} locale — skipping full checkout completion`);
+          return;
+        }
+
+        // These fills are required for the payment to actually go through — let them fail
+        // the test (rather than swallowing errors) if the Stripe iframe/placeholders change.
+        const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]').first();
+        await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill('4242424242424242');
+        await stripeFrame.getByPlaceholder('MM / YY').fill('12/34');
+        await stripeFrame.getByPlaceholder('CVC').fill('123');
+
+        // Pay Now is hardcoded in English regardless of locale
+        const payNowButton = page.getByRole('button', { name: /pay now/i });
+        await expect(payNowButton).toBeVisible({ timeout: 5000 });
+        await safeClick(payNowButton);
+
+        // Should reach review step
+        const reviewHeading = page.getByRole('heading', { name: /review|place|revisar|revoir|überprüfen|確認/i });
+        await expect(reviewHeading).toBeVisible({ timeout: 15000 });
       });
     });
   }

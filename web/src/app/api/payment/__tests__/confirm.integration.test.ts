@@ -16,9 +16,11 @@ vi.mock('../../../../../../test/msw/server', () => ({
 
 // Create mock Stripe instance that will be reused
 const mockRetrieve = vi.fn();
+const mockUpdate = vi.fn().mockResolvedValue({});
 const mockStripeInstance = {
   paymentIntents: {
     retrieve: mockRetrieve,
+    update: mockUpdate,
   },
 };
 
@@ -28,6 +30,7 @@ vi.mock('stripe', () => {
     default: class MockStripe {
       paymentIntents = {
         retrieve: mockRetrieve,
+        update: mockUpdate,
       };
       constructor() {
         return mockStripeInstance;
@@ -139,7 +142,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
       expect(data.order).toHaveProperty('id', 421732);
       expect(data.order).toHaveProperty('orderNumber', '421732');
       expect(data.order).toHaveProperty('status', 'processing');
-      expect(mockRetrieve).toHaveBeenCalledWith('pi_test123');
+      expect(mockRetrieve).toHaveBeenCalledWith('pi_test123', { expand: ['payment_method'] });
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/wp-json/wc/v3/orders'),
         expect.objectContaining({
@@ -155,7 +158,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
         amount: 5000,
         currency: 'usd',
         metadata: {},
-        payment_method_types: ['card'],
+        payment_method: { type: 'card' },
       });
 
       mockFetch.mockResolvedValue({
@@ -212,6 +215,8 @@ describe('Payment Confirmation API - Integration Tests', () => {
       expect(body.payment_method_title).toBe('Credit Card (Stripe)');
       expect(body.set_paid).toBe(true);
       expect(body.status).toBeUndefined();
+      // Settled card orders don't need reconciliation via webhook
+      expect(mockUpdate).not.toHaveBeenCalled();
     });
 
     it('should accept a processing ACH payment and hold the order until it settles', async () => {
@@ -221,7 +226,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
         amount: 5000,
         currency: 'usd',
         metadata: {},
-        payment_method_types: ['us_bank_account'],
+        payment_method: { type: 'us_bank_account' },
       });
 
       mockFetch.mockResolvedValue({
@@ -283,6 +288,12 @@ describe('Payment Confirmation API - Integration Tests', () => {
       expect(body.payment_method_title).toBe('Bank Account (ACH - Stripe)');
       expect(body.set_paid).toBe(false);
       expect(body.status).toBe('on-hold');
+
+      // Unsettled ACH orders must be linked so the Stripe webhook can reconcile them later
+      expect(mockUpdate).toHaveBeenCalledWith(
+        'pi_ach123',
+        expect.objectContaining({ metadata: expect.objectContaining({ wc_order_id: '421734' }) })
+      );
     });
 
     it('should return 400 if payment intent not found', async () => {

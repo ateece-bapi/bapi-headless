@@ -835,7 +835,6 @@
       "remove": "Gutschein entfernen"
     },
     "shipping": {
-      "freeShipping": "✓ Kostenloser Versand ab 500 $",
       "standardShipping": "Standardversand: 3-5 Werktage"
     },
     "toasts": {

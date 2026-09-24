@@ -919,7 +919,6 @@
       "remove": "Supprimer le coupon"
     },
     "shipping": {
-      "freeShipping": "✓ Livraison gratuite pour les commandes de plus de 500 $",
       "standardShipping": "Livraison standard : 3 à 5 jours ouvrables"
     },
     "toasts": {

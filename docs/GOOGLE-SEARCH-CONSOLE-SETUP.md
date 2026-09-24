@@ -441,7 +441,7 @@ Based on GSC data, prioritize fixes:
 **Example Product Page:**
 ```typescript
 title: 'BA/10K-3-I-4 Indoor Temperature Sensor | BAPI'
-description: 'Precision 10K thermistor sensor for HVAC control. ±0.2°C accuracy, -40°C to +105°C range. UL listed. Free shipping on orders $500+. Order now!'
+description: 'Precision 10K thermistor sensor for HVAC control. ±0.2°C accuracy, -40°C to +105°C range. UL listed. Order now!'
 ```
 
 ## 🚨 Common Issues & Solutions

@@ -100,7 +100,6 @@ describe('CartSummary Component', () => {
 
     it('renders shipping info', () => {
       render(<CartSummary {...defaultProps} />);
-      expect(screen.getByText(/free shipping on orders over \$500/i)).toBeInTheDocument();
       expect(screen.getByText(/standard shipping: 3-5 business days/i)).toBeInTheDocument();
     });
   });

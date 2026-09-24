@@ -67,7 +67,9 @@ export async function POST(request: NextRequest) {
     // Retrieve payment intent to verify status
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
-    if (paymentIntent.status !== 'succeeded') {
+    // ACH (us_bank_account) settles asynchronously and stays "processing" for 1-4 business days —
+    // that's an expected, valid state for creating the order, not a failure.
+    if (paymentIntent.status !== 'succeeded' && paymentIntent.status !== 'processing') {
       return NextResponse.json(
         {
           error: 'Payment Not Completed',
@@ -77,6 +79,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const isSettled = paymentIntent.status === 'succeeded';
+    const isBankTransfer = paymentIntent.payment_method_types?.[0] === 'us_bank_account';
+    const paymentMethodTitle = isBankTransfer ? 'Bank Account (ACH - Stripe)' : 'Credit Card (Stripe)';
+
     logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', {
       itemCount: cartItems.length,
     });
@@ -84,8 +90,10 @@ export async function POST(request: NextRequest) {
     // Create order using WooCommerce REST API
     const wcOrderData = {
       payment_method: 'stripe',
-      payment_method_title: 'Credit Card (Stripe)',
-      set_paid: true,
+      payment_method_title: paymentMethodTitle,
+      set_paid: isSettled,
+      // ACH orders stay "on-hold" until the bank transfer clears (WooCommerce's BACS convention)
+      ...(isSettled ? {} : { status: 'on-hold' }),
       transaction_id: paymentIntent.id,
       billing: {
         first_name: orderData.billingAddress.firstName,

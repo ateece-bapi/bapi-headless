@@ -134,44 +134,65 @@ export class CheckoutPage {
   }
 
   /**
-   * Selects PayPal as the payment method and advances to the Review step.
+   * Fills the Stripe Payment Element's card fields with a Stripe test card.
    *
-   * PayPal is the only payment method that doesn't require Stripe Elements, so
-   * it's the right choice for E2E tests.  Selecting it reveals a "Continue"
-   * button inside the PayPal panel that calls onNext() directly.
+   * The Payment Element renders all fields inside a single combined iframe
+   * (unlike the legacy Card Element's per-field iframes), located via the
+   * `__privateStripeFrame` name prefix already used elsewhere in this suite.
+   * Placeholder text matches the app's live Stripe appearance config.
+   */
+  async fillStripeTestCard(): Promise<void> {
+    const stripeFrame = this.page.frameLocator('iframe[name^="__privateStripeFrame"]').first();
+
+    await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill('4242424242424242');
+    await stripeFrame.getByPlaceholder('MM / YY').fill('12/34');
+    await stripeFrame.getByPlaceholder('CVC').fill('123');
+
+    // ZIP code is only shown for some billing-detail configurations
+    const zipField = stripeFrame.getByPlaceholder('12345');
+    if (await zipField.isVisible({ timeout: 500 }).catch(() => false)) {
+      await zipField.fill('12345');
+    }
+  }
+
+  /**
+   * Selects Credit Card, completes the Stripe Payment Element with a test
+   * card, and submits it — advancing to the Review step on success.
+   *
+   * Credit Card is the only payment tile whose flow can be fully automated
+   * in E2E today: Bank Account requires linking a real/test bank account via
+   * Stripe Financial Connections, which isn't practical to drive headlessly.
    */
   async continueToReview(): Promise<void> {
-    // Click the PayPal method card to select it
-    const paypalMethod = this.page.getByRole('button', { name: /paypal/i }).first();
-    await expect(paypalMethod).toBeVisible({ timeout: 10000 });
-    await paypalMethod.click();
+    const creditCardMethod = this.page.getByRole('button', { name: /credit card/i }).first();
+    await expect(creditCardMethod).toBeVisible({ timeout: 10000 });
+    await creditCardMethod.click();
 
-    // PayPal panel reveals its own Continue/Next CTA after method selection
-    const paypalContinue = this.page
-      .getByRole('button', { name: /continue|next/i })
-      .filter({ hasNot: this.page.getByRole('button', { name: /back/i }) })
-      .first();
-    await expect(paypalContinue).toBeVisible({ timeout: 10000 });
-    await paypalContinue.click();
+    // Wait for the Stripe Payment Element iframe to mount
+    const stripeFrameEl = this.page.locator('iframe[name^="__privateStripeFrame"]').first();
+    await stripeFrameEl.waitFor({ state: 'attached', timeout: 15000 });
 
-    await expect(this.placeOrderButton).toBeVisible({ timeout: 15000 });
+    await this.fillStripeTestCard();
+
+    const payNowButton = this.page.getByRole('button', { name: /pay now/i });
+    await expect(payNowButton).toBeVisible({ timeout: 10000 });
+    await payNowButton.click();
+
+    await expect(this.placeOrderButton).toBeVisible({ timeout: 20000 });
   }
 
   /**
    * Clicks "Place Order" and waits for the order-confirmation redirect.
    *
-   * When PayPal is the selected method, the app skips the /api/payment/confirm
-   * call entirely and redirects directly to /order-confirmation/{mockId} after
-   * a short mock delay — no route interception needed.
-   *
-   * For Stripe paths (paymentIntentId present), the real /api/payment/confirm
-   * call is intercepted and a conformant mock response is returned so the app
-   * can redirect without hitting WooCommerce.
+   * The Stripe card path confirms a real test-mode PaymentIntent client-side,
+   * then the app's /api/payment/confirm call is intercepted here and a
+   * conformant mock response is returned so the redirect doesn't depend on
+   * hitting WooCommerce.
    *
    * Returns the order-confirmation URL the app navigated to.
    */
   async placeOrder(): Promise<string> {
-    // Intercept Stripe confirm (only fires when a paymentIntentId was set)
+    // Intercept Stripe confirm (fires once the client-side PaymentIntent is confirmed)
     await this.page.route('**/api/payment/confirm**', async (route) => {
       await route.fulfill({
         status: 200,
@@ -197,7 +218,7 @@ export class CheckoutPage {
 
     await this.placeOrderButton.click();
 
-    // Wait for navigation to /order-confirmation/ (both PayPal mock and Stripe paths)
+    // Wait for navigation to /order-confirmation/
     await this.page.waitForURL(/\/order-confirmation\//, { timeout: 20000 });
     return this.page.url();
   }

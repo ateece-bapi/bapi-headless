@@ -148,6 +148,143 @@ describe('Payment Confirmation API - Integration Tests', () => {
       );
     });
 
+    it('should mark a settled card payment as paid with the correct title', async () => {
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_card123',
+        status: 'succeeded',
+        amount: 5000,
+        currency: 'usd',
+        metadata: {},
+        payment_method_types: ['card'],
+      });
+
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          id: 421733,
+          number: '421733',
+          status: 'processing',
+          total: '50.00',
+          currency: 'USD',
+          payment_method: 'stripe',
+          transaction_id: 'pi_card123',
+        }),
+      } as any);
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_card123',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+
+      const [, options] = mockFetch.mock.calls[0];
+      const body = JSON.parse(options.body);
+      expect(body.payment_method_title).toBe('Credit Card (Stripe)');
+      expect(body.set_paid).toBe(true);
+      expect(body.status).toBeUndefined();
+    });
+
+    it('should accept a processing ACH payment and hold the order until it settles', async () => {
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_ach123',
+        status: 'processing',
+        amount: 5000,
+        currency: 'usd',
+        metadata: {},
+        payment_method_types: ['us_bank_account'],
+      });
+
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          id: 421734,
+          number: '421734',
+          status: 'on-hold',
+          total: '50.00',
+          currency: 'USD',
+          payment_method: 'stripe',
+          transaction_id: 'pi_ach123',
+        }),
+      } as any);
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_ach123',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      // Act
+      const response = await POST(request);
+      const data = await response.json();
+
+      // Assert: processing ACH intents are accepted, not rejected as incomplete payments
+      expect(response.status).toBe(200);
+      expect(data).toHaveProperty('success', true);
+
+      const [, options] = mockFetch.mock.calls[0];
+      const body = JSON.parse(options.body);
+      expect(body.payment_method_title).toBe('Bank Account (ACH - Stripe)');
+      expect(body.set_paid).toBe(false);
+      expect(body.status).toBe('on-hold');
+    });
+
     it('should return 400 if payment intent not found', async () => {
       // Arrange
       const Stripe = (await import('stripe')).default;

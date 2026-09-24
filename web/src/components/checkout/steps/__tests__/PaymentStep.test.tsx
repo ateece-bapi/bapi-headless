@@ -493,6 +493,62 @@ describe('PaymentStep', () => {
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
       });
     });
+
+    it('ignores a stale Credit Card response that resolves after a later Bank Account request', async () => {
+      // Deferred promises let us control exactly when each fetch call resolves,
+      // independent of the order the requests were made in.
+      let resolveCardRequest!: (value: unknown) => void;
+      let resolveBankRequest!: (value: unknown) => void;
+      const cardResponse = new Promise((resolve) => {
+        resolveCardRequest = resolve;
+      });
+      const bankResponse = new Promise((resolve) => {
+        resolveBankRequest = resolve;
+      });
+
+      mockFetch.mockImplementation((_url: string, options: any) => {
+        const body = JSON.parse(options.body);
+        return body.paymentMethodType === 'credit_card' ? cardResponse : bankResponse;
+      });
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+        />
+      );
+
+      // Select Credit Card first (request in flight, unresolved)...
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      fireEvent.click(creditCardButton!);
+      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
+
+      // ...then switch to Bank Account before the Credit Card request resolves
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(2));
+
+      // Bank Account's request resolves first...
+      resolveBankRequest({
+        json: async () => ({ success: true, clientSecret: 'bank_client_secret' }),
+      });
+      await waitFor(() => {
+        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+      });
+
+      // ...then the stale Credit Card request finally resolves
+      resolveCardRequest({
+        json: async () => ({ success: true, clientSecret: 'card_client_secret' }),
+      });
+
+      // The stale card response must not overwrite the correct bank client secret/form
+      await waitFor(() => {
+        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+      });
+      expect(screen.queryByText('Card Details')).not.toBeInTheDocument();
+    });
   });
 
   // Navigation Tests

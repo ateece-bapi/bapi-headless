@@ -182,7 +182,7 @@ test.describe('Checkout Flow', () => {
     await expect(checkout.placeOrderButton).toBeVisible();
   });
 
-  test('Place Order navigates to order confirmation (PayPal path — no real order)', async ({ page }) => {
+  test('Place Order navigates to order confirmation (Credit Card path — no real order)', async ({ page }) => {
     const cart = new CartPage(page);
     await cart.goto();
     await cart.proceedToCheckout();
@@ -190,9 +190,9 @@ test.describe('Checkout Flow', () => {
     const checkout = new CheckoutPage(page);
     await checkout.fillShipping(TEST_SHIPPING_ADDRESS);
     await checkout.continueToPayment();
-    await checkout.continueToReview();     // selects PayPal, advances to step 3
+    await checkout.continueToReview();     // selects Credit Card, fills a test card, advances to step 3
 
-    // placeOrder() intercepts Stripe API (no-op for PayPal) and awaits redirect
+    // placeOrder() intercepts the /api/payment/confirm call and awaits redirect
     const confirmUrl = await checkout.placeOrder();
     expect(confirmUrl).toMatch(/\/order-confirmation\//);
   });

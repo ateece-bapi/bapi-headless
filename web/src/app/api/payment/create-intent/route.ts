@@ -42,11 +42,13 @@ export async function POST(request: NextRequest) {
 
     // Scope the intent to the tile the customer picked, falling back to both when unspecified.
     // Restrict to Card + Bank (ACH) only, per accounting feedback — Klarna/Crypto/etc. are excluded.
-    const ALLOWED_PAYMENT_METHOD_TYPES: Record<string, string[]> = {
+    type AllowedPaymentMethodType = 'card' | 'us_bank_account';
+    const ALLOWED_PAYMENT_METHOD_TYPES: Record<string, AllowedPaymentMethodType[]> = {
       credit_card: ['card'],
       bank_account: ['us_bank_account'],
     };
-    const paymentMethodTypes = ALLOWED_PAYMENT_METHOD_TYPES[paymentMethodType] ?? ['card', 'us_bank_account'];
+    const paymentMethodTypes: AllowedPaymentMethodType[] =
+      ALLOWED_PAYMENT_METHOD_TYPES[paymentMethodType] ?? ['card', 'us_bank_account'];
 
     // Create Payment Intent
     const paymentIntent = await stripe.paymentIntents.create({

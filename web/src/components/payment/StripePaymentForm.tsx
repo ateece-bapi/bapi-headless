@@ -45,7 +45,12 @@ export default function StripePaymentForm({ onSuccess, onError }: StripePaymentF
 
       if (error) {
         onError(error.message || 'Payment failed. Please try again.');
-      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      } else if (
+        paymentIntent &&
+        (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')
+      ) {
+        // ACH (us_bank_account) settles asynchronously and stays "processing" for 1-4 business
+        // days after confirmation — that's expected, not a failure, so let the order proceed.
         onSuccess(paymentIntent.id);
       } else {
         onError('Payment was not completed. Please try again.');

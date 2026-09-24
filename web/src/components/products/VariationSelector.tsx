@@ -198,20 +198,6 @@ export default function VariationSelector({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attributes, variations]);
 
-  // Sync selected attributes to URL on mount and when selections change
-  useEffect(() => {
-    // On mount, read URL params and restore selection
-    if (typeof window !== 'undefined') {
-      const urlSelections = getUrlSelections();
-      const hasUrlParams = Object.keys(urlSelections).length > 0;
-
-      if (hasUrlParams && Object.keys(selectedAttributes).length === 0) {
-        applySelections(urlSelections);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // Update URL when selections change
   useEffect(() => {
     if (typeof window !== 'undefined' && syncUrl && Object.keys(selectedAttributes).length > 0) {

@@ -421,5 +421,6 @@ describe('VariationSelector - Component Smoke Tests', () => {
       expect.objectContaining({ databaseId: 501 }),
       'BA/1K-D-18-BB'
     );
+    expect(onVariationChange).toHaveBeenCalledTimes(2);
   });
 });

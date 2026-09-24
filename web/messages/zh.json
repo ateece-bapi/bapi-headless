@@ -919,7 +919,6 @@
       "remove": "删除优惠券"
     },
     "shipping": {
-      "freeShipping": "✓ 订单满$500免运费",
       "standardShipping": "标准运输: 3-5 个工作日"
     },
     "toasts": {

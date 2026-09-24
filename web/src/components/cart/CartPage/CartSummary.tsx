@@ -251,9 +251,6 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
 
         {/* Shipping Info */}
         <div className="rounded-lg border border-primary-200 bg-primary-50 p-4">
-          <p className="mb-1 text-sm font-medium text-primary-900">
-            {t('cartPage.shipping.freeShipping')}
-          </p>
           <p className="text-xs text-primary-700">{t('cartPage.shipping.standardShipping')}</p>
         </div>
       </div>

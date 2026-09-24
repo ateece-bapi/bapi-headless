@@ -89,7 +89,6 @@ const mockMessages = {
       remove: 'Remove coupon',
     },
     shipping: {
-      freeShipping: '✓ Free shipping on orders over $500',
       standardShipping: 'Standard shipping: 3-5 business days',
     },
     toasts: {

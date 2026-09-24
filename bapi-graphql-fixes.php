@@ -204,11 +204,21 @@ function bapi_sanitize_favorite_product_url($product_url) {
     }
 
     $product_url = trim($product_url);
-    if (strpos($product_url, '/product/') !== 0) {
+    if (strpos($product_url, '/product/') !== 0 || preg_match('/[\x00-\x1F\x7F]/', $product_url)) {
         return null;
     }
 
-    return sanitize_text_field($product_url);
+    $parts = wp_parse_url($product_url);
+    if (!is_array($parts) || isset($parts['scheme']) || isset($parts['host'])) {
+        return null;
+    }
+
+    $path = $parts['path'] ?? '';
+    if (strpos($path, '/product/') !== 0) {
+        return null;
+    }
+
+    return esc_url_raw($product_url);
 }
 
 add_action('graphql_register_types', function () {

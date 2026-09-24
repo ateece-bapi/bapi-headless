@@ -388,4 +388,39 @@ describe('VariationSelector - Component Smoke Tests', () => {
       })
     );
   });
+
+  it('restores saved URL selections after variations load', () => {
+    mockFavoriteButton.mockClear();
+    const onVariationChange = vi.fn();
+    window.history.replaceState(
+      {},
+      '',
+      '/en/product/bapi-stat-quantum?temperature-sensor=1K+RTD&probe=18inch+%28450mm%29'
+    );
+
+    const { rerender } = render(
+      <VariationSelector
+        attributes={completeConfigurationAttributes}
+        variations={[]}
+        onVariationChange={onVariationChange}
+        product={product}
+      />
+    );
+
+    rerender(
+      <VariationSelector
+        attributes={completeConfigurationAttributes}
+        variations={completeConfigurationVariations}
+        onVariationChange={onVariationChange}
+        product={product}
+      />
+    );
+
+    expect(screen.getByText('BA/1K-D-18-BB')).toBeInTheDocument();
+    expect(onVariationChange).toHaveBeenLastCalledWith(
+      expect.objectContaining({ databaseId: 501 }),
+      'BA/1K-D-18-BB'
+    );
+    expect(onVariationChange).toHaveBeenCalledTimes(2);
+  });
 });

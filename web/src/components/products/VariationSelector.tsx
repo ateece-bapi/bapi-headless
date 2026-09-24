@@ -158,48 +158,45 @@ export default function VariationSelector({
     onVariationChange(null, null);
   };
 
-  // Reset when attributes or variations data change (but not callback)
-  useEffect(() => {
-    setSelectedAttributes({});
+  const getUrlSelections = (): SelectedAttributes => {
+    if (typeof window === 'undefined') return {};
+
+    const params = new URLSearchParams(window.location.search);
+    const urlSelections: SelectedAttributes = {};
+
+    variationAttributes.forEach((attr) => {
+      const slug = normalizeAttributeSlug(attr.name);
+      const value = params.get(slug);
+      if (value) {
+        urlSelections[slug] = value;
+      }
+    });
+
+    return urlSelections;
+  };
+
+  const applySelections = (selections: SelectedAttributes) => {
+    setSelectedAttributes(selections);
+
+    const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
+    const allSelected = areAllAttributesSelected(attributeSlugs, selections);
+    if (allSelected) {
+      const variation = findMatchingVariation(variations, selections);
+      setMatchedVariation(variation);
+      onVariationChange(variation, variation?.partNumber || variation?.sku || null);
+      return;
+    }
+
     setMatchedVariation(null);
     onVariationChange(null, null);
+  };
+
+  // Reset when attributes or variations data change (but not callback)
+  useEffect(() => {
+    const urlSelections = getUrlSelections();
+    applySelections(urlSelections);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attributes, variations]);
-
-  // Sync selected attributes to URL on mount and when selections change
-  useEffect(() => {
-    // On mount, read URL params and restore selection
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlSelections: SelectedAttributes = {};
-      let hasUrlParams = false;
-
-      variationAttributes.forEach((attr) => {
-        const slug = normalizeAttributeSlug(attr.name);
-        const value = params.get(slug);
-        if (value) {
-          urlSelections[slug] = value;
-          hasUrlParams = true;
-        }
-      });
-
-      if (hasUrlParams && Object.keys(selectedAttributes).length === 0) {
-        setSelectedAttributes(urlSelections);
-
-        // Check if we can find a matching variation
-        const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
-        const allSelected = areAllAttributesSelected(attributeSlugs, urlSelections);
-        if (allSelected) {
-          const variation = findMatchingVariation(variations, urlSelections);
-          if (variation) {
-            setMatchedVariation(variation);
-            onVariationChange(variation, variation.partNumber || variation.sku || null);
-          }
-        }
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // Update URL when selections change
   useEffect(() => {

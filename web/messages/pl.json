@@ -1595,6 +1595,10 @@
       "bankTerms": {
         "gate": "Zaakceptuj powyższe Warunki korzystania, aby kontynuować płatność bankową."
       },
+      "alreadyConfirmed": {
+        "message": "Ta płatność została już potwierdzona dla Twojego zamówienia.",
+        "continue": "Przejdź do Przeglądu"
+      },
       "security": {
         "title": "Twoja płatność jest bezpieczna",
         "description": "Obsługiwana przez Stripe z 256-bitowym szyfrowaniem SSL"

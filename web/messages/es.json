@@ -1088,6 +1088,10 @@
       "bankTerms": {
         "gate": "Acepta los Términos y Condiciones anteriores para continuar con tu pago bancario."
       },
+      "alreadyConfirmed": {
+        "message": "Este pago ya ha sido confirmado para tu pedido.",
+        "continue": "Continuar a Revisión"
+      },
       "security": {
         "title": "Tu pago es seguro",
         "description": "Respaldado por Stripe con cifrado SSL de 256 bits"

@@ -75,12 +75,20 @@ async function getWooCommerceOrder(orderId: string) {
  * shouldn't let a forged/mismatched `wc_order_id` update an unrelated order.
  */
 async function reconcileOrderForPaymentIntent(
+  stripe: Stripe,
   paymentIntent: Stripe.PaymentIntent,
   updateData: Record<string, unknown>,
   successLogMessage: string
 ) {
-  const wcOrderId = paymentIntent.metadata?.wc_order_id;
+  // Re-fetch fresh metadata rather than trusting the event's snapshot: /api/payment/confirm's
+  // linkPaymentIntentToOrder can attach wc_order_id *after* this event was emitted, and Stripe
+  // won't redeliver an already-acknowledged event just because metadata changed later.
+  const freshIntent = await stripe.paymentIntents.retrieve(paymentIntent.id);
+  const wcOrderId = freshIntent.metadata?.wc_order_id;
   if (!wcOrderId) {
+    logger.warn('[Stripe Webhook] No wc_order_id found even after re-fetching PaymentIntent', {
+      paymentIntentId: paymentIntent.id,
+    });
     return;
   }
 
@@ -113,13 +121,13 @@ export async function POST(request: NextRequest) {
   const signature = request.headers.get('stripe-signature');
   // Signature verification requires the raw, unparsed request body
   const rawBody = await request.text();
+  const stripe = getStripeInstance();
 
   let event: Stripe.Event;
   try {
     if (!signature) {
       throw new Error('Missing stripe-signature header');
     }
-    const stripe = getStripeInstance();
     event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
   } catch (error) {
     logError('stripe_webhook.signature_verification_failed', error);
@@ -133,6 +141,7 @@ export async function POST(request: NextRequest) {
         // Card orders are already marked paid synchronously in /api/payment/confirm; only
         // orders left "on-hold" (ACH awaiting settlement) carry a wc_order_id here.
         await reconcileOrderForPaymentIntent(
+          stripe,
           paymentIntent,
           { set_paid: true, status: 'processing' },
           'Marked order paid after ACH settlement'
@@ -142,6 +151,7 @@ export async function POST(request: NextRequest) {
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         await reconcileOrderForPaymentIntent(
+          stripe,
           paymentIntent,
           { status: 'failed' },
           'Marked order failed after ACH settlement failure'

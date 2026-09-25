@@ -152,6 +152,12 @@ test.describe('Multi-Locale Checkout Flow', () => {
         await stripeFrame.getByPlaceholder('MM / YY').fill('12/34');
         await stripeFrame.getByPlaceholder('CVC').fill('123');
 
+        // ZIP code is only shown for some billing-detail configurations
+        const zipField = stripeFrame.getByPlaceholder('12345');
+        if (await zipField.isVisible({ timeout: 500 }).catch(() => false)) {
+          await zipField.fill('12345');
+        }
+
         // Pay Now is hardcoded in English regardless of locale
         const payNowButton = page.getByRole('button', { name: /pay now/i });
         await expect(payNowButton).toBeVisible({ timeout: 5000 });

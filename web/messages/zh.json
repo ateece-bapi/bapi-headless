@@ -1090,6 +1090,10 @@
       "bankTerms": {
         "gate": "请接受上方的条款与条件以继续您的银行付款。"
       },
+      "alreadyConfirmed": {
+        "message": "此付款已为您的订单确认。",
+        "continue": "继续审查"
+      },
       "security": {
         "title": "您的付款是安全的",
         "description": "由Stripe提供,采用256位SSL加密"

@@ -330,12 +330,10 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
         schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
         router.push(`/${locale}/order-confirmation/${result.orderId}`);
       } else {
-        // Fallback path if no payment intent was created (should not happen for Card/Bank tiles)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
-        const mockOrderId = Math.floor(Math.random() * 100000);
-        schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
-        router.push(`/${locale}/order-confirmation/${mockOrderId}`);
+        // Every supported tile (Card, Bank Account) requires a Stripe-confirmed PaymentIntent
+        // by this point — reaching here means checkout state is broken, so fail loudly instead
+        // of fabricating a mock order that reports success without any actual payment.
+        throw new Error('No payment method was confirmed. Please select a payment method and try again.');
       }
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);

@@ -129,13 +129,21 @@ export default function PaymentStep({
 
   // Both tiles are powered by Stripe, scoped to a single payment method type each
   const isStripeMethod = (methodId: string) => methodId === 'credit_card' || methodId === 'bank_account';
+  // True once the *currently selected* method already has a confirmed order (set immediately
+  // for Bank Account on success) — re-entering this step (e.g. via Review's Back) must not
+  // let the customer resubmit and create a second order/PaymentIntent for the same selection.
+  const hasConfirmedOrderForCurrentSelection =
+    Boolean(data.orderId) && selectedMethod === data.paymentMethod?.id;
 
   // Create a payment intent (scoped to the selected method) whenever the user picks a Stripe tile
   useEffect(() => {
+    if (hasConfirmedOrderForCurrentSelection) {
+      return;
+    }
     if (isStripeMethod(selectedMethod) && cartTotal > 0) {
       createPaymentIntent(selectedMethod);
     }
-  }, [selectedMethod, cartTotal]);
+  }, [selectedMethod, cartTotal, hasConfirmedOrderForCurrentSelection]);
 
   const createPaymentIntent = async (paymentMethodType: string) => {
     const requestId = ++latestRequestIdRef.current;
@@ -183,13 +191,19 @@ export default function PaymentStep({
 
   const handleMethodSelect = (methodId: string) => {
     setSelectedMethod(methodId);
+    setBankTermsAccepted(false);
     const method = paymentMethods.find((m) => m.id === methodId);
     if (method) {
+      // Changing methods abandons any prior payment/order for this checkout session — clear
+      // both so a stale orderId can't let Place Order redirect to (or resubmit against) an
+      // order/PaymentIntent that no longer matches what the customer is now completing.
       onUpdateData({
         paymentMethod: {
           id: method.id,
           title: method.title,
         },
+        paymentIntentId: undefined,
+        orderId: undefined,
       });
     }
   };
@@ -289,7 +303,20 @@ export default function PaymentStep({
             {selectedMethod === 'credit_card' ? t('cardDetails.title') : t('bankDetails.title')}
           </h3>
 
-          {selectedMethod === 'bank_account' && !bankTermsAccepted ? (
+          {hasConfirmedOrderForCurrentSelection ? (
+            <div className="space-y-4">
+              <div className="rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-primary-900">
+                {t('alreadyConfirmed.message')}
+              </div>
+              <button
+                type="button"
+                onClick={onNext}
+                className="btn-bapi-primary flex w-full items-center justify-center rounded-xl px-6 py-3"
+              >
+                {t('alreadyConfirmed.continue')}
+              </button>
+            </div>
+          ) : selectedMethod === 'bank_account' && !bankTermsAccepted ? (
             <div className="space-y-3 rounded-lg border border-neutral-200 bg-white p-4">
               <label className="flex cursor-pointer items-start gap-3">
                 <input

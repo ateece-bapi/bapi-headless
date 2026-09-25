@@ -1090,6 +1090,10 @@
       "bankTerms": {
         "gate": "銀行お支払いを続けるには、上記の利用規約に同意してください。"
       },
+      "alreadyConfirmed": {
+        "message": "この支払いはすでにご注文に対して確認済みです。",
+        "continue": "確認画面に進む"
+      },
       "security": {
         "title": "支払いは安全です",
         "description": "Stripeによる256ビットSSL暗号化で保護されています"

@@ -139,6 +139,59 @@ export async function POST(request: NextRequest) {
     const isBankTransfer = paymentMethodType === 'us_bank_account';
     const paymentMethodTitle = isBankTransfer ? 'Bank Account (ACH - Stripe)' : 'Credit Card (Stripe)';
 
+    // Use WordPress Application Password for authentication
+    const auth = Buffer.from(
+      `${process.env.WORDPRESS_API_USER}:${process.env.WORDPRESS_API_PASSWORD}`
+    ).toString('base64');
+
+    // Idempotency: if this exact PaymentIntent already has a linked order (from a previous
+    // call whose response was lost, or a client-side retry after a timeout), return that
+    // order instead of creating a duplicate.
+    const existingOrderId = paymentIntent.metadata?.wc_order_id;
+    if (existingOrderId) {
+      try {
+        const existingOrderResponse = await fetch(
+          `${WORDPRESS_URL}/wp-json/wc/v3/orders/${existingOrderId}`,
+          { headers: { Authorization: `Basic ${auth}` } }
+        );
+
+        if (existingOrderResponse.ok) {
+          const existingOrder = await existingOrderResponse.json();
+          logger.info('[Payment Confirm] Returning existing order for already-confirmed PaymentIntent', {
+            orderId: existingOrder.id,
+            paymentIntentId: paymentIntent.id,
+          });
+
+          return NextResponse.json({
+            success: true,
+            clearCart: true,
+            order: {
+              id: existingOrder.id,
+              orderNumber: existingOrder.number,
+              status: existingOrder.status,
+              total: existingOrder.total,
+              currency: existingOrder.currency,
+              paymentMethod: existingOrder.payment_method,
+              transactionId: existingOrder.transaction_id,
+            },
+          });
+        }
+
+        // Order lookup failed (e.g. deleted) — fall through and create a fresh order rather
+        // than silently failing the whole request.
+        logger.error('[Payment Confirm] Existing linked order could not be retrieved', {
+          orderId: existingOrderId,
+          paymentIntentId: paymentIntent.id,
+          status: existingOrderResponse.status,
+        });
+      } catch (lookupError) {
+        logError('payment.confirm_existing_order_lookup_failed', lookupError, {
+          paymentIntentId: paymentIntent.id,
+          existingOrderId,
+        });
+      }
+    }
+
     logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', {
       itemCount: cartItems.length,
     });
@@ -158,7 +211,7 @@ export async function POST(request: NextRequest) {
         address_2: orderData.billingAddress.address2 || '',
         city: orderData.billingAddress.city,
         state: orderData.billingAddress.state,
-        postcode: orderData.billingAddress.zipCode,
+        postcode: orderData.billingAddress.postcode,
         country: orderData.billingAddress.country || 'US',
         email: orderData.billingAddress.email,
         phone: orderData.billingAddress.phone || '',
@@ -170,7 +223,7 @@ export async function POST(request: NextRequest) {
         address_2: orderData.shippingAddress.address2 || '',
         city: orderData.shippingAddress.city,
         state: orderData.shippingAddress.state,
-        postcode: orderData.shippingAddress.zipCode,
+        postcode: orderData.shippingAddress.postcode,
         country: orderData.shippingAddress.country || 'US',
       },
       line_items: cartItems.map((item: any) => ({
@@ -189,11 +242,6 @@ export async function POST(request: NextRequest) {
         },
       ],
     };
-
-    // Use WordPress Application Password for authentication
-    const auth = Buffer.from(
-      `${process.env.WORDPRESS_API_USER}:${process.env.WORDPRESS_API_PASSWORD}`
-    ).toString('base64');
 
     const wcResponse = await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders`, {
       method: 'POST',
@@ -250,6 +298,37 @@ export async function POST(request: NextRequest) {
           });
         } catch (noteError) {
           logError('payment.confirm_ach_link_flag_failed', noteError, {
+            orderId: order.id,
+            paymentIntentId: paymentIntent.id,
+          });
+        }
+      } else {
+        // Closes the race where the ACH PaymentIntent settles between our initial retrieve
+        // above and this metadata link finishing — the webhook can't reconcile an event that
+        // fired before wc_order_id existed, so check the current status ourselves once more.
+        try {
+          const refreshedIntent = await stripe.paymentIntents.retrieve(paymentIntent.id);
+          if (refreshedIntent.status === 'succeeded') {
+            const settleResponse = await fetch(
+              `${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`,
+              {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Basic ${auth}`,
+                },
+                body: JSON.stringify({ set_paid: true, status: 'processing' }),
+              }
+            );
+            if (settleResponse.ok) {
+              logger.info('[Payment Confirm] ACH settled before response — marked order paid immediately', {
+                orderId: order.id,
+                paymentIntentId: paymentIntent.id,
+              });
+            }
+          }
+        } catch (reconcileError) {
+          logError('payment.confirm_ach_immediate_reconcile_failed', reconcileError, {
             orderId: order.id,
             paymentIntentId: paymentIntent.id,
           });

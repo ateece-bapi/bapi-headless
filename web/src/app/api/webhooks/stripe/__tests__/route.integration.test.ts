@@ -10,9 +10,13 @@ import { POST } from '../route';
 import { NextRequest } from 'next/server';
 
 const mockConstructEvent = vi.fn();
+const mockRetrieve = vi.fn();
 const mockStripeInstance = {
   webhooks: {
     constructEvent: mockConstructEvent,
+  },
+  paymentIntents: {
+    retrieve: mockRetrieve,
   },
 };
 
@@ -21,6 +25,9 @@ vi.mock('stripe', () => {
     default: class MockStripe {
       webhooks = {
         constructEvent: mockConstructEvent,
+      };
+      paymentIntents = {
+        retrieve: mockRetrieve,
       };
       constructor() {
         return mockStripeInstance;
@@ -88,6 +95,8 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '421734' },
       })
     );
+    // Re-fetched fresh metadata (mirrors the event snapshot when nothing has drifted)
+    mockRetrieve.mockResolvedValue({ id: 'pi_ach123', metadata: { wc_order_id: '421734' } });
 
     // GET order (ownership check) then PUT order (the update)
     mockFetch
@@ -125,6 +134,7 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '421735' },
       })
     );
+    mockRetrieve.mockResolvedValue({ id: 'pi_ach456', metadata: { wc_order_id: '421735' } });
 
     mockFetch
       .mockResolvedValueOnce({
@@ -150,6 +160,7 @@ describe('Stripe Webhook Handler', () => {
         metadata: {},
       })
     );
+    mockRetrieve.mockResolvedValue({ id: 'pi_card123', metadata: {} });
 
     const response = await POST(buildRequest());
 
@@ -167,6 +178,7 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '999999' },
       })
     );
+    mockRetrieve.mockResolvedValue({ id: 'pi_attacker123', metadata: { wc_order_id: '999999' } });
 
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -188,6 +200,7 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '421736' },
       })
     );
+    mockRetrieve.mockResolvedValue({ id: 'pi_ach789', metadata: { wc_order_id: '421736' } });
 
     mockFetch
       .mockResolvedValueOnce({
@@ -203,6 +216,38 @@ describe('Stripe Webhook Handler', () => {
     const response = await POST(buildRequest());
 
     expect(response.status).toBe(500);
+  });
+
+  it('reconciles using freshly re-fetched metadata, not the (possibly stale) event snapshot', async () => {
+    // The event snapshot has no wc_order_id — it was emitted before /api/payment/confirm's
+    // linkPaymentIntentToOrder finished attaching it. Stripe won't redeliver this event, so
+    // the fresh retrieve() call is the only way to still find it.
+    mockConstructEvent.mockReturnValue(
+      paymentIntentEvent('payment_intent.succeeded', {
+        id: 'pi_race_condition',
+        metadata: {},
+      })
+    );
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_race_condition',
+      metadata: { wc_order_id: '421999' },
+    });
+
+    mockFetch
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ id: 421999, transaction_id: 'pi_race_condition', status: 'on-hold' }),
+      } as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ id: 421999, status: 'processing' }),
+      } as any);
+
+    const response = await POST(buildRequest());
+
+    expect(response.status).toBe(200);
+    expect(mockRetrieve).toHaveBeenCalledWith('pi_race_condition');
+    expect(mockFetch).toHaveBeenCalledTimes(2);
   });
 
   it('ignores unrelated event types', async () => {

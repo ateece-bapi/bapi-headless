@@ -216,6 +216,11 @@ export class CheckoutPage {
       });
     });
 
+    // ReviewStep gates Place Order on its own Terms & Conditions / Privacy Policy checkbox
+    const termsCheckbox = this.page.getByRole('checkbox').first();
+    await expect(termsCheckbox).toBeVisible({ timeout: 10000 });
+    await termsCheckbox.check();
+
     await this.placeOrderButton.click();
 
     // Wait for navigation to /order-confirmation/

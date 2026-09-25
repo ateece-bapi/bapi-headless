@@ -55,6 +55,10 @@ describe('Payment Confirmation API - Integration Tests', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // clearAllMocks() doesn't reset implementations — without this, a prior test's
+    // mockRejectedValue/mockResolvedValueOnce queue on mockUpdate would leak into the next.
+    mockUpdate.mockReset();
+    mockUpdate.mockResolvedValue({});
     // Set our mock fetch
     global.fetch = mockFetch as any;
   });
@@ -423,6 +427,144 @@ describe('Payment Confirmation API - Integration Tests', () => {
       const body = JSON.parse(options.body);
       expect(body.customer_note).toContain('pi_ach_fail');
       expect(body.customer_note).toContain('manual follow-up');
+    });
+
+    it('should return the existing order instead of creating a duplicate for an already-linked PaymentIntent', async () => {
+      // A retry (lost response, refresh, client timeout) resubmits the same PaymentIntent,
+      // which already carries wc_order_id from a prior successful call.
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_already_linked',
+        status: 'processing',
+        amount: 5000,
+        currency: 'usd',
+        metadata: { wc_order_id: '421950' },
+        payment_method: { type: 'us_bank_account' },
+      });
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          id: 421950,
+          number: '421950',
+          status: 'on-hold',
+          total: '50.00',
+          currency: 'USD',
+          payment_method: 'stripe',
+          transaction_id: 'pi_already_linked',
+        }),
+      } as any);
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_already_linked',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.order.id).toBe(421950);
+      // Only the existing-order GET should happen — never a new order POST
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      const [lookupUrl, lookupOptions] = mockFetch.mock.calls[0];
+      expect(lookupUrl).toContain('/orders/421950');
+      expect(lookupOptions?.method).not.toBe('POST');
+    });
+
+    it('should immediately mark the order paid if the ACH intent settles before the metadata link finishes', async () => {
+      mockRetrieve
+        .mockResolvedValueOnce({
+          id: 'pi_ach_fast_settle',
+          status: 'processing',
+          amount: 5000,
+          currency: 'usd',
+          metadata: {},
+          payment_method: { type: 'us_bank_account' },
+        })
+        // Re-checked immediately after linking metadata — settled in the meantime
+        .mockResolvedValueOnce({
+          id: 'pi_ach_fast_settle',
+          status: 'succeeded',
+        });
+
+      mockFetch.mockImplementation(async (url: string) => {
+        if (String(url).endsWith('/orders')) {
+          return {
+            ok: true,
+            json: async () => ({ id: 422100, number: '422100', status: 'on-hold' }),
+          } as any;
+        }
+        return { ok: true, json: async () => ({ id: 422100, status: 'processing' }) } as any;
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_ach_fast_settle',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+      expect(mockRetrieve).toHaveBeenCalledTimes(2);
+
+      const settleCall = mockFetch.mock.calls.find(([url]) => String(url).endsWith('/orders/422100'));
+      expect(settleCall).toBeDefined();
+      const [, options] = settleCall!;
+      expect(JSON.parse(options.body)).toEqual({ set_paid: true, status: 'processing' });
     });
 
     it('should reject a resolved payment method that is neither card nor us_bank_account', async () => {

@@ -1090,6 +1090,10 @@
       "bankTerms": {
         "gate": "Veuillez accepter les Conditions générales ci-dessus pour continuer votre paiement bancaire."
       },
+      "alreadyConfirmed": {
+        "message": "Ce paiement a déjà été confirmé pour votre commande.",
+        "continue": "Continuer à la vérification"
+      },
       "security": {
         "title": "Votre paiement est sécurisé",
         "description": "Alimenté par Stripe avec un chiffrement SSL 256 bits"

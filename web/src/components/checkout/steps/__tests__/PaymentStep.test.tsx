@@ -240,6 +240,38 @@ describe('PaymentStep', () => {
       );
     });
 
+    it('clears a prior confirmed order/paymentIntent when switching methods', () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_old_ach_intent',
+        orderId: 88888,
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithConfirmedAchOrder}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Switching to Credit Card must abandon the prior ACH order/intent — otherwise Place
+      // Order could later redirect to (or resubmit against) a selection the customer left
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      fireEvent.click(creditCardButton!);
+
+      expect(mockOnUpdateData).toHaveBeenCalledWith(
+        expect.objectContaining({
+          paymentMethod: { id: 'credit_card', title: 'Credit Card' },
+          paymentIntentId: undefined,
+          orderId: undefined,
+        })
+      );
+    });
+
     it('highlights selected credit card method', () => {
       render(
         <PaymentStep
@@ -515,6 +547,33 @@ describe('PaymentStep', () => {
       await waitFor(() => {
         expect(screen.getByText('Bank Details')).toBeInTheDocument();
       });
+    });
+
+    it('shows an already-confirmed panel instead of re-submitting when the order already exists', async () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_confirmed_ach',
+        orderId: 77777,
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithConfirmedAchOrder}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Re-entering this step for the same already-confirmed selection (e.g. via Review's
+      // Back) must not create a new PaymentIntent or re-render the submittable Stripe form
+      expect(mockFetch).not.toHaveBeenCalled();
+      expect(screen.queryByTestId('stripe-payment-form')).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByText('Continue to Review'));
+      expect(mockOnNext).toHaveBeenCalled();
     });
 
     it('gates the Bank Account Stripe form behind terms acceptance', async () => {

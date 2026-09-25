@@ -123,6 +123,29 @@ export async function POST(request: NextRequest) {
         ? paymentIntent.payment_method.type
         : paymentIntent.payment_method_types?.[0];
 
+    // Verify the submitted cart matches what was actually charged — without this, a caller
+    // could reuse a valid (possibly still-processing) PaymentIntent while substituting a
+    // different, more expensive cart and customer data than what the intent's amount covers.
+    const cartSubtotalDollars = cartItems.reduce((sum: number, item: any) => {
+      const price = parseFloat(String(item.price).replace('$', '').replace(',', ''));
+      return sum + price * item.quantity;
+    }, 0);
+    const expectedAmountCents = Math.round(cartSubtotalDollars * 100);
+    if (Math.abs(paymentIntent.amount - expectedAmountCents) > 1) {
+      logger.error('[Payment Confirm] Cart total does not match the confirmed PaymentIntent amount', {
+        paymentIntentId: paymentIntent.id,
+        chargedAmountCents: paymentIntent.amount,
+        submittedCartAmountCents: expectedAmountCents,
+      });
+      return NextResponse.json(
+        {
+          error: 'Amount Mismatch',
+          message: 'The submitted cart does not match the confirmed payment amount.',
+        },
+        { status: 400 }
+      );
+    }
+
     // Only Card and Bank Account are offered by the checkout UI — reject anything else
     // (e.g. a PaymentIntent created directly against the Stripe API with Klarna/crypto/etc.)
     // rather than silently recording it as a card order.
@@ -324,6 +347,28 @@ export async function POST(request: NextRequest) {
               logger.info('[Payment Confirm] ACH settled before response — marked order paid immediately', {
                 orderId: order.id,
                 paymentIntentId: paymentIntent.id,
+              });
+            }
+          } else if (refreshedIntent.status !== 'processing') {
+            // The intent failed/was canceled between our initial retrieve and now — reflect
+            // that immediately rather than leaving the order on-hold indefinitely (the
+            // webhook may have already fired for this before wc_order_id existed to act on it).
+            const failResponse = await fetch(
+              `${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`,
+              {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Basic ${auth}`,
+                },
+                body: JSON.stringify({ status: 'failed' }),
+              }
+            );
+            if (failResponse.ok) {
+              logger.info('[Payment Confirm] ACH failed before response — marked order failed immediately', {
+                orderId: order.id,
+                paymentIntentId: paymentIntent.id,
+                intentStatus: refreshedIntent.status,
               });
             }
           }

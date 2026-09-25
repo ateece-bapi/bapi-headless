@@ -240,7 +240,38 @@ describe('PaymentStep', () => {
       );
     });
 
-    it('clears a prior confirmed order/paymentIntent when switching methods', () => {
+    it('clears a prior unconfirmed paymentIntent when switching methods', () => {
+      const dataWithPendingIntent: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_pending_intent',
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithPendingIntent}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Switching methods before any order is confirmed should abandon the pending intent —
+      // it was never linked to an order, so there's nothing live left running server-side.
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      fireEvent.click(creditCardButton!);
+
+      expect(mockOnUpdateData).toHaveBeenCalledWith(
+        expect.objectContaining({
+          paymentMethod: { id: 'credit_card', title: 'Credit Card' },
+          paymentIntentId: undefined,
+          orderId: undefined,
+        })
+      );
+    });
+
+    it('ignores method changes once an ACH order has been confirmed', () => {
       const dataWithConfirmedAchOrder: CheckoutData = {
         ...mockData,
         paymentMethod: { id: 'bank_account', title: 'Bank Account' },
@@ -258,18 +289,15 @@ describe('PaymentStep', () => {
         />
       );
 
-      // Switching to Credit Card must abandon the prior ACH order/intent — otherwise Place
-      // Order could later redirect to (or resubmit against) a selection the customer left
+      // The ACH debit/order is already live at this point — switching tiles must not be
+      // possible, since it would only abandon it in local state while it stays active
+      // server-side.
       const creditCardButton = screen.getByText('Credit Card').closest('button');
+      expect(creditCardButton).toBeDisabled();
+
       fireEvent.click(creditCardButton!);
 
-      expect(mockOnUpdateData).toHaveBeenCalledWith(
-        expect.objectContaining({
-          paymentMethod: { id: 'credit_card', title: 'Credit Card' },
-          paymentIntentId: undefined,
-          orderId: undefined,
-        })
-      );
+      expect(mockOnUpdateData).not.toHaveBeenCalled();
     });
 
     it('highlights selected credit card method', () => {
@@ -883,6 +911,29 @@ describe('PaymentStep', () => {
       await waitFor(() => {
         expect(screen.queryByText('Back')).not.toBeInTheDocument();
       });
+    });
+
+    it('hides Back button once an ACH order has been confirmed', () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_confirmed',
+        orderId: 88888,
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithConfirmedAchOrder}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Going back to edit shipping/billing at this point wouldn't be reflected on the
+      // already-created order, so Back must not be offered once confirmed.
+      expect(screen.queryByText('Back')).not.toBeInTheDocument();
     });
 
     it('renders ArrowLeft icon on Back button', () => {

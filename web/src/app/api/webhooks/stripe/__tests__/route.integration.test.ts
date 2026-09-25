@@ -96,7 +96,11 @@ describe('Stripe Webhook Handler', () => {
       })
     );
     // Re-fetched fresh metadata (mirrors the event snapshot when nothing has drifted)
-    mockRetrieve.mockResolvedValue({ id: 'pi_ach123', metadata: { wc_order_id: '421734' } });
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_ach123',
+      status: 'succeeded',
+      metadata: { wc_order_id: '421734' },
+    });
 
     // GET order (ownership check) then PUT order (the update)
     mockFetch
@@ -134,7 +138,11 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '421735' },
       })
     );
-    mockRetrieve.mockResolvedValue({ id: 'pi_ach456', metadata: { wc_order_id: '421735' } });
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_ach456',
+      status: 'requires_payment_method',
+      metadata: { wc_order_id: '421735' },
+    });
 
     mockFetch
       .mockResolvedValueOnce({
@@ -178,7 +186,11 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '999999' },
       })
     );
-    mockRetrieve.mockResolvedValue({ id: 'pi_attacker123', metadata: { wc_order_id: '999999' } });
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_attacker123',
+      status: 'succeeded',
+      metadata: { wc_order_id: '999999' },
+    });
 
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -200,7 +212,11 @@ describe('Stripe Webhook Handler', () => {
         metadata: { wc_order_id: '421736' },
       })
     );
-    mockRetrieve.mockResolvedValue({ id: 'pi_ach789', metadata: { wc_order_id: '421736' } });
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_ach789',
+      status: 'succeeded',
+      metadata: { wc_order_id: '421736' },
+    });
 
     mockFetch
       .mockResolvedValueOnce({
@@ -230,6 +246,7 @@ describe('Stripe Webhook Handler', () => {
     );
     mockRetrieve.mockResolvedValue({
       id: 'pi_race_condition',
+      status: 'succeeded',
       metadata: { wc_order_id: '421999' },
     });
 
@@ -248,6 +265,47 @@ describe('Stripe Webhook Handler', () => {
     expect(response.status).toBe(200);
     expect(mockRetrieve).toHaveBeenCalledWith('pi_race_condition');
     expect(mockFetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('ignores a stale failed event when the intent has since succeeded', async () => {
+    // A retried ACH attempt can succeed after an earlier failure event for the same intent
+    // was already queued for delivery — acting on the stale failure would wrongly mark a
+    // now-paid order as failed.
+    mockConstructEvent.mockReturnValue(
+      paymentIntentEvent('payment_intent.payment_failed', {
+        id: 'pi_stale_failure',
+        metadata: { wc_order_id: '422200' },
+      })
+    );
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_stale_failure',
+      status: 'succeeded',
+      metadata: { wc_order_id: '422200' },
+    });
+
+    const response = await POST(buildRequest());
+
+    expect(response.status).toBe(200);
+    expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it('ignores a stale succeeded event when the intent has since failed', async () => {
+    mockConstructEvent.mockReturnValue(
+      paymentIntentEvent('payment_intent.succeeded', {
+        id: 'pi_stale_success',
+        metadata: { wc_order_id: '422201' },
+      })
+    );
+    mockRetrieve.mockResolvedValue({
+      id: 'pi_stale_success',
+      status: 'requires_payment_method',
+      metadata: { wc_order_id: '422201' },
+    });
+
+    const response = await POST(buildRequest());
+
+    expect(response.status).toBe(200);
+    expect(mockFetch).not.toHaveBeenCalled();
   });
 
   it('ignores unrelated event types', async () => {

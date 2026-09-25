@@ -190,13 +190,17 @@ export default function PaymentStep({
   };
 
   const handleMethodSelect = (methodId: string) => {
+    // Once an order is confirmed (immediate for ACH), the underlying debit/order is already
+    // live — switching tiles here would only abandon it in local state while it stays active
+    // server-side, letting it settle behind a second order. Lock selection entirely instead.
+    if (data.orderId) {
+      return;
+    }
+
     setSelectedMethod(methodId);
     setBankTermsAccepted(false);
     const method = paymentMethods.find((m) => m.id === methodId);
     if (method) {
-      // Changing methods abandons any prior payment/order for this checkout session — clear
-      // both so a stale orderId can't let Place Order redirect to (or resubmit against) an
-      // order/PaymentIntent that no longer matches what the customer is now completing.
       onUpdateData({
         paymentMethod: {
           id: method.id,
@@ -257,11 +261,13 @@ export default function PaymentStep({
                 key={method.id}
                 type="button"
                 onClick={() => handleMethodSelect(method.id)}
+                disabled={Boolean(data.orderId)}
+                aria-disabled={Boolean(data.orderId)}
                 className={`relative rounded-xl border-2 p-6 text-left transition-all ${
                   selectedMethod === method.id
                     ? 'border-primary-500 bg-primary-50'
                     : 'border-neutral-200 bg-white hover:border-neutral-300'
-                } `}
+                } ${data.orderId ? 'cursor-not-allowed opacity-60' : ''} `}
               >
                 {/* Selected Indicator */}
                 {selectedMethod === method.id && (
@@ -373,9 +379,9 @@ export default function PaymentStep({
       )}
 
       {/* Back Button (only show if not in the Credit Card Stripe form, which handles its own
-          submission) — Bank Account still needs Back available in case Financial Connections
-          fails or the customer needs to revisit shipping info before authorizing the debit. */}
-      {selectedMethod !== 'credit_card' && (
+          submission, and never once an order is confirmed — going back to edit shipping/
+          billing at that point wouldn't be reflected on the already-created ACH order). */}
+      {selectedMethod !== 'credit_card' && !data.orderId && (
         <div className="flex justify-between border-t border-neutral-200 pt-6">
           <button
             type="button"

@@ -77,6 +77,7 @@ async function getWooCommerceOrder(orderId: string) {
 async function reconcileOrderForPaymentIntent(
   stripe: Stripe,
   paymentIntent: Stripe.PaymentIntent,
+  eventOutcome: 'succeeded' | 'failed',
   updateData: Record<string, unknown>,
   successLogMessage: string
 ) {
@@ -84,6 +85,28 @@ async function reconcileOrderForPaymentIntent(
   // linkPaymentIntentToOrder can attach wc_order_id *after* this event was emitted, and Stripe
   // won't redeliver an already-acknowledged event just because metadata changed later.
   const freshIntent = await stripe.paymentIntents.retrieve(paymentIntent.id);
+
+  // Guard against stale/out-of-order delivery: a later retry can succeed after an earlier
+  // failure event was queued (or vice versa) — only act if the intent's *current* status
+  // still matches what this event claims, so a stale event can't overwrite a newer outcome.
+  if (eventOutcome === 'succeeded' && freshIntent.status !== 'succeeded') {
+    logger.warn('[Stripe Webhook] Ignoring stale succeeded event — intent status has since changed', {
+      paymentIntentId: paymentIntent.id,
+      currentStatus: freshIntent.status,
+    });
+    return;
+  }
+  if (
+    eventOutcome === 'failed' &&
+    (freshIntent.status === 'succeeded' || freshIntent.status === 'processing')
+  ) {
+    logger.warn('[Stripe Webhook] Ignoring stale failed event — intent has since succeeded or is still processing', {
+      paymentIntentId: paymentIntent.id,
+      currentStatus: freshIntent.status,
+    });
+    return;
+  }
+
   const wcOrderId = freshIntent.metadata?.wc_order_id;
   if (!wcOrderId) {
     logger.warn('[Stripe Webhook] No wc_order_id found even after re-fetching PaymentIntent', {
@@ -143,6 +166,7 @@ export async function POST(request: NextRequest) {
         await reconcileOrderForPaymentIntent(
           stripe,
           paymentIntent,
+          'succeeded',
           { set_paid: true, status: 'processing' },
           'Marked order paid after ACH settlement'
         );
@@ -153,6 +177,7 @@ export async function POST(request: NextRequest) {
         await reconcileOrderForPaymentIntent(
           stripe,
           paymentIntent,
+          'failed',
           { status: 'failed' },
           'Marked order failed after ACH settlement failure'
         );

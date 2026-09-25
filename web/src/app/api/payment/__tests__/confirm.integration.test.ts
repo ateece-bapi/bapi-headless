@@ -567,6 +567,127 @@ describe('Payment Confirmation API - Integration Tests', () => {
       expect(JSON.parse(options.body)).toEqual({ set_paid: true, status: 'processing' });
     });
 
+    it('should mark the order failed if the ACH intent fails before the metadata link finishes', async () => {
+      mockRetrieve
+        .mockResolvedValueOnce({
+          id: 'pi_ach_fast_fail',
+          status: 'processing',
+          amount: 5000,
+          currency: 'usd',
+          metadata: {},
+          payment_method: { type: 'us_bank_account' },
+        })
+        // Re-checked immediately after linking metadata — failed in the meantime
+        .mockResolvedValueOnce({
+          id: 'pi_ach_fast_fail',
+          status: 'requires_payment_method',
+        });
+
+      mockFetch.mockImplementation(async (url: string) => {
+        if (String(url).endsWith('/orders')) {
+          return {
+            ok: true,
+            json: async () => ({ id: 422101, number: '422101', status: 'on-hold' }),
+          } as any;
+        }
+        return { ok: true, json: async () => ({ id: 422101, status: 'failed' }) } as any;
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_ach_fast_fail',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '50.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+      expect(mockRetrieve).toHaveBeenCalledTimes(2);
+
+      const failCall = mockFetch.mock.calls.find(([url]) => String(url).endsWith('/orders/422101'));
+      expect(failCall).toBeDefined();
+      const [, options] = failCall!;
+      expect(JSON.parse(options.body)).toEqual({ status: 'failed' });
+    });
+
+    it('should reject a mismatch between the cart total and the PaymentIntent amount', async () => {
+      // A caller could reuse a valid/processing PaymentIntent while substituting a different,
+      // more expensive cart — the order must be priced from server-validated data, not this.
+      mockRetrieve.mockResolvedValue({
+        id: 'pi_amount_mismatch',
+        status: 'succeeded',
+        amount: 5000, // $50.00
+        currency: 'usd',
+        metadata: {},
+        payment_method: { type: 'card' },
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/payment/confirm', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentIntentId: 'pi_amount_mismatch',
+          orderData: {
+            shippingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+              phone: '555-0123',
+            },
+            billingAddress: {
+              firstName: 'John',
+              lastName: 'Doe',
+              address1: '123 Test St',
+              city: 'Test City',
+              state: 'CA',
+              postcode: '12345',
+              country: 'US',
+              email: 'test@example.com',
+            },
+          },
+          // $999.00 cart against a $50.00 PaymentIntent
+          cartItems: [
+            { id: 'prod-1', databaseId: 12345, name: 'Test Product', price: '999.00', quantity: 1 },
+          ],
+        }),
+      });
+
+      const response = await POST(request);
+
+      expect(response.status).toBe(400);
+      expect(mockFetch).not.toHaveBeenCalled();
+    });
+
     it('should reject a resolved payment method that is neither card nor us_bank_account', async () => {
       // e.g. a PaymentIntent created directly against the Stripe API with Klarna, bypassing
       // the checkout UI's create-intent allow-list entirely
@@ -719,7 +840,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
               email: 'test@example.com',
             },
           },
-          cartItems: [{ databaseId: 12345, quantity: 1, price: '75.00', name: 'Test Product' }],
+          cartItems: [{ databaseId: 12345, quantity: 1, price: '50.00', name: 'Test Product' }],
         }),
       });
 

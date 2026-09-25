@@ -466,7 +466,7 @@
         "roomWallSensors": "أجهزة استشعار الغرف والجدران",
         "roomWallSensorsDesc": "استشعار درجة حرارة عالي الدقة",
         "ductSensors": "أجهزة استشعار المجاري",
-        "ductSensorsDesc": "أجهزة إرسال مثبتة في المجاري",
+        "ductSensorsDesc": "مستشعرات حرارة مثبتة في المجاري",
         "immersionWell": "الغمر وبئر الحرارة",
         "immersionWellDesc": "قياس درجة حرارة السوائل",
         "outdoorSensors": "أجهزة استشعار خارجية",
@@ -474,18 +474,18 @@
         "averaging": "أجهزة استشعار المتوسط",
         "averagingDesc": "حساب متوسط درجة الحرارة للمساحات الكبيرة",
         "remoteProbes": "مجسات بعيدة",
-        "remoteProbesDesc": "مجسات عنصر استشعار منفصلة"
+        "remoteProbesDesc": "مجسات رصاصية وسطحية ومقعرة"
       },
       "humidity": {
         "title": "الرطوبة",
         "humidityOverview": "نظرة عامة على الرطوبة",
         "humidityOverviewDesc": "حلول استشعار رطوبة شاملة لأنظمة التدفئة والتهوية وتكييف الهواء التجارية",
         "roomHumidity": "رطوبة الحجرة",
-        "roomHumidityDesc": "استشعارات رطوبة نسبية مركبة على الحائط",
+        "roomHumidityDesc": "مستشعرات %RH مركبة على الحائط",
         "ductHumidity": "رطوبة الفتحة",
-        "ductHumidityDesc": "رطوبة نسبية في مجرى الهواء العائد والإمداد",
+        "ductHumidityDesc": "نسبة %RH لهواء الإمداد والعودة",
         "outdoorHumidity": "رطوبة خارجية",
-        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للطقس",
+        "outdoorHumidityDesc": "%RH مقاومة للطقس",
         "comboSensors": "استشعارات مشتركة",
         "comboSensorsDesc": "درجة الحرارة + الرطوبة"
       },
@@ -494,22 +494,22 @@
         "pressureOverview": "نظرة عامة على الضغط",
         "pressureOverviewDesc": "خط كامل من مستشعرات الضغط والمفاتيح لتطبيقات HVAC",
         "differential": "الضغط التفاضلي",
-        "differentialDesc": "مراقبة الحجرة والفلتر",
+        "differentialDesc": "المجرى أو المبنى أو من غرفة إلى غرفة",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "مرسلات ضغط الفتحة الساكنة",
+        "staticDesc": "المجرى والحائط والسقف والهواء الخارجي",
         "differentialSwitch": "مفتاح تفاضلي",
-        "differentialSwitchDesc": "التبديل المنشط بالضغط"
+        "differentialSwitchDesc": "التحقق من عمل المروحة وحالة الفلتر"
       },
       "airQuality": {
         "title": "جودة الهواء",
         "airQualityOverview": "نظرة عامة على جودة الهواء",
-        "airQualityOverviewDesc": "حلول كاملة لـ CO₂ و VOC والجسيمات و CO و NO₂",
+        "airQualityOverviewDesc": "حلول CO₂ و VOC والجسيمات و CO و NO₂",
         "co2": "مستشعرات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
         "voc": "مستشعرات VOC",
         "vocDesc": "المركبات العضوية المتطايرة",
         "particulate": "الجسيمات العالقة",
-        "particulateDesc": "PM2.5 و PM10",
+        "particulateDesc": "بحجم جسيمات قابل للاختيار ميدانياً",
         "nitrogenDioxide": "ثاني أكسيد النيتروجين",
         "nitrogenDioxideDesc": "كشف غاز NO₂",
         "carbonMonoxide": "أول أكسيد الكربون",
@@ -528,22 +528,22 @@
         "roomSensorsDesc": "حساسات درجة الحرارة والرطوبة للبيئات الداخلية",
         "title": "لاسلكي",
         "wirelessAccessories": "الملحقات",
-        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت",
+        "wirelessAccessoriesDesc": "بطاريات وملحقات أخرى",
         "wirelessSolutions": "نظرة عامة على الحلول اللاسلكية",
-        "wirelessSolutionsDesc": "اتصال لاسلكي كامل لأتمتة المباني"
+        "wirelessSolutionsDesc": "اتصال لاسلكي بسيط لأتمتة المباني"
       },
       "accessories": {
         "title": "الملحقات",
         "accessoriesOverview": "نظرة عامة على الملحقات",
-        "accessoriesOverviewDesc": "أجهزة استشعار متخصصة وأجهزة دعم لتطبيقات أنظمة التدفئة والتهوية وتكييف الهواء",
+        "accessoriesOverviewDesc": "حلول لإكمال عملية التركيب لديك",
         "allAccessories": "جميع الملحقات",
-        "allAccessoriesDesc": "أجهزة التثبيت، العلب، الكابلات، وملحقات أجهزة الاستشعار"
+        "allAccessoriesDesc": "مزودات الطاقة، كواشف تسرب المياه، وملحقات HVAC أخرى"
       },
       "testInstruments": {
         "title": "أجهزة الاختبار",
-        "bluTestDesc": "مجموعة من مجسات الاختبار لدرجة الحرارة والرطوبة ونقطة الندى والضغط التفاضلي ومعامل K",
+        "bluTestDesc": "أجهزة اختبار لاسلكية بتقنية اتصال Bluetooth",
         "allTestInstruments": "جميع أجهزة الاختبار",
-        "allTestInstrumentsDesc": "مراجع درجة الحرارة والرطوبة والضغط القابلة للتتبع وفقاً لمعايير NIST"
+        "allTestInstrumentsDesc": "اختبار درجة الحرارة والرطوبة وضغط الهواء القابل للتتبع وفقاً لمعايير NIST"
       },
       "featured": {
         "title": "WAM™ المراقبة اللاسلكية للأصول",
@@ -562,7 +562,7 @@
       "etaLine": {
         "title": "خط ETA",
         "allEtaLine": "جميع منتجات ETA",
-        "allEtaLineDesc": "حلول الإدخال/الإخراج المعيارية والتحكم لأتمتة المباني"
+        "allEtaLineDesc": "أجهزة واجهة واتصال تكمّل تركيب نظام DDC"
       },
       "featuredSecondary": {
         "title": "تطبيق Blü-View",

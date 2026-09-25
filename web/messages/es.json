@@ -466,7 +466,7 @@
         "roomWallSensors": "Sensores de Ambiente y Pared",
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
         "ductSensors": "Sensores de Conducto",
-        "ductSensorsDesc": "Transmisores montados en conducto",
+        "ductSensorsDesc": "Sensores de temperatura montados en conducto",
         "immersionWell": "Inmersión y Vaina Termométrica",
         "immersionWellDesc": "Medición de temperatura de líquidos",
         "outdoorSensors": "Sensores Exteriores",
@@ -474,42 +474,42 @@
         "averaging": "Sensores de Promedio",
         "averagingDesc": "Promedio de temperatura en espacios grandes",
         "remoteProbes": "Sondas Remotas",
-        "remoteProbesDesc": "Sondas con elemento sensor separado"
+        "remoteProbesDesc": "Sondas tipo bala, de superficie y cóncavas"
       },
       "humidity": {
         "title": "Humedad",
         "humidityOverview": "Descripción General de Humedad",
         "humidityOverviewDesc": "Soluciones integrales de sensores de humedad para HVAC comercial",
         "roomHumidity": "Humedad ambiental",
-        "roomHumidityDesc": "Sensores de humedad relativa montados en pared",
+        "roomHumidityDesc": "Sensores de %RH montados en pared",
         "ductHumidity": "Humedad de conducto",
-        "ductHumidityDesc": "Humedad relativa de suministro y retorno",
+        "ductHumidityDesc": "Suministro y retorno de aire %RH",
         "outdoorHumidity": "Humedad exterior",
-        "outdoorHumidityDesc": "Humedad relativa resistente a la intemperie",
+        "outdoorHumidityDesc": "%RH resistente a la intemperie",
         "comboSensors": "Sensores combinados",
         "comboSensorsDesc": "Temperatura + humedad"
       },
       "pressure": {
         "title": "Presión",
         "pressureOverview": "Descripción General de Presión",
-        "pressureOverviewDesc": "Línea completa de sensores de presión e interruptores para aplicaciones HVAC",
+        "pressureOverviewDesc": "Amplia línea de sensores de presión e interruptores para aplicaciones HVAC",
         "differential": "Presión diferencial",
-        "differentialDesc": "Monitoreo de ambiente y filtros",
+        "differentialDesc": "Conducto, edificio o habitación a habitación",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Transmisores de presión estática de conducto",
+        "staticDesc": "Conducto, pared, techo y aire exterior",
         "differentialSwitch": "Interruptor diferencial",
-        "differentialSwitchDesc": "Conmutación activada por presión"
+        "differentialSwitchDesc": "Verificación de ventilador y estado del filtro"
       },
       "airQuality": {
         "title": "Calidad del Aire",
         "airQualityOverview": "Descripción general de calidad del aire",
-        "airQualityOverviewDesc": "Soluciones completas de CO₂, VOC, partículas, CO y NO₂",
+        "airQualityOverviewDesc": "Soluciones de CO₂, VOC, partículas, CO y NO₂",
         "co2": "Sensores de CO₂",
         "co2Desc": "Monitoreo de dióxido de carbono",
         "voc": "Sensores de COV",
-        "vocDesc": "Compuestos orgánicos volátiles",
+        "vocDesc": "Compuestos Orgánicos Volátiles",
         "particulate": "Material Particulado",
-        "particulateDesc": "PM2.5 y PM10",
+        "particulateDesc": "Tamaño de partícula seleccionable en campo",
         "nitrogenDioxide": "Dióxido de Nitrógeno",
         "nitrogenDioxideDesc": "Detección de gas NO₂",
         "carbonMonoxide": "Monóxido de Carbono",
@@ -520,7 +520,7 @@
       "wireless": {
         "title": "Inalámbrico",
         "wirelessSolutions": "Descripción General de Soluciones Inalámbricas",
-        "wirelessSolutionsDesc": "Conectividad inalámbrica completa para automatización de edificios",
+        "wirelessSolutionsDesc": "Conectividad inalámbrica sencilla para automatización de edificios",
         "roomSensors": "Sensores de Ambiente",
         "roomSensorsDesc": "Sensores de temperatura y humedad para ambientes interiores",
         "nonRoomSensors": "Sensores Industriales",
@@ -528,20 +528,20 @@
         "receiversModules": "Módulos de Receptor y Salida",
         "receiversModulesDesc": "Receptores, módulos de salida analógica y digital",
         "wirelessAccessories": "Accesorios",
-        "wirelessAccessoriesDesc": "Accesorios de montaje e instalación"
+        "wirelessAccessoriesDesc": "Baterías y otros accesorios"
       },
       "accessories": {
         "title": "Accesorios",
         "accessoriesOverview": "Resumen de Accesorios",
-        "accessoriesOverviewDesc": "Sensores especializados y hardware de soporte para aplicaciones HVAC",
+        "accessoriesOverviewDesc": "Soluciones para completar su instalación",
         "allAccessories": "Todos los Accesorios",
-        "allAccessoriesDesc": "Hardware de montaje, gabinetes, cables y accesorios de sensores"
+        "allAccessoriesDesc": "Fuentes de alimentación, detectores de fugas de agua y otros accesorios para HVAC"
       },
       "testInstruments": {
         "title": "Instrumentos de Prueba",
-        "bluTestDesc": "Un conjunto de sondas de prueba para temperatura, humedad, punto de rocío, presión diferencial y factor K",
+        "bluTestDesc": "Instrumentos de prueba inalámbricos con comunicación Bluetooth",
         "allTestInstruments": "Todos los Instrumentos de Prueba",
-        "allTestInstrumentsDesc": "Referencias de temperatura, humedad y presión trazables NIST"
+        "allTestInstrumentsDesc": "Pruebas de temperatura, humedad y presión de aire trazables a NIST"
       },
       "featured": {
         "title": "Monitoreo inalámbrico de activos WAM™",
@@ -560,7 +560,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "Todos los Productos ETA",
-        "allEtaLineDesc": "Soluciones modulares de E/S y control para automatización de edificios"
+        "allEtaLineDesc": "Dispositivos de interfaz y comunicación que complementan una instalación DDC"
       },
       "featuredSecondary": {
         "title": "Blü-View App",

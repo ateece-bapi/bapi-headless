@@ -56,7 +56,7 @@
         "roomWallSensors": "कमरा और दीवार सेंसर",
         "roomWallSensorsDesc": "उच्च-सटीकता तापमान संवेदन",
         "ductSensors": "डक्ट सेंसर",
-        "ductSensorsDesc": "डक्ट-माउंटेड ट्रांसमीटर",
+        "ductSensorsDesc": "डक्ट-माउंटेड तापमान सेंसर",
         "immersionWell": "इमर्शन और थर्मोवेल",
         "immersionWellDesc": "तरल तापमान माप",
         "outdoorSensors": "आउटडोर सेंसर",
@@ -64,42 +64,42 @@
         "averaging": "औसतकरण सेंसर",
         "averagingDesc": "बड़े स्थान का तापमान औसतकरण",
         "remoteProbes": "रिमोट प्रोब",
-        "remoteProbesDesc": "अलग संवेदन तत्व प्रोब"
+        "remoteProbesDesc": "बुलेट, सतह और अवतल प्रोब"
       },
       "humidity": {
         "title": "आर्द्रता",
         "humidityOverview": "आर्द्रता अवलोकन",
         "humidityOverviewDesc": "वाणिज्यिक HVAC के लिए व्यापक आर्द्रता संवेदन समाधान",
         "roomHumidity": "कमरा आर्द्रता",
-        "roomHumidityDesc": "दीवार-माउंट RH सेंसर",
+        "roomHumidityDesc": "दीवार-माउंट %RH सेंसर",
         "ductHumidity": "डक्ट आर्द्रता",
-        "ductHumidityDesc": "आपूर्ति और वापसी वायु RH",
+        "ductHumidityDesc": "आपूर्ति और वापसी वायु %RH",
         "outdoorHumidity": "बाहरी आर्द्रता",
-        "outdoorHumidityDesc": "मौसम-प्रतिरोधी RH",
+        "outdoorHumidityDesc": "मौसम-प्रतिरोधी %RH",
         "comboSensors": "कंबो सेंसर",
         "comboSensorsDesc": "तापमान + आर्द्रता"
       },
       "pressure": {
         "title": "दबाव",
         "differential": "अंतर दबाव",
-        "differentialDesc": "कमरा और फ़िल्टर निगरानी",
+        "differentialDesc": "डक्ट, भवन या कमरे-से-कमरे",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "डक्ट स्थिर ट्रांसमीटर",
+        "staticDesc": "डक्ट, दीवार, छत और बाहरी हवा",
         "differentialSwitch": "अंतर स्विच",
-        "differentialSwitchDesc": "दबाव-सक्रिय स्विचिंग",
+        "differentialSwitchDesc": "पंखे की जांच और फ़िल्टर की स्थिति",
         "pressureOverview": "दबाव अवलोकन",
         "pressureOverviewDesc": "HVAC अनुप्रयोगों के लिए दबाव सेंसर और स्विच की पूरी लाइन"
       },
       "airQuality": {
         "title": "वायु गुणवत्ता",
         "airQualityOverview": "वायु गुणवत्ता अवलोकन",
-        "airQualityOverviewDesc": "पूर्ण CO₂, VOC, कण, CO और NO₂ समाधान",
+        "airQualityOverviewDesc": "CO₂, VOC, कण, CO और NO₂ समाधान",
         "co2": "CO₂ सेंसर",
         "co2Desc": "कार्बन डाइऑक्साइड निगरानी",
         "voc": "VOC सेंसर",
         "vocDesc": "वाष्पशील कार्बनिक यौगिक",
         "particulate": "कण पदार्थ",
-        "particulateDesc": "PM2.5 और PM10",
+        "particulateDesc": "फील्ड-चयन योग्य कण आकार",
         "nitrogenDioxide": "नाइट्रोजन डाइऑक्साइड",
         "nitrogenDioxideDesc": "NO₂ गैस का पता लगाना",
         "carbonMonoxide": "कार्बन मोनोऑक्साइड",
@@ -118,22 +118,22 @@
         "roomSensorsDesc": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
         "title": "वायरलेस",
         "wirelessAccessories": "सहायक उपकरण",
-        "wirelessAccessoriesDesc": "माउंटिंग और इंस्टॉलेशन सहायक उपकरण",
+        "wirelessAccessoriesDesc": "बैटरी और अन्य सहायक उपकरण",
         "wirelessSolutions": "वायरलेस सॉल्यूशन्स ओवरव्यू",
-        "wirelessSolutionsDesc": "बिल्डिंग ऑटोमेशन के लिए संपूर्ण वायरलेस कनेक्टिविटी"
+        "wirelessSolutionsDesc": "बिल्डिंग ऑटोमेशन के लिए सरल वायरलेस कनेक्टिविटी"
       },
       "accessories": {
         "title": "सहायक उपकरण",
         "accessoriesOverview": "सहायक उपकरण अवलोकन",
-        "accessoriesOverviewDesc": "HVAC अनुप्रयोगों के लिए विशेष सेंसर और सहायक हार्डवेयर",
+        "accessoriesOverviewDesc": "आपकी स्थापना को पूर्ण करने के समाधान",
         "allAccessories": "सभी सहायक उपकरण",
-        "allAccessoriesDesc": "माउंटिंग हार्डवेयर, एनक्लोज़र, केबल्स, और सेंसर सहायक उपकरण"
+        "allAccessoriesDesc": "पावर सप्लाई, वाटर लीक डिटेक्टर, और अन्य HVAC सहायक उपकरण"
       },
       "testInstruments": {
         "title": "परीक्षण उपकरण",
-        "bluTestDesc": "तापमान, आर्द्रता, ओसांक, विभेदक दबाव और K-Factor के लिए परीक्षण प्रोब का एक समूह",
+        "bluTestDesc": "ब्लूटूथ संचार वाले वायरलेस परीक्षण उपकरण",
         "allTestInstruments": "सभी परीक्षण उपकरण",
-        "allTestInstrumentsDesc": "NIST-ट्रेसेबल तापमान, आर्द्रता, और दबाव संदर्भ"
+        "allTestInstrumentsDesc": "NIST-ट्रेसेबल तापमान, आर्द्रता, और वायु दबाव परीक्षण"
       },
       "featured": {
         "title": "WAM™ वायरलेस संपत्ति निगरानी",
@@ -152,7 +152,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "सभी ETA उत्पाद",
-        "allEtaLineDesc": "बिल्डिंग ऑटोमेशन के लिए मॉड्यूलर I/O और नियंत्रण समाधान"
+        "allEtaLineDesc": "इंटरफ़ेस और संचार उपकरण जो DDC इंस्टॉलेशन को पूरक बनाते हैं"
       },
       "featuredSecondary": {
         "title": "Blü-View ऐप",

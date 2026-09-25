@@ -117,7 +117,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                 <div>
                                   <div className="font-medium">{link.label}</div>
                                   {link.description && (
-                                    <div className="mt-0.5 text-xs leading-relaxed text-neutral-700">
+                                    <div className="mt-0.5 whitespace-pre-line text-xs leading-relaxed text-neutral-700">
                                       {link.description}
                                     </div>
                                   )}

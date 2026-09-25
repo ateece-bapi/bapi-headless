@@ -466,7 +466,7 @@
         "roomWallSensors": "Capteurs d'Ambiance et Muraux",
         "roomWallSensorsDesc": "Détection de température haute précision",
         "ductSensors": "Capteurs de Gaine",
-        "ductSensorsDesc": "Transmetteurs montés en gaine",
+        "ductSensorsDesc": "Capteurs de température montés en gaine",
         "immersionWell": "Immersion et Doigt de Gant",
         "immersionWellDesc": "Mesure de température des liquides",
         "outdoorSensors": "Capteurs Extérieurs",
@@ -474,42 +474,42 @@
         "averaging": "Capteurs de Moyenne",
         "averagingDesc": "Moyennage de température pour grands espaces",
         "remoteProbes": "Sondes Déportées",
-        "remoteProbesDesc": "Sondes à élément de détection séparé"
+        "remoteProbesDesc": "Sondes type bullet, de surface et concaves"
       },
       "humidity": {
         "title": "Humidité",
         "humidityOverview": "Aperçu de l'Humidité",
         "humidityOverviewDesc": "Solutions complètes de détection d'humidité pour CVC commercial",
         "roomHumidity": "Humidité ambiante",
-        "roomHumidityDesc": "Capteurs d'humidité murale",
+        "roomHumidityDesc": "Capteurs %HR muraux",
         "ductHumidity": "Humidité de gaine",
-        "ductHumidityDesc": "Humidité sur l'air soufflé et repris",
+        "ductHumidityDesc": "Air soufflé et repris %HR",
         "outdoorHumidity": "Humidité extérieure",
-        "outdoorHumidityDesc": "Humidité résistante aux intempéries",
+        "outdoorHumidityDesc": "%HR résistante aux intempéries",
         "comboSensors": "Capteurs combinés",
         "comboSensorsDesc": "Température + humidité"
       },
       "pressure": {
         "title": "Pression",
         "pressureOverview": "Aperçu de la Pression",
-        "pressureOverviewDesc": "Gamme complète de capteurs de pression et d'interrupteurs pour applications CVC",
+        "pressureOverviewDesc": "Large gamme de capteurs de pression et d'interrupteurs pour applications CVC",
         "differential": "Pression différentielle",
-        "differentialDesc": "Surveillance des salles et des filtres",
+        "differentialDesc": "Gaine, bâtiment ou pièce à pièce",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Transmetteurs de pression statique de gaine",
+        "staticDesc": "Gaine, mur, plafond et air extérieur",
         "differentialSwitch": "Interrupteur différentiel",
-        "differentialSwitchDesc": "Commutation activée par la pression"
+        "differentialSwitchDesc": "Contrôle de ventilateur et état du filtre"
       },
       "airQuality": {
         "title": "Qualité de l'Air",
         "airQualityOverview": "Aperçu de la qualité de l'air",
-        "airQualityOverviewDesc": "Solutions complètes CO₂, VOC, particules, CO et NO₂",
+        "airQualityOverviewDesc": "Solutions CO₂, VOC, particules, CO et NO₂",
         "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
         "voc": "Capteurs COV",
-        "vocDesc": "Composés organiques volatils",
+        "vocDesc": "Composés Organiques Volatils",
         "particulate": "Particules en Suspension",
-        "particulateDesc": "PM2.5 et PM10",
+        "particulateDesc": "Taille de particule sélectionnable sur site",
         "nitrogenDioxide": "Dioxyde d'Azote",
         "nitrogenDioxideDesc": "Détection de gaz NO₂",
         "carbonMonoxide": "Monoxyde de Carbone",
@@ -528,22 +528,22 @@
         "roomSensorsDesc": "Capteurs de température et d'humidité pour environnements intérieurs",
         "title": "Sans fil",
         "wirelessAccessories": "Accessoires",
-        "wirelessAccessoriesDesc": "Accessoires de montage et d'installation",
+        "wirelessAccessoriesDesc": "Piles et autres accessoires",
         "wirelessSolutions": "Aperçu des Solutions Sans Fil",
-        "wirelessSolutionsDesc": "Connectivité sans fil complète pour l'automatisation des bâtiments"
+        "wirelessSolutionsDesc": "Connectivité sans fil simple pour l'automatisation des bâtiments"
       },
       "accessories": {
         "title": "Accessoires",
         "accessoriesOverview": "Aperçu des Accessoires",
-        "accessoriesOverviewDesc": "Capteurs spécialisés et matériel de support pour applications CVC",
+        "accessoriesOverviewDesc": "Solutions pour compléter votre installation",
         "allAccessories": "Tous les Accessoires",
-        "allAccessoriesDesc": "Matériel de montage, boîtiers, câbles et accessoires de capteurs"
+        "allAccessoriesDesc": "Alimentations, détecteurs de fuite d'eau et autres accessoires CVC"
       },
       "testInstruments": {
         "title": "Instruments de Test",
         "bluTestDesc": "Une suite de sondes de test pour la température, l’humidité, le point de rosée, la pression différentielle et le facteur K",
         "allTestInstruments": "Tous les Instruments de Test",
-        "allTestInstrumentsDesc": "Références de température, humidité et pression traçables NIST"
+        "allTestInstrumentsDesc": "Tests de température, d'humidité et de pression d'air traçables NIST"
       },
       "featured": {
         "title": "Surveillance d'actifs sans fil WAM™",
@@ -562,7 +562,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "Tous les produits ETA",
-        "allEtaLineDesc": "Solutions d'E/S modulaires et de contrôle pour l'automatisation des bâtiments"
+        "allEtaLineDesc": "Dispositifs d'interface et de communication complétant une installation DDC"
       },
       "featuredSecondary": {
         "title": "Blü-View App",

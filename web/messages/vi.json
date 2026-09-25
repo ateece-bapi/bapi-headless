@@ -101,7 +101,7 @@
         "roomWallSensors": "Cảm biến Phòng & Tường",
         "roomWallSensorsDesc": "Cảm biến nhiệt độ độ chính xác cao",
         "ductSensors": "Cảm biến Ống dẫn",
-        "ductSensorsDesc": "Bộ truyền tín hiệu lắp đặt trong ống dẫn",
+        "ductSensorsDesc": "Cảm biến nhiệt độ lắp đặt trong ống dẫn",
         "immersionWell": "Cảm biến Nhúng & Ống bảo vệ",
         "immersionWellDesc": "Đo nhiệt độ chất lỏng",
         "outdoorSensors": "Cảm biến Ngoài trời",
@@ -109,42 +109,42 @@
         "averaging": "Cảm biến Tính trung bình",
         "averagingDesc": "Tính trung bình nhiệt độ không gian lớn",
         "remoteProbes": "Đầu dò Từ xa",
-        "remoteProbesDesc": "Đầu dò phần tử cảm biến riêng biệt"
+        "remoteProbesDesc": "Đầu dò dạng đạn, bề mặt và lõm"
       },
       "humidity": {
         "title": "Độ ẩm",
         "humidityOverview": "Tổng Quan Độ Ẩm",
         "humidityOverviewDesc": "Giải pháp cảm biến độ ẩm toàn diện cho HVAC thương mại",
         "roomHumidity": "Độ ẩm phòng",
-        "roomHumidityDesc": "Cảm biến độ ẩm gắn tường",
+        "roomHumidityDesc": "Cảm biến %RH gắn tường",
         "ductHumidity": "Độ ẩm ống dẫn",
-        "ductHumidityDesc": "Độ ẩm của khí cung cấp và trả về",
+        "ductHumidityDesc": "%RH của khí cung cấp và hồi",
         "outdoorHumidity": "Độ ẩm ngoài trời",
-        "outdoorHumidityDesc": "Độ ẩm chịu thời tiết",
+        "outdoorHumidityDesc": "%RH chịu thời tiết",
         "comboSensors": "Cảm biến kết hợp",
         "comboSensorsDesc": "Nhiệt độ + độ ẩm"
       },
       "pressure": {
         "title": "Áp suất",
         "differential": "Áp suất chênh lệch",
-        "differentialDesc": "Giám sát phòng và bộ lọc",
+        "differentialDesc": "Ống dẫn, tòa nhà hoặc phòng với phòng",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Bộ truyền phát áp suất ống dẫn",
+        "staticDesc": "Ống dẫn, tường, trần và không khí ngoài trời",
         "differentialSwitch": "Công tắc chênh lệch",
-        "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất",
+        "differentialSwitchDesc": "Kiểm tra quạt và trạng thái bộ lọc",
         "pressureOverview": "Tổng Quan Áp Suất",
         "pressureOverviewDesc": "Dòng sản phẩm đầy đủ cảm biến áp suất và công tắc cho ứng dụng HVAC"
       },
       "airQuality": {
         "title": "Chất Lượng Không Khí",
         "airQualityOverview": "Tổng quan chất lượng không khí",
-        "airQualityOverviewDesc": "Giải pháp hoàn chỉnh CO₂, VOC, hạt bụi, CO và NO₂",
+        "airQualityOverviewDesc": "Giải pháp CO₂, VOC, hạt bụi, CO và NO₂",
         "co2": "Cảm Biến CO₂",
         "co2Desc": "Giám sát carbon dioxide",
         "voc": "Cảm Biến VOC",
         "vocDesc": "Hợp chất hữu cơ dễ bay hơi",
         "particulate": "Bụi Mịn",
-        "particulateDesc": "PM2.5 và PM10",
+        "particulateDesc": "Kích thước hạt có thể chọn tại hiện trường",
         "nitrogenDioxide": "Nitơ Dioxide",
         "nitrogenDioxideDesc": "Phát hiện khí NO₂",
         "carbonMonoxide": "Carbon Monoxide",
@@ -163,22 +163,22 @@
         "roomSensorsDesc": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
         "title": "Không dây",
         "wirelessAccessories": "Phụ kiện",
-        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt & cài đặt",
+        "wirelessAccessoriesDesc": "Pin và các phụ kiện khác",
         "wirelessSolutions": "Tổng quan Giải pháp Không dây",
-        "wirelessSolutionsDesc": "Kết nối không dây hoàn chỉnh cho tự động hóa tòa nhà"
+        "wirelessSolutionsDesc": "Kết nối không dây đơn giản cho tự động hóa tòa nhà"
       },
       "accessories": {
         "title": "Phụ kiện",
         "accessoriesOverview": "Tổng quan phụ kiện",
-        "accessoriesOverviewDesc": "Cảm biến chuyên dụng và phần cứng hỗ trợ cho ứng dụng HVAC",
+        "accessoriesOverviewDesc": "Giải pháp hoàn thiện cho hệ thống lắp đặt của bạn",
         "allAccessories": "Tất cả Phụ kiện",
-        "allAccessoriesDesc": "Phần cứng lắp đặt, vỏ bọc, cáp và phụ kiện cảm biến"
+        "allAccessoriesDesc": "Bộ nguồn, thiết bị phát hiện rò rỉ nước và các phụ kiện HVAC khác"
       },
       "testInstruments": {
         "title": "Thiết Bị Kiểm Tra",
-        "bluTestDesc": "Bộ đầu dò kiểm tra nhiệt độ, độ ẩm, điểm sương, chênh lệch áp suất và hệ số K",
+        "bluTestDesc": "Thiết bị kiểm tra không dây với giao tiếp Bluetooth",
         "allTestInstruments": "Tất Cả Thiết Bị Kiểm Tra",
-        "allTestInstrumentsDesc": "Các tiêu chuẩn nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
+        "allTestInstrumentsDesc": "Kiểm tra nhiệt độ, độ ẩm và áp suất không khí có thể truy xuất nguồn gốc NIST"
       },
       "featured": {
         "title": "WAM™ Giám sát Tài sản Không dây",
@@ -197,7 +197,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "Tất cả Sản phẩm ETA",
-        "allEtaLineDesc": "Giải pháp I/O và điều khiển mô-đun cho tự động hóa tòa nhà"
+        "allEtaLineDesc": "Thiết bị giao diện và truyền thông bổ sung cho hệ thống DDC"
       },
       "featuredSecondary": {
         "title": "Ứng dụng Blü-View",

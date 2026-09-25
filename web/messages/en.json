@@ -62,7 +62,7 @@
         "roomWallSensors": "Room & Wall Sensors",
         "roomWallSensorsDesc": "High-accuracy temperature sensing",
         "ductSensors": "Duct Sensors",
-        "ductSensorsDesc": "Duct-mounted transmitters",
+        "ductSensorsDesc": "Duct-mounted temperature sensors",
         "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Liquid temperature measurement",
         "outdoorSensors": "Outdoor Sensors",
@@ -70,40 +70,40 @@
         "averaging": "Averaging Sensors",
         "averagingDesc": "Large space temperature averaging",
         "remoteProbes": "Remote Probes",
-        "remoteProbesDesc": "Separate sensing element probes"
+        "remoteProbesDesc": "Bullet, surface and concave"
       },
       "humidity": {
         "title": "Humidity",
         "humidityOverview": "Humidity Overview",
         "humidityOverviewDesc": "Comprehensive humidity sensing solutions for commercial HVAC",
         "roomHumidity": "Room Humidity",
-        "roomHumidityDesc": "Wall-mount RH sensors",
+        "roomHumidityDesc": "Wall-mount %RH sensors",
         "ductHumidity": "Duct Humidity",
-        "ductHumidityDesc": "Supply & return air RH",
+        "ductHumidityDesc": "Supply & return air %RH",
         "outdoorHumidity": "Outdoor Humidity",
-        "outdoorHumidityDesc": "Weather-resistant RH"
+        "outdoorHumidityDesc": "Weather-resistant %RH"
       },
       "pressure": {
         "title": "Pressure",
         "pressureOverview": "Pressure Overview",
-        "pressureOverviewDesc": "Complete line of pressure sensors and switches for HVAC applications",
+        "pressureOverviewDesc": "Full line of pressure sensors and switches for HVAC applications",
         "differential": "Differential Pressure",
-        "differentialDesc": "Room & filter monitoring",
+        "differentialDesc": "Duct, building or room-to-room",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Pressure pickup ports and probes",
+        "staticDesc": "Duct, wall, ceiling and outside air",
         "differentialSwitch": "Differential Switch",
-        "differentialSwitchDesc": "Pressure-activated switching"
+        "differentialSwitchDesc": "Fan proving and filter status"
       },
       "airQuality": {
         "title": "Air Quality",
         "airQualityOverview": "Air Quality Overview",
-        "airQualityOverviewDesc": "Complete CO₂, VOC, Particulate, CO, and NO₂ solutions",
+        "airQualityOverviewDesc": "CO₂, VOC, Particulate, CO, and NO₂ solutions",
         "co2": "CO₂ Sensors",
         "co2Desc": "Carbon dioxide monitoring",
         "voc": "VOC Sensors",
-        "vocDesc": "Volatile organic compounds",
+        "vocDesc": "Volatile Organic Compounds",
         "particulate": "Particulate Matter",
-        "particulateDesc": "PM2.5 and PM10",
+        "particulateDesc": "Field-selectable particulate size",
         "nitrogenDioxide": "Nitrogen Dioxide",
         "nitrogenDioxideDesc": "NO₂ gas detection",
         "carbonMonoxide": "Carbon Monoxide",
@@ -114,7 +114,7 @@
       "wireless": {
         "title": "Wireless",
         "wirelessSolutions": "Wireless Solutions Overview",
-        "wirelessSolutionsDesc": "Complete wireless connectivity for building automation",
+        "wirelessSolutionsDesc": "Simple wireless connectivity for building automation",
         "roomSensors": "Room Sensors",
         "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
         "nonRoomSensors": "Non-Room Sensors",
@@ -122,25 +122,25 @@
         "receiversModules": "Receiver and Output Modules",
         "receiversModulesDesc": "Receivers, analog and digital output modules",
         "wirelessAccessories": "Accessories",
-        "wirelessAccessoriesDesc": "Mounting & installation accessories"
+        "wirelessAccessoriesDesc": "Batteries and other accessories"
       },
       "accessories": {
         "title": "Accessories",
         "accessoriesOverview": "Accessories Overview",
-        "accessoriesOverviewDesc": "Mounting hardware, enclosures, cables, and sensor accessories",
+        "accessoriesOverviewDesc": "Solutions to complete your installation",
         "allAccessories": "All Accessories",
-        "allAccessoriesDesc": "Mounting hardware, enclosures, cables, and sensor accessories"
+        "allAccessoriesDesc": "Power supplies, water leak detectors and other HVAC accessories"
       },
       "testInstruments": {
         "title": "Test Instruments",
-        "bluTestDesc": "A suite of test probes for temperature, humidity, dew point, differential pressure, and K-Factor",
+        "bluTestDesc": "Wireless test instruments with Bluetooth communication",
         "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and air pressure testing"
       },
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLineDesc": "Interface and communication devices that complement a DDC installation"
       },
       "featured": {
         "title": "WAM™ Wireless Asset Monitoring",

@@ -466,7 +466,7 @@
         "roomWallSensors": "室内・壁面センサー",
         "roomWallSensorsDesc": "高精度温度センシング",
         "ductSensors": "ダクトセンサー",
-        "ductSensorsDesc": "ダクト取付型トランスミッター",
+        "ductSensorsDesc": "ダクト取付型温度センサー",
         "immersionWell": "浸漬型・サーモウェル",
         "immersionWellDesc": "液体温度測定",
         "outdoorSensors": "屋外センサー",
@@ -474,42 +474,42 @@
         "averaging": "平均化センサー",
         "averagingDesc": "大空間温度平均化",
         "remoteProbes": "リモートプローブ",
-        "remoteProbesDesc": "分離型センシング素子プローブ"
+        "remoteProbesDesc": "バレット型・表面型・凹面型プローブ"
       },
       "humidity": {
         "title": "湿度",
         "humidityOverview": "湿度概要",
         "humidityOverviewDesc": "商業用HVACのための包括的な湿度検出ソリューション",
         "roomHumidity": "室内湿度",
-        "roomHumidityDesc": "壁掛け式RHセンサ",
+        "roomHumidityDesc": "壁掛け式%RHセンサ",
         "ductHumidity": "ダクト湿度",
-        "ductHumidityDesc": "給気 & 還気RH",
+        "ductHumidityDesc": "給気・還気%RH",
         "outdoorHumidity": "屋外湿度",
-        "outdoorHumidityDesc": "耐候性RH",
+        "outdoorHumidityDesc": "耐候性%RH",
         "comboSensors": "複合センサ",
         "comboSensorsDesc": "温度 + 湿度"
       },
       "pressure": {
         "title": "圧力",
         "differential": "差圧",
-        "differentialDesc": "室内 & フィルタ監視",
+        "differentialDesc": "ダクト、建物、または室間",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "ダクト静圧トランスミッタ",
+        "staticDesc": "ダクト、壁、天井、屋外",
         "differentialSwitch": "差圧スイッチ",
-        "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング",
+        "differentialSwitchDesc": "ファン作動確認とフィルター状態",
         "pressureOverview": "圧力概要",
-        "pressureOverviewDesc": "HVAC用途向けの圧力センサーとスイッチの完全ライン"
+        "pressureOverviewDesc": "HVAC用途向けの圧力センサーとスイッチのフルライン"
       },
       "airQuality": {
         "title": "空気質",
         "airQualityOverview": "空気質概要",
-        "airQualityOverviewDesc": "完全なCO₂、VOC、粒子状物質、CO、NO₂ソリューション",
+        "airQualityOverviewDesc": "CO₂、VOC、粒子状物質、CO、NO₂ソリューション",
         "co2": "CO₂センサー",
         "co2Desc": "二酸化炭素モニタリング",
         "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
         "particulate": "粒子状物質",
-        "particulateDesc": "PM2.5およびPM10",
+        "particulateDesc": "現場選択可能な粒子サイズ",
         "nitrogenDioxide": "二酸化窒素",
         "nitrogenDioxideDesc": "NO₂ガス検出",
         "carbonMonoxide": "一酸化炭素",
@@ -528,22 +528,22 @@
         "roomSensorsDesc": "屋内環境用温湿度センサー",
         "title": "ワイヤレス",
         "wirelessAccessories": "アクセサリー",
-        "wirelessAccessoriesDesc": "取付・設置用アクセサリー",
+        "wirelessAccessoriesDesc": "バッテリーおよびその他のアクセサリー",
         "wirelessSolutions": "ワイヤレスソリューション概要",
-        "wirelessSolutionsDesc": "ビル自動化のための完全なワイヤレス接続"
+        "wirelessSolutionsDesc": "ビル自動化のためのシンプルなワイヤレス接続"
       },
       "accessories": {
         "title": "アクセサリー",
         "accessoriesOverview": "アクセサリー概要",
-        "accessoriesOverviewDesc": "HVACアプリケーション向けの専門センサーとサポートハードウェア",
+        "accessoriesOverviewDesc": "設置を完成させるソリューション",
         "allAccessories": "全アクセサリー",
-        "allAccessoriesDesc": "取付金具、筐体、ケーブル、およびセンサーアクセサリー"
+        "allAccessoriesDesc": "電源装置、水漏れ検知器、その他のHVACアクセサリー"
       },
       "testInstruments": {
         "title": "テスト機器",
-        "bluTestDesc": "温度、湿度、露点、差圧、Kファクター用のテストプローブ一式",
+        "bluTestDesc": "Bluetooth通信対応のワイヤレステスト機器",
         "allTestInstruments": "すべてのテスト機器",
-        "allTestInstrumentsDesc": "NIST トレーサブル温度、湿度、圧力リファレンス"
+        "allTestInstrumentsDesc": "NISTトレーサブルな温度、湿度、気圧試験"
       },
       "featured": {
         "title": "WAM™ ワイヤレスアセット監視",
@@ -562,7 +562,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "すべてのETA製品",
-        "allEtaLineDesc": "ビルオートメーション用モジュラーI/O・制御ソリューション"
+        "allEtaLineDesc": "DDC設備を補完するインターフェース・通信機器"
       },
       "featuredSecondary": {
         "title": "Blü-View アプリ",

@@ -140,7 +140,7 @@
         "roomWallSensors": "Raum- & Wandsensoren",
         "roomWallSensorsDesc": "Hochpräzise Temperaturerfassung",
         "ductSensors": "Kanalsensoren",
-        "ductSensorsDesc": "Kanalmontierte Transmitter",
+        "ductSensorsDesc": "Kanalmontierte Temperaturfühler",
         "immersionWell": "Eintauch- & Thermowell",
         "immersionWellDesc": "Flüssigkeitstemperaturmessung",
         "outdoorSensors": "Außensensoren",
@@ -148,42 +148,42 @@
         "averaging": "Mittelwertsensoren",
         "averagingDesc": "Temperaturmittelwertbildung für große Räume",
         "remoteProbes": "Remote-Sonden",
-        "remoteProbesDesc": "Separate Sensorelement-Sonden"
+        "remoteProbesDesc": "Bullet-, Oberflächen- und Muldenfühler"
       },
       "humidity": {
         "title": "Luftfeuchtigkeit",
         "humidityOverview": "Feuchtigkeitsübersicht",
         "humidityOverviewDesc": "Umfassende Feuchtigkeitssensorlösungen für gewerbliche HLK",
         "roomHumidity": "Raumluftfeuchtigkeit",
-        "roomHumidityDesc": "Wandmontierte Feuchtefühler",
+        "roomHumidityDesc": "Wandmontierte %RH-Fühler",
         "ductHumidity": "Kanalfeuchtigkeit",
-        "ductHumidityDesc": "Zuluft- und Abluftfeuchte",
+        "ductHumidityDesc": "Zuluft- und Abluft-%RH",
         "outdoorHumidity": "Außenluftfeuchtigkeit",
-        "outdoorHumidityDesc": "Witterungsbeständige Feuchtemessung",
+        "outdoorHumidityDesc": "Witterungsbeständige %RH",
         "comboSensors": "Kombisensoren",
         "comboSensorsDesc": "Temperatur + Luftfeuchtigkeit"
       },
       "pressure": {
         "title": "Druck",
         "pressureOverview": "Druckübersicht",
-        "pressureOverviewDesc": "Komplette Linie von Drucksensoren und -schaltern für HLK-Anwendungen",
+        "pressureOverviewDesc": "Vollständiges Sortiment an Drucksensoren und -schaltern für HLK-Anwendungen",
         "differential": "Differenzdruck",
-        "differentialDesc": "Raum- und Filterüberwachung",
+        "differentialDesc": "Kanal, Gebäude oder Raum-zu-Raum",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Kanal-Drucktransmitter",
+        "staticDesc": "Kanal, Wand, Decke und Außenluft",
         "differentialSwitch": "Differenzdruckschalter",
-        "differentialSwitchDesc": "Druckgesteuerte Schaltung"
+        "differentialSwitchDesc": "Lüfterüberwachung und Filterstatus"
       },
       "airQuality": {
         "title": "Luftqualität",
         "airQualityOverview": "Luftqualitätsübersicht",
-        "airQualityOverviewDesc": "Komplette CO₂-, VOC-, Partikel-, CO- und NO₂-Lösungen",
+        "airQualityOverviewDesc": "CO₂-, VOC-, Partikel-, CO- und NO₂-Lösungen",
         "co2": "CO₂ Sensoren",
         "co2Desc": "Kohlendioxid-Überwachung",
         "voc": "VOC Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
         "particulate": "Feinstaub",
-        "particulateDesc": "PM2.5 und PM10",
+        "particulateDesc": "Vor Ort wählbare Partikelgröße",
         "nitrogenDioxide": "Stickstoffdioxid",
         "nitrogenDioxideDesc": "NO₂-Gasdetektion",
         "carbonMonoxide": "Kohlenmonoxid",
@@ -202,22 +202,22 @@
         "roomSensorsDesc": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
         "title": "Drahtlos",
         "wirelessAccessories": "Zubehör",
-        "wirelessAccessoriesDesc": "Montage- und Installationszubehör",
+        "wirelessAccessoriesDesc": "Batterien und weiteres Zubehör",
         "wirelessSolutions": "Wireless Solutions Übersicht",
-        "wirelessSolutionsDesc": "Komplette drahtlose Konnektivität für Gebäudeautomation"
+        "wirelessSolutionsDesc": "Einfache drahtlose Konnektivität für Gebäudeautomation"
       },
       "accessories": {
         "title": "Zubehör",
         "accessoriesOverview": "Zubehör Übersicht",
-        "accessoriesOverviewDesc": "Spezialsensoren und Unterstützungshardware für HLK-Anwendungen",
+        "accessoriesOverviewDesc": "Lösungen zur Komplettierung Ihrer Installation",
         "allAccessories": "Gesamtes Zubehör",
-        "allAccessoriesDesc": "Montagehardware, Gehäuse, Kabel und Sensorzubehör"
+        "allAccessoriesDesc": "Netzteile, Wasserlecksensoren und weiteres HLK-Zubehör"
       },
       "testInstruments": {
         "title": "Messgeräte",
-        "bluTestDesc": "Eine Reihe von Testsonden für Temperatur, Feuchtigkeit, Taupunkt, Differenzdruck und K-Faktor",
+        "bluTestDesc": "Drahtlose Testinstrumente mit Bluetooth-Kommunikation",
         "allTestInstruments": "Alle Messgeräte",
-        "allTestInstrumentsDesc": "NIST-rückführbare Temperatur-, Feuchtigkeits- und Druckreferenzen"
+        "allTestInstrumentsDesc": "NIST-rückführbare Prüfung von Temperatur, Feuchtigkeit und Luftdruck"
       },
       "featured": {
         "title": "WAM™ Drahtlose Vermögensüberwachung",
@@ -236,7 +236,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "Alle ETA Produkte",
-        "allEtaLineDesc": "Modulare I/O- und Steuerungslösungen für die Gebäudeautomation"
+        "allEtaLineDesc": "Schnittstellen- und Kommunikationsgeräte zur Ergänzung einer DDC-Installation"
       },
       "featuredSecondary": {
         "title": "Blü-View App",

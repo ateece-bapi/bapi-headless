@@ -509,7 +509,7 @@
         "voc": "Sensores de COV",
         "vocDesc": "Compuestos Orgánicos Volátiles",
         "particulate": "Material Particulado",
-        "particulateDesc": "PM2.5 y PM10, con tamaño de partícula seleccionable en campo",
+        "particulateDesc": "PM2.5 y PM10\nTamaño de partícula seleccionable en campo",
         "nitrogenDioxide": "Dióxido de Nitrógeno",
         "nitrogenDioxideDesc": "Detección de gas NO₂",
         "carbonMonoxide": "Monóxido de Carbono",

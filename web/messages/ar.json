@@ -509,7 +509,7 @@
         "voc": "مستشعرات VOC",
         "vocDesc": "المركبات العضوية المتطايرة",
         "particulate": "الجسيمات العالقة",
-        "particulateDesc": "PM2.5 و PM10، بحجم جسيمات قابل للاختيار ميدانياً",
+        "particulateDesc": "PM2.5 و PM10\nبحجم جسيمات قابل للاختيار ميدانياً",
         "nitrogenDioxide": "ثاني أكسيد النيتروجين",
         "nitrogenDioxideDesc": "كشف غاز NO₂",
         "carbonMonoxide": "أول أكسيد الكربون",

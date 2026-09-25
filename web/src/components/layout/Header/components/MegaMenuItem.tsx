@@ -244,7 +244,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                               )}
                             </div>
                             {link.description && (
-                              <p className="mt-1.5 text-xs leading-relaxed text-neutral-700">
+                              <p className="mt-1.5 whitespace-pre-line text-xs leading-relaxed text-neutral-700">
                                 {link.description}
                               </p>
                             )}

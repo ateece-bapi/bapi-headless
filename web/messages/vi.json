@@ -144,7 +144,7 @@
         "voc": "Cảm Biến VOC",
         "vocDesc": "Hợp chất hữu cơ dễ bay hơi",
         "particulate": "Bụi Mịn",
-        "particulateDesc": "PM2.5 và PM10, kích thước hạt có thể chọn tại hiện trường",
+        "particulateDesc": "PM2.5 và PM10\nKích thước hạt có thể chọn tại hiện trường",
         "nitrogenDioxide": "Nitơ Dioxide",
         "nitrogenDioxideDesc": "Phát hiện khí NO₂",
         "carbonMonoxide": "Carbon Monoxide",

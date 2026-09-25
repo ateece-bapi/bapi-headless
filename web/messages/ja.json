@@ -509,7 +509,7 @@
         "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
         "particulate": "粒子状物質",
-        "particulateDesc": "PM2.5およびPM10\n現場選択可能な粒子サイズ",
+        "particulateDesc": "現場選択可能な粒子サイズ",
         "nitrogenDioxide": "二酸化窒素",
         "nitrogenDioxideDesc": "NO₂ガス検出",
         "carbonMonoxide": "一酸化炭素",

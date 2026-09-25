@@ -99,7 +99,7 @@
         "voc": "Czujniki VOC",
         "vocDesc": "Lotne Związki Organiczne",
         "particulate": "Pyły Zawieszone",
-        "particulateDesc": "PM2.5 i PM10\nRegulowany rozmiar cząstek w terenie",
+        "particulateDesc": "Regulowany rozmiar cząstek w terenie",
         "nitrogenDioxide": "Dwutlenek Azotu",
         "nitrogenDioxideDesc": "Wykrywanie gazu NO₂",
         "carbonMonoxide": "Tlenek Węgla",

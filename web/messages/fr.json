@@ -509,7 +509,7 @@
         "voc": "Capteurs COV",
         "vocDesc": "Composés Organiques Volatils",
         "particulate": "Particules en Suspension",
-        "particulateDesc": "PM2.5 et PM10\nTaille de particule sélectionnable sur site",
+        "particulateDesc": "Taille de particule sélectionnable sur site",
         "nitrogenDioxide": "Dioxyde d'Azote",
         "nitrogenDioxideDesc": "Détection de gaz NO₂",
         "carbonMonoxide": "Monoxyde de Carbone",

@@ -103,7 +103,7 @@
         "voc": "VOC Sensors",
         "vocDesc": "Volatile Organic Compounds",
         "particulate": "Particulate Matter",
-        "particulateDesc": "PM2.5 and PM10\nField-selectable particulate size",
+        "particulateDesc": "Field-selectable particulate size",
         "nitrogenDioxide": "Nitrogen Dioxide",
         "nitrogenDioxideDesc": "NO₂ gas detection",
         "carbonMonoxide": "Carbon Monoxide",

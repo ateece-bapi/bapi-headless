@@ -509,7 +509,7 @@
         "voc": "VOC 传感器",
         "vocDesc": "挥发性有机化合物",
         "particulate": "颗粒物",
-        "particulateDesc": "PM2.5 和 PM10\n现场可选颗粒物尺寸",
+        "particulateDesc": "现场可选颗粒物尺寸",
         "nitrogenDioxide": "二氧化氮",
         "nitrogenDioxideDesc": "NO₂气体检测",
         "carbonMonoxide": "一氧化碳",

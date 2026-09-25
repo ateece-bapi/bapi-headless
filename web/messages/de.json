@@ -183,7 +183,7 @@
         "voc": "VOC Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
         "particulate": "Feinstaub",
-        "particulateDesc": "PM2,5 und PM10\nVor Ort wählbare Partikelgröße",
+        "particulateDesc": "Vor Ort wählbare Partikelgröße",
         "nitrogenDioxide": "Stickstoffdioxid",
         "nitrogenDioxideDesc": "NO₂-Gasdetektion",
         "carbonMonoxide": "Kohlenmonoxid",

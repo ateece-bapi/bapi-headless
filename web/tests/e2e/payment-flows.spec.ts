@@ -9,7 +9,7 @@ import { addProductToCart } from './helpers/cart-utils';
  * Payment Flow E2E Tests (Phase A)
  * 
  * Comprehensive testing of payment functionality:
- * - Payment method selection (Credit Card, PayPal)
+ * - Payment method selection (Credit Card, Bank Account)
  * - Stripe Elements form validation
  * - Payment intent creation
  * - Payment success/error handling
@@ -33,9 +33,9 @@ test.describe('Payment Method Selection', () => {
     const creditCardMethod = page.getByRole('button', { name: /credit card/i });
     await expect(creditCardMethod).toBeVisible();
     
-    // Should show PayPal option
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    await expect(paypalMethod).toBeVisible();
+    // Should show Bank Account option
+    const bankAccountMethod = page.getByRole('button', { name: /bank account/i });
+    await expect(bankAccountMethod).toBeVisible();
     
     // Card network names (Visa, MC, AmEx) are shown as icons, not text — skip text check
   });
@@ -52,15 +52,15 @@ test.describe('Payment Method Selection', () => {
     await expect(icon).toBeVisible();
   });
 
-  test('should select PayPal payment method', async ({ page }) => {
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    await safeClick(paypalMethod);
+  test('should select Bank Account payment method', async ({ page }) => {
+    const bankAccountMethod = page.getByRole('button', { name: /bank account/i });
+    await safeClick(bankAccountMethod);
     
     // Should show selected state
-    await expect(paypalMethod).toHaveClass(/border-primary-500|bg-primary-50/);
+    await expect(bankAccountMethod).toHaveClass(/border-primary-500|bg-primary-50/);
     
-    // Should display PayPal icon
-    const icon = page.locator('[data-testid="payment-method-paypal-icon"]');
+    // Should display Bank Account icon
+    const icon = page.locator('[data-testid="payment-method-bank_account-icon"]');
     await expect(icon).toBeVisible();
   });
 
@@ -73,27 +73,27 @@ test.describe('Payment Method Selection', () => {
     // Wait for Stripe form to load
     await waitForPageReady(page);
     
-    // Switch to PayPal
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    await safeClick(paypalMethod);
+    // Switch to Bank Account
+    const bankAccountMethod = page.getByRole('button', { name: /bank account/i });
+    await safeClick(bankAccountMethod);
     
     // Credit card should be deselected
     await expect(creditCardMethod).not.toHaveClass(/border-primary-500/);
     
-    // PayPal should be selected
-    await expect(paypalMethod).toHaveClass(/border-primary-500/);
+    // Bank Account should be selected
+    await expect(bankAccountMethod).toHaveClass(/border-primary-500/);
     
-    // Stripe form should be hidden
-    const stripeForm = page.locator('text=/card number|card details/i');
-    await expect(stripeForm).not.toBeVisible({ timeout: 1000 }).catch(() => {
-      // Form may not exist, which is also acceptable
+    // Card Details heading should no longer be shown (Bank Details takes its place)
+    const cardDetailsHeading = page.locator('text=/card details/i');
+    await expect(cardDetailsHeading).not.toBeVisible({ timeout: 1000 }).catch(() => {
+      // Heading may not exist at all, which is also acceptable
     });
   });
 
   test('should persist selected payment method', async ({ page }) => {
-    // Select PayPal
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    await safeClick(paypalMethod);
+    // Select Bank Account
+    const bankAccountMethod = page.getByRole('button', { name: /bank account/i });
+    await safeClick(bankAccountMethod);
     
     // Navigate back to shipping step
     const backButton = page.getByRole('button', { name: /back|previous/i });
@@ -107,8 +107,8 @@ test.describe('Payment Method Selection', () => {
         await safeClick(nextButton);
         await waitForPageReady(page);
         
-        // PayPal should still be selected
-        await expect(paypalMethod).toHaveClass(/border-primary-500/);
+        // Bank Account should still be selected
+        await expect(bankAccountMethod).toHaveClass(/border-primary-500/);
       }
     }
   });
@@ -230,41 +230,29 @@ test.describe('Stripe Card Payment Form', () => {
   });
 });
 
-test.describe('Payment Method - PayPal Flow', () => {
+test.describe('Payment Method - Bank Account Flow', () => {
   test.beforeEach(async ({ page }) => {
     await setupCheckoutWithProduct(page);
     await navigateToPaymentStep(page);
     
-    // Select PayPal
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    await safeClick(paypalMethod);
+    // Select Bank Account
+    const bankAccountMethod = page.getByRole('button', { name: /bank account/i });
+    await safeClick(bankAccountMethod);
   });
 
-  test('should proceed to review with PayPal selected', async ({ page }) => {
-    const nextButton = page.getByRole('button', { name: /continue|next/i });
+  test('should display the Bank Details section with Stripe Financial Connections', async ({ page }) => {
+    // Bank Account uses the same Stripe Payment Element as Credit Card, scoped to us_bank_account
+    const bankDetailsHeading = page.locator('text=/bank details/i');
+    await expect(bankDetailsHeading.first()).toBeVisible({ timeout: 5000 });
     
-    // Next/Continue button must be visible to progress to review
-    await expect(nextButton).toBeVisible({ timeout: 3000 });
-    await safeClick(nextButton);
-    await waitForPageReady(page);
-    
-    // Should navigate to review step (Step 3)
-    const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
-    await expect(reviewHeading).toBeVisible({ timeout: 3000 });
+    // Wait for Stripe iframe or form elements to appear
+    const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+    await stripeIframe.first().waitFor({ state: 'attached', timeout: 5000 }).catch(() => {});
   });
 
-  test('should display PayPal information message', async ({ page }) => {
-    // PayPal typically shows a message about completing payment after order placement
-    const paypalInfo = page.locator('text=/paypal|checkout.paypal.com|after.*order/i');
-    
-    // Check if any PayPal-related info is displayed
-    const hasPayPalInfo = await paypalInfo.first().isVisible({ timeout: 1000 }).catch(() => false);
-    
-    // If visible, verify it's informative
-    if (hasPayPalInfo) {
-      await expect(paypalInfo.first()).toBeVisible();
-    }
-  });
+  // NOTE: Completing an ACH payment end-to-end requires linking a real/test bank account via
+  // Stripe Financial Connections, which isn't practical to automate headlessly today. Full
+  // order completion is covered by the Credit Card path in 'Full Checkout Wizard with Payment'.
 });
 
 test.describe('Full Checkout Wizard with Payment', () => {
@@ -304,21 +292,24 @@ test.describe('Full Checkout Wizard with Payment', () => {
       await waitForPageReady(page);
     }
     
-    // Step 2: Payment - Select PayPal (easier than Stripe for E2E)
-    const paypalMethod = page.getByRole('button', { name: /paypal/i });
-    if (await paypalMethod.isVisible({ timeout: 3000 })) {
-      await safeClick(paypalMethod);
+    // Step 2: Payment - Select Credit Card and complete the Stripe test card
+    const creditCardMethod = page.getByRole('button', { name: /credit card/i });
+    if (await creditCardMethod.isVisible({ timeout: 3000 })) {
+      await safeClick(creditCardMethod);
       await waitForPageReady(page);
       
-      // Proceed to review
-      const paymentNextButton = page.getByRole('button', { name: /continue|next/i });
-      await expect(paymentNextButton).toBeVisible({ timeout: 3000 });
-      await safeClick(paymentNextButton);
-      await waitForPageReady(page);
+      const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+      await stripeIframe.first().waitFor({ state: 'attached', timeout: 10000 }).catch(() => {});
       
-      // Step 3: Verify on review step
+      await fillStripeTestCard(page);
+      
+      const payNowButton = page.getByRole('button', { name: /pay now/i });
+      await expect(payNowButton).toBeVisible({ timeout: 5000 });
+      await safeClick(payNowButton);
+      
+      // Step 3: Verify on review step (reached once the client-side PaymentIntent confirms)
       const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
-      await expect(reviewHeading).toBeVisible({ timeout: 3000 });
+      await expect(reviewHeading).toBeVisible({ timeout: 15000 });
     }
   });
 
@@ -391,7 +382,7 @@ test.describe('Full Checkout Wizard with Payment', () => {
     // Payment methods should stack vertically on mobile
     await navigateToPaymentStep(page);
     
-    const paymentMethods = page.getByRole('button', { name: /credit card|paypal/i });
+    const paymentMethods = page.getByRole('button', { name: /credit card|bank account/i });
     const methodCount = await paymentMethods.count();
     
     if (methodCount >= 2) {
@@ -456,6 +447,27 @@ test.describe('Payment Error Handling', () => {
     }
   });
 });
+
+/**
+ * Helper: Fill the Stripe Payment Element with a test card.
+ *
+ * The Payment Element renders all fields inside a single combined iframe
+ * (located via the `__privateStripeFrame` name prefix), with placeholder
+ * text matching the app's live Stripe appearance config.
+ */
+async function fillStripeTestCard(page: Page): Promise<void> {
+  const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]').first();
+
+  await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill('4242424242424242');
+  await stripeFrame.getByPlaceholder('MM / YY').fill('12/34');
+  await stripeFrame.getByPlaceholder('CVC').fill('123');
+
+  // ZIP code is only shown for some billing-detail configurations
+  const zipField = stripeFrame.getByPlaceholder('12345');
+  if (await zipField.isVisible({ timeout: 500 }).catch(() => false)) {
+    await zipField.fill('12345');
+  }
+}
 
 /**
  * Helper: Setup checkout with a product in cart
@@ -549,7 +561,7 @@ async function navigateToPaymentStep(page: Page): Promise<void> {
   }
   
   // Verify we're on payment step by checking for payment method buttons
-  const paymentMethodsVisible = await page.getByRole('button', { name: /credit card|paypal/i }).first().isVisible({ timeout: 5000 }).catch(() => false);
+  const paymentMethodsVisible = await page.getByRole('button', { name: /credit card|bank account/i }).first().isVisible({ timeout: 5000 }).catch(() => false);
   
   if (!paymentMethodsVisible) {
     // Alternative check: look for payment heading

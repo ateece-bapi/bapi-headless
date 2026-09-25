@@ -58,6 +58,7 @@ export interface CheckoutData {
   shippingMethod: string | null;
   orderNotes: string;
   paymentIntentId?: string; // Stripe payment intent ID
+  orderId?: number; // Set once the WooCommerce order is created (immediately for ACH, at Place Order for Card)
 }
 
 interface CheckoutPageClientProps {
@@ -261,54 +262,78 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
     setCheckoutData((prev) => ({ ...prev, ...data }));
   };
 
+  /**
+   * Confirms a Stripe PaymentIntent and creates the WooCommerce order via /api/payment/confirm.
+   * Shared by PaymentStep (called immediately for Bank Account/ACH, since settlement is
+   * asynchronous) and handlePlaceOrder (called at Place Order for Credit Card).
+   */
+  const confirmStripePayment = async (
+    paymentIntentId: string
+  ): Promise<{ success: boolean; orderId?: number; message?: string }> => {
+    try {
+      const localCartData = localStorage.getItem('bapi-cart-storage');
+      const cartItems = localCartData ? JSON.parse(localCartData).state?.items || [] : [];
+
+      const response = await fetch('/api/payment/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paymentIntentId,
+          orderData: {
+            shippingAddress: checkoutData.shippingAddress,
+            billingAddress: checkoutData.billingAddress,
+            orderNotes: checkoutData.orderNotes,
+          },
+          cartItems, // Send cart items for WooCommerce sync
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        return { success: false, message: result.message || 'Payment confirmation failed' };
+      }
+
+      return { success: true, orderId: result.order.id };
+    } catch (error) {
+      logError('checkout.confirm_payment_failed', error);
+      return { success: false, message: 'Unable to confirm payment. Please try again.' };
+    }
+  };
+
   const handlePlaceOrder = async () => {
     try {
       setIsProcessing(true);
 
-      // Get cart items from localStorage
-      const localCartData = localStorage.getItem('bapi-cart-storage');
-      const cartItems = localCartData ? JSON.parse(localCartData).state?.items || [] : [];
+      // ACH (Bank Account) orders are already created in PaymentStep right after the PaymentIntent
+      // confirms — don't create a second order here, just finish the redirect.
+      if (checkoutData.orderId) {
+        clearCart();
+        schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
+        router.push(`/${locale}/order-confirmation/${checkoutData.orderId}`);
+        return;
+      }
 
-      // If using Stripe, confirm payment first
+      // If using Stripe (Credit Card), confirm payment now
       if (checkoutData.paymentIntentId) {
-        const response = await fetch('/api/payment/confirm', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            paymentIntentId: checkoutData.paymentIntentId,
-            orderData: {
-              shippingAddress: checkoutData.shippingAddress,
-              billingAddress: checkoutData.billingAddress,
-              orderNotes: checkoutData.orderNotes,
-            },
-            cartItems, // Send cart items for WooCommerce sync
-          }),
-        });
-
-        const result = await response.json();
+        const result = await confirmStripePayment(checkoutData.paymentIntentId);
 
         if (!result.success) {
           throw new Error(result.message || 'Payment confirmation failed');
         }
 
         // Clear cart after successful order
-        if (result.clearCart) {
-          clearCart();
-          logger.info('[Checkout] Cart cleared after successful order');
-        }
+        clearCart();
+        logger.info('[Checkout] Cart cleared after successful order');
 
         // Redirect to order confirmation with actual order ID
         schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
-        router.push(`/${locale}/order-confirmation/${result.order.id}`);
+        router.push(`/${locale}/order-confirmation/${result.orderId}`);
       } else {
-        // PayPal or other payment methods
-        // Phase 2: Implement PayPal order creation via WooCommerce API
-        // For now, create mock order (Stripe is primary payment method for launch)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
-        const mockOrderId = Math.floor(Math.random() * 100000);
-        schedulePendingToast({ type: 'success', title: t('toasts.orderPlaced'), message: t('toasts.orderPlacedMessage') });
-        router.push(`/${locale}/order-confirmation/${mockOrderId}`);
+        // Every supported tile (Card, Bank Account) requires a Stripe-confirmed PaymentIntent
+        // by this point — reaching here means checkout state is broken, so fail loudly instead
+        // of fabricating a mock order that reports success without any actual payment.
+        throw new Error('No payment method was confirmed. Please select a payment method and try again.');
       }
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -362,6 +387,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
             onBack={handleBack}
             onUpdateData={handleUpdateData}
             onPlaceOrder={handlePlaceOrder}
+            onConfirmPayment={confirmStripePayment}
             isProcessing={isProcessing}
           />
         </div>

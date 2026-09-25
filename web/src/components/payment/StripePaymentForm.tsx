@@ -11,7 +11,9 @@ import { useState } from 'react';
 import { Loader2Icon } from '@/lib/icons';
 
 interface StripePaymentFormProps {
-  onSuccess: (paymentIntentId: string) => void;
+  // May return a Promise (e.g. Bank Account awaits order creation before this resolves) —
+  // the caller must await it so isProcessing stays true until that work finishes.
+  onSuccess: (paymentIntentId: string) => void | Promise<void>;
   onError: (error: string) => void;
 }
 
@@ -45,8 +47,15 @@ export default function StripePaymentForm({ onSuccess, onError }: StripePaymentF
 
       if (error) {
         onError(error.message || 'Payment failed. Please try again.');
-      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        onSuccess(paymentIntent.id);
+      } else if (
+        paymentIntent &&
+        (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')
+      ) {
+        // ACH (us_bank_account) settles asynchronously and stays "processing" for 1-4 business
+        // days after confirmation — that's expected, not a failure, so let the order proceed.
+        // Await it: for Bank Account this creates the WooCommerce order, and the submit guard
+        // must stay engaged until that finishes or a second click could create a duplicate order.
+        await onSuccess(paymentIntent.id);
       } else {
         onError('Payment was not completed. Please try again.');
       }

@@ -313,22 +313,22 @@ describe('ReviewStep', () => {
       ).toBeInTheDocument();
     });
 
-    it('displays PayPal payment method with note', () => {
-      const dataWithPayPal: CheckoutData = {
+    it('displays Bank Account payment method with note', () => {
+      const dataWithBankAccount: CheckoutData = {
         ...mockData,
-        paymentMethod: { id: 'paypal', title: 'PayPal' },
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
       };
       render(
         <ReviewStep
-          data={dataWithPayPal}
+          data={dataWithBankAccount}
           onBack={mockOnBack}
           onPlaceOrder={mockOnPlaceOrder}
           isProcessing={false}
         />
       );
-      expect(screen.getByText('PayPal')).toBeInTheDocument();
+      expect(screen.getByText('Bank Account')).toBeInTheDocument();
       expect(
-        screen.getByText('You will be redirected to PayPal to complete payment')
+        screen.getByText('Your bank account will be charged after order confirmation')
       ).toBeInTheDocument();
     });
 

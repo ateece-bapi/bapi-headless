@@ -1073,6 +1073,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "Payer avec votre compte PayPal"
+        },
+        "bankAccount": {
+          "title": "Compte bancaire",
+          "description": "Payer par virement bancaire ACH"
         }
       },
       "cardDetails": {
@@ -1080,13 +1084,19 @@
         "settingUp": "Mise en place du paiement...",
         "loadError": "Impossible de charger le formulaire de paiement. Veuillez actualiser et réessayer."
       },
+      "bankDetails": {
+        "title": "Coordonnées bancaires"
+      },
+      "bankTerms": {
+        "gate": "Veuillez accepter les Conditions générales ci-dessus pour continuer votre paiement bancaire."
+      },
+      "alreadyConfirmed": {
+        "message": "Ce paiement a déjà été confirmé pour votre commande.",
+        "continue": "Continuer à la vérification"
+      },
       "security": {
         "title": "Votre paiement est sécurisé",
         "description": "Alimenté par Stripe avec un chiffrement SSL 256 bits"
-      },
-      "paypal": {
-        "redirectMessage": "Vous serez redirigé vers PayPal pour finaliser votre achat en toute sécurité après avoir passé en revue votre commande.",
-        "continueButton": "Continuer à la vérification"
       },
       "back": "Retour",
       "toasts": {
@@ -1112,7 +1122,7 @@
       "email": "Email",
       "paymentNotes": {
         "creditCard": "Votre carte sera débitée après confirmation de la commande",
-        "paypal": "Vous serez redirigé vers PayPal pour effectuer le paiement"
+        "bankAccount": "Votre compte bancaire sera débité après confirmation de la commande"
       },
       "orderNotes": {
         "label": "Notes de commande (facultatif)",

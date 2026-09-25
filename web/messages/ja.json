@@ -1073,6 +1073,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "PayPalアカウントで支払う"
+        },
+        "bankAccount": {
+          "title": "銀行口座",
+          "description": "ACH銀行振込でお支払い"
         }
       },
       "cardDetails": {
@@ -1080,13 +1084,19 @@
         "settingUp": "支払いの設定中...",
         "loadError": "支払いフォームを読み込めませんでした。再度お試しください。"
       },
+      "bankDetails": {
+        "title": "銀行情報"
+      },
+      "bankTerms": {
+        "gate": "銀行お支払いを続けるには、上記の利用規約に同意してください。"
+      },
+      "alreadyConfirmed": {
+        "message": "この支払いはすでにご注文に対して確認済みです。",
+        "continue": "確認画面に進む"
+      },
       "security": {
         "title": "支払いは安全です",
         "description": "Stripeによる256ビットSSL暗号化で保護されています"
-      },
-      "paypal": {
-        "redirectMessage": "注文内容の確認後、安全にPayPalに移動してお支払いいただきます。",
-        "continueButton": "確認画面に進む"
       },
       "back": "戻る",
       "toasts": {
@@ -1112,7 +1122,7 @@
       "email": "メールアドレス",
       "paymentNotes": {
         "creditCard": "注文確定後にカードに請求されます",
-        "paypal": "PayPalに移動して支払いを完了します"
+        "bankAccount": "注文確定後に銀行口座に請求されます"
       },
       "orderNotes": {
         "label": "注文メモ (オプション)",

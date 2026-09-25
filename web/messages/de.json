@@ -989,6 +989,10 @@
         "paypal": {
           "title": "PayPal",
           "description": "Mit Ihrem PayPal-Konto bezahlen"
+        },
+        "bankAccount": {
+          "title": "Bankkonto",
+          "description": "Per ACH-Banküberweisung bezahlen"
         }
       },
       "cardDetails": {
@@ -996,13 +1000,19 @@
         "settingUp": "Zahlung wird eingerichtet...",
         "loadError": "Das Zahlungsformular kann nicht geladen werden. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut."
       },
+      "bankDetails": {
+        "title": "Bankdaten"
+      },
+      "bankTerms": {
+        "gate": "Bitte akzeptieren Sie oben die Allgemeinen Geschäftsbedingungen, um mit Ihrer Bankzahlung fortzufahren."
+      },
+      "alreadyConfirmed": {
+        "message": "Diese Zahlung wurde bereits für Ihre Bestellung bestätigt.",
+        "continue": "Weiter zur Überprüfung"
+      },
       "security": {
         "title": "Ihre Zahlung ist sicher",
         "description": "Betrieben von Stripe mit 256-Bit-SSL-Verschlüsselung"
-      },
-      "paypal": {
-        "redirectMessage": "Sie werden nach Überprüfung Ihrer Bestellung zur sicheren Bezahlung auf PayPal weitergeleitet.",
-        "continueButton": "Weiter zur Überprüfung"
       },
       "back": "Zurück",
       "toasts": {
@@ -1028,7 +1038,7 @@
       "email": "E-Mail",
       "paymentNotes": {
         "creditCard": "Ihre Karte wird nach Bestellbestätigung belastet",
-        "paypal": "Sie werden zu PayPal weitergeleitet, um die Zahlung abzuschließen"
+        "bankAccount": "Ihr Bankkonto wird nach Bestellbestätigung belastet"
       },
       "orderNotes": {
         "label": "Bestellnotizen (optional)",

@@ -136,8 +136,8 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
           {paymentMethod?.id === 'credit_card' && (
             <p className="mt-1 text-xs text-neutral-700">{t('paymentNotes.creditCard')}</p>
           )}
-          {paymentMethod?.id === 'paypal' && (
-            <p className="mt-1 text-xs text-neutral-700">{t('paymentNotes.paypal')}</p>
+          {paymentMethod?.id === 'bank_account' && (
+            <p className="mt-1 text-xs text-neutral-700">{t('paymentNotes.bankAccount')}</p>
           )}
         </div>
       </div>

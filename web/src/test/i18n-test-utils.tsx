@@ -173,9 +173,9 @@ const mockMessages = {
           title: 'Credit Card',
           description: 'Pay with credit or debit card',
         },
-        paypal: {
-          title: 'PayPal',
-          description: 'Pay with your PayPal account',
+        bankAccount: {
+          title: 'Bank Account',
+          description: 'Pay via ACH bank transfer',
         },
       },
       cardDetails: {
@@ -183,14 +183,19 @@ const mockMessages = {
         settingUp: 'Setting up payment...',
         loadError: 'Unable to load payment form. Please refresh and try again.',
       },
+      bankDetails: {
+        title: 'Bank Details',
+      },
+      bankTerms: {
+        gate: 'Please accept the Terms & Conditions above to continue with your bank payment.',
+      },
+      alreadyConfirmed: {
+        message: 'This payment has already been confirmed for your order.',
+        continue: 'Continue to Review',
+      },
       security: {
         title: 'Your payment is secure',
         description: 'Powered by Stripe with 256-bit SSL encryption',
-      },
-      paypal: {
-        redirectMessage:
-          'You will be redirected to PayPal to complete your purchase securely after reviewing your order.',
-        continueButton: 'Continue to Review',
       },
       back: 'Back',
       toasts: {
@@ -214,7 +219,7 @@ const mockMessages = {
       email: 'Email',
       paymentNotes: {
         creditCard: 'Your card will be charged after order confirmation',
-        paypal: 'You will be redirected to PayPal to complete payment',
+        bankAccount: 'Your bank account will be charged after order confirmation',
       },
       orderNotes: {
         label: 'Order Notes (Optional)',

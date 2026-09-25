@@ -28,6 +28,38 @@ function getStripeInstance() {
   });
 }
 
+/**
+ * Links a settling PaymentIntent to its WooCommerce order (via metadata) so the Stripe
+ * webhook can find and reconcile it later. Retries a few times before giving up, since
+ * Stripe won't redeliver a successfully-acknowledged settlement event just because the
+ * metadata arrives late — a permanently unlinked order would otherwise stay on-hold forever.
+ */
+async function linkPaymentIntentToOrder(
+  stripe: Stripe,
+  paymentIntent: Stripe.PaymentIntent,
+  orderId: number,
+  maxAttempts = 3
+): Promise<boolean> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      await stripe.paymentIntents.update(paymentIntent.id, {
+        metadata: { ...paymentIntent.metadata, wc_order_id: String(orderId) },
+      });
+      return true;
+    } catch (linkError) {
+      logError('payment.confirm_ach_link_attempt_failed', linkError, {
+        orderId,
+        paymentIntentId: paymentIntent.id,
+        attempt,
+      });
+      if (attempt < maxAttempts) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 300));
+      }
+    }
+  }
+  return false;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const stripe = getStripeInstance();
@@ -64,10 +96,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Retrieve payment intent to verify status
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    // Retrieve payment intent (expanded to get the actual PaymentMethod used, not just the
+    // list of allowed types) to verify status
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+      expand: ['payment_method'],
+    });
 
-    if (paymentIntent.status !== 'succeeded') {
+    // ACH (us_bank_account) settles asynchronously and stays "processing" for 1-4 business days —
+    // that's an expected, valid state for creating the order, not a failure.
+    if (paymentIntent.status !== 'succeeded' && paymentIntent.status !== 'processing') {
       return NextResponse.json(
         {
           error: 'Payment Not Completed',
@@ -77,6 +114,107 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const isSettled = paymentIntent.status === 'succeeded';
+    // payment_method_types lists every type the intent *allowed*, not the one actually used
+    // (e.g. the unscoped fallback allows both card and us_bank_account) — the resolved
+    // PaymentMethod object is the only reliable source for which one the customer used.
+    const paymentMethodType =
+      typeof paymentIntent.payment_method === 'object' && paymentIntent.payment_method
+        ? paymentIntent.payment_method.type
+        : paymentIntent.payment_method_types?.[0];
+
+    // Verify the submitted cart matches what was actually charged — without this, a caller
+    // could reuse a valid (possibly still-processing) PaymentIntent while substituting a
+    // different, more expensive cart and customer data than what the intent's amount covers.
+    const cartSubtotalDollars = cartItems.reduce((sum: number, item: any) => {
+      const price = parseFloat(String(item.price).replace('$', '').replace(',', ''));
+      return sum + price * item.quantity;
+    }, 0);
+    const expectedAmountCents = Math.round(cartSubtotalDollars * 100);
+    if (Math.abs(paymentIntent.amount - expectedAmountCents) > 1) {
+      logger.error('[Payment Confirm] Cart total does not match the confirmed PaymentIntent amount', {
+        paymentIntentId: paymentIntent.id,
+        chargedAmountCents: paymentIntent.amount,
+        submittedCartAmountCents: expectedAmountCents,
+      });
+      return NextResponse.json(
+        {
+          error: 'Amount Mismatch',
+          message: 'The submitted cart does not match the confirmed payment amount.',
+        },
+        { status: 400 }
+      );
+    }
+
+    // Only Card and Bank Account are offered by the checkout UI — reject anything else
+    // (e.g. a PaymentIntent created directly against the Stripe API with Klarna/crypto/etc.)
+    // rather than silently recording it as a card order.
+    if (paymentMethodType !== 'card' && paymentMethodType !== 'us_bank_account') {
+      return NextResponse.json(
+        {
+          error: 'Unsupported Payment Method',
+          message: 'This payment method is not supported for checkout.',
+        },
+        { status: 400 }
+      );
+    }
+
+    const isBankTransfer = paymentMethodType === 'us_bank_account';
+    const paymentMethodTitle = isBankTransfer ? 'Bank Account (ACH - Stripe)' : 'Credit Card (Stripe)';
+
+    // Use WordPress Application Password for authentication
+    const auth = Buffer.from(
+      `${process.env.WORDPRESS_API_USER}:${process.env.WORDPRESS_API_PASSWORD}`
+    ).toString('base64');
+
+    // Idempotency: if this exact PaymentIntent already has a linked order (from a previous
+    // call whose response was lost, or a client-side retry after a timeout), return that
+    // order instead of creating a duplicate.
+    const existingOrderId = paymentIntent.metadata?.wc_order_id;
+    if (existingOrderId) {
+      try {
+        const existingOrderResponse = await fetch(
+          `${WORDPRESS_URL}/wp-json/wc/v3/orders/${existingOrderId}`,
+          { headers: { Authorization: `Basic ${auth}` } }
+        );
+
+        if (existingOrderResponse.ok) {
+          const existingOrder = await existingOrderResponse.json();
+          logger.info('[Payment Confirm] Returning existing order for already-confirmed PaymentIntent', {
+            orderId: existingOrder.id,
+            paymentIntentId: paymentIntent.id,
+          });
+
+          return NextResponse.json({
+            success: true,
+            clearCart: true,
+            order: {
+              id: existingOrder.id,
+              orderNumber: existingOrder.number,
+              status: existingOrder.status,
+              total: existingOrder.total,
+              currency: existingOrder.currency,
+              paymentMethod: existingOrder.payment_method,
+              transactionId: existingOrder.transaction_id,
+            },
+          });
+        }
+
+        // Order lookup failed (e.g. deleted) — fall through and create a fresh order rather
+        // than silently failing the whole request.
+        logger.error('[Payment Confirm] Existing linked order could not be retrieved', {
+          orderId: existingOrderId,
+          paymentIntentId: paymentIntent.id,
+          status: existingOrderResponse.status,
+        });
+      } catch (lookupError) {
+        logError('payment.confirm_existing_order_lookup_failed', lookupError, {
+          paymentIntentId: paymentIntent.id,
+          existingOrderId,
+        });
+      }
+    }
+
     logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', {
       itemCount: cartItems.length,
     });
@@ -84,8 +222,10 @@ export async function POST(request: NextRequest) {
     // Create order using WooCommerce REST API
     const wcOrderData = {
       payment_method: 'stripe',
-      payment_method_title: 'Credit Card (Stripe)',
-      set_paid: true,
+      payment_method_title: paymentMethodTitle,
+      set_paid: isSettled,
+      // ACH orders stay "on-hold" until the bank transfer clears (WooCommerce's BACS convention)
+      ...(isSettled ? {} : { status: 'on-hold' }),
       transaction_id: paymentIntent.id,
       billing: {
         first_name: orderData.billingAddress.firstName,
@@ -94,7 +234,7 @@ export async function POST(request: NextRequest) {
         address_2: orderData.billingAddress.address2 || '',
         city: orderData.billingAddress.city,
         state: orderData.billingAddress.state,
-        postcode: orderData.billingAddress.zipCode,
+        postcode: orderData.billingAddress.postcode,
         country: orderData.billingAddress.country || 'US',
         email: orderData.billingAddress.email,
         phone: orderData.billingAddress.phone || '',
@@ -106,7 +246,7 @@ export async function POST(request: NextRequest) {
         address_2: orderData.shippingAddress.address2 || '',
         city: orderData.shippingAddress.city,
         state: orderData.shippingAddress.state,
-        postcode: orderData.shippingAddress.zipCode,
+        postcode: orderData.shippingAddress.postcode,
         country: orderData.shippingAddress.country || 'US',
       },
       line_items: cartItems.map((item: any) => ({
@@ -126,11 +266,6 @@ export async function POST(request: NextRequest) {
       ],
     };
 
-    // Use WordPress Application Password for authentication
-    const auth = Buffer.from(
-      `${process.env.WORDPRESS_API_USER}:${process.env.WORDPRESS_API_PASSWORD}`
-    ).toString('base64');
-
     const wcResponse = await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders`, {
       method: 'POST',
       headers: {
@@ -148,6 +283,103 @@ export async function POST(request: NextRequest) {
 
     const order = await wcResponse.json();
     logger.info('[Payment Confirm] Order created successfully', { orderId: order.id });
+
+    if (!isSettled) {
+      // Link the PaymentIntent to this order so the Stripe webhook (payment_intent.succeeded)
+      // can mark it paid once the ACH transfer actually clears — otherwise the order would
+      // stay "on-hold" forever, since nothing else re-checks it after this request.
+      // The order was already created successfully at this point, so a transient failure here
+      // must not surface as a request failure (that would strand the order and risk the
+      // customer retrying and creating a duplicate).
+      const linked = await linkPaymentIntentToOrder(stripe, paymentIntent, order.id);
+
+      if (!linked) {
+        // All retries exhausted — persist a visible flag on the order itself (not just logs)
+        // so support/ops can find and manually reconcile it; the webhook has no other way to
+        // locate this order once wc_order_id metadata couldn't be attached.
+        logError(
+          'payment.confirm_ach_link_failed',
+          new Error('Exhausted retries linking PaymentIntent to order'),
+          { orderId: order.id, paymentIntentId: paymentIntent.id }
+        );
+
+        try {
+          await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Basic ${auth}`,
+            },
+            body: JSON.stringify({
+              customer_note: [
+                orderData.orderNotes,
+                `[SYSTEM] ACH reconciliation link failed for PaymentIntent ${paymentIntent.id} — requires manual follow-up to mark this order paid once the bank transfer settles.`,
+              ]
+                .filter(Boolean)
+                .join('\n'),
+            }),
+          });
+        } catch (noteError) {
+          logError('payment.confirm_ach_link_flag_failed', noteError, {
+            orderId: order.id,
+            paymentIntentId: paymentIntent.id,
+          });
+        }
+      } else {
+        // Closes the race where the ACH PaymentIntent settles between our initial retrieve
+        // above and this metadata link finishing — the webhook can't reconcile an event that
+        // fired before wc_order_id existed, so check the current status ourselves once more.
+        try {
+          const refreshedIntent = await stripe.paymentIntents.retrieve(paymentIntent.id);
+          if (refreshedIntent.status === 'succeeded') {
+            const settleResponse = await fetch(
+              `${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`,
+              {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Basic ${auth}`,
+                },
+                body: JSON.stringify({ set_paid: true, status: 'processing' }),
+              }
+            );
+            if (settleResponse.ok) {
+              logger.info('[Payment Confirm] ACH settled before response — marked order paid immediately', {
+                orderId: order.id,
+                paymentIntentId: paymentIntent.id,
+              });
+            }
+          } else if (refreshedIntent.status !== 'processing') {
+            // The intent failed/was canceled between our initial retrieve and now — reflect
+            // that immediately rather than leaving the order on-hold indefinitely (the
+            // webhook may have already fired for this before wc_order_id existed to act on it).
+            const failResponse = await fetch(
+              `${WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}`,
+              {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Basic ${auth}`,
+                },
+                body: JSON.stringify({ status: 'failed' }),
+              }
+            );
+            if (failResponse.ok) {
+              logger.info('[Payment Confirm] ACH failed before response — marked order failed immediately', {
+                orderId: order.id,
+                paymentIntentId: paymentIntent.id,
+                intentStatus: refreshedIntent.status,
+              });
+            }
+          }
+        } catch (reconcileError) {
+          logError('payment.confirm_ach_immediate_reconcile_failed', reconcileError, {
+            orderId: order.id,
+            paymentIntentId: paymentIntent.id,
+          });
+        }
+      }
+    }
 
     // Return order details with clearCart flag
     return NextResponse.json({

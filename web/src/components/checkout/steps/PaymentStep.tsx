@@ -4,16 +4,16 @@
  * Payment Step Component
  *
  * Step 2 of checkout: Select payment method and process payment
- * - Payment method selection (Credit Card via Stripe, PayPal)
- * - Integrated Stripe Elements for card payment
+ * - Payment method selection (Credit Card or Bank Account, both via Stripe)
+ * - Integrated Stripe Elements for card/bank payment
  * - Back and Next navigation
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
-import { ArrowRightIcon, ArrowLeftIcon, CreditCardIcon, BanknoteIcon, Loader2Icon } from '@/lib/icons';
+import { ArrowLeftIcon, CreditCardIcon, BanknoteIcon, Loader2Icon } from '@/lib/icons';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
 
@@ -48,15 +48,34 @@ interface PaymentStepProps {
   onNext: () => void;
   onBack: () => void;
   onUpdateData: (data: Partial<CheckoutData>) => void;
+  // Confirms a PaymentIntent and creates the WooCommerce order; called immediately for Bank
+  // Account (ACH) since that settlement is asynchronous and must not depend on the customer
+  // ever reaching the Review step.
+  onConfirmPayment: (
+    paymentIntentId: string
+  ) => Promise<{ success: boolean; orderId?: number; message?: string }>;
 }
 
-export default function PaymentStep({ data, onNext, onBack, onUpdateData }: PaymentStepProps) {
+export default function PaymentStep({
+  data,
+  onNext,
+  onBack,
+  onUpdateData,
+  onConfirmPayment,
+}: PaymentStepProps) {
   const { showToast } = useToast();
   const t = useTranslations('checkoutPage.payment');
+  const tReview = useTranslations('checkoutPage.review');
   const [selectedMethod, setSelectedMethod] = useState<string>(data.paymentMethod?.id || '');
   const [clientSecret, setClientSecret] = useState<string>('');
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  const [bankTermsAccepted, setBankTermsAccepted] = useState(false);
+  // Guards against a slower, stale request (e.g. Credit Card) overwriting a newer one (e.g. Bank Account)
+  const latestRequestIdRef = useRef(0);
+  // Guards against a stale success callback from a Stripe form that's no longer the active
+  // selection (e.g. the customer switched tiles while confirmPayment() was still in flight)
+  const activePaymentIntentIdRef = useRef<string | null>(null);
 
   const paymentMethods = [
     {
@@ -66,9 +85,9 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       icon: CreditCardIcon,
     },
     {
-      id: 'paypal',
-      title: t('methods.paypal.title'),
-      description: t('methods.paypal.description'),
+      id: 'bank_account',
+      title: t('methods.bankAccount.title'),
+      description: t('methods.bankAccount.description'),
       icon: BanknoteIcon,
     },
   ];
@@ -108,15 +127,31 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
     fetchCartTotal();
   }, []);
 
-  // Create payment intent when credit card is selected
-  useEffect(() => {
-    if (selectedMethod === 'credit_card' && !clientSecret && cartTotal > 0) {
-      createPaymentIntent();
-    }
-  }, [selectedMethod, cartTotal]);
+  // Both tiles are powered by Stripe, scoped to a single payment method type each
+  const isStripeMethod = (methodId: string) => methodId === 'credit_card' || methodId === 'bank_account';
+  // True once the *currently selected* method already has a confirmed order (set immediately
+  // for Bank Account on success) — re-entering this step (e.g. via Review's Back) must not
+  // let the customer resubmit and create a second order/PaymentIntent for the same selection.
+  const hasConfirmedOrderForCurrentSelection =
+    Boolean(data.orderId) && selectedMethod === data.paymentMethod?.id;
 
-  const createPaymentIntent = async () => {
+  // Create a payment intent (scoped to the selected method) whenever the user picks a Stripe tile
+  useEffect(() => {
+    if (hasConfirmedOrderForCurrentSelection) {
+      return;
+    }
+    if (isStripeMethod(selectedMethod) && cartTotal > 0) {
+      createPaymentIntent(selectedMethod);
+    }
+  }, [selectedMethod, cartTotal, hasConfirmedOrderForCurrentSelection]);
+
+  const createPaymentIntent = async (paymentMethodType: string) => {
+    const requestId = ++latestRequestIdRef.current;
     setIsLoadingIntent(true);
+    setClientSecret('');
+    // Clear immediately (not just on success) so a stale in-flight success callback from the
+    // previous intent can't match this now-cleared value while the new one is still loading.
+    activePaymentIntentIdRef.current = null;
 
     try {
       const response = await fetch('/api/payment/create-intent', {
@@ -125,28 +160,45 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         body: JSON.stringify({
           amount: cartTotal,
           currency: 'usd',
-          metadata: {
-            checkoutFlow: 'bapi-headless',
-          },
+          paymentMethodType,
         }),
       });
 
       const result = await response.json();
 
+      // Ignore this response if a newer request has since been made (e.g. user switched tiles)
+      if (requestId !== latestRequestIdRef.current) {
+        return;
+      }
+
       if (result.success && result.clientSecret) {
         setClientSecret(result.clientSecret);
+        activePaymentIntentIdRef.current = result.paymentIntentId;
       } else {
         showToast('error', t('toasts.setupFailed'), result.message || t('toasts.setupError'));
       }
     } catch (error) {
+      if (requestId !== latestRequestIdRef.current) {
+        return;
+      }
       showToast('error', t('toasts.setupFailed'), t('toasts.setupError'));
     } finally {
-      setIsLoadingIntent(false);
+      if (requestId === latestRequestIdRef.current) {
+        setIsLoadingIntent(false);
+      }
     }
   };
 
   const handleMethodSelect = (methodId: string) => {
+    // Once an order is confirmed (immediate for ACH), the underlying debit/order is already
+    // live — switching tiles here would only abandon it in local state while it stays active
+    // server-side, letting it settle behind a second order. Lock selection entirely instead.
+    if (data.orderId) {
+      return;
+    }
+
     setSelectedMethod(methodId);
+    setBankTermsAccepted(false);
     const method = paymentMethods.find((m) => m.id === methodId);
     if (method) {
       onUpdateData({
@@ -154,15 +206,38 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
           id: method.id,
           title: method.title,
         },
+        paymentIntentId: undefined,
+        orderId: undefined,
       });
     }
   };
 
-  const handleStripeSuccess = (paymentIntentId: string) => {
+  const handleStripeSuccess = async (paymentIntentId: string) => {
+    // Ignore a stale callback: e.g. the customer switched away from this tile (or back to a
+    // newer intent for the same tile) while Stripe's confirmPayment() was still resolving.
+    if (paymentIntentId !== activePaymentIntentIdRef.current) {
+      logger.debug('[PaymentStep] Ignoring stale Stripe success callback', { paymentIntentId });
+      return;
+    }
+
     // Store payment intent ID for order creation
     onUpdateData({
       paymentIntentId,
     });
+
+    if (selectedMethod === 'bank_account') {
+      // ACH settles asynchronously (days later) via the Stripe webhook, which can only
+      // reconcile an order that already exists — create it now instead of deferring to
+      // Review/Place Order, which the customer might never reach.
+      const result = await onConfirmPayment(paymentIntentId);
+
+      if (!result.success) {
+        showToast('error', t('toasts.paymentFailed'), result.message || t('toasts.paymentFailed'));
+        return;
+      }
+
+      onUpdateData({ orderId: result.orderId });
+    }
 
     showToast('success', t('toasts.paymentConfirmed'), t('toasts.paymentConfirmedMessage'));
     onNext();
@@ -170,16 +245,6 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
 
   const handleStripeError = (error: string) => {
     showToast('error', t('toasts.paymentFailed'), error);
-  };
-
-  const handlePayPalNext = () => {
-    if (!selectedMethod) {
-      showToast('warning', t('toasts.selectMethod'), t('toasts.selectMethodMessage'));
-      return;
-    }
-
-    // For PayPal, just proceed to review (payment happens after order placement)
-    onNext();
   };
 
   return (
@@ -196,11 +261,13 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
                 key={method.id}
                 type="button"
                 onClick={() => handleMethodSelect(method.id)}
+                disabled={Boolean(data.orderId)}
+                aria-disabled={Boolean(data.orderId)}
                 className={`relative rounded-xl border-2 p-6 text-left transition-all ${
                   selectedMethod === method.id
                     ? 'border-primary-500 bg-primary-50'
                     : 'border-neutral-200 bg-white hover:border-neutral-300'
-                } `}
+                } ${data.orderId ? 'cursor-not-allowed opacity-60' : ''} `}
               >
                 {/* Selected Indicator */}
                 {selectedMethod === method.id && (
@@ -235,18 +302,65 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         </div>
       </div>
 
-      {/* Stripe Credit Card Form */}
-      {selectedMethod === 'credit_card' && (
+      {/* Stripe Payment Form (Credit Card or Bank Account) */}
+      {isStripeMethod(selectedMethod) && (
         <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <h3 className="mb-4 text-lg font-semibold text-neutral-900">{t('cardDetails.title')}</h3>
+          <h3 className="mb-4 text-lg font-semibold text-neutral-900">
+            {selectedMethod === 'credit_card' ? t('cardDetails.title') : t('bankDetails.title')}
+          </h3>
 
-          {isLoadingIntent ? (
+          {hasConfirmedOrderForCurrentSelection ? (
+            <div className="space-y-4">
+              <div className="rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-primary-900">
+                {t('alreadyConfirmed.message')}
+              </div>
+              <button
+                type="button"
+                onClick={onNext}
+                className="btn-bapi-primary flex w-full items-center justify-center rounded-xl px-6 py-3"
+              >
+                {t('alreadyConfirmed.continue')}
+              </button>
+            </div>
+          ) : selectedMethod === 'bank_account' && !bankTermsAccepted ? (
+            <div className="space-y-3 rounded-lg border border-neutral-200 bg-white p-4">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={bankTermsAccepted}
+                  onChange={(e) => setBankTermsAccepted(e.target.checked)}
+                  className="mt-1 h-5 w-5 flex-shrink-0 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500"
+                />
+                <span className="text-sm text-neutral-700">
+                  {tReview('terms.agree')}{' '}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary-700 underline hover:text-primary-800"
+                  >
+                    {tReview('terms.termsLink')}
+                  </a>{' '}
+                  {tReview('terms.and')}{' '}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary-700 underline hover:text-primary-800"
+                  >
+                    {tReview('terms.privacyLink')}
+                  </a>
+                </span>
+              </label>
+              <p className="text-xs text-neutral-700">{t('bankTerms.gate')}</p>
+            </div>
+          ) : isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
               <Loader2Icon className="h-8 w-8 animate-spin text-primary-500" />
               <span className="ml-3 text-neutral-700">{t('cardDetails.settingUp')}</span>
             </div>
           ) : clientSecret ? (
-            <StripeProvider clientSecret={clientSecret}>
+            <StripeProvider key={clientSecret} clientSecret={clientSecret}>
               <StripePaymentForm onSuccess={handleStripeSuccess} onError={handleStripeError} />
             </StripeProvider>
           ) : (
@@ -264,24 +378,10 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
         </div>
       )}
 
-      {/* PayPal Info */}
-      {selectedMethod === 'paypal' && (
-        <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <p className="text-sm text-neutral-700">{t('paypal.redirectMessage')}</p>
-
-          <button
-            type="button"
-            onClick={handlePayPalNext}
-            className="btn-bapi-primary flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3"
-          >
-            {t('paypal.continueButton')}
-            <ArrowRightIcon className="h-5 w-5" />
-          </button>
-        </div>
-      )}
-
-      {/* Back Button (only show if not in Stripe payment) */}
-      {selectedMethod !== 'credit_card' && (
+      {/* Back Button (only show if not in the Credit Card Stripe form, which handles its own
+          submission, and never once an order is confirmed — going back to edit shipping/
+          billing at that point wouldn't be reflected on the already-created ACH order). */}
+      {selectedMethod !== 'credit_card' && !data.orderId && (
         <div className="flex justify-between border-t border-neutral-200 pt-6">
           <button
             type="button"

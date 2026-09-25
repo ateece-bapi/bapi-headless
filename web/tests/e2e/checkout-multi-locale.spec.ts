@@ -46,11 +46,11 @@ test.describe('Multi-Locale Checkout Flow', () => {
         
         // Should show payment method options
         const creditCardButton = page.getByRole('button', { name: /credit card|tarjeta|carte|kreditkarte|クレジットカード/i });
-        const paypalButton = page.getByRole('button', { name: /paypal/i });
+        const bankAccountButton = page.getByRole('button', { name: /bank account|cuenta bancaria|compte bancaire|bankkonto|銀行口座/i });
         
         // At least one payment method should be visible
         const creditCardVisible = await creditCardButton.isVisible({ timeout: 3000 }).catch(() => false);
-        const paypalVisible = await paypalButton.isVisible({ timeout: 3000 }).catch(() => false);
+        const bankAccountVisible = await bankAccountButton.isVisible({ timeout: 3000 }).catch(() => false);
         
         // Broader fallback: any payment method container (handles icon-only or untranslated UIs)
         // Use waitFor so the 3 s timeout is actually respected (isVisible is an instant check)
@@ -58,12 +58,12 @@ test.describe('Multi-Locale Checkout Flow', () => {
         const containerVisible = await paymentContainer.waitFor({ state: 'visible', timeout: 3000 }).then(() => true).catch(() => false);
         
         // Japanese locale may not render payment methods in the same structure — skip rather than fail
-        if (!creditCardVisible && !paypalVisible && !containerVisible) {
+        if (!creditCardVisible && !bankAccountVisible && !containerVisible) {
           test.skip(true, `No payment methods found for ${locale.name} locale — may be locale-specific checkout behavior`);
           return;
         }
         
-        expect(creditCardVisible || paypalVisible || containerVisible).toBeTruthy();
+        expect(creditCardVisible || bankAccountVisible || containerVisible).toBeTruthy();
       });
 
       test(`should display a valid currency format in ${locale.name}`, async ({ page }) => {
@@ -122,23 +122,50 @@ test.describe('Multi-Locale Checkout Flow', () => {
           await waitAfterNavigation(page);
         }
         
-        // Select payment method
-        const paypalButton = page.getByRole('button', { name: /paypal/i });
-        if (await paypalButton.isVisible({ timeout: 3000 })) {
-          await safeClick(paypalButton);
-          
-          // Proceed to review
-          const paymentNextButton = page.getByRole('button', { name: /continue|next|continuar|suivant|weiter|次へ/i });
-          if (await paymentNextButton.isVisible({ timeout: 1000 })) {
-            await safeClick(paymentNextButton);
-            
-            // Should reach review step
-            const reviewHeading = page.getByRole('heading', { name: /review|place|revisar|revoir|überprüfen|確認/i });
-            await expect(reviewHeading).toBeVisible({ timeout: 3000 }).catch(() => {
-              // Review step may not be fully implemented
-            });
-          }
+        // Select payment method — Credit Card is the only tile whose flow can be fully
+        // automated (Bank Account requires linking a real/test bank via Stripe Financial
+        // Connections), so use it here to reach the Review step.
+        const creditCardButton = page.getByRole('button', { name: /credit card|tarjeta|carte|kreditkarte|クレジットカード/i });
+        if (!(await creditCardButton.isVisible({ timeout: 3000 }).catch(() => false))) {
+          test.skip(true, `Credit Card option not found for ${locale.name} locale — skipping full checkout completion`);
+          return;
         }
+
+        await safeClick(creditCardButton);
+        await waitAfterNavigation(page);
+
+        const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+        const iframeAttached = await stripeIframe
+          .first()
+          .waitFor({ state: 'attached', timeout: 10000 })
+          .then(() => true)
+          .catch(() => false);
+        if (!iframeAttached) {
+          test.skip(true, `Stripe Payment Element did not mount for ${locale.name} locale — skipping full checkout completion`);
+          return;
+        }
+
+        // These fills are required for the payment to actually go through — let them fail
+        // the test (rather than swallowing errors) if the Stripe iframe/placeholders change.
+        const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]').first();
+        await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill('4242424242424242');
+        await stripeFrame.getByPlaceholder('MM / YY').fill('12/34');
+        await stripeFrame.getByPlaceholder('CVC').fill('123');
+
+        // ZIP code is only shown for some billing-detail configurations
+        const zipField = stripeFrame.getByPlaceholder('12345');
+        if (await zipField.isVisible({ timeout: 500 }).catch(() => false)) {
+          await zipField.fill('12345');
+        }
+
+        // Pay Now is hardcoded in English regardless of locale
+        const payNowButton = page.getByRole('button', { name: /pay now/i });
+        await expect(payNowButton).toBeVisible({ timeout: 5000 });
+        await safeClick(payNowButton);
+
+        // Should reach review step
+        const reviewHeading = page.getByRole('heading', { name: /review|place|revisar|revoir|überprüfen|確認/i });
+        await expect(reviewHeading).toBeVisible({ timeout: 15000 });
       });
     });
   }
@@ -208,7 +235,7 @@ test.describe('Locale Switching During Checkout', () => {
           await waitAfterNavigation(page);
           
           // Should still be on payment step (Step 2)
-          const paymentMethods = page.getByRole('button', { name: /credit card|paypal|carte/i });
+          const paymentMethods = page.getByRole('button', { name: /credit card|bank account|carte|compte bancaire/i });
           const methodsVisible = await paymentMethods.first().isVisible({ timeout: 3000 }).catch(() => false);
           
           // Payment methods should still be visible

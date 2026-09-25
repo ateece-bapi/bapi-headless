@@ -3,7 +3,7 @@
  *
  * Tests the payment method selection (step 2 of checkout):
  * - Payment method rendering
- * - Method selection (Credit Card, PayPal)
+ * - Method selection (Credit Card, Bank Account)
  * - Stripe Elements integration
  * - Navigation (back/next)
  * - Loading states
@@ -26,23 +26,34 @@ vi.mock('@/components/ui/Toast', () => ({
   }),
 }));
 
+// Captures every onSuccess callback the mocked StripePaymentForm receives, in mount order,
+// so tests can invoke a stale (already-unmounted) instance's callback directly to simulate
+// a Stripe confirmPayment() promise resolving after the customer switched tiles.
+const capturedOnSuccessCallbacks: Array<(id: string) => void | Promise<void>> = [];
+
 // Mock Stripe components
 vi.mock('@/components/payment', () => ({
-  StripeProvider: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="stripe-provider">{children}</div>
-  ),
-  StripePaymentForm: ({ onSuccess, onError }: any) => (
-    <div data-testid="stripe-payment-form">
-      <button onClick={() => onSuccess('pi_test_123')}>Submit Payment</button>
-      <button onClick={() => onError('Test error')}>Trigger Error</button>
+  StripeProvider: ({ children, clientSecret }: { children: React.ReactNode; clientSecret?: string }) => (
+    <div data-testid="stripe-provider" data-client-secret={clientSecret}>
+      {children}
     </div>
   ),
+  StripePaymentForm: ({ onSuccess, onError }: any) => {
+    capturedOnSuccessCallbacks.push(onSuccess);
+    return (
+      <div data-testid="stripe-payment-form">
+        <button onClick={() => onSuccess('pi_test_123')}>Submit Payment</button>
+        <button onClick={() => onError('Test error')}>Trigger Error</button>
+      </div>
+    );
+  },
 }));
 
 describe('PaymentStep', () => {
   const mockOnNext = vi.fn();
   const mockOnBack = vi.fn();
   const mockOnUpdateData = vi.fn();
+  const mockOnConfirmPayment = vi.fn();
 
   // Create mock fetch function
   const mockFetch = vi.fn();
@@ -96,11 +107,17 @@ describe('PaymentStep', () => {
     };
     localStorage.setItem('bapi-cart-storage', JSON.stringify(mockCart));
 
+    capturedOnSuccessCallbacks.length = 0;
+
+    // Order creation is only invoked for the Bank Account (ACH) path
+    mockOnConfirmPayment.mockResolvedValue({ success: true, orderId: 99999 });
+
     // Set up fetch mock
     mockFetch.mockResolvedValue({
       json: async () => ({
         success: true,
         clientSecret: 'test_client_secret',
+        paymentIntentId: 'pi_test_123',
       }),
     });
     global.fetch = mockFetch as any;
@@ -115,6 +132,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Payment Method')).toBeInTheDocument();
@@ -127,23 +145,25 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Credit Card')).toBeInTheDocument();
       expect(screen.getByText('Pay with credit or debit card')).toBeInTheDocument();
     });
 
-    it('renders PayPal option', () => {
+    it('renders Bank Account option', () => {
       render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      expect(screen.getByText('PayPal')).toBeInTheDocument();
-      expect(screen.getByText('Pay with your PayPal account')).toBeInTheDocument();
+      expect(screen.getByText('Bank Account')).toBeInTheDocument();
+      expect(screen.getByText('Pay via ACH bank transfer')).toBeInTheDocument();
     });
 
     it('renders payment method icons', () => {
@@ -153,13 +173,14 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       // Check for specific method icons instead of generic selector
       const creditCardIcon = screen.getByTestId('payment-method-credit_card-icon');
-      const paypalIcon = screen.getByTestId('payment-method-paypal-icon');
+      const bankAccountIcon = screen.getByTestId('payment-method-bank_account-icon');
       expect(creditCardIcon).toBeInTheDocument();
-      expect(paypalIcon).toBeInTheDocument();
+      expect(bankAccountIcon).toBeInTheDocument();
     });
 
     it('renders both payment methods in grid layout', () => {
@@ -169,6 +190,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const grid = container.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
@@ -185,6 +207,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -197,23 +220,84 @@ describe('PaymentStep', () => {
       );
     });
 
-    it('selects PayPal when clicked', () => {
+    it('selects Bank Account when clicked', () => {
       render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
       expect(mockOnUpdateData).toHaveBeenCalledWith(
         expect.objectContaining({
-          paymentMethod: { id: 'paypal', title: 'PayPal' },
+          paymentMethod: { id: 'bank_account', title: 'Bank Account' },
         })
       );
+    });
+
+    it('clears a prior unconfirmed paymentIntent when switching methods', () => {
+      const dataWithPendingIntent: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_pending_intent',
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithPendingIntent}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Switching methods before any order is confirmed should abandon the pending intent —
+      // it was never linked to an order, so there's nothing live left running server-side.
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      fireEvent.click(creditCardButton!);
+
+      expect(mockOnUpdateData).toHaveBeenCalledWith(
+        expect.objectContaining({
+          paymentMethod: { id: 'credit_card', title: 'Credit Card' },
+          paymentIntentId: undefined,
+          orderId: undefined,
+        })
+      );
+    });
+
+    it('ignores method changes once an ACH order has been confirmed', () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_old_ach_intent',
+        orderId: 88888,
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithConfirmedAchOrder}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // The ACH debit/order is already live at this point — switching tiles must not be
+      // possible, since it would only abandon it in local state while it stays active
+      // server-side.
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      expect(creditCardButton).toBeDisabled();
+
+      fireEvent.click(creditCardButton!);
+
+      expect(mockOnUpdateData).not.toHaveBeenCalled();
     });
 
     it('highlights selected credit card method', () => {
@@ -223,6 +307,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -238,6 +323,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -254,19 +340,20 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      const icon = screen.getByTestId('payment-method-paypal-icon');
+      const icon = screen.getByTestId('payment-method-bank_account-icon');
       expect(icon).toBeInTheDocument();
     });
 
     it('pre-selects payment method from data', () => {
       const dataWithPayment: CheckoutData = {
         ...mockData,
-        paymentMethod: { id: 'paypal', title: 'PayPal' },
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
       };
       render(
         <PaymentStep
@@ -274,10 +361,11 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      expect(paypalButton).toHaveClass('border-primary-500');
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      expect(bankAccountButton).toHaveClass('border-primary-500');
     });
   });
 
@@ -290,6 +378,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -311,6 +400,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -334,6 +424,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -352,6 +443,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -369,6 +461,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -389,6 +482,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -409,6 +503,10 @@ describe('PaymentStep', () => {
         );
         expect(mockOnNext).toHaveBeenCalled();
       });
+
+      // Credit Card settles synchronously — order creation stays deferred to Review/Place
+      // Order, unlike Bank Account which must create the order immediately (see below).
+      expect(mockOnConfirmPayment).not.toHaveBeenCalled();
     });
 
     it('handles Stripe payment error', async () => {
@@ -418,6 +516,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -434,54 +533,314 @@ describe('PaymentStep', () => {
     });
   });
 
-  // PayPal Integration Tests
-  describe('PayPal Integration', () => {
-    it('shows PayPal info when PayPal selected', () => {
+  // Bank Account Integration Tests
+  describe('Bank Account Integration', () => {
+    it('creates a scoped payment intent when Bank Account selected', async () => {
       render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText(/You will be redirected to PayPal/)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalledWith(
+          '/api/payment/create-intent',
+          expect.objectContaining({
+            method: 'POST',
+            body: expect.stringContaining('"paymentMethodType":"bank_account"'),
+          })
+        );
+      });
     });
 
-    it('shows Continue to Review button for PayPal', () => {
+    it('shows Bank Details heading with bank account', async () => {
       render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText('Continue to Review')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+      });
     });
 
-    it('calls onNext when Continue to Review clicked', () => {
+    it('shows an already-confirmed panel instead of re-submitting when the order already exists', async () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_confirmed_ach',
+        orderId: 77777,
+      };
+
       render(
         <PaymentStep
-          data={mockData}
+          data={dataWithConfirmedAchOrder}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
 
-      const continueButton = screen.getByText('Continue to Review');
-      fireEvent.click(continueButton);
+      // Re-entering this step for the same already-confirmed selection (e.g. via Review's
+      // Back) must not create a new PaymentIntent or re-render the submittable Stripe form
+      expect(mockFetch).not.toHaveBeenCalled();
+      expect(screen.queryByTestId('stripe-payment-form')).not.toBeInTheDocument();
 
+      fireEvent.click(screen.getByText('Continue to Review'));
       expect(mockOnNext).toHaveBeenCalled();
+    });
+
+    it('gates the Bank Account Stripe form behind terms acceptance', async () => {
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      // Terms checkbox appears, but the Stripe form (which authorizes the actual bank debit)
+      // must not render until the customer accepts it — Bank Account creates the WooCommerce
+      // order immediately on success, so this is its final-confirmation gate (Card's equivalent
+      // is the Review step's terms checkbox).
+      await waitFor(() => {
+        expect(screen.getByRole('checkbox')).toBeInTheDocument();
+      });
+      expect(screen.queryByTestId('stripe-payment-form')).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+    });
+
+    it('ignores a stale success callback from a Stripe form no longer active', async () => {
+      // Each create-intent call must return a distinct PaymentIntent id (as Stripe would in
+      // reality) so the guard is actually exercised rather than coincidentally matching.
+      let callCount = 0;
+      mockFetch.mockImplementation(async () => ({
+        json: async () => ({
+          success: true,
+          clientSecret: `client_secret_${++callCount}`,
+          paymentIntentId: `pi_intent_${callCount}`,
+        }),
+      }));
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Select Bank Account, accept terms, and let its Stripe form mount (captured onSuccess #1)
+      fireEvent.click(screen.getByText('Bank Account').closest('button')!);
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
+      await waitFor(() => expect(capturedOnSuccessCallbacks).toHaveLength(1));
+      const staleBankOnSuccess = capturedOnSuccessCallbacks[0];
+
+      // Switch to Credit Card before Stripe's confirmPayment() for Bank Account "resolves" —
+      // this mounts a new intent/form with its own onSuccess (captured #2)
+      fireEvent.click(screen.getByText('Credit Card').closest('button')!);
+      await waitFor(() => expect(capturedOnSuccessCallbacks).toHaveLength(2));
+
+      // The stale Bank Account promise now "resolves" with its own (now-superseded) intent id —
+      // this must be ignored entirely, not treated as a fresh ACH confirmation
+      await staleBankOnSuccess('pi_intent_1');
+
+      expect(mockOnConfirmPayment).not.toHaveBeenCalled();
+      expect(mockOnNext).not.toHaveBeenCalled();
+    });
+
+    it('renders Stripe payment form for Bank Account', async () => {
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-provider')).toBeInTheDocument();
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+    });
+
+    it('creates the WooCommerce order immediately when the ACH PaymentIntent confirms', async () => {
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText('Submit Payment'));
+
+      // ACH settlement is asynchronous and reconciled only via a webhook that requires an
+      // existing order — the order must be created right away, not deferred to Review.
+      await waitFor(() => {
+        expect(mockOnConfirmPayment).toHaveBeenCalledWith('pi_test_123');
+        expect(mockOnUpdateData).toHaveBeenCalledWith(
+          expect.objectContaining({ orderId: 99999 })
+        );
+        expect(mockOnNext).toHaveBeenCalled();
+      });
+    });
+
+    it('does not advance if immediate ACH order creation fails', async () => {
+      mockOnConfirmPayment.mockResolvedValueOnce({
+        success: false,
+        message: 'Unable to create order',
+      });
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+
+      await waitFor(() => screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText('Submit Payment'));
+
+      await waitFor(() => {
+        expect(mockOnConfirmPayment).toHaveBeenCalled();
+      });
+
+      expect(mockOnNext).not.toHaveBeenCalled();
+    });
+
+    it('ignores a stale Credit Card response that resolves after a later Bank Account request', async () => {
+      // Deferred promises let us control exactly when each fetch call resolves,
+      // independent of the order the requests were made in.
+      let resolveCardRequest!: (value: unknown) => void;
+      let resolveBankRequest!: (value: unknown) => void;
+      const cardResponse = new Promise((resolve) => {
+        resolveCardRequest = resolve;
+      });
+      const bankResponse = new Promise((resolve) => {
+        resolveBankRequest = resolve;
+      });
+
+      mockFetch.mockImplementation((_url: string, options: any) => {
+        const body = JSON.parse(options.body);
+        return body.paymentMethodType === 'credit_card' ? cardResponse : bankResponse;
+      });
+
+      render(
+        <PaymentStep
+          data={mockData}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Select Credit Card first (request in flight, unresolved)...
+      const creditCardButton = screen.getByText('Credit Card').closest('button');
+      fireEvent.click(creditCardButton!);
+      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
+
+      // ...then switch to Bank Account before the Credit Card request resolves
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
+      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(2));
+
+      // Terms gate is independent of intent loading — accept it now so the Stripe form can
+      // render as soon as the (still in-flight) bank intent resolves
+      fireEvent.click(screen.getByRole('checkbox'));
+
+      // Bank Account's request resolves first...
+      resolveBankRequest({
+        json: async () => ({
+          success: true,
+          clientSecret: 'bank_client_secret',
+          paymentIntentId: 'pi_bank_123',
+        }),
+      });
+      await waitFor(() => {
+        expect(screen.getByTestId('stripe-provider')).toHaveAttribute(
+          'data-client-secret',
+          'bank_client_secret'
+        );
+      });
+
+      // ...then the stale Credit Card request finally resolves
+      resolveCardRequest({
+        json: async () => ({
+          success: true,
+          clientSecret: 'card_client_secret',
+          paymentIntentId: 'pi_card_123',
+        }),
+      });
+
+      // The stale card response must not overwrite the correct bank client secret/form —
+      // assert on the actual clientSecret the mounted Stripe provider received, not just the
+      // heading text (which is derived from `selectedMethod` and would stay "Bank Details"
+      // even if the wrong clientSecret silently won the race).
+      await waitFor(() => {
+        expect(screen.getByText('Bank Details')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('stripe-provider')).toHaveAttribute(
+        'data-client-secret',
+        'bank_client_secret'
+      );
+      expect(screen.queryByText('Card Details')).not.toBeInTheDocument();
     });
   });
 
@@ -494,6 +853,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       expect(screen.getByText('Back')).toBeInTheDocument();
@@ -506,6 +866,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const backButton = screen.getByText('Back');
@@ -514,19 +875,24 @@ describe('PaymentStep', () => {
       expect(mockOnBack).toHaveBeenCalled();
     });
 
-    it('shows Back button with PayPal selected', () => {
+    it('keeps Back button visible with bank account selected', async () => {
       render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(screen.getByText('Back')).toBeInTheDocument();
+      // Unlike Credit Card, Bank Account keeps Back available in case Financial Connections
+      // fails or the customer needs to revisit shipping info before authorizing the debit.
+      await waitFor(() => {
+        expect(screen.getByText('Back')).toBeInTheDocument();
+      });
     });
 
     it('hides Back button with credit card selected', async () => {
@@ -536,6 +902,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -546,6 +913,29 @@ describe('PaymentStep', () => {
       });
     });
 
+    it('hides Back button once an ACH order has been confirmed', () => {
+      const dataWithConfirmedAchOrder: CheckoutData = {
+        ...mockData,
+        paymentMethod: { id: 'bank_account', title: 'Bank Account' },
+        paymentIntentId: 'pi_confirmed',
+        orderId: 88888,
+      };
+
+      render(
+        <PaymentStep
+          data={dataWithConfirmedAchOrder}
+          onNext={mockOnNext}
+          onBack={mockOnBack}
+          onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
+        />
+      );
+
+      // Going back to edit shipping/billing at this point wouldn't be reflected on the
+      // already-created order, so Back must not be offered once confirmed.
+      expect(screen.queryByText('Back')).not.toBeInTheDocument();
+    });
+
     it('renders ArrowLeft icon on Back button', () => {
       const { container } = render(
         <PaymentStep
@@ -553,6 +943,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const backButton = screen.getByText('Back');
@@ -570,6 +961,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const grid = container.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
@@ -583,6 +975,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -596,6 +989,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -609,12 +1003,13 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
-      const paypalButton = screen.getByText('PayPal').closest('button');
-      fireEvent.click(paypalButton!);
+      const bankAccountButton = screen.getByText('Bank Account').closest('button');
+      fireEvent.click(bankAccountButton!);
 
-      expect(paypalButton).toHaveClass('border-primary-500', 'bg-primary-50');
+      expect(bankAccountButton).toHaveClass('border-primary-500', 'bg-primary-50');
     });
   });
 
@@ -629,6 +1024,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
 
@@ -644,6 +1040,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
 
@@ -664,6 +1061,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
@@ -685,6 +1083,7 @@ describe('PaymentStep', () => {
           onNext={mockOnNext}
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
+          onConfirmPayment={mockOnConfirmPayment}
         />
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');

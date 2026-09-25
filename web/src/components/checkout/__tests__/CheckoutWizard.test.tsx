@@ -83,6 +83,7 @@ describe('CheckoutWizard', () => {
   const mockOnBack = vi.fn();
   const mockOnUpdateData = vi.fn();
   const mockOnPlaceOrder = vi.fn();
+  const mockOnConfirmPayment = vi.fn().mockResolvedValue({ success: true, orderId: 99999 });
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -98,6 +99,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -116,6 +118,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -134,6 +137,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -154,6 +158,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -172,6 +177,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -191,6 +197,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -209,6 +216,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -227,6 +235,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -245,6 +254,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -264,6 +274,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -287,6 +298,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -305,6 +317,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -323,6 +336,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -342,6 +356,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -360,6 +375,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -382,6 +398,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -400,6 +417,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -418,6 +436,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -436,6 +455,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -453,6 +473,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={true}
         />
       );
@@ -471,6 +492,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -488,6 +510,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -504,6 +527,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -520,6 +544,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -538,6 +563,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -559,6 +585,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -585,6 +612,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -610,6 +638,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -628,6 +657,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -649,6 +679,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -667,6 +698,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -684,6 +716,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -703,6 +736,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -722,6 +756,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -742,6 +777,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -761,6 +797,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -780,6 +817,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -793,6 +831,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );
@@ -814,6 +853,7 @@ describe('CheckoutWizard', () => {
           onBack={mockOnBack}
           onUpdateData={mockOnUpdateData}
           onPlaceOrder={mockOnPlaceOrder}
+          onConfirmPayment={mockOnConfirmPayment}
           isProcessing={false}
         />
       );

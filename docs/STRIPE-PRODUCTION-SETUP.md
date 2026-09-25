@@ -61,11 +61,10 @@ Or in the Vercel dashboard:
 
 1. In the Stripe Dashboard (live mode) go to **Developers → Webhooks**
 2. Click **Add endpoint**
-3. URL: `https://bapi.com/api/payment/webhook`
+3. URL: `https://bapi.com/api/webhooks/stripe`
 4. Events to send:
    - `payment_intent.succeeded`
    - `payment_intent.payment_failed`
-   - `charge.refunded`
 5. Copy the **Signing secret** (`whsec_...`)
 6. Add to Vercel:
    ```bash

@@ -466,7 +466,7 @@
         "roomWallSensors": "房间和墙面传感器",
         "roomWallSensorsDesc": "高精度温度感测",
         "ductSensors": "风管传感器",
-        "ductSensorsDesc": "风管安装式变送器",
+        "ductSensorsDesc": "风管安装式温度传感器",
         "immersionWell": "浸入式和热电偶套管",
         "immersionWellDesc": "液体温度测量",
         "outdoorSensors": "室外传感器",
@@ -474,42 +474,42 @@
         "averaging": "平均温度传感器",
         "averagingDesc": "大空间温度平均",
         "remoteProbes": "远程探头",
-        "remoteProbesDesc": "分离式感测元件探头"
+        "remoteProbesDesc": "子弹型、表面型和凹面型探头"
       },
       "humidity": {
         "title": "湿度",
         "humidityOverview": "湿度概述",
         "humidityOverviewDesc": "商业暖通空调的综合湿度传感解决方案",
         "roomHumidity": "室内湿度",
-        "roomHumidityDesc": "壁挂式湿度传感器",
+        "roomHumidityDesc": "壁挂式%RH传感器",
         "ductHumidity": "管道湿度",
-        "ductHumidityDesc": "进回风湿度",
+        "ductHumidityDesc": "送风和回风%RH",
         "outdoorHumidity": "室外湿度",
-        "outdoorHumidityDesc": "防天气型湿度检测",
+        "outdoorHumidityDesc": "防天气型%RH",
         "comboSensors": "组合传感器",
         "comboSensorsDesc": "温度 + 湿度"
       },
       "pressure": {
         "title": "压力",
         "differential": "差压",
-        "differentialDesc": "室内和过滤器监测",
+        "differentialDesc": "风管、建筑或房间对房间",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "管道静压变送器",
+        "staticDesc": "风管、墙壁、天花板和室外",
         "differentialSwitch": "差压开关",
-        "differentialSwitchDesc": "压力触发开关",
+        "differentialSwitchDesc": "风机运行确认和过滤器状态",
         "pressureOverview": "压力传感器概述",
-        "pressureOverviewDesc": "用于HVAC应用的压力传感器和开关完整系列"
+        "pressureOverviewDesc": "用于HVAC应用的全系列压力传感器和开关"
       },
       "airQuality": {
         "title": "空气质量",
         "airQualityOverview": "空气质量概览",
-        "airQualityOverviewDesc": "完整的CO₂、VOC、颗粒物、CO和NO₂解决方案",
+        "airQualityOverviewDesc": "CO₂、VOC、颗粒物、CO和NO₂解决方案",
         "co2": "CO₂ 传感器",
         "co2Desc": "二氧化碳监测",
         "voc": "VOC 传感器",
         "vocDesc": "挥发性有机化合物",
         "particulate": "颗粒物",
-        "particulateDesc": "PM2.5 和 PM10",
+        "particulateDesc": "PM2.5 和 PM10，现场可选颗粒物尺寸",
         "nitrogenDioxide": "二氧化氮",
         "nitrogenDioxideDesc": "NO₂气体检测",
         "carbonMonoxide": "一氧化碳",
@@ -528,22 +528,22 @@
         "roomSensorsDesc": "用于室内环境的温湿度传感器",
         "title": "无线",
         "wirelessAccessories": "配件",
-        "wirelessAccessoriesDesc": "安装和安装配件",
+        "wirelessAccessoriesDesc": "电池和其他配件",
         "wirelessSolutions": "无线解决方案概述",
-        "wirelessSolutionsDesc": "楼宇自动化完整无线连接解决方案"
+        "wirelessSolutionsDesc": "楼宇自动化的简单无线连接解决方案"
       },
       "accessories": {
         "title": "配件",
         "accessoriesOverview": "配件概述",
-        "accessoriesOverviewDesc": "用于 HVAC 应用的专业传感器和支持硬件",
+        "accessoriesOverviewDesc": "完善您安装的解决方案",
         "allAccessories": "所有配件",
-        "allAccessoriesDesc": "安装硬件、外壳、电缆和传感器配件"
+        "allAccessoriesDesc": "电源、水浸检测器和其他HVAC配件"
       },
       "testInstruments": {
         "title": "测试仪器",
-        "bluTestDesc": "一套用于温度、湿度、露点、压差和 K 系数测量的测试探头",
+        "bluTestDesc": "支持蓝牙通信的无线测试仪器",
         "allTestInstruments": "所有测试仪器",
-        "allTestInstrumentsDesc": "NIST可溯源的温度、湿度和压力基准"
+        "allTestInstrumentsDesc": "NIST可溯源的温度、湿度和气压测试"
       },
       "featured": {
         "title": "WAM™ 无线资产监控",
@@ -562,7 +562,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "所有ETA产品",
-        "allEtaLineDesc": "用于楼宇自动化的模块化I/O和控制解决方案"
+        "allEtaLineDesc": "补充DDC安装的接口和通信设备"
       },
       "featuredSecondary": {
         "title": "Blü-View 应用",

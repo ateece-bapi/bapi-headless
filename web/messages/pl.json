@@ -56,7 +56,7 @@
         "roomWallSensors": "Czujniki Pokojowe i Ścienne",
         "roomWallSensorsDesc": "Wykrywanie temperatury o wysokiej dokładności",
         "ductSensors": "Czujniki Kanałowe",
-        "ductSensorsDesc": "Nadajniki montowane w kanałach",
+        "ductSensorsDesc": "Czujniki temperatury montowane w kanałach",
         "immersionWell": "Zanurzeniowe i Tuleje Termometryczne",
         "immersionWellDesc": "Pomiar temperatury cieczy",
         "outdoorSensors": "Czujniki Zewnętrzne",
@@ -64,42 +64,42 @@
         "averaging": "Czujniki Uśredniające",
         "averagingDesc": "Uśrednianie temperatury w dużych przestrzeniach",
         "remoteProbes": "Sondy Zdalne",
-        "remoteProbesDesc": "Sondy z oddzielnym elementem czujnikowym"
+        "remoteProbesDesc": "Sondy kulkowe, powierzchniowe i wklęsłe"
       },
       "humidity": {
         "title": "Wilgotność",
         "humidityOverview": "Przegląd Wilgotności",
         "humidityOverviewDesc": "Kompleksowe rozwiązania czujników wilgotności dla komercyjnej wentylacji i klimatyzacji",
         "roomHumidity": "Wilgotność w pomieszczeniu",
-        "roomHumidityDesc": "Czujniki RH montowane na ścianie",
+        "roomHumidityDesc": "Czujniki %RH montowane na ścianie",
         "ductHumidity": "Wilgotność w kanale",
-        "ductHumidityDesc": "RH w nawiewie i powrocie",
+        "ductHumidityDesc": "%RH nawiewu i powrotu powietrza",
         "outdoorHumidity": "Wilgotność zewnętrzna",
-        "outdoorHumidityDesc": "Odporne na warunki atmosferyczne",
+        "outdoorHumidityDesc": "Odporne na warunki atmosferyczne %RH",
         "comboSensors": "Czujniki kombinowane",
         "comboSensorsDesc": "Temperatura + wilgotność"
       },
       "pressure": {
         "title": "Ciśnienie",
         "differential": "Ciśnienie różnicowe",
-        "differentialDesc": "Monitoring pomieszczeń i filtrów",
+        "differentialDesc": "Kanał, budynek lub pomieszczenie do pomieszczenia",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Nadajniki ciśnienia statycznego w kanałach",
+        "staticDesc": "Kanał, ściana, sufit i powietrze zewnętrzne",
         "differentialSwitch": "Wyłącznik różnicowy",
-        "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem",
+        "differentialSwitchDesc": "Kontrola pracy wentylatora i stanu filtra",
         "pressureOverview": "Przegląd Ciśnienia",
         "pressureOverviewDesc": "Pełna linia czujników ciśnienia i przełączników do zastosowań HVAC"
       },
       "airQuality": {
         "title": "Jakość Powietrza",
         "airQualityOverview": "Przegląd jakości powietrza",
-        "airQualityOverviewDesc": "Kompletne rozwiązania CO₂, VOC, pyłów, CO i NO₂",
+        "airQualityOverviewDesc": "Rozwiązania CO₂, VOC, pyłów, CO i NO₂",
         "co2": "Czujniki CO₂",
         "co2Desc": "Monitorowanie dwutlenku węgla",
         "voc": "Czujniki VOC",
-        "vocDesc": "Lotne związki organiczne",
+        "vocDesc": "Lotne Związki Organiczne",
         "particulate": "Pyły Zawieszone",
-        "particulateDesc": "PM2.5 i PM10",
+        "particulateDesc": "PM2.5 i PM10, z regulowanym rozmiarem cząstek w terenie",
         "nitrogenDioxide": "Dwutlenek Azotu",
         "nitrogenDioxideDesc": "Wykrywanie gazu NO₂",
         "carbonMonoxide": "Tlenek Węgla",
@@ -118,22 +118,22 @@
         "roomSensorsDesc": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
         "title": "Bezprzewodowe",
         "wirelessAccessories": "Akcesoria",
-        "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne",
+        "wirelessAccessoriesDesc": "Baterie i inne akcesoria",
         "wirelessSolutions": "Przegląd Rozwiązań Bezprzewodowych",
-        "wirelessSolutionsDesc": "Kompletna bezprzewodowa łączność dla automatyki budynkowej"
+        "wirelessSolutionsDesc": "Prosta łączność bezprzewodowa dla automatyki budynkowej"
       },
       "accessories": {
         "title": "Akcesoria",
         "accessoriesOverview": "Przegląd akcesoriów",
-        "accessoriesOverviewDesc": "Specjalistyczne czujniki i sprzęt wspierający dla aplikacji HVAC",
+        "accessoriesOverviewDesc": "Rozwiązania uzupełniające Twoją instalację",
         "allAccessories": "Wszystkie Akcesoria",
-        "allAccessoriesDesc": "Sprzęt montażowy, obudowy, kable i akcesoria do czujników"
+        "allAccessoriesDesc": "Zasilacze, czujniki wycieku wody i inne akcesoria HVAC"
       },
       "testInstruments": {
         "title": "Przyrządy Testowe",
-        "bluTestDesc": "Zestaw sond testowych do pomiaru temperatury, wilgotności, punktu rosy, ciśnienia różnicowego i współczynnika K",
+        "bluTestDesc": "Bezprzewodowe przyrządy testowe z komunikacją Bluetooth",
         "allTestInstruments": "Wszystkie Przyrządy Testowe",
-        "allTestInstrumentsDesc": "Wzorce temperatury, wilgotności i ciśnienia z certyfikatem NIST"
+        "allTestInstrumentsDesc": "Testowanie temperatury, wilgotności i ciśnienia powietrza z certyfikatem NIST"
       },
       "featured": {
         "title": "Bezprzewodowy monitoring aktywów WAM™",
@@ -152,7 +152,7 @@
       "etaLine": {
         "title": "ETA Line",
         "allEtaLine": "Wszystkie produkty ETA",
-        "allEtaLineDesc": "Modularne rozwiązania I/O i sterowania dla automatyki budynkowej"
+        "allEtaLineDesc": "Urządzenia interfejsowe i komunikacyjne uzupełniające instalację DDC"
       },
       "featuredSecondary": {
         "title": "Aplikacja Blü-View",
